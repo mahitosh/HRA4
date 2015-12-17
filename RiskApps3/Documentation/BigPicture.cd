@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RiskApps3.MainForm">
+    <Position X="1" Y="0.5" Width="3" />
+    <Members>
+      <Field Name="aboutToolStripMenuItem" Hidden="true" />
+      <Method Name="aboutToolStripMenuItem_Click" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="DataModelWorker" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="familyHistoryToolStripMenuItem" Hidden="true" />
+      <Field Name="followupToolStripMenuItem" Hidden="true" />
+      <Field Name="helpToolStripMenuItem" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Method Name="InitializeView" Hidden="true" />
+      <Method Name="MainForm" Hidden="true" />
+      <Field Name="menuStrip1" Hidden="true" />
+      <Field Name="ordersToolStripMenuItem" Hidden="true" />
+      <Field Name="pedigreeToolStripMenuItem" Hidden="true" />
+      <Field Name="riskAnalysisToolStripMenuItem" Hidden="true" />
+      <Field Name="riskClinicToolStripMenuItem" Hidden="true" />
+      <Field Name="statusStrip1" Hidden="true" />
+      <Field Name="toolStripMenuItem1" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ARAABCAIACAQAAAKACCCFAACQAAAAAAAIgAAQAAAAQE=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.SessionManager">
+    <Position X="4.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAEgAAAAAAAA=</HashCode>
+      <FileName>Controllers\SessionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

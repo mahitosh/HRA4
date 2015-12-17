@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="FetchCompletedSurveys">
+        <s:complexType />
+      </s:element>
+      <s:element name="FetchCompletedSurveysResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FetchCompletedSurveysResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchPatientRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="apptid" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchPatientRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FetchPatientRecordResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SurveySummary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="apptid" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SurveySummaryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SurveySummaryResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSurvey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="apptid" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSurveyResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="FetchCompletedSurveysSoapIn">
+    <wsdl:part name="parameters" element="tns:FetchCompletedSurveys" />
+  </wsdl:message>
+  <wsdl:message name="FetchCompletedSurveysSoapOut">
+    <wsdl:part name="parameters" element="tns:FetchCompletedSurveysResponse" />
+  </wsdl:message>
+  <wsdl:message name="FetchPatientRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:FetchPatientRecord" />
+  </wsdl:message>
+  <wsdl:message name="FetchPatientRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:FetchPatientRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="SurveySummarySoapIn">
+    <wsdl:part name="parameters" element="tns:SurveySummary" />
+  </wsdl:message>
+  <wsdl:message name="SurveySummarySoapOut">
+    <wsdl:part name="parameters" element="tns:SurveySummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSurveySoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteSurvey" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSurveySoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteSurveyResponse" />
+  </wsdl:message>
+  <wsdl:portType name="RiskAppsCloudServicesSoap">
+    <wsdl:operation name="FetchCompletedSurveys">
+      <wsdl:input message="tns:FetchCompletedSurveysSoapIn" />
+      <wsdl:output message="tns:FetchCompletedSurveysSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FetchPatientRecord">
+      <wsdl:input message="tns:FetchPatientRecordSoapIn" />
+      <wsdl:output message="tns:FetchPatientRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SurveySummary">
+      <wsdl:input message="tns:SurveySummarySoapIn" />
+      <wsdl:output message="tns:SurveySummarySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSurvey">
+      <wsdl:input message="tns:DeleteSurveySoapIn" />
+      <wsdl:output message="tns:DeleteSurveySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RiskAppsCloudServicesSoap" type="tns:RiskAppsCloudServicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FetchCompletedSurveys">
+      <soap:operation soapAction="http://tempuri.org/FetchCompletedSurveys" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchPatientRecord">
+      <soap:operation soapAction="http://tempuri.org/FetchPatientRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SurveySummary">
+      <soap:operation soapAction="http://tempuri.org/SurveySummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSurvey">
+      <soap:operation soapAction="http://tempuri.org/DeleteSurvey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RiskAppsCloudServicesSoap12" type="tns:RiskAppsCloudServicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FetchCompletedSurveys">
+      <soap12:operation soapAction="http://tempuri.org/FetchCompletedSurveys" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchPatientRecord">
+      <soap12:operation soapAction="http://tempuri.org/FetchPatientRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SurveySummary">
+      <soap12:operation soapAction="http://tempuri.org/SurveySummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSurvey">
+      <soap12:operation soapAction="http://tempuri.org/DeleteSurvey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RiskAppsCloudServices">
+    <wsdl:port name="RiskAppsCloudServicesSoap" binding="tns:RiskAppsCloudServicesSoap">
+      <soap:address location="http://localhost/HraCloud/RiskAppsCloudServices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RiskAppsCloudServicesSoap12" binding="tns:RiskAppsCloudServicesSoap12">
+      <soap12:address location="http://localhost/HraCloud/RiskAppsCloudServices.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,2784 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RiskApps3.Controllers.Pedigree.AnimationThread" Collapsed="true">
+    <Position X="216" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAQAAAAAEIABAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\AnimationThread.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.LayoutEngine" Collapsed="true">
+    <Position X="11.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAgCAACQAABAAEAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\LayoutEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.PedigreeController" Collapsed="true">
+    <Position X="11.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAgAAAAEAAIAAAAQAAACAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Controllers\Pedigree\PedigreeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.PedigreeUtils" Collapsed="true">
+    <Position X="219.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEAAAAAAAAAAgCAAAAAAAAAAQAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Controllers\Pedigree\PedigreeUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.AttractCouples" Collapsed="true">
+    <Position X="223" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\AttractCouples.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.AutoSave" Collapsed="true">
+    <Position X="212.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\AutoSave.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.DetectForceConvergence" Collapsed="true">
+    <Position X="214.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\DetectForceConvergence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.CenterParents" Collapsed="true">
+    <Position X="221.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAQACAAAAAAAAAAAgAAAACACAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\CenterParents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.ComputeCenters" Collapsed="true">
+    <Position X="226.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\ComputeCenters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.DetectPlanarity" Collapsed="true">
+    <Position X="216" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAIAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\DetectPlanarity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.DetectValidLayout" Collapsed="true">
+    <Position X="217.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAgAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\DetectValidOrdering.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.EllapsedTimeCheck" Collapsed="true">
+    <Position X="221.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\EllapsedTimeCheck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.IncrementIOVariables" Collapsed="true">
+    <Position X="221.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\IncrementIOVariables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.LayoutCouples" Collapsed="true">
+    <Position X="231.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\LayoutCouples.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.LayoutHoldingPen" Collapsed="true">
+    <Position X="210.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\LayoutHoldingPen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.LayoutSibships" Collapsed="true">
+    <Position X="212.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIBAAAAAAAAAAAAgAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\LayoutSibships.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.LayoutSipshipsTwo" Collapsed="true">
+    <Position X="214.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIBAAAAAAAAAAAAgAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\LayoutSipshipsTwo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.LevelRestrictedForceDirectedLayout" Collapsed="true">
+    <Position X="217.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAQAAAABAAAAAAAAABAEAAAgAAAAgBAAABAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\LevelRestrictedForceDirectedLayout.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.PullToTargetPositions" Collapsed="true">
+    <Position X="216" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\PullToTargetPositions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.PullTowardCenterHorizontally" Collapsed="true">
+    <Position X="217.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\PullTowardCenterHorizontally.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.RepelIndividualSets" Collapsed="true">
+    <Position X="210.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQACAAAAAAAAAAAgAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\RepelIndividualSets.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.SnapToGrid" Collapsed="true">
+    <Position X="226.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\SnapToGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.StaticLayout" Collapsed="true">
+    <Position X="230" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQDAAAAAAAAAQAAAAAAAAAECAAgAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\StaticLayout.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.SwapSibs" Collapsed="true">
+    <Position X="214.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\experimental\SwapSibs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.IncrementControllerVariables" Collapsed="true">
+    <Position X="219.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\IncrementControllerVariables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.IncrementVelocities" Collapsed="true">
+    <Position X="223" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\IncrementVelocities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.PlaceIndividualsOverCouples" Collapsed="true">
+    <Position X="223" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\PlaceIndividualsOverCouples.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.PullTowardIdealVerticalPositions" Collapsed="true">
+    <Position X="219.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\PullTowardIdealVerticalPositions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.RepelIndividuals" Collapsed="true">
+    <Position X="231.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\RepelIndividuals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.interaction.DragPoints" Collapsed="true">
+    <Position X="226.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\interaction\DragPoints.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.Pedigree.layoutSteps.interaction.Pan" Collapsed="true">
+    <Position X="230" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAgAAAAAgAACAAYgAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\layoutSteps\interaction\Pan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.SessionManager" Collapsed="true">
+    <Position X="221.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEBAggBILQQwAABAAAAQCBBAAAAEAQQEAQAAEAAAg=</HashCode>
+      <FileName>Controllers\SessionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Controllers.UserInterface" Collapsed="true">
+    <Position X="224.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.HraAboutBox" Collapsed="true">
+    <Position X="231.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kIAAAAgAACAgCAUAAACAAAADAAAAEIAAAAAAAAAAAAA=</HashCode>
+      <FileName>HraAboutBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.MainForm" Collapsed="true">
+    <Position X="226.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UQgkDS2AAKAAMA7CgBCCEABDAgACIAggIjRCRAiDQAU=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.MainFormLoading" Collapsed="true">
+    <Position X="101.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>8wAAAABwAyEAApAAACCABAACEAAAAIAAQKAAAQBAAQA=</HashCode>
+      <FileName>MainFormLoading.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.NullDockingConfigException" Collapsed="true">
+    <Position X="223" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NullDockingConfigException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Program" Collapsed="true">
+    <Position X="212.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAgACAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.AppointmentList" Collapsed="true">
+    <Position X="99.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAQAAAAAAAAAAAAAAAAEAIAAAAAABAAAEAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\AppointmentList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.DocumentTemplateList" Collapsed="true">
+    <Position X="5.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Letters\DocumentTemplate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.DocumentTemplate" Collapsed="true">
+    <Position X="17" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAGCECAgRIEEgggAJEAMCAAEEBCAQAAAIEAAAAABCEE=</HashCode>
+      <FileName>Model\Clinic\Letters\DocumentTemplate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.DocumentSection" Collapsed="true">
+    <Position X="224.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Letters\DocumentTemplate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.PatientList" Collapsed="true">
+    <Position X="39.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAACAAAAAAEAAgAAAAAAAAQAQA=</HashCode>
+      <FileName>Model\Clinic\PatientList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.PatientListEntry" Collapsed="true">
+    <Position X="212.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\PatientList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.PatientTable" Collapsed="true">
+    <Position X="57.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAgAEAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\PatientTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Provider" Collapsed="true">
+    <Position X="82.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAKgACAgQBBAoABmhAOFCAACFEkAEOA2AEAgGAIEABk=</HashCode>
+      <FileName>Model\Clinic\Provider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.ProviderList" Collapsed="true">
+    <Position X="39" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\ProviderList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.AtRisk" Collapsed="true">
+    <Position X="104.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACAAAAQAAAAACAAAIAEAQAAAAACAAAARACA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\AtRisk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.BeingFollowedQueue" Collapsed="true">
+    <Position X="62" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAIAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\BeingFollowedQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.BrcaPositiveQueue" Collapsed="true">
+    <Position X="64.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAIAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\BrcaPositiveQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.DashboardProviderList" Collapsed="true">
+    <Position X="129.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAACAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\DashboardProviderList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.HighRiskBrcaQueue" Collapsed="true">
+    <Position X="66.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAIAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\HighRiskBrcaQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.HighRiskColonQueue" Collapsed="true">
+    <Position X="68.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\HighRiskColonQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.HighRiskLifetimeBreastQueue" Collapsed="true">
+    <Position X="71" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAIAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\HighRiskLifetimeBreastQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.MyPatients" Collapsed="true">
+    <Position X="170" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQACAAAQAAAAIAAACBAAIAEAAAAAAgAAAQAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\MyPatients.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.NotYetInformedGeneticTest" Collapsed="true">
+    <Position X="174.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAABAAAAAQAAACEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\NotYetInformedGeneticTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.NotYetInformedGeneticTestList" Collapsed="true">
+    <Position X="90.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\NotYetInformedGeneticTestList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.NotYetInformedGeneticTests" Collapsed="true">
+    <Position X="190.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAIAAACAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\NotYetInformedGeneticTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.PatientsFollowed" Collapsed="true">
+    <Position X="201.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\PatientsFollowed.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.PendingGeneticTest" Collapsed="true">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAABAAAAAQAAACEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\PendingGeneticTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.PendingGeneticTestList" Collapsed="true">
+    <Position X="9.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\PendingGeneticTestList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.PendingGeneticTests" Collapsed="true">
+    <Position X="28.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAACAAAIAEAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\PendingGeneticTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.PendingTaskQueue" Collapsed="true">
+    <Position X="59.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAIAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\PendingTaskQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.PendingTasks" Collapsed="true">
+    <Position X="44" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAIAAACAAAIAUAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\PendingTasks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.Queue" Collapsed="true">
+    <Position X="65.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAg=</HashCode>
+      <FileName>Model\Clinic\Dashboard\Queue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Dashboard.QueueData" Collapsed="true">
+    <Position X="84.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAABAAAAAAAAAIAAACAAAAAEAAAAAAARAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Dashboard\QueueData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Followup.FollowupStatus" Collapsed="true">
+    <Position X="91.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAACAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Followup\FollowupStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Letters.DocumentArgs" Collapsed="true">
+    <Position X="223" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAgAQAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Letters\DocumentArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Letters.HraLetterTags.ImageTag" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="216" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAgAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Model\Clinic\Letters\HraLetterTags\ImageTag.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Letters.HraLetterTags.MakeResponseTableTag" Collapsed="true">
+    <Position X="8.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Letters\HraLetterTags\MakeResponseTableTag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Letters.HraLetterTags.MakeTableTag" Collapsed="true">
+    <Position X="8.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAQQAAAAAAAAAAAAhAAAAoIAAAAABAAAAAAAAEAAA=</HashCode>
+      <FileName>Model\Clinic\Letters\HraLetterTags\MakeTableTag.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Letters.HraLetterTags.PedigreeTag" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="217.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAYRAEAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Model\Clinic\Letters\HraLetterTags\PedigreeTag.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Letters.HraLetterTags.SqlExecTag" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="228.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAQQAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Model\Clinic\Letters\HraLetterTags\SqlExecTag.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Letters.HraLetterTags.TableColumnTag" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="216" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CABAAAAAACAgAAAAAAAAAIAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Model\Clinic\Letters\HraLetterTags\TableColumnTag.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.HraLetterTags.Sectionizer" Collapsed="true">
+    <Position X="217.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAEAAA=</HashCode>
+      <FileName>Model\Clinic\Letters\Sectionizer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Queues.FollowupCohort" Collapsed="true">
+    <Position X="181.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAACAAACAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Queues\FollowupCohort.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Queues.FollowupCohortEntry" Collapsed="true">
+    <Position X="228.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAQIAgAAAgAAAAEAAAAAEAA=</HashCode>
+      <FileName>Model\Clinic\Queues\FollowupCohort.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Queues.HighRiskBrcaQueue" Collapsed="true">
+    <Position X="203.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAgAACAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Queues\HighRiskBrcaQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Queues.HighRiskBrcaQueueEntry" Collapsed="true">
+    <Position X="228.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQAAAgIgIAAAQcAAIASIoAQQgAwQEpAQAAAAAaQFQgA=</HashCode>
+      <FileName>Model\Clinic\Queues\HighRiskBrcaQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Queues.HighRiskColonQueue" Collapsed="true">
+    <Position X="19.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAACAAAAAUAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Queues\HighRiskColonQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Queues.HighRiskColonQueueEntry" Collapsed="true">
+    <Position X="230" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQAAAgIgIAAAQcAAIASIoAQQgAwQEpAQAAAAAaQFQgA=</HashCode>
+      <FileName>Model\Clinic\Queues\HighRiskColonQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Reports.EmailReport" Collapsed="true">
+    <Position X="14.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAIAAgAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Reports\EmailReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Reports.EmailReportEntry" Collapsed="true">
+    <Position X="46.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAEAAAAAIAAQAAAAAAgACAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Reports\EmailReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Reports.OptInOrOutReport" Collapsed="true">
+    <Position X="25.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAIAAgAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Reports\OptInOrOutReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Reports.OptInOrOutReportEntry" Collapsed="true">
+    <Position X="86.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAABAAAEAAAAAIAAQAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Reports\OptInOrOutReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Reports.RiskClinicPatientCohort" Collapsed="true">
+    <Position X="41.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAIAAgAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Reports\RiskClinicPatientCohort.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Reports.PatientCohortMember" Collapsed="true">
+    <Position X="107" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAEAAAAAAAAYAAAIIAgAAAAAAAAAAAAI=</HashCode>
+      <FileName>Model\Clinic\Reports\RiskClinicPatientCohort.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Reports.RiskClinicReferringProviders" Collapsed="true">
+    <Position X="52.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAIAAgAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Reports\RiskClinicReferringProviders.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Reports.ReferringProvider" Collapsed="true">
+    <Position X="120.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAABAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Reports\RiskClinicReferringProviders.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Reports.RiskClinicTestingCohort" Collapsed="true">
+    <Position X="66" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAIAAgAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Reports\RiskClinicTestingCohort.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Clinic.Reports.TestingCohorttMember" Collapsed="true">
+    <Position X="143" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABCAAAAAAAAAAEAQAAAAAAQAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Clinic\Reports\RiskClinicTestingCohort.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.HraAttribute" Collapsed="true">
+    <Position X="210.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAIAAAAAAAAAAAAAAAACAAE=</HashCode>
+      <FileName>Model\HraAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.HRAList" Collapsed="true">
+    <Position X="54.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QIAAAAIABMAAAAAJIBAAAAgDQAAAYCAAAAAgAAAAAAA=</HashCode>
+      <FileName>Model\HRAList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.LoadListArgs" Collapsed="true">
+    <Position X="221.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAABAAAAgAAAgAAgAAA=</HashCode>
+      <FileName>Model\HRAList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.HraModelChangedEventArgs" Collapsed="true">
+    <Position X="3" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAIAAAEAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Model\HraModelChangedEventArgscs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.HraListChangedEventArgs" Collapsed="true">
+    <Position X="212.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\HraModelChangedEventArgscs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.HraListLoadedEventArgs" Collapsed="true">
+    <Position X="214.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\HraModelChangedEventArgscs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.NewActivePatientEventArgs" Collapsed="true">
+    <Position X="5.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\HraModelChangedEventArgscs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.RelativeSelectedEventArgs" Collapsed="true">
+    <Position X="0.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Model\HraModelChangedEventArgscs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.AppointmentSelectedEventArgs" Collapsed="true">
+    <Position X="3" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Model\HraModelChangedEventArgscs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.HraObject" Collapsed="true">
+    <Position X="109.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QoAAABICQMkAAAAAJRAACAISIAMRYAgQAYQIQACgBCA=</HashCode>
+      <FileName>Model\HraObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.AllBrOvCdsRecs" Collapsed="true">
+    <Position X="41.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\AllBrOvCdsRecs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.ApptProviderList" Collapsed="true">
+    <Position X="23.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\ApptProviderList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.BreastCancerDetailsLookups" Collapsed="true">
+    <Position X="73.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\BreastCancerDetailsLookups.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.ClinicList" Collapsed="true">
+    <Position X="30" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\ClinicList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.Clinic" Collapsed="true">
+    <Position X="93.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAEAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\ClinicList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.DefaultParagraphList" Collapsed="true">
+    <Position X="43.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\DefaultParagraphList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.DiseaseList" Collapsed="true">
+    <Position X="54.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\DiseaseList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.DiseaseObject" Collapsed="true">
+    <Position X="122.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIgAQAEAoAgECAAgAoIAAAQAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Model\MetaData\DiseaseObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.GeneticTestList" Collapsed="true">
+    <Position X="68.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAgAAAAAAAAAAAIAAAAAAEAAAAAAEEAAAAAA=</HashCode>
+      <FileName>Model\MetaData\GeneticTestList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.GeneticTestObject" Collapsed="true">
+    <Position X="145.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACEAoEAAAAAEAEAAAQBIAAEAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\MetaData\GeneticTestObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.MasterParagraph" Collapsed="true">
+    <Position X="154.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAMgACIAgAAAAIACAAAAACABAQAABACAAAA=</HashCode>
+      <FileName>Model\MetaData\MasterParagraph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.MasterParagraphList" Collapsed="true">
+    <Position X="81.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\MasterParagraphList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.MetaData" Collapsed="true">
+    <Position X="216" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAICAAAAAABAQAIADAAAAAAAAQQEAAAAAAAAAAAAE=</HashCode>
+      <FileName>Model\MetaData\MetaData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.MutationList" Collapsed="true">
+    <Position X="88.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\MutationList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.MutationObject" Collapsed="true">
+    <Position X="183.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIBAIAAAAAEAAACAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\MutationObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.OrderTypeObject" Collapsed="true">
+    <Position X="192.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAABAAAAAAAAAAAAEAAAAAAAAAI=</HashCode>
+      <FileName>Model\MetaData\OrderTypeObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.OrderTypesList" Collapsed="true">
+    <Position X="102" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAACAAAAAAAAAAAQAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\OrderTypesList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.ProviderParagraph" Collapsed="true">
+    <Position X="12.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAQAAgAAAAABAAAAAAAAAEAAAAAAAAAAACIAAA=</HashCode>
+      <FileName>Model\MetaData\ProviderParagraph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.ProviderParagraphList" Collapsed="true">
+    <Position X="12" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\ProviderParagraphList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.User" Collapsed="true">
+    <Position X="30.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DgQBABwAACCgCAAEIQAAAACAIAEogAACAgAAABAISAg=</HashCode>
+      <FileName>Model\MetaData\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.UserGroupList" Collapsed="true">
+    <Position X="16.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\UserGroupList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.UserGroupMembership" Collapsed="true">
+    <Position X="48.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Model\MetaData\UserGroupMembership.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.UserList" Collapsed="true">
+    <Position X="27.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAEAAEAAAAAAA=</HashCode>
+      <FileName>Model\MetaData\UserList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.MetaData.VariantsFromKB" Collapsed="true">
+    <Position X="89" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Model\MetaData\VariantsFromKB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Appointment" Collapsed="true">
+    <Position X="95.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAABBAQgAAAMABAAAIAAQAAAEBAgAAAAAAECQAAgA=</HashCode>
+      <FileName>Model\PatientRecord\Appointment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.BreastBx" Collapsed="true">
+    <Position X="109.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kFCIAAgADHAAAADABQIACIAAGAEgAAIAAGCAACAAgBA=</HashCode>
+      <FileName>Model\PatientRecord\BreastBx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.CDSBreastOvary" Collapsed="true">
+    <Position X="111.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AA2C9AUECiigGAkADgHheAN7AkEAAiEYMIEUEQSWm5E=</HashCode>
+      <FileName>Model\PatientRecord\CDSBreastOvary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Condition" Collapsed="true">
+    <Position X="125" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Condition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Diagnostic" Collapsed="true">
+    <Position X="134" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAIAACAgCAAAwMAAwAEAABACAAQAAQAQBAAIA=</HashCode>
+      <FileName>Model\PatientRecord\Diagnostic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.EthnicBackground" Collapsed="true">
+    <Position X="70.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAEAACAAAA=</HashCode>
+      <FileName>Model\PatientRecord\EthnicBackground.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Race" Collapsed="true">
+    <Position X="156.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAgAAAgAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\EthnicBackground.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.FollowupStatus" Collapsed="true">
+    <Position X="161" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACgAAAIABAAACAAAACACoQQgAIAAAABAIEAAAAAFAA=</HashCode>
+      <FileName>Model\PatientRecord\FollowupStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Gender" Collapsed="true">
+    <Position X="210.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Gender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.BreastImagingHx" Collapsed="true">
+    <Position X="93" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Imaging\BreastImagingHx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.BreastImagingStudy" Collapsed="true">
+    <Position X="136.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAEAAKAAAAjCBIIgIAgAAACEIAEQCQAACAAQgCIA=</HashCode>
+      <FileName>Model\PatientRecord\Imaging\BreastImagingHx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.TransvaginalImagingHx" Collapsed="true">
+    <Position X="104.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Imaging\TransvaginalImagingHx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.TransvaginalImagingStudy" Collapsed="true">
+    <Position X="131.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAHhgCIEwAEAACQBEAAEAAACAAAAAAEIA=</HashCode>
+      <FileName>Model\PatientRecord\Imaging\TransvaginalImagingHx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Medication" Collapsed="true">
+    <Position X="21.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAhAAAQUkAAAAAQAAIAAABAAAQAAQCAAgAAEAAACAA=</HashCode>
+      <FileName>Model\PatientRecord\Medication.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.MedicationHx" Collapsed="true">
+    <Position X="32.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAICAACAAAAAAAAAAhAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\MedicationHx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.NationalityList" Collapsed="true">
+    <Position X="18.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAEAACAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Nationality.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Nation" Collapsed="true">
+    <Position X="50.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAgAAAgAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Nationality.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Order" Collapsed="true">
+    <Position X="75.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wAYAAACAAAARAAAAgAAEAhQAIAEAAEgAEIAAAQgIAgA=</HashCode>
+      <FileName>Model\PatientRecord\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.PtOrderList" Collapsed="true">
+    <Position X="32.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEABgAAAA=</HashCode>
+      <FileName>Model\PatientRecord\OrderList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Patient" Collapsed="true">
+    <Position X="158.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABgAAEgDEEAEAAEBQICAQAAGAABoAAAABIAAARAAA=</HashCode>
+      <FileName>Model\PatientRecord\Patient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.PatientsByGroup" Collapsed="true">
+    <Position X="45.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEABAQAAA=</HashCode>
+      <FileName>Model\PatientRecord\PatientsByGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.PediatricConsiderations" Collapsed="true">
+    <Position X="57" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\PediatricConsiderations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.PediatricRule" Collapsed="true">
+    <Position X="127.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAQAEAAAEEIAAAKAAAAABAAAAAAEAAAAAAAgAgQ=</HashCode>
+      <FileName>Model\PatientRecord\PediatricConsiderations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.GUIPreference" Collapsed="true">
+    <Position X="138.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>B+hwgURjERRkBE+EYAJPyIQEAAVoCRLFDkC4TjQfiGA=</HashCode>
+      <FileName>Model\PatientRecord\Pedigree\GUIPreference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.GUIPreferenceList" Collapsed="true">
+    <Position X="72.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Pedigree\GUIPreferenceList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Person" Collapsed="true">
+    <Position X="158.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>pZwJlT1gbzDJQBBO5YYbvUBDNbuFS0e+WiLUaC1lvPM=</HashCode>
+      <FileName>Model\PatientRecord\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.PhysicalExamination" Collapsed="true">
+    <Position X="163.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gACQAAAAABgAAKAAQIIgDAAEAgGAIAAAECAAAIAAABA=</HashCode>
+      <FileName>Model\PatientRecord\PhysicalExamination.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.ClincalObservation" Collapsed="true">
+    <Position X="172.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBEgAIYAAQUHoAgEOBEAIgEAAQUJAEAAAjAgAUiCIAI=</HashCode>
+      <FileName>Model\PatientRecord\PMH\ClincalObservation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.GeneticTest" Collapsed="true">
+    <Position X="176.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DIUkEAAIQAAADEAAIAFBCAAAAAEgAUgAAgAAAgjQoyA=</HashCode>
+      <FileName>Model\PatientRecord\PMH\GeneticTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.GeneticTestResult" Collapsed="true">
+    <Position X="185.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAiAQYEAAAAFCAYpAAAIAQAEAGAgUACAAAICIBBCEQ=</HashCode>
+      <FileName>Model\PatientRecord\PMH\GeneticTestResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.GeneticTestResultComparer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="223" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\PMH\GeneticTestResult.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.PastMedicalHistory" Collapsed="true">
+    <Position X="206" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAACAAGAIAAQCAAQEAEAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\PMH\PastMedicalHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Problem" Collapsed="true">
+    <Position X="14.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Problem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.ProcedureHx" Collapsed="true">
+    <Position X="23.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgIAABCAAAAAEABAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\ProcedureHx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.RiskProfile" Collapsed="true">
+    <Position X="35" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARAggEgwCSgASAMJ4RAlfIgCEEVAIFBgFIAgFFATSAw=</HashCode>
+      <FileName>Model\PatientRecord\Risk\RiskProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.RunCdsForm" Collapsed="true">
+    <Position X="216" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAQADAAAJAAAACAAAQDAAAAAAQAAAAAAAAAAAE=</HashCode>
+      <FileName>Model\PatientRecord\RunCdsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.SocialHistory" Collapsed="true">
+    <Position X="53" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EMAACCAAARGgAAAAAQQIKACEAAkAAAgAQgAIAhAAABg=</HashCode>
+      <FileName>Model\PatientRecord\SocialHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Communication.CommunicationHx" Collapsed="true">
+    <Position X="77.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Communication\CommunicationHx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Communication.FollowupTimeline" Collapsed="true">
+    <Position X="34.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Communication\FollowupTimeline.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Communication.PtFollowup" Collapsed="true">
+    <Position X="98" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEEAAACAAIAEABAAAAAEEkAQAAJAAAIAgAAGAQ=</HashCode>
+      <FileName>Model\PatientRecord\Communication\PtFollowup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Communication.PtFollowupList" Collapsed="true">
+    <Position X="48" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Communication\PtFollowupList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Communication.Task" Collapsed="true">
+    <Position X="113.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQgBBEAAAAAAAAEBAAACggAAAUBAAAIQAAAAUAABQQ=</HashCode>
+      <FileName>Model\PatientRecord\Communication\Task.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Communication.TaskList" Collapsed="true">
+    <Position X="59.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Communication\TaskList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.FHx.Bloodline" Collapsed="true">
+    <Position X="217.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\FHx\Bloodline.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.FHx.FamilyHistory" Collapsed="true">
+    <Position X="75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QigCAIAQAMAAECAROAkAQAAAAAAAAAAAAAAkAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\FHx\FamilyHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.FHx.Relationship" Collapsed="true">
+    <Position X="224.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACA8AAAAAAAgAACAAABABACgBAAAiA0AgAAAEAACCAQ=</HashCode>
+      <FileName>Model\PatientRecord\FHx\Relationship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Labs.LabsHx" Collapsed="true">
+    <Position X="84" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Labs\LabsHx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Labs.LabResult" Collapsed="true">
+    <Position X="134" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAICQoFhBEoAkQAAgAYAGECMIEgwAQAYAAApA=</HashCode>
+      <FileName>Model\PatientRecord\Labs\LabsHx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Pedigree.PedigreeAnnotationList" Collapsed="true">
+    <Position X="95.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Pedigree\PedigreeAnnotations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Pedigree.PedigreeAnnotation" Collapsed="true">
+    <Position X="194.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAQAAIEAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Model\PatientRecord\Pedigree\PedigreeAnnotations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Pedigree.PedigreeCouple" Collapsed="true">
+    <Position X="221.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAYAACAAAAAAAQggAgAAAAgAAAAAIEAABAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Pedigree\PedigreeCouple.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Pedigree.PedigreeCoupleEdge" Collapsed="true">
+    <Position X="223" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAABIAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Pedigree\PedigreeCoupleEdge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Pedigree.PedigreeIndividual" Collapsed="true">
+    <Position X="228.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAECAAAAACEAIUEgACAAAAAACAAEAAAQBABAIAAI=</HashCode>
+      <FileName>Model\PatientRecord\Pedigree\PedigreeIndividual.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Pedigree.PedigreeIndividualSet" Collapsed="true">
+    <Position X="230" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Pedigree\PedigreeIndividualSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Pedigree.PedigreeIOVariables" Collapsed="true">
+    <Position X="231.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEgAAABAAAAAAAAAAAAAgEEQAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Pedigree\PedigreeIOVariables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Pedigree.PedigreeModel" Collapsed="true">
+    <Position X="212.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KgQQAACiIIggiACIgGABQAAEAAwHAhkQAAAggACAAAY=</HashCode>
+      <FileName>Model\PatientRecord\Pedigree\PedigreeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Pedigree.CoupleID" Collapsed="true">
+    <Position X="212.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAEgAAAACAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Pedigree\PedigreeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Pedigree.PedigreeParameters" Collapsed="true">
+    <Position X="214.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAASAAAiEQGABQiABAAAEAYSIABAgAhhGICwAAJhTAA=</HashCode>
+      <FileName>Model\PatientRecord\Pedigree\PedigreeParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Pedigree.PointWithVelocity" Collapsed="true">
+    <Position X="228.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAIAAAAAAAAAAAAAABgAAAABAA=</HashCode>
+      <FileName>Model\PatientRecord\Pedigree\PointWithVelocity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.PMH.BreastCancerDetails" Collapsed="true">
+    <Position X="147.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CEwQRqBAkJAGAAMUCKFACsARxJFEAGACYgAUQgqAgBE=</HashCode>
+      <FileName>Model\PatientRecord\PMH\BreastCancerDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.PMH.Chemoprevention" Collapsed="true">
+    <Position X="116" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABCAAAAAAAAEABAAAAAgCAAAQAGAgEAAAKAIAAAAgBE=</HashCode>
+      <FileName>Model\PatientRecord\PMH\Chemoprevention.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.PMH.ClinicalObservationList" Collapsed="true">
+    <Position X="61.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\PMH\ClinicalObservationList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.PMH.ColonCancerDetails" Collapsed="true">
+    <Position X="149.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAIAAAAAAyAACAAEAAAgAAAAAAEAQABE=</HashCode>
+      <FileName>Model\PatientRecord\PMH\ColonCancerDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.PMH.DiseaseDetails" Collapsed="true">
+    <Position X="148.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\PMH\DiseaseDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.PMH.GeneticTestList" Collapsed="true">
+    <Position X="77.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\PMH\GeneticTestList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.PMH.ObGynHistory" Collapsed="true">
+    <Position X="165.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IISgGQEAyAgCAQEQYJgkSEIxDQsIAJ0AyxJgQoKAAxA=</HashCode>
+      <FileName>Model\PatientRecord\PMH\ObGynHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.BracproCancerRiskList" Collapsed="true">
+    <Position X="86.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\BracproLifetimeRisk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.BrcaProCancerRiskByAge" Collapsed="true">
+    <Position X="179" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGAAiAAQgAQAAEACAAAEAEgCAAhAAGAAAEAAIAIAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\BracproLifetimeRisk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.CCRAT" Collapsed="true">
+    <Position X="97.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQBAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\CCRAT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.CCRATRiskByAge" Collapsed="true">
+    <Position X="197" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAABAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\CCRAT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.CCRATDetails" Collapsed="true">
+    <Position X="208.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAgAAAQABAAgAEAAAAAKQQIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\CCRAT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.Claus" Collapsed="true">
+    <Position X="7.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\Claus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.ClausRiskByAge" Collapsed="true">
+    <Position X="26" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAQAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\Claus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.ClausRiskFactors" Collapsed="true">
+    <Position X="37.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAABAABAAAAAABCAQAAAAAAAAABAAAAAAAEAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\Claus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.Gail" Collapsed="true">
+    <Position X="21" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\Gail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.GailRiskByAge" Collapsed="true">
+    <Position X="55.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAQAAAAAAAAQAAAMAAAAEAAABAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\Gail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.GailRiskFactors" Collapsed="true">
+    <Position X="80" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgIAEAQABAAAIAEAAAgCIQIAAAAAAAAAQQABAggAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\Gail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.MmrproCancerRiskList" Collapsed="true">
+    <Position X="36.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\MmrproCancerRiskList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.MMRproCancerRiskByAge" Collapsed="true">
+    <Position X="100.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAkAAAAAAACASAEAAAiiEQAAMQIAAAAQAAAIEAAAAAQ=</HashCode>
+      <FileName>Model\PatientRecord\Risk\MmrproCancerRiskList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.NCCN" Collapsed="true">
+    <Position X="50.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\NCCN.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.NCCNFactors" Collapsed="true">
+    <Position X="118.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAIAAAAAEAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\NCCN.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.TyrerCuzick" Collapsed="true">
+    <Position X="63.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\TyrerCuzick.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.TcRiskByAge" Collapsed="true">
+    <Position X="140.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAQAAAIAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\TyrerCuzick.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.TcRiskFactors" Collapsed="true">
+    <Position X="152" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAABAAAAAAAAAACAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\TyrerCuzick.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.TyrerCuzick_v7" Collapsed="true">
+    <Position X="79.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\TyrerCuzick_v7.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.PatientRecord.Risk.TcRiskFactors_v7" Collapsed="true">
+    <Position X="167.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAACAQAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Model\PatientRecord\Risk\TyrerCuzick_v7.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Security.SecurityContext" Collapsed="true">
+    <Position X="219.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Model\Security\SecurityContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Session.Lookups" Collapsed="true">
+    <Position X="224.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Session\Lookups.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.Session.SessionContext" Collapsed="true">
+    <Position X="188" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Session\SessionContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Model.SurgicalClinic.CreatedSurgery" Collapsed="true">
+    <Position X="199.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\SurgicalClinic\CreatedSurgery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Properties.Resources" Collapsed="true">
+    <Position X="212.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJYBAloIABsAAAAwgAQBkBCECSAAAiQEBALABABoRog=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Properties.Settings" Collapsed="true">
+    <Position X="223" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Utilities.BCDB2" Collapsed="true">
+    <Position X="214.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gACAAAAAEAAEgCgADAAAAEAAAABAAAAAQAQQAAAAAAA=</HashCode>
+      <FileName>Utilities\BCDB2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Utilities.Configurator" Collapsed="true">
+    <Position X="228.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACACYAACAAAIAAEIAAAEQIAAAAIAABAAABIAAAA=</HashCode>
+      <FileName>Utilities\Configurator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Utilities.GedcomParser" Collapsed="true">
+    <Position X="231.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQIAAUBACAAABAAAgKiAATjA0A4IgRAEHAJALYYACE=</HashCode>
+      <FileName>Utilities\GedcomParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Utilities.IntegerTextBox" Collapsed="true">
+    <Position X="224.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\IntegerTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Utilities.Logger" Collapsed="true">
+    <Position X="223" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAACAIAAAgAAAAABAAAoAQAAAAAAAABA=</HashCode>
+      <FileName>Utilities\Logger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Utilities.ParameterCollection" Collapsed="true">
+    <Position X="231.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAEAAACAAAAABACAAAAAAAAAAAAAAEAAAAAABAAAA=</HashCode>
+      <FileName>Utilities\ParameterCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Utilities.ParameterTuple" Collapsed="true">
+    <Position X="210.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAQAoAAAAAAAAAABAAAAAAAAAAAAAQIAAAA=</HashCode>
+      <FileName>Utilities\ParameterCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Utilities.PedigreeGenerator" Collapsed="true">
+    <Position X="226.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgAAAIAAAAAAAARAQAANAAECEAAAEEAQEAAAAACAAIA=</HashCode>
+      <FileName>Utilities\PedigreeGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Utilities.PolygonF" Collapsed="true">
+    <Position X="231.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECAEAACABAQwIQAAABIgAAAAAQAAAAEBAAAAQAQAgA=</HashCode>
+      <FileName>Utilities\Polygon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Utilities.Polygon" Collapsed="true">
+    <Position X="230" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECAEAACABAQwIQAAABIgAAAAAQAAAAEBAAAAQAQAgA=</HashCode>
+      <FileName>Utilities\Polygon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.Utilities.UIUtils" Collapsed="true">
+    <Position X="223" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAABACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\UIUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapiMailMessage" Collapsed="true">
+    <Position X="231.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAABAAAAABAIABAAEAAGAAACABAAAAAAAAUIA=</HashCode>
+      <FileName>Utilities\MapiMailMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Recipient" Collapsed="true">
+    <Position X="221.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAgAAAAAAACACAAAAAAAAA=</HashCode>
+      <FileName>Utilities\MapiMailMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RecipientCollection" Collapsed="true">
+    <Position X="223" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAACAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Utilities\MapiMailMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Admin.AdminMainForm" Collapsed="true">
+    <Position X="96.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAABAAAACAAAAAAAACAAAACAAAAAEAgAAAAAAAAAAA=</HashCode>
+      <FileName>View\Admin\AdminMainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Admin.EditParagraphControl" Collapsed="true">
+    <Position X="219.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAgAABCCAABCAAACAAAACAAAJAQAAAGAQAQAAAAA=</HashCode>
+      <FileName>View\Admin\EditParagraphControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Admin.MakeUserProviderForm" Collapsed="true">
+    <Position X="228.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAgCAAABAQAQCAAAACAAA4AAAAAHAAAAAAAAA=</HashCode>
+      <FileName>View\Admin\MakeUserProviderForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Admin.MasterParagraphListView" Collapsed="true">
+    <Position X="119.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJIAAAAgACAAAEjcIwKAAAICAAAgAAEAAAAAAQACBAA=</HashCode>
+      <FileName>View\Admin\MasterParagraphListView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Appointments.AddAppointmentView" Collapsed="true">
+    <Position X="132.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAIAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>View\Appointments\AddAppointmentView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Appointments.PatientListView" Collapsed="true">
+    <Position X="6.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIABAAABCAgABGekwKAEAICAAAAAQEgAeAAAQEAAAA=</HashCode>
+      <FileName>View\Appointments\PatientListView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Appointments.PatientTableView" Collapsed="true">
+    <Position X="13.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgIAAAACAAAAAgAIKAAAICAAAAAAEABAAAAAIAAAA=</HashCode>
+      <FileName>View\Appointments\PatientTableView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.AppointmentsView" Collapsed="true">
+    <Position X="27" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAACAAABASAAKAAADiA4AYAQQAEAAAAQEAAAA=</HashCode>
+      <FileName>View\Appointments\AppointmentsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.HraView" Collapsed="true">
+    <Position X="71" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACCAAAAAAAAABAIAAAAAAA=</HashCode>
+      <FileName>View\HraView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Positioning" Collapsed="true">
+    <Position X="210.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAgAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>View\Positioning.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.ViewConfiguration" Collapsed="true">
+    <Position X="228.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\ViewConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.AutoSearchTextBox.AutoCompleteComboBox" Collapsed="true">
+    <Position X="224.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AADgAgQAgKQABgKCUIAIAHAAKAACAoAFAAAACEAEhEA=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\AutoCompleteComboBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.AutoSearchTextBox.AutoCompleteEntry" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="226.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAABAAQAAEAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\AutoCompleteEntry.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RiskApps3.View.Common.AutoSearchTextBox.AutoCompleteEntryCollection" Collapsed="true">
+    <Position X="228.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAIAAAAACAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\AutoCompleteEntryCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.AutoSearchTextBox.AutoCompleteTextBox" Collapsed="true">
+    <Position X="230" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AADgAgQAgIQADAKCUIgIAGAAKAACAgAFAAAACEAEhEA=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\AutoCompleteTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.AutoSearchTextBox.AutoCompleteTrigger" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\AutoCompleteTrigger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.AutoSearchTextBox.AutoCompleteTriggerCollection" Collapsed="true">
+    <Position X="231.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAACAABBAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\AutoCompleteTriggerCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.AutoSearchTextBox.AutoCompleteUtils" Collapsed="true">
+    <Position X="210.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\AutoCompleteUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.AutoSearchTextBox.CoolComboBox" Collapsed="true">
+    <Position X="231.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EACAQQAIACAACQAAAAKEAACCCEAAggQAEAJECABCAAg=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\CoolComboBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.AutoSearchTextBox.CoolTextBox" Collapsed="true">
+    <Position X="210.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCACQAAACAACAAAAAKEAAACCAAAAgQAAAAACAAAAAg=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\CoolTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.AutoSearchTextBox.Messages" Collapsed="true">
+    <Position X="214.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CIBAACAAAABAAgCAAAAAAAAAAAAAAYAQAAAAABEEAAQ=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\Messages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.AutoSearchTextBox.ShortCutTrigger" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAFAAAABAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\ShortCutTrigger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.AutoSearchTextBox.TextLengthTrigger" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAABAQ=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\TextLengthTrigger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.BitmapButton" Collapsed="true">
+    <Position X="216" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>WiLAAgAJISgbARCKAEiEQyACgBOCilsEIEIABCKqQEA=</HashCode>
+      <FileName>View\Common\BitmapButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.CoolCollapsibleControl" Collapsed="true">
+    <Position X="230" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQCACACQAAAAACAAAACAAAAAAAABAAAIAAAAAA=</HashCode>
+      <FileName>View\Common\CoolCollapsibleControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.DockingUtils" Collapsed="true">
+    <Position X="221.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Common\DockingUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.FhxSortByRelativeID" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="224.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>View\Common\FhxSortByRelativeID.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RiskApps3.View.Common.GenericProgressForm" Collapsed="true">
+    <Position X="212.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQACAAABAAAACAAAACAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>View\Common\GenericProgressForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.LegacyApptForm" Collapsed="true">
+    <Position X="216" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAiAAABAABACAAAACAAAYAAAAAGAAAgAAAAA=</HashCode>
+      <FileName>View\Common\LegacyApptForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.ListViewColumnSorter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="219.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAIAAAAAAAAAAAAAAAAAgABBAAAABAAAAAAAA=</HashCode>
+      <FileName>View\Common\ListViewColumnSorter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RiskApps3.View.Common.OrientedTextLabel" Collapsed="true">
+    <Position X="228.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACACAAAAAgAACAAAAAgAAAAAAAAAAAIAAAACCAAAAg=</HashCode>
+      <FileName>View\Common\OrientedTextLabel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.PatientNavigation" Collapsed="true">
+    <Position X="76.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AOAMAQgDCCAAQIB5DwCACAACQIAIAAACAUAAIIAAAAA=</HashCode>
+      <FileName>View\Common\PatientNavigation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.PedigreeModuleNavigation" Collapsed="true">
+    <Position X="83.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAgDCCABQIBACACACAACQIAIAAACAQAAKIAAAAA=</HashCode>
+      <FileName>View\Common\PedigreeModuleNavigation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.TimeLineChart" Collapsed="true">
+    <Position X="219.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Common\TimeLineChart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MB.Controls.ColorSlider" Collapsed="true">
+    <Position X="224.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ogTBBMCMgTjAqBiaQADSDCEqDlouKAUApCEoAgBGCQI=</HashCode>
+      <FileName>View\Common\ColorSlider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Common.MaskedTextBox.MaskedTextBox" Collapsed="true">
+    <Position X="212.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAIgAECEAAAAAAADACRQGAQAAAAAAQAQAAAAAAgA=</HashCode>
+      <FileName>View\Common\MaskedTextBox\MaskedTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.AdditionalCancerRiskFactorsView" Collapsed="true">
+    <Position X="112.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAABAIAACAAAAAAAACAAAACAAAAAAEgAAgAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\AdditionalCancerRiskFactorsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.BreastCancerRiskFactors" Collapsed="true">
+    <Position X="121.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>//koWQkgaihKmBBQ8S6kDNKSCYQKIJbW7TeIYgD+FzU=</HashCode>
+      <FileName>View\PatientRecord\BreastCancerRiskFactors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.ColonCancerRiskFactors" Collapsed="true">
+    <Position X="135" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>fj0AGAkgaqiIGBgUBAigDESCEAAEAAJcaSYEISCWFTA=</HashCode>
+      <FileName>View\PatientRecord\ColonCancerRiskFactors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.DemographicsView" Collapsed="true">
+    <Position X="9" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CADAACwgCiBQSADIwAKICEKCFAAIAAAGACAAiQEBIIA=</HashCode>
+      <FileName>View\PatientRecord\DemographicsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.DiagnosticReportsView" Collapsed="true">
+    <Position X="15.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACQAAAAAAACEAAACRAAAAAAgAAAAgAAAgQA=</HashCode>
+      <FileName>View\PatientRecord\DiagnosticReportsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.AddingFilesForm" Collapsed="true">
+    <Position X="214.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAQACAIABAAAACAIAACAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>View\PatientRecord\DocumentUploader\AddingFilesForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.DocumentUploadView" Collapsed="true">
+    <Position X="33.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgBAAAgAQCAAAAAAAAKBAiLCAAAAAAAAAAAQAAAAAAI=</HashCode>
+      <FileName>View\PatientRecord\DocumentUploader\DocumentUploadView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.FileUploadControl" Collapsed="true">
+    <Position X="226.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ydYYgFaRSrqAJJXJGFSvWULyV3r5AcBUSPA6BIOFEEg=</HashCode>
+      <FileName>View\PatientRecord\DocumentUploader\FileUploadControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.GenTestRecommendationsView" Collapsed="true">
+    <Position X="47.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>n+zAFAwQBCAACBQQE1qAAIiDCIoZIARAEmArAABBBhE=</HashCode>
+      <FileName>View\PatientRecord\GenTestRecommendationView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.AddImagingForm" Collapsed="true">
+    <Position X="212.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAIAACAAABASAACwAAACAAAYAAAAAGAQAAAAAgA=</HashCode>
+      <FileName>View\PatientRecord\Imaging\AddImagingForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.OrderRow" Collapsed="true">
+    <Position X="226.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>0BAAAACBACAAAEAAAACBAAICAAAAAAAAAiYECAAAIEE=</HashCode>
+      <FileName>View\PatientRecord\OrderRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.OrdersView" Collapsed="true">
+    <Position X="60.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEQACADFADBQABAABAKABAIDBMQBgpQgSgiBQAAgBAE=</HashCode>
+      <FileName>View\PatientRecord\OrdersView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.PatientRecordHeader" Collapsed="true">
+    <Position X="214.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAAIgAQCKCAFaBAAIACAAACCAghgAEAAACAAAAAQAAA=</HashCode>
+      <FileName>View\PatientRecord\PatientRecordHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.PediatricRecsView" Collapsed="true">
+    <Position X="72" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CghAIAgAACAIqBAcAgKAAACCAAAIAAAAEEAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\PediatricRecsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Recommendations" Collapsed="true">
+    <Position X="78.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>PgxVTA4ognYELxQiEHOJgSGnCFcpFmQAFEgGAECIADE=</HashCode>
+      <FileName>View\PatientRecord\Recommendations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.TestsView" Collapsed="true">
+    <Position X="85.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iwGAoggAASAIABAeA4ChYAECDAAYISCAAGAwBSBAAEA=</HashCode>
+      <FileName>View\PatientRecord\TestsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Communication.CommunicationTimeline" Collapsed="true">
+    <Position X="90" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgABAIgAACAAAEAAAACAAASCAgAAABgAARAAAAAAgAA=</HashCode>
+      <FileName>View\PatientRecord\Communication\CommunicationTimeline.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Communication.NewHtmlDocumentForm" Collapsed="true">
+    <Position X="221.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAACABCAgABBYAACAAAIDAMAIAAQAAGAEAAAAAAE=</HashCode>
+      <FileName>View\PatientRecord\Communication\NewHtmlDocumentForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Communication.NewToDoView" Collapsed="true">
+    <Position X="99" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgBIAAgAACAAAgAAAACAAQCCQIgMAgwQASgAACIAAAA=</HashCode>
+      <FileName>View\PatientRecord\Communication\NewToDoView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Communication.PatientCommunicationView" Collapsed="true">
+    <Position X="103.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BgyAgAoABaSgAAIdABapBCazEAB4AUQQAXkQhoAAkCE=</HashCode>
+      <FileName>View\PatientRecord\Communication\PatientCommunicationView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Communication.PatientContactView" Collapsed="true">
+    <Position X="114.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAABAAAADAAAAAAAACACAACAAAAAAAgAAAAAAAAADA=</HashCode>
+      <FileName>View\PatientRecord\Communication\PatientContactView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Communication.PendingTasksSummaryView" Collapsed="true">
+    <Position X="123.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAgAAKAACAAAAACAAASCAIAAABgAAQAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Communication\PendingTasksSummaryView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Communication.PendingTaskSummaryRow" Collapsed="true">
+    <Position X="221.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAABCAAABAAAECAACICAAAAAAAAAAAAAQBAAAA=</HashCode>
+      <FileName>View\PatientRecord\Communication\PendingTaskSummaryRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Communication.PtFollowupRow" Collapsed="true">
+    <Position X="214.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAACgACASACQBAABACAAIIKEAAAEAhABGAAIAgAGQA=</HashCode>
+      <FileName>View\PatientRecord\Communication\PtFollowupRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Communication.TaskView" Collapsed="true">
+    <Position X="18" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAIAAACAAAgAAEACAAEACEAAAAAAAAEAAgAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Communication\TaskView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Communication.TaskViewUC" Collapsed="true">
+    <Position X="217.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAQRIEABCABA1QAAAKkAAMGBZJIAQAEAGSAARhAgAQ=</HashCode>
+      <FileName>View\PatientRecord\Communication\TaskViewUC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.DocumentViewer.WordDocument" Collapsed="true">
+    <Position X="230" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAIAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\DocumentViewer\WordDocument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.FamilyHistory.AdditionalRelativeDetailsView" Collapsed="true">
+    <Position X="40.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\FamilyHistory\AdditionalRelativeDetailsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.FamilyHistory.FamilyHistoryRelativeRowcs" Collapsed="true">
+    <Position X="223" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\FamilyHistory\FamilyHistoryRelativeRowcs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.FamilyHistory.FamilyHistoryView" Collapsed="true">
+    <Position X="54" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>+wgAAAgBCCAIKBAQCAKAgAL+I1E4EAAAAHAQAIIAAAA=</HashCode>
+      <FileName>View\PatientRecord\FamilyHistory\FamilyHistoryView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.FamilyHistory.NationalityPopup" Collapsed="true">
+    <Position X="219.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAIAABAAACAAAACAAAAAAABIAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\FamilyHistory\NationalityPopup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.FamilyHistory.RelativeDetailsView" Collapsed="true">
+    <Position X="63" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/8AmK15DQCRBQBCQgAKIiKKCFICcAQA0IGkQjIAiADg=</HashCode>
+      <FileName>View\PatientRecord\FamilyHistory\RelativeDetailsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.FamilyHistory.RelativeHeader" Collapsed="true">
+    <Position X="226.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAQBAQAACAAAACAAAEAAEAAAIAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\FamilyHistory\RelativeHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.FamilyHistory.ShortRelativeHeader" Collapsed="true">
+    <Position X="224.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAEAAEAAAIAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\FamilyHistory\ShortRelativeHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.GeneticTesting.GeneticTestingASOResultRow" Collapsed="true">
+    <Position X="214.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECIAQBACAAiFAAAQCQAAACBgEAAAABAAAAAAEAAQE=</HashCode>
+      <FileName>View\PatientRecord\GeneticTesting\GeneticTestingASOResultRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.GeneticTesting.GeneticTestingASOResultRowHeader" Collapsed="true">
+    <Position X="216" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAACAAAAAQAECAAAACAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>View\PatientRecord\GeneticTesting\GeneticTestingASOResultRowHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.GeneticTesting.GeneticTestingFamilySummaryView" Collapsed="true">
+    <Position X="92.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgIAACgABCIABADAMACAAAACQAAAAAAAABAAAABAAAI=</HashCode>
+      <FileName>View\PatientRecord\GeneticTesting\GeneticTestingFamilySummaryView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.GeneticTesting.GeniticTestStatusContainer" Collapsed="true">
+    <Position X="224.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAEAAAAgAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\GeneticTesting\GeneticTestingFamilySummaryView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.GeneticTesting.GeneticTestingResultRow" Collapsed="true">
+    <Position X="217.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQECIAQBACBAAFAiQQCUAAACFhAIIgABAAAAACFAAAE=</HashCode>
+      <FileName>View\PatientRecord\GeneticTesting\GeneticTestingResultRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.GeneticTesting.GeneticTestingResultRowHeader" Collapsed="true">
+    <Position X="219.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAACAAAAAQAECAAAACAACAAAAAAAAAAEAgAAA=</HashCode>
+      <FileName>View\PatientRecord\GeneticTesting\GeneticTestingResultRowHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.GeneticTesting.GeneticTestingRowExpandable" Collapsed="true">
+    <Position X="221.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAIAQHQCoiQFEK4RDBACKLCIE4ABABFCRiFACEBIk=</HashCode>
+      <FileName>View\PatientRecord\GeneticTesting\GeneticTestingRowExpandable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.GeneticTesting.GeneticTestingView" Collapsed="true">
+    <Position X="126" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgREAggCADAoABEARAKAAAKCEIEYQgCAAAIQEAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\GeneticTesting\GeneticTestingView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.GeneticTesting.MutationDeltaPopup" Collapsed="true">
+    <Position X="217.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAIAAAACEAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\GeneticTesting\MutationDeltaPopup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Imaging.BreastImagingRow" Collapsed="true">
+    <Position X="219.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACADQBESgACAAAACAAQgEAAABAAYIAEAIAA=</HashCode>
+      <FileName>View\PatientRecord\Imaging\BreastImagingRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Imaging.BreastImagingView" Collapsed="true">
+    <Position X="20.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KACAAAiAACAIAAAAAAKAIAICAIAIAQAAAEAAACAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Imaging\BreastImagingView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Imaging.ImagingSummaryRow" Collapsed="true">
+    <Position X="217.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Imaging\ImagingSummaryRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Imaging.MammographySummary" Collapsed="true">
+    <Position X="230" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACQgABAQAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Imaging\MammographySummary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Imaging.TvsSummary" Collapsed="true">
+    <Position X="221.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACQgABAQAACAAAACAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Imaging\TvsSummary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Labs.LabRow" Collapsed="true">
+    <Position X="226.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UCAAAAAAASACQBCSBACAAABCIAAgAAAAFAAIIQEAIAA=</HashCode>
+      <FileName>View\PatientRecord\Labs\LabRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Labs.LabsGridView" Collapsed="true">
+    <Position X="56.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAgABCAAAgAcAwKAIAICAAAAAACAAEAAAAAEAAA=</HashCode>
+      <FileName>View\PatientRecord\Labs\LabsGridView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Labs.LabSummary" Collapsed="true">
+    <Position X="228.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACQgABAQAACAAAAKAAAAACAAEAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Labs\LabSummary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Labs.LabsView" Collapsed="true">
+    <Position X="65.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAiAACAAAgAAAAKAIAICAIAIAQCAAEAAAAAEAAA=</HashCode>
+      <FileName>View\PatientRecord\Labs\LabsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.DrawingEngine" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAQAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Medications\DrawingEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.Annotation" Collapsed="true">
+    <Position X="217.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAACAAABAQAACAAAACAAAAAAAAAAAIIAAAAAg=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\Annotation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.PedigreeComment" Collapsed="true">
+    <Position X="3" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BgAAAAAAACAAAgAAAACAAAAKAAAAQAAAEAAgCAAAAQA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\PedigreeComment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.PedigreeComponent" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAxACAAAgCAAACACAACBAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\PedigreeComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.PedigreeContextMenu" Collapsed="true">
+    <Position X="217.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAQAAAACAgAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\PedigreeContextMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.PedigreeControl" Collapsed="true">
+    <Position X="219.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>7vKZKv/QCLgUwMHUIoSBRT6KLFAfERAiiygBcBWbTFE=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\PedigreeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.PedigreeForm" Collapsed="true">
+    <Position X="105.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>PhzMU/0CWyosigxKq3+D2V/uYCPbEESyENIzAEGQA0w=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\PedigreeForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.PedigreeLegend" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAACCAAAAAAAACAAUACAKAASAAAAAAgAgACACA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\PedigreeLegend.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.PedigreeFlowLayoutPanel" Collapsed="true">
+    <Position X="224.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\PedigreeLegend.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.PedigreeLegendRow" Collapsed="true">
+    <Position X="210.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAoQADCARwAgABACAAgACACQAiQAAAUAAQCAAACA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\PedigreeLegendRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.PedigreeSettingsForm" Collapsed="true">
+    <Position X="216" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>8SDAQEExFCBiRFFIIIHnLCIHp807PADQwPA/PEhBQEg=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\PedigreeSettingsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.AnnotationContainer" Collapsed="true">
+    <Position X="219.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAoAhgAwAAIAAAAAAAgAAAAAEAAAIAAAAAE=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\PedigreeSettingsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.AnnotationContainerSlot" Collapsed="true">
+    <Position X="221.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\PedigreeSettingsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.PedigreeTitleBlock" Collapsed="true">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAhQAAACCQAEBAAABCIAAACAIAgAIAAAAAAAAAEYAA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\PedigreeTitleBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.PedigreeView" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\PedigreeView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Medications.MedicationsView" Collapsed="true">
+    <Position X="49.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgAAAQgAACEhCAEAAAKAAAL+AwACAAQAMACAAIAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Medications\MedicationsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.drawingSteps.ClearBackground" Collapsed="true">
+    <Position X="223" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAEAAAAAAAAAAAAAAAAgAABAAAAAAAAAABA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\drawingSteps\ClearBackground.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.drawingSteps.DrawAncestralConnectionLines" Collapsed="true">
+    <Position X="228.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\drawingSteps\DrawAncestralConnectionLines.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.drawingSteps.DrawCouplesGraphEdges" Collapsed="true">
+    <Position X="230" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAgAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\drawingSteps\DrawCouplesGraphEdges.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.drawingSteps.DrawCouplesGraphNodes" Collapsed="true">
+    <Position X="231.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\drawingSteps\DrawCouplesGraphNodes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.drawingSteps.DrawIndividuals" Collapsed="true">
+    <Position X="210.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACACACAAgAABAAgQEQAAAAAAAAAgAAAAAAAAAAAAIBA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\drawingSteps\DrawIndividuals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.drawingSteps.DrawLasso" Collapsed="true">
+    <Position X="212.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\drawingSteps\DrawLasso.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.drawingSteps.DrawLayoutSteps" Collapsed="true">
+    <Position X="214.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgACAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\drawingSteps\DrawLayoutSteps.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.drawingSteps.DrawLoading" Collapsed="true">
+    <Position X="216" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAgAAAAAAAQAEAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\drawingSteps\DrawLoading.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Pedigree.drawingSteps.DrawZoom" Collapsed="true">
+    <Position X="217.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Pedigree\drawingSteps\DrawZoom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.PMH.AddDiseasePopup" Collapsed="true">
+    <Position X="210.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAICBBEAACAAAACAAAYAAABAGAAAAgAAAA=</HashCode>
+      <FileName>View\PatientRecord\PMH\AddDiseasePopup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.PMH.BreastCancerDetailsView" Collapsed="true">
+    <Position X="108" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/oISAAQiJmYwCBIAKUCAhkACxACIghQEWGEhSWBAMDE=</HashCode>
+      <FileName>View\PatientRecord\PMH\BreastCancerDetailsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.PMH.ColonCancerDetailsView" Collapsed="true">
+    <Position X="117" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAACAAABAiIBADAAQQCAAAACBAAIAAAMAEABAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\PMH\ColonCancerDetailsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.PMH.PastMedicalHistoryView" Collapsed="true">
+    <Position X="128.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgjEAggAACAoAJAAQEKBAAKKEKAIBYAAACAQEAAAAAE=</HashCode>
+      <FileName>View\PatientRecord\PMH\PastMedicalHistoryView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.PMH.PMHRow" Collapsed="true">
+    <Position X="224.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgACQAACgBAAAAAADAAQCDAQAYAAAAAFAAAAAAIAA=</HashCode>
+      <FileName>View\PatientRecord\PMH\PMHRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.PMH.PMHRowHeader" Collapsed="true">
+    <Position X="226.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\PMH\PMHRowHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Risk.BrOvCancerRiskView" Collapsed="true">
+    <Position X="22.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/0CnwwoaPGWs4DA5p4P5NZCi1WMElADmxOQgcY7/RzQ=</HashCode>
+      <FileName>View\PatientRecord\Risk\BrOvCancerRiskView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Risk.CancerRiskView" Collapsed="true">
+    <Position X="29.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAEAACAAgAAAgEOAAFgCAAAAAACgAgAAAAABAEA=</HashCode>
+      <FileName>View\PatientRecord\Risk\CancerRiskView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Risk.ColoEndoCancerRiskView" Collapsed="true">
+    <Position X="36" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/wCggA+QTCBGQlQ4AoqqNJACkRMUEEQGIAQkBYQ573Q=</HashCode>
+      <FileName>View\PatientRecord\Risk\ColoEndoCancerRiskView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Risk.NCCNView" Collapsed="true">
+    <Position X="42.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAJAgAACAAABBAIAKBAAACAAgIIAAAAEAAAIAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Risk\NCCNView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Risk.RelativeToConsiderRow" Collapsed="true">
+    <Position X="230" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgAACAAQwAAAgSMBACCOAAFAAAACAkACAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Risk\RelativeToConsiderRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Risk.RelativeRowClickEventArgs" Collapsed="true">
+    <Position X="228.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>View\PatientRecord\Risk\RelativeToConsiderRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.PatientRecord.Risk.RelativeValueHolder" Collapsed="true">
+    <Position X="102.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Risk\RelativeToConsiderRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Risk.RelativesToConsiderView" Collapsed="true">
+    <Position X="67.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAgRACAAABAAAAKAAIACAIAAAABAAkAAAAAAAgA=</HashCode>
+      <FileName>View\PatientRecord\Risk\RelativesToConsiderView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Risk.RiskScoresView" Collapsed="true">
+    <Position X="69.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>zwwGkAgBACAQABgIAFqAAIILAAgAACQAAgAyAYAgAgU=</HashCode>
+      <FileName>View\PatientRecord\Risk\RiskScoresView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.Risk.SimpleRiskModelView" Collapsed="true">
+    <Position X="74.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACABAUAADAAAAAAqEOAAFgCAAAAAAAgAAAAAAAAAEA=</HashCode>
+      <FileName>View\PatientRecord\Risk\SimpleRiskModelView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.HighRiskFollowupStatusView" Collapsed="true">
+    <Position X="81" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIAAAABABDgAAMDcMwCQAIICAAAAAQAkAAAQgQAAAAA=</HashCode>
+      <FileName>View\RiskClinic\HighRiskFollowupStatusView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.HighRiskFollowupView" Collapsed="true">
+    <Position X="87.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ALARpEgEBDgCADAAQCKQQg4CAMA7AQAwAXAPhYAAACA=</HashCode>
+      <FileName>View\RiskClinic\HighRiskFollowupView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.MarkStartedAndPullForwardForm" Collapsed="true">
+    <Position X="210.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAAAQADAAABAAAACAAAADAAAAAAQAAAAAAAAAAAE=</HashCode>
+      <FileName>View\RiskClinic\MarkStartedAndPullForwardForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.MyPatientsView" Collapsed="true">
+    <Position X="94.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gDwBJAsBULCiEDXeswCRQhzqAIiJCR2wA3iMkSEAJDE=</HashCode>
+      <FileName>View\RiskClinic\MyPatientsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.OlderApptFilter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="224.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\RiskClinic\MyPatientsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.NotYetInformedGeneticTestsView" Collapsed="true">
+    <Position X="110.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gDARLErAADwAgDIcQwKQYASCAAADQQAgCAIAgQACAIA=</HashCode>
+      <FileName>View\RiskClinic\NotYetInformedGeneticTestsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.LastKnownValueRow" Collapsed="true">
+    <Position X="230" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABBAACAACAAAAACAAAACAoALACAAASAAQgBAACI=</HashCode>
+      <FileName>View\RiskClinic\PatientSummary\LastKnownValueRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.SummaryFollowupView" Collapsed="true">
+    <Position X="130.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>fgEAoAhAAaAICBABAIKAJAECEMAAEQCABAAgASAgCCA=</HashCode>
+      <FileName>View\RiskClinic\PatientSummary\SummaryFollowupView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.SummaryStatusElement" Collapsed="true">
+    <Position X="212.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\RiskClinic\PatientSummary\SummaryStatusElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.PendingGeneticTestsView" Collapsed="true">
+    <Position X="11.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gBhBLEhAADQIgDAcQwKQYASCAMA7ARgoAfAPgQACAKA=</HashCode>
+      <FileName>View\RiskClinic\PendingGeneticTestsView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.PendingToDoView" Collapsed="true">
+    <Position X="24.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gJAhoEgEACBDABGdQyKQQg4DAMI5AQQQAXAMhYACECA=</HashCode>
+      <FileName>View\RiskClinic\PendingToDoView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.QueueNotesView" Collapsed="true">
+    <Position X="31.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAABABAADAAAAABAACAAAAGAAAAAAAgAAAAgCAAAAA=</HashCode>
+      <FileName>View\RiskClinic\QueueNotesView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.RiskClinicDashboard" Collapsed="true">
+    <Position X="38.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/3SPABVaAuSywtSYBwKoYRIrBEw8YuQIEvGNySYVAPE=</HashCode>
+      <FileName>View\RiskClinic\RiskClinicDashboard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.RiskClinicFamilyHistoryView" Collapsed="true">
+    <Position X="45" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAgBACAADAAAAAAAACAAAACAAAYAEAgAEIAAAAIABA=</HashCode>
+      <FileName>View\RiskClinic\RiskClinicFamilyHistoryView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.RiskClinicMainForm" Collapsed="true">
+    <Position X="51.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAABEAAACAAAAAAAQCAAACCAAYBAQggAQAAgAABgQA=</HashCode>
+      <FileName>View\RiskClinic\RiskClinicMainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.RiskClinicNotesView" Collapsed="true">
+    <Position X="58.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACCABABAACAAAAABAACAAAACAAAAAEAgAAAAgABAACA=</HashCode>
+      <FileName>View\RiskClinic\RiskClinicNotesView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.RiskClinicReport" Collapsed="true">
+    <Position X="214.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoSAIGAADOAgwVj+M4LQQADDgwAbEQwCAGAnAIAHhAE=</HashCode>
+      <FileName>View\RiskClinic\RiskClinicReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.PatientSummary.DiagnosticSummaryResultView" Collapsed="true">
+    <Position X="219.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABABEACAAAACgAAEAAAAAAAgAAAAIQA=</HashCode>
+      <FileName>View\RiskClinic\PatientSummary\DiagnosticSummaryResultView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.PatientSummary.FullReportTextPopup" Collapsed="true">
+    <Position X="230" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>View\RiskClinic\PatientSummary\FullReportTextPopup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.PatientSummary.PatientSummaryHeader" Collapsed="true">
+    <Position X="216" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iwAABggABCAAABgIJAqQANCCAABIACAAAEAIAQAAABE=</HashCode>
+      <FileName>View\RiskClinic\PatientSummary\PatientSummaryHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.PatientSummary.SummaryEditCategory" Collapsed="true">
+    <Position X="231.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAIAIAAAAACAAAQAAAAA=</HashCode>
+      <FileName>View\RiskClinic\PatientSummary\SummaryEditCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.View.RiskClinic.PatientSummary.SummaryItemRow" Collapsed="true">
+    <Position X="210.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAACABABESgAGAAAACAAAZAAAIFGAAAACAAQA=</HashCode>
+      <FileName>View\RiskClinic\PatientSummary\SummaryItemRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.org.partners.hraweb.VariantLookup" Collapsed="true">
+    <Position X="226.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAQAACAEAAQAAAAAgAAAAAAAAAAACAAIAAAAAAE=</HashCode>
+      <FileName>Web References\org.partners.hraweb\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiskApps3.org.partners.hraweb.GetVariationsCompletedEventArgs" Collapsed="true">
+    <Position X="226.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Web References\org.partners.hraweb\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="RiskApps3.Model.Clinic.Letters.HraLetterTags.HraLetterTag" Collapsed="true">
+    <Position X="210.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Model\Clinic\Letters\HraLetterTags\HraLetterTag.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RiskApps3.View.Common.AutoSearchTextBox.IAutoCompleteEntry" Collapsed="true">
+    <Position X="212.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\IAutoCompleteEntry.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="RiskApps3.Model.PatientRecord.GenderEnum" Collapsed="true">
+    <Position X="214.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABA=</HashCode>
+      <FileName>Model\PatientRecord\Gender.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RiskApps3.Model.PatientRecord.FHx.RelationshipEnum" Collapsed="true">
+    <Position X="219.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EYEAAAAEIBAECYEAAAQAB4AAISAQAAIEAoAAQBGAgYQ=</HashCode>
+      <FileName>Model\PatientRecord\FHx\Relationship.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RiskApps3.View.Common.AutoSearchTextBox.TriggerState" Collapsed="true">
+    <Position X="221.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAUAAAAAAAAAAEAAACAAAAQAEAAAA=</HashCode>
+      <FileName>View\Common\AutoSearchTextBox\TriggerState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RiskApps3.View.Common.BtnState" Collapsed="true">
+    <Position X="210.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAiAAAAAAAAAAAAAAAAAAAAAQIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Common\BitmapButton.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RiskApps3.View.Common.Orientation" Collapsed="true">
+    <Position X="217.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAgAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Common\OrientedTextLabel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RiskApps3.View.Common.Direction" Collapsed="true">
+    <Position X="212.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Common\OrientedTextLabel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RiskApps3.View.Common.MaskedTextBox.Mask" Collapsed="true">
+    <Position X="216" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAgAABAAACAAAEAAAAAAAAAAAAAAAECAAE=</HashCode>
+      <FileName>View\Common\MaskedTextBox\MaskedTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="RiskApps3.Controllers.Pedigree.LayoutStep" Collapsed="true">
+    <Position X="214.25" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Pedigree\LayoutEngine.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="RiskApps3.View.PatientRecord.Pedigree.DrawingStep" Collapsed="true">
+    <Position X="210.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PatientRecord\Medications\DrawingEngine.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="RiskApps3.org.partners.hraweb.GetVariationsCompletedEventHandler" Collapsed="true">
+    <Position X="212.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Web References\org.partners.hraweb\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
