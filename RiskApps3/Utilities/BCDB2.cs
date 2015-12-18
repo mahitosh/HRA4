@@ -12,6 +12,7 @@ using System.Diagnostics;
 
 using RiskApps3.Model.PatientRecord;
 using RiskApps3.Controllers;
+using System.Web;
 
 namespace RiskApps3.Utilities
 {
@@ -62,7 +63,11 @@ namespace RiskApps3.Utilities
         {
             get
             {
-                if (instance == null)
+                if (HttpContext.Current != null)
+                {
+                    instance = new BCDB2();
+                }
+                else if (instance == null)// Mahitosh remove this line; Cache the cloud db 
                 {
                     instance = new BCDB2();
                 }

@@ -6,25 +6,18 @@ using System.Web.Mvc;
 
 namespace HRA4.Web.Controllers
 {
-    public class HomeController : Controller
+    public class LoginController : BaseController
     {
+        // GET: Login
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Index(string tenant)
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

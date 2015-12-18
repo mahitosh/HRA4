@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HRA4.Repositories.Interfaces;
 using HRA4.Entities;
+using HRA4.Utilities;
 namespace HRA4.Services
 {
     class AdminService:Interfaces.IAdminService
@@ -22,9 +23,9 @@ namespace HRA4.Services
         }
 
 
-        public List<Entities.Tenant> GetTenants()
+        public List<Entities.Institution> GetTenants()
         {
-            throw new NotImplementedException();
+            return _repositoryFactory.TenantRepository.GetAll();
         }
 
         public bool Login(string username, string password)
@@ -40,9 +41,22 @@ namespace HRA4.Services
         }
 
 
-        public Entities.Tenant AddUpdateTenant(Entities.Tenant tenant)
+        public Entities.Institution AddUpdateTenant(Entities.Institution tenant)
         {
             return _repositoryFactory.TenantRepository.AddUpdateTenant(tenant);
+        }
+
+
+        public bool CreateTenantDb(Institution tenant)
+        {
+            SuperAdmin admin = _repositoryFactory.SuperAdminRepository.GetAdminUser();
+            string dbscript = admin.DatabaseSchema;
+            string connectionString = "Server=.\\SQLEXPRESS;Database=RiskappCommon;User Id=sa;Password=mk#12345;";
+
+            Helpers.CreateInstitutionDb(connectionString, dbscript);
+
+
+            return true;
         }
     }
 }

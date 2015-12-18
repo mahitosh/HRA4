@@ -7,6 +7,7 @@ using System.Xml;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Reflection;
+using System.Web;
 
 namespace RiskApps3.Utilities
 {
@@ -22,8 +23,21 @@ namespace RiskApps3.Utilities
         public static NameValueCollection GetConfig(string section)
         {
             XmlDocument configFile = new XmlDocument();
-
-            if (configFilePath.Length > 0)
+            if (HttpContext.Current != null) // Mahitosh
+            {
+                if (HttpContext.Current.Session["TenantId"] !=null)
+                {
+                    string key = HttpContext.Current.Session["TenantId"].ToString();
+                    string tempConfiguration = HttpRuntime.Cache[key].ToString();
+                    if (string.IsNullOrEmpty(tempConfiguration))
+                    {
+                        throw new Exception("Could not load or read configuration");
+                    }
+                    configFile.LoadXml(tempConfiguration);
+                }
+                
+            }
+            else if (configFilePath.Length > 0)
                 configFile.Load(configFilePath);
             else
                 configFile.Load("config.xml");

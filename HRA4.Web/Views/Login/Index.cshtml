@@ -1,0 +1,21 @@
+﻿@model HRA4.ViewModels.User
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    @Html.DisplayFor(m => m.Username);
+</div>
+<div>
+    @Html.TextBoxFor(m => m.Username);
+</div>
+
+<div>
+    @Html.DisplayFor(m => m.Password);
+</div>
+<div>
+    @Html.TextBoxFor(m => m.Password);
+</div>

@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F48E47F-CFF1-4DF5-8306-7BA2FE526386}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{DCC055C6-C37C-40B2-AD29-40221187AFD4}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HRA4.Utilities</RootNamespace>
-    <AssemblyName>HRA4.Utilities</AssemblyName>
+    <RootNamespace>TestApp</RootNamespace>
+    <AssemblyName>TestApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,7 +33,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,9 +41,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigurationSettings.cs" />
-    <Compile Include="Helpers.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HRA4.Context\HRA4.Context.csproj">
+      <Project>{010479c7-fd87-4384-b421-43b59a7a11b6}</Project>
+      <Name>HRA4.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HRA4.Entities\HRA4.Entities.csproj">
+      <Project>{47fb1561-3433-43e5-968b-d046012eb32d}</Project>
+      <Name>HRA4.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HRA4.Repositories\HRA4.Repositories.csproj">
+      <Project>{a2374af9-40c7-4323-bf73-73ca356d6e32}</Project>
+      <Name>HRA4.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HRA4.Services\HRA4.Services.csproj">
+      <Project>{6ccc299e-eb40-4b1c-94be-77243fd14144}</Project>
+      <Name>HRA4.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HRA4.Utilities\HRA4.Utilities.csproj">
+      <Project>{5f48e47f-cff1-4df5-8306-7ba2fe526386}</Project>
+      <Name>HRA4.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HRA4.ViewModels\HRA4.ViewModels.csproj">
+      <Project>{7fca466d-dff4-44c2-9aea-aedf89a9a03a}</Project>
+      <Name>HRA4.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RiskApps3\RiskApps3.csproj">
+      <Project>{16b371c4-551b-43c6-93db-5ecf4c70bc66}</Project>
+      <Name>RiskApps3</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

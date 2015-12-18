@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace HRA4.ViewModels
 {
-    public class Class1
+    public class Role
     {
+        public int Id { get; set; }
+        public string RoleName { get; set; }
+        public int Precedence { get; set; }
+
+
     }
 }

@@ -16,17 +16,17 @@ namespace HRA4.Repositories
             dbContext = database;
         }
 
-        public Tenant AddUpdateTenant(Entities.Tenant tenant)
+        public Institution AddUpdateTenant(Entities.Institution tenant)
         {
-            return (Tenant)dbContext.TenantMaster.Insert(tenant);
+            return (Institution)dbContext.TenantMaster.Insert(tenant);
         }
 
-        public Tenant GetTenantById(int id)
+        public Institution GetTenantById(int id)
         {
-            return (Tenant)dbContext.TenantMaster.FindById(id);
+            return (Institution)dbContext.TenantMaster.FindById(id);
         }
 
-        public List<Entities.Tenant> GetAll()
+        public List<Entities.Institution> GetAll()
         {
             return dbContext.TenantMaster.All();
         }

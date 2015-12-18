@@ -28,15 +28,15 @@ namespace HRA4.Context
         {            
             InitializeCommonDbContext();            
             InitializeTenantContext();
-            InitializeServices();
-            InitRiskAppContext();
+            InitializeServices();        
             
         }
 
         private void InitRiskAppContext()
         {
-            SessionManager.Instance.MetaData.Users.BackgroundListLoad();
-           // HttpContext.Current.User.Identity.Name;
+           // SessionManager.Instance.MetaData.Users.BackgroundListLoad();
+          
+            // HttpContext.Current.User.Identity.Name;
            
         }
 
@@ -71,12 +71,12 @@ namespace HRA4.Context
 
         private void InitializeServices()
         {
-            Tenant tenant = _repository.TenantRepository.GetTenantById(3);
-            
+            Institution tenant = _repository.TenantRepository.GetTenantById(3);            
             if(tenant !=null)
             {
                 HttpContext.Current.Session["TenantId"] = tenant.Id.ToString();
                 HttpRuntime.Cache[tenant.Id.ToString()] = tenant.Configuration;
+                InitRiskAppContext();
             }
             _service = new ServiceContext(_repository);
             

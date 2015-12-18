@@ -9,9 +9,10 @@ namespace HRA4.Services.Interfaces
     public interface IAdminService
     {
         string GetConfiguration();
-        List<Tenant> GetTenants();
+        List<Institution> GetTenants();
         bool Login(string username, string password);
         void UpdatePassword(string oldPassword, string newPassword);
-        Tenant AddUpdateTenant(Tenant tenant);
+        Institution AddUpdateTenant(Institution tenant);
+        bool CreateTenantDb(Institution tenant);
     }
 }

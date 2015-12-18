@@ -2336,7 +2336,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetDir)RiskApps3.exe  "C:\Program Files\riskAppsV2\tools\RiskApps3.exe"
-copy $(TargetDir)RiskApps3.exe.config  "C:\Program Files\riskAppsV2\tools\RiskApps3.exe.config"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

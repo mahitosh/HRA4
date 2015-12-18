@@ -13,6 +13,7 @@ using RiskApps3.Model.MetaData;
 using BrightIdeasSoftware;
 using System.Windows.Forms;
 using System.IO;
+using System.Web;
 
 namespace RiskApps3.Controllers
 {
@@ -58,7 +59,20 @@ namespace RiskApps3.Controllers
 
         public static SessionManager Instance
         {
-            get { return _instance; }
+            get 
+            {
+                if (HttpContext.Current != null) // Mahitosh
+                {
+                    if (HttpContext.Current.Session["SessionManager"] != null)
+                        return (SessionManager)HttpContext.Current.Session["SessionManager"];
+                    else
+                    {
+                        HttpContext.Current.Session["SessionManager"] = new SessionManager();
+                        return (SessionManager)HttpContext.Current.Session["SessionManager"];
+                    }
+                }
+                return _instance;
+            }
         }
 
         /**************************************************************************************************/
