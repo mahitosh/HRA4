@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F48E47F-CFF1-4DF5-8306-7BA2FE526386}</ProjectGuid>
+    <ProjectGuid>{9A7DB143-B825-4234-B1C8-E454C1F02B24}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HRA4.Utilities</RootNamespace>
-    <AssemblyName>HRA4.Utilities</AssemblyName>
+    <RootNamespace>HRA4.Mapper</RootNamespace>
+    <AssemblyName>HRA4.Mapper</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,7 +31,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,10 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigurationSettings.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="Helpers.cs" />
+    <Compile Include="AppointmentMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HRA4.Utilities\HRA4.Utilities.csproj">
+      <Project>{5f48e47f-cff1-4df5-8306-7ba2fe526386}</Project>
+      <Name>HRA4.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HRA4.ViewModels\HRA4.ViewModels.csproj">
+      <Project>{7fca466d-dff4-44c2-9aea-aedf89a9a03a}</Project>
+      <Name>HRA4.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RiskApps3\RiskApps3.csproj">
+      <Project>{16b371c4-551b-43c6-93db-5ecf4c70bc66}</Project>
+      <Name>RiskApps3</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

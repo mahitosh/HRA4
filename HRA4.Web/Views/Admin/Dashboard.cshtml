@@ -31,8 +31,13 @@
         </th>
         <th></th>
     </tr>
-
+    <tr>
+        partial view for Add
+    </tr>
 @foreach (var item in Model) {
+    <tr>
+        partial view for edit
+    </tr>
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.InstitutionName)
@@ -53,7 +58,7 @@
             @Html.DisplayFor(modelItem => item.Configuration)
         </td>
         <td>
-            @Html.ActionLink("Select", "InstitutionDashboard", new { id=item.Id })           
+            @Html.ActionLink("Select", "InstitutionDashboard", "Institution", new { id = item.Id }, new { id = item.Id })           
         </td>
     </tr>
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-
+using HRA4.Context;
 namespace HRA4.Web
 {
     public class MvcApplication : System.Web.HttpApplication

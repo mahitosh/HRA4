@@ -25,9 +25,9 @@ namespace RiskApps3.Utilities
             XmlDocument configFile = new XmlDocument();
             if (HttpContext.Current != null) // Mahitosh
             {
-                if (HttpContext.Current.Session["TenantId"] !=null)
+                if (HttpContext.Current.Session["InstitutionId"] != null)
                 {
-                    string key = HttpContext.Current.Session["TenantId"].ToString();
+                    string key = HttpContext.Current.Session["InstitutionId"].ToString();
                     string tempConfiguration = HttpRuntime.Cache[key].ToString();
                     if (string.IsNullOrEmpty(tempConfiguration))
                     {

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Security;
 
 namespace HRA4.Web.Controllers
 {
@@ -24,7 +25,9 @@ namespace HRA4.Web.Controllers
 
         public ActionResult Dashboard()
         {
+            
             var instituionList = _applicationContext.ServiceContext.AdminService.GetTenants();
+           
             return View(instituionList);
         }
 
@@ -37,6 +40,7 @@ namespace HRA4.Web.Controllers
         public ActionResult Create(Institution instituion)
         {
             var institution = _applicationContext.ServiceContext.AdminService.AddUpdateTenant(instituion);
+
             Task taskA = Task.Run(() => _applicationContext.ServiceContext.AdminService.CreateTenantDb(institution));
             return RedirectToAction("Dashboard");
         }
