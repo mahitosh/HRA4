@@ -1,0 +1,47 @@
+﻿@model HRA4.ViewModels.User
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@using (Html.BeginForm("Index", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+<div>
+    <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
+    </div>
+    <div>
+        @Html.DisplayFor(m => m.Username)
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Username, new { id = "usernm" })
+        @Html.ValidationMessageFor(m => m.Username)
+    </div>
+    <div>
+        @Html.DisplayFor(m => m.Password)
+    </div>
+    <div>
+        @Html.PasswordFor(m => m.Password, new { id = "password" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+    <div>
+        <input type="button" value="Cancel" id="btn_cancel"/>
+        <input type="submit" value="Submit" id="btn_submit"/>
+    </div>
+    <div>
+        @Html.ValidationSummary(true)
+    </div>
+        
+</div>
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $("#btn_cancel").click(function () {
+        console.log("inside");
+        $("#usernm").val('');
+        $("#password").val('');
+    });
+   
+</script>

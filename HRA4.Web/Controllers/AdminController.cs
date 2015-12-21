@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading;
 using System.Threading.Tasks;
+using HRA4.ViewModels;
+using HRA4.Services;
+using System.Web.Security;
 
 namespace HRA4.Web.Controllers
 {
@@ -16,7 +19,29 @@ namespace HRA4.Web.Controllers
         {
             return View();
         }
-
+        //Added by Aditya on 21-12-2015
+        [HttpPost]
+        public ActionResult Index(User user)
+        {
+            bool result = false;
+            result= _applicationContext.ServiceContext.AdminService.Login(user.Username, user.Password);
+            if (result)
+            {
+                FormsAuthentication.SetAuthCookie(user.Username, false);
+                return RedirectToAction("Dashboard");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Invalid login attempt.");
+                return View();
+            }
+        }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Admin");
+        }
+        //End by Aditya
         public ActionResult Institution(string tenant)
         {
             return View();

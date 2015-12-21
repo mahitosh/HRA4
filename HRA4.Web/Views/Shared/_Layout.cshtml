@@ -21,6 +21,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                @if (Request.IsAuthenticated)
+                {
+                    @Html.ActionLink("LogOut", "LogOut", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("LogIn", "Index", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+                }
                 </ul>
             </div>
         </div>

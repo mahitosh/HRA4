@@ -8,7 +8,7 @@ using HRA4.Entities;
 using HRA4.Utilities;
 namespace HRA4.Services
 {
-    class AdminService:Interfaces.IAdminService
+     class AdminService:Interfaces.IAdminService
     {
         IRepositoryFactory _repositoryFactory;
         
@@ -50,8 +50,11 @@ namespace HRA4.Services
         public bool CreateTenantDb(Institution tenant)
         {
             SuperAdmin admin = _repositoryFactory.SuperAdminRepository.GetAdminUser();
+            //Added by Aditya on 21-12-2015
             string dbscript = admin.DatabaseSchema;
-            string connectionString = "Server=.\\SQLEXPRESS;Database=RiskappCommon;User Id=sa;Password=mk#12345;";
+            dbscript=dbscript.Replace("db2008",tenant.DbName);
+            //End By Aditya
+            string connectionString = "Server=.\\SQLEXPRESS;Database=RiskappCommon;User Id=sa;Password=Pa55w0rd;";
 
             Helpers.CreateInstitutionDb(connectionString, dbscript);
 
