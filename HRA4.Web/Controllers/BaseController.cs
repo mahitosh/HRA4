@@ -12,10 +12,14 @@ namespace HRA4.Web.Controllers
 
 
         public BaseController()
-        {
-            _applicationContext = new ApplicationContext();
-            //var temp =_applicationContext.Services.AppointmentService.GetAppointments();
-            // var temp = ApplicationContext.AppointmentService.GetAppointments();
+        {           
+            if (System.Web.HttpContext.Current.Session != null && System.Web.HttpContext.Current.Session["ApplicationContext"] == null)
+            {
+                _applicationContext = new ApplicationContext();
+                System.Web.HttpContext.Current.Session["ApplicationContext"] = _applicationContext;
+            }
+            else
+                _applicationContext = System.Web.HttpContext.Current.Session["ApplicationContext"] as ApplicationContext;
         }
     }
 }

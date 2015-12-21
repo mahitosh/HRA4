@@ -52,5 +52,10 @@ namespace HRA4.Utilities
             Regex sqlStatementBatchSplitter = new Regex(@"^\s*GO\s*\r?$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
             return sqlStatementBatchSplitter.Split(sqlStatementBatch);
         }
+
+       
+
+        
+
     }
 }

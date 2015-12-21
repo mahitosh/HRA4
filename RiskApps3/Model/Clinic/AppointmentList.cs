@@ -44,6 +44,7 @@ namespace RiskApps3.Model.Clinic
                                                 typeof(Appointment),
                                                 constructor_args);
             DoListLoad(lla);
+
             //foreach (Appointment a in this)
             //{
             //    //if (a.apptID != a.GoldenAppt)

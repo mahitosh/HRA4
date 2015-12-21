@@ -11,7 +11,7 @@ namespace HRA4.Services
 {
     public class ServiceContext : IServiceContext
     {
-        User _user;
+        string _username;
 
         Repositories.Interfaces.IRepositoryFactory _repositoryFactory;
 
@@ -20,14 +20,19 @@ namespace HRA4.Services
             this._repositoryFactory = repositoryFactory;
         }
 
-
-        public ServiceContext(User user)
+        public ServiceContext(IRepositoryFactory repositoryFactory, string user)
         {
-            this._user = user;
+            this._repositoryFactory = repositoryFactory;
+            this._username = user;
+        }
+
+        public ServiceContext(string user)
+        {
+            this._username = user;
         }
         public IAppointmentService AppointmentService
         {
-            get { return new AppointmentService(_user); }
+            get { return new AppointmentService(this._username); }
         }
 
         public IUserService UserService

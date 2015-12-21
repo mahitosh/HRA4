@@ -54,6 +54,10 @@
       <Project>{47fb1561-3433-43e5-968b-d046012eb32d}</Project>
       <Name>HRA4.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HRA4.Mapper\HRA4.Mapper.csproj">
+      <Project>{9a7db143-b825-4234-b1c8-e454c1f02b24}</Project>
+      <Name>HRA4.Mapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HRA4.Repositories\HRA4.Repositories.csproj">
       <Project>{a2374af9-40c7-4323-bf73-73ca356d6e32}</Project>
       <Name>HRA4.Repositories</Name>
@@ -61,6 +65,10 @@
     <ProjectReference Include="..\HRA4.Utilities\HRA4.Utilities.csproj">
       <Project>{5f48e47f-cff1-4df5-8306-7ba2fe526386}</Project>
       <Name>HRA4.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HRA4.ViewModels\HRA4.ViewModels.csproj">
+      <Project>{7fca466d-dff4-44c2-9aea-aedf89a9a03a}</Project>
+      <Name>HRA4.ViewModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\RiskApps3\RiskApps3.csproj">
       <Project>{16b371c4-551b-43c6-93db-5ecf4c70bc66}</Project>

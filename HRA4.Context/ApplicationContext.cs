@@ -18,6 +18,7 @@ namespace HRA4.Context
     public class ApplicationContext:IApplicationContext
     {
         User _user;
+        string _username;
         dynamic commonDbContext;
         IServiceContext _service;
         IRepositoryFactory _repository;
@@ -26,19 +27,28 @@ namespace HRA4.Context
         /// </summary>
         public ApplicationContext()
         {            
-            InitializeCommonDbContext();            
-            InitializeTenantContext();
+            InitializeCommonDbContext();
+            InitRiskAppContext();
             InitializeServices();        
             
         }
 
         private void InitRiskAppContext()
         {
-           // SessionManager.Instance.MetaData.Users.BackgroundListLoad();
-          
-            // HttpContext.Current.User.Identity.Name;
-           
+            if (HttpContext.Current.Session != null && HttpContext.Current.Session["InstitutionId"] != null)
+            {
+                int id = Convert.ToInt32(HttpContext.Current.Session["InstitutionId"]);
+                Institution tenant = _repository.TenantRepository.GetTenantById(id);
+                if (tenant != null)
+                {
+                    HttpContext.Current.Session["InstitutionId"] = tenant.Id.ToString();
+                    HttpRuntime.Cache[tenant.Id.ToString()] = tenant.Configuration;                   
+                }
+            }
+
         }
+
+
 
         public IServiceContext ServiceContext
         {
@@ -56,35 +66,22 @@ namespace HRA4.Context
 
         private void InitializeCommonDbContext()
         {
-            string connectionString = ConfigurationSettings.CommonDbConnection;
-            commonDbContext = Database.OpenConnection(connectionString);                        
-            _repository = new Repositories.RepositoryFactory(commonDbContext);
+            if(_repository == null)
+            {
+                string connectionString = ConfigurationSettings.CommonDbConnection;
+                commonDbContext = Database.OpenConnection(connectionString);
+                _repository = new Repositories.RepositoryFactory(commonDbContext);
+            }         
             
         }
 
-
-
-        private void InitializeTenantContext()
-        {
-            // Add code to initiate connection to tenant db and pass to service layer.
-        }
 
         private void InitializeServices()
         {
-            Institution tenant = _repository.TenantRepository.GetTenantById(3);            
-            if(tenant !=null)
-            {
-                HttpContext.Current.Session["TenantId"] = tenant.Id.ToString();
-                HttpRuntime.Cache[tenant.Id.ToString()] = tenant.Configuration;
-                InitRiskAppContext();
-            }
-            _service = new ServiceContext(_repository);
-            
-            //XmlDocument xDoc = new XmlDocument();
-            //xDoc.Load(@"C:\Program Files\RiskAppsV2\tools\config.xml");
-            //HttpContext.Current.Session["Configuration"] = xDoc.OuterXml;
-            //SessionManager.Instance.MetaData.Users.BackgroundListLoad();
-            //_user = new User();
+            //_username = HttpContext.Current.User.Identity.Name;
+            _username = "sadmin";
+            _service = new ServiceContext(_repository,_username);            
+          
         }
 
         //public IServiceContext Services
