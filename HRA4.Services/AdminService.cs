@@ -54,7 +54,7 @@ namespace HRA4.Services
             string dbscript = admin.DatabaseSchema;
             dbscript=dbscript.Replace("db2008",tenant.DbName);
             //End By Aditya
-            string connectionString = "Server=.\\SQLEXPRESS;Database=RiskappCommon;User Id=sa;Password=Pa55w0rd;";
+            string connectionString = "Server=.\\SQLEXPRESS;Database=RiskappCommon;User Id=sa;Password=mk#12345;";
 
             Helpers.CreateInstitutionDb(connectionString, dbscript);
 
