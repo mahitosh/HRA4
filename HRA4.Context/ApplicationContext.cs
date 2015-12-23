@@ -42,7 +42,7 @@ namespace HRA4.Context
                 if (tenant != null)
                 {
                     HttpContext.Current.Session["InstitutionId"] = tenant.Id.ToString();
-                    HttpRuntime.Cache[tenant.Id.ToString()] = tenant.Configuration;                   
+                    HttpRuntime.Cache[tenant.Id.ToString()] = "";// change the way configuration file gets loaded. This should be per instituion.                   
                 }
             }
 

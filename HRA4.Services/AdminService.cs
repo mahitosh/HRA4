@@ -43,6 +43,7 @@ namespace HRA4.Services
 
         public Entities.Institution AddUpdateTenant(Entities.Institution tenant)
         {
+            tenant.DbName = Helpers.GenerateDbName(tenant.InstitutionName);
             return _repositoryFactory.TenantRepository.AddUpdateTenant(tenant);
         }
 
@@ -52,13 +53,16 @@ namespace HRA4.Services
             SuperAdmin admin = _repositoryFactory.SuperAdminRepository.GetAdminUser();
             //Added by Aditya on 21-12-2015
             string dbscript = admin.DatabaseSchema;
-            dbscript=dbscript.Replace("db2008",tenant.DbName);
+
+            string tenantDbName = Helpers.GenerateDbName(tenant.InstitutionName);
+            
+            dbscript = dbscript.Replace("db2008", tenantDbName); // contruct db name using institution name
+            
             //End By Aditya
-            string connectionString = "Server=.\\SQLEXPRESS;Database=RiskappCommon;User Id=sa;Password=mk#12345;";
+            string connectionString = ConfigurationSettings.CommonDbConnection;
 
             Helpers.CreateInstitutionDb(connectionString, dbscript);
-
-
+            
             return true;
         }
     }

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using HRA4.Context;
 namespace HRA4.Web.Controllers
 {
+    [Authorize]
     public class BaseController : Controller
     {
         public IApplicationContext _applicationContext;

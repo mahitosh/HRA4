@@ -1,0 +1,79 @@
+﻿@model IEnumerable<HRA4.Entities.Institution>
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+@*
+    This is manage Institution page.
+*@
+<h2>Dashboard</h2>
+
+
+@if (Model == null || Model.Count() == 0)
+{
+    <span>You have not entered any institution data. Please start by entering an instituion name.</span>
+    <div>
+
+        
+    </div>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InstitutionName)
+            </th>
+
+            <th>@Html.DisplayNameFor(model => model.DateCreated)</th>
+            <th></th>
+        </tr>
+        <tr>
+            partial view for Add
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                partial view for edit
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InstitutionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.ActionLink("Select", "InstitutionDashboard", "Institution", new { id = item.Id }, new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+
+
+    </table>
+}
+<div>
+    <button id="btnAdd" name="btnAdd">Add Institution</button>
+    <input type="text" id="txtInstitution" name="txtInstitution" />
+    @Html.ActionLink("Add Institution", "Create")
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnAdd").click(function () {
+
+            var url = '@Url.Action("Create")';
+            $.post(url,
+            {
+                instName: $('#txtInstitution').val()                 
+            },
+            function (data, status) {
+                location.reload(true);
+            });
+
+        });
+    });
+
+</script>

@@ -27,16 +27,19 @@ namespace HRA4.Services
             var list = new AppointmentList();
             list.Date = null;
             list.clinicId = 1;
-            list.BackgroundListLoad();
+            list.BackgroundListLoad();             
             return list.FromRAppointmentList();
         }
 
+        /// <summary>
+        /// Initialize session as per selected institution.
+        /// </summary>
         private void SetUserSession()
         {
             SessionManager.Instance.MetaData.Users.BackgroundListLoad();
-            var users = SessionManager.Instance.MetaData.Users;
+            var users = SessionManager.Instance.MetaData.Users;// may cache user list.
 
-            //_user = users.FirstOrDefault(u => _username == u.GetMemberByName(_username).Name) as RAM.User;
+            _user = users.FirstOrDefault(u => _username == u.GetMemberByName(_username).Name) as RAM.User;
             SessionManager.Instance.ActiveUser = users[0] as RAM.User;// need to change this.
         }
 
