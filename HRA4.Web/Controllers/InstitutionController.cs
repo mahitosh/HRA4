@@ -27,6 +27,13 @@ namespace HRA4.Web.Controllers
 
             
         }
+        [HttpPost]
+        public ActionResult FilteredInstitution(string name,string dob,string appdt)
+        {
+
+            return View();
+
+        }
 
         public ActionResult MarkAsComplete(int Id)
         {

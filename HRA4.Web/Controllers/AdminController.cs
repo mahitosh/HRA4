@@ -15,7 +15,6 @@ namespace HRA4.Web.Controllers
     public class AdminController : BaseController
     {
         // GET: Admin
-        //Display Login Page
         [AllowAnonymous]
         public ActionResult Index()
         {
@@ -25,40 +24,49 @@ namespace HRA4.Web.Controllers
         //Authenticate the Admin user.
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Index(User user,string returnUrl)
+        public ActionResult Index(User user, string action, string returnUrl)
         {
-            bool result = false;
-            if (ModelState.IsValid)
+            if (action == "Submit")
             {
-                result = _applicationContext.ServiceContext.AdminService.Login(user.Username, user.Password);
-
-                if (result)
+                bool result = false;
+                if (ModelState.IsValid)
                 {
-                    FormsAuthentication.SetAuthCookie(user.Username, false);
-                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                    && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                    result = _applicationContext.ServiceContext.AdminService.Login(user.Username, user.Password);
+
+                    if (result)
                     {
-                        return Redirect(returnUrl);
+                        FormsAuthentication.SetAuthCookie(user.Username, false);
+                        if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                            return RedirectToAction("InstitutionDashboard", "Institution");
                     }
                     else
-                        return RedirectToAction("InstitutionDashboard", "Institution");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid login attempt.");                 
+                    {
+                        ModelState.AddModelError("", "Invalid login Attempt !");
+                        ViewBag.msg = "Error";
+                        return View();
+                    }
                 }
             }
+            else
+            {
+                ModelState.Clear();
+                ViewBag.msg = null;
+                return View();
+            }
             return View();
-        }
 
+        }
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Admin");
         }
         //End by Aditya
-
-
         public ActionResult Institution(string tenant)
         {
             return View();
@@ -78,19 +86,19 @@ namespace HRA4.Web.Controllers
             return View();
         }
 
-        [HttpPost]
+         [HttpPost]         
         public ActionResult Create(string instName)
         {
             //Save institution details in RiskAppDb and set the id. This is not possible now as there is dependency to old dlls.
            // string instName = "test";
             Institution institution = new Entities.Institution()
-            {
+        {
                 InstitutionName = instName,
                 DateCreated = DateTime.Now,
             };
 
             institution = _applicationContext.ServiceContext.AdminService.AddUpdateTenant(institution);
-            
+
             Task taskA = Task.Run(() => _applicationContext.ServiceContext.AdminService.CreateTenantDb(institution));
             return RedirectToAction("ManageInstitution");
         }
