@@ -175,6 +175,7 @@
     <Content Include="Scripts\bootstrap\v3.3.6\bootstrap.js" />
     <Content Include="Scripts\bootstrap\v3.3.6\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\v3.3.6\npm.js" />
+    <Content Include="Scripts\custom-script.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -411,6 +412,7 @@
     <Content Include="Scripts\__jquery.tablesorter\themes\green\.svn\text-base\green.zip.svn-base" />
     <Content Include="Scripts\__jquery.tablesorter\themes\green\.svn\text-base\style.css.svn-base" />
     <Content Include="Scripts\__jquery.tablesorter\themes\green\green.zip" />
+    <Content Include="Views\Admin\test.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

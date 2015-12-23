@@ -15,24 +15,36 @@ namespace HRA4.Web.Controllers
     public class AdminController : BaseController
     {
         // GET: Admin
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
         //Added by Aditya on 21-12-2015
         [HttpPost]
-        public ActionResult Index(User user)
+        [AllowAnonymous]
+        public ActionResult Index(User user,string action)
         {
-            bool result = false;
-            result= _applicationContext.ServiceContext.AdminService.Login(user.Username, user.Password);
-            if (result)
+            if (action == "Submit")
             {
-                FormsAuthentication.SetAuthCookie(user.Username, false);
-                return RedirectToAction("Dashboard");
+                bool result = false;
+                result= _applicationContext.ServiceContext.AdminService.Login(user.Username, user.Password);
+                if (result)
+                {
+                    FormsAuthentication.SetAuthCookie(user.Username, false);
+                    return RedirectToAction("Dashboard");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid login Attempt !");
+                    ViewBag.msg = "Error";
+                    return View();
+                }
             }
             else
             {
-                ModelState.AddModelError("", "Invalid login attempt.");
+                ModelState.Clear();
+                ViewBag.msg = null;
                 return View();
             }
         }

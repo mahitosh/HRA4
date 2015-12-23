@@ -42,7 +42,7 @@ body{background:#fbffff url("../images/body-bg.jpg") repeat 0 0;min-height: 700p
 .login-wrapper{box-shadow: 0 0 8px #999;border: none;border-radius: 0;}
 .panel-info > .panel-heading{background-color: #fff;box-shadow: 0 0 8px #999;border:none; box-shadow: 0 3px 5px #e1e1e1;text-align: center;}
 .panel-heading{padding: 25px 15px 15px 15px;}
-.panel-body{padding:40px 70px;}
+.panel-body{padding:30px 40px;font-size:12px;}
 #loginform .form-control{border-radius:0;height:40px;font-size:1.2em;}
 #loginform .input-group-addon{border-radius:0;background-color: #000066;color:#fff;font-size: 18px;}
 #loginform .btn-success, #loginform .btn-danger{border:none;border-radius:0;font-size:1.2em;
@@ -57,7 +57,7 @@ opacity: 1;-webkit-transition: all 2s ease;-moz-transition: all 2s ease;-ms-tran
 .login-right-corner-div:after, .login-left-corner-div:after{background: transparent ;border-color: transparent #e0ecc7;border-style: solid;border-width: 120px 185px 0 0;content: "";display: block;right: 7px;position: absolute; top: 0; width: 0;z-index:-1;opacity: 0.8;filter: alpha(opacity=80); /* For IE8 and earlier */}
 .right-corner-wrapper{position:fixed;right:0;bottom:10px;}
 .login-left-corner:before{border-width: 0 0 120px 105px;left: 0px;}
-.login-left-corner-div:after{border-width: 0 0 120px 185px;left: 7px;}
+.login-left-corner-div:after{border-width: 0 0 120px 185px;left: 2px;}
 .left-corner-wrapper{position:fixed;left:0;top:0px;}
 
 
@@ -93,17 +93,16 @@ li.nav-profile svg{margin-left: 10px;}
 li.nav-logout{margin:25px 15px 0 15px;border-left: solid 1px #ffffff;padding-top:15px!important;}
 li.nav-logout a{padding-bottom: 5px;}
 li.nav-logout a:hover, li.nav-logout a:focus{color:#ffffff!important;text-decoration: underline;}
-.top-breadcrumb{font-size: 1.7em;padding-top: 20px;padding-left:0;}
+.top-breadcrumb{font-size: 1.7em;padding-top: 15px;padding-left:0;}
 .help::before {background: #000;border-color: #fff #f3f9e9 #fff #f3f9e9;border-style: solid;border-width: 0 84px 86px 0;content: "";display: block;left: -22%;position: absolute; top: 0px; width: 0;}
-.help{background: #f3f9e9;height:87px;margin-top:-2px;text-align:right;font-size:1.5em;padding:30px 0px 0 0 ;}
+.help{background: #f3f9e9;height:71px;margin-top:-2px;text-align:right;font-size:1.5em;padding:23px 0px 0 0 ;}
 .help a{color:#333;opacity: 1;-webkit-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;transition: all 0.2s ease-in-out}
 .help a:hover{color:#358dca; ;}
 
 
 
-
 /*conetnt css*/
-.content-area{margin-top:160px;}
+.content-area{margin-top:120px;}
 .content-area label{ font-size: 1.2em;font-weight: 500;}
 .inner-addon {position: relative;}
 .inner-addon .glyphicon { position: absolute;padding: 10px;pointer-events: none;}
@@ -126,6 +125,7 @@ li.nav-logout a:hover, li.nav-logout a:focus{color:#ffffff!important;text-decora
 /*appointment table css*/
 .apppointment-table thead th{background-color: #53afee;color:#ffffff;border:none;padding:12px 8px;font-size:1.2em;}
 .apppointment-table tbody td{background-color: #d5ecfc; border-top: 1px solid #99c1dd!important;vertical-align: middle!important;}
+
 li.add-appointment a{border:none; padding: 10px 0 0 0;margin-right:0;}
 li.add-appointment a:hover{border:none;}
 
@@ -166,7 +166,7 @@ footer .container{text-align: center;padding-top: 15px;color:#838383;}
     .top-header-bg, .help{background:#ffffff;}   
     .container{padding-right:0;}
      .help::before{left:0%;display:none;}
-    .container {width: 1370;}
+    
 
 }
 
