@@ -4,8 +4,16 @@
     ViewBag.Title = "Dashboard";
 }
 
-<h2>Dashboard</h2>
-
+@section breadcrumbs{
+    <div class="clearfix header-bdr"><hr /></div>
+    <div>
+        <div class="container">
+            <div class="col-sm-4 top-breadcrumb">Home > Home Dashbaord</div>
+            <div class="col-lg-5 col-md-6 col-sm-7 help pull-right">
+                <a href="#">Help <img src="~/images/help-ico.svg" width="25" height="25" alt="logout" /></a>
+            </div>
+        </div>
+    </div>   }
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
