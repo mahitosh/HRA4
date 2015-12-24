@@ -64,7 +64,7 @@ namespace HRA4.Utilities
         public static string GetInstitutionConfiguration(string configTemplate, string tenantDbName)
         {
             string instConnectionString = ConfigurationSettings.InstitutionDbConnection;
-            instConnectionString = instConnectionString.Replace("[dbname]", tenantDbName);
+            instConnectionString = instConnectionString.Replace("[DBNAME]", tenantDbName);
 
             string instConfiguration = configTemplate;
             instConfiguration = instConfiguration.Replace("[DBCONNECTION]", instConnectionString);

@@ -13,6 +13,6 @@ namespace HRA4.Services.Interfaces
         bool Login(string username, string password);
         void UpdatePassword(string oldPassword, string newPassword);
         Institution AddUpdateTenant(Institution tenant);
-        bool CreateTenantDb(Institution tenant);
+        bool CreateTenantDb(Institution tenant,string scriptPath);
     }
 }

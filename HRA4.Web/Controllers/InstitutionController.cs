@@ -10,7 +10,7 @@ using System.Web.Mvc;
 namespace HRA4.Web.Controllers
 {
     public class InstitutionController : BaseController
-    {
+    {      
 
         // GET: Institution
         public ActionResult InstitutionDashboard(int? Id)
@@ -18,12 +18,14 @@ namespace HRA4.Web.Controllers
             List<ViewModels.Appointment> apps=null;
             if(Id!= null && Id>0)
             {
-                Session.Add("InstitutionId", Id);                 
-                 apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments();
+                Session.Add("InstitutionId", Id);
+                int v2 = Id ?? default(int);
+                //_applicationContext = new ApplicationContext();
+                 apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2);
                 return View(apps);
             }
-
-            return View(apps);
+            // return View(apps);
+            return RedirectToAction("ManageInstitution","Admin");
 
             
         }

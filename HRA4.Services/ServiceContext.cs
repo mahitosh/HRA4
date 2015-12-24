@@ -32,7 +32,7 @@ namespace HRA4.Services
         }
         public IAppointmentService AppointmentService
         {
-            get { return new AppointmentService(this._username); }
+            get { return new AppointmentService(_repositoryFactory,this._username); }
         }
 
         public IUserService UserService

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HRA4.Repositories.Interfaces;
 using HRA4.Entities;
 using HRA4.Utilities;
+using System.Web;
 namespace HRA4.Services
 {
      class AdminService:Interfaces.IAdminService
@@ -48,15 +49,18 @@ namespace HRA4.Services
         }
 
 
-        public bool CreateTenantDb(Institution tenant)
+        public bool CreateTenantDb(Institution tenant,string scriptPath)
         {
-            SuperAdmin admin = _repositoryFactory.SuperAdminRepository.GetAdminUser();
+           // SuperAdmin admin = _repositoryFactory.SuperAdminRepository.GetAdminUser();
             //Added by Aditya on 21-12-2015
-            string dbscript = admin.DatabaseSchema;
+
+            
+
+            string dbscript = System.IO.File.ReadAllText(scriptPath);
 
             string tenantDbName = Helpers.GenerateDbName(tenant.InstitutionName);
             
-            dbscript = dbscript.Replace("db2008", tenantDbName); // contruct db name using institution name
+            //dbscript = dbscript.Replace("db2008", tenantDbName); // contruct db name using institution name
             
             //End By Aditya
             string connectionString = ConfigurationSettings.CommonDbConnection;
