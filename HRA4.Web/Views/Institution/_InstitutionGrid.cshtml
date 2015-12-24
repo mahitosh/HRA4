@@ -1,0 +1,93 @@
+﻿@model IEnumerable<HRA4.ViewModels.Appointment>
+@{
+    Layout = null;
+}
+@*<link href="~/css/tablesorter.css" rel="stylesheet" />*@
+
+<table id="myTable" class="table table-striped apppointment-table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                MRN
+            </th>
+            <th>
+                DOB
+            </th>
+            <th>
+               App Date/Time
+            </th>
+            <th>
+                Provider
+            </th>
+            <th>
+                Date Completed
+                
+            </th>
+            <th>
+                Disease Hx
+                
+            </th>
+            <th>
+                Survey
+                
+            </th>
+            <th>
+                DNC
+            </th>
+            <th>
+                Quick Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MRN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppointmentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Provider)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCompleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiseaseHx)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Survey)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.DoNotCall)*@
+                    <img src="~/images/DNC-Y-ico.svg" alt="Do not call" width="30" height="30" />
+                </td>
+                <td>
+                    <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
+                    <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
+                    <a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table><!--schedule list end here-->
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#myTable").tablesorter();
+    });
+
+</script>
