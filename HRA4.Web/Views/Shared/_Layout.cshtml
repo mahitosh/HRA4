@@ -9,6 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
     <title>HRA - Dashboard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="~/css/bootstrap/v3.3.6/bootstrap.min.css" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -17,9 +18,8 @@
     <link href="~/css/navbar-fixed-top.css" rel="stylesheet">
     <link href="~/css/datepicker.css" rel="stylesheet" />
     <link href="~/css/custom.css" rel="stylesheet">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    
+    
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="~/assets/js/ie-emulation-modes-warning.js"></script>
@@ -51,7 +51,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="left" title="Admin Tool" id="admin-dropdown" aria-haspopup="true" aria-expanded="true"></a>
                                 <ul class="dropdown-menu admin-tool-menu" aria-labelledby="admin-dropdown">
                                     <li><a href="#"><i class="fa fa-user"></i> Manage Users</a></li>
-                                    <li><a href="#"><i class="fa fa-university"></i> Manage Institutions</a></li>
+                                    <li><a href="@Url.Action("ManageInstitution", "Admin")"><i class="fa fa-university"></i> Manage Institutions</a></li>
                                     <li><a href="#"><i class="fa fa-user-md"></i> Manage Providers</a></li>
                                     <li><a href="#"><i class="fa fa-list"></i> Manage Survey List</a></li>
                                     <li><a href="#"><i class="fa fa-file-text-o"></i> Audit Reports</a></li>
@@ -91,19 +91,13 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
- 
+    
+    @*<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>*@
     <script src="~/Scripts/bootstrap/v3.3.6/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="~/Scripts/custom-script.js"></script>
-    <script src="~/Scripts/__jquery.tablesorter/jquery-latest.js"></script>
+    @*<script src="~/Scripts/__jquery.tablesorter/jquery-latest.js"></script>*@
     <script src="~/Scripts/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
-  
-    <script type="text/javascript">
-        $(function () {
-            $('.datepicker').datepicker();
-        });
-    </script>
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="~/assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>

@@ -12,7 +12,7 @@
         <div class="col-sm-4 top-breadcrumb">Dashbaord</div>
         <div class="col-lg-5 col-md-7 col-sm-7 help pull-right">
             <div class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="left" title="Help" id="admin-dropdown" aria-haspopup="true" aria-expanded="true">Help <img src="images/help-ico.svg" width="25" height="25" alt="logout" /></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="left" title="Help" id="admin-dropdown" aria-haspopup="true" aria-expanded="true">Help <img src="~/images/help-ico.svg" width="25" height="25" alt="logout" /></a>
                 <ul class="dropdown-menu help-menu col-md-2 pull-right" aria-labelledby="help-dropdown">
                     <li><a href="#"><i class="fa fa-building"></i> About Us</a></li>
                     <li><a href="#"><i class="fa fa-map-marker"></i> Contact US</a></li>
@@ -22,7 +22,7 @@
     </div>
     </div>   }
 
-@if (ViewBag.instListcount < 10)
+@if (ViewBag.instListcount == 0 || ViewBag.instListcount==null)
 {
     <div class="modal fade" tabindex="-1" role="dialog" id="dashboardmodal" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
@@ -36,7 +36,7 @@
 }
 else
 {
-    </div>*@
+        
 
 <!--container area start here-->
 
@@ -60,21 +60,21 @@ else
                     <input class="form-control" id="name" name="name" type="text" placeholder="First/Last Name" />
                     </div>
                 </div>
-            <div class="col-md-2 col-sm-3 Padding-T-26">
+            <div class="col-md-2 col-sm-3 Padding-T-28">
                     <div id="DOB" class="inner-addon right-addon">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" placeholder="DOB" /></input>
+                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" placeholder="DOB" />
                     </div>
                 </div>
 
-            <div class="col-md-2 col-sm-3 Padding-T-26">
+            <div class="col-md-2 col-sm-3 Padding-T-28">
                     <div id="app-date" class="inner-addon right-addon">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" /></input>
+                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" />
                     </div>
                 </div>
 
-            <div class="col-md-2 col-sm-2 Padding-T-26 ">
+            <div class="col-md-2 col-sm-2 Padding-T-28 ">
                     <div class="btn-group search-group">
                         <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
                         <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
@@ -114,7 +114,7 @@ else
                     <div class="tab-pane active" id="Schedule">
                         <div class="table-responsive">
                         <div id="divInstitutionGrid">
-                            @Html.Partial("_InstitutionGrid", Model);
+                            @Html.Partial("_InstitutionGrid", Model)
                         </div>
                         </div>
                     </div><!--schedule tab end here-->
@@ -135,8 +135,8 @@ else
 
         </div><!--container fluid end-->
     </div> <!-- /container area end -->
+}
 
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>*@
 <script type="text/javascript">
     $(document).ready(function () {
        
