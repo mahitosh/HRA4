@@ -75,9 +75,9 @@ namespace HRA4.Web.Controllers
 
         public ActionResult ManageInstitution()
         {
-            
+
             var instituionList = _applicationContext.ServiceContext.AdminService.GetTenants();
-           
+
             return View(instituionList);
         }
 
@@ -86,20 +86,23 @@ namespace HRA4.Web.Controllers
             return View();
         }
 
-         [HttpPost]         
+        [HttpPost]
         public ActionResult Create(string instName)
         {
             //Save institution details in RiskAppDb and set the id. This is not possible now as there is dependency to old dlls.
-           // string instName = "test";
+            // string instName = "test";
             Institution institution = new Entities.Institution()
         {
-                InstitutionName = instName,
-                DateCreated = DateTime.Now,
-            };
+            InstitutionName = instName,
+            DateCreated = DateTime.Now,
+        };
+            
+           
+           string scriptPath = HttpContext.Server.MapPath(@"~/App_Data/Script2008.sql");
 
             institution = _applicationContext.ServiceContext.AdminService.AddUpdateTenant(institution);
-
-            Task taskA = Task.Run(() => _applicationContext.ServiceContext.AdminService.CreateTenantDb(institution));
+            _applicationContext.ServiceContext.AdminService.CreateTenantDb(institution, scriptPath);
+          //  Task taskA = Task.Run(() => _applicationContext.ServiceContext.AdminService.CreateTenantDb(institution,scriptPath));
             return RedirectToAction("ManageInstitution");
         }
     }

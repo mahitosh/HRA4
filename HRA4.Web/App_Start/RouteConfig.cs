@@ -18,6 +18,11 @@ namespace HRA4.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+               name: "Institution",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Institution", action = "InstitutionDashboard", id = UrlParameter.Optional }
+           );
         }
     }
 }
