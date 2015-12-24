@@ -129,6 +129,7 @@
     <Content Include="css\fonts\opensans_light\OpenSans-Light-webfont.svg" />
     <Content Include="css\fonts\opensans_regular\OpenSans-Regular-webfont.svg" />
     <Content Include="css\navbar-fixed-top.css" />
+    <Content Include="css\tablesorter.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -155,10 +156,13 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="images\admin-tool-ico.svg" />
     <Content Include="images\appointment-ico.svg" />
+    <Content Include="images\asc.gif" />
     <Content Include="images\asc.png" />
+    <Content Include="images\bg.gif" />
     <Content Include="images\bg.png" />
     <Content Include="images\body-bg.jpg" />
     <Content Include="images\copy-grid-ico.svg" />
+    <Content Include="images\desc.gif" />
     <Content Include="images\desc.png" />
     <Content Include="images\DNC-N-ico.svg" />
     <Content Include="images\DNC-Y-ico.svg" />
@@ -411,6 +415,7 @@
     <Content Include="Scripts\__jquery.tablesorter\themes\green\.svn\text-base\green.zip.svn-base" />
     <Content Include="Scripts\__jquery.tablesorter\themes\green\.svn\text-base\style.css.svn-base" />
     <Content Include="Scripts\__jquery.tablesorter\themes\green\green.zip" />
+    <Content Include="Views\Institution\_InstitutionGrid.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

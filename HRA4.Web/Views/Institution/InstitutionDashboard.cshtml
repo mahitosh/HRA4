@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "InstitutionDashboard";
-  
+
 }
 
 
@@ -47,24 +47,24 @@
             <div class="col-md-3 col-sm-4">
                 <div class="form-group ">
                     <label class="control-label " for="name">Quick Search</label>
-                    <input class="form-control" id="name" name="name" type="text" />
+                    <input class="form-control" id="name" name="name" type="text" placeholder="First/Last Name" />
                 </div>
             </div>
-            <div class="col-md-2 col-sm-3 Padding-T-26">
+            <div class="col-md-2 col-sm-3 Padding-T-28">
                 <div id="DOB" class="inner-addon right-addon">
                     <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <input data-format="MM-dd-yyyy" id="dob" type="text" class="datepicker form-control" />
+                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" placeholder="DOB" /></input>
                 </div>
             </div>
 
-            <div class="col-md-2 col-sm-3 Padding-T-26">
+            <div class="col-md-2 col-sm-3 Padding-T-28">
                 <div id="app-date" class="inner-addon right-addon">
                     <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <input data-format="MM-dd-yyyy" id="appdt" type="text" class="datepicker form-control" />
+                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" /></input>
                 </div>
             </div>
 
-            <div class="col-md-2 col-sm-2 Padding-T-26 ">
+            <div class="col-md-2 col-sm-2 Padding-T-28 ">
                 <div class="btn-group search-group">
                     <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
                     <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
@@ -103,83 +103,9 @@
             <div class="tab-content row">
                 <div class="tab-pane active" id="Schedule">
                     <div class="table-responsive">
-                        <table id="myTable" class="table table-striped apppointment-table ">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.PatientName)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.MRN)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.DateOfBirth)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.AppointmentDate)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Provider)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.DateCompleted)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.DiseaseHx)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Survey)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.DoNotCall)
-                                    </th>
-                                    <th>
-                                        @Html.Label("Quick Actions")
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.PatientName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.MRN)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DateOfBirth)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.AppointmentDate)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Provider)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DateCompleted)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DiseaseHx)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Survey)
-                                        </td>
-                                        <td>
-                                            @*@Html.DisplayFor(modelItem => item.DoNotCall)*@
-                                            <img src="~/images/DNC-Y-ico.svg" alt="Do not call" width="30" height="30" />
-                                        </td>
-                                        <td>
-                                            <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
-                                            <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
-                                            <a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
-                                        </td>
-                                    </tr>
-
-                                }
-                            </tbody>
-                        </table><!--schedule list end here-->
+                        <div id="divInstitutionGrid">
+                            @Html.Partial("_InstitutionGrid", Model);
+                        </div>
                     </div>
                 </div><!--schedule tab end here-->
                 <div class="tab-pane" id="LifetimeBC">
@@ -200,26 +126,26 @@
     </div><!--container fluid end-->
 </div> <!-- /container area end -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>*@
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#myTable").tablesorter();
+       
         $("#btnsearch").click(function (data) {
-           $.ajax({
+
+            var name = $('#name').val();
+            var dob = $('#dob-date').val();
+            var appdt = $('#appt-date').val();
+
+            $.ajax({
                 type: "POST",
                 url: "/Institution/FilteredInstitution",
-                data: "{'name':'aa','dob':'sadasd','appdt':'asdasd'}",
-                
-            }).done(function (data) {
-                //Successfully pass to server and get response
-                if (data.result = "OK") {
-                    alert("submit successfully.");
+                data: { name: name, dob: dob, appdt: appdt },
+                dataType: "json",
+                success: function (Data) {
+                    $('#divInstitutionGrid').html(Data.view);
                 }
-            }).fail(function (response) {
-                if (response.status != 0) {
-                    alert(response.status + " " + response.statusText);
-                }
-            });
+
+            })
         });
     });
 </script>
