@@ -16,5 +16,14 @@ namespace HRA4.Utilities
                 return ConfigurationManager.AppSettings["CommonDbConnection"];
             }
         }
+        public static string InstitutionDbConnection
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["InstitutionDbConnection"];
+            }
+        }
+
+        public static string InstitutionPassword { get { return ConfigurationManager.AppSettings["InstitutionPassword"]; } }
     }
 }

@@ -53,7 +53,24 @@ namespace HRA4.Utilities
             return sqlStatementBatchSplitter.Split(sqlStatementBatch);
         }
 
+        public static string GenerateDbName(string instName)
+        {
+            string tmp = instName.Split(' ')[0];// takes first string from name
+            string tmp1 = Guid.NewGuid().ToString().Split('-')[0];// takes first string from GUID
+            string tenantDbName = string.Format("{0}_{1}_{2}", "HRA", tmp.ToUpper(), tmp1);
+            return tenantDbName;
+        }
        
+        public static string GetInstitutionConfiguration(string configTemplate, string tenantDbName)
+        {
+            string instConnectionString = ConfigurationSettings.InstitutionDbConnection;
+            instConnectionString = instConnectionString.Replace("[DBNAME]", tenantDbName);
+
+            string instConfiguration = configTemplate;
+            instConfiguration = instConfiguration.Replace("[DBCONNECTION]", instConnectionString);
+            instConfiguration = instConfiguration.Replace("[PWD]", ConfigurationSettings.InstitutionPassword);
+            return instConfiguration;
+        }
 
         
 

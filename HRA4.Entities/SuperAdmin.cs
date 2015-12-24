@@ -15,6 +15,7 @@ namespace HRA4.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string DatabaseSchema { get; set; }
+        public string ConfigurationTemplate { get; set; }
 
     }
 }

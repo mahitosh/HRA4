@@ -1,8 +1,10 @@
 ﻿using HRA4.Context;
+using HRA4.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,16 +12,23 @@ namespace HRA4.Web.Controllers
 {
     public class InstitutionController : BaseController
     {
+
         // GET: Institution
-        public ActionResult InstitutionDashboard(int Id)
+        public ActionResult InstitutionDashboard(int? Id)
         {
-        
+            List<ViewModels.Appointment> apps=null;
+            if(Id!= null && Id>0)
+            {
             Session.Add("InstitutionId", Id);
-            _applicationContext = new ApplicationContext();
-            var apps =_applicationContext.ServiceContext.AppointmentService.GetAppointments(); 
-            return View(apps);
-          
-          
+                int v2 = Id ?? default(int);
+                //_applicationContext = new ApplicationContext();
+                 apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2);
+                return View(apps);
+            }
+            // return View(apps);
+            return RedirectToAction("ManageInstitution","Admin");
+
+            
         }
         
         public JsonResult FilteredInstitution(string name,string dob,string appdt)
@@ -27,7 +36,7 @@ namespace HRA4.Web.Controllers
              Session.Add("InstitutionId", 1);
             _applicationContext = new ApplicationContext();
             var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments().Where(a => a.PatientName.Trim().ToLower().Contains(name.Trim().ToLower()) );
-            
+
             if(dob.Trim().Length > 0)
             apps = apps.Where(a => a.DateOfBirth.ToString().Trim().Contains(dob.Trim()));
 

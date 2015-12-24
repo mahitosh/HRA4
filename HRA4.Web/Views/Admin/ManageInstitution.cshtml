@@ -1,0 +1,121 @@
+﻿@model IEnumerable<HRA4.Entities.Institution>
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+@*
+    This is manage Institution page.
+*@
+
+@section breadcrumbs{
+    <div class="clearfix header-bdr"><hr /></div>
+    <div>
+        <div class="container">
+            <div class="col-sm-4 top-breadcrumb">Manage Institutions</div>
+            <div class="col-lg-5 col-md-6 col-sm-7 help pull-right">
+                <a href="#">Help <img src="~/images/help-ico.svg" width="25" height="25" alt="logout" /></a>
+            </div>
+        </div>
+    </div>  }
+
+@if (Model == null || Model.Count() == 0)
+{
+    <span>You have not entered any institution data. Please start by entering an instituion name.</span>
+    <div>
+
+
+    </div>
+}
+else { }
+<div class="content-area container-fluid ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-4 pull-right">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Search Instiution">
+                    <span class="input-group-addon search-ico-bg"><span class="glyphicon glyphicon-search"></span></span>
+                </div><!--input group end here-->
+            </div>
+        </div><!--row end-->
+    </div><!--container end-->
+
+    <div class="container-fluid row Padding-LR-0">
+        <hr class="hr-style" />
+    </div><!--row end-->
+
+
+    <div class="container" id="institution-list">
+        <div class="row height-30">
+            <div class="col-md-6 col-sm-6 Padding-L-0">
+                <b>Select an institution below to view it's data.</b>
+            </div>
+            <div class="col-md-6 col-sm-6 pull-right" style="text-align:right;">
+                <div class="dropdown pull-right">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle"><img src="~/images/institution-ico.svg" class="add-istitution-list" alt="Add Institution" width="18" height="18" /> Add Institution</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <label>Add Institution</label><br />
+                            <input class="form-control" id="txtInstitution" name="add-institution" type="text" placeholder="Enter Institution" />
+                            <button class="btn btn-default add-btn Margin-T-10 pull-right" id="btnAdd" type="button">Add</button>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#" class="pull-right"><img src="~/images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh institution list</a>
+
+
+            </div>
+        </div><!--row end-->
+    </div><!--container end-->
+
+    <div class="container-fluid row Padding-LR-0 bottom-container-area">
+        <div class="container">
+            <div class="row">
+                <table class="table table-striped apppointment-table Margin-T-20">
+                    <thead>
+                        <tr>
+                            <th width="55%">@Html.DisplayNameFor(model => model.InstitutionName)</th>
+                            <th width="20%">@Html.DisplayNameFor(model => model.DateCreated)</th>
+                            <th width="25%">Quick Actions</th>
+                        </tr>
+                    </thead>      
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.InstitutionName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DateCreated)</td>
+                                <td class="quick-add-institution">
+                                    <a href="@Url.Action("InstitutionDashboard", "Institution",new { id = item.Id })"><img src="~/images/dashboard-ico.svg" alt="Go to dashboard" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Go to Dashboard" /></a>
+                                    <a href="#"><img src="~/images/add-clinic-ico.svg" alt="Add Clinic" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Add Clinic" /></a>
+                                    <a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>
+                                    <a href="#"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
+                                </td>
+                            </tr>
+                            
+                        }
+                    </tbody>
+                </table><!--Institution list end here-->
+            </div><!--row end-->
+
+        </div><!--container end-->
+
+    </div><!--container fluid end-->
+</div> <!-- /container area end -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnAdd").click(function () {
+
+            var url = '@Url.Action("Create")';
+            $.post(url,
+            {
+                instName: $('#txtInstitution').val()
+            },
+            function (data, status) {
+                location.reload(true);
+            });
+
+        });
+    });
+
+</script>

@@ -33,6 +33,7 @@
 
 </head>
 <body>
+    
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid top-header-bg">
@@ -52,7 +53,9 @@
                             </div>
                             <div class="pull-left Padding-T-15 user-name"><small>Welcome</small><br />Dr. Joseph Brown</div>
                         </li>
-                        <li class="nav-logout"><a href="#">Logout <img src="~/images/logout-ico.svg" width="30" height="30" alt="logout" /></a></li>
+                        <li class="nav-logout">
+                       
+                            <a href="@Url.Action("LogOut", "Admin")">Logout <img src="~/images/logout-ico.svg" width="30" height="30" alt="logout" /></a></li>
                     </ul>
                 </div><!--/nav-collapse -->
             </div> <!--/top navbar end -->    
@@ -61,22 +64,28 @@
             <!--End by Aditya-->
         </div>
     </nav><!--fixed header end here-->
-
-    <div >
+    
+    
+   
         @RenderBody()
        
-    </div>
+   
     <footer>
         <div class="footer-style pull-left"></div>
         <div class="container">Copyrights &copy; 2015 <img src="~/images/footer-logo.svg" width="130" height="50" alt="HRA" />. All rights reserved. </div>
     </footer>
+    
+   
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
  
     <script src="~/Scripts/bootstrap/v3.3.6/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-datepicker.js"></script>
-    <script src="~/Scripts/__jquery.tablesorter/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="~/Scripts/custom-script.js"></script>
+    <script src="~/Scripts/__jquery.tablesorter/jquery-latest.js"></script>
+    <script src="~/Scripts/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
+  
     <script type="text/javascript">
         $(function () {
             $('.datepicker').datepicker();

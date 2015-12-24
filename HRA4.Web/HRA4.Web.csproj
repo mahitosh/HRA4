@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Script2008.sql" />
     <Content Include="assets\brand\bootstrap-outline.svg" />
     <Content Include="assets\brand\bootstrap-punchout.svg" />
     <Content Include="assets\brand\bootstrap-solid.svg" />
@@ -153,7 +154,9 @@
     <Content Include="css\fonts\opensans_regular\OpenSans-Regular-webfont.ttf" />
     <Content Include="css\fonts\opensans_regular\OpenSans-Regular-webfont.woff" />
     <Content Include="assets\css\docs.min.css.map" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="images\add-clinic-ico.svg" />
     <Content Include="images\admin-tool-ico.svg" />
     <Content Include="images\appointment-ico.svg" />
     <Content Include="images\asc.gif" />
@@ -162,15 +165,22 @@
     <Content Include="images\bg.png" />
     <Content Include="images\body-bg.jpg" />
     <Content Include="images\copy-grid-ico.svg" />
+    <Content Include="images\dashboard-ico.svg" />
+    <Content Include="images\delete-ico.svg" />
     <Content Include="images\desc.gif" />
     <Content Include="images\desc.png" />
     <Content Include="images\DNC-N-ico.svg" />
     <Content Include="images\DNC-Y-ico.svg" />
     <Content Include="images\edit-grid-ico.svg" />
     <Content Include="images\footer-logo.svg" />
+    <Content Include="images\grid-run-auto-doc-ico.svg" />
     <Content Include="images\help-ico.svg" />
+    <Content Include="images\institution-ico.svg" />
+    <Content Include="images\login-hra-logo.svg" />
+    <Content Include="images\login-page-logo.png" />
     <Content Include="images\logout-ico.svg" />
     <Content Include="images\refresh-grid-ico.svg" />
+    <Content Include="images\run-auto-doc-ico.svg" />
     <Content Include="images\tab-refresh-ico.svg" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -179,6 +189,7 @@
     <Content Include="Scripts\bootstrap\v3.3.6\bootstrap.js" />
     <Content Include="Scripts\bootstrap\v3.3.6\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\v3.3.6\npm.js" />
+    <Content Include="Scripts\custom-script.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -187,72 +198,17 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\__jquery.tablesorter\addons\pager\jquery.tablesorter.pager.css" />
-    <Content Include="Scripts\__jquery.tablesorter\addons\pager\jquery.tablesorter.pager.js" />
-    <Content Include="Scripts\__jquery.tablesorter\build.xml" />
-    <Content Include="Scripts\__jquery.tablesorter\build\js.jar" />
-    <Content Include="Scripts\__jquery.tablesorter\build\jsmin.js" />
-    <Content Include="Scripts\__jquery.tablesorter\build\min.js" />
-    <Content Include="Scripts\__jquery.tablesorter\build\pack.js" />
-    <Content Include="Scripts\__jquery.tablesorter\build\packer.js" />
-    <Content Include="Scripts\__jquery.tablesorter\build\ParseMaster.js" />
-    <Content Include="Scripts\__jquery.tablesorter\build\writeFile.js" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\assets\ajax-content.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\css\jq.css" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-ajax.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-empty-table.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-extending-defaults.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-meta-headers.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-meta-parsers.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-meta-sort-list.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-option-debug.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-option-digits.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-option-sort-force.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-option-sort-key.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-option-sort-list.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-option-sort-order.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-option-text-extraction.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-options-headers.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-pager.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-parsers.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-trigger-sort.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-triggers.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-update-cell.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\example-widgets.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\img\external.png" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\index.html" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\js\docs.js" />
-    <Content Include="Scripts\__jquery.tablesorter\docs\js\examples.js" />
     <Content Include="Scripts\__jquery.tablesorter\jquery-latest.js" />
     <Content Include="Scripts\__jquery.tablesorter\jquery.metadata.js" />
     <Content Include="Scripts\__jquery.tablesorter\jquery.tablesorter.js" />
     <Content Include="Scripts\__jquery.tablesorter\jquery.tablesorter.min.js" />
-    <Content Include="Scripts\__jquery.tablesorter\tests\assets\ajax-content.html" />
-    <Content Include="Scripts\__jquery.tablesorter\tests\cell.metadata.html" />
-    <Content Include="Scripts\__jquery.tablesorter\tests\checkbox.html" />
-    <Content Include="Scripts\__jquery.tablesorter\tests\colspan.html" />
-    <Content Include="Scripts\__jquery.tablesorter\tests\demo.html" />
-    <Content Include="Scripts\__jquery.tablesorter\tests\index.html" />
-    <Content Include="Scripts\__jquery.tablesorter\tests\large.html" />
-    <Content Include="Scripts\__jquery.tablesorter\tests\lockedOrder.html" />
-    <Content Include="Scripts\__jquery.tablesorter\tests\metadata.html" />
-    <Content Include="Scripts\__jquery.tablesorter\tests\multiple-headers.html" />
-    <Content Include="Scripts\__jquery.tablesorter\tests\pager.html" />
-    <Content Include="Scripts\__jquery.tablesorter\themes\blue\asc.gif" />
-    <Content Include="Scripts\__jquery.tablesorter\themes\blue\bg.gif" />
-    <Content Include="Scripts\__jquery.tablesorter\themes\blue\desc.gif" />
-    <Content Include="Scripts\__jquery.tablesorter\themes\blue\style.css" />
-    <Content Include="Scripts\__jquery.tablesorter\themes\green\asc.png" />
-    <Content Include="Scripts\__jquery.tablesorter\themes\green\bg.png" />
-    <Content Include="Scripts\__jquery.tablesorter\themes\green\desc.png" />
-    <Content Include="Scripts\__jquery.tablesorter\themes\green\style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Admin\ManageInstitution.cshtml" />
     <Content Include="Views\Admin\AddInstitution.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -424,64 +380,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\__jquery.tablesorter\addons\.svn\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\addons\.svn\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\addons\.svn\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\addons\.svn\tmp\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\addons\.svn\tmp\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\addons\.svn\tmp\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\addons\pager\.svn\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\addons\pager\.svn\tmp\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\addons\pager\.svn\tmp\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\addons\pager\.svn\tmp\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\build\.svn\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\build\.svn\tmp\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\build\.svn\tmp\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\build\.svn\tmp\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\.svn\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\.svn\tmp\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\.svn\tmp\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\.svn\tmp\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\assets\.svn\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\assets\.svn\tmp\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\assets\.svn\tmp\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\assets\.svn\tmp\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\css\.svn\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\css\.svn\tmp\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\css\.svn\tmp\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\css\.svn\tmp\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\img\.svn\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\img\.svn\tmp\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\img\.svn\tmp\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\img\.svn\tmp\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\js\.svn\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\js\.svn\tmp\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\js\.svn\tmp\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\docs\js\.svn\tmp\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\tests\.svn\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\tests\.svn\tmp\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\tests\.svn\tmp\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\tests\.svn\tmp\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\tests\assets\.svn\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\tests\assets\.svn\tmp\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\tests\assets\.svn\tmp\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\tests\assets\.svn\tmp\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\.svn\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\.svn\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\.svn\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\.svn\tmp\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\.svn\tmp\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\.svn\tmp\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\blue\.svn\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\blue\.svn\tmp\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\blue\.svn\tmp\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\blue\.svn\tmp\text-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\green\.svn\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\green\.svn\tmp\prop-base\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\green\.svn\tmp\props\" />
-    <Folder Include="Scripts\__jquery.tablesorter\themes\green\.svn\tmp\text-base\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

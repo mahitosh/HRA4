@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,9 +44,11 @@
     <Compile Include="AppointmentService.cs" />
     <Compile Include="Interfaces\IAdminService.cs" />
     <Compile Include="Interfaces\IAppointmentService.cs" />
+    <Compile Include="Interfaces\IRiskAppServices.cs" />
     <Compile Include="Interfaces\IServiceContext.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RiskappService.cs" />
     <Compile Include="ServiceContext.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>

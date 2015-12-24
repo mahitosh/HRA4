@@ -2,9 +2,8 @@
 
 @{
     ViewBag.Title = "InstitutionDashboard";
-
+  
 }
-
 
 @section breadcrumbs{
     <div class="clearfix header-bdr"><hr /></div>
@@ -50,21 +49,21 @@
                     <input class="form-control" id="name" name="name" type="text" placeholder="First/Last Name" />
                 </div>
             </div>
-            <div class="col-md-2 col-sm-3 Padding-T-28">
+            <div class="col-md-2 col-sm-3 Padding-T-26">
                 <div id="DOB" class="inner-addon right-addon">
                     <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                     <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" placeholder="DOB" /></input>
                 </div>
             </div>
 
-            <div class="col-md-2 col-sm-3 Padding-T-28">
+            <div class="col-md-2 col-sm-3 Padding-T-26">
                 <div id="app-date" class="inner-addon right-addon">
                     <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                     <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" /></input>
                 </div>
             </div>
 
-            <div class="col-md-2 col-sm-2 Padding-T-28 ">
+            <div class="col-md-2 col-sm-2 Padding-T-26 ">
                 <div class="btn-group search-group">
                     <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
                     <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
@@ -136,7 +135,7 @@
             var dob = $('#dob-date').val();
             var appdt = $('#appt-date').val();
 
-            $.ajax({
+           $.ajax({
                 type: "POST",
                 url: "/Institution/FilteredInstitution",
                 data: { name: name, dob: dob, appdt: appdt },
@@ -144,7 +143,7 @@
                 success: function (Data) {
                     $('#divInstitutionGrid').html(Data.view);
                 }
-
+                
             })
         });
     });
