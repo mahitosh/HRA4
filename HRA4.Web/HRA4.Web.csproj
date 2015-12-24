@@ -154,12 +154,15 @@
     <Content Include="css\fonts\opensans_regular\OpenSans-Regular-webfont.woff" />
     <Content Include="assets\css\docs.min.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="images\add-clinic-ico.svg" />
     <Content Include="images\admin-tool-ico.svg" />
     <Content Include="images\appointment-ico.svg" />
     <Content Include="images\asc.png" />
     <Content Include="images\bg.png" />
     <Content Include="images\body-bg.jpg" />
     <Content Include="images\copy-grid-ico.svg" />
+    <Content Include="images\dashboard-ico.svg" />
+    <Content Include="images\delete-ico.svg" />
     <Content Include="images\desc.png" />
     <Content Include="images\DNC-N-ico.svg" />
     <Content Include="images\DNC-Y-ico.svg" />
@@ -167,6 +170,7 @@
     <Content Include="images\footer-logo.svg" />
     <Content Include="images\grid-run-auto-doc-ico.svg" />
     <Content Include="images\help-ico.svg" />
+    <Content Include="images\institution-ico.svg" />
     <Content Include="images\login-hra-logo.svg" />
     <Content Include="images\login-page-logo.png" />
     <Content Include="images\logout-ico.svg" />
