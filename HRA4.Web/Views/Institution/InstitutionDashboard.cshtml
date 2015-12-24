@@ -7,17 +7,36 @@
 
 @section breadcrumbs{
     <div class="clearfix header-bdr"><hr /></div>
-    <div>
-        <div class="container">
-            <div class="col-sm-4 top-breadcrumb">Home > Dashbaord</div>
-            <div class="col-lg-5 col-md-6 col-sm-7 help pull-right">
-                <a href="#">Help <img src="~/images/help-ico.svg" width="25" height="25" alt="logout" /></a>
+<div>
+    <div class="container">
+        <div class="col-sm-4 top-breadcrumb">Dashbaord</div>
+        <div class="col-lg-5 col-md-7 col-sm-7 help pull-right">
+            <div class="dropdown">k
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="left" title="Help" id="admin-dropdown" aria-haspopup="true" aria-expanded="true">Help <img src="images/help-ico.svg" width="25" height="25" alt="logout" /></a>
+                <ul class="dropdown-menu help-menu col-md-2 pull-right" aria-labelledby="help-dropdown">
+                    <li><a href="#"><i class="fa fa-building"></i> About Us</a></li>
+                    <li><a href="#"><i class="fa fa-map-marker"></i> Contact US</a></li>
+                </ul>
             </div>
         </div>
-    </div>   }
+    </div>
+</div>   }
 
-
-<!--container area start here-->
+@if (ViewBag.instListcount < 10)
+{
+    <div class="modal fade" tabindex="-1" role="dialog" id="dashboardmodal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>You have not entered any institution data. Please start by<a href="@Url.Action("ManageInstitution", "Admin")"> entering an institution name.</a></p>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+else
+{
+    <!--container area start here-->
 
     <div class="content-area container-fluid ">
         <div class="container">
@@ -129,44 +148,44 @@
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
-                                {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PatientName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MRN)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DateOfBirth)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.AppointmentDate)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Provider)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DateCompleted)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DiseaseHx)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Survey)
-                                    </td>
-                                    <td>
-                                        @*@Html.DisplayFor(modelItem => item.DoNotCall)*@
-                                        <img src="~/images/DNC-Y-ico.svg" alt="Do not call" width="30" height="30" />
-                                    </td>
-                                    <td>
-                                        <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
-                                        <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
-                                        <a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
-                                    </td>
-                                </tr>
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PatientName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.MRN)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateOfBirth)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.AppointmentDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Provider)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateCompleted)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DiseaseHx)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Survey)
+                                            </td>
+                                            <td>
+                                                @*@Html.DisplayFor(modelItem => item.DoNotCall)*@
+                                                <img src="~/images/DNC-Y-ico.svg" alt="Do not call" width="30" height="30" />
+                                            </td>
+                                            <td>
+                                                <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
+                                                <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
+                                                <a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
+                                            </td>
+                                        </tr>
 
-                                }
+                                    }
                                 </tbody>
                             </table><!--schedule list end here-->
                         </div>
@@ -188,6 +207,9 @@
 
         </div><!--container fluid end-->
     </div> <!-- /container area end -->
+
+}
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">

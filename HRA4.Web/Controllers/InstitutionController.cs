@@ -15,7 +15,9 @@ namespace HRA4.Web.Controllers
         // GET: Institution
         public ActionResult InstitutionDashboard(int? Id)
         {
-            List<ViewModels.Appointment> apps=null;
+            List<ViewModels.Appointment> apps = new List<ViewModels.Appointment>();
+            var instList = _applicationContext.ServiceContext.AdminService.GetTenants();
+            ViewBag.instListcount = instList.Count;
             if(Id!= null && Id>0)
             {
                 Session.Add("InstitutionId", Id);
@@ -24,8 +26,8 @@ namespace HRA4.Web.Controllers
                  apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2);
                 return View(apps);
             }
-            // return View(apps);
-            return RedirectToAction("ManageInstitution","Admin");
+            return View(apps);
+            //return RedirectToAction("ManageInstitution","Admin");
 
             
         }

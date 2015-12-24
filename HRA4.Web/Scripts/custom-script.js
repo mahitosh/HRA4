@@ -18,6 +18,10 @@ $('[data-toggle="tooltip"]').tooltip();
 }); //function end here
 
  
+ //dashboard popup
+ $(window).load(function(){
+       $('#dashboardmodal').modal('show');		
+});
 		
 		
 //hide add appointment link
