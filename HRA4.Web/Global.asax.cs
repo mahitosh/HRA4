@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using HRA4.Context;
+using System.IO;
 namespace HRA4.Web
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -13,6 +14,7 @@ namespace HRA4.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            log4net.Config.XmlConfigurator.Configure(new FileInfo(Server.MapPath("~/Web.config")));
         }
     }
 }

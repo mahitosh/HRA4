@@ -14,6 +14,7 @@ using HRA4.Repositories.Interfaces;
 using HRA4.Entities;
 using HRA4.Utilities;
 using System.Web;
+using log4net;
 namespace HRA4.Services
 {
     public class AppointmentService : IAppointmentService
@@ -22,6 +23,7 @@ namespace HRA4.Services
         RAM.User _user;
         int _institutionId;
         IRepositoryFactory _repositoryFactory;
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(AppointmentService));
         public AppointmentService(IRepositoryFactory repositoryFactory, string user)
         {
             _username = user;
@@ -30,6 +32,7 @@ namespace HRA4.Services
 
         public List<VM.Appointment> GetAppointments(int InstitutionId)
         {
+            Logger.DebugFormat("Institution Id: {0}", InstitutionId);
             if(InstitutionId != null)
             {
                 _institutionId = InstitutionId;
@@ -48,14 +51,19 @@ namespace HRA4.Services
         /// </summary>
         private void SetUserSession()
         {
+            Logger.DebugFormat("Institution Id: {0}", _institutionId);
             Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
+            Logger.DebugFormat("Get Instituion");
             string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
+            Logger.DebugFormat("Get Configtemplate");
             string configuration = Helpers.GetInstitutionConfiguration(configTemplate, inst.DbName);
+
             HttpRuntime.Cache[_institutionId.ToString()] = configuration;
-
+            
             SessionManager.Instance.MetaData.Users.BackgroundListLoad();
+            Logger.DebugFormat("Load Users");
             var users = SessionManager.Instance.MetaData.Users;// may cache user list.
-
+            Logger.DebugFormat("User count :{0}",users.Count());
            // _user = users.FirstOrDefault(u => _username == u.GetMemberByName(_username).Name) as RAM.User;
             SessionManager.Instance.ActiveUser = users[0] as RAM.User;// need to change this.
         }

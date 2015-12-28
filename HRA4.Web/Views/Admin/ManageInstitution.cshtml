@@ -34,7 +34,7 @@ else { }
         <div class="row">
             <div class="col-md-3 col-sm-4 pull-right">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Search Instiution">
+                    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Search Institution">
                     <span class="input-group-addon search-ico-bg"><span class="glyphicon glyphicon-search"></span></span>
                 </div><!--input group end here-->
             </div>
@@ -72,7 +72,7 @@ else { }
     <div class="container-fluid row Padding-LR-0 bottom-container-area">
         <div class="container">
             <div class="row">
-                <table class="table table-striped apppointment-table Margin-T-20">
+                <table id="tblInstitutions" class="table table-striped apppointment-table Margin-T-20">
                     <thead>
                         <tr>
                             <th width="55%">@Html.DisplayNameFor(model => model.InstitutionName)</th>
@@ -106,11 +106,13 @@ else { }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#tblInstitutions").tablesorter();
         $("#btnAdd").click(function () {
 
             var url = '@Url.Action("Create")';
             $.post(url,
             {
+
                 instName: $('#txtInstitution').val()
             },
             function (data, status) {
@@ -120,4 +122,7 @@ else { }
         });
     });
 
+
 </script>
+
+ 
