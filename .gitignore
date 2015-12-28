@@ -187,3 +187,6 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/TestApp/packages.config
+/HRA4.Web/images/spiffygif_30x30.gif
+/HRA4.Web/images/Thumbs.db
