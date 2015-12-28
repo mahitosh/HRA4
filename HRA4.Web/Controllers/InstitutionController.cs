@@ -25,41 +25,41 @@ namespace HRA4.Web.Controllers
             }
             if (Id != null && Id > 0)
             {
-                Session.Add("InstitutionId", Id);
+            Session.Add("InstitutionId", Id);
                 int v2 = Id ?? default(int);
                 //_applicationContext = new ApplicationContext();
-                apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2);
+                 apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2);
                 return View(apps);
             }
             // return View(apps);
             return RedirectToAction("ManageInstitution", "Admin");
 
-
+            
         }
-
+        
         public JsonResult FilteredInstitution(string name, string dob, string appdt)
         {
-            //Session.Add("InstitutionId", 1);
+             //Session.Add("InstitutionId", 1);
             string view = string.Empty;
-             
+
             if (Session != null && Session["InstitutionId"] != null)
             {
 
-                int instId = (int)Session["InstitutionId"];
+            int instId = (int)Session["InstitutionId"];
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId).Where(a => a.PatientName.Trim().ToLower().Contains(name.Trim().ToLower()));
 
-                if (dob.Trim().Length > 0)
-                    apps = apps.Where(a => a.DateOfBirth.ToString().Trim().Contains(dob.Trim()));
+            if(dob.Trim().Length > 0)
+            apps = apps.Where(a => a.DateOfBirth.Date == Convert.ToDateTime(dob).Date );
 
-                if (appdt.Trim().Length > 0)
-                    apps = apps.Where(a => a.AppointmentDate.ToString().Trim().Contains(appdt.Trim()));
+            if (appdt.Trim().Length > 0)
+                apps = apps.Where(a => a.AppointmentDate.Date == Convert.ToDateTime(appdt).Date);
 
                 view = RenderPartialView("_InstitutionGrid", apps);
             }
             var result = new { view = view };
 
             return Json(result, JsonRequestBehavior.AllowGet);
-
+            
 
 
         }
@@ -68,7 +68,7 @@ namespace HRA4.Web.Controllers
         {
             return View();
         }
-
+      
 
         protected virtual string RenderPartialView(string partialViewName, object model)
         {
