@@ -11,5 +11,6 @@ namespace HRA4.Services.Interfaces
     public interface IAppointmentService
     {
         List<VM.Appointment> GetAppointments(int InstitutionId);
+
     }
 }
