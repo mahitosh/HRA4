@@ -51,7 +51,7 @@ namespace HRA4.Web.Controllers
             if(dob.Trim().Length > 0)
             apps = apps.Where(a => a.DateOfBirth.Date == Convert.ToDateTime(dob).Date );
 
-            if (appdt.Trim().Length > 0)
+            if (appdt.ToString().Length > 0)
                 apps = apps.Where(a => a.AppointmentDate.Date == Convert.ToDateTime(appdt).Date);
 
                 view = RenderPartialView("_InstitutionGrid", apps);
