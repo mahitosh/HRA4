@@ -33,9 +33,10 @@ namespace HRA4.Web.Controllers
         
         public JsonResult FilteredInstitution(string name,string dob,string appdt)
         {
-             Session.Add("InstitutionId", 1);
+             
+            int institutionid= (int)Session["InstitutionId"];
             _applicationContext = new ApplicationContext();
-            var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments().Where(a => a.PatientName.Trim().ToLower().Contains(name.Trim().ToLower()) );
+            var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(institutionid).Where(a => a.PatientName.Trim().ToLower().Contains(name.Trim().ToLower()));
 
             if(dob.Trim().Length > 0)
             apps = apps.Where(a => a.DateOfBirth.ToString().Trim().Contains(dob.Trim()));
