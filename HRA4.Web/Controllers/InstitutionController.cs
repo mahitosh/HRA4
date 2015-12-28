@@ -16,7 +16,9 @@ namespace HRA4.Web.Controllers
         // GET: Institution
         public ActionResult InstitutionDashboard(int? Id)
         {
-            List<ViewModels.Appointment> apps=null;
+            List<ViewModels.Appointment> apps = new List<ViewModels.Appointment>();
+            var instList = _applicationContext.ServiceContext.AdminService.GetTenants();
+            ViewBag.instListcount = instList.Count;
             if(Id!= null && Id>0)
             {
             Session.Add("InstitutionId", Id);
@@ -25,24 +27,25 @@ namespace HRA4.Web.Controllers
                  apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2);
                 return View(apps);
             }
-            // return View(apps);
-            return RedirectToAction("ManageInstitution","Admin");
+            return View(apps);
+            //return RedirectToAction("ManageInstitution","Admin");
 
             
         }
         
         public JsonResult FilteredInstitution(string name,string dob,string appdt)
         {
-             
-            int institutionid= (int)Session["InstitutionId"];
-            _applicationContext = new ApplicationContext();
-            var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(institutionid).Where(a => a.PatientName.Trim().ToLower().Contains(name.Trim().ToLower()));
+             //Session.Add("InstitutionId", 1);
+
+           // _applicationContext = new ApplicationContext();
+            int instId = (int)Session["InstitutionId"];
+            var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId).Where(a => a.PatientName.Trim().ToLower().Contains(name.Trim().ToLower()) );
 
             if(dob.Trim().Length > 0)
-            apps = apps.Where(a => a.DateOfBirth.ToString().Trim().Contains(dob.Trim()));
+            apps = apps.Where(a => a.DateOfBirth.Date == Convert.ToDateTime(dob).Date );
 
             if (appdt.Trim().Length > 0)
-                apps = apps.Where(a => a.AppointmentDate.ToString().Trim().Contains(appdt.Trim()));
+                apps = apps.Where(a => a.AppointmentDate.Date == Convert.ToDateTime(appdt).Date);
 
             
             var view = RenderPartialView("_InstitutionGrid", apps);

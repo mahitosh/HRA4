@@ -2,130 +2,141 @@
 
 @{
     ViewBag.Title = "InstitutionDashboard";
-  
+
 }
 
 @section breadcrumbs{
     <div class="clearfix header-bdr"><hr /></div>
     <div>
         <div class="container">
-            <div class="col-sm-4 top-breadcrumb">Home > Dashbaord</div>
-            <div class="col-lg-5 col-md-6 col-sm-7 help pull-right">
-                <a href="#">Help <img src="~/images/help-ico.svg" width="25" height="25" alt="logout" /></a>
+        <div class="col-sm-4 top-breadcrumb">Dashbaord</div>
+        <div class="col-lg-5 col-md-7 col-sm-7 help pull-right">
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="left" title="Help" id="admin-dropdown" aria-haspopup="true" aria-expanded="true">Help <img src="~/images/help-ico.svg" width="25" height="25" alt="logout" /></a>
+                <ul class="dropdown-menu help-menu col-md-2 pull-right" aria-labelledby="help-dropdown">
+                    <li><a href="#"><i class="fa fa-building"></i> About Us</a></li>
+                    <li><a href="#"><i class="fa fa-map-marker"></i> Contact US</a></li>
+                </ul>
             </div>
         </div>
+    </div>
     </div>   }
 
-@*<div class="container-fluid top-header-bg">
-        <div class="clearfix header-bdr"><hr /></div>
-        <div class="container">
-            <div class="col-sm-4 top-breadcrumb">Home > Dashbaord</div>
-            <div class="col-lg-5 col-md-6 col-sm-7 help pull-right">
-                <a href="#">Help <img src="~/images/help-ico.svg" width="25" height="25" alt="logout" /></a>
-            </div>
-        </div>
-
-    </div>*@
+@if (ViewBag.instListcount == 0 || ViewBag.instListcount==null)
+{
+    <div class="modal fade" tabindex="-1" role="dialog" id="dashboardmodal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>You have not entered any institution data. Please start by<a href="@Url.Action("ManageInstitution", "Admin")"> entering an institution name.</a></p>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+else
+{
+        
 
 <!--container area start here-->
 
-<div class="content-area container-fluid ">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-4 horizontal-devider">
-                <div class="form-group ">
-                    <label class="control-label " for="custom-clinic"> Choose Clinic</label>
-                    <select class="form-control" id="custom-clinic" name="custom-clinic">
-                        <option>Test1</option>
-                        <option>Test2</option>
-                    </select>
-
-                </div>
-            </div>
-            <div class="visible-sm clear-float"></div>
-            <div class="col-md-3 col-sm-4">
-                <div class="form-group ">
-                    <label class="control-label " for="name">Quick Search</label>
-                    <input class="form-control" id="name" name="name" type="text" placeholder="First/Last Name" />
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-3 Padding-T-26">
-                <div id="DOB" class="inner-addon right-addon">
-                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" placeholder="DOB" /></input>
-                </div>
-            </div>
-
-            <div class="col-md-2 col-sm-3 Padding-T-26">
-                <div id="app-date" class="inner-addon right-addon">
-                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" /></input>
-                </div>
-            </div>
-
-            <div class="col-md-2 col-sm-2 Padding-T-26 ">
-                <div class="btn-group search-group">
-                    <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
-                    <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
-                </div>
-            </div>
-        </div><!--row end-->
-    </div><!--container end-->
-
-    <div class="container-fluid row Padding-LR-0">
-        <hr class="hr-style" />
-    </div><!--row end-->
-
-
-    <div class="container">
-        <div class="row">
-            <ul class="nav nav-tabs col-sm-12" id="myTab">
-                <li class="active">
-                    <a data-target="#Schedule" data-toggle="tab">Schedule <span class="dashboard-count">140</span> </a>
-                    <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
-                </li>
-                <li>
-                    <a data-target="#LifetimeBC" data-toggle="tab">Lifetime Breast Cancer  <span class="dashboard-count">3</span></a>
-                    <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
-                </li>
-                <li>
-                    <a data-target="#BRCA" data-toggle="tab">BRCA Mutation  <span class="dashboard-count">5</span></a>
-                    <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
-                </li>
-                <li class="pull-right add-appointment"><a href="#"><img src="~/images/appointment-ico.svg" alt="Refresh" width="40" height="40" /> Add Appointment</a></li>
-            </ul>
-        </div><!--row end-->
-    </div><!--container end-->
-
-    <div class="container-fluid row Padding-LR-0 bottom-container-area">
+    <div class="content-area container-fluid ">
         <div class="container">
-            <div class="tab-content row">
-                <div class="tab-pane active" id="Schedule">
-                    <div class="table-responsive">
-                        <div id="divInstitutionGrid">
-                            @Html.Partial("_InstitutionGrid", Model);
-                        </div>
-                    </div>
-                </div><!--schedule tab end here-->
-                <div class="tab-pane" id="LifetimeBC">
-                    Lifetime cancer Lifetime cancer Lifetime cancer
-                </div><!--lifetime cancer end-->
-                <div class="tab-pane" id="BRCA">
-                    BRCA BRCA BRCA
-                </div><!--BRCA tab end here-->
-            </div><!--row end-->
-
             <div class="row">
+                <div class="col-md-3 col-sm-4 horizontal-devider">
+                    <div class="form-group ">
+                        <label class="control-label " for="custom-clinic"> Choose Clinic</label>
+                        <select class="form-control" id="custom-clinic" name="custom-clinic">
+                            <option>Test1</option>
+                            <option>Test2</option>
+                        </select>
 
+                    </div>
+                </div>
+                <div class="visible-sm clear-float"></div>
+                <div class="col-md-3 col-sm-4">
+                    <div class="form-group ">
+                        <label class="control-label " for="name">Quick Search</label>
+                    <input class="form-control" id="name" name="name" type="text" placeholder="First/Last Name" />
+                    </div>
+                </div>
+            <div class="col-md-2 col-sm-3 Padding-T-28">
+                    <div id="DOB" class="inner-addon right-addon">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" placeholder="DOB" />
+                    </div>
+                </div>
 
+            <div class="col-md-2 col-sm-3 Padding-T-28">
+                    <div id="app-date" class="inner-addon right-addon">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" />
+                    </div>
+                </div>
+
+            <div class="col-md-2 col-sm-2 Padding-T-28 ">
+                    <div class="btn-group search-group">
+                        <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
+                        <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
+                    </div>
+                </div>
             </div><!--row end-->
-
         </div><!--container end-->
 
-    </div><!--container fluid end-->
-</div> <!-- /container area end -->
+        <div class="container-fluid row Padding-LR-0">
+            <hr class="hr-style" />
+        </div><!--row end-->
 
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>*@
+
+        <div class="container">
+            <div class="row">
+                <ul class="nav nav-tabs col-sm-12" id="myTab">
+                    <li class="active">
+                        <a data-target="#Schedule" data-toggle="tab">Schedule <span class="dashboard-count">140</span> </a>
+                        <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
+                    </li>
+                    <li>
+                        <a data-target="#LifetimeBC" data-toggle="tab">Lifetime Breast Cancer  <span class="dashboard-count">3</span></a>
+                        <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
+                    </li>
+                    <li>
+                        <a data-target="#BRCA" data-toggle="tab">BRCA Mutation  <span class="dashboard-count">5</span></a>
+                        <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
+                    </li>
+                    <li class="pull-right add-appointment"><a href="#"><img src="~/images/appointment-ico.svg" alt="Refresh" width="40" height="40" /> Add Appointment</a></li>
+                </ul>
+            </div><!--row end-->
+        </div><!--container end-->
+
+        <div class="container-fluid row Padding-LR-0 bottom-container-area">
+            <div class="container">
+                <div class="tab-content row">
+                    <div class="tab-pane active" id="Schedule">
+                        <div class="table-responsive">
+                        <div id="divInstitutionGrid">
+                            @Html.Partial("_InstitutionGrid", Model)
+                        </div>
+                        </div>
+                    </div><!--schedule tab end here-->
+                    <div class="tab-pane" id="LifetimeBC">
+                        Lifetime cancer Lifetime cancer Lifetime cancer
+                    </div><!--lifetime cancer end-->
+                    <div class="tab-pane" id="BRCA">
+                        BRCA BRCA BRCA
+                    </div><!--BRCA tab end here-->
+                </div><!--row end-->
+
+                <div class="row">
+
+
+                </div><!--row end-->
+
+            </div><!--container end-->
+
+        </div><!--container fluid end-->
+    </div> <!-- /container area end -->
+}
+
 <script type="text/javascript">
     $(document).ready(function () {
        
@@ -135,7 +146,7 @@
             var dob = $('#dob-date').val();
             var appdt = $('#appt-date').val();
 
-           $.ajax({
+            $.ajax({
                 type: "POST",
                 url: "/Institution/FilteredInstitution",
                 data: { name: name, dob: dob, appdt: appdt },
@@ -143,7 +154,7 @@
                 success: function (Data) {
                     $('#divInstitutionGrid').html(Data.view);
                 }
-                
+
             })
         });
     });

@@ -59,14 +59,14 @@ namespace HRA4.Services
             string dbscript = System.IO.File.ReadAllText(scriptPath);
 
             string tenantDbName = tenant.DbName;
-
+            
             dbscript = dbscript.Replace("db2008", tenantDbName); // contruct db name using institution name
             
             //End By Aditya
             string connectionString = ConfigurationSettings.CommonDbConnection;
 
             Helpers.CreateInstitutionDb(connectionString, dbscript);
-
+            
             return true;
         }
     }
