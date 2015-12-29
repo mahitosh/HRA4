@@ -9,13 +9,13 @@
     <div class="clearfix header-bdr"><hr /></div>
     <div>
         <div class="container">
-        <div class="col-sm-4 top-breadcrumb">Dashbaord</div>
+        <div class="col-sm-4 top-breadcrumb">Dashboard</div>
         <div class="col-lg-5 col-md-7 col-sm-7 help pull-right">
             <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="left" title="Help" id="admin-dropdown" aria-haspopup="true" aria-expanded="true">Help <img src="~/images/help-ico.svg" width="25" height="25" alt="logout" /></a>
                 <ul class="dropdown-menu help-menu col-md-2 pull-right" aria-labelledby="help-dropdown">
                     <li><a href="#"><i class="fa fa-building"></i> About Us</a></li>
-                    <li><a href="#"><i class="fa fa-map-marker"></i> Contact US</a></li>
+                    <li><a href="http://www.hughesriskapps.net/contactus.php" target="_blank"><i class="fa fa-map-marker"></i> Contact US</a></li>
                 </ul>
             </div>
         </div>
@@ -92,7 +92,7 @@ else
             <div class="row">
                 <ul class="nav nav-tabs col-sm-12" id="myTab">
                     <li class="active">
-                        <a data-target="#Schedule" data-toggle="tab">Schedule <span class="dashboard-count">140</span> </a>
+                        <a data-target="#Schedule" data-toggle="tab">Schedule <span class="dashboard-count">@ViewBag.AppointmentCount</span> </a>
                         <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
                     </li>
                     <li>

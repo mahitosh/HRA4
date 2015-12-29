@@ -7,7 +7,10 @@
 <table id="myTable" class="table table-striped apppointment-table">
     <thead>
         <tr>
-            <th class="">
+            <th>
+                App Date/Time
+            </th>
+            <th>
                 Name
             </th>
             <th>
@@ -16,9 +19,7 @@
             <th>
                 DOB
             </th>
-            <th>
-               App Date/Time
-            </th>
+           
             <th>
                 Provider
             </th>
@@ -47,22 +48,33 @@
         {
             <tr>
                 <td>
+                    @{
+            string appdate = (item.AppointmentDate == DateTime.MinValue ? "" : item.AppointmentDate.ToString("MM/dd/yyyy hh:mm:ss"));
+                    }
+                    @Html.DisplayFor(modelItem => appdate)
+                </td>
+
+                <td>
                     @Html.DisplayFor(modelItem => item.PatientName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MRN)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                    @{
+                        string dob = (item.DateOfBirth == DateTime.MinValue ? "":item.DateOfBirth.ToString("MM/dd/yyyy") );
+                    }
+                    @Html.DisplayFor(modelItem => dob)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AppointmentDate)
-                </td>
+            
                 <td>
                     @Html.DisplayFor(modelItem => item.Provider)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DateCompleted)
+                    @{
+            string dateCompleted = (item.DateCompleted == DateTime.MinValue ? "" : item.DateCompleted.ToString("MM/dd/yyyy hh:mm:ss"));
+                    }
+                    @Html.DisplayFor(modelItem => dateCompleted)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DiseaseHx)

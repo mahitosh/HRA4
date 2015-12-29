@@ -9,7 +9,7 @@ namespace HRA4.Utilities
     public static class Extensions
     {
         public static DateTime ToDateTime(this string sdatetime)
-        {
+        {          
             DateTime datetime = DateTime.MinValue;
             DateTime.TryParse(sdatetime, out datetime);
             return datetime;

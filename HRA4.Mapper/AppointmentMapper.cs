@@ -20,7 +20,7 @@ namespace HRA4.Mapper
                 apptdate = appointment.AppointmentDate.ToString(),
                 unitnum = appointment.MRN,
                 dob = appointment.DateOfBirth.ToString(),
-                apptdatetime = appointment.AppointmentDate,
+               // apptdatetime = appointment.AppointmentDate?appointment.AppointmentDate:DateTime.MinValue,
                 apptphysname = appointment.Provider,
                 diseases= appointment.DiseaseHx,
                 patientname = appointment.PatientName
@@ -38,15 +38,18 @@ namespace HRA4.Mapper
                 DiseaseHx= app.diseases,
                 Provider = app.apptphysname,
                 PatientName = app.patientname,
-                DateCompleted = app.riskdatacompleted
+                DateCompleted = app.riskdatacompleted,
+               Survey = app.surveyType
             };
         }
 
-        //private DateTime CheckForNullAndMin(DateTime dtDate)
-        //{
-        //    if (dtDate == null || dtDate == DateTime.MinValue)
-        //        return null;
-        //}
+        private static DateTime? CheckForNullAndMin(DateTime dtDate)
+        {
+            if (dtDate == null || dtDate == DateTime.MinValue)
+                return null;
+            else
+                return dtDate;
+        }
 
         public static List<Appointment> FromRAppointmentList(this List<RA.Appointment> apps)
         {

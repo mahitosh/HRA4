@@ -29,6 +29,7 @@ namespace HRA4.Web.Controllers
                 int v2 = Id ?? default(int);
                 //_applicationContext = new ApplicationContext();
                 apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2);
+                ViewBag.AppointmentCount = apps.Count();
                 return View(apps);
             }
             // return View(apps);
