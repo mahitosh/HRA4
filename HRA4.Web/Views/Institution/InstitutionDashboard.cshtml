@@ -139,16 +139,18 @@ else
 
 <script type="text/javascript">
     $(document).ready(function () {
-       
+
         $("#btnsearch").click(function (data) {
 
             var name = $('#name').val();
             var dob = $('#dob-date').val();
             var appdt = $('#appt-date').val();
 
+            var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
+
             $.ajax({
                 type: "POST",
-                url: "/Institution/FilteredInstitution",
+                url: globalGetJSONPath,
                 data: { name: name, dob: dob, appdt: appdt },
                 dataType: "json",
                 success: function (Data) {
