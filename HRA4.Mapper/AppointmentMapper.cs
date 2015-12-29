@@ -28,8 +28,7 @@ namespace HRA4.Mapper
         }
 
         public static Appointment FromRAppointment(this RA.Appointment app)
-        {
-                        
+        {                        
             return new Appointment()
             {
                 Id = app.apptID,
@@ -38,9 +37,16 @@ namespace HRA4.Mapper
                 DateOfBirth = app.dob.ToDateTime(),
                 DiseaseHx= app.diseases,
                 Provider = app.apptphysname,
-                PatientName = app.patientname
+                PatientName = app.patientname,
+                DateCompleted = app.riskdatacompleted
             };
         }
+
+        //private DateTime CheckForNullAndMin(DateTime dtDate)
+        //{
+        //    if (dtDate == null || dtDate == DateTime.MinValue)
+        //        return null;
+        //}
 
         public static List<Appointment> FromRAppointmentList(this List<RA.Appointment> apps)
         {

@@ -48,13 +48,30 @@ namespace HRA4.Web.Controllers
                 int instId = (int)Session["InstitutionId"];
 
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId).ToList();
+
+
+              /*
+              for (int i = 0; i < apps.Count; i++)
+              {
+
+                  DateTime bdt = apps[i].DateOfBirth;
+                  DateTime apt = apps[i].AppointmentDate;
+                  bdt = bdt.Date;
+                  apt = apt.Date;
+                 string bdts = bdt.Date.ToString("MM/dd/yyyy");
+                 string apts = apt.Date.ToString("MM/dd/yyyy"); ;
+
+
+
+              }
+                */
+            
    
                 if (name.Length > 0)
                 {
-                 apps = apps.Where(a => a.PatientName.Trim().ToLower().Contains(name.Trim().ToLower())).ToList();
-                
+                 apps = apps.Where(a => a.PatientName.Trim().ToLower().Contains(name.Trim().ToLower())).ToList();                
                 }
-
+                
                 if (dob.Trim().Length > 0)
                 {
                     apps = apps.Where(a => a.DateOfBirth.Date.ToString("MM/dd/yyyy").Trim().Contains(dob.Trim())).ToList();
@@ -69,21 +86,6 @@ namespace HRA4.Web.Controllers
                 view = RenderPartialView("_InstitutionGrid", apps);
 
 
-                /*
-              for (int i = 0; i < apps.Count; i++)
-              {
-
-                  DateTime bdt = apps[i].DateOfBirth;
-                  DateTime apt = apps[i].AppointmentDate;
-                  bdt = bdt.Date;
-                  apt = apt.Date;
-                 string bdts = bdt.Date.ToString("MM/dd/yyyy");
-                 string apts = apt.Date.ToString("MM/dd/yyyy"); ;
-
-
-
-              }
-              */
 
             }
         
