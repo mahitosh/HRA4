@@ -46,20 +46,45 @@ namespace HRA4.Web.Controllers
             {
 
                 int instId = (int)Session["InstitutionId"];
-                var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId).Where(a => a.PatientName.Trim().ToLower().Contains(name.Trim().ToLower()));
+
+                var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId).ToList();
+   
+                if (name.Length > 0)
+                {
+                 apps = apps.Where(a => a.PatientName.Trim().ToLower().Contains(name.Trim().ToLower())).ToList();
+                
+                }
 
                 if (dob.Trim().Length > 0)
-                    apps = apps.Where(a => a.DateOfBirth.Date.ToString().Contains(dob));
-
-                if (appdt.Trim().Length > 0)
                 {
-                    
-                    apps = apps.Where(a => a.AppointmentDate.Date.ToString().Contains(appdt));
-                    //apps = apps.Where(a => a.AppointmentDate.Date == Convert.ToDateTime(appdt).Date);
-                    //apps = apps.Where(a => a.AppointmentDate.Date == DateTime.ParseExact(appdt,"dd/MM/yyyy",null) );
+                    apps = apps.Where(a => a.DateOfBirth.Date.ToString("MM/dd/yyyy").Trim().Contains(dob.Trim())).ToList();
+                }
+
+                if (appdt.ToString().Trim().Length > 0)
+                {
+                    apps = apps.Where(a => a.AppointmentDate.Date.ToString("MM/dd/yyyy").Trim().Contains(appdt.Trim())).ToList();
+                        
                 }
 
                 view = RenderPartialView("_InstitutionGrid", apps);
+
+
+                /*
+              for (int i = 0; i < apps.Count; i++)
+              {
+
+                  DateTime bdt = apps[i].DateOfBirth;
+                  DateTime apt = apps[i].AppointmentDate;
+                  bdt = bdt.Date;
+                  apt = apt.Date;
+                 string bdts = bdt.Date.ToString("MM/dd/yyyy");
+                 string apts = apt.Date.ToString("MM/dd/yyyy"); ;
+
+
+
+              }
+              */
+
             }
         
             var result = new { view = view };
