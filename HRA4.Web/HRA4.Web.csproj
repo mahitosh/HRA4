@@ -253,6 +253,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\spin.min.js" />
     <Content Include="Scripts\__jquery.tablesorter\jquery-latest.js" />
     <Content Include="Scripts\__jquery.tablesorter\jquery.metadata.js" />
     <Content Include="Scripts\__jquery.tablesorter\jquery.tablesorter.js" />

@@ -30,6 +30,8 @@ namespace HRA4.Services
             _repositoryFactory = repositoryFactory;
         }
 
+        // SessionManager.Instance.ActiveUser.userClinicList
+
         public List<VM.Appointment> GetAppointments(int InstitutionId)
         {
             Logger.DebugFormat("Institution Id: {0}", InstitutionId);
@@ -64,6 +66,7 @@ namespace HRA4.Services
             Logger.DebugFormat("Load Users");
             var users = SessionManager.Instance.MetaData.Users;// may cache user list.
             Logger.DebugFormat("User count :{0}",users.Count());
+          
            // _user = users.FirstOrDefault(u => _username == u.GetMemberByName(_username).Name) as RAM.User;
             SessionManager.Instance.ActiveUser = users[0] as RAM.User;// need to change this.
         }
