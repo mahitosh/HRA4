@@ -46,8 +46,9 @@ namespace HRA4.Services
                 SetUserSession();
                 //appointments = HRACACHE.GetCache<List<VM.Appointment>>(InstitutionId);
                 var list = new AppointmentList();
-                list.Date = null;
+                 
                 list.clinicId = 1;
+                list.Date = DateTime.Now.ToString("MM/dd/yyyy");
                 list.BackgroundListLoad();
                  appointments = list.FromRAppointmentList();
                 return appointments;
@@ -89,8 +90,70 @@ namespace HRA4.Services
             //p.Tasks.AddToList(t, args);
         }
 
+        private List<VM.Appointment> SearchOnAppointment(List<VM.Appointment> appts, string searchField, string searchParam)
+        {
+            List<VM.Appointment> newlist = new List<VM.Appointment>();
+            switch(searchField)
+            {
+                case Constants.MRN:
+                    newlist = appts.Where(list => list.MRN.Contains(searchParam)).ToList();
+                    break;
+                case Constants.AppointmentDate:
+                    newlist = appts.Where(list => list.AppointmentDate == Convert.ToDateTime(searchParam)).ToList();
+                    break;
+                case Constants.DateCompleted:
+                    newlist = appts.Where(list => list.DateCompleted == Convert.ToDateTime(searchParam)).ToList();
+                    break;
+                case Constants.DateOfBirth:
+                    newlist = appts.Where(list => list.DateOfBirth == Convert.ToDateTime(searchParam)).ToList();
+                    break;
+                case Constants.DiseaseHx:
+                    newlist = appts.Where(list => list.DiseaseHx == searchParam).ToList();
+                    break;
+                case Constants.DoNotCall:
+                    newlist = appts.Where(list => list.DoNotCall == Convert.ToBoolean(searchParam)).ToList();
+                    break;
+                case Constants.Id:
+                    newlist = appts.Where(list => list.Id == Convert.ToInt32(searchParam)).ToList();
+                    break;
+                case Constants.PatientName:
+                    newlist = appts.Where(list => list.PatientName == searchParam).ToList();
+                    break;
+                case Constants.Provider:
+                    newlist = appts.Where(list => list.Provider == searchParam).ToList();
+                    break;
+                case Constants.Survey:
+                    newlist = appts.Where(list => list.Survey == searchParam).ToList();
+                    break;
+            }
+            return newlist;
+        }
 
+        public void SaveAppointments(VM.Appointment Appt, int InstitutionId)
+        {
 
+            UpdateMarkAsComplete(Appt, InstitutionId);
+
+        }
          
+        private void UpdateMarkAsComplete(VM.Appointment Appt, int InstitutionId)
+        {
+            List<VM.Appointment> apptlist = GetAppointments(InstitutionId);
+            List<VM.Appointment> filteredlist = SearchOnAppointment(apptlist, Constants.MRN, Appt.MRN);
+
+            foreach (var item in filteredlist)
+            {
+                Appointment appt = ((Appointment)(item.ToRAppointment()));
+
+                if (Appt.SetMarkAsComplete)
+                {
+                    Appointment.MarkComplete(appt.apptID);
+                }
+                else
+                {
+                    Appointment.MarkIncomplete(appt.apptID);
+                }
+            }
+        }
     }
 }

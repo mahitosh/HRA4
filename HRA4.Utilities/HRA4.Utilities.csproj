@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Cache.cs" />
     <Compile Include="ConfigurationSettings.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="HraSessionManager.cs" />

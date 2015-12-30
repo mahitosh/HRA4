@@ -46,6 +46,7 @@
     <tbody>
         @foreach (var item in Model)
         {
+           
             <tr>
                 <td>
                     @{
@@ -87,13 +88,20 @@
                     <img src="~/images/DNC-Y-ico.svg" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." />
                 </td>
                 <td>
-                    <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Run automation document" /></a>
-                    <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Copy Appointment" /></a>
-                    <a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit Appointment" /></a>
+                    <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
+                    <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
+                    <a href="#" id="quick_edit"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>
+                </td>
+            </tr>
+            <tr id="quick_edit_div">
+                <td colspan="10">
+                    @Html.Partial("_InstitutionRow", item)
                 </td>
             </tr>
 
+
         }
+        
     </tbody>
 </table><!--schedule list end here-->
 <script type="text/javascript">
@@ -101,5 +109,6 @@
     $(document).ready(function () {
         $("#myTable").tablesorter();
     });
+
 
 </script>

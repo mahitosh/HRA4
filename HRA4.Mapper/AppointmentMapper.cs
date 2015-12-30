@@ -23,12 +23,13 @@ namespace HRA4.Mapper
                // apptdatetime = appointment.AppointmentDate?appointment.AppointmentDate:DateTime.MinValue,
                 apptphysname = appointment.Provider,
                 diseases= appointment.DiseaseHx,
-                patientname = appointment.PatientName
+                patientname = appointment.PatientName,
+              
             };
         }
 
         public static Appointment FromRAppointment(this RA.Appointment app)
-        {                        
+        {
             return new Appointment()
             {
                 Id = app.apptID,
