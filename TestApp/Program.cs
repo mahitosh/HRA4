@@ -7,6 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Simple.Data;
 using HRA4.Entities;
+using RiskApps3.Controllers;
+using RiskApps3.Model.PatientRecord;
+using RiskApps3.Model.MetaData;
+
 namespace TestApp
 {
     class Program
@@ -19,11 +23,17 @@ namespace TestApp
             //DRIVER=SQL SERVER;SERVER=.\SQLEXPRESS;DATABASE=db2008;APP=RISKAPP;WSID=RISKAPPSWSID;UID=bddb_User;MultipleActiveResultSets=True;
             //dZUoEraPpGiOwzBShnz/ug==
 
-            string tmp1 = Guid.NewGuid().ToString();
+            //string tmp1 = Guid.NewGuid().ToString();
 
-            AddSuperAdmin();
-                     
-
+            //AddSuperAdmin();
+            User user = new User()
+            {                
+                userLogin = "admin"
+            };
+            string assignedBy = "admin";
+            Patient p = SessionManager.Instance.GetActivePatient();    // TODO:  Check this!!
+            var t = new RiskApps3.Model.PatientRecord.Communication.Task(p, "Task", null, assignedBy, DateTime.Now);
+           
         }
 
         public static void AddSuperAdmin()

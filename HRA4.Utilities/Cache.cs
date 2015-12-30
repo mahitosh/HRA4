@@ -10,22 +10,12 @@ namespace HRA4.Utilities
     public class Cache
     {
         
-            #region DECLARATION(S)
-            //private static readonly ILog Logger = LogManager.GetLogger(typeof(Cache));
-          
-            #endregion  //DECLARATION(S)
-
-            #region CONSTRUCTOR(S)
-            #endregion  //CONSTRUCTOR(S)
-
-            #region PROPERTY(S)
-            #endregion  //PROPERTY(S)
 
             #region PUBLIC METHOD(S)
             public static T GetCache<T>(string key) where T : class
             {
                 T retValue = null;
-                 //HttpRuntime.Cache
+                 
                 if (HttpRuntime.Cache[key] != null)
                     retValue = HttpRuntime.Cache[key] as T;
 
