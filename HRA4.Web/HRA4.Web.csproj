@@ -102,7 +102,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Script2008.sql" />
+    <Content Include="App_Data\HRATenantDBCreation.sql" />
     <Content Include="assets\brand\bootstrap-outline.svg" />
     <Content Include="assets\brand\bootstrap-punchout.svg" />
     <Content Include="assets\brand\bootstrap-solid.svg" />
