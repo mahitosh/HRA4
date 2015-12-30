@@ -8,6 +8,7 @@ namespace HRA4.ViewModels
 {
     public class Appointment
     {
+       
         public int Id { get; set; }
         public string PatientName { get; set; }
         public string MRN { get; set; }
@@ -18,7 +19,21 @@ namespace HRA4.ViewModels
         public string DiseaseHx { get; set; }
         public string Survey { get; set; }
         public bool DoNotCall { get; set; }
+        public bool MarkAsComplete
+        {
+            get
+            {
+                if (DateCompleted == DateTime.MinValue || DateCompleted == null)
+                {
+                    return false;
 
-        
+                }
+                else return true;
+            }
+            set { }
+
+        }
+        public bool SetMarkAsComplete { get; set; }
+               
     }
 }

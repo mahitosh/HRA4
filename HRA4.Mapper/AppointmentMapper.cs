@@ -23,7 +23,8 @@ namespace HRA4.Mapper
                 apptdatetime = appointment.AppointmentDate,
                 apptphysname = appointment.Provider,
                 diseases= appointment.DiseaseHx,
-                patientname = appointment.PatientName
+                patientname = appointment.PatientName,
+              
             };
         }
 
@@ -38,7 +39,8 @@ namespace HRA4.Mapper
                 DateOfBirth = app.dob.ToDateTime(),
                 DiseaseHx= app.diseases,
                 Provider = app.apptphysname,
-                PatientName = app.patientname
+                PatientName = app.patientname,
+                DateCompleted = app.riskdatacompleted
             };
         }
 

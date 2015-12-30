@@ -14,7 +14,7 @@ namespace HRA4.Web.Controllers
     {
 
         // GET: Institution
-        public ActionResult InstitutionDashboard(int? Id)
+        public ActionResult InstitutionDashboard(int? InstitutionId)
         {
             List<ViewModels.Appointment> apps = new List<ViewModels.Appointment>();
             var instList = _applicationContext.ServiceContext.AdminService.GetTenants();
@@ -23,43 +23,56 @@ namespace HRA4.Web.Controllers
             {
                 return View(apps);
             }
-            if (Id != null && Id > 0)
+            if (InstitutionId != null && InstitutionId > 0)
             {
-            Session.Add("InstitutionId", Id);
-                int v2 = Id ?? default(int);
+                Session.Add("InstitutionId", InstitutionId);
+                int v2 = InstitutionId ?? default(int);
                 //_applicationContext = new ApplicationContext();
-                 apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2);
+                apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2);
                 return View(apps);
             }
             // return View(apps);
             return RedirectToAction("ManageInstitution", "Admin");
 
-            
+
         }
-        
+        [HttpPost]
+        public ActionResult InstitutionDashboard(FormCollection frm, bool MarkAsComplete)
+        {
+            HRA4.ViewModels.Appointment app = new ViewModels.Appointment();
+            app.Id = Convert.ToInt32(frm["Id"]);
+            app.MRN = Convert.ToString(frm["MRN"]);
+            app.SetMarkAsComplete = MarkAsComplete;
+            
+            _applicationContext.ServiceContext.AppointmentService.SaveAppointments(app, Convert.ToInt32(Session["InstitutionId"]));
+
+           // return View("InstitutionDashboard/" + Session["InstitutionId"]);
+            return RedirectToAction("InstitutionDashboard",new {InstitutionId= Session["InstitutionId"]});
+        }
+
         public JsonResult FilteredInstitution(string name, string dob, string appdt)
         {
-             //Session.Add("InstitutionId", 1);
+            //Session.Add("InstitutionId", 1);
             string view = string.Empty;
 
             if (Session != null && Session["InstitutionId"] != null)
             {
 
-            int instId = (int)Session["InstitutionId"];
+                int instId = (int)Session["InstitutionId"];
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId).Where(a => a.PatientName.Trim().ToLower().Contains(name.Trim().ToLower()));
 
-            if(dob.Trim().Length > 0)
-            apps = apps.Where(a => a.DateOfBirth.Date == Convert.ToDateTime(dob).Date );
+                if (dob.Trim().Length > 0)
+                    apps = apps.Where(a => a.DateOfBirth.Date == Convert.ToDateTime(dob).Date);
 
-            if (appdt.ToString().Length > 0)
-                apps = apps.Where(a => a.AppointmentDate.Date == Convert.ToDateTime(appdt).Date);
+                if (appdt.ToString().Length > 0)
+                    apps = apps.Where(a => a.AppointmentDate.Date == Convert.ToDateTime(appdt).Date);
 
                 view = RenderPartialView("_InstitutionGrid", apps);
             }
             var result = new { view = view };
 
             return Json(result, JsonRequestBehavior.AllowGet);
-            
+
 
 
         }
@@ -68,7 +81,7 @@ namespace HRA4.Web.Controllers
         {
             return View();
         }
-      
+
 
         protected virtual string RenderPartialView(string partialViewName, object model)
         {
