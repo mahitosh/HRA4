@@ -62,7 +62,7 @@
                             <div class="pull-left profile-pic">
                                 <svg width="100" height="100"><circle cx="46" cy="46" r="33" stroke="#d5d5d5" stroke-width="1" fill="white" />Sorry, your browser does not support inline SVG.</svg>
                             </div>
-                            <div class="pull-left Padding-T-15 user-name"><small>Welcome</small><br />Dr. Joseph Brown</div>
+                            <div class="pull-left Padding-T-15 user-name"><small>Welcome</small><br />@Session["Username"].ToString()</div>
                         </li>
                         <li class="nav-logout">
                        
@@ -81,7 +81,13 @@
    
         @RenderBody()
        
-   
+    <div id="loading">
+        <div id="loadingcontent">
+            <p id="loadingspinner">
+                Please wait, do not refresh the page.
+            </p>
+        </div>
+    </div>
     <footer>
         <div class="footer-style pull-left"></div>
         <div class="container">Copyrights &copy; 2015 <img src="~/images/footer-logo.svg" width="130" height="50" alt="HRA" />. All rights reserved. </div>
@@ -100,5 +106,27 @@
     <script src="~/Scripts/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="~/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+      
+        window.onbeforeunload = function (event) {
+            $("#loading").fadeIn();
+            var opts = {
+                lines: 12, // The number of lines to draw
+                length: 7, // The length of each line
+                width: 4, // The line thickness
+                radius: 10, // The radius of the inner circle
+                color: '#000', // #rgb or #rrggbb
+                speed: 1, // Rounds per second
+                trail: 60, // Afterglow percentage
+                shadow: false, // Whether to render a shadow
+                hwaccel: false // Whether to use hardware acceleration
+            };
+            var target = document.getElementById('loading');
+            var spinner = new Spinner(opts).spin(target);
+        };
+        });
+    </script>
 </body>
 </html>

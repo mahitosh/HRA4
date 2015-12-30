@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Data;
+using log4net;
 namespace HRA4.Utilities
 {
     public class Helpers
     {
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(Helpers));
         public static void CreateInstitutionDb(string conn, string dbscript)
-        {            
-             
+        {
+            Logger.DebugFormat("CreateInstitutionDb: Start");
             string[] result = ParseSqlStatementBatch(dbscript);
 
             try
@@ -24,21 +26,23 @@ namespace HRA4.Utilities
                     try
                     {
                         if (myConn.State == ConnectionState.Closed)
-                        {
+                        {                             
                             myConn.Open();
                         }
 
                         var cmd = new SqlCommand(commandText, myConn);
-
+                       // Logger.DebugFormat("Sql statement:{0}", commandText);
                         cmd.ExecuteNonQuery();
                     }
                     catch (System.Exception ex)
                     {
-                        //don't log these errors.
+                        Logger.Error(ex);
                     }
-
-
                 }
+
+                myConn.Close();
+                myConn.Dispose();
+                Logger.DebugFormat("CreateInstitutionDb: End");
             }
             catch (Exception ex)
             {
@@ -71,7 +75,7 @@ namespace HRA4.Utilities
             instConfiguration = instConfiguration.Replace("[PWD]", ConfigurationSettings.InstitutionPassword);
             return instConfiguration;
         }
-
+        
         
 
     }

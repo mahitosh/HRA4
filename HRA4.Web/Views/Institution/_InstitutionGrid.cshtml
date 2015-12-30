@@ -7,7 +7,10 @@
 <table id="myTable" class="table table-striped apppointment-table">
     <thead>
         <tr>
-            <th class="">
+            <th>
+                App Date/Time
+            </th>
+            <th>
                 Name
             </th>
             <th>
@@ -16,23 +19,21 @@
             <th>
                 DOB
             </th>
-            <th>
-                App Date/Time
-            </th>
+           
             <th>
                 Provider
             </th>
             <th>
                 Date Completed
-
+                
             </th>
             <th>
                 Disease Hx
-
+                
             </th>
             <th>
                 Survey
-
+                
             </th>
             <th>
                 DNC
@@ -48,22 +49,33 @@
            
             <tr>
                 <td>
+                    @{
+            string appdate = (item.AppointmentDate == DateTime.MinValue ? "" : item.AppointmentDate.ToString("MM/dd/yyyy hh:mm:ss"));
+                    }
+                    @Html.DisplayFor(modelItem => appdate)
+                </td>
+
+                <td>
                     @Html.DisplayFor(modelItem => item.PatientName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MRN)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                    @{
+                        string dob = (item.DateOfBirth == DateTime.MinValue ? "":item.DateOfBirth.ToString("MM/dd/yyyy") );
+                    }
+                    @Html.DisplayFor(modelItem => dob)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AppointmentDate)
-                </td>
+            
                 <td>
                     @Html.DisplayFor(modelItem => item.Provider)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DateCompleted)
+                    @{
+            string dateCompleted = (item.DateCompleted == DateTime.MinValue ? "" : item.DateCompleted.ToString("MM/dd/yyyy hh:mm:ss"));
+                    }
+                    @Html.DisplayFor(modelItem => dateCompleted)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DiseaseHx)
@@ -73,7 +85,7 @@
                 </td>
                 <td>
                     @*@Html.DisplayFor(modelItem => item.DoNotCall)*@
-                    <img src="~/images/DNC-Y-ico.svg" alt="Do not call" width="30" height="30" />
+                    <img src="~/images/DNC-Y-ico.svg" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." />
                 </td>
                 <td>
                     <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
@@ -84,9 +96,9 @@
             <tr id="quick_edit_div">
                 <td colspan="10">
                     @Html.Partial("_InstitutionRow", item)
-                 </td>
+                </td>
             </tr>
-           
+
 
         }
         

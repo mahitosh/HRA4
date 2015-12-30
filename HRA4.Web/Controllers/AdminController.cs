@@ -32,7 +32,7 @@ namespace HRA4.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     result = _applicationContext.ServiceContext.AdminService.Login(user.Username, user.Password);
-
+                    Session["Username"] = _applicationContext.ServiceContext.AdminService.GetUserName();
                     if (result)
                     {
                         FormsAuthentication.SetAuthCookie(user.Username, false);

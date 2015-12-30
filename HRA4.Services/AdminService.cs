@@ -49,6 +49,8 @@ namespace HRA4.Services
         }
 
 
+        
+
         public bool CreateTenantDb(Institution tenant,string scriptPath)
         {
            // SuperAdmin admin = _repositoryFactory.SuperAdminRepository.GetAdminUser();
@@ -68,6 +70,13 @@ namespace HRA4.Services
             Helpers.CreateInstitutionDb(connectionString, dbscript);
             
             return true;
+        }
+
+
+        public string GetUserName()
+        {
+            SuperAdmin admin = _repositoryFactory.SuperAdminRepository.GetAdminUser() as SuperAdmin;
+            return string.Format("{0} {1}", admin.FirstName, admin.LastName);
         }
     }
 }

@@ -17,7 +17,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="left" title="Help" id="admin-dropdown" aria-haspopup="true" aria-expanded="true">Help <img src="~/images/help-ico.svg" width="25" height="25" alt="logout" /></a>
                     <ul class="dropdown-menu help-menu col-md-2 pull-right" aria-labelledby="help-dropdown">
                         <li><a href="#"><i class="fa fa-building"></i> About Us</a></li>
-                        <li><a href="#"><i class="fa fa-map-marker"></i> Contact US</a></li>
+                        <li><a href="http://www.hughesriskapps.net/contactus.php" target="_blank"><i class="fa fa-map-marker"></i> Contact US</a></li>
                     </ul>
                 </div>
             </div>
@@ -104,15 +104,33 @@ else { }
     </div><!--container fluid end-->
 </div> <!-- /container area end -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script type="text/javascript"
+        src="@Url.Content("~/Scripts/spin.min.js")"></script>
+ 
+
 <script type="text/javascript">
     $(document).ready(function () {
         $("#tblInstitutions").tablesorter();
         $("#btnAdd").click(function () {
 
             var url = '@Url.Action("Create")';
+            $("#loading").fadeIn();
+            var opts = {
+                lines: 12, // The number of lines to draw
+                length: 7, // The length of each line
+                width: 4, // The line thickness
+                radius: 10, // The radius of the inner circle
+                color: '#000', // #rgb or #rrggbb
+                speed: 1, // Rounds per second
+                trail: 60, // Afterglow percentage
+                shadow: false, // Whether to render a shadow
+                hwaccel: false // Whether to use hardware acceleration
+            };
+            var target = document.getElementById('loading');
+            var spinner = new Spinner(opts).spin(target);
             $.post(url,
-            {
-
+            {                
                 instName: $('#txtInstitution').val()
             },
             function (data, status) {
