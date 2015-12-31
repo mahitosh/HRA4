@@ -60,17 +60,12 @@ else
                     <input class="form-control" id="name" name="name" type="text" placeholder="First/Last Name" />
                     </div>
                 </div>
-            <div class="col-md-2 col-sm-3 Padding-T-28">
-                    <div id="DOB" class="inner-addon right-addon">
-                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" placeholder="DOB" />
-                    </div>
-                </div>
-
-            <div class="col-md-2 col-sm-3 Padding-T-28">
+                         
+                <div class="col-md-2 col-sm-3 Padding-T-28">
+                    <input id="chkbox" type="checkbox" checked="checked" />
                     <div id="app-date" class="inner-addon right-addon">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" />
+                        <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" />
                     </div>
                 </div>
 
@@ -140,10 +135,40 @@ else
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $("#btnsearch").click(function (data) {
+        $('#chkbox').change(function () {
+            if ($(this).is(":checked")) {
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1; //January is 0!
+                var yyyy = today.getFullYear();
+                if (dd < 10) {
+                    dd = '0' + dd
+                }
+                if (mm < 10) {
+                    mm = '0' + mm
+                }
+                var today = mm + '/' + dd + '/' + yyyy;
 
+                $("#appt-date").prop('readonly', false);
+                $('#appt-date').prop('disabled', false);
+                $("#appt-date").val(today);
+                
+            } else {
+                $("#appt-date").prop('readonly', true);
+                $('#appt-date').prop('disabled', true);
+                $("#appt-date").val('');
+               
+            }
+           search();
+
+        });
+
+        $("#btnsearch").click(function (data) {
+            search();
+        });
+
+        function search() {
             var name = $('#name').val();
-            var dob = $('#dob-date').val();
             var appdt = $('#appt-date').val();
 
             var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
@@ -151,13 +176,14 @@ else
             $.ajax({
                 type: "POST",
                 url: globalGetJSONPath,
-                data: { name: name, dob: dob, appdt: appdt },
+                data: { name: name, appdt: appdt },
                 dataType: "json",
                 success: function (Data) {
                     $('#divInstitutionGrid').html(Data.view);
                 }
 
             })
-        });
+
+        };
     });
 </script>

@@ -17,6 +17,7 @@ using System.Web;
 using log4net;
 using HRACACHE = HRA4.Utilities.Cache;
 using RiskApps3.Model.PatientRecord;
+using System.Collections.Specialized;
 namespace HRA4.Services
 {
     public class AppointmentService : IAppointmentService
@@ -59,9 +60,27 @@ namespace HRA4.Services
             return new List<VM.Appointment>();
         }
 
-        private bool GetDNCFlag(string p)
+        public List<VM.Appointment> GetAppointments(int InstitutionId, NameValueCollection searchfilter)
         {
-            return true;
+            Logger.DebugFormat("Institution Id: {0}", InstitutionId);
+            List<VM.Appointment> appointments = new List<VM.Appointment>();
+
+            if (InstitutionId != null)
+            {
+                _institutionId = InstitutionId;
+                SetUserSession();
+                var list = new AppointmentList();
+                list.clinicId = 1;
+                if (Convert.ToString(searchfilter["appdt"]) != null && Convert.ToString(searchfilter["appdt"]) != "")
+                    list.Date = Convert.ToString(searchfilter["appdt"]);
+                if (Convert.ToString(searchfilter["name"]) != null && Convert.ToString(searchfilter["name"]) !="")
+                list.NameOrMrn = Convert.ToString(searchfilter["name"]);
+                list.BackgroundListLoad();
+                appointments = list.FromRAppointmentList();
+                return appointments;
+            }
+           
+            return new List<VM.Appointment>();
         }
 
         /// <summary>
@@ -72,18 +91,18 @@ namespace HRA4.Services
             if (HttpContext.Current.Session != null && HttpContext.Current.Session["InstitutionId"] != null)
             {
                 _institutionId = Convert.ToInt32(HttpContext.Current.Session["InstitutionId"]);
-
-                Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
-
-                string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
-
-                string configuration = Helpers.GetInstitutionConfiguration(configTemplate, inst.DbName);
+            
+            Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
+           
+            string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
+            
+            string configuration = Helpers.GetInstitutionConfiguration(configTemplate, inst.DbName);
                 _hraSessionManager = new HraSessionManager(_institutionId.ToString(), configuration);
                 _hraSessionManager.SetRaActiveUser(_username);
             }
-
-           
             
+          
+
         }
 
         private List<VM.Appointment> SearchOnAppointment(List<VM.Appointment> appts, string searchField, string searchParam)
@@ -134,8 +153,11 @@ namespace HRA4.Services
          
         private void UpdateMarkAsComplete(VM.Appointment Appt, int InstitutionId)
         {
-            List<VM.Appointment> apptlist = GetAppointments(InstitutionId);
-            List<VM.Appointment> filteredlist = SearchOnAppointment(apptlist, Constants.MRN, Appt.MRN);
+            NameValueCollection searchfilter = new NameValueCollection();
+            searchfilter.Add("name",Appt.MRN);
+            searchfilter.Add("appdt",null);
+            List<VM.Appointment> filteredlist = GetAppointments(InstitutionId, searchfilter);
+          //  List<VM.Appointment> filteredlist = SearchOnAppointment(apptlist, Constants.MRN, Appt.MRN);
 
             foreach (var item in filteredlist)
             {

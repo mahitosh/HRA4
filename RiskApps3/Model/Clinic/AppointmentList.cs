@@ -18,6 +18,7 @@ namespace RiskApps3.Model.Clinic
         public string groupName;
         public int clinicId;
 
+
         public AppointmentList()
         {
             constructor_args = new object[] { };
@@ -27,7 +28,7 @@ namespace RiskApps3.Model.Clinic
         {
             pc.Clear();
 
-            if (string.IsNullOrEmpty(Date) == false)
+            //if (string.IsNullOrEmpty(Date) == false)
                 pc.Add("Date", Date);
             if (string.IsNullOrEmpty(NameOrMrn) == false)
                 pc.Add("NameOrMrn", NameOrMrn);
