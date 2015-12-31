@@ -96,9 +96,9 @@ namespace HRA4.Web.Controllers
             InstitutionName = instName,
             DateCreated = DateTime.Now,
         };
-            
-           
-           string scriptPath = HttpContext.Server.MapPath(@"~/App_Data/Script2008.sql");
+
+
+            string scriptPath = HttpContext.Server.MapPath(@"~/App_Data/HRATenantDBCreation.sql");
 
             institution = _applicationContext.ServiceContext.AdminService.AddUpdateTenant(institution);
             _applicationContext.ServiceContext.AdminService.CreateTenantDb(institution, scriptPath);

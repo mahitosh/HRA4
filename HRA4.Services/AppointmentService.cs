@@ -99,6 +99,7 @@ namespace HRA4.Services
             var users = SessionManager.Instance.MetaData.Users;// may cache user list.
             
           
+
            // _user = users.FirstOrDefault(u => _username == u.GetMemberByName(_username).Name) as RAM.User;
             SessionManager.Instance.ActiveUser = users[0] as RAM.User;// need to change this.
 
@@ -109,7 +110,7 @@ namespace HRA4.Services
             //var t = new RiskApps3.Model.PatientRecord.Communication.Task(p, "Task", null, assignedBy, DateTime.Now);
             //HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
             //args.Persist = true;
-            
+
             //p.Tasks.AddToList(t, args);
         }
 

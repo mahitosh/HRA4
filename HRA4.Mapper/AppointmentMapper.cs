@@ -27,6 +27,23 @@ namespace HRA4.Mapper
               
             };
         }
+        public static Appointment FromRAppointment(this RA.Appointment app, bool dnc=false)
+        {
+            return new Appointment()
+            {
+                Id = app.apptID,
+                MRN = app.unitnum,
+                AppointmentDate = app.apptdatetime,
+                DateOfBirth = app.dob.ToDateTime(),
+                DiseaseHx = app.diseases,
+                Provider = app.apptphysname,
+                PatientName = app.patientname,
+                DateCompleted = app.riskdatacompleted,
+                Survey = app.surveyType,
+                DoNotCall = dnc
+            };
+        }
+
 
         public static Appointment FromRAppointment(this RA.Appointment app)
         {
@@ -40,7 +57,7 @@ namespace HRA4.Mapper
                 Provider = app.apptphysname,
                 PatientName = app.patientname,
                 DateCompleted = app.riskdatacompleted,
-               Survey = app.surveyType
+               Survey = app.surveyType,               
             };
         }
 
