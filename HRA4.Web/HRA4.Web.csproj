@@ -103,6 +103,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\HRATenantDBCreation.sql" />
+    <Content Include="App_Data\RAFiles\hraDeIdentifySerialized.xsl" />
+    <Content Include="App_Data\RAFiles\hra_serialized_to_hl7.xsl" />
+    <Content Include="App_Data\RAFiles\hra_to_ccd.xsl" />
+    <Content Include="App_Data\RAFiles\hra_to_ccd2.xsl" />
+    <Content Include="App_Data\RAFiles\hra_to_ccd_remove_namespaces.xsl" />
+    <Content Include="App_Data\RAFiles\hra_to_hl7.xsl" />
     <Content Include="assets\brand\bootstrap-outline.svg" />
     <Content Include="assets\brand\bootstrap-punchout.svg" />
     <Content Include="assets\brand\bootstrap-solid.svg" />

@@ -35,6 +35,7 @@ namespace HRA4.Web.Controllers
                     Session["Username"] = _applicationContext.ServiceContext.AdminService.GetUserName();
                     if (result)
                     {
+                        System.Web.HttpContext.Current.Session["ApplicationContext"] = null;
                         FormsAuthentication.SetAuthCookie(user.Username, false);
                         if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
@@ -42,7 +43,7 @@ namespace HRA4.Web.Controllers
                             return Redirect(returnUrl);
                         }
                         else
-                            return RedirectToAction("InstitutionDashboard", "Institution");
+                            return RedirectToAction("ManageInstitution", "Admin");
                     }
                     else
                     {
@@ -64,6 +65,7 @@ namespace HRA4.Web.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
+            Session.Abandon();
             return RedirectToAction("Index", "Admin");
         }
         //End by Aditya
@@ -104,6 +106,11 @@ namespace HRA4.Web.Controllers
             _applicationContext.ServiceContext.AdminService.CreateTenantDb(institution, scriptPath);
           //  Task taskA = Task.Run(() => _applicationContext.ServiceContext.AdminService.CreateTenantDb(institution,scriptPath));
             return RedirectToAction("ManageInstitution");
+        }
+
+        public ActionResult ShowError()
+        {
+            return View();
         }
     }
 }

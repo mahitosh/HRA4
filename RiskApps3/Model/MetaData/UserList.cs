@@ -51,7 +51,7 @@ namespace RiskApps3.Model.MetaData
             return retval;
         }
 
-        internal User GetUser(string login)
+        public User GetUser(string login) // Silicus: Changed the method from internal to public.
         {
             User retval = null;
             foreach (User u in this)

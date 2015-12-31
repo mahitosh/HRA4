@@ -28,7 +28,7 @@ namespace HRA4.Context
         public ApplicationContext()
         {            
             InitializeCommonDbContext();
-            InitRiskAppContext();
+          //  InitRiskAppContext();
             InitializeServices();        
             
         }
@@ -78,8 +78,8 @@ namespace HRA4.Context
 
         private void InitializeServices()
         {
-            //_username = HttpContext.Current.User.Identity.Name;
-            _username = "sadmin";
+            _username = HttpContext.Current.User.Identity.Name;
+            //_username = "sadmin";
             _service = new ServiceContext(_repository,_username);            
           
         }
