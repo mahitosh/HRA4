@@ -2,6 +2,7 @@
 using HRA4.Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,15 +28,16 @@ namespace HRA4.Web.Controllers
             {
                 Session.Add("InstitutionId", InstitutionId);
                 int v2 = InstitutionId ?? default(int);
-                //_applicationContext = new ApplicationContext();
-                 apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2);
+                NameValueCollection searchfilter = new NameValueCollection();
+                searchfilter.Add("name", null);
+                searchfilter.Add("appdt", DateTime.Now.ToString("MM/dd/yyyy"));
+                apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2, searchfilter);
                 ViewBag.AppointmentCount = apps.Count();
                 return View(apps);
             }
-            // return View(apps);
             return RedirectToAction("ManageInstitution", "Admin");
 
-            
+
         }
         [HttpPost]
         public ActionResult InstitutionDashboard(FormCollection frm, bool MarkAsComplete)
@@ -44,78 +46,31 @@ namespace HRA4.Web.Controllers
             app.Id = Convert.ToInt32(frm["Id"]);
             app.MRN = Convert.ToString(frm["MRN"]);
             app.SetMarkAsComplete = MarkAsComplete;
-            
             _applicationContext.ServiceContext.AppointmentService.SaveAppointments(app, Convert.ToInt32(Session["InstitutionId"]));
-
-           // return View("InstitutionDashboard/" + Session["InstitutionId"]);
-            return RedirectToAction("InstitutionDashboard",new {InstitutionId= Session["InstitutionId"]});
+            return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
         }
-        
-        public JsonResult FilteredInstitution(string name, string dob, string appdt)
-        {
-             //Session.Add("InstitutionId", 1);
-            string view = string.Empty;
 
+        public JsonResult FilteredInstitution(string name, string appdt)
+        {
+            
+            string view = string.Empty;
             if (Session != null && Session["InstitutionId"] != null)
             {
-
-            int instId = (int)Session["InstitutionId"];
-
-                var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId).ToList();
-
-
-              /*
-              for (int i = 0; i < apps.Count; i++)
-              {
-
-                  DateTime bdt = apps[i].DateOfBirth;
-                  DateTime apt = apps[i].AppointmentDate;
-                  bdt = bdt.Date;
-                  apt = apt.Date;
-                 string bdts = bdt.Date.ToString("MM/dd/yyyy");
-                 string apts = apt.Date.ToString("MM/dd/yyyy"); ;
-
-
-
-              }
-                */
-            
-   
-                if (name.Length > 0)
-                {
-                 apps = apps.Where(a => a.PatientName.Trim().ToLower().Contains(name.Trim().ToLower())).ToList();                
-                }
-                
-                if (dob.Trim().Length > 0)
-                {
-                    apps = apps.Where(a => a.DateOfBirth.Date.ToString("MM/dd/yyyy").Trim().Contains(dob.Trim())).ToList();
-                }
-
-                if (appdt.ToString().Trim().Length > 0)
-                {
-                    apps = apps.Where(a => a.AppointmentDate.Date.ToString("MM/dd/yyyy").Trim().Contains(appdt.Trim())).ToList();
-
-                }
-
+                int instId = (int)Session["InstitutionId"];
+                NameValueCollection searchfilter = new NameValueCollection();
+                searchfilter.Add("name", name);
+                searchfilter.Add("appdt", appdt);
+                var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
+                ViewBag.AppointmentCount = apps.Count();
                 view = RenderPartialView("_InstitutionGrid", apps);
 
-
-
             }
-        
             var result = new { view = view };
-
             return Json(result, JsonRequestBehavior.AllowGet);
-            
-
 
         }
 
-        public ActionResult MarkAsComplete(int Id)
-        {
-            return View();
-        }
-      
+
 
         protected virtual string RenderPartialView(string partialViewName, object model)
         {

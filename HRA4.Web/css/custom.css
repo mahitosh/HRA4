@@ -191,7 +191,9 @@ small{font-size:0.7em;}
 .clear-float{clear:both;}
 .horizontal-devider{border-right: solid 1px #ddd;}
 .tooltip{font-family: 'open_sanslight', arial;font-style: normal;}
-
+.editmenu {
+}
+.btnClear{}
 /*all buttos*/
 .search-group{box-shadow: 1px 1px 4px #ccc;}
 .search-btn, .add-btn{background-color: #53afee;border-radius: 0;border:none;color: white;font-size:1.2em;padding:6px 12px;}
