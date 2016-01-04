@@ -107,7 +107,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Script2008.sql" />
+    <Content Include="App_Data\HRATenantDBCreation.sql" />
+    <Content Include="App_Data\RAFiles\hraDeIdentifySerialized.xsl" />
+    <Content Include="App_Data\RAFiles\hra_serialized_to_hl7.xsl" />
+    <Content Include="App_Data\RAFiles\hra_to_ccd.xsl" />
+    <Content Include="App_Data\RAFiles\hra_to_ccd2.xsl" />
+    <Content Include="App_Data\RAFiles\hra_to_ccd_remove_namespaces.xsl" />
+    <Content Include="App_Data\RAFiles\hra_to_hl7.xsl" />
     <Content Include="assets\brand\bootstrap-outline.svg" />
     <Content Include="assets\brand\bootstrap-punchout.svg" />
     <Content Include="assets\brand\bootstrap-solid.svg" />
@@ -152,6 +158,7 @@
     <Content Include="css\bootstrap\v3.3.6\bootstrap.min.css" />
     <Content Include="css\custom.css" />
     <Content Include="css\datepicker.css" />
+    <Content Include="css\devcustom.css" />
     <Content Include="css\font-awesome-4.5.0\css\font-awesome.css" />
     <Content Include="css\font-awesome-4.5.0\css\font-awesome.min.css" />
     <Content Include="css\font-awesome-4.5.0\fonts\fontawesome-webfont.svg" />
@@ -161,6 +168,7 @@
     <Content Include="css\fonts\opensans_regular\OpenSans-Regular-webfont.svg" />
     <Content Include="css\navbar-fixed-top.css" />
     <Content Include="css\sticky-footer.css" />
+    <Content Include="css\tablesorter.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -226,21 +234,27 @@
     <Content Include="images\body-bg.jpg" />
     <Content Include="images\copy-grid-ico.svg" />
     <Content Include="images\dashboard-ico.svg" />
+    <Content Include="images\delete-appointment-ico.svg" />
     <Content Include="images\delete-ico.svg" />
     <Content Include="images\desc.gif" />
     <Content Include="images\desc.png" />
     <Content Include="images\DNC-N-ico.svg" />
     <Content Include="images\DNC-Y-ico.svg" />
     <Content Include="images\edit-grid-ico.svg" />
+    <Content Include="images\edit-survey-ico.svg" />
     <Content Include="images\footer-logo.svg" />
     <Content Include="images\grid-run-auto-doc-ico.svg" />
     <Content Include="images\help-ico.svg" />
+    <Content Include="images\import-export-ico.svg" />
     <Content Include="images\institution-ico.svg" />
     <Content Include="images\login-hra-logo.svg" />
     <Content Include="images\login-page-logo.png" />
     <Content Include="images\logout-ico.svg" />
+    <Content Include="images\new-doc-ico.svg" />
     <Content Include="images\refresh-grid-ico.svg" />
+    <Content Include="images\risk-calc-ico.svg" />
     <Content Include="images\run-auto-doc-ico.svg" />
+    <Content Include="images\spiffygif_30x30.gif" />
     <Content Include="images\tab-refresh-ico.svg" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -250,6 +264,7 @@
     <Content Include="Scripts\bootstrap\v3.3.6\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\v3.3.6\npm.js" />
     <Content Include="Scripts\custom-script.js" />
+    <Content Include="Scripts\dev-custom.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -258,6 +273,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\spin.min.js" />
     <Content Include="Scripts\__jquery.tablesorter\jquery-latest.js" />
     <Content Include="Scripts\__jquery.tablesorter\jquery.metadata.js" />
     <Content Include="Scripts\__jquery.tablesorter\jquery.tablesorter.js" />
@@ -292,6 +308,7 @@
     <Content Include="Views\Login\_Login.cshtml" />
     <Content Include="Views\Institution\InstitutionDashboard.cshtml" />
     <Content Include="Views\Institution\_InstitutionGrid.cshtml" />
+    <Content Include="Views\Shared\_InstitutionRow.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

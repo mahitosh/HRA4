@@ -7,7 +7,10 @@
 <table id="myTable" class="table table-striped apppointment-table">
     <thead>
         <tr>
-            <th class="">
+            <th>
+                App Date/Time
+            </th>
+            <th>
                 Name
             </th>
             <th>
@@ -16,9 +19,7 @@
             <th>
                 DOB
             </th>
-            <th>
-               App Date/Time
-            </th>
+           
             <th>
                 Provider
             </th>
@@ -47,22 +48,33 @@
         {
             <tr>
                 <td>
+                    @{
+            string appdate = (item.AppointmentDate == DateTime.MinValue ? "" : item.AppointmentDate.ToString("MM/dd/yyyy hh:mm:ss"));
+                    }
+                    @Html.DisplayFor(modelItem => appdate)
+                </td>
+
+                <td>
                     @Html.DisplayFor(modelItem => item.PatientName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MRN)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                    @{
+                        string dob = (item.DateOfBirth == DateTime.MinValue ? "":item.DateOfBirth.ToString("MM/dd/yyyy") );
+                    }
+                    @Html.DisplayFor(modelItem => dob)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AppointmentDate)
-                </td>
+            
                 <td>
                     @Html.DisplayFor(modelItem => item.Provider)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DateCompleted)
+                    @{
+            string dateCompleted = (item.DateCompleted == DateTime.MinValue ? "" : item.DateCompleted.ToString("MM/dd/yyyy hh:mm:ss"));
+                    }
+                    @Html.DisplayFor(modelItem => dateCompleted)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DiseaseHx)
@@ -91,26 +103,37 @@
                        
                             }
                     <div style="display:none" >@item.DoNotCall</div> 
-                    <img src="@url" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." onclick="SearchAppointment('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()');" />
+                    <img src="@url" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." onclick="AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()');" />
                 </td>
                 <td>
-                    @*@Html.ActionLink("Test", "AddTask")*@
-                    <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Run automation document" /></a>
-                    <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Copy Appointment" /></a>
-                    <a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit Appointment" /></a>
+                    <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
+                    <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
+                    <a href="#" id="@item.Id" onclick="ShowEdit(this);"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>
                 </td>
             </tr>
-
+            <tr class="editmenu" id="@item.Id-b">
+                <td colspan="10">
+                    @Html.Partial("_InstitutionRow", item)
+                </td>
+            </tr>
         }
+
     </tbody>
 </table><!--schedule list end here-->
 <script type="text/javascript">
 
     $(document).ready(function () {
+        $(".editmenu").hide();
         $("#myTable").tablesorter();
     });
+    $(".btnClear").click(function () {
+        $(".editmenu").slideUp(100);
+    });
+    function ShowEdit(obj)
+    {
+        //alert(obj.id + "-b");
+        var trid = "#"+obj.id + "-b";
+        $(trid).slideDown(100);
 
-   
-
-
+    }
 </script>

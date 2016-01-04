@@ -9,13 +9,13 @@
     <div class="clearfix header-bdr"><hr /></div>
     <div>
         <div class="container">
-        <div class="col-sm-4 top-breadcrumb">Dashbaord</div>
+        <div class="col-sm-4 top-breadcrumb">Dashboard</div>
         <div class="col-lg-5 col-md-7 col-sm-7 help pull-right">
             <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="left" title="Help" id="admin-dropdown" aria-haspopup="true" aria-expanded="true">Help <img src="~/images/help-ico.svg" width="25" height="25" alt="logout" /></a>
                 <ul class="dropdown-menu help-menu col-md-2 pull-right" aria-labelledby="help-dropdown">
                     <li><a href="#"><i class="fa fa-building"></i> About Us</a></li>
-                    <li><a href="#"><i class="fa fa-map-marker"></i> Contact US</a></li>
+                    <li><a href="http://www.hughesriskapps.net/contactus.php" target="_blank"><i class="fa fa-map-marker"></i> Contact US</a></li>
                 </ul>
             </div>
         </div>
@@ -60,14 +60,9 @@ else
                     <input class="form-control" id="name" name="name" type="text" placeholder="First/Last Name" />
                     </div>
                 </div>
-            <div class="col-md-2 col-sm-3 Padding-T-28">
-                    <div id="DOB" class="inner-addon right-addon">
-                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" placeholder="DOB" />
-                    </div>
-                </div>
 
             <div class="col-md-2 col-sm-3 Padding-T-28">
+                    <input id="chkbox" type="checkbox" checked="checked" />
                     <div id="app-date" class="inner-addon right-addon">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                     <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" />
@@ -92,7 +87,7 @@ else
             <div class="row">
                 <ul class="nav nav-tabs col-sm-12" id="myTab">
                     <li class="active">
-                        <a data-target="#Schedule" data-toggle="tab">Schedule <span class="dashboard-count">140</span> </a>
+                        <a data-target="#Schedule" data-toggle="tab">Schedule <span class="dashboard-count">@ViewBag.AppointmentCount</span> </a>
                         <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
                     </li>
                     <li>
@@ -139,17 +134,40 @@ else
 
 <script type="text/javascript">
     $(document).ready(function () {
+       
+        $('#chkbox').change(function () {
+            if ($(this).is(":checked")) {
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1; //January is 0!
+                var yyyy = today.getFullYear();
+                if (dd < 10) {
+                    dd = '0' + dd
+                }
+                if (mm < 10) {
+                    mm = '0' + mm
+                }
+                var today = mm + '/' + dd + '/' + yyyy;
+
+                $("#appt-date").prop('readonly', false);
+                $('#appt-date').prop('disabled', false);
+                $("#appt-date").val(today);
+                
+            } else {
+                $("#appt-date").prop('readonly', true);
+                $('#appt-date').prop('disabled', true);
+                $("#appt-date").val('');
+               
+            }
+            SearchAppointment();
+
+        });
 
         $("#btnsearch").click(function (data) {
-
-            var isDNC = "";
-            var unitnum = "";
-            var apptid = "";
-            SearchAppointment(isDNC, unitnum, apptid);
-            
+            SearchAppointment();
         });
-     
 
+          
        
 
 
@@ -162,19 +180,42 @@ else
     });
 
 
-    function SearchAppointment(isDNC, unitnum, apptid) {
+    function SearchAppointment() {
+
+            var name = $('#name').val();
+            var appdt = $('#appt-date').val();
+
+            var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
+
+            $.ajax({
+                type: "POST",
+            url: globalGetJSONPath,
+            data: { name: name , appdt: appdt},
+                dataType: "json",
+            async: true,
+                success: function (Data) {
+                    $('#divInstitutionGrid').html(Data.view);
+                }
+
+            })
+
+        }
+   
+
+
+    function AddRemoveTask(isDNC, unitnum, apptid) {
 
         var name = $('#name').val();
-        var dob = $('#dob-date').val();
+      
         var appdt = $('#appt-date').val();
 
 
-        var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
+        var globalGetJSONPath = '@Url.Action("AddRemoveTask", "Institution")';
 
         $.ajax({
             type: "POST",
             url: globalGetJSONPath,
-            data: { name: name, dob: dob, appdt: appdt, isDNC: isDNC, unitnum: unitnum, apptid: apptid },
+            data: { name: name,appdt: appdt, isDNC: isDNC, unitnum: unitnum, apptid: apptid },
             dataType: "json",
             async: true,
             success: function (Data) {
@@ -185,6 +226,5 @@ else
 
 
     }
-   
 
 </script>

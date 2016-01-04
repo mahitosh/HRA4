@@ -14,5 +14,6 @@ namespace HRA4.Services.Interfaces
         void UpdatePassword(string oldPassword, string newPassword);
         Institution AddUpdateTenant(Institution tenant);
         bool CreateTenantDb(Institution tenant,string scriptPath);
+        string GetUserName();
     }
 }

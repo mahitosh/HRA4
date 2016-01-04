@@ -19,6 +19,7 @@ using WeifenLuo.WinFormsUI.Docking;
 using RiskApps3.Model.PatientRecord;
 using RA = RiskApps3.Model.PatientRecord;
 using RiskApps3.Model.PatientRecord.Communication;
+using System.Collections.Specialized;
 namespace HRA4.Services
 {
     public class AppointmentService : IAppointmentService
@@ -27,11 +28,13 @@ namespace HRA4.Services
         RAM.User _user;
         int _institutionId;
         IRepositoryFactory _repositoryFactory;
+        HraSessionManager _hraSessionManager;
         private static readonly ILog Logger = LogManager.GetLogger(typeof(AppointmentService));
         public AppointmentService(IRepositoryFactory repositoryFactory, string user)
         {
             _username = user;
             _repositoryFactory = repositoryFactory;
+            SetUserSession();
         }
 
 
@@ -75,11 +78,37 @@ namespace HRA4.Services
             List<VM.Appointment> appointments = new List<VM.Appointment>();
             if(InstitutionId != null)
             {
+
+                _institutionId = InstitutionId;
+               // SetUserSession();
+                //appointments = HRACACHE.GetCache<List<VM.Appointment>>(InstitutionId);
+                var list = new AppointmentList();
+                 
+                list.clinicId = 1;
+                list.Date = DateTime.Now.ToString("MM/dd/yyyy");
+                list.BackgroundListLoad();
+               
+                 appointments = list.FromRAppointmentList();
+                return appointments;
+            }
+            return new List<VM.Appointment>();
+        }
+
+        public List<VM.Appointment> GetAppointments(int InstitutionId, NameValueCollection searchfilter)
+        {
+            Logger.DebugFormat("Institution Id: {0}", InstitutionId);
+            List<VM.Appointment> appointments = new List<VM.Appointment>();
+
+            if (InstitutionId != null)
+            {
                 _institutionId = InstitutionId;
                 SetUserSession();
                 var list = new AppointmentList();
-                list.Date = null;
                 list.clinicId = 1;
+                if (Convert.ToString(searchfilter["appdt"]) != null && Convert.ToString(searchfilter["appdt"]) != "")
+                    list.Date = Convert.ToString(searchfilter["appdt"]);
+                if (Convert.ToString(searchfilter["name"]) != null && Convert.ToString(searchfilter["name"]) !="")
+                list.NameOrMrn = Convert.ToString(searchfilter["name"]);
                 list.BackgroundListLoad();
 
                 foreach (RA.Appointment app in list)
@@ -88,7 +117,7 @@ namespace HRA4.Services
                     bool _DNCStatus = GetDNCStatus(InstitutionId,app.unitnum);
                     appointments.Add(app.FromRAppointment(_DNCStatus));
 
-                }
+            }
 
                 return appointments;
 
@@ -102,14 +131,19 @@ namespace HRA4.Services
         /// </summary>
         private void SetUserSession()
         {
-            Logger.DebugFormat("Institution Id: {0}", _institutionId);
+            if (HttpContext.Current.Session != null && HttpContext.Current.Session["InstitutionId"] != null)
+            {
+                _institutionId = Convert.ToInt32(HttpContext.Current.Session["InstitutionId"]);
+            
             Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
-            Logger.DebugFormat("Get Instituion");
+           
             string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
-            Logger.DebugFormat("Get Configtemplate");
+            
             string configuration = Helpers.GetInstitutionConfiguration(configTemplate, inst.DbName);
+                _hraSessionManager = new HraSessionManager(_institutionId.ToString(), configuration);
+                _hraSessionManager.SetRaActiveUser(_username);
+            }
 
-            HttpRuntime.Cache[_institutionId.ToString()] = configuration;
             
             SessionManager.Instance.MetaData.Users.BackgroundListLoad();
             Logger.DebugFormat("Load Users");
@@ -117,23 +151,37 @@ namespace HRA4.Services
             Logger.DebugFormat("User count :{0}",users.Count());
            // _user = users.FirstOrDefault(u => _username == u.GetMemberByName(_username).Name) as RAM.User;
             SessionManager.Instance.ActiveUser = users[0] as RAM.User;// need to change this.
-
-           
-
         }
-        public void AssignCommonSettings(int _institutionId)
+
+        public void SaveAppointments(VM.Appointment Appt, int InstitutionId)
         {
-            
-            Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
 
-            string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
+            UpdateMarkAsComplete(Appt, InstitutionId);
 
-            string configuration = Helpers.GetInstitutionConfiguration(configTemplate, inst.DbName);
-
-            HttpRuntime.Cache[_institutionId.ToString()] = configuration;
         }
 
+        private void UpdateMarkAsComplete(VM.Appointment Appt, int InstitutionId)
+        {
+            NameValueCollection searchfilter = new NameValueCollection();
+            searchfilter.Add("name",Appt.MRN);
+            searchfilter.Add("appdt",null);
+            List<VM.Appointment> filteredlist = GetAppointments(InstitutionId, searchfilter);
+          //  List<VM.Appointment> filteredlist = SearchOnAppointment(apptlist, Constants.MRN, Appt.MRN);
 
+            foreach (var item in filteredlist)
+            {
+                Appointment appt = ((Appointment)(item.ToRAppointment()));
+         
+                if (Appt.SetMarkAsComplete)
+                {
+                    Appointment.MarkComplete(appt.apptID);
+                }
+                else
+                {
+                    Appointment.MarkIncomplete(appt.apptID);
+                }
+            }
+        }
         public void DeleteTasks(int _institutionId, string unitnum, int apptid)
         {
             Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
@@ -144,7 +192,7 @@ namespace HRA4.Services
 
             HttpRuntime.Cache[_institutionId.ToString()] = configuration;
 
-        
+
             string assignedBy = "";
             if (SessionManager.Instance.ActiveUser != null)
             {
@@ -172,7 +220,7 @@ namespace HRA4.Services
                 fList.LoadFullList();
                 HraModelChangedEventArgs args1 = new HraModelChangedEventArgs(null);
                 args1.Delete = true;
-                foreach(PtFollowup followup in fList)
+                foreach (PtFollowup followup in fList)
                 {
                     followup.BackgroundPersistWork(args1);
                 }
@@ -184,10 +232,10 @@ namespace HRA4.Services
 
         }
 
-      
+
         public void AddTasks(int _institutionId, string unitnum, int apptid)
         {
-            
+
 
             Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
 
@@ -206,15 +254,15 @@ namespace HRA4.Services
                     assignedBy = SessionManager.Instance.ActiveUser.ToString();
                 }
             }
-            SessionManager.Instance.SetActivePatient(unitnum ,apptid);
+            SessionManager.Instance.SetActivePatient(unitnum, apptid);
             RiskApps3.Model.PatientRecord.Patient p = SessionManager.Instance.GetActivePatient();    // TODO:  Check this!!
             RiskApps3.Model.PatientRecord.Communication.Task t = new RiskApps3.Model.PatientRecord.Communication.Task(p, "Task", null, assignedBy, DateTime.Now);
             HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
-          
-           
+
+
 
             t.BackgroundPersistWork(args);
-           
+
             RiskApps3.Model.PatientRecord.Communication.PtFollowup newFollowup = new RiskApps3.Model.PatientRecord.Communication.PtFollowup(t);
             newFollowup.FollowupDisposition = "Omit From List";
             newFollowup.TypeOfFollowup = "Phone Call";
@@ -231,8 +279,6 @@ namespace HRA4.Services
 
         }
 
-    
 
-         
     }
 }

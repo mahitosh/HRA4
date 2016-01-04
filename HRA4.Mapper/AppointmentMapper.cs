@@ -21,22 +21,14 @@ namespace HRA4.Mapper
                 apptdate = appointment.AppointmentDate.ToString(),
                 unitnum = appointment.MRN,
                 dob = appointment.DateOfBirth.ToString(),
-                apptdatetime = appointment.AppointmentDate,
+               // apptdatetime = appointment.AppointmentDate?appointment.AppointmentDate:DateTime.MinValue,
                 apptphysname = appointment.Provider,
                 diseases= appointment.DiseaseHx,
-                patientname = appointment.PatientName
+                patientname = appointment.PatientName,
+              
             };
         }
-
-        public static RAT.Task ToRATTasks(this Tasks tasks)
-        {
-            return new RAT.Task()
-            {
-                taskID = tasks.taskID
-            };
-        }
-
-        public static Appointment FromRAppointment(this RA.Appointment app, bool dnc = false)
+        public static Appointment FromRAppointment(this RA.Appointment app, bool dnc=false)
         {
             return new Appointment()
             {
@@ -53,9 +45,33 @@ namespace HRA4.Mapper
             };
         }
 
+        public static RAT.Task ToRATTasks(this Tasks tasks)
+        {
+            return new RAT.Task()
+            {
+                taskID = tasks.taskID
+            };
+        }
+
+        //public static Appointment FromRAppointment(this RA.Appointment app, bool dnc = false)
+        //{
+        //    return new Appointment()
+        //    {
+        //        Id = app.apptID,
+        //        MRN = app.unitnum,
+        //        AppointmentDate = app.apptdatetime,
+        //        DateOfBirth = app.dob.ToDateTime(),
+        //        DiseaseHx = app.diseases,
+        //        Provider = app.apptphysname,
+        //        PatientName = app.patientname,
+        //        DateCompleted = app.riskdatacompleted,
+        //        Survey = app.surveyType,
+        //        DoNotCall = dnc
+        //    };
+        //}
+
         public static Appointment FromRAppointment(this RA.Appointment app)
         {
-                        
             return new Appointment()
             {
                 Id = app.apptID,
@@ -64,7 +80,9 @@ namespace HRA4.Mapper
                 DateOfBirth = app.dob.ToDateTime(),
                 DiseaseHx= app.diseases,
                 Provider = app.apptphysname,
-                PatientName = app.patientname
+                PatientName = app.patientname,
+                DateCompleted = app.riskdatacompleted,
+               Survey = app.surveyType,               
             };
         }
 
@@ -78,12 +96,13 @@ namespace HRA4.Mapper
             };
         }
 
-
-       
-
-
-      
-
+        private static DateTime? CheckForNullAndMin(DateTime dtDate)
+        {
+            if (dtDate == null || dtDate == DateTime.MinValue)
+                return null;
+            else
+                return dtDate;
+        }
 
         public static List<Appointment> FromRAppointmentList(this List<RA.Appointment> apps)
         {
