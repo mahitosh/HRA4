@@ -105,9 +105,12 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+        $(".editmenu").hide();
         $("#myTable").tablesorter();
     });
-
+    $(".btnClear").click(function () {
+        $(".editmenu").slideUp(100);
+    });
     function ShowEdit(obj)
     {
         //alert(obj.id + "-b");
