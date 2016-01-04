@@ -25,7 +25,7 @@ namespace HRA4.Services
 
 
         public List<Entities.Institution> GetTenants()
-        {
+        {            
             return _repositoryFactory.TenantRepository.GetAll();
         }
 

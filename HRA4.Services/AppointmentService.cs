@@ -26,11 +26,13 @@ namespace HRA4.Services
         RAM.User _user;
         int _institutionId;
         IRepositoryFactory _repositoryFactory;
+        HraSessionManager _hraSessionManager;
         private static readonly ILog Logger = LogManager.GetLogger(typeof(AppointmentService));
         public AppointmentService(IRepositoryFactory repositoryFactory, string user)
         {
             _username = user;
             _repositoryFactory = repositoryFactory;
+            SetUserSession();
         }
 
         // SessionManager.Instance.ActiveUser.userClinicList
@@ -44,13 +46,14 @@ namespace HRA4.Services
             {
 
                 _institutionId = InstitutionId;
-                SetUserSession();
+               // SetUserSession();
                 //appointments = HRACACHE.GetCache<List<VM.Appointment>>(InstitutionId);
                 var list = new AppointmentList();
                  
                 list.clinicId = 1;
                 list.Date = DateTime.Now.ToString("MM/dd/yyyy");
                 list.BackgroundListLoad();
+               
                  appointments = list.FromRAppointmentList();
                 return appointments;
             }
@@ -85,33 +88,21 @@ namespace HRA4.Services
         /// </summary>
         private void SetUserSession()
         {
+            if (HttpContext.Current.Session != null && HttpContext.Current.Session["InstitutionId"] != null)
+            {
+                _institutionId = Convert.ToInt32(HttpContext.Current.Session["InstitutionId"]);
             
             Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
            
             string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
             
             string configuration = Helpers.GetInstitutionConfiguration(configTemplate, inst.DbName);
-
-            HttpRuntime.Cache[_institutionId.ToString()] = configuration;
-            
-            SessionManager.Instance.MetaData.Users.BackgroundListLoad();
-            
-            var users = SessionManager.Instance.MetaData.Users;// may cache user list.
+                _hraSessionManager = new HraSessionManager(_institutionId.ToString(), configuration);
+                _hraSessionManager.SetRaActiveUser(_username);
+            }
             
           
 
-           // _user = users.FirstOrDefault(u => _username == u.GetMemberByName(_username).Name) as RAM.User;
-            SessionManager.Instance.ActiveUser = users[0] as RAM.User;// need to change this.
-
-
-            //string assignedBy = SessionManager.Instance.ActiveUser.ToString();
-            //SessionManager.Instance.SetActivePatient("99911041501", 1);
-            //Patient p = SessionManager.Instance.GetActivePatient();    // TODO:  Check this!!
-            //var t = new RiskApps3.Model.PatientRecord.Communication.Task(p, "Task", null, assignedBy, DateTime.Now);
-            //HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
-            //args.Persist = true;
-
-            //p.Tasks.AddToList(t, args);
         }
 
         private List<VM.Appointment> SearchOnAppointment(List<VM.Appointment> appts, string searchField, string searchParam)
