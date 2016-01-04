@@ -139,23 +139,52 @@ else
 
 <script type="text/javascript">
     $(document).ready(function () {
-       
+
         $("#btnsearch").click(function (data) {
 
-            var name = $('#name').val();
-            var dob = $('#dob-date').val();
-            var appdt = $('#appt-date').val();
-
-            $.ajax({
-                type: "POST",
-                url: "/Institution/FilteredInstitution",
-                data: { name: name, dob: dob, appdt: appdt },
-                dataType: "json",
-                success: function (Data) {
-                    $('#divInstitutionGrid').html(Data.view);
-                }
-
-            })
+            var isDNC = "";
+            var unitnum = "";
+            var apptid = "";
+            SearchAppointment(isDNC, unitnum, apptid);
+            
         });
+     
+
+       
+
+
+        
+       
+
+
+
+
     });
+
+
+    function SearchAppointment(isDNC, unitnum, apptid) {
+
+        var name = $('#name').val();
+        var dob = $('#dob-date').val();
+        var appdt = $('#appt-date').val();
+
+
+        var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
+
+        $.ajax({
+            type: "POST",
+            url: globalGetJSONPath,
+            data: { name: name, dob: dob, appdt: appdt, isDNC: isDNC, unitnum: unitnum, apptid: apptid },
+            dataType: "json",
+            async: true,
+            success: function (Data) {
+                $('#divInstitutionGrid').html(Data.view);
+            }
+
+        })
+
+
+    }
+   
+
 </script>

@@ -71,10 +71,30 @@
                     @Html.DisplayFor(modelItem => item.Survey)
                 </td>
                 <td>
+
                     @*@Html.DisplayFor(modelItem => item.DoNotCall)*@
-                    <img src="~/images/DNC-Y-ico.svg" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." />
+
+                    @{ 
+                        var url = "";
+                        if (item.DoNotCall == true)
+                            
+                       {
+
+                           url = Url.Content("~/images/DNC-N-ico.svg");
+
+                       }
+                       else
+                       {
+                           url = Url.Content("~/images/DNC-Y-ico.svg");
+                       
+                       }
+                       
+                            }
+                    <div style="display:none" >@item.DoNotCall</div> 
+                    <img src="@url" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." onclick="SearchAppointment('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()');" />
                 </td>
                 <td>
+                    @*@Html.ActionLink("Test", "AddTask")*@
                     <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Run automation document" /></a>
                     <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Copy Appointment" /></a>
                     <a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit Appointment" /></a>
@@ -89,5 +109,8 @@
     $(document).ready(function () {
         $("#myTable").tablesorter();
     });
+
+   
+
 
 </script>

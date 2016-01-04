@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Runtime.Serialization;
 
 using RiskApps3.Utilities;
+using System.Web;
 
 namespace RiskApps3.Model.PatientRecord.Communication
 {
@@ -16,13 +17,13 @@ namespace RiskApps3.Model.PatientRecord.Communication
 
         /**************************************************************************************************/
         public int FollowupID;
-        [DataMember] [HraAttribute]  protected DateTime FollowupDate=DateTime.Now;
-        [DataMember] [HraAttribute]  protected string FollowupWho;
-        [DataMember] [HraAttribute]  protected string FollowupType;
-        [DataMember] [HraAttribute]  protected string FollowupDisposition;
-        [DataMember] [HraAttribute]  protected string noApptReason;
-        [DataMember] [HraAttribute]  protected string followupComment;
-        [DataMember] [HraAttribute]  protected int taskID;
+        [DataMember][HraAttribute]   public DateTime FollowupDate=DateTime.Now;
+        [DataMember][HraAttribute]   public string FollowupWho;
+        [DataMember][HraAttribute]   public string FollowupType;
+        [DataMember][HraAttribute]   public string FollowupDisposition;
+        [DataMember][HraAttribute]   public string noApptReason;
+        [DataMember][HraAttribute]   public string followupComment;
+        [DataMember][HraAttribute]   public int taskID;
 
         /**************************************************************************************************/
         public DateTime Date
@@ -38,6 +39,12 @@ namespace RiskApps3.Model.PatientRecord.Communication
                     FollowupDate = value;
                     HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
                     args.updatedMembers.Add(GetMemberByName("FollowupDate"));
+                    //=========Silicus Code Start ============//
+                    if (HttpContext.Current != null)
+                    {
+                        args.Persist = false;
+                    }
+                    //=========Silicus Code end ============//
                     SignalModelChanged(args);
                 }
             }
@@ -56,6 +63,12 @@ namespace RiskApps3.Model.PatientRecord.Communication
                     FollowupWho = value;
                     HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
                     args.updatedMembers.Add(GetMemberByName("FollowupWho"));
+                    //=========Silicus Code Start ============//
+                    if (HttpContext.Current != null)
+                    {
+                        args.Persist = false;
+                    }
+                    //=========Silicus Code end ============//
                     SignalModelChanged(args);
                 }
             }
@@ -74,6 +87,12 @@ namespace RiskApps3.Model.PatientRecord.Communication
                     FollowupType = value;
                     HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
                     args.updatedMembers.Add(GetMemberByName("FollowupType"));
+                    //=========Silicus Code Start ============//
+                    if (HttpContext.Current != null)
+                    {
+                        args.Persist = false;
+                    }
+                    //=========Silicus Code end ============//
                     SignalModelChanged(args);
                 }
             }
@@ -128,6 +147,12 @@ namespace RiskApps3.Model.PatientRecord.Communication
                     followupComment = value;
                     HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
                     args.updatedMembers.Add(GetMemberByName("followupComment"));
+                    //=========Silicus Code Start ============//
+                    if (HttpContext.Current != null)
+                    {
+                        args.Persist = false;
+                    }
+                    //=========Silicus Code end ============//
                     SignalModelChanged(args);
                 }
             }

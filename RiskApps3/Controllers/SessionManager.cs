@@ -120,6 +120,7 @@ namespace RiskApps3.Controllers
 
             selectedRelative = (Person)activePatient;
 
+            if (HttpContext.Current == null)
             activePatient.LoadObject();
 
             if (NewActivePatient != null)

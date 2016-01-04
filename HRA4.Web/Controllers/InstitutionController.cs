@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+//using HRA4.Repositories.Interfaces;
+using HRA4.Utilities;
 
 namespace HRA4.Web.Controllers
 {
@@ -30,6 +32,7 @@ namespace HRA4.Web.Controllers
                 //_applicationContext = new ApplicationContext();
                 apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2);
                 return View(apps);
+                
             }
             // return View(apps);
             return RedirectToAction("ManageInstitution", "Admin");
@@ -37,15 +40,43 @@ namespace HRA4.Web.Controllers
 
         }
 
-        public JsonResult FilteredInstitution(string name, string dob, string appdt)
+
+
+
+
+        public JsonResult FilteredInstitution(string name, string dob, string appdt, string isDNC, string unitnum, string apptid)
         {
-            //Session.Add("InstitutionId", 1);
+          
+
             string view = string.Empty;
 
             if (Session != null && Session["InstitutionId"] != null)
             {
 
                 int instId = (int)Session["InstitutionId"];
+
+
+                if (isDNC.Trim().Length > 0)
+                {
+
+                    if (isDNC.Trim().ToLower() == "True".ToLower())
+                    {
+
+                        _applicationContext.ServiceContext.AppointmentService.DeleteTasks(instId, unitnum, Convert.ToInt32(apptid));
+                    }
+                    else
+                    {
+
+                        _applicationContext.ServiceContext.AppointmentService.AddTasks(instId, unitnum, Convert.ToInt32(apptid));
+
+
+                    }
+
+
+                }
+
+
+
 
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId).ToList();
    
@@ -69,21 +100,6 @@ namespace HRA4.Web.Controllers
                 view = RenderPartialView("_InstitutionGrid", apps);
 
 
-                /*
-              for (int i = 0; i < apps.Count; i++)
-              {
-
-                  DateTime bdt = apps[i].DateOfBirth;
-                  DateTime apt = apps[i].AppointmentDate;
-                  bdt = bdt.Date;
-                  apt = apt.Date;
-                 string bdts = bdt.Date.ToString("MM/dd/yyyy");
-                 string apts = apt.Date.ToString("MM/dd/yyyy"); ;
-
-
-
-              }
-              */
 
             }
         

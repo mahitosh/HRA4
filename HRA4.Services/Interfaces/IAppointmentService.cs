@@ -11,6 +11,9 @@ namespace HRA4.Services.Interfaces
     public interface IAppointmentService
     {
         List<VM.Appointment> GetAppointments(int InstitutionId);
-
+       
+        void AddTasks(int _institutionId, string unitnum, int apptid);
+       
+        void DeleteTasks(int _institutionId, string unitnum, int apptid);
     }
 }

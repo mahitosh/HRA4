@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Appointment.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="Tasks.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
