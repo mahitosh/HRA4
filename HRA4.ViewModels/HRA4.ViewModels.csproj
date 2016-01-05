@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Appointment.cs" />
+    <Compile Include="HraXmlFile.cs" />
     <Compile Include="Clinic.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="Tasks.cs" />

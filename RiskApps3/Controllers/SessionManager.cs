@@ -63,13 +63,10 @@ namespace RiskApps3.Controllers
             {
                 if (HttpContext.Current != null) // Mahitosh
                 {
-                    if (HttpContext.Current.Session["SessionManager"] != null)
-                        return (SessionManager)HttpContext.Current.Session["SessionManager"];
-                    else
-                    {
-                        HttpContext.Current.Session["SessionManager"] = new SessionManager();
-                        return (SessionManager)HttpContext.Current.Session["SessionManager"];
-                    }
+                    if (HttpContext.Current.Session["SessionManager"] == null)
+                         HttpContext.Current.Session["SessionManager"] = new SessionManager();      
+                 
+                    return (SessionManager)HttpContext.Current.Session["SessionManager"];
                 }
                 return _instance;
             }

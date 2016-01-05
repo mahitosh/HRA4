@@ -35,6 +35,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRA4.Mapper", "HRA4.Mapper\HRA4.Mapper.csproj", "{9A7DB143-B825-4234-B1C8-E454C1F02B24}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceAssemblies", "ReferenceAssemblies", "{4FF8F3A7-98E6-4E09-9D37-1EAF971E8744}"
+	ProjectSection(SolutionItems) = preProject
+		ReferenceAssemblies\IKVM.OpenJDK.Charsets.dll = ReferenceAssemblies\IKVM.OpenJDK.Charsets.dll
+		ReferenceAssemblies\IKVM.OpenJDK.Core.dll = ReferenceAssemblies\IKVM.OpenJDK.Core.dll
+		ReferenceAssemblies\IKVM.OpenJDK.Text.dll = ReferenceAssemblies\IKVM.OpenJDK.Text.dll
+		ReferenceAssemblies\IKVM.OpenJDK.Util.dll = ReferenceAssemblies\IKVM.OpenJDK.Util.dll
+		ReferenceAssemblies\IKVM.OpenJDK.XML.API.dll = ReferenceAssemblies\IKVM.OpenJDK.XML.API.dll
+		ReferenceAssemblies\IKVM.Runtime.dll = ReferenceAssemblies\IKVM.Runtime.dll
+		ReferenceAssemblies\WeifenLuo.WinFormsUI.Docking.dll = ReferenceAssemblies\WeifenLuo.WinFormsUI.Docking.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -186,5 +197,6 @@ Global
 		{AEBE6E16-91A1-4A1B-AFDF-00AC7476ED59} = {5B7F2E98-E5A5-4BB2-8534-BBF36B6FB3E7}
 		{DCC055C6-C37C-40B2-AD29-40221187AFD4} = {E78F737E-4BC3-4660-8809-189B90766B1F}
 		{9A7DB143-B825-4234-B1C8-E454C1F02B24} = {04A3B694-78C9-411E-A8AF-AA07BA48F5B8}
+		{4FF8F3A7-98E6-4E09-9D37-1EAF971E8744} = {AAE7A616-946F-4B54-8FAB-4ECE559DFA03}
 	EndGlobalSection
 EndGlobal
