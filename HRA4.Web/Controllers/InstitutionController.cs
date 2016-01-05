@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+using VM = HRA4.ViewModels;
 namespace HRA4.Web.Controllers
 {
     public class InstitutionController : BaseController
@@ -39,6 +39,83 @@ namespace HRA4.Web.Controllers
 
 
         }
+
+        [HttpPost]
+        public ActionResult ImportAsXml(HttpPostedFileBase file, string mrn, int apptId, bool deIdentified)
+        {
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/App_Data/RAFiles/Upload"), fileName);
+                    file.SaveAs(path);
+                    VM.HraXmlFile xmlFile = new VM.HraXmlFile()
+                    {
+                        FileName = fileName,
+                        FilePath = path,
+                    };
+                    _applicationContext.ServiceContext.AppointmentService.ImportXml(xmlFile, mrn, apptId);
+                }
+                ViewBag.Message = "Upload successful";
+
+
+                return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Upload failed";
+                return RedirectToAction("InstitutionDashboard");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ImportAsHL7(HttpPostedFileBase file, string mrn, int apptId, bool deIdentified)
+        {
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/App_Data/RAFiles/Upload"), fileName);
+                    file.SaveAs(path);
+                    VM.HraXmlFile xmlFile = new VM.HraXmlFile()
+                    {
+                        FileName = fileName,
+                        FilePath = path,                        
+                    };
+                    _applicationContext.ServiceContext.AppointmentService.ImportHL7(xmlFile, mrn, apptId);
+                }
+                ViewBag.Message = "Upload successful";
+               
+
+                return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Message = "Upload failed";
+                return RedirectToAction("InstitutionDashboard");
+            }
+        }
+        public FileContentResult ExportAsHL7(FormCollection frm,string mrn, int apptId, bool identified)
+        {
+            identified = Convert.ToBoolean(frm["chkDeIdentified"]);
+            VM.HraXmlFile xmlFile = _applicationContext.ServiceContext.AppointmentService.ExportAsHL7(mrn, apptId, identified);            
+            byte[] fileBytes = System.IO.File.ReadAllBytes(xmlFile.FilePath);
+            string fileName = string.Format("{0}{1}", xmlFile.FileName, xmlFile.Estension);
+            return File(fileBytes, "text/xml, application/xml", fileName);
+        }
+
+        public FileContentResult ExportAsXml(FormCollection frm,string mrn, int apptId, bool identified)
+        {
+            VM.HraXmlFile xmlFile = _applicationContext.ServiceContext.AppointmentService.ExportAsXml(mrn, apptId, identified);
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(xmlFile.FilePath);
+            string fileName = string.Format("{0}{1}", xmlFile.FileName, xmlFile.Estension);
+
+            return File(fileBytes, "text/xml, application/xml", fileName);
+        }
+
         [HttpPost]
         public ActionResult InstitutionDashboard(FormCollection frm, bool MarkAsComplete)
         {
@@ -52,7 +129,7 @@ namespace HRA4.Web.Controllers
 
         public JsonResult FilteredInstitution(string name, string appdt)
         {
-            
+
             string view = string.Empty;
             if (Session != null && Session["InstitutionId"] != null)
             {

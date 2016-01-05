@@ -4,30 +4,59 @@
 }
 @*<link href="~/css/tablesorter.css" rel="stylesheet" />*@
 
-    <div class="quick-add-inner-div">
-@using (Ajax.BeginForm("InstitutionDashboard", "Institution", new { @model = Model }, new AjaxOptions
+<div class="quick-add-inner-div">
+    @using (Ajax.BeginForm("InstitutionDashboard", "Institution", new { @model = Model }, new AjaxOptions
             {
                 HttpMethod = "POST"
 
             }))
-{
+    {
         <div class="col-sm-12 quick-add-links">
             @Html.HiddenFor(item => item.Id)
             @Html.HiddenFor(item => item.MRN)
             <a href="#"><img src="~/images/new-doc-ico.svg" alt="New Document" width="30" height="30" title="New Document" /> New Document</a>
             <a href="#"><img src="~/images/edit-survey-ico.svg" alt="Edit Survey" width="30" height="30" title="Edit Survey" /> Edit Survey</a>
             <a href="#"><img src="~/images/risk-calc-ico.svg" alt="Risk Calculation" width="30" height="30" title="Risk Calculation" /> Risk Calculation</a>
-            <a href="#"><img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" /> Import &frasl;Export</a>
+            @{
+        string strMrn = Model.MRN;
+        int apptId = Model.Id;
+            }
+            <a href="@Url.Action("ExportAsHL7", "Institution", new { mrn = strMrn, apptId = apptId, identified=true }, null)" target="_blank">
+                <img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" />Import or Export    
+            </a>
+            @*<a href="#"><img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" /> Import &frasl;Export</a>*@
             <a href="#"><img src="~/images/run-auto-doc-ico.svg" alt="Run automation documents" width="30" height="30" title="Run automation documents" />Run Automation Documents</a>
             <a href="#"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment</a>
         </div>
         <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
-        <div>@Html.CheckBoxFor(item => item.MarkAsComplete)</div>
+        <div>@Html.CheckBoxFor(item => item.MarkAsComplete) Survey Complete</div>
         <button id="btnSaveQuick" type="submit">Save</button>
-}
-        <button class="btnClear" id="btnClearQuick">Cancel</button>
-    </div>
+    }
+    <button class="btnClear" id="btnClearQuick">Cancel</button>
+</div>
 
-   
+@using (Html.BeginForm("ImportAsHL7", "Institution", new { mrn = Model.MRN,apptId = Model.Id,deIdentified = true}, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+    @Html.AntiForgeryToken() 
+    <fieldset> 
+    <legend>Upload HL7 file</legend>
+     <div class="editor-field"> @Html.TextBox("file", "", new { type = "file" }) </div>
+        <div class="editor-field">@Html.CheckBox("chkHl7DeIdentified") De-Identified</div>
+     <div class="editor-field"> <input type="submit" value="Upload" /> </div> 
+    </fieldset> 
+}
+
+@using (Html.BeginForm("ImportAsXml", "Institution", new { mrn = Model.MRN, apptId = Model.Id, deIdentified = true }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Upload xml file</legend>
+        <div class="editor-field"> @Html.TextBox("file", "", new { type = "file" }) </div>
+        <div class="editor-field">@Html.CheckBox("chkXmlDeIdentified") De-Identified</div>
+        <div class="editor-field"> <input type="submit" value="Upload" /> </div>
+    </fieldset>
+}
+
+
 
 

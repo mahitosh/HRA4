@@ -8,7 +8,7 @@
   <xsl:preserve-space elements="*"/>
 
   <!-- Following can be overidden by transformer invocation with parameter set -->
-  <xsl:param name="localBaseUri" select="'file:/C:/Program%20Files/riskAppsV2/tools/'"/>
+  <xsl:param name="localBaseUri" select="'file:/D:/Projects/Official/HRA4/Sources/HRA4/HRA4.Web/App_Data/RAFiles/'"/>
   <!-- BayesMendel default is that DCIS is not considered cancer, but with this flag we can go either way; leave as default if want hl7 to reflect accurate object model -->
   <xsl:param name="dcisAsCancer" select="'0'"/>  
   <!-- Optionally don't remove PHI; use '0' to leave PHI in -->

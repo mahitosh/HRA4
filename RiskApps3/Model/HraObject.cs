@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using RiskApps3.Controllers;
 using RiskApps3.Utilities;
+using System.Web;
 
 #if international
 using System.Globalization;
@@ -797,12 +798,16 @@ namespace RiskApps3.Model
         public void SignalModelChanged(HraModelChangedEventArgs e)
         {
             //TODO should very strongly consider moving this to some kind of object state manager class which can utilize connection and thread pooling
-            if (e.Persist)
-                RunPersist(e);
-
-            if (Changed != null)
+            if (e != null) //Silicus: Check for null
             {
-                #if (CHATTY_DEBUG)
+                if (HttpContext.Current != null)
+                    e.Persist = false;
+                if (e.Persist)
+                    RunPersist(e);
+
+                if (Changed != null)
+                {
+#if (CHATTY_DEBUG)
                 string msg = "*** Changed event fired on : " + this.ToString() + System.Environment.NewLine;
                 if (e != null)
                 {
@@ -819,8 +824,9 @@ namespace RiskApps3.Model
                 }
 
                 Logger.Instance.DebugToLog(msg);
-                #endif
-                Changed(this, e);
+#endif
+                    Changed(this, e);
+                }
             }
         }
 

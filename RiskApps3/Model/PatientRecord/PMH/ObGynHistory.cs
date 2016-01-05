@@ -444,6 +444,7 @@ namespace RiskApps3.Model.PatientRecord.PMH
                 {
                     hormoneUse = value;
                     HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
+                   
                     args.updatedMembers.Add(GetMemberByName("hormoneUse"));
                     SignalModelChanged(args);
                 }
@@ -481,6 +482,7 @@ namespace RiskApps3.Model.PatientRecord.PMH
                     hormoneUseYears = value;
                     HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
                     args.updatedMembers.Add(GetMemberByName("hormoneUseYears"));
+
                     SignalModelChanged(args);
                 }
             }
@@ -534,7 +536,7 @@ namespace RiskApps3.Model.PatientRecord.PMH
                 {
                     hormoneCombined = value;
                     HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
-                    args.updatedMembers.Add(GetMemberByName("hormoneCombined"));
+                    args.updatedMembers.Add(GetMemberByName("hormoneCombined"));                  
                     SignalModelChanged(args);
                 }
             }

@@ -312,6 +312,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\RAFiles\Download\" />
+    <Folder Include="App_Data\RAFiles\Temp\" />
+    <Folder Include="App_Data\RAFiles\Upload\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
