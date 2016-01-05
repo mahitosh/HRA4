@@ -115,7 +115,7 @@ namespace HRA4.Web.Controllers
           
 
             string view = string.Empty;
-
+            int apps_count=0;
         
             if (Session != null && Session["InstitutionId"] != null)
             {
@@ -125,13 +125,14 @@ namespace HRA4.Web.Controllers
                 searchfilter.Add("name", name);
                 searchfilter.Add("appdt", appdt);
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
-                ViewBag.AppointmentCount = apps.Count();
+                apps_count  = apps.Count();
+                //ViewBag.AppointmentCount = apps.Count();
                 view = RenderPartialView("_InstitutionGrid", apps);
 
 
 
             }
-            var result = new { view = view };
+            var result = new { view = view, apps_count = apps_count };
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }

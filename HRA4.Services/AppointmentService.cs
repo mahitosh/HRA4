@@ -71,6 +71,48 @@ namespace HRA4.Services
 
         }
 
+        public void GetClinic()
+        {
+
+           // List<userClinicList>
+
+            var list = GetClinics(1);
+
+            foreach (RiskApps3.Model.MetaData.Clinic c in SessionManager.Instance.ActiveUser.userClinicList)
+            {
+                /*
+                if (c.clinicID == DashboardClinicId)
+                {
+                    defaultClinic = c;
+                }
+                 */ 
+            }
+
+        }
+
+        public List<VM.Clinic> GetClinics(int InstitutionId)
+        {
+
+            List<VM.Clinic> clinics = new List<VM.Clinic>();
+            if (InstitutionId != null)
+            {
+
+                _institutionId = InstitutionId;
+                // SetUserSession();
+                //appointments = HRACACHE.GetCache<List<VM.Appointment>>(InstitutionId);
+                var list = new  RAM.ClinicList ();
+                list.user_login = _username;
+                list.BackgroundListLoad();
+
+                clinics = list.FromRClinicList();
+
+                return clinics;
+            }
+            return new List<VM.Clinic>();
+        
+
+        }
+         
 
         public List<VM.Appointment> GetAppointments(int InstitutionId)
         {
@@ -89,6 +131,7 @@ namespace HRA4.Services
                 list.BackgroundListLoad();
                
                  appointments = list.FromRAppointmentList();
+                 
                 return appointments;
             }
             return new List<VM.Appointment>();
@@ -110,7 +153,7 @@ namespace HRA4.Services
                 if (Convert.ToString(searchfilter["name"]) != null && Convert.ToString(searchfilter["name"]) !="")
                 list.NameOrMrn = Convert.ToString(searchfilter["name"]);
                 list.BackgroundListLoad();
-
+                GetClinic();
                 foreach (RA.Appointment app in list)
                 {
                     

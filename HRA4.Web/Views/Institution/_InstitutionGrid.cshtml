@@ -38,7 +38,7 @@
             <th>
                 DNC
             </th>
-            <th>
+            <th >
                 Quick Actions
             </th>
         </tr>
@@ -124,7 +124,19 @@
 
     $(document).ready(function () {
         $(".editmenu").hide();
-        $("#myTable").tablesorter();
+
+        $("#myTable").tablesorter(
+            {
+                headers: {
+                    // assign the secound column (we start counting zero) 
+                    9: {
+                        // disable it by setting the property sorter to false 
+                        sorter: false
+                    }
+                   
+                }
+            }
+            );
     });
     $(".btnClear").click(function () {
         $(".editmenu").slideUp(100);

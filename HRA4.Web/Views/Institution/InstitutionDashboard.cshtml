@@ -87,8 +87,8 @@ else
             <div class="row">
                 <ul class="nav nav-tabs col-sm-12" id="myTab">
                     <li class="active">
-                        <a data-target="#Schedule" data-toggle="tab">Schedule <span class="dashboard-count">@ViewBag.AppointmentCount</span> </a>
-                        <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
+                        <a data-target="#Schedule" data-toggle="tab">Schedule <span id="ScheduleCount" class="dashboard-count">@ViewBag.AppointmentCount</span> </a>
+                        <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" onclick="SearchAppointment()" /></a>
                     </li>
                     <li>
                         <a data-target="#LifetimeBC" data-toggle="tab">Lifetime Breast Cancer  <span class="dashboard-count">3</span></a>
@@ -193,7 +193,8 @@ else
             data: { name: name , appdt: appdt},
                 dataType: "json",
             async: true,
-                success: function (Data) {
+            success: function (Data) {
+                    $('#ScheduleCount').html(Data.apps_count);
                     $('#divInstitutionGrid').html(Data.view);
                 }
 
