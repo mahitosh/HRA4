@@ -46,10 +46,11 @@ else
                 <div class="col-md-3 col-sm-4 horizontal-devider">
                     <div class="form-group ">
                         <label class="control-label " for="custom-clinic"> Choose Clinic</label>
-                        <select class="form-control" id="custom-clinic" name="custom-clinic">
+                        @Html.DropDownList("ddClinic", ViewBag.ClinicList as SelectList,"All Clinics" ,new { @class = "form-control" })
+                        @*<select class="form-control" id="custom-clinic" name="custom-clinic">
                             <option>Test1</option>
                             <option>Test2</option>
-                        </select>
+                        </select>*@
 
                     </div>
                 </div>
@@ -87,8 +88,8 @@ else
             <div class="row">
                 <ul class="nav nav-tabs col-sm-12" id="myTab">
                     <li class="active">
-                        <a data-target="#Schedule" data-toggle="tab">Schedule <span class="dashboard-count">@ViewBag.AppointmentCount</span> </a>
-                        <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
+                        <a data-target="#Schedule" data-toggle="tab">Schedule <span id="ScheduleCount" class="dashboard-count">@ViewBag.AppointmentCount</span> </a>
+                        <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" onclick="SearchAppointment()" /></a>
                     </li>
                     <li>
                         <a data-target="#LifetimeBC" data-toggle="tab">Lifetime Breast Cancer  <span class="dashboard-count">3</span></a>
@@ -167,6 +168,9 @@ else
             SearchAppointment();
         });
 
+        $("#ddClinic").change(function (data) {
+            SearchAppointment();
+        });
           
        
 
@@ -184,16 +188,18 @@ else
 
             var name = $('#name').val();
             var appdt = $('#appt-date').val();
-
+            var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val(): "-1" ;
+         
             var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
 
             $.ajax({
                 type: "POST",
             url: globalGetJSONPath,
-            data: { name: name , appdt: appdt},
+            data: { name: name, appdt: appdt, clinicId: clinicId },
                 dataType: "json",
             async: true,
-                success: function (Data) {
+            success: function (Data) {
+                    $('#ScheduleCount').html(Data.apps_count);
                     $('#divInstitutionGrid').html(Data.view);
                 }
 
@@ -206,19 +212,19 @@ else
     function AddRemoveTask(isDNC, unitnum, apptid) {
 
         var name = $('#name').val();
-      
         var appdt = $('#appt-date').val();
-
+        var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val() : "-1";
 
         var globalGetJSONPath = '@Url.Action("AddRemoveTask", "Institution")';
 
         $.ajax({
             type: "POST",
             url: globalGetJSONPath,
-            data: { name: name,appdt: appdt, isDNC: isDNC, unitnum: unitnum, apptid: apptid },
+            data: { name: name, appdt: appdt, isDNC: isDNC, unitnum: unitnum, apptid: apptid, clinicId: clinicId },
             dataType: "json",
             async: true,
             success: function (Data) {
+                $('#ScheduleCount').html(Data.apps_count);
                 $('#divInstitutionGrid').html(Data.view);
             }
 

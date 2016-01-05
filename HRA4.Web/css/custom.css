@@ -144,15 +144,17 @@ ul.help-menu li a:hover{background-color:#72b116}
 .nav-tabs > li > a:focus{background: transparent}
 
 /*appointment table css*/
-.apppointment-table thead th{background-color: #53afee;color:#ffffff;border:none;padding:12px 8px;font-size:1.2em;position:relative;}
-.apppointment-table tbody td{background-color: #d5ecfc; border-top: 1px solid #99c1dd!important;vertical-align: middle!important;}
+.apppointment-table thead th{background-color: #53afee;color:#ffffff;border:none;padding:12px 3px;font-size:1.1em;position:relative;}
+.apppointment-table tbody td{background-color: #d5ecfc; border-top: 1px solid #99c1dd!important;vertical-align: middle!important;padding:8px 3px!important;}
 li.add-appointment a{border:none; padding: 10px 0 0 0;margin-right:0;}
 li.add-appointment a:hover{border:none;}
 #dashboardmodal{margin-top:300px;}
 #dashboardmodal a{color:#333;text-decoration:underline}
-.apppointment-table th:after, .apppointment-table th.headerSortUp:after, .apppointment-table th.headerSortDown:after { cursor: pointer;font-weight: bold;padding-left: 5px;margin-left: -1px;font-family: FontAwesome; content: "\f0dc";font-size: 12px; } 
-.apppointment-table th.headerSortUp:after {content: "\f0de";  } 
-.apppointment-table th.headerSortDown:after {content: "\f0dd";  } 
+.apppointment-table th:after, .apppointment-table th.headerSortUp:after, .apppointment-table th.headerSortDown:after {cursor: pointer;font-weight: bold;padding-left: 5px;margin-left: -1px;font-family: FontAwesome; content: "\f0dc";font-size: 12px; } 
+.apppointment-table th.headerSortUp:after {content: "\f0de"; } 
+.apppointment-table th.headerSortDown:after {content: "\f0dd"; } 
+
+.apppointment-table th:last-child::after, .apppointment-table th.headerSortUp:last-child::after {content: "";}
 
 /*Institution list css*/
 .search-ico-bg{background-color:#000066;color:#ffffff;border-radius:0 4px 4px 0!important;cursor:pointer;}

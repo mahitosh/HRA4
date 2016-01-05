@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HRA4.ViewModels;
 using RA=RiskApps3.Model.PatientRecord;
+using RAM = RiskApps3.Model.MetaData;
 using RAT=RiskApps3.Model.PatientRecord.Communication;
 using HRA4.Utilities;
 using RiskApps3.Model;
@@ -45,6 +46,7 @@ namespace HRA4.Mapper
             };
         }
 
+
         public static RAT.Task ToRATTasks(this Tasks tasks)
         {
             return new RAT.Task()
@@ -53,22 +55,16 @@ namespace HRA4.Mapper
             };
         }
 
-        //public static Appointment FromRAppointment(this RA.Appointment app, bool dnc = false)
-        //{
-        //    return new Appointment()
-        //    {
-        //        Id = app.apptID,
-        //        MRN = app.unitnum,
-        //        AppointmentDate = app.apptdatetime,
-        //        DateOfBirth = app.dob.ToDateTime(),
-        //        DiseaseHx = app.diseases,
-        //        Provider = app.apptphysname,
-        //        PatientName = app.patientname,
-        //        DateCompleted = app.riskdatacompleted,
-        //        Survey = app.surveyType,
-        //        DoNotCall = dnc
-        //    };
-        //}
+
+
+        public static RAM.Clinic ToRAMClinic(RAM.Clinic clinics)
+        {
+            return new RAM.Clinic()
+            {
+                clinicID = clinics.clinicID,
+                clinicName=clinics.clinicName
+            };
+        }
 
         public static Appointment FromRAppointment(this RA.Appointment app)
         {
@@ -85,6 +81,17 @@ namespace HRA4.Mapper
                Survey = app.surveyType,               
             };
         }
+
+        public static Clinic FromRClinics(this RAM.Clinic app)
+        {
+            return new Clinic()
+            {
+                clinicID = app.clinicID,
+                clinicName = app.clinicName
+                
+            };
+        }
+
 
         public static Tasks FromRATTasks(this RAT.Task app)
         {
@@ -123,6 +130,17 @@ namespace HRA4.Mapper
             }
             return appointments;
         }
+
+        public static List<Clinic> FromRClinicList(this RiskApps3.Model.MetaData.ClinicList apps)
+        {
+            List<Clinic> clinics = new List<Clinic>();
+            foreach (RAM.Clinic app in apps)
+            {
+                clinics.Add(app.FromRClinics());
+            }
+            return clinics;
+        }
+
 
         public static List<HRA4.ViewModels.Tasks> FromRATaskList(this RiskApps3.Model.PatientRecord.Communication.TaskList apps)
         {
