@@ -46,10 +46,11 @@ else
                 <div class="col-md-3 col-sm-4 horizontal-devider">
                     <div class="form-group ">
                         <label class="control-label " for="custom-clinic"> Choose Clinic</label>
-                        <select class="form-control" id="custom-clinic" name="custom-clinic">
+                        @Html.DropDownList("ddClinic", ViewBag.ClinicList as SelectList,"All Clinics" ,new { @class = "form-control" })
+                        @*<select class="form-control" id="custom-clinic" name="custom-clinic">
                             <option>Test1</option>
                             <option>Test2</option>
-                        </select>
+                        </select>*@
 
                     </div>
                 </div>
@@ -167,6 +168,9 @@ else
             SearchAppointment();
         });
 
+        $("#ddClinic").change(function (data) {
+            SearchAppointment();
+        });
           
        
 
@@ -184,13 +188,14 @@ else
 
             var name = $('#name').val();
             var appdt = $('#appt-date').val();
-
+            var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val(): "-1" ;
+         
             var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
 
             $.ajax({
                 type: "POST",
             url: globalGetJSONPath,
-            data: { name: name , appdt: appdt},
+            data: { name: name, appdt: appdt, clinicId: clinicId },
                 dataType: "json",
             async: true,
             success: function (Data) {
@@ -207,19 +212,19 @@ else
     function AddRemoveTask(isDNC, unitnum, apptid) {
 
         var name = $('#name').val();
-      
         var appdt = $('#appt-date').val();
-
+        var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val() : "-1";
 
         var globalGetJSONPath = '@Url.Action("AddRemoveTask", "Institution")';
 
         $.ajax({
             type: "POST",
             url: globalGetJSONPath,
-            data: { name: name,appdt: appdt, isDNC: isDNC, unitnum: unitnum, apptid: apptid },
+            data: { name: name, appdt: appdt, isDNC: isDNC, unitnum: unitnum, apptid: apptid, clinicId: clinicId },
             dataType: "json",
             async: true,
             success: function (Data) {
+                $('#ScheduleCount').html(Data.apps_count);
                 $('#divInstitutionGrid').html(Data.view);
             }
 

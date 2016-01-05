@@ -23,6 +23,9 @@ namespace HRA4.Web.Controllers
             List<ViewModels.Appointment> apps = new List<ViewModels.Appointment>();
             var instList = _applicationContext.ServiceContext.AdminService.GetTenants();
             ViewBag.instListcount = instList.Count;
+         
+
+
             if (instList.Count == 0)
             {
                 return View(apps);
@@ -34,11 +37,21 @@ namespace HRA4.Web.Controllers
                 NameValueCollection searchfilter = new NameValueCollection();
                 searchfilter.Add("name", null);
                 searchfilter.Add("appdt", DateTime.Now.ToString("MM/dd/yyyy"));
+                searchfilter.Add("clinicId", "-1");
                 apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2, searchfilter);
                 ViewBag.AppointmentCount = apps.Count();
+                /*=======Start Load Clinic Dropdown======================*/
+                var _ClinicList = _applicationContext.ServiceContext.AppointmentService.GetClinics((int)Session["InstitutionId"]);
+                ViewBag.ClinicList = new SelectList(_ClinicList.ToList(),"clinicID","clinicName");
+
+                /*=======End Load Clinic Dropdown======================*/
+
                 return View(apps);
                 
             }
+
+          
+
             return RedirectToAction("ManageInstitution", "Admin");
 
 
@@ -134,13 +147,13 @@ namespace HRA4.Web.Controllers
 
 
 
-        public JsonResult AddRemoveTask(string name, string appdt, string isDNC, string unitnum, string apptid)
+        public JsonResult AddRemoveTask(string name, string appdt, string isDNC, string unitnum, string apptid, string clinicId)
         {
 
 
 
             string view = string.Empty;
-
+            int apps_count = 0;
 
             if (Session != null && Session["InstitutionId"] != null)
             {
@@ -170,14 +183,15 @@ namespace HRA4.Web.Controllers
                 NameValueCollection searchfilter = new NameValueCollection();
                 searchfilter.Add("name", name);
                 searchfilter.Add("appdt", appdt);
+                searchfilter.Add("clinicId", clinicId);
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
-                ViewBag.AppointmentCount = apps.Count();
+                apps_count = apps.Count();
                 view = RenderPartialView("_InstitutionGrid", apps);
 
 
 
             }
-            var result = new { view = view };
+            var result = new { view = view, apps_count = apps_count };
             return Json(result, JsonRequestBehavior.AllowGet);
 
 
@@ -188,7 +202,7 @@ namespace HRA4.Web.Controllers
 
 
 
-        public JsonResult FilteredInstitution(string name, string appdt)
+        public JsonResult FilteredInstitution(string name, string appdt, string clinicId)
         {
             
 
@@ -202,6 +216,7 @@ namespace HRA4.Web.Controllers
                 NameValueCollection searchfilter = new NameValueCollection();
                 searchfilter.Add("name", name);
                 searchfilter.Add("appdt", appdt);
+                searchfilter.Add("clinicId", clinicId);
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
                 apps_count  = apps.Count();
                 //ViewBag.AppointmentCount = apps.Count();

@@ -25,5 +25,6 @@ namespace HRA4.Services.Interfaces
         void AddTasks(int _institutionId, string unitnum, int apptid);
        
         void DeleteTasks(int _institutionId, string unitnum, int apptid);
+        List<VM.Clinic> GetClinics(int InstitutionId);
     }
 }

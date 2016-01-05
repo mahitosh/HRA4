@@ -78,37 +78,18 @@ namespace HRA4.Services
 
         }
 
-        public void GetClinic()
-        {
-
-           // List<userClinicList>
-
-            var list = GetClinics(1);
-
-            foreach (RiskApps3.Model.MetaData.Clinic c in SessionManager.Instance.ActiveUser.userClinicList)
-            {
-                /*
-                if (c.clinicID == DashboardClinicId)
-                {
-                    defaultClinic = c;
-                }
-                 */ 
-            }
-
-        }
-
+      
         public List<VM.Clinic> GetClinics(int InstitutionId)
         {
 
             List<VM.Clinic> clinics = new List<VM.Clinic>();
-            if (InstitutionId != null)
+            if (InstitutionId > 0)
             {
-
+                 SetUserSession();
                 _institutionId = InstitutionId;
-                // SetUserSession();
-                //appointments = HRACACHE.GetCache<List<VM.Appointment>>(InstitutionId);
+              
                 var list = new  RAM.ClinicList ();
-                list.user_login = _username;
+                list.user_login = SessionManager.Instance.ActiveUser.userLogin ;
                 list.BackgroundListLoad();
 
                 clinics = list.FromRClinicList();
@@ -154,13 +135,13 @@ namespace HRA4.Services
                 _institutionId = InstitutionId;
                 SetUserSession();
                 var list = new AppointmentList();
-                list.clinicId = 1;
+                if (Convert.ToString(searchfilter["clinicId"]) != null && Convert.ToString(searchfilter["clinicId"]) != "")
+                    list.clinicId = Convert.ToInt32(searchfilter["clinicId"]);
                 if (Convert.ToString(searchfilter["appdt"]) != null && Convert.ToString(searchfilter["appdt"]) != "")
                     list.Date = Convert.ToString(searchfilter["appdt"]);
                 if (Convert.ToString(searchfilter["name"]) != null && Convert.ToString(searchfilter["name"]) !="")
                 list.NameOrMrn = Convert.ToString(searchfilter["name"]);
                 list.BackgroundListLoad();
-                GetClinic();
                 foreach (RA.Appointment app in list)
                 {
                     
@@ -195,12 +176,7 @@ namespace HRA4.Services
             }
             
 
-            SessionManager.Instance.MetaData.Users.BackgroundListLoad();
-            Logger.DebugFormat("Load Users");
-            var users = SessionManager.Instance.MetaData.Users;// may cache user list.
-            Logger.DebugFormat("User count :{0}",users.Count());
-           // _user = users.FirstOrDefault(u => _username == u.GetMemberByName(_username).Name) as RAM.User;
-            SessionManager.Instance.ActiveUser = users[0] as RAM.User;// need to change this.
+          
         }
 
         public void SaveAppointments(VM.Appointment Appt, int InstitutionId)
