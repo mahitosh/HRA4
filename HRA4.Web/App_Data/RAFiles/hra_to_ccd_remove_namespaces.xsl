@@ -3,7 +3,7 @@
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="no"/>
 
   <!--Following can be overidden by transformer invocation with parameter set-->
-  <xsl:param name="localBaseUri" select="'file:/D:\Projects\Official\HRA4\Sources\HRA4\HRA4.Web\App_Data\RAFiles/'"/>
+  <xsl:param name="localBaseUri" select="'file:/./App_Data/RAFiles/'"/>
   
   <!-- keep comments -->
   <xsl:template match="comment()">

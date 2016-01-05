@@ -36,7 +36,7 @@
   </msxsl:script>
   
   <!--Following can be overidden by transformer invocation with parameter set-->
-  <xsl:param name="localBaseUri" select="'file:/C:\Program Files\riskappsv2\tools/'"/>
+  <xsl:param name="localBaseUri" select="'file:/./App_Data/RAFiles/'"/>
   
   <xsl:template match="Patient" mode="patientRole">
     <patientRole>

@@ -272,7 +272,6 @@
     <Content Include="images\refresh-grid-ico.svg" />
     <Content Include="images\risk-calc-ico.svg" />
     <Content Include="images\run-auto-doc-ico.svg" />
-    <Content Include="images\spiffygif_30x30.gif" />
     <Content Include="images\tab-refresh-ico.svg" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
