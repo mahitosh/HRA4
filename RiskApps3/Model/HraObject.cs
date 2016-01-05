@@ -758,6 +758,7 @@ namespace RiskApps3.Model
         private void RunPersist(HraModelChangedEventArgs e)
         {
             //TODO use Task Parallel Library because its *WAY* easier to get this stuff correct!!!
+
             if (!ReadOnly)
             {
                 lock (_persistThread)
@@ -802,6 +803,7 @@ namespace RiskApps3.Model
             {
                 if (HttpContext.Current != null)
                     e.Persist = false;
+
                 if (e.Persist)
                     RunPersist(e);
 

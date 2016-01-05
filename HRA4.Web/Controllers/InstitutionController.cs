@@ -101,9 +101,9 @@ namespace HRA4.Web.Controllers
                 return RedirectToAction("InstitutionDashboard");
             }
         }
+
         public FileContentResult ExportAsHL7(FormCollection frm,string mrn, int apptId, bool identified)
-        {
-            identified = Convert.ToBoolean(frm["chkDeIdentified"]);
+        {           
             VM.HraXmlFile xmlFile = _applicationContext.ServiceContext.AppointmentService.ExportAsHL7(mrn, apptId, identified);            
             byte[] fileBytes = System.IO.File.ReadAllBytes(xmlFile.FilePath);
             string fileName = string.Format("{0}{1}", xmlFile.FileName, xmlFile.Estension);

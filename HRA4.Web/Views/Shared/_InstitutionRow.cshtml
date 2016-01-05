@@ -16,17 +16,17 @@
             @Html.HiddenFor(item => item.MRN)
             <a href="#"><img src="~/images/new-doc-ico.svg" alt="New Document" width="30" height="30" title="New Document" /> New Document</a>
             <a href="#"><img src="~/images/edit-survey-ico.svg" alt="Edit Survey" width="30" height="30" title="Edit Survey" /> Edit Survey</a>
-            <a href="#"><img src="~/images/risk-calc-ico.svg" alt="Risk Calculation" width="30" height="30" title="Risk Calculation" /> Risk Calculation</a>
+            <a href="#"><img src="~/images/risk-calc-ico.svg" alt="Risk Calculation" width="30" height="30"  title="Risk Calculation" /> Risk Calculation</a>
             @{
         string strMrn = Model.MRN;
         int apptId = Model.Id;
             }
-            <a href="@Url.Action("ExportAsHL7", "Institution", new { mrn = strMrn, apptId = apptId, identified=true }, null)" target="_blank">
+            <a href="@Url.Action("ExportAsHL7", "Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)" target="_blank">
                 <img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" />Import or Export    
             </a>
             @*<a href="#"><img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" /> Import &frasl;Export</a>*@
             <a href="#"><img src="~/images/run-auto-doc-ico.svg" alt="Run automation documents" width="30" height="30" title="Run automation documents" />Run Automation Documents</a>
-            <a href="#"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment</a>
+            <a href="#"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Delete Appointment" /> Delete Appointment</a>
         </div>
         <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
         <div>@Html.CheckBoxFor(item => item.MarkAsComplete) Survey Complete</div>

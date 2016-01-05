@@ -69,7 +69,7 @@ namespace HRA4.Services
             bool _DNCStatus = false;
 
 
-            if (GetTasks(InstitutionId,unitnum).Count > 0)
+            if (GetTasks(InstitutionId, unitnum).Count > 0)
             {
                 _DNCStatus = true;
             }
@@ -83,19 +83,19 @@ namespace HRA4.Services
         {
             Logger.DebugFormat("Institution Id: {0}", InstitutionId);
             List<VM.Appointment> appointments = new List<VM.Appointment>();
-            if(InstitutionId != null)
+            if (InstitutionId != null)
             {
 
                 _institutionId = InstitutionId;
-               // SetUserSession();
+                // SetUserSession();
                 //appointments = HRACACHE.GetCache<List<VM.Appointment>>(InstitutionId);
                 var list = new AppointmentList();
-                 
+
                 list.clinicId = 1;
                 list.Date = DateTime.Now.ToString("MM/dd/yyyy");
                 list.BackgroundListLoad();
-               
-                 appointments = list.FromRAppointmentList();
+
+                appointments = list.FromRAppointmentList();
                 return appointments;
             }
             return new List<VM.Appointment>();
@@ -114,17 +114,17 @@ namespace HRA4.Services
                 list.clinicId = 1;
                 if (Convert.ToString(searchfilter["appdt"]) != null && Convert.ToString(searchfilter["appdt"]) != "")
                     list.Date = Convert.ToString(searchfilter["appdt"]);
-                if (Convert.ToString(searchfilter["name"]) != null && Convert.ToString(searchfilter["name"]) !="")
-                list.NameOrMrn = Convert.ToString(searchfilter["name"]);
+                if (Convert.ToString(searchfilter["name"]) != null && Convert.ToString(searchfilter["name"]) != "")
+                    list.NameOrMrn = Convert.ToString(searchfilter["name"]);
                 list.BackgroundListLoad();
 
                 foreach (RA.Appointment app in list)
                 {
-                    
-                    bool _DNCStatus = GetDNCStatus(InstitutionId,app.unitnum);
+
+                    bool _DNCStatus = GetDNCStatus(InstitutionId, app.unitnum);
                     appointments.Add(app.FromRAppointment(_DNCStatus));
 
-            }
+                }
 
                 return appointments;
 
@@ -141,23 +141,16 @@ namespace HRA4.Services
             if (HttpContext.Current.Session != null && HttpContext.Current.Session["InstitutionId"] != null)
             {
                 _institutionId = Convert.ToInt32(HttpContext.Current.Session["InstitutionId"]);
-            
-            Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
-           
-            string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
-            
-            string configuration = Helpers.GetInstitutionConfiguration(configTemplate, inst.DbName);
+
+                Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
+
+                string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
+
+                string configuration = Helpers.GetInstitutionConfiguration(configTemplate, inst.DbName);
                 _hraSessionManager = new HraSessionManager(_institutionId.ToString(), configuration);
                 _hraSessionManager.SetRaActiveUser(_username);
             }
-            
 
-            SessionManager.Instance.MetaData.Users.BackgroundListLoad();
-            Logger.DebugFormat("Load Users");
-            var users = SessionManager.Instance.MetaData.Users;// may cache user list.
-            Logger.DebugFormat("User count :{0}",users.Count());
-           // _user = users.FirstOrDefault(u => _username == u.GetMemberByName(_username).Name) as RAM.User;
-            SessionManager.Instance.ActiveUser = users[0] as RAM.User;// need to change this.
         }
 
         public void SaveAppointments(VM.Appointment Appt, int InstitutionId)
@@ -166,15 +159,15 @@ namespace HRA4.Services
             UpdateMarkAsComplete(Appt, InstitutionId);
 
         }
-         
+
         private void UpdateMarkAsComplete(VM.Appointment Appt, int InstitutionId)
         {
-           
+
             NameValueCollection searchfilter = new NameValueCollection();
-            searchfilter.Add("name",Appt.MRN);
-            searchfilter.Add("appdt",null);
+            searchfilter.Add("name", Appt.MRN);
+            searchfilter.Add("appdt", null);
             List<VM.Appointment> filteredlist = GetAppointments(InstitutionId, searchfilter);
-          //  List<VM.Appointment> filteredlist = SearchOnAppointment(apptlist, Constants.MRN, Appt.MRN);
+            //  List<VM.Appointment> filteredlist = SearchOnAppointment(apptlist, Constants.MRN, Appt.MRN);
 
             foreach (var item in filteredlist)
             {
@@ -194,7 +187,7 @@ namespace HRA4.Services
 
         #region HL7
         /// <summary>
-        /// 
+        /// Export patient details as xml.
         /// </summary>
         /// <param name="mrn">MRN for a patient</param>
         /// <param name="apptId">Appointment Id of the selected appointment</param>
@@ -231,7 +224,7 @@ namespace HRA4.Services
             xmlFile.Estension = ".xml";
             return xmlFile;
         }
-                
+
         public void ImportHL7(VM.HraXmlFile xmlFile, string mrn, int apptId)
         {
             Appointment.DeleteApptData(apptId, true);
@@ -245,12 +238,12 @@ namespace HRA4.Services
             {
                 //transform it
                 XmlDocument inDOM = new XmlDocument();
-                inDOM.LoadXml(hl7);               
+                inDOM.LoadXml(hl7);
                 XmlDocument result_SG_XmlDoc = TransformUtils.performTransform(inDOM, rootPath, @"sg_to_hl7.xsl");
                 hl7 = result_SG_XmlDoc.InnerXml;
             }
             Patient p = Patient.processHL7Import(apptId, hl7, riskMeanings, HL7Relationships);
-            
+
             if (string.IsNullOrEmpty(p.name))
             {
                 SessionManager.Instance.SetActivePatient(mrn, apptId);
@@ -277,7 +270,7 @@ namespace HRA4.Services
 
         #endregion
 
-        #region XML       
+        #region XML
 
         public VM.HraXmlFile ExportAsXml(string mrn, int apptId, bool Identified)
         {
@@ -301,20 +294,20 @@ namespace HRA4.Services
                 stm.Position = 0;
                 stm.Close();
             }
+            else
+            {
+                string fhAsString = TransformUtils.DataContractSerializeObject<FamilyHistory>(theFH);
 
-            string fhAsString = TransformUtils.DataContractSerializeObject<FamilyHistory>(theFH);
+                //transform it
+                XmlDocument inDOM = new XmlDocument();
+                inDOM.LoadXml(fhAsString);
 
-            //transform it
-            XmlDocument inDOM = new XmlDocument();
-            inDOM.LoadXml(fhAsString);
+                XmlDocument resultXmlDoc = TransformUtils.performTransform(inDOM, rootPath, @"hraDeIdentifySerialized.xsl");
 
-
-            XmlDocument resultXmlDoc = TransformUtils.performTransform(inDOM, rootPath, @"hraDeIdentifySerialized.xsl");
-
-            //following actually removes all indentation and extra whitespace; prefer to save the file with indentations, so leave this commented
-            //hl7FHData.PreserveWhitespace = true;
-            resultXmlDoc.Save(fileName);
-
+                //following actually removes all indentation and extra whitespace; prefer to save the file with indentations, so leave this commented
+                //hl7FHData.PreserveWhitespace = true;
+                resultXmlDoc.Save(filePath);
+            }
             VM.HraXmlFile xmlFile = new VM.HraXmlFile()
             {
                 FileName = fileName,
@@ -379,21 +372,13 @@ namespace HRA4.Services
 
             fs.Close();
 
-           
+
         }
         #endregion
 
         public void DeleteTasks(int _institutionId, string unitnum, int apptid)
         {
-            Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
-
-            string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
-
-            string configuration = Helpers.GetInstitutionConfiguration(configTemplate, inst.DbName);
-
-            HttpRuntime.Cache[_institutionId.ToString()] = configuration;
-
-
+            SetUserSession();
             string assignedBy = "";
             if (SessionManager.Instance.ActiveUser != null)
             {
@@ -437,14 +422,7 @@ namespace HRA4.Services
         public void AddTasks(int _institutionId, string unitnum, int apptid)
         {
 
-
-            Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
-
-            string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
-
-            string configuration = Helpers.GetInstitutionConfiguration(configTemplate, inst.DbName);
-
-            HttpRuntime.Cache[_institutionId.ToString()] = configuration;
+            SetUserSession();
 
             /* code written by nilesh  */
             string assignedBy = "";
