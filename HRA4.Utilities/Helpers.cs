@@ -13,7 +13,7 @@ namespace HRA4.Utilities
     {
         private static readonly ILog Logger = LogManager.GetLogger(typeof(Helpers));
         public static void CreateInstitutionDb(string conn, string dbscript)
-        {
+        {            
             Logger.DebugFormat("CreateInstitutionDb: Start");
             string[] result = ParseSqlStatementBatch(dbscript);
 
@@ -26,7 +26,7 @@ namespace HRA4.Utilities
                     try
                     {
                         if (myConn.State == ConnectionState.Closed)
-                        {                             
+                        {
                             myConn.Open();
                         }
 
@@ -38,7 +38,7 @@ namespace HRA4.Utilities
                     {
                         Logger.Error(ex);
                     }
-                }
+                    }
 
                 myConn.Close();
                 myConn.Dispose();
@@ -75,7 +75,7 @@ namespace HRA4.Utilities
             instConfiguration = instConfiguration.Replace("[PWD]", ConfigurationSettings.InstitutionPassword);
             return instConfiguration;
         }
-        
+
         
 
     }

@@ -8,6 +8,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+//using HRA4.Repositories.Interfaces;
+using HRA4.Utilities;
+
 using VM = HRA4.ViewModels;
 namespace HRA4.Web.Controllers
 {
@@ -34,6 +37,7 @@ namespace HRA4.Web.Controllers
                 apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2, searchfilter);
                 ViewBag.AppointmentCount = apps.Count();
                 return View(apps);
+                
             }
             return RedirectToAction("ManageInstitution", "Admin");
 
@@ -66,7 +70,7 @@ namespace HRA4.Web.Controllers
             {
                 ViewBag.Message = "Upload failed";
                 return RedirectToAction("InstitutionDashboard");
-            }
+        }
         }
 
         [HttpPost]
@@ -127,19 +131,82 @@ namespace HRA4.Web.Controllers
             return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
         }
 
-        public JsonResult FilteredInstitution(string name, string appdt)
+
+
+
+        public JsonResult AddRemoveTask(string name, string appdt, string isDNC, string unitnum, string apptid)
         {
 
+
+
             string view = string.Empty;
+
+
             if (Session != null && Session["InstitutionId"] != null)
             {
                 int instId = (int)Session["InstitutionId"];
+
+
+                if (isDNC.Trim().Length > 0)
+                {
+
+                    if (isDNC.Trim().ToLower() == "True".ToLower())
+                    {
+
+                        _applicationContext.ServiceContext.AppointmentService.DeleteTasks(instId, unitnum, Convert.ToInt32(apptid));
+                    }
+                    else
+                    {
+
+                        _applicationContext.ServiceContext.AppointmentService.AddTasks(instId, unitnum, Convert.ToInt32(apptid));
+
+
+                    }
+
+
+                }
+
+
                 NameValueCollection searchfilter = new NameValueCollection();
                 searchfilter.Add("name", name);
                 searchfilter.Add("appdt", appdt);
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
                 ViewBag.AppointmentCount = apps.Count();
                 view = RenderPartialView("_InstitutionGrid", apps);
+
+
+
+            }
+            var result = new { view = view };
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+
+
+        
+        }
+
+
+
+
+        public JsonResult FilteredInstitution(string name, string appdt)
+        {
+            
+
+            string view = string.Empty;
+
+        
+            if (Session != null && Session["InstitutionId"] != null)
+            {
+                int instId = (int)Session["InstitutionId"];
+
+                NameValueCollection searchfilter = new NameValueCollection();
+                searchfilter.Add("name", name);
+                searchfilter.Add("appdt", appdt);
+                var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
+                ViewBag.AppointmentCount = apps.Count();
+                view = RenderPartialView("_InstitutionGrid", apps);
+
+
 
             }
             var result = new { view = view };

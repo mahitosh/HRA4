@@ -22,5 +22,8 @@ namespace HRA4.Services.Interfaces
         void ImportXml(VM.HraXmlFile xmlFIle, string mrn,int apptId);
         void ImportHL7(VM.HraXmlFile xmlFIle, string mrn, int apptId);
 
+        void AddTasks(int _institutionId, string unitnum, int apptid);
+       
+        void DeleteTasks(int _institutionId, string unitnum, int apptid);
     }
 }

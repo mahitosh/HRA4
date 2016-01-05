@@ -45,7 +45,7 @@
     </thead>
     <tbody>
         @foreach (var item in Model)
-        {           
+        {
             <tr>
                 <td>
                     @{
@@ -83,8 +83,27 @@
                     @Html.DisplayFor(modelItem => item.Survey)
                 </td>
                 <td>
+
                     @*@Html.DisplayFor(modelItem => item.DoNotCall)*@
-                    <img src="~/images/DNC-Y-ico.svg" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." />
+
+                    @{ 
+                        var url = "";
+                        if (item.DoNotCall == true)
+                            
+                       {
+
+                           url = Url.Content("~/images/DNC-N-ico.svg");
+
+                       }
+                       else
+                       {
+                           url = Url.Content("~/images/DNC-Y-ico.svg");
+                       
+                       }
+                       
+                            }
+                    <div style="display:none" >@item.DoNotCall</div> 
+                    <img src="@url" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." onclick="AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()');" />
                 </td>
                 <td>
                     <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
@@ -98,20 +117,23 @@
                 </td>
             </tr>
         }
-        
+
     </tbody>
 </table><!--schedule list end here-->
 <script type="text/javascript">
 
     $(document).ready(function () {
+        $(".editmenu").hide();
         $("#myTable").tablesorter();
     });
-
+    $(".btnClear").click(function () {
+        $(".editmenu").slideUp(100);
+    });
     function ShowEdit(obj)
     {
         //alert(obj.id + "-b");
         var trid = "#"+obj.id + "-b";
         $(trid).slideDown(100);
-       
+
     }
 </script>

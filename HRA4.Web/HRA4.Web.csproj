@@ -69,6 +69,7 @@
     <Reference Include="System.Web.Extensions">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -76,6 +77,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.5.0.27760, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\RiskApps3\ReferenceAssemblies\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -103,12 +108,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\HRATenantDBCreation.sql" />
+    <Content Include="App_Data\RAFiles\ApptTransform.xsl" />
+    <Content Include="App_Data\RAFiles\document_sections.xml" />
+    <Content Include="App_Data\RAFiles\GeneCodes.xml" />
+    <Content Include="App_Data\RAFiles\HL7Relationships.xml" />
     <Content Include="App_Data\RAFiles\hraDeIdentifySerialized.xsl" />
+    <Content Include="App_Data\RAFiles\hraGetGail.xsl" />
+    <Content Include="App_Data\RAFiles\hraMap.xsl" />
     <Content Include="App_Data\RAFiles\hra_serialized_to_hl7.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd2.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd_remove_namespaces.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_hl7.xsl" />
+    <Content Include="App_Data\RAFiles\import.xml" />
+    <Content Include="App_Data\RAFiles\MedsImport.xsl" />
+    <Content Include="App_Data\RAFiles\Microsoft.TabletPC.Samples.InkSecureSignature.xml" />
+    <Content Include="App_Data\RAFiles\PcpImport.xsl" />
+    <Content Include="App_Data\RAFiles\ProblemsImport.xsl" />
+    <Content Include="App_Data\RAFiles\progenyTemplate.xml" />
+    <Content Include="App_Data\RAFiles\removeNamespaces.xsl" />
+    <Content Include="App_Data\RAFiles\riskMeanings.xml" />
+    <Content Include="App_Data\RAFiles\sg_to_hl7.xsl" />
     <Content Include="assets\brand\bootstrap-outline.svg" />
     <Content Include="assets\brand\bootstrap-punchout.svg" />
     <Content Include="assets\brand\bootstrap-solid.svg" />
@@ -218,6 +238,9 @@
     <Content Include="css\font-awesome-4.5.0\scss\_rotated-flipped.scss" />
     <Content Include="css\font-awesome-4.5.0\scss\_stacked.scss" />
     <Content Include="css\font-awesome-4.5.0\scss\_variables.scss" />
+    <None Include="App_Data\RAFiles\user.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="images\add-clinic-ico.svg" />
     <Content Include="images\admin-tool-ico.svg" />

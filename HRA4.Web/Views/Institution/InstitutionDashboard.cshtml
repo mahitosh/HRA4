@@ -60,12 +60,12 @@ else
                     <input class="form-control" id="name" name="name" type="text" placeholder="First/Last Name" />
                     </div>
                 </div>
-                         
-                <div class="col-md-2 col-sm-3 Padding-T-28">
+
+            <div class="col-md-2 col-sm-3 Padding-T-28">
                     <input id="chkbox" type="checkbox" checked="checked" />
                     <div id="app-date" class="inner-addon right-addon">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" />
+                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" />
                     </div>
                 </div>
 
@@ -134,7 +134,7 @@ else
 
 <script type="text/javascript">
     $(document).ready(function () {
-
+       
         $('#chkbox').change(function () {
             if ($(this).is(":checked")) {
                 var today = new Date();
@@ -159,15 +159,29 @@ else
                 $("#appt-date").val('');
                
             }
-           search();
+            SearchAppointment();
 
         });
 
         $("#btnsearch").click(function (data) {
-            search();
+            SearchAppointment();
         });
 
-        function search() {
+          
+       
+
+
+        
+       
+
+
+
+
+    });
+
+
+    function SearchAppointment() {
+
             var name = $('#name').val();
             var appdt = $('#appt-date').val();
 
@@ -175,15 +189,42 @@ else
 
             $.ajax({
                 type: "POST",
-                url: globalGetJSONPath,
-                data: { name: name, appdt: appdt },
+            url: globalGetJSONPath,
+            data: { name: name , appdt: appdt},
                 dataType: "json",
+            async: true,
                 success: function (Data) {
                     $('#divInstitutionGrid').html(Data.view);
                 }
 
             })
 
-        };
-    });
+        }
+   
+
+
+    function AddRemoveTask(isDNC, unitnum, apptid) {
+
+        var name = $('#name').val();
+      
+        var appdt = $('#appt-date').val();
+
+
+        var globalGetJSONPath = '@Url.Action("AddRemoveTask", "Institution")';
+
+        $.ajax({
+            type: "POST",
+            url: globalGetJSONPath,
+            data: { name: name,appdt: appdt, isDNC: isDNC, unitnum: unitnum, apptid: apptid },
+            dataType: "json",
+            async: true,
+            success: function (Data) {
+                $('#divInstitutionGrid').html(Data.view);
+            }
+
+        })
+
+
+    }
+
 </script>

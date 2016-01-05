@@ -4,13 +4,13 @@
 }
 @*<link href="~/css/tablesorter.css" rel="stylesheet" />*@
 
-<div class="quick-add-inner-div">
-    @using (Ajax.BeginForm("InstitutionDashboard", "Institution", new { @model = Model }, new AjaxOptions
+    <div class="quick-add-inner-div">
+@using (Ajax.BeginForm("InstitutionDashboard", "Institution", new { @model = Model }, new AjaxOptions
             {
                 HttpMethod = "POST"
 
             }))
-    {
+{
         <div class="col-sm-12 quick-add-links">
             @Html.HiddenFor(item => item.Id)
             @Html.HiddenFor(item => item.MRN)
@@ -31,9 +31,9 @@
         <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
         <div>@Html.CheckBoxFor(item => item.MarkAsComplete) Survey Complete</div>
         <button id="btnSaveQuick" type="submit">Save</button>
-    }
-    <button class="btnClear" id="btnClearQuick">Cancel</button>
-</div>
+}
+        <button class="btnClear" id="btnClearQuick">Cancel</button>
+    </div>
 
 @using (Html.BeginForm("ImportAsHL7", "Institution", new { mrn = Model.MRN,apptId = Model.Id,deIdentified = true}, FormMethod.Post, new { enctype = "multipart/form-data" }))
 { 
@@ -57,6 +57,6 @@
     </fieldset>
 }
 
-
+   
 
 

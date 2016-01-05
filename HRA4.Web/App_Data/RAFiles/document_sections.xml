@@ -1,0 +1,25 @@
+<document_schema>
+
+  <Surgical_Clinic_Impression_Note>
+
+    <add key="FileSuffix" value="_Surgical Clinic Impression Note.doc"/>
+    <add key="CHIEF COMPLAINT" value="CHIEF COMPLAINT"/>
+    <add key="HISTORY OF PRESENT ILLNESS" value="HISTORY OF PRESENT ILLNESS"/>
+    <add key="PAST MEDICAL HISTORY" value="PAST MEDICAL HISTORY"/>
+    <add key="SOCIAL HISTORY" value="SOCIAL HISTORY"/>
+    <add key="CHILDBIRTH HISTORY" value="CHILDBIRTH HISTORY"/>
+    <add key="FAMILY HISTORY" value="FAMILY HISTORY"/>
+    <add key="RISK CALCULATIONS" value="RISK CALCULATIONS"/>
+    <add key="REVIEW OF SYSTEMS" value="REVIEW OF SYSTEMS"/>
+    <add key="MEDICATIONS" value="MEDICATIONS"/>
+    <add key="ALLERGIES" value="ALLERGIES"/>
+    <add key="PROCEDURES" value="PROCEDURES"/>
+    <add key="CANCER SUMMARY" value="CANCER SUMMARY"/>
+    <add key="PHYSICAL EXAMINATION" value="PHYSICAL EXAMINATION"/>
+    <add key="IMPRESSIONS" value="IMPRESSIONS"/>
+    <add key="ORDERS" value="ORDERS"/>
+
+  </Surgical_Clinic_Impression_Note>
+
+</document_schema>
+
