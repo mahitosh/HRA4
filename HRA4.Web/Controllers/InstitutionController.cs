@@ -40,6 +40,13 @@ namespace HRA4.Web.Controllers
                 searchfilter.Add("clinicId", "-1");
                 apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2, searchfilter);
                 ViewBag.AppointmentCount = apps.Count();
+                ViewBag.RecordStatus = "";
+                ViewBag.TodaysDate = DateTime.Now.ToString("MM/dd/yyyy");
+                if(apps.Count==0)
+                {
+                    ViewBag.RecordStatus = "No records found.";
+                }
+                
                 /*=======Start Load Clinic Dropdown======================*/
                 var _ClinicList = _applicationContext.ServiceContext.AppointmentService.GetClinics((int)Session["InstitutionId"]);
                 ViewBag.ClinicList = new SelectList(_ClinicList.ToList(),"clinicID","clinicName");
@@ -225,7 +232,7 @@ namespace HRA4.Web.Controllers
 
 
             }
-            var result = new { view = view, apps_count = apps_count };
+            var result = new { view = view, apps_count = apps_count, todaysDate = DateTime.Now.ToString("MM/dd/yyyy") };
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
