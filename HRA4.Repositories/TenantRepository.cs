@@ -30,5 +30,10 @@ namespace HRA4.Repositories
         {
             return dbContext.TenantMaster.All();
         }
+        public int UpdateTenant(Entities.Institution tenant)
+        {
+            return dbContext.TenantMaster.Update(tenant);
+        }
+
     }
 }
