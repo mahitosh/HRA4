@@ -77,11 +77,22 @@ namespace HRA4.Web.Controllers
 
         public ActionResult ManageInstitution()
         {
-
+            ViewBag.SearchText = "";
             var instituionList = _applicationContext.ServiceContext.AdminService.GetTenants();
 
             return View(instituionList);
         }
+
+        public ActionResult SearchInstitution(string Institution)
+        {
+            ViewBag.SearchText = Institution;
+            var instituionList = _applicationContext.ServiceContext.AdminService.GetTenants();
+            instituionList = instituionList.Where(a=> a.InstitutionName.ToString().Contains(Institution.Trim())).ToList();
+            return View("ManageInstitution", instituionList);
+
+        }
+
+
 
         public ActionResult AddInstitution()
         {

@@ -34,8 +34,9 @@ else { }
         <div class="row">
             <div class="col-md-3 col-sm-4 pull-right">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Search Institution">
-                    <span class="input-group-addon search-ico-bg"><span class="glyphicon glyphicon-search"></span></span>
+                    @Html.TextBox("inputGroupSuccess1", (string)ViewBag.SearchText, new{ @class="form-control" , placeholder="Search Institution" })
+                    @*<input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Search Institution">*@
+                    <span class="input-group-addon search-ico-bg" onclick="location.href = '@Url.Action("SearchInstitution")?Institution=' + $('#inputGroupSuccess1').val()"><span class="glyphicon glyphicon-search"></span></span>
                 </div><!--input group end here-->
             </div>
         </div><!--row end-->
@@ -57,12 +58,12 @@ else { }
                     <ul class="dropdown-menu">
                         <li>
                             <label>Add Institution</label><br />
-                            <input class="form-control" id="txtInstitution" name="add-institution" type="text" placeholder="Enter Institution" />
+                            <input class="form-control" id="txtInstitution" name="add-institution" type="text" placeholder="Enter Institution"  />
                             <button class="btn btn-default add-btn Margin-T-10 pull-right" id="btnAdd" type="button">Add</button>
                         </li>
                     </ul>
                 </div>
-                <a href="#" class="pull-right"><img src="~/images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh institution list</a>
+                <a href="#" class="pull-right" onclick="location.href = '@Url.Action("SearchInstitution")?Institution=' + $('#inputGroupSuccess1').val()"><img src="~/images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh institution list</a>
 
 
             </div>
