@@ -32,7 +32,16 @@ namespace HRA4.Web.Controllers
             }
             if (InstitutionId != null && InstitutionId > 0)
             {
-                Session.Add("InstitutionId", InstitutionId);
+                if (Session["InstitutionId"] == null || Session["InstitutionId"].ToString() != InstitutionId.ToString())
+                {
+                    Session.Add("InstitutionId", InstitutionId);
+                    //ReInitializing Application Context with Institution Details.
+                    System.Web.HttpContext.Current.Session["ApplicationContext"] = null;
+                    _applicationContext = new ApplicationContext();
+                    System.Web.HttpContext.Current.Session["ApplicationContext"] = _applicationContext;
+                    
+                }
+                
                 int v2 = InstitutionId ?? default(int);
                 NameValueCollection searchfilter = new NameValueCollection();
                 searchfilter.Add("name", null);
@@ -65,14 +74,14 @@ namespace HRA4.Web.Controllers
                 if (file.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/App_Data/RAFiles/Upload"), fileName);
+                    var path = Path.Combine(Server.MapPath(Constants.RAFilePath),"Upload", fileName);
                     file.SaveAs(path);
                     VM.HraXmlFile xmlFile = new VM.HraXmlFile()
                     {
                         FileName = fileName,
                         FilePath = path,
                     };
-                    _applicationContext.ServiceContext.AppointmentService.ImportXml(xmlFile, mrn, apptId);
+                    _applicationContext.ServiceContext.ExportImportService.ImportXml(xmlFile, mrn, apptId);
                 }
                 ViewBag.Message = "Upload successful";
 
@@ -94,14 +103,14 @@ namespace HRA4.Web.Controllers
                 if (file.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/App_Data/RAFiles/Upload"), fileName);
+                    var path = Path.Combine(Server.MapPath(Constants.RAFilePath), "Upload", fileName);
                     file.SaveAs(path);
                     VM.HraXmlFile xmlFile = new VM.HraXmlFile()
                     {
                         FileName = fileName,
                         FilePath = path,                        
                     };
-                    _applicationContext.ServiceContext.AppointmentService.ImportHL7(xmlFile, mrn, apptId);
+                    _applicationContext.ServiceContext.ExportImportService.ImportHL7(xmlFile, mrn, apptId);
                 }
                 ViewBag.Message = "Upload successful";
                
@@ -117,7 +126,7 @@ namespace HRA4.Web.Controllers
 
         public FileContentResult ExportAsHL7(FormCollection frm,string mrn, int apptId, bool identified)
         {           
-            VM.HraXmlFile xmlFile = _applicationContext.ServiceContext.AppointmentService.ExportAsHL7(mrn, apptId, identified);            
+            VM.HraXmlFile xmlFile = _applicationContext.ServiceContext.ExportImportService.ExportAsHL7(mrn, apptId, identified);            
             byte[] fileBytes = System.IO.File.ReadAllBytes(xmlFile.FilePath);
             string fileName = string.Format("{0}{1}", xmlFile.FileName, xmlFile.Estension);
             return File(fileBytes, "text/xml, application/xml", fileName);
@@ -125,7 +134,7 @@ namespace HRA4.Web.Controllers
 
         public FileContentResult ExportAsXml(FormCollection frm,string mrn, int apptId, bool identified)
         {
-            VM.HraXmlFile xmlFile = _applicationContext.ServiceContext.AppointmentService.ExportAsXml(mrn, apptId, identified);
+            VM.HraXmlFile xmlFile = _applicationContext.ServiceContext.ExportImportService.ExportAsXml(mrn, apptId, identified);
 
             byte[] fileBytes = System.IO.File.ReadAllBytes(xmlFile.FilePath);
             string fileName = string.Format("{0}{1}", xmlFile.FileName, xmlFile.Estension);
@@ -150,8 +159,6 @@ namespace HRA4.Web.Controllers
         public JsonResult AddRemoveTask(string name, string appdt, string isDNC, string unitnum, string apptid, string clinicId)
         {
 
-
-
             string view = string.Empty;
             int apps_count = 0;
 
@@ -165,17 +172,12 @@ namespace HRA4.Web.Controllers
 
                     if (isDNC.Trim().ToLower() == "True".ToLower())
                     {
-
                         _applicationContext.ServiceContext.AppointmentService.DeleteTasks(instId, unitnum, Convert.ToInt32(apptid));
                     }
                     else
                     {
-
                         _applicationContext.ServiceContext.AppointmentService.AddTasks(instId, unitnum, Convert.ToInt32(apptid));
-
-
                     }
-
 
                 }
 
@@ -188,23 +190,17 @@ namespace HRA4.Web.Controllers
                 apps_count = apps.Count();
                 view = RenderPartialView("_InstitutionGrid", apps);
 
-
-
             }
             var result = new { view = view, apps_count = apps_count };
             return Json(result, JsonRequestBehavior.AllowGet);
 
-
-
-        
         }
 
 
 
 
         public JsonResult FilteredInstitution(string name, string appdt, string clinicId)
-        {
-            
+        {            
 
             string view = string.Empty;
             int apps_count=0;

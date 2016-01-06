@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using RiskApps3.Model.MetaData;
 using HRA4.Repositories;
 using HRA4.Repositories.Interfaces;
+
 namespace HRA4.Services
 {
     public class ServiceContext : IServiceContext
@@ -14,7 +15,7 @@ namespace HRA4.Services
         string _username;
 
         Repositories.Interfaces.IRepositoryFactory _repositoryFactory;
-
+        Interfaces.IHraSessionManager _hraSessionManager;
         public ServiceContext(IRepositoryFactory repositoryFactory)
         {
             this._repositoryFactory = repositoryFactory;
@@ -23,6 +24,7 @@ namespace HRA4.Services
         public ServiceContext(IRepositoryFactory repositoryFactory, string user)
         {
             this._repositoryFactory = repositoryFactory;
+            _hraSessionManager = new HraSessionManager(_repositoryFactory, user);
             this._username = user;
         }
 
@@ -30,9 +32,10 @@ namespace HRA4.Services
         {
             this._username = user;
         }
+
         public IAppointmentService AppointmentService
         {
-            get { return new AppointmentService(_repositoryFactory,this._username); }
+            get { return new AppointmentService(_repositoryFactory, _hraSessionManager); }
         }
 
         public IUserService UserService
@@ -44,6 +47,12 @@ namespace HRA4.Services
         public IAdminService AdminService
         {
             get { return new AdminService(_repositoryFactory); }
+        }
+
+
+        public IExportImportService ExportImportService
+        {
+            get { return new ExportImportService(_repositoryFactory, _hraSessionManager); }
         }
     }
 }

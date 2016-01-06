@@ -27,27 +27,10 @@ namespace HRA4.Context
         /// </summary>
         public ApplicationContext()
         {            
-            InitializeCommonDbContext();
-          //  InitRiskAppContext();
+            InitializeCommonDbContext();           
             InitializeServices();        
             
         }
-
-        private void InitRiskAppContext()
-        {
-            if (HttpContext.Current.Session != null && HttpContext.Current.Session["InstitutionId"] != null)
-            {
-                int id = Convert.ToInt32(HttpContext.Current.Session["InstitutionId"]);
-                Institution tenant = _repository.TenantRepository.GetTenantById(id);
-                if (tenant != null)
-                {
-                    HttpContext.Current.Session["InstitutionId"] = tenant.Id.ToString();
-                    HttpRuntime.Cache[tenant.Id.ToString()] = "";// change the way configuration file gets loaded. This should be per instituion.                   
-                }
-            }
-
-        }
-
 
 
         public IServiceContext ServiceContext
@@ -78,20 +61,12 @@ namespace HRA4.Context
 
         private void InitializeServices()
         {
-            _username = HttpContext.Current.User.Identity.Name;
-            //_username = "sadmin";
+            _username = HttpContext.Current.User.Identity.Name;           
             _service = new ServiceContext(_repository,_username);            
           
         }
 
-        //public IServiceContext Services
-        //{
-        //    get
-        //    {
-        //        InitializeServices();
-        //        return new Service.ServiceContext(_user);
-        //    }
-        //}
+        
 
         
     }
