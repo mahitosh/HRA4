@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\config.xml" />
     <Content Include="App_Data\HRATenantDBCreation.sql" />
     <Content Include="App_Data\RAFiles\ApptTransform.xsl" />
     <Content Include="App_Data\RAFiles\document_sections.xml" />

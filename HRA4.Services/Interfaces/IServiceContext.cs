@@ -11,6 +11,7 @@ namespace HRA4.Services.Interfaces
         IAppointmentService AppointmentService { get; }
         IUserService UserService { get; }
         IAdminService AdminService { get; }
+        IExportImportService ExportImportService { get; }
 
     }
 }
