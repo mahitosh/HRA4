@@ -33,6 +33,12 @@ namespace HRA4.Web.Controllers
                 {
                     result = _applicationContext.ServiceContext.AdminService.Login(user.Username, user.Password);
                     Session["Username"] = _applicationContext.ServiceContext.AdminService.GetUserName();
+                    if ( user.Username == null || user.Password == null)
+                    {
+                        ModelState.AddModelError("", "Please enter Username / Password !");
+                        ViewBag.msg = "Error";
+                        return View();
+                    }
                     if (result)
                     {
                         System.Web.HttpContext.Current.Session["ApplicationContext"] = null;
@@ -47,7 +53,7 @@ namespace HRA4.Web.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Invalid login Attempt !");
+                        ModelState.AddModelError("", "Invalid Username / Password !");
                         ViewBag.msg = "Error";
                         return View();
                     }
@@ -78,18 +84,36 @@ namespace HRA4.Web.Controllers
         public ActionResult ManageInstitution()
         {
             ViewBag.SearchText = "";
-            var instituionList = _applicationContext.ServiceContext.AdminService.GetTenants();
-
+            var instituionList = _applicationContext.ServiceContext.AdminService.GetTenants().Where(a => a.IsActive == true).ToList();
+            AssignRecordStatus(instituionList);
             return View(instituionList);
+        }
+
+        public void AssignRecordStatus(List<Institution> instituionList)
+        {
+            ViewBag.RecordStatus = "";
+            if (instituionList.Count == 0)
+            {
+                ViewBag.RecordStatus = "No records found.";
+            }
+
         }
 
         public ActionResult SearchInstitution(string Institution)
         {
+           
             ViewBag.SearchText = Institution;
-            var instituionList = _applicationContext.ServiceContext.AdminService.GetTenants();
-            instituionList = instituionList.Where(a=> a.InstitutionName.ToString().Contains(Institution.Trim())).ToList();
+            var instituionList = _applicationContext.ServiceContext.AdminService.GetTenants().Where(a => a.InstitutionName.ToString().Contains(Institution.Trim()) && a.IsActive==true ).ToList();
+            AssignRecordStatus(instituionList);
             return View("ManageInstitution", instituionList);
 
+        }
+        public ActionResult DeleteInstitution(int Id)
+        {
+            //Institution institution = new Entities.Institution();
+            //List<Institution> institution = new List<Entities.Institution>();
+            _applicationContext.ServiceContext.AdminService.UpdateTenantById(Id);
+            return RedirectToAction("ManageInstitution");
         }
 
 

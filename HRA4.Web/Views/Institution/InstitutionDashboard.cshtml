@@ -15,7 +15,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="left" title="Help" id="admin-dropdown" aria-haspopup="true" aria-expanded="true">Help <img src="~/images/help-ico.svg" width="25" height="25" alt="logout" /></a>
                 <ul class="dropdown-menu help-menu col-md-2 pull-right" aria-labelledby="help-dropdown">
                     <li><a href="#"><i class="fa fa-building"></i> About Us</a></li>
-                    <li><a href="http://www.hughesriskapps.net/contactus.php" target="_blank"><i class="fa fa-map-marker"></i> Contact US</a></li>
+                    <li><a href="http://www.hughesriskapps.net/contactus.php" target="_blank"><i class="fa fa-map-marker"></i> Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -67,7 +67,7 @@ else
                         <input id="chkbox" type="checkbox" checked="checked" />
                         <div id="app-date" class="inner-addon right-addon">
                             <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                            <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" />
+                            <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" value="@ViewBag.TodaysDate" />
                         </div>
                     </div>
 
@@ -93,11 +93,11 @@ else
                             <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" onclick="SearchAppointment()" /></a>
                         </li>
                         <li>
-                            <a data-target="#LifetimeBC" data-toggle="tab">Lifetime Breast Cancer  <span class="dashboard-count">3</span></a>
+                            <a data-target="#LifetimeBC" data-toggle="tab">Lifetime Breast Cancer  <span class="dashboard-count">0</span></a>
                             <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
                         </li>
                         <li>
-                            <a data-target="#BRCA" data-toggle="tab">BRCA Mutation  <span class="dashboard-count">5</span></a>
+                            <a data-target="#BRCA" data-toggle="tab">BRCA Mutation  <span class="dashboard-count">0</span></a>
                             <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
                         </li>
                         <li class="pull-right add-appointment"><a href="#"><img src="~/images/appointment-ico.svg" alt="Refresh" width="40" height="40" /> Add Appointment</a></li>
@@ -113,6 +113,7 @@ else
                                 <div id="divInstitutionGrid">
                                     @Html.Partial("_InstitutionGrid", Model)
                                 </div>
+                                <div id="divRecordStatus" style="color:red;text-align:center">@ViewBag.RecordStatus</div>
                             </div>
                         </div><!--schedule tab end here-->
                         <div class="tab-pane" id="LifetimeBC">
@@ -154,6 +155,7 @@ else
 
         $('#chkbox').change(function () {
             if ($(this).is(":checked")) {
+                /*
                 var today = new Date();
                 var dd = today.getDate();
                 var mm = today.getMonth() + 1; //January is 0!
@@ -165,15 +167,16 @@ else
                     mm = '0' + mm
                 }
                 var today = mm + '/' + dd + '/' + yyyy;
-
+                $("#appt-date").val(today);
+                */
                 $("#appt-date").prop('readonly', false);
                 $('#appt-date').prop('disabled', false);
-                $("#appt-date").val(today);
+               
                 
             } else {
                 $("#appt-date").prop('readonly', true);
                 $('#appt-date').prop('disabled', true);
-                $("#appt-date").val('');
+               // $("#appt-date").val('');
                
             }
             SearchAppointment();
@@ -203,7 +206,7 @@ else
     function SearchAppointment() {
 
             var name = $('#name').val();
-            var appdt = $('#appt-date').val();
+            var appdt = $('#chkbox').is(":checked") ? $('#appt-date').val():"";
             var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val(): "-1" ;
          
             var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
@@ -215,15 +218,28 @@ else
                 dataType: "json",
             async: true,
             success: function (Data) {
+                    $('#divRecordStatus').html('');
                     $('#ScheduleCount').html(Data.apps_count);
                     $('#divInstitutionGrid').html(Data.view);
+                    //if ($('#chkbox').is(":checked"))
+                    //{
+                    //    alert("Hi");
+                    //    $("#appt-date").val(Data.todaysDate);
+                    //}
+                    
+                    if (parseInt(Data.apps_count, 0) == 0)
+                    {
+                        $('#divRecordStatus').html("No records found.");
+                    }
+                    
+                    
                 }
 
             })
 
         }
    
-
+    
 
     function AddRemoveTask(isDNC, unitnum, apptid) {
 
@@ -240,8 +256,12 @@ else
             dataType: "json",
             async: true,
             success: function (Data) {
+                $('#divRecordStatus').html('');
                 $('#ScheduleCount').html(Data.apps_count);
                 $('#divInstitutionGrid').html(Data.view);
+                if (parseInt(Data.apps_count, 0) == 0) {
+                    $('#divRecordStatus').html("No records found.");
+                }
             }
 
         })

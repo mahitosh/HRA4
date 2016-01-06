@@ -49,7 +49,7 @@
             <tr>
                 <td>
                     @{
-            string appdate = (item.AppointmentDate == DateTime.MinValue ? "" : item.AppointmentDate.ToString("MM/dd/yyyy hh:mm:ss"));
+            string appdate = (item.AppointmentDate == DateTime.MinValue ? "" : item.AppointmentDate.ToString("MM/dd/yyyy hh:mm:ss tt"));
                     }
                     @Html.DisplayFor(modelItem => appdate)
                 </td>
@@ -72,7 +72,7 @@
                 </td>
                 <td>
                     @{
-            string dateCompleted = (item.DateCompleted == DateTime.MinValue ? "" : item.DateCompleted.ToString("MM/dd/yyyy hh:mm:ss"));
+            string dateCompleted = (item.DateCompleted == DateTime.MinValue ? "" : item.DateCompleted.ToString("MM/dd/yyyy hh:mm:ss tt"));
                     }
                     @Html.DisplayFor(modelItem => dateCompleted)
                 </td>
@@ -106,7 +106,7 @@
                     <a href="#"> <img src="@url" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." onclick="AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()');" /> </a> 
                 </td>
                 <td>
-                    <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Run automation document" /></a>
+                    <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Risk Calculations" /></a>
                     <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Copy" /></a>
                     <a href="#" id="@item.Id" onclick="ShowEdit(this);"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>
                 </td>
