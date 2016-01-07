@@ -8,8 +8,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+//using HRA4.Repositories.Interfaces;
+using HRA4.Utilities;
 using HRA4.ViewModels;
 
+using VM = HRA4.ViewModels;
 namespace HRA4.Web.Controllers
 {
     public class InstitutionController : BaseController
@@ -21,31 +24,139 @@ namespace HRA4.Web.Controllers
             List<ViewModels.Appointment> apps = new List<ViewModels.Appointment>();
             var instList = _applicationContext.ServiceContext.AdminService.GetTenants();
             ViewBag.instListcount = instList.Count;
+         
+
+
             if (instList.Count == 0)
             {
                 return View(apps);
             }
             if (InstitutionId != null && InstitutionId > 0)
             {
+                if (Session["InstitutionId"] == null || Session["InstitutionId"].ToString() != InstitutionId.ToString())
+                {
                 Session.Add("InstitutionId", InstitutionId);
+                    //ReInitializing Application Context with Institution Details.
+                    System.Web.HttpContext.Current.Session["ApplicationContext"] = null;
+                    _applicationContext = new ApplicationContext();
+                    System.Web.HttpContext.Current.Session["ApplicationContext"] = _applicationContext;
+                    
+                }
+                
                 int v2 = InstitutionId ?? default(int);
                 NameValueCollection searchfilter = new NameValueCollection();
                 searchfilter.Add("name", null);
                 searchfilter.Add("appdt", DateTime.Now.ToString("MM/dd/yyyy"));
+                searchfilter.Add("clinicId", "-1");
                 apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(v2, searchfilter);
                 ViewBag.AppointmentCount = apps.Count();
+                ViewBag.RecordStatus = "";
+                ViewBag.TodaysDate = DateTime.Now.ToString("MM/dd/yyyy");
+                if(apps.Count==0)
+                {
+                    ViewBag.RecordStatus = "No records found.";
+                }
+                
+                /*=======Start Load Clinic Dropdown======================*/
+                var _ClinicList = _applicationContext.ServiceContext.AppointmentService.GetClinics((int)Session["InstitutionId"]);
+                ViewBag.ClinicList = new SelectList(_ClinicList.ToList(),"clinicID","clinicName");
+
+                /*=======End Load Clinic Dropdown======================*/
+
                 return View(apps);
+                
             }
+
+          
+
             return RedirectToAction("ManageInstitution", "Admin");
 
 
         }
+
         [HttpPost]
-        public ActionResult InstitutionDashboard(FormCollection frm, bool MarkAsComplete)
+        public ActionResult ImportAsXml(HttpPostedFileBase file, string mrn, int apptId, bool deIdentified)
+        {
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath(Constants.RAFilePath),"Upload", fileName);
+                    file.SaveAs(path);
+                    VM.HraXmlFile xmlFile = new VM.HraXmlFile()
+                    {
+                        FileName = fileName,
+                        FilePath = path,
+                    };
+                    _applicationContext.ServiceContext.ExportImportService.ImportXml(xmlFile, mrn, apptId);
+                }
+                ViewBag.Message = "Upload successful";
+
+
+                return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Upload failed";
+                return RedirectToAction("InstitutionDashboard");
+        }
+        }
+
+        [HttpPost]
+        public ActionResult ImportAsHL7(HttpPostedFileBase file, string mrn, int apptId, bool deIdentified)
+        {
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath(Constants.RAFilePath), "Upload", fileName);
+                    file.SaveAs(path);
+                    VM.HraXmlFile xmlFile = new VM.HraXmlFile()
+                    {
+                        FileName = fileName,
+                        FilePath = path,                        
+                    };
+                    _applicationContext.ServiceContext.ExportImportService.ImportHL7(xmlFile, mrn, apptId);
+                }
+                ViewBag.Message = "Upload successful";
+               
+
+                return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Message = "Upload failed";
+                return RedirectToAction("InstitutionDashboard");
+            }
+        }
+
+        public FileContentResult ExportAsHL7(FormCollection frm,string mrn, int apptId, bool identified)
+        {           
+            VM.HraXmlFile xmlFile = _applicationContext.ServiceContext.ExportImportService.ExportAsHL7(mrn, apptId, identified);            
+            byte[] fileBytes = System.IO.File.ReadAllBytes(xmlFile.FilePath);
+            string fileName = string.Format("{0}{1}", xmlFile.FileName, xmlFile.Estension);
+            return File(fileBytes, "text/xml, application/xml", fileName);
+        }
+
+        public FileContentResult ExportAsXml(FormCollection frm,string mrn, int apptId, bool identified)
+        {
+            VM.HraXmlFile xmlFile = _applicationContext.ServiceContext.ExportImportService.ExportAsXml(mrn, apptId, identified);
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(xmlFile.FilePath);
+            string fileName = string.Format("{0}{1}", xmlFile.FileName, xmlFile.Estension);
+
+            return File(fileBytes, "text/xml, application/xml", fileName);
+        }
+
+        [HttpPost]
+        public ActionResult InstitutionSave(FormCollection frm, bool MarkAsComplete, string ddClinic)
         {
             HRA4.ViewModels.Appointment app = new ViewModels.Appointment();
             app.Id = Convert.ToInt32(frm["Id"]);
             app.MRN = Convert.ToString(frm["MRN"]);
+            
             //app.DateOfBirth = Convert.ToDateTime(frm["dob-date"]);
             //app.PatientName = Convert.ToString(frm["PatientName"]);
             //app.Survey = Convert.ToString(frm["Survey"]);
@@ -56,22 +167,75 @@ namespace HRA4.Web.Controllers
             return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
         }
 
-        public JsonResult FilteredInstitution(string name, string appdt)
+
+
+
+        public JsonResult AddRemoveTask(string name, string appdt, string isDNC, string unitnum, string apptid, string clinicId)
         {
-            
+
             string view = string.Empty;
+            int apps_count = 0;
+
             if (Session != null && Session["InstitutionId"] != null)
             {
                 int instId = (int)Session["InstitutionId"];
+
+
+                if (isDNC.Trim().Length > 0)
+                {
+
+                    if (isDNC.Trim().ToLower() == "True".ToLower())
+                    {
+                        _applicationContext.ServiceContext.AppointmentService.DeleteTasks(instId, unitnum, Convert.ToInt32(apptid));
+                    }
+                    else
+                    {
+                        _applicationContext.ServiceContext.AppointmentService.AddTasks(instId, unitnum, Convert.ToInt32(apptid));
+                    }
+
+                }
+
+
                 NameValueCollection searchfilter = new NameValueCollection();
                 searchfilter.Add("name", name);
                 searchfilter.Add("appdt", appdt);
+                searchfilter.Add("clinicId", clinicId);
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
-                ViewBag.AppointmentCount = apps.Count();
+                apps_count = apps.Count();
                 view = RenderPartialView("_InstitutionGrid", apps);
 
             }
-            var result = new { view = view };
+            var result = new { view = view, apps_count = apps_count };
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+
+
+        public JsonResult FilteredInstitution(string name, string appdt, string clinicId)
+        {
+            
+            string view = string.Empty;
+            int apps_count=0;
+        
+            if (Session != null && Session["InstitutionId"] != null)
+            {
+                int instId = (int)Session["InstitutionId"];
+
+                NameValueCollection searchfilter = new NameValueCollection();
+                searchfilter.Add("name", name);
+                searchfilter.Add("appdt", appdt);
+                searchfilter.Add("clinicId", clinicId);
+                var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
+                apps_count  = apps.Count();
+                //ViewBag.AppointmentCount = apps.Count();
+                view = RenderPartialView("_InstitutionGrid", apps);
+
+
+
+            }
+            var result = new { view = view, apps_count = apps_count, todaysDate = DateTime.Now.ToString("MM/dd/yyyy") };
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
@@ -107,7 +271,7 @@ namespace HRA4.Web.Controllers
             _applicationContext.ServiceContext.AppointmentService.DeleteAppointment(Convert.ToInt32(Session["InstitutionId"]),apptid);
             return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
         }
-      
+
         public JsonResult RunAutomationDocuments(string  apptid,string MRN)
         {
             FileInfo fileinfo=_applicationContext.ServiceContext.AppointmentService.RunAutomationDocuments(Convert.ToInt32(Session["InstitutionId"]),Convert.ToInt32(apptid),MRN);
@@ -115,8 +279,8 @@ namespace HRA4.Web.Controllers
             Session["FileInfo"] = fileinfo;
             var result = new { view = "doc.." };
             return Json(result, JsonRequestBehavior.AllowGet);
-                      
-        }
+
+    }
      
         public FileContentResult DownloadFile()
         {

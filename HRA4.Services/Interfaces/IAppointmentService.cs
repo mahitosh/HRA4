@@ -18,5 +18,9 @@ namespace HRA4.Services.Interfaces
         void DeleteAppointment(int InstitutionId,int apptid);
         FileInfo RunAutomationDocuments(int InstitutionId, int apptid, string MRN);
 
+        void AddTasks(int _institutionId, string unitnum, int apptid);
+       
+        void DeleteTasks(int _institutionId, string unitnum, int apptid);
+        List<VM.Clinic> GetClinics(int InstitutionId);
     }
 }

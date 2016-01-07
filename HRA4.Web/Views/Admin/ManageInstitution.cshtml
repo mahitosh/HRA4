@@ -17,7 +17,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="left" title="Help" id="admin-dropdown" aria-haspopup="true" aria-expanded="true">Help <img src="~/images/help-ico.svg" width="25" height="25" alt="logout" /></a>
                     <ul class="dropdown-menu help-menu col-md-2 pull-right" aria-labelledby="help-dropdown">
                         <li><a href="#"><i class="fa fa-building"></i> About Us</a></li>
-                        <li><a href="http://www.hughesriskapps.net/contactus.php" target="_blank"><i class="fa fa-map-marker"></i> Contact US</a></li>
+                        <li><a href="http://www.hughesriskapps.net/contactus.php" target="_blank"><i class="fa fa-map-marker"></i> Contact Us</a></li>
                     </ul>
                 </div>
             </div>
@@ -34,8 +34,9 @@ else { }
         <div class="row">
             <div class="col-md-3 col-sm-4 pull-right">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Search Institution">
-                    <span class="input-group-addon search-ico-bg"><span class="glyphicon glyphicon-search"></span></span>
+                    @Html.TextBox("inputGroupSuccess1", (string)ViewBag.SearchText, new{ @class="form-control" , placeholder="Search Institution" })
+                    @*<input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Search Institution">*@
+                    <span class="input-group-addon search-ico-bg" onclick="location.href = '@Url.Action("SearchInstitution")?Institution=' + $('#inputGroupSuccess1').val()"><span class="glyphicon glyphicon-search"></span></span>
                 </div><!--input group end here-->
             </div>
         </div><!--row end-->
@@ -57,12 +58,12 @@ else { }
                     <ul class="dropdown-menu">
                         <li>
                             <label>Add Institution</label><br />
-                            <input class="form-control" id="txtInstitution" name="add-institution" type="text" placeholder="Enter Institution" />
+                            <input class="form-control" id="txtInstitution" name="add-institution" type="text" placeholder="Enter Institution"  />
                             <button class="btn btn-default add-btn Margin-T-10 pull-right" id="btnAdd" type="button">Add</button>
                         </li>
                     </ul>
                 </div>
-                <a href="#" class="pull-right"><img src="~/images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh institution list</a>
+                <a href="#" class="pull-right" onclick="location.href = '@Url.Action("SearchInstitution")?Institution=' + $('#inputGroupSuccess1').val()"><img src="~/images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh institution list</a>
 
 
             </div>
@@ -75,8 +76,8 @@ else { }
                 <table id="tblInstitutions" class="table table-striped apppointment-table Margin-T-20">
                     <thead>
                         <tr>
-                            <th width="55%">@Html.DisplayNameFor(model => model.InstitutionName)</th>
-                            <th width="20%">@Html.DisplayNameFor(model => model.DateCreated)</th>
+                            <th width="55%">Institution Name</th>
+                            <th width="20%">Date Created</th>
                             <th width="25%">Quick Actions</th>
                         </tr>
                     </thead>      
@@ -89,14 +90,15 @@ else { }
                                 <td class="quick-add-institution">
                                     <a href="@Url.Action("InstitutionDashboard", "Institution", new { InstitutionId = item.Id })"><img src="~/images/dashboard-ico.svg" alt="Go to dashboard" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Go to Dashboard" /></a>
                                     <a href="#"><img src="~/images/add-clinic-ico.svg" alt="Add Clinic" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Add Clinic" /></a>
-                                    <a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>
-                                    <a href="#"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
+                                    @*<a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>*@
+                                    <a href="@Url.Action("DeleteInstitution", "Admin", new { Id = item.Id })"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
                                 </td>
                             </tr>
                             
                         }
                     </tbody>
                 </table><!--Institution list end here-->
+                <div id="divRecordStatus" style="color:red;text-align:center">@ViewBag.RecordStatus</div>
             </div><!--row end-->
 
         </div><!--container end-->

@@ -15,5 +15,6 @@ namespace HRA4.Services.Interfaces
         Institution AddUpdateTenant(Institution tenant);
         bool CreateTenantDb(Institution tenant,string scriptPath);
         string GetUserName();
+        void UpdateTenantById(int Id);
     }
 }

@@ -1560,6 +1560,7 @@ namespace RiskApps3.Model.PatientRecord
                 {
                     targetPatient = new Patient(newMRN);
                     targetPatient.apptid = apptid;
+                   
                 }
                 else
                     return targetPatient;

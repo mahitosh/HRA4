@@ -36,18 +36,27 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\RiskApps3\ReferenceAssemblies\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminService.cs" />
     <Compile Include="AppointmentService.cs" />
+    <Compile Include="ExportImportService.cs" />
+    <Compile Include="HraSessionManager.cs" />
     <Compile Include="Interfaces\IAdminService.cs" />
     <Compile Include="Interfaces\IAppointmentService.cs" />
+    <Compile Include="Interfaces\IExportImportService.cs" />
+    <Compile Include="Interfaces\IHraSessionManager.cs" />
     <Compile Include="Interfaces\IRiskAppServices.cs" />
     <Compile Include="Interfaces\IServiceContext.cs" />
     <Compile Include="Interfaces\IUserService.cs" />

@@ -9,6 +9,7 @@ namespace HRA4.Repositories.Interfaces
     public interface ITenantMasterRepository
     {
         Institution AddUpdateTenant(Institution tenant);
+        int UpdateTenant(Institution tenant);
         Institution GetTenantById(int id);
         List<Institution> GetAll();
 

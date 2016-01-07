@@ -19,6 +19,8 @@ namespace HRA4.Utilities
         public const string Survey ="Survey";
         public const string DoNotCall = "DoNotCall";
         public const string MarkAsComplete = "MarkAsComplete";
+        public const string RootPath = "~/App_Data/";
+        public const string RAFilePath = "~/App_Data/RAFiles/";
 
     }
 }

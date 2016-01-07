@@ -10,13 +10,14 @@ namespace HRA4.Entities
     public class Institution
     {
         public int Id { get; set; }
+  
         public string InstitutionName { get; set; }
         public string DbName { get; set; }
         public string RaInstitutionId { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateCreated { get; set; }
-
+        public bool IsActive { get; set; }
 
     }
 }

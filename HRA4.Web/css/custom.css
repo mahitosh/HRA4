@@ -120,7 +120,7 @@ ul.admin-tool-menu .fa, ul.help-menu .fa{width:20px;}
 /*help menu*/
 ul.help-menu{right: 0px!important;top: 40px;}
 ul.help-menu li a:hover,  ul.import-menu li a:hover{background-color:#72b116}
-ul.help-menu:before {top: -10px;right: 4px;border-width: 0 10px 12px 10px;}
+ ul.help-menu:before {top: -10px;right: 4px;border-width: 0 10px 12px 10px;}
 ul.import-menu{top:25px;min-width: 170px;}
 ul.import-menu:before{left: 4px;}
 
@@ -292,3 +292,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     .help::before{left:-2%;}
     .search-btn{padding:7px 3px;font-size: 1.1em;}
 }/*780 end here*/
+
+ .demo{
+
+ }

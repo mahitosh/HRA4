@@ -69,6 +69,7 @@
     <Reference Include="System.Web.Extensions">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -76,6 +77,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.5.0.27760, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\RiskApps3\ReferenceAssemblies\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -181,6 +186,7 @@
     <Content Include="css\fonts\opensans_light\OpenSans-Light-webfont.svg" />
     <Content Include="css\fonts\opensans_regular\OpenSans-Regular-webfont.svg" />
     <Content Include="css\navbar-fixed-top.css" />
+    <Content Include="css\sidebar.css" />
     <Content Include="css\sticky-footer.css" />
     <Content Include="css\tablesorter.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -344,6 +350,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\RAFiles\Download\" />
+    <Folder Include="App_Data\RAFiles\Temp\" />
+    <Folder Include="App_Data\RAFiles\Upload\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

@@ -38,18 +38,18 @@
             <th>
                 DNC
             </th>
-            <th>
+            <th >
                 Quick Actions
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
-        {           
+        {
             <tr>
                 <td>
                     @{
-            string appdate = (item.AppointmentDate == DateTime.MinValue ? "" : item.AppointmentDate.ToString("MM/dd/yyyy hh:mm:ss"));
+            string appdate = (item.AppointmentDate == DateTime.MinValue ? "" : item.AppointmentDate.ToString("MM/dd/yyyy hh:mm:ss tt"));
                     }
                     @Html.DisplayFor(modelItem => appdate)
                 </td>
@@ -72,7 +72,7 @@
                 </td>
                 <td>
                     @{
-            string dateCompleted = (item.DateCompleted == DateTime.MinValue ? "" : item.DateCompleted.ToString("MM/dd/yyyy hh:mm:ss"));
+            string dateCompleted = (item.DateCompleted == DateTime.MinValue ? "" : item.DateCompleted.ToString("MM/dd/yyyy hh:mm:ss tt"));
                     }
                     @Html.DisplayFor(modelItem => dateCompleted)
                 </td>
@@ -83,12 +83,31 @@
                     @Html.DisplayFor(modelItem => item.Survey)
                 </td>
                 <td>
+
                     @*@Html.DisplayFor(modelItem => item.DoNotCall)*@
-                    <img src="~/images/DNC-Y-ico.svg" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." />
+
+                    @{ 
+                        var url = "";
+                        if (item.DoNotCall == true)
+                            
+                       {
+
+                           url = Url.Content("~/images/DNC-N-ico.svg");
+
+                       }
+                       else
+                       {
+                           url = Url.Content("~/images/DNC-Y-ico.svg");
+                       
+                       }
+                       
+                            }
+                    <div style="display:none" >@item.DoNotCall</div> 
+                    <a href="#"> <img src="@url" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." onclick="AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()');" /> </a> 
                 </td>
                 <td>
-                    <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
-                    <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" /></a>
+                    <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Risk Calculations" /></a>
+                    <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Copy" /></a>
                     <a href="#" id="@item.Id" onclick="ShowEdit(this);"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>
                 </td>
             </tr>
@@ -98,14 +117,26 @@
                 </td>
             </tr>
         }
-        
+
     </tbody>
 </table><!--schedule list end here-->
 <script type="text/javascript">
 
     $(document).ready(function () {
         $(".editmenu").hide();
-        $("#myTable").tablesorter();
+
+        $("#myTable").tablesorter(
+            {
+                headers: {
+                    // assign the secound column (we start counting zero) 
+                    9: {
+                        // disable it by setting the property sorter to false 
+                        sorter: false
+                    }
+                   
+                }
+            }
+            );
     });
     $(".btnClear").click(function () {
         $(".editmenu").slideUp(100);
@@ -115,6 +146,6 @@
         //alert(obj.id + "-b");
         var trid = "#"+obj.id + "-b";
         $(trid).slideDown(100);
-       
+
     }
 </script>

@@ -554,7 +554,7 @@ namespace RiskApps3.View.BreastImaging
         }
 
         /***************************************************************/
-        private bool testSGDoc(string fileName)
+        private bool testSGDoc(string fileName) // Silicus: Created a copy of this method in AppointmentService class.
         {
             //test if is Surgeon General XML file
             XmlDocument suspectSGDoc = new XmlDocument();

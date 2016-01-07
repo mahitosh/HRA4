@@ -15,10 +15,18 @@ using HRA4.Entities;
 using HRA4.Utilities;
 using System.Web;
 using log4net;
-using HRACACHE = HRA4.Utilities.Cache;
+using WeifenLuo.WinFormsUI.Docking;
 using RiskApps3.Model.PatientRecord;
+using RA = RiskApps3.Model.PatientRecord;
+using RiskApps3.Model.PatientRecord.Communication;
 using System.Collections.Specialized;
+using RiskApps3.Model.PatientRecord.FHx;
+using RiskApps3.Utilities;
+using System.Xml;
 using System.IO;
+using System.Xml.XPath;
+using System.Runtime.Serialization;
+using System.Xml.Linq;
 namespace HRA4.Services
 {
     public class AppointmentService : IAppointmentService
@@ -27,23 +35,86 @@ namespace HRA4.Services
         RAM.User _user;
         int _institutionId;
         IRepositoryFactory _repositoryFactory;
-        HraSessionManager _hraSessionManager;
+        IHraSessionManager _hraSessionManager;
         private static readonly ILog Logger = LogManager.GetLogger(typeof(AppointmentService));
+        public AppointmentService(IRepositoryFactory repositoryFactory, IHraSessionManager hraSessionManger)
+        {
+            _repositoryFactory = repositoryFactory;
+            _hraSessionManager = hraSessionManger;
+            _username = _hraSessionManager.Username;
+
+        }
         public AppointmentService(IRepositoryFactory repositoryFactory, string user)
         {
             _username = user;
             _repositoryFactory = repositoryFactory;
-            SetUserSession();
+            //SetUserSession();
         }
 
-        // SessionManager.Instance.ActiveUser.userClinicList
+
+        public List<VM.Tasks> GetTasks(int InstitutionId, string unitnum)
+        {
+            if (InstitutionId != null)
+            {
+                _institutionId = InstitutionId;
+                //SetUserSession();
+                Patient p = new Patient();
+                p.unitnum = unitnum;
+                var list = new TaskList(p);
+                list.BackgroundListLoad();
+                return list.FromRATaskList();
+            }
+
+            return new List<VM.Tasks>();
+
+        }
+
+
+        public bool GetDNCStatus(int InstitutionId, string unitnum)
+        {
+
+            bool _DNCStatus = false;
+
+
+            if (GetTasks(InstitutionId, unitnum).Count > 0)
+            {
+                _DNCStatus = true;
+            }
+
+            return _DNCStatus;
+
+        }
+
+
+        public List<VM.Clinic> GetClinics(int InstitutionId)
+        {
+
+            List<VM.Clinic> clinics = new List<VM.Clinic>();
+            if (InstitutionId > 0)
+            {
+                 //SetUserSession();
+                
+                _institutionId = InstitutionId;
+              
+                var list = new  RAM.ClinicList ();
+                list.user_login = SessionManager.Instance.ActiveUser.userLogin ;
+                list.BackgroundListLoad();
+
+                clinics = list.FromRClinicList();
+
+                return clinics;
+            }
+            return new List<VM.Clinic>();
+        
+
+        }
+
 
         public List<VM.Appointment> GetAppointments(int InstitutionId)
         {
             Logger.DebugFormat("Institution Id: {0}", InstitutionId);
             List<VM.Appointment> appointments = new List<VM.Appointment>();
-
-            if(InstitutionId != null)
+            if (InstitutionId != null)
             {
 
                 _institutionId = InstitutionId;
@@ -56,6 +127,7 @@ namespace HRA4.Services
                 list.BackgroundListLoad();
                
                  appointments = list.FromRAppointmentList();
+                 
                 return appointments;
             }
             return new List<VM.Appointment>();
@@ -69,26 +141,34 @@ namespace HRA4.Services
             if (InstitutionId != null)
             {
                 _institutionId = InstitutionId;
-                SetUserSession();
+               // SetUserSession();
                 var list = new AppointmentList();
-                
-                list.clinicId = 1;
+                if (Convert.ToString(searchfilter["clinicId"]) != null && Convert.ToString(searchfilter["clinicId"]) != "")
+                    list.clinicId = Convert.ToInt32(searchfilter["clinicId"]);
                 if (Convert.ToString(searchfilter["appdt"]) != null && Convert.ToString(searchfilter["appdt"]) != "")
                     list.Date = Convert.ToString(searchfilter["appdt"]);
-                if (Convert.ToString(searchfilter["name"]) != null && Convert.ToString(searchfilter["name"]) !="")
+                if (Convert.ToString(searchfilter["name"]) != null && Convert.ToString(searchfilter["name"]) != "")
                 list.NameOrMrn = Convert.ToString(searchfilter["name"]);
                 list.BackgroundListLoad();
-                appointments = list.FromRAppointmentList();
-                return appointments;
+                foreach (RA.Appointment app in list)
+                {
+                    
+                    bool _DNCStatus = GetDNCStatus(InstitutionId, app.unitnum);
+                    appointments.Add(app.FromRAppointment(_DNCStatus));
+
             }
-           
+
+                return appointments;
+
+                //return list.FromRAppointmentList();
+            }
             return new List<VM.Appointment>();
         }
 
         /// <summary>
         /// Initialize session as per selected institution.
         /// </summary>
-        private void SetUserSession()
+        private void SetUserSession1()
         {
             if (HttpContext.Current.Session != null && HttpContext.Current.Session["InstitutionId"] != null)
             {
@@ -97,7 +177,7 @@ namespace HRA4.Services
             Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
             string rootPath = HttpContext.Current.Server.MapPath(@"~/App_Data/");
 
-
+           
            // string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
             string configTemplate = System.IO.File.ReadAllText(System.IO.Path.Combine(rootPath, "config.xml"));
             
@@ -106,8 +186,6 @@ namespace HRA4.Services
                 _hraSessionManager.SetRaActiveUser(_username);
             }
             
-          
-
         }
 
         private List<VM.Appointment> SearchOnAppointment(List<VM.Appointment> appts, string searchField, string searchParam)
@@ -153,10 +231,10 @@ namespace HRA4.Services
         {
 
             UpdateMarkAsComplete(Appt, InstitutionId);
-            
+
 
         }
-
+         
         public FileInfo RunAutomationDocuments(int InstitutionId, int apptid, string MRN)
         {
             Appointment.MarkComplete(apptid);
@@ -172,9 +250,10 @@ namespace HRA4.Services
          
         private void UpdateMarkAsComplete(VM.Appointment Appt, int InstitutionId)
         {
+           
             NameValueCollection searchfilter = new NameValueCollection();
-            searchfilter.Add("name",Appt.MRN);
-            searchfilter.Add("appdt",null);
+            searchfilter.Add("name", Appt.MRN);
+            searchfilter.Add("appdt", null);
             List<VM.Appointment> filteredlist = GetAppointments(InstitutionId, searchfilter);
           //  List<VM.Appointment> filteredlist = SearchOnAppointment(apptlist, Constants.MRN, Appt.MRN);
 
@@ -192,9 +271,94 @@ namespace HRA4.Services
                 }
             }
         }
+
+        
+        public void DeleteTasks(int _institutionId, string unitnum, int apptid)
+        {
+            //SetUserSession();
+            string assignedBy = "";
+            if (SessionManager.Instance.ActiveUser != null)
+            {
+                if (string.IsNullOrEmpty(SessionManager.Instance.ActiveUser.ToString()) == false)
+                {
+                    assignedBy = SessionManager.Instance.ActiveUser.ToString();
+                }
+            }
+            SessionManager.Instance.SetActivePatient(unitnum, apptid);
+            RiskApps3.Model.PatientRecord.Patient p = SessionManager.Instance.GetActivePatient();
+            //Creating task object
+            RiskApps3.Model.PatientRecord.Communication.Task t = new RiskApps3.Model.PatientRecord.Communication.Task(p, "Task", null, assignedBy, DateTime.Now);
+            HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
+            TaskList tList = new TaskList(p);
+            tList.LoadFullList();
+
+            AppointmentList apt = new AppointmentList();
+            apt.LoadFullList();
+
+
+
+            foreach (RiskApps3.Model.PatientRecord.Communication.Task task in tList)
+            {
+                PtFollowupList fList = new PtFollowupList(task);
+                fList.LoadFullList();
+                HraModelChangedEventArgs args1 = new HraModelChangedEventArgs(null);
+                args1.Delete = true;
+                foreach (PtFollowup followup in fList)
+                {
+                    followup.BackgroundPersistWork(args1);
+                }
+                task.BackgroundPersistWork(args1);
+            }
+            //Creating folowup object
+
+
+
+        }
         public void DeleteAppointment(int InstitutionId, int apptid)
         {
             Appointment.DeleteApptData(apptid,false);
         }
+
+
+        public void AddTasks(int _institutionId, string unitnum, int apptid)
+        {
+
+            //SetUserSession();
+
+            /* code written by nilesh  */
+            string assignedBy = "";
+            if (SessionManager.Instance.ActiveUser != null)
+            {
+                if (string.IsNullOrEmpty(SessionManager.Instance.ActiveUser.ToString()) == false)
+                {
+                    assignedBy = SessionManager.Instance.ActiveUser.ToString();
+                }
+            }
+            SessionManager.Instance.SetActivePatient(unitnum, apptid);
+            RiskApps3.Model.PatientRecord.Patient p = SessionManager.Instance.GetActivePatient();    // TODO:  Check this!!
+            RiskApps3.Model.PatientRecord.Communication.Task t = new RiskApps3.Model.PatientRecord.Communication.Task(p, "Task", null, assignedBy, DateTime.Now);
+            HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
+
+
+
+            t.BackgroundPersistWork(args);
+
+            RiskApps3.Model.PatientRecord.Communication.PtFollowup newFollowup = new RiskApps3.Model.PatientRecord.Communication.PtFollowup(t);
+            newFollowup.FollowupDisposition = "Omit From List";
+            newFollowup.TypeOfFollowup = "Phone Call";
+            newFollowup.Comment = "Do Not Call";
+            newFollowup.Who = assignedBy;
+            newFollowup.Date = DateTime.Now;
+            args = new HraModelChangedEventArgs(null);
+            t.FollowUps.Add(newFollowup);
+            newFollowup.BackgroundPersistWork(args);
+
+
+            /* End code written by nilesh  */
+
+
+        }
+
+
     }
 }

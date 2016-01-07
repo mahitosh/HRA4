@@ -41,6 +41,7 @@ namespace HRA4.Services
             throw new NotImplementedException();
         }
 
+        
 
         public Entities.Institution AddUpdateTenant(Entities.Institution tenant)
         {
@@ -48,6 +49,16 @@ namespace HRA4.Services
             return _repositoryFactory.TenantRepository.AddUpdateTenant(tenant);
         }
 
+        public void UpdateTenantById(int Id )
+        {
+            Institution _Institution = _repositoryFactory.TenantRepository.GetTenantById(Id);
+            _Institution.IsActive = false;
+             int r = _repositoryFactory.TenantRepository.UpdateTenant(_Institution);
+           
+
+        }
+        
+    
 
         
 

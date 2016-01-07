@@ -20,7 +20,7 @@
     <xsl:strip-space elements="*"/>
     
     <!-- Following can be overidden by transformer invocation with parameter set -->
-    <xsl:param name="localBaseUri" select="xs:string('file:/d:/vbshare/')"/>
+    <xsl:param name="localBaseUri" select="xs:string('file:/./App_Data/RAFiles/')"/>
     
     <!-- Constants -->
     <xsl:variable name="ASHKENAZI_SNOMED" select="'81706006'"/>

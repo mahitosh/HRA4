@@ -758,6 +758,7 @@ namespace RiskApps3.Model
         private void RunPersist(HraModelChangedEventArgs e)
         {
             //TODO use Task Parallel Library because its *WAY* easier to get this stuff correct!!!
+
             if (!ReadOnly)
             {
                 lock (_persistThread)
@@ -798,8 +799,11 @@ namespace RiskApps3.Model
         public void SignalModelChanged(HraModelChangedEventArgs e)
         {
             //TODO should very strongly consider moving this to some kind of object state manager class which can utilize connection and thread pooling
-            if (HttpContext.Current != null)
-                e.Persist = false;
+            if (e != null) //Silicus: Check for null
+            {
+                if (HttpContext.Current != null)
+                    e.Persist = false;
+
             if (e.Persist)
                 RunPersist(e);
 
@@ -825,6 +829,7 @@ namespace RiskApps3.Model
                 #endif
                 Changed(this, e);
             }
+        }
         }
 
         protected void SignalMemberChanged(MemberInfo info)
