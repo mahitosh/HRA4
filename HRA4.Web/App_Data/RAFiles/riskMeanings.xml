@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <row>
+    <code>248152002</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh></Mgh>
+    <meaning>female</meaning>
+  </row>
+  <row>
+    <code>248153007</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh></Mgh>
+    <meaning>male</meaning>
+  </row>
+  <row>
+    <code>F</code>
+    <codeSystem></codeSystem>
+    <Mgh></Mgh>
+    <meaning>female</meaning>
+  </row>
+  <row>
+    <code>M</code>
+    <codeSystem></codeSystem>
+    <Mgh></Mgh>
+    <meaning>male</meaning>
+  </row>
+  <row>
+    <code>254837009</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Breast Cancer</Mgh>
+    <meaning>Breast Cancer</meaning>
+  </row>
+  <row>
+    <code>372137005</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Breast Cancer</Mgh>
+    <meaning>Breast Cancer</meaning>
+  </row>
+  <row>
+    <code>C4872</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Breast Cancer</Mgh>
+    <meaning>Breast Cancer</meaning>
+  </row>
+  <row>
+    <code>C9245</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Breast Cancer (Invasive)</Mgh>
+    <meaning>Breast Cancer</meaning>
+  </row>
+  <row>
+    <code>C9119</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Breast Cancer (Medullary)</Mgh>
+    <meaning>Breast Cancer</meaning>
+  </row>
+  <row>
+    <code>7</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Breast Cancer (Invasive Ductal)</Mgh>
+    <meaning>Breast Cancer</meaning>
+  </row>
+  <row>
+    <code>8</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Breast Cancer (Lobular)</Mgh>
+    <meaning>Breast Cancer</meaning>
+  </row>
+  <row>
+    <code>5</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Breast Cancer (DCIS with microinvasion)</Mgh>
+    <meaning>Breast Cancer</meaning>
+  </row>
+  <row>
+    <code>6</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Breast Cancer (DCIS with suspicion of invasion)</Mgh>
+    <meaning>DCIS</meaning>
+  </row>
+  <row>
+    <code>C2924</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Breast Cancer (DCIS)</Mgh>
+    <meaning>DCIS</meaning>
+  </row>
+  <row>
+    <code>109889007</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Breast Cancer (DCIS)</Mgh>
+    <meaning>DCIS</meaning>
+  </row>
+  <row>
+    <code>140</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Breast Cancer (DCIS) that is considered Invasive Breast Cancer for BRCAPro</Mgh>
+    <meaning>Breast Cancer</meaning>
+  </row>
+  <row>
+    <code>C4908</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Ovarian Cancer</Mgh>
+    <meaning>Ovarian Cancer</meaning>
+  </row>
+  <row>
+    <code>127</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Ovarian Cancer (Epithelial)</Mgh>
+    <meaning>Ovarian Cancer</meaning>
+  </row>
+  <row>
+    <code>363443007</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Ovarian Cancer</Mgh>
+    <meaning>Ovarian Cancer</meaning>
+  </row>
+  <row>
+    <code>C3867</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Fallopian Tube Cancer</Mgh>
+    <meaning>Ovarian Cancer</meaning>
+  </row>
+  <row>
+    <code>74</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Primary Peritoneal Carcinoma</Mgh>
+    <meaning>Ovarian Cancer</meaning>
+  </row>
+  <row>
+    <code>313415001</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Identical twin</Mgh>
+    <meaning>Identical twin</meaning>
+  </row>
+  <row>
+    <code>C51590</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Bilateral Oophorectomy</Mgh>
+    <meaning>Oophorectomy</meaning>
+  </row>
+  <row>
+    <code>C15277</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Mastectomy</Mgh>
+    <meaning>Mastectomy</meaning>
+  </row>
+  <row>
+    <code>73359007</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Unilateral Mastectomy</Mgh>
+    <meaning>Mastectomy</meaning>
+  </row>
+  <row>
+    <code>172045004</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Bilateral Mastectomy</Mgh>
+    <meaning>Bilateral Mastectomy</meaning>
+  </row>
+  <row>
+    <code>C4910</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Colon Cancer</Mgh>
+    <meaning>Colon Cancer</meaning>
+  </row>
+  <row>
+    <code>C2955</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Colon or Rectal Cancer</Mgh>
+    <meaning>Colon Cancer</meaning>
+  </row>
+  <row>
+    <code>363510005</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Colon or Rectal Cancer</Mgh>
+    <meaning>Colon Cancer</meaning>
+  </row>
+  <row>
+    <code>363351006</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Rectal Cancer</Mgh>
+    <meaning>Colon Cancer</meaning>
+  </row>
+  <row>
+    <code>82</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Rectal Cancer</Mgh>
+    <meaning>Colon Cancer</meaning>
+  </row>
+  <row>
+    <code>254582000</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Rectal Cancer</Mgh>
+    <meaning>Colon Cancer</meaning>
+  </row>
+  <row>
+    <code>C9382</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Rectal Cancer</Mgh>
+    <meaning>Colon Cancer</meaning>
+  </row>
+  <row>
+    <code>363406005</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Colon Cancer</Mgh>
+    <meaning>Colon Cancer</meaning>
+  </row>
+  <row>
+    <code>156</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Colorectal Cancer</Mgh>
+    <meaning>Colon Cancer</meaning>
+  </row>
+  <row>
+    <code>124</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Attenuated Familial Adenomatous Polyposis</Mgh>
+    <meaning>Hereditary Colon Cancer Syndrome</meaning>
+  </row>
+  <row>
+    <code>48</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Familial Adenomatous Polyposis</Mgh>
+    <meaning>Hereditary Colon Cancer Syndrome</meaning>
+  </row>
+  <row>
+    <code>C3339</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Adenomatous Polyposis Coli</Mgh>
+    <meaning>Hereditary Colon Cancer Syndrome</meaning>
+  </row>
+  <row>
+    <code>70921007</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Adenomatous polyposis coli</Mgh>
+    <meaning>Hereditary Colon Cancer Syndrome</meaning>
+  </row>
+  <row>
+    <code>72900001</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Familial multiple polyposis syndrome</Mgh>
+    <meaning>Hereditary Colon Cancer Syndrome</meaning>
+  </row>
+  <row>
+    <code>254589009</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Intestinal polyposis syndrome</Mgh>
+    <meaning>Polyposis Syndrome</meaning>
+  </row>
+  <row>
+    <code>28412004</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Nonfamilial multiple polyposis syndrome</Mgh>
+    <meaning>Polyposis Syndrome</meaning>
+  </row>
+  <row>
+    <code>315058005</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Hereditary nonpolyposis colon cancer</Mgh>
+    <meaning>Lynch Syndrome</meaning>
+  </row>
+  <row>
+    <code>64766004</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Ulcerative Colitis</Mgh>
+    <meaning>Ulcerative Colitis</meaning>
+  </row>
+  <row>
+    <code>34000006</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Crohn's Disease</Mgh>
+    <meaning>Crohn's Disease</meaning>
+  </row>
+  <row>
+    <code>371973000</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Uterine Cancer</Mgh>
+    <meaning>Uterine Cancer</meaning>
+  </row>
+  <row>
+    <code>C3552</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Uterine Cancer</Mgh>
+    <meaning>Uterine Cancer</meaning>
+  </row>
+  <row>
+    <code>C3850</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Pancreatic Cancer</Mgh>
+    <meaning>Pancreatic Cancer</meaning>
+  </row>
+  <row>
+    <code>363418001</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Pancreatic cancer</Mgh>
+    <meaning>Pancreatic Cancer</meaning>
+  </row>
+  <row>
+    <code>C3224</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Melanoma</Mgh>
+    <meaning>Melanoma</meaning>
+  </row>
+  <row>
+    <code>372244006</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Melanoma</Mgh>
+    <meaning>Melanoma</meaning>
+  </row>
+  <row>
+    <code>126</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Number of breast biopsies</Mgh>
+    <meaning>Number of breast biopsies</meaning>
+  </row>
+  <row>
+    <code>130</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Menopausal Status</Mgh>
+    <meaning>Menopausal Status</meaning>
+  </row>
+  <row>
+    <code>131</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Menopause Age</Mgh>
+    <meaning>Menopause Age</meaning>
+  </row>
+  <row>
+    <code>C19666</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>startedMenstruating</Mgh>
+    <meaning>Age at Menarche</meaning>
+  </row>
+  <row>
+    <code>C19667</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>ageFirstChildBorn</Mgh>
+    <meaning>Age at First Live Birth</meaning>
+  </row>
+  <row>
+    <code>271603002</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Height</Mgh>
+    <meaning>Height</meaning>
+  </row>
+  <row>
+    <code>132</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Height</Mgh>
+    <meaning>Height</meaning>
+  </row>
+  <row>
+    <code>107647005</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Weight</Mgh>
+    <meaning>Weight</meaning>
+  </row>
+  <row>
+    <code>133</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Weight</Mgh>
+    <meaning>Weight</meaning>
+  </row>
+  <row>
+    <code>134</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Usual Breast Hyperplasia</Mgh>
+    <meaning>Usual Breast Hyperplasia</meaning>
+  </row>
+  <row>
+    <code>76197007</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Hyperplasia (no atypia)</Mgh>
+    <meaning>Usual Breast Hyperplasia</meaning>
+  </row>
+  <row>
+    <code>427915005</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Ductal Hyperplasia (no atypia)</Mgh>
+    <meaning>Usual Breast Hyperplasia</meaning>
+  </row>
+  <row>
+    <code>472905007</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Ductal Hyperplasia (no atypia)</Mgh>
+    <meaning>Usual Breast Hyperplasia</meaning>
+  </row>
+  <row>
+    <code>419307005</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Benign breast condition</Mgh>
+    <meaning>Benign breast condition</meaning>
+  </row>
+  <row>
+    <code>C8436</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Atypical Ductal Hyperplasia</Mgh>
+    <meaning>Atypia</meaning>
+  </row>
+  <row>
+    <code>C4730</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Atypical Lobular Hyperplasia</Mgh>
+    <meaning>Atypia</meaning>
+  </row>
+  <row>
+    <code>C5195</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Atypical Hyperplasia</Mgh>
+    <meaning>Atypia</meaning>
+  </row>
+  <row>
+    <code>32416003</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Atypical Hyperplasia</Mgh>
+    <meaning>Atypia</meaning>
+  </row>
+  <row>
+    <code>33889003</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Atypical Lobular Hyperplasia</Mgh>
+    <meaning>Atypia</meaning>
+  </row>
+  <row>
+    <code>264505003</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Atypical Ductal Hyperplasia</Mgh>
+    <meaning>Atypia</meaning>
+  </row>
+  <row>
+    <code>427785007</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Atypical Ductal Hyperplasia</Mgh>
+    <meaning>Atypia</meaning>
+  </row>
+  <row>
+    <code>39</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Severe ADH/Borderline DCIS</Mgh>
+    <meaning>Atypia</meaning>
+  </row>
+  <row>
+    <code>C4018</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>LCIS</Mgh>
+    <meaning>LCIS</meaning>
+  </row>
+  <row>
+    <code>109888004</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>LCIS</Mgh>
+    <meaning>LCIS</meaning>
+  </row>
+  <row>
+    <code>135</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>HRT Use</Mgh>
+    <meaning>HRT Use</meaning>
+  </row>
+  <row>
+    <code>136</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>HRT Type</Mgh>
+    <meaning>HRT Type</meaning>
+  </row>
+  <row>
+    <code>137</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>HRT Length Past</Mgh>
+    <meaning>HRT Length Past</meaning>
+  </row>
+  <row>
+    <code>138</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>HRT Length Intent</Mgh>
+    <meaning>HRT Length Intent</meaning>
+  </row>
+  <row>
+    <code>139</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>HRT Last Use</Mgh>
+    <meaning>HRT Last Use</meaning>
+  </row>
+  <row>
+    <code>C16450</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Colonoscopy</Mgh>
+    <meaning>SigmoidOrColonoscopy</meaning>
+  </row>
+  <row>
+    <code>C64944</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Diagnostic Colonoscopy</Mgh>
+    <meaning>SigmoidOrColonoscopy</meaning>
+  </row>
+  <row>
+    <code>C67057</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Screening Colonoscopy</Mgh>
+    <meaning>SigmoidOrColonoscopy</meaning>
+  </row>
+  <row>
+    <code>C17131</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Sigmoidoscopy</Mgh>
+    <meaning>SigmoidOrColonoscopy</meaning>
+  </row>
+  <row>
+    <code>C64959</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Therapeutic Colonoscopy</Mgh>
+    <meaning>SigmoidOrColonoscopy</meaning>
+  </row>
+  <row>
+    <code>C51588</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Flexible Fiberoptic Sigmoidoscopy</Mgh>
+    <meaning>SigmoidOrColonoscopy</meaning>
+  </row>
+  <row>
+    <code>45378-45392</code>
+    <codeSystem>CPT</codeSystem>
+    <Mgh>Colonscopy</Mgh>
+    <meaning>SigmoidOrColonoscopy</meaning>
+  </row>
+  <row>
+    <code>45330-45345</code>
+    <codeSystem>CPT</codeSystem>
+    <Mgh>Sigmoidoscopy</Mgh>
+    <meaning>SigmoidOrColonoscopy</meaning>
+  </row>
+  <row>
+    <code>118</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Adenomatous Colon Polyps 100 or more</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>64</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Adenomatous Colon Polyps 10-100</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>108</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Colon Polyp Adenomatous</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>110</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Colon Polyp Villous</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>115</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Colon Polyp-NOS</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>C3864</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Colon Adenomatous Polyp</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>C3495</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Colon Villous Adenoma</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>C2954</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Colon Polyp</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>428054006</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Adenomatous polyp of colon</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>309084001</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Villous adenoma of colon</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>68496003</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Colon Polyp</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>C5679</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Colorectal Polyp</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>C3957</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Anal polyp</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>C3351</code>
+    <codeSystem>NCI</codeSystem>
+    <Mgh>Rectal Polyp</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>399505005</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Polyp of large intestine</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>88580009</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Anal polyp</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>39772007</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Rectal polyp</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>428472008</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Polyp of sigmoid colon</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>197210001</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Anal and rectal polyp</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>312823001</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>Villous adenoma of rectum</Mgh>
+    <meaning>Polyp</meaning>
+  </row>
+  <row>
+    <code>158</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Aspirin or NSAID regular use</Mgh>
+    <meaning>Aspirin or NSAID regular use</meaning>
+  </row>
+  <row>
+    <code>159</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Ibuprofen regular use</Mgh>
+    <meaning>Ibuprofen regular use</meaning>
+  </row>
+  <row>
+    <code>141</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Vigorous Exercise hours per week</Mgh>
+    <meaning>Vigorous Exercise hours per week</meaning>
+  </row>
+  <row>
+    <code>142</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Cigarette Smoking years</Mgh>
+    <meaning>Cigarette Smoking years</meaning>
+  </row>
+  <row>
+    <code>143</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Cigarettes per day</Mgh>
+    <meaning>Cigarettes per day</meaning>
+  </row>
+  <row>
+    <code>144</code>
+    <codeSystem>UML</codeSystem>
+    <Mgh>Vegetable servings per day</Mgh>
+    <meaning>Vegetable servings per day</meaning>
+  </row>
+  <row>
+    <code>21840007</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <Mgh>lastPeriodDate</Mgh>
+    <meaning>Date of last menstrual period</meaning>
+  </row>
+  <row>
+    <code>122548005</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>Biopsy of breast</meaning>
+  </row>
+    <row>
+    <code>260413007</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>0</meaning>
+  </row>
+  <row>
+    <code>38112003</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>1</meaning>
+  </row>
+  <row>
+    <code>19338005</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>2</meaning>
+  </row>
+  <row>
+    <code>79605009</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>3</meaning>
+  </row>
+  <row>
+    <code>9362000</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>4</meaning>
+  </row>
+  <row>
+    <code>34001005</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>5</meaning>
+  </row>
+  <row>
+    <code>68244004</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>6</meaning>
+  </row>
+  <row>
+    <code>65607009</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>7</meaning>
+  </row>
+  <row>
+    <code>7319005</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>8</meaning>
+  </row>
+  <row>
+    <code>36987007</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>9</meaning>
+  </row>
+  <row>
+    <code>3445001</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>10</meaning>
+  </row>
+  <row>
+    <code>17312001</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>11</meaning>
+  </row>
+  <row>
+    <code>82809009</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>12</meaning>
+  </row>
+  <row>
+    <code>416053008</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>Estrogen receptor positive tumor</meaning>
+  </row>
+  <row>
+    <code>441117001</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>Estrogen receptor negative neoplasm</meaning>
+  </row>
+  <row>
+    <code>416561008</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>Progesterone receptor positive tumor</meaning>
+  </row>
+  <row>
+    <code>441118006</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>Progesterone receptor negative neoplasm</meaning>
+  </row>
+  <row>
+    <code>433114000</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>HER2NeuIHC</meaning>
+  </row>
+  <row>
+    <code>434363004</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>HER2NeuFISH</meaning>
+  </row>
+  <row>
+    <code>10828004</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>Positive</meaning>
+  </row>
+  <row>
+    <code>260385009</code>
+    <codeSystem>SNOMED_CT</codeSystem>
+    <meaning>Negative</meaning>
+  </row>
+</root>

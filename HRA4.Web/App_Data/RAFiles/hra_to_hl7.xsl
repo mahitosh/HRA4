@@ -6,7 +6,7 @@
     <xsl:preserve-space elements="*"/>
     
     <!-- Following can be overidden by transformer invocation with parameter set -->
-    <xsl:param name="localBaseUri" select="'file:/C:/Program%20Files/riskAppsV2/tools/'"/>
+    <xsl:param name="localBaseUri" select="'file:/./App_Data/RAFiles/'"/>
     <xsl:param name="dcisAsCancer" select="'0'"/>  <!-- BayesMendel default is that DCIS is not considered cancer -->
     
     <xsl:variable name="geneCodes" select="doc(resolve-uri('GeneCodes.xml', $localBaseUri))"/>

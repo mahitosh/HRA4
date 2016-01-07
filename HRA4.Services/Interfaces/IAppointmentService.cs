@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace HRA4.Services.Interfaces
         List<VM.Appointment> GetAppointments(int InstitutionId);
         List<VM.Appointment> GetAppointments(int InstitutionId,NameValueCollection Collection);
         void SaveAppointments(VM.Appointment Appt, int InstitutionId);
+        void DeleteAppointment(int InstitutionId,int apptid);
+        FileInfo RunAutomationDocuments(int InstitutionId, int apptid, string MRN);
 
     }
 }

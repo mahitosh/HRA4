@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using RiskApps3.Controllers;
 using RiskApps3.Utilities;
+using System.Web;
 
 #if international
 using System.Globalization;
@@ -797,6 +798,8 @@ namespace RiskApps3.Model
         public void SignalModelChanged(HraModelChangedEventArgs e)
         {
             //TODO should very strongly consider moving this to some kind of object state manager class which can utilize connection and thread pooling
+            if (HttpContext.Current != null)
+                e.Persist = false;
             if (e.Persist)
                 RunPersist(e);
 

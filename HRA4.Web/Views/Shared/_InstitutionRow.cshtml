@@ -5,29 +5,90 @@
 @*<link href="~/css/tablesorter.css" rel="stylesheet" />*@
 
     <div class="quick-add-inner-div">
-@using (Ajax.BeginForm("InstitutionDashboard", "Institution", new { @model = Model }, new AjaxOptions
+    @using (Ajax.BeginForm("InstitutionDashboard", "Institution", new { @model = Model }, new AjaxOptions
             {
                 HttpMethod = "POST"
 
             }))
-{
+    {
         <div class="col-sm-12 quick-add-links">
             @Html.HiddenFor(item => item.Id)
-            @Html.HiddenFor(item => item.MRN)
             <a href="#"><img src="~/images/new-doc-ico.svg" alt="New Document" width="30" height="30" title="New Document" /> New Document</a>
             <a href="#"><img src="~/images/edit-survey-ico.svg" alt="Edit Survey" width="30" height="30" title="Edit Survey" /> Edit Survey</a>
             <a href="#"><img src="~/images/risk-calc-ico.svg" alt="Risk Calculation" width="30" height="30" title="Risk Calculation" /> Risk Calculation</a>
             <a href="#"><img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" /> Import &frasl;Export</a>
-            <a href="#"><img src="~/images/run-auto-doc-ico.svg" alt="Run automation documents" width="30" height="30" title="Run automation documents" />Run Automation Documents</a>
-            <a href="#"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment</a>
+            <a data-toggle="modal" data-target=".rundoc" onclick="RunDocs('@Model.MRN.ToString()','@Model.Id.ToString()');"><img src="~/images/run-auto-doc-ico.svg" alt="Run automation documents" width="30" height="30" title="Run automation documents" />Run Automation Documents</a>
+            <a href="@Url.Action("DeleteAppointment", "Institution", new {apptid= @Model.Id})"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment</a>
         </div>
         <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
         <div>@Html.CheckBoxFor(item => item.MarkAsComplete)Mark As Complete</div>
-        <button id="btnSaveQuick" type="submit">Save</button>
-}
-        <button class="btnClear" id="btnClearQuick">Cancel</button>
-    </div>
+        <div>
+            @*<table>
+                    <tr>
+                        <td>@Html.TextBoxFor(item => item.PatientName)</td>
+                        <td>@Html.TextBoxFor(item => item.MRN, new {@id="MRN"})</td>
+                        <td>
+                            @Html.DropDownList("GenderDropdown", new List<SelectListItem>
+                 { new SelectListItem { Text = "Male", Value = "M"},
+                   new SelectListItem { Text = "Female", Value = "F"}
+                  }, "Select Gender")
+                    </td>
+                    <td><input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="todays-date" placeholder="todays Date" /></td>
+                        <td>
+                            <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" placeholder="dob Date"
+                                   value="@Model.DateOfBirth" />
+                        </td>
+                        <td>@Html.TextBoxFor(item => item.Survey)</td>
+                        <td>
+                            @Html.DropDownList("TimeDropdown", new List<SelectListItem>
+                 { new SelectListItem { Text = "07:00 AM", Value = "07:00 AM"},
+                   new SelectListItem { Text = "07:15 AM", Value = "07:15 AM"}
+                  })
+                        </td>
+                        <td>
+                            @Html.DropDownList("ClinicDropdown", new List<SelectListItem>
+                 { new SelectListItem { Text = "Clinic1", Value = "1"},
+                   new SelectListItem { Text = "Clinic2", Value = "2"}
+                  })
+                        </td>
+                    </tr>
 
+                </table>*@
+
+
+
+
+
+
+
+
+
+        </div>
+        <div id="browse-xml" class="modal fade rundoc" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Run Automation Documents</h4>
+                    </div>
+                    <div id="msgbody" class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="@Url.Action("DownloadFile", "Institution")" id="Downloadbtn" target="_blank" class="btn btn-default" onclick="hide();"> Download</a>
+                        @*<button type="button" id="Downloadbtn" class="btn btn-default" data-dismiss="modal">Download</button>*@
+                    </div>
+                </div>
+            </div>
+        </div><!--import/export browse xml modal end-->
+        <button id="btnSaveQuick" type="submit">Save</button>
+    }
+    <button class="btnClear" id="btnClearQuick">Cancel</button>
+
+    <!-- import/export browse xml file modal -->
+       
+</div>
    
 
 

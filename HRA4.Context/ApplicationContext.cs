@@ -79,7 +79,8 @@ namespace HRA4.Context
         private void InitializeServices()
         {
             _username = HttpContext.Current.User.Identity.Name;
-            //_username = "sadmin";
+            if(string.IsNullOrWhiteSpace(_username))
+            _username = "sadmin";
             _service = new ServiceContext(_repository,_username);            
           
         }

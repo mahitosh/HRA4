@@ -102,13 +102,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\config.xml" />
     <Content Include="App_Data\HRATenantDBCreation.sql" />
+    <Content Include="App_Data\RAFiles\AggregatorReply.xml" />
+    <Content Include="App_Data\RAFiles\AggregatorRequest.xml" />
+    <Content Include="App_Data\RAFiles\Annie Proband.xml" />
+    <Content Include="App_Data\RAFiles\ApptTransform.xsl" />
+    <Content Include="App_Data\RAFiles\document_sections.xml" />
+    <Content Include="App_Data\RAFiles\GeneCodes.xml" />
+    <Content Include="App_Data\RAFiles\HL7Relationships.xml" />
     <Content Include="App_Data\RAFiles\hraDeIdentifySerialized.xsl" />
+    <Content Include="App_Data\RAFiles\hraGetGail.xsl" />
+    <Content Include="App_Data\RAFiles\hraMap.xsl" />
     <Content Include="App_Data\RAFiles\hra_serialized_to_hl7.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd2.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd_remove_namespaces.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_hl7.xsl" />
+    <Content Include="App_Data\RAFiles\import.xml" />
+    <Content Include="App_Data\RAFiles\MedsImport.xsl" />
+    <Content Include="App_Data\RAFiles\Microsoft.TabletPC.Samples.InkSecureSignature.xml" />
+    <Content Include="App_Data\RAFiles\PcpImport.xsl" />
+    <Content Include="App_Data\RAFiles\ProblemsImport.xsl" />
+    <Content Include="App_Data\RAFiles\progenyTemplate.xml" />
+    <Content Include="App_Data\RAFiles\removeNamespaces.xsl" />
+    <Content Include="App_Data\RAFiles\riskMeanings.xml" />
+    <Content Include="App_Data\RAFiles\sg_to_hl7.xsl" />
     <Content Include="assets\brand\bootstrap-outline.svg" />
     <Content Include="assets\brand\bootstrap-punchout.svg" />
     <Content Include="assets\brand\bootstrap-solid.svg" />
@@ -218,7 +237,11 @@
     <Content Include="css\font-awesome-4.5.0\scss\_rotated-flipped.scss" />
     <Content Include="css\font-awesome-4.5.0\scss\_stacked.scss" />
     <Content Include="css\font-awesome-4.5.0\scss\_variables.scss" />
+    <None Include="App_Data\RAFiles\user.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="images\add-appointment-ico.svg" />
     <Content Include="images\add-clinic-ico.svg" />
     <Content Include="images\admin-tool-ico.svg" />
     <Content Include="images\appointment-ico.svg" />
@@ -227,6 +250,10 @@
     <Content Include="images\bg.gif" />
     <Content Include="images\bg.png" />
     <Content Include="images\body-bg.jpg" />
+    <Content Include="images\BRCAmutation-ico-hover.svg" />
+    <Content Include="images\BRCAmutation-ico.svg" />
+    <Content Include="images\breast-ico-hover.svg" />
+    <Content Include="images\breast-ico.svg" />
     <Content Include="images\copy-grid-ico.svg" />
     <Content Include="images\dashboard-ico.svg" />
     <Content Include="images\delete-appointment-ico.svg" />
@@ -242,6 +269,8 @@
     <Content Include="images\help-ico.svg" />
     <Content Include="images\import-export-ico.svg" />
     <Content Include="images\institution-ico.svg" />
+    <Content Include="images\lifetime-cancer-ico-hover.svg" />
+    <Content Include="images\lifetime-cancer-ico.svg" />
     <Content Include="images\login-hra-logo.svg" />
     <Content Include="images\login-page-logo.png" />
     <Content Include="images\logout-ico.svg" />
@@ -249,6 +278,8 @@
     <Content Include="images\refresh-grid-ico.svg" />
     <Content Include="images\risk-calc-ico.svg" />
     <Content Include="images\run-auto-doc-ico.svg" />
+    <Content Include="images\schedule-ico-hover.svg" />
+    <Content Include="images\schedule-ico.svg" />
     <Content Include="images\spiffygif_30x30.gif" />
     <Content Include="images\tab-refresh-ico.svg" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -312,6 +343,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\RAFiles\Download\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
@@ -356,7 +388,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62986</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

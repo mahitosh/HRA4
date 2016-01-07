@@ -18,6 +18,7 @@ using log4net;
 using HRACACHE = HRA4.Utilities.Cache;
 using RiskApps3.Model.PatientRecord;
 using System.Collections.Specialized;
+using System.IO;
 namespace HRA4.Services
 {
     public class AppointmentService : IAppointmentService
@@ -70,6 +71,7 @@ namespace HRA4.Services
                 _institutionId = InstitutionId;
                 SetUserSession();
                 var list = new AppointmentList();
+                
                 list.clinicId = 1;
                 if (Convert.ToString(searchfilter["appdt"]) != null && Convert.ToString(searchfilter["appdt"]) != "")
                     list.Date = Convert.ToString(searchfilter["appdt"]);
@@ -93,8 +95,11 @@ namespace HRA4.Services
                 _institutionId = Convert.ToInt32(HttpContext.Current.Session["InstitutionId"]);
             
             Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
-           
-            string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
+            string rootPath = HttpContext.Current.Server.MapPath(@"~/App_Data/");
+
+
+           // string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
+            string configTemplate = System.IO.File.ReadAllText(System.IO.Path.Combine(rootPath, "config.xml"));
             
             string configuration = Helpers.GetInstitutionConfiguration(configTemplate, inst.DbName);
                 _hraSessionManager = new HraSessionManager(_institutionId.ToString(), configuration);
@@ -148,6 +153,20 @@ namespace HRA4.Services
         {
 
             UpdateMarkAsComplete(Appt, InstitutionId);
+            
+
+        }
+
+        public FileInfo RunAutomationDocuments(int InstitutionId, int apptid, string MRN)
+        {
+            Appointment.MarkComplete(apptid);
+            SessionManager.Instance.SetActivePatient(MRN, apptid);
+            Patient proband = SessionManager.Instance.GetActivePatient();
+            string toolsPath = HttpContext.Current.Server.MapPath(@"~/App_Data/RAFiles/");
+            proband.RecalculateRisk(false, toolsPath, "");
+            proband.RunAutomation();
+            return proband.file;
+          
 
         }
          
@@ -172,6 +191,10 @@ namespace HRA4.Services
                     Appointment.MarkIncomplete(appt.apptID);
                 }
             }
+        }
+        public void DeleteAppointment(int InstitutionId, int apptid)
+        {
+            Appointment.DeleteApptData(apptid,false);
         }
     }
 }

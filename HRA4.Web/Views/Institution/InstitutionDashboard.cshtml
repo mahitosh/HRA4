@@ -131,9 +131,79 @@ else
         </div><!--container fluid end-->
     </div> <!-- /container area end -->
 }
-
+<style>
+    #progressbar .ui-progressbar-value {
+        background-color: #ccc;
+    }
+</style>
 <script type="text/javascript">
+    function spin() {
+        var opts = {
+            lines: 12, // The number of lines to draw
+            length: 7, // The length of each line
+            width: 4, // The line thickness
+            radius: 10, // The radius of the inner circle
+            color: '#000', // #rgb or #rrggbb
+            speed: 1, // Rounds per second
+            trail: 60, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false // Whether to use hardware acceleration
+        };
+        var target = document.getElementById('msgbody');
+        var spinner = new Spinner(opts).spin(target);
+
+    };
+    function RunDocs(MRN, apptid) {
+        var globalGetJSONPath = '@Url.Action("RunAutomationDocuments", "Institution")';
+        $.ajax({
+            beforeSend: function () {
+                $("#line").hide();
+                $("#loading").hide();
+                $('#Downloadbtn').prop('disabled', true);
+                $('#CloseBtn').prop('disabled', true);
+                $("#msgbody").html('<div id="progressbar"></div>');
+                $("#progressbar").progressbar({
+                    value: false
+                });
+               
+            },
+            type: "POST",
+            url: globalGetJSONPath,
+            data: { apptid: apptid, MRN: MRN },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                $("#msgbody").html('<br><div id="line">Run Automation Documents Process Finished Click on download</div></br>');
+                $('#Downloadbtn').prop('disabled', false);
+                $('#CloseBtn').prop('disabled', false);
+            }
+        }).always(function (Data) {
+
+        });
+    };
+
+    function hide() {
+        $('#browse-xml').hide();
+
+    };
     $(document).ready(function () {
+        
+
+
+        $('#Downloadbtn').click(function ()
+        {
+            var globalGetJSONPath = '@Url.Action("DownloadFile", "Institution")';
+            $.ajax({
+                type: "GET",
+                url: globalGetJSONPath,
+                success: function (data) {
+                    
+                }
+            }).always(function (Data) {
+                $("#loading").hide();
+            });
+
+        });
 
         $('#chkbox').change(function () {
             if ($(this).is(":checked")) {
@@ -152,12 +222,12 @@ else
                 $("#appt-date").prop('readonly', false);
                 $('#appt-date').prop('disabled', false);
                 $("#appt-date").val(today);
-                
+
             } else {
                 $("#appt-date").prop('readonly', true);
                 $('#appt-date').prop('disabled', true);
                 $("#appt-date").val('');
-               
+
             }
            search();
 
@@ -170,9 +240,7 @@ else
         function search() {
             var name = $('#name').val();
             var appdt = $('#appt-date').val();
-
             var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
-
             $.ajax({
                 type: "POST",
                 url: globalGetJSONPath,
@@ -181,9 +249,9 @@ else
                 success: function (Data) {
                     $('#divInstitutionGrid').html(Data.view);
                 }
-
             })
-
         };
+
+
     });
 </script>

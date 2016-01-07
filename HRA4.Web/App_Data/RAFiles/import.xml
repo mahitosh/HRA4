@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <databaseinfo>
+    <dbConnection>Data Source=.;Initial Catalog=bcDB2;Persist Security Info=True;User ID=bcDB_User;</dbConnection>
+  </databaseinfo>
+  <globals>
+    <importFileName>C:\Program Files\RiskAppsV2\tools\sched.txt</importFileName>
+    <fieldDelimiter>|</fieldDelimiter>
+    <logFileName>C:\Program Files\RiskAppsV2\tools\ImportLog.txt</logFileName>
+    <importType>appointment</importType>
+    <defaultSurveyID>150</defaultSurveyID>
+    <defaultSurveyType>Breast Colon Risk</defaultSurveyType>
+    <defaultClinicID>1</defaultClinicID>
+    <defaultClinicAreaID />
+  </globals>
+   <fields>
+    <field>unitnum</field>
+    <field>patientName</field>
+    <field>blankOne</field>
+    <field>address1</field>
+    <field>address2</field>
+    <field>city</field>
+    <field>state</field>
+    <field>zip</field>
+    <field>country</field>
+    <field>homephone</field>
+    <field>cellphone</field>
+    <field>gender</field>
+    <field>dob</field>
+    <field>maritalStatus</field>
+    <field>blankTwo</field>
+    <field>Religion</field>
+    <field>blankThree</field>
+    <field>blankFour</field>
+    <field>blankFive</field>
+    <field>blankSix</field>
+    <field>blankSeven</field>
+    <field>apptDate</field>
+    <field>apptTime</field>
+    <field>blank8</field>
+    <field>blank9</field>
+    <field>blank10</field>
+    <field>blank11</field>
+    <field>blank12</field>
+    <field>blank13</field>
+    <field>blank14</field>
+    <field>Insurance</field>
+    <field>blank15</field>
+    <field>pcpname</field>
+    <field>visitnum</field>
+    <field>pcpAddress1</field>
+    <field>pcpAddress2</field>
+    <field>pcpCity</field>
+    <field>pcpState</field>
+    <field>pcpZip</field>
+    <field>pcpPhone</field>
+    <field>apptStatus</field>
+    <field>blank16</field>
+    <field>blank17</field>
+    <field>blank18</field>
+    <field>blank19</field>
+  </fields>
+</configuration>

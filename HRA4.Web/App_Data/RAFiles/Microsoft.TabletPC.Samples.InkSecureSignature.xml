@@ -1,0 +1,109 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Microsoft.TabletPC.Samples.InkSecureSignature
+</name>
+</assembly>
+<members>
+<member name="P:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignatureData.AcquiredSignatureStartOn">
+	<summary>
+ Gets or sets the timestamp when signature creation began.
+ </summary>
+</member><member name="P:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignatureData.BiometricEncryptionCompletedOn">
+	<summary>
+ Gets or sets the timestamp when signature data was received back from the biometric encryption provider.
+ </summary>
+</member><member name="P:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignatureData.BiometricEncryptionSubmittedOn">
+	<summary>
+ Gets or sets the timestamp when signature data was submitted to the biometric encryption provider.
+ </summary>
+</member><member name="P:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignatureData.EncryptedBiometricData">
+	<summary>
+ Gets or sets the encrypted biometric data.
+ </summary>
+</member><member name="P:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignatureData.HardwareInfo">
+	<summary>
+ Gets or sets hardware information for the computer that created the signature.
+ </summary>
+</member><member name="P:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignatureData.InkWashedSignature">
+	<summary>
+ Gets or sets serialized Strokes for the signature that have been altered to strip pressure information.
+ </summary>
+</member><member name="P:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignatureData.InkSecureSignature">
+	<summary>
+ Gets or sets the original Strokes for the signature.
+ </summary>
+</member><member name="P:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignatureData.SignerAcceptedOn">
+	<summary>
+ Gets or sets the timestamp for the Accept button click.
+ </summary>
+</member><member name="P:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignatureData.SignersName">
+	<summary>
+ Gets or sets the text name of the signer.
+ </summary>
+</member><member name="T:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignatureData">
+	<summary>
+ Provides storage for InkSecureSignature data.
+ </summary>
+	<exclude/>
+</member><member name="M:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignature.#ctor">
+	<summary>
+ Initializes a new instance of the InkSecureSignature class.
+ </summary>
+</member><member name="M:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignature.Dispose(System.Boolean)">
+	<summary>
+ Releases resources used by the InkSecureSignature object.
+ </summary>
+	<param name="disposing">Set to true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+</member><member name="E:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignature.Signed">
+	<summary>
+ Occurs when the signature has been fully signed.
+ </summary>
+	<param name="sender">The source InkSecureSignature object for this event.</param>
+	<param name="e">The EventArgs object that contains the event data.</param>
+</member><member name="P:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignature.Value">
+	<summary>
+ Gets or sets an XML document string containing the entire state of the control.
+ </summary>
+</member><member name="P:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignature.SignersNameCaption">
+	<summary>
+ Gets or sets the override to the default "Signer's Name:" label caption.
+ </summary>
+</member><member name="P:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignature.SignatureComplete">
+	<summary>
+ Gets or sets whether the signature has been completed.
+ </summary>
+	<remarks>
+ After the signature is accepted, this property is true, and
+ it cannot be changed back to false. This would enable the
+ modification of the signature after acceptance.
+ </remarks>
+</member><member name="M:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignature.Print(System.Drawing.Graphics,System.Drawing.Point)">
+	<summary>
+ Prints the signature.
+ </summary>
+	<param name="graphics">The Graphics context to print to.</param>
+	<param name="topLeftPoint">The top left corner of the print area.</param>
+</member><member name="M:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignature.Reset">
+	<summary>
+ Clears signature data to reset the control.
+ </summary>
+</member><member name="T:Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignature">
+	<summary>
+ User control for safely collecting an ink signature.
+ </summary>
+</member><member name="M:Microsoft.TabletPC.Samples.InkSecureSignature.BiometricEncryptionProviderForInk.Encrypt(Microsoft.TabletPC.Samples.InkSecureSignature.InkSecureSignatureData)">
+	<summary>
+ Encrypt the signature data.
+ </summary>
+	<param name="signatureData">An InkSecureSignatureData object containing 
+ a signature and its metadata.</param>
+</member><member name="T:Microsoft.TabletPC.Samples.InkSecureSignature.BiometricEncryptionProviderForInk">
+	<summary>
+ Encrypts the entire InkSecureSignatureData object, generates washed Ink, and blanks out the original Ink.
+ </summary>
+	<exclude/>
+</member>
+</members>
+</doc>

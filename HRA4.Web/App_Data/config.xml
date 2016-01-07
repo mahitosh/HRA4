@@ -1,0 +1,173 @@
+<configuration>
+
+  <DatabaseInfo>
+    <add key="MSAccessConnectionString" value="Driver={Microsoft Access Driver (*.mdb)};DBQ=C:\program files\riskAppsV2\riskAppsData.mdb"/>
+    <add key="Connection" value="[DBCONNECTION]"/>
+    <add key="ConnectionPWD" value="[PWD]"/>
+    <add key="WebConnection" value="DRIVER=SQL SERVER;SERVER=.;DATABASE=bcdb2Web;APP=RISKAPP;WSID=RISKAPPSWSID;UID=bcDbWeb_User;ADDRESS=1433;"/>
+    <add key="WebConnectionPWD" value="dZUoEraPpGiOwzBShnz/ug=="/>
+    <add key="MetaDataDBConnection" value="DRIVER=SQL SERVER;SERVER=.;DATABASE=riskAppsMetaData;APP=RISKAPP;WSID=RISKAPPSWSID;UID=bcDb_User;ADDRESS=1433;"/>
+    <add key="MetaDataDBConnectionPWD" value="dZUoEraPpGiOwzBShnz/ug=="/>
+    <add key="version" value="MGH-HL7 Translater v2.0"/>
+    <add key="OID" value="2.16.840.1.113883.6.117"/>
+    <add key="PedigreeIdDescription" value="Avon Center Appointment Number"/>
+    <add key="DataCollectionMethod" value="Hughes Risk Apps v2.0"/>
+  </DatabaseInfo>
+
+  <translatorInfo>
+    <add key="BridgeTranslator" value="C:\Program Files\riskAppsV2\tools\BridgeTranslator.dll" />
+    <add key="CaGeneTranslator" value="C:\Program Files\riskAppsV2\tools\CaGeneTranslator.dll" />
+    <add key="MghTranslator" value="C:\Program Files\riskAppsV2\tools\MghTranslator.dll" />
+    <add key="ProgenyTranslator" value="C:\Program Files\riskAppsV2\tools\ProgenyTranslator.dll" />
+    <add key="SGTranslator" value="C:\Program Files\riskAppsV2\tools\SGTranslator.dll" />
+  </translatorInfo>
+
+  <CaGeneInfo>
+    <add key="Connection" value="Driver={Microsoft Access Driver (*.mdb)};DBQ=C:\Care_5\cagene5.mdb"/>
+    <add key="CGEngineInputFile" value="c:\brca\Input.dat" />
+    <add key="CGEngineOutputPath" value="c:\brca\" />
+    <add key="CaGene_Version" value="4.3" />
+    <add key="BRCAPRO_Type" value="BayesMendel" />
+    <add key="BRCAPRO_Version" value="1.4.1" />
+    <add key="BRCAPRO_Penetrance" value="BRCApenet.metaDSL.2006" />
+    <add key="MMRPRO_Penetrance" value="MMRpenet" />
+    <add key="Sensitivity_BRCA1" value="0.9" />
+    <add key="Specificity_BRCA1" value="1" />
+    <add key="Sensitivity_BRCA2" value="0.9" />
+    <add key="Specificity_BRCA2" value="1" />
+    <add key="Prob_Every" value="5" />
+    <add key="Myriad_Version" value="BRCA_Spring 2006__HNPCC_Oct 2005" />
+    <add key="Notation" value="Created by HL7 - CaGene Translator" />
+    <add key="OID" value="2.16.840.1.113883.6.117"/>
+    <add key="PedigreeIdDescription" value="CaGene Family ID Number"/>
+    <add key="DataCollectionMethod" value="CaGene v4.3"/>
+  </CaGeneInfo>
+
+  <ProgenyInfo>
+    <add key="type" value="BI" />
+    <add key="templatePath" value="C:\Program Files\riskAppsV2\tools\progenyTemplate.xml" />
+    <add key="defaultHeader" value="Created by Progeny - HL7 Translater" />
+  </ProgenyInfo>
+
+  <appSettings>
+
+    <add key="showProgressForm" value="true" />
+
+    <!-- Path for data lookup dictionary -->
+    <add key="dictionaryPath" value="C:\Program Files\riskAppsV2\tools\dictionaryV12.mdb" />
+
+    <!-- Path for Log file -->
+    <add key="LogFile" value="C:\Program Files\riskAppsV2\tools\log.txt" />
+    <add key="DebugLogFile" value="C:\Program Files\riskAppsV2\tools\DebugLog.txt" />
+
+    <!-- XML Output parameters-->
+    <add key="version" value="1.0"/>
+    <add key="encoding" value="utf-8"/>
+    <add key="includeSchemaLocation" value="No"/>
+    <add key="xmlns" value="urn:hl7-org:v3"/>
+    <add key="xmlns:xsi"  value="http://www.w3.org/2001/XMLSchema-instance"/>
+    <add key="xsi:schemaLocation" value="urn:hl7-org:v3 ..\..\OutputFiles\Schemas\ClinicalGenomicsElements.xsd"/>
+
+    
+    <!-- choices are LITERALLY: lastName, firstName, patientName, date, unitnum, documentName -->
+    <!-- patientName is the old fashioned patient name last,first.  But you can rearrange the name parts by using lastName and firstName -->
+    <!-- add key="DocumentFilenameSchema" value="firstName|lastName|documentName|date|unitnum"/-->
+
+    <add key="SecurityContext" value="Off"/>  <!-- Off, Machine, Domain (LDAP) jdg 10/30/2015 -->
+  </appSettings>
+
+  <PedigreeInfo>
+    <add key="syndrome" value="BreastOvarian" />
+    <add key="verbose" value="true" />
+    <add key="layout" value="newlayout" />
+    <add key="createGreatGrandparents" value="false" />
+    <add key="showFamilyBrcaproScores" value="true" />
+    <add key="DrawVerticalLineForUnknowns" value="false" />
+  </PedigreeInfo>
+
+  <RiskClinicInfo>
+    <add key="letters_location" value="C:\Program Files\riskAppsV2\documents\" />
+    <add key="iconPath" value="C:\Program Files\riskAppsV2\icons\" />
+    <add key="DCISasCancerDefault" value="false" />
+  </RiskClinicInfo>
+
+  <Prenatal>
+    <add key="ForceCompletion" value="False" />
+  </Prenatal>
+  
+  <Developer>
+    <add key="ProcessUpdateFolderPreserveModifiedDate" value="true" />
+  </Developer>
+
+  <globals>
+    <add key="SectionComment" value="NOTE: This section MUST remain at the end of this file as the last section"/>
+    <add key="AppName" value="riskApps Cancer Risk Assessment Application"/>
+    <add key="AppVer" value="2.50"/>
+    <add key="AppIcon" value="riskApp.ico"/>
+    <add key="ReportHeader" value="My Cool Clinic"/>
+    <add key="ReportHeaderImage" value=""/>
+    <add key="Platform" value="MANAGEMENTAPP" />
+    <add key="AutoImportdata" value="-1"/>
+    <add key="AutoConvertData" value="False"/>
+    <add key="AutoConvertDataHook" value=""/>
+    <add key="AutoConvertDBType" value=""/>
+    <add key="AutoExportData" value="False"/>
+    <add key="AutoExportDataHook" value=""/>
+    <add key="AutoPrintDocuments" value="True"/>
+    <add key="GridCustomField" value="apptphysname"/>
+    <add key="GridCustomLabel" value="Phys"/>
+    <add key="GridCustomSort" value="appttime"/>
+    <add key="SurveySummaryDoc" value="Mammo Survey Summary" />
+    <add key="RiskBMPStorage" value="c:\program files\riskAppsV2\pedigrees"/>
+    <add key="DocumentStorage" value="c:\program files\riskAppsV2\documents"/>
+    <add key="DocumentTemplateStorage" value="c:\program files\riskAppsV2\templates"/>
+    <add key="RefreshApptList" value="300000"/>
+    <add key="AutoPrintSurgeryDocuments" value="False"/>
+    <add key="SchedBillingDBConnection" value=""/>
+    <add key="InstitutionCode" value="MGH"/>
+    <add key="UseNTAuthentication" value="True"/>
+    <add key="LoadStub" value="False"/>
+    <add key="RiskLetterID" value="IN(2)"/>
+    <add key="HighRisk" value=""/>        
+    <add key="RBinPath" value="C:\Program Files\riskAppsV2\tools\R\bin\" />
+    <add key="ToolsPath" value="C:\Program Files\riskAppsV2\tools\" />
+    <add key="BayesMendelVersion" value="2.0-5" />
+    <add key="UseRCOM" value="False" />
+    <add key="UseRiskService" value="True" />
+    <add key="RiskServiceTimeout" value="90" />
+    <add key="RiskServiceRetryInterval" value="300" />
+    <add key="RiskServiceURLOrig" value="http://bayesmendel.dfci.harvard.edu:8080/RiskService/services/Converter.ConverterHttpSoap11Endpoint/"/>
+    <add key="RiskServiceURL" value="http://bayesmendel.dfci.harvard.edu:8080/RiskService/services/Converter.ConverterHttpSoap11Endpoint/"/>
+    <add key="RiskServiceResearchUseOk" value="True" />
+    <add key="WebQueue" value="True"/>
+    <add key="HighRiskLetterQueue" value="True" />
+    <add key="PlanQueue" value="True" />
+    <add key="SetDefaultDateFilter" value="True" />
+    <add key="defaultSurvey" value="150" />
+    <add key="HighRiskQueuePrintout" value="C:\Program Files\riskAppsV2\templates\HighRiskQueue.dot" />
+    <add key="FollowupPrintout" value="C:\Program Files\riskAppsV2\templates\followUp.dot" />
+    <add key="ShowDocumentCreation" value="True" />
+    <add key="RunColonModels" value="True" />
+    <add key="ShowSurgicalClinicButton" value="True" />
+    <add key="SurveyDemo" value="True" />
+    <add key="showSurveyProgress" value="False" />
+    <add key="surveyLogging" value="True" />
+    <add key="AutomationHL7Directory" value="c:\temp\"/>
+    <add key="AutomationSaveHL7RequestPath" value=""/>
+    <add key="CheckForUpdates" value="False"/>
+    <add key="AskUpdateQuestion" value="True"/>
+    <add key="PhotoUploadPath" value="C:\Users\Public\Pictures\PhotoUpload"/>
+    <add key="NextButtonDelay" value="0"/> 
+    <add key="ShowObGynClinicButton" value="True" />
+    <add key="CenterTablet" value="True"/>
+    <add key="DocumentPassword" value=""/>
+    <add key="PedigreeDemo" value="False"/>  
+    <add key="AutomationHeartbeatServiceURL" value=""/>
+    <add key="CloudWebQueueURL" value="http://66.118.159.147/HRACloudWebServices/Service1.asmx"/>
+    <add key="UseAggregatorService" value="True" />
+    <add key="AggregatorLicenseID" value="c8d1b425-a679-4e8d-853c-b705fb93c9df" />  <!-- HRADevInternal -->
+    <add key="WriteAggregatorFiles" value="False" />
+    <add key="NWHTransmitFlag" value="1" /> 	<!-- TRI-STATE: 1 = print, 2 = interface only, 3 = both -->
+  </globals>
+
+</configuration>

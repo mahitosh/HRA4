@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FamilyHistory classCode="OBS" moodCode="EVN">
+   <id root="2.16.840.1.113883.6.117" extension="0" assigningAuthorityName="HRA" />
+   <code code="10157-6" codeSystemName="LOINC" displayName="HISTORY OF FAMILY MEMBER DISEASE" />
+   <text> Current User:  ; Clinic: ClinicA; Institution: Hospital</text>
+   <effectiveTime value="201601051014" />
+   <subject typeCode="SBJ">
+      <patient classCode="PAT">
+         <id root="2.16.840.1.113883.6.117" />
+         <patientPerson classCode="PSN" determinerCode="INSTANCE">
+            <id extension="1" />
+            <administrativeGenderCode code="F" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+               <code code="NMTH" />
+               <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                  <id extension="2" />
+                  <administrativeGenderCode code="F" />
+                  <deceasedInd value="false" />
+                  <relative classCode="PRS">
+                     <code code="NMTH" />
+                     <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                        <id extension="4" />
+                     </relationshipHolder>
+                  </relative>
+                  <relative classCode="PRS">
+                     <code code="NFTH" />
+                     <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                        <id extension="5" />
+                     </relationshipHolder>
+                  </relative>
+               </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+               <code code="NFTH" />
+               <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                  <id extension="3" />
+                  <administrativeGenderCode code="M" />
+                  <deceasedInd value="false" />
+                  <relative classCode="PRS">
+                     <code code="NMTH" />
+                     <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                        <id extension="6" />
+                     </relationshipHolder>
+                  </relative>
+                  <relative classCode="PRS">
+                     <code code="NFTH" />
+                     <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                        <id extension="7" />
+                     </relationshipHolder>
+                  </relative>
+               </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+               <code code="MGRMTH" />
+               <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                  <id extension="4" />
+                  <administrativeGenderCode code="F" />
+                  <deceasedInd value="false" />
+               </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+               <code code="MGRFTH" />
+               <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                  <id extension="5" />
+                  <administrativeGenderCode code="M" />
+                  <deceasedInd value="false" />
+               </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+               <code code="PGRMTH" />
+               <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                  <id extension="6" />
+                  <administrativeGenderCode code="F" />
+                  <deceasedInd value="false" />
+               </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+               <code code="PGRFTH" />
+               <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                  <id extension="7" />
+                  <administrativeGenderCode code="M" />
+                  <deceasedInd value="false" />
+               </relationshipHolder>
+            </relative>
+         </patientPerson>
+         <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+               <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+               <value value="45" />
+            </livingEstimatedAge>
+         </subjectOf1>
+         <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+               <code code="130" codeSystemName="UML" displayName="Menopausal Status" />
+               <statusCode code="3" />
+            </clinicalObservation>
+         </subjectOf2>
+         <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+               <code code="135" codeSystemName="UML" displayName="HRT Use" />
+               <statusCode code="0" />
+            </clinicalObservation>
+         </subjectOf2>
+         <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+               <code code="136" codeSystemName="UML" displayName="HRT Type" />
+               <statusCode code="0" />
+            </clinicalObservation>
+         </subjectOf2>
+         <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+               <code code="137" codeSystemName="UML" displayName="HRT Length Past">
+                  <qualifier>
+                     <value code="-99" />
+                  </qualifier>
+               </code>
+            </clinicalObservation>
+         </subjectOf2>
+         <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+               <code code="138" codeSystemName="UML" displayName="HRT Length Intent">
+                  <qualifier>
+                     <value code="-99" />
+                  </qualifier>
+               </code>
+            </clinicalObservation>
+         </subjectOf2>
+         <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+               <code code="139" codeSystemName="UML" displayName="HRT Last Use">
+                  <qualifier>
+                     <value code="-99" />
+                  </qualifier>
+               </code>
+            </clinicalObservation>
+         </subjectOf2>
+      </patient>
+   </subject>
+</FamilyHistory>

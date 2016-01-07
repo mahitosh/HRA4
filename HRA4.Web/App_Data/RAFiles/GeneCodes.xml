@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Per the HL7 spec example, some gene coding systems are referred to as 'codeSystemName', and some as 'codeSystem' -->
+<root>
+    <Gene>
+        <code>672</code>
+        <codeSystemName>NCBI Entrez</codeSystemName>
+        <displayName>BRCA1</displayName>
+        <text>BRCA1 breast cancer 1, early onset</text>
+    </Gene>
+    <Gene>
+        <code>1100</code>
+        <codeSystem>HGNC</codeSystem>
+        <displayName>BRCA1</displayName>
+        <text>BRCA1 breast cancer 1, early onset</text>
+    </Gene>
+    <Gene>
+        <code>83990</code>
+        <codeSystemName>NCBI Entrez</codeSystemName>
+        <displayName>BRCA1</displayName>
+        <text>BRCA1 interacting protein C-terminal helicase 1</text>
+    </Gene>
+    <Gene>
+        <code>20473</code>
+        <codeSystem>HGNC</codeSystem>
+        <displayName>BRCA1</displayName>
+        <text>BRCA1 interacting protein C-terminal helicase 1</text>
+    </Gene>
+    <Gene>
+        <code>675</code>
+        <codeSystemName>NCBI Entrez</codeSystemName>
+        <displayName>BRCA2</displayName>
+        <text>BRCA2 breast cancer 2, early onset</text>
+    </Gene>
+    <Gene>
+        <code>1101</code>
+        <codeSystem>HGNC</codeSystem>
+        <displayName>BRCA2</displayName>
+        <text>BRCA2 breast cancer 2, early onset</text>
+    </Gene>
+    <Gene>
+        <code>4292</code>
+        <codeSystemName>NCBI Entrez</codeSystemName>
+        <displayName>MLH1</displayName>
+        <text>mutL homolog 1, colon cancer, nonpolyposis type 2</text>
+    </Gene>
+    <Gene>
+        <code>7127</code>
+        <codeSystem>HGNC</codeSystem>
+        <displayName>MLH1</displayName>
+        <text>mutL homolog 1, colon cancer, nonpolyposis type 2</text>
+    </Gene>
+    <Gene>
+        <code>4436</code>
+        <codeSystemName>NCBI Entrez</codeSystemName>
+        <displayName>MSH2</displayName>
+        <text>mutS homolog 2, colon cancer, nonpolyposis type 1</text>
+    </Gene>
+    <Gene>
+        <code>7325</code>
+        <codeSystem>HGNC</codeSystem>
+        <displayName>MSH2</displayName>
+        <text>mutS homolog 2, colon cancer, nonpolyposis type 1</text>
+    </Gene>
+    <Gene>
+        <code>2956</code>
+        <codeSystemName>NCBI Entrez</codeSystemName>
+        <displayName>MSH6</displayName>
+        <text>mutS homolog 6</text>
+    </Gene>
+    <Gene>
+        <code>7329</code>
+        <codeSystem>HGNC</codeSystem>
+        <displayName>MSH6</displayName>
+        <text>mutS homolog 6</text>
+    </Gene>
+    <Gene>
+        <code>1029</code>
+        <codeSystemName>NCBI Entrez</codeSystemName>
+        <displayName>P16</displayName>
+        <text>cyclin-dependent kinase inhibitor 2A (melanoma, p16, inhibits CDK4)</text>
+    </Gene>
+    <Gene>
+        <code>1787</code>
+        <codeSystem>HGNC</codeSystem>
+        <displayName>P16</displayName>
+        <text>cyclin-dependent kinase inhibitor 2A (melanoma, p16, inhibits CDK4)</text>
+    </Gene>
+</root>
