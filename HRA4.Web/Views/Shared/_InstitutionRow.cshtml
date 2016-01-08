@@ -5,11 +5,12 @@
 @*<link href="~/css/tablesorter.css" rel="stylesheet" />*@
 
     <div class="quick-add-inner-div">
-@using (Ajax.BeginForm("InstitutionDashboard", "Institution", new { @model = Model }, new AjaxOptions
+@*@using (Ajax.BeginForm("InstitutionSave", "Institution", new { @model = Model }, new AjaxOptions
             {
                 HttpMethod = "POST"
 
-            }))
+            }))*@
+@using (Html.BeginForm("InstitutionSave", "Institution", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
         <div class="col-sm-12 quick-add-links">
             @Html.HiddenFor(item => item.Id)
@@ -20,30 +21,130 @@
             @{
         string strMrn = Model.MRN;
         int apptId = Model.Id;
-            }
-            <a href="@Url.Action("ExportAsHL7", "Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)" target="_blank">
-                <img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" />Import or Export    
-            </a>
+            }            
+            <div class="dropdown" style="position:relative;display:inline">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="position:relative">
+                    <img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" /> Import &frasl;Export
+                </a>
+                <ul class="dropdown-menu import-menu">
+                    <li class="dropdown-submenu">
+                        <a href="#">Save as XML</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("ExportAsXml", "Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)" target="_blank">De-Identified</a></li>
+                            <li><a href="@Url.Action("ExportAsXml", "Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)" target="_blank">Identified</a></li>
+                        </ul>
+                    </li>
+                    <li><a href=".demo" data-toggle="modal" data-parent="browsexml" data-target=".demo">Load from XML</a></li>
+                    <li class="dropdown-submenu">
+                        <a href="#">Save as HL7</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("ExportAsHL7", "Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)" target="_blank">De-Identified</a></li>
+                            <li><a href="@Url.Action("ExportAsHL7", "Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)" target="_blank">Identified</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Load from HL7</a></li>
+                </ul>
+            </div><!--Import/export dropdown end-->
             @*<a href="#"><img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" /> Import &frasl;Export</a>*@
-            <a href="#"><img src="~/images/run-auto-doc-ico.svg" alt="Run Automation Document" width="30" height="30" title="Run Automation Document" />Run Automation Documents</a>
-            <a href="#"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Delete Appointment" /> Delete Appointment</a>
+            <a href="#"><img src="~/images/risk-calc-ico.svg" alt="Risk Calculation" width="30" height="30" title="Risk Calculation" /> Risk Calculation</a>
+            <a href="#"><img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" /> Import &frasl;Export</a>
+            <a data-toggle="modal" data-target=".rundoc" onclick="RunDocs('@Model.MRN.ToString()','@Model.Id.ToString()');"><img src="~/images/run-auto-doc-ico.svg" alt="Run automation documents" width="30" height="30" title="Run automation documents" />Run Automation Documents</a>
+            <a href="@Url.Action("DeleteAppointment", "Institution", new {apptid= @Model.Id})"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment</a>
         </div>
         <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
-        <div>@Html.CheckBoxFor(item => item.MarkAsComplete) Survey Complete</div>
+        <div>@Html.CheckBoxFor(item => item.MarkAsComplete)Mark As Complete</div>
+        <div>
+            @*<table>
+                    <tr>
+                        <td>@Html.TextBoxFor(item => item.PatientName)</td>
+                        <td>@Html.TextBoxFor(item => item.MRN, new {@id="MRN"})</td>
+                        <td>
+                            @Html.DropDownList("GenderDropdown", new List<SelectListItem>
+                 { new SelectListItem { Text = "Male", Value = "M"},
+                   new SelectListItem { Text = "Female", Value = "F"}
+                  }, "Select Gender")
+                    </td>
+                    <td><input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="todays-date" placeholder="todays Date" /></td>
+                        <td>
+                            <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" placeholder="dob Date"
+                                   value="@Model.DateOfBirth" />
+                        </td>
+                        <td>@Html.TextBoxFor(item => item.Survey)</td>
+                        <td>
+                            @Html.DropDownList("TimeDropdown", new List<SelectListItem>
+                 { new SelectListItem { Text = "07:00 AM", Value = "07:00 AM"},
+                   new SelectListItem { Text = "07:15 AM", Value = "07:15 AM"}
+                  })
+                        </td>
+                        <td>
+                            @Html.DropDownList("ClinicDropdown", new List<SelectListItem>
+                 { new SelectListItem { Text = "Clinic1", Value = "1"},
+                   new SelectListItem { Text = "Clinic2", Value = "2"}
+                  })
+                        </td>
+                    </tr>
+
+                </table>*@
+
+
+
+
+
+
+
+
+
+        </div>
+        <div id="browse-xml" class="modal fade rundoc" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Run Automation Documents</h4>
+                    </div>
+                    <div id="msgbody" class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="@Url.Action("DownloadFile", "Institution")" id="Downloadbtn" target="_blank" class="btn btn-default" onclick="hide();"> Download</a>
+                        @*<button type="button" id="Downloadbtn" class="btn btn-default" data-dismiss="modal">Download</button>*@
+                    </div>
+                </div>
+            </div>
+        </div><!--import/export browse xml modal end-->
         <button id="btnSaveQuick" type="submit">Save</button>
 }
         <button class="btnClear" id="btnClearQuick">Cancel</button>
     </div>
 
+
 @using (Html.BeginForm("ImportAsHL7", "Institution", new { mrn = Model.MRN,apptId = Model.Id,deIdentified = true}, FormMethod.Post, new { enctype = "multipart/form-data" }))
 { 
-    @Html.AntiForgeryToken() 
-    <fieldset> 
-    <legend>Upload HL7 file</legend>
-     <div class="editor-field"> @Html.TextBox("file", "", new { type = "file" }) </div>
-        <div class="editor-field">@Html.CheckBox("chkHl7DeIdentified") De-Identified</div>
-     <div class="editor-field"> <input type="submit" value="Upload" /> </div> 
-    </fieldset> 
+    @Html.AntiForgeryToken()
+   
+        <div id="browsexml" class="demo modal fade" role="dialog">        
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Load from XML</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="editor-field"> @Html.TextBox("file", "", new { type = "file" }) </div>
+                        <div class="editor-field">@Html.CheckBox("chkHl7DeIdentified") De-Identified</div>
+                        <div class="editor-field"> <input type="submit" value="Upload" /> </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="editor-field"> <input type="submit" value="Upload" /> </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+      
+    </div>
+
 }
 
 @using (Html.BeginForm("ImportAsXml", "Institution", new { mrn = Model.MRN, apptId = Model.Id, deIdentified = true }, FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -57,6 +158,11 @@
     </fieldset>
 }
 
-   
-
+   <script type="text/javascript">
+       function CreateId(id)
+       {
+           alert(id);
+           return "#browse-xml"+ id;
+       }
+   </script>
 

@@ -26,6 +26,7 @@ using System.Collections.Specialized;
 
 using EvoPdf;       // jdg 8/31/15 ported from web tablet...
 using Foxit.PDF.Printing;
+using System.Web;
 
 namespace RiskApps3.Model.PatientRecord
 {
@@ -66,6 +67,7 @@ namespace RiskApps3.Model.PatientRecord
         private string toolsPath = "";
         private string strServiceBinding = "";
 
+        public FileInfo file { get;set;}
         /**************************************************************************************************/
         public void summarize()
         {
@@ -340,6 +342,9 @@ namespace RiskApps3.Model.PatientRecord
                 }
                 if (reader.IsDBNull(3) == false)
                 {
+                    if(HttpContext.Current!=null)
+                        saveLocation = HttpContext.Current.Server.MapPath(reader.GetString(3));
+                    else
                     saveLocation = reader.GetString(3);
                 }
 
@@ -377,7 +382,9 @@ namespace RiskApps3.Model.PatientRecord
                                     DocumentTemplate.ConvertToPdf(dt.htmlText, fInfo.FullName);  // brian's new static class 8/31/15
                                     if (Configurator.getNodeValue("globals", "SurveyDemo").ToUpper() == "TRUE")
                                     {
+                                        if (HttpContext.Current == null) // Silicus: Added check so that the below line is executed only in windows mode.
                                         Process.Start(fInfo.FullName);
+                                        file = fInfo;
                                     }
                                
                                     // Do we need to transmit this file somewhere?  This call checks the interface table (lkpInterfaceDefinitions),
@@ -404,6 +411,7 @@ namespace RiskApps3.Model.PatientRecord
                                     if (Configurator.getNodeValue("globals", "SurveyDemo").ToUpper() == "TRUE")
                                     {
                                         Process.Start(fInfo.FullName);
+                                       
                                     }
                                 }
                                 catch (Exception e)

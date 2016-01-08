@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 //using HRA4.Repositories.Interfaces;
 using HRA4.Utilities;
+using HRA4.ViewModels;
 
 using VM = HRA4.ViewModels;
 namespace HRA4.Web.Controllers
@@ -34,7 +35,7 @@ namespace HRA4.Web.Controllers
             {
                 if (Session["InstitutionId"] == null || Session["InstitutionId"].ToString() != InstitutionId.ToString())
                 {
-                    Session.Add("InstitutionId", InstitutionId);
+                Session.Add("InstitutionId", InstitutionId);
                     //ReInitializing Application Context with Institution Details.
                     System.Web.HttpContext.Current.Session["ApplicationContext"] = null;
                     _applicationContext = new ApplicationContext();
@@ -150,11 +151,16 @@ namespace HRA4.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult InstitutionDashboard(FormCollection frm, bool MarkAsComplete)
+        public ActionResult InstitutionSave(FormCollection frm, bool MarkAsComplete, string ddClinic)
         {
             HRA4.ViewModels.Appointment app = new ViewModels.Appointment();
             app.Id = Convert.ToInt32(frm["Id"]);
             app.MRN = Convert.ToString(frm["MRN"]);
+            //app.DateOfBirth = Convert.ToDateTime(frm["dob-date"]);
+            //app.PatientName = Convert.ToString(frm["PatientName"]);
+            //app.Survey = Convert.ToString(frm["Survey"]);
+            //app.appttime = Convert.ToString(frm["TimeDropdown"]);
+            //app.clinicID = Convert.ToInt32(frm["ClinicDropdown"]);
             app.SetMarkAsComplete = MarkAsComplete;
             _applicationContext.ServiceContext.AppointmentService.SaveAppointments(app, Convert.ToInt32(Session["InstitutionId"]));
             return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
@@ -207,8 +213,8 @@ namespace HRA4.Web.Controllers
 
 
         public JsonResult FilteredInstitution(string name, string appdt, string clinicId)
-        {            
-
+        {
+            
             string view = string.Empty;
             int apps_count=0;
         
@@ -259,7 +265,32 @@ namespace HRA4.Web.Controllers
             }
         }
 
+        public ActionResult DeleteAppointment(int apptid)
+        {
+            _applicationContext.ServiceContext.AppointmentService.DeleteAppointment(Convert.ToInt32(Session["InstitutionId"]),apptid);
+            return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+        }
 
+        public JsonResult RunAutomationDocuments(string  apptid,string MRN)
+        {
+            FileInfo fileinfo=_applicationContext.ServiceContext.AppointmentService.RunAutomationDocuments(Convert.ToInt32(Session["InstitutionId"]),Convert.ToInt32(apptid),MRN);
+            //var result = new { view = fileinfo };
+            Session["FileInfo"] = fileinfo;
+            var result = new { view = "doc.." };
+            return Json(result, JsonRequestBehavior.AllowGet);
 
     }
+     
+        public FileContentResult DownloadFile()
+        {
+            FileInfo fileinfo = (FileInfo)Session["FileInfo"];
+            byte[] fileBytes = System.IO.File.ReadAllBytes(fileinfo.FullName);
+            string fileName = string.Format("{0}{1}", fileinfo.Name, fileinfo.Extension);
+            return File(fileBytes, "Application/pdf", fileName);
+        }
+
+    }
+
+
+
 }

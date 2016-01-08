@@ -46,7 +46,10 @@ namespace HRA4.ViewModels
 
         }
         public bool SetMarkAsComplete { get; set; }
-        
+
+        public string appttime { get; set; }
+
+        public int clinicID { get; set; }
         
     }
 }

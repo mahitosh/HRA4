@@ -804,12 +804,12 @@ namespace RiskApps3.Model
                 if (HttpContext.Current != null)
                     e.Persist = false;
 
-                if (e.Persist)
-                    RunPersist(e);
+            if (e.Persist)
+                RunPersist(e);
 
-                if (Changed != null)
-                {
-#if (CHATTY_DEBUG)
+            if (Changed != null)
+            {
+                #if (CHATTY_DEBUG)
                 string msg = "*** Changed event fired on : " + this.ToString() + System.Environment.NewLine;
                 if (e != null)
                 {
@@ -826,10 +826,10 @@ namespace RiskApps3.Model
                 }
 
                 Logger.Instance.DebugToLog(msg);
-#endif
-                    Changed(this, e);
-                }
+                #endif
+                Changed(this, e);
             }
+        }
         }
 
         protected void SignalMemberChanged(MemberInfo info)

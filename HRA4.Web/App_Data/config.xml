@@ -149,7 +149,7 @@
     <add key="ShowDocumentCreation" value="True" />
     <add key="RunColonModels" value="True" />
     <add key="ShowSurgicalClinicButton" value="True" />
-    <add key="SurveyDemo" value="False" />
+    <add key="SurveyDemo" value="True" />
     <add key="showSurveyProgress" value="False" />
     <add key="surveyLogging" value="True" />
     <add key="AutomationHL7Directory" value="c:\temp\"/>
@@ -166,7 +166,7 @@
     <add key="CloudWebQueueURL" value="http://66.118.159.147/HRACloudWebServices/Service1.asmx"/>
     <add key="UseAggregatorService" value="True" />
     <add key="AggregatorLicenseID" value="c8d1b425-a679-4e8d-853c-b705fb93c9df" />  <!-- HRADevInternal -->
-    <add key="WriteAggregatorFiles" value="True" />
+    <add key="WriteAggregatorFiles" value="False" />
     <add key="NWHTransmitFlag" value="1" /> 	<!-- TRI-STATE: 1 = print, 2 = interface only, 3 = both -->
   </globals>
 

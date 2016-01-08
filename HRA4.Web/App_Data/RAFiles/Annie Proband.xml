@@ -1,0 +1,812 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<FamilyHistory classCode="OBS" moodCode="EVN">
+  <id root="2.16.840.1.113883.6.117" extension="1820" assigningAuthorityName="HRA" />
+  <code code="10157-6" codeSystemName="LOINC" displayName="HISTORY OF FAMILY MEMBER DISEASE" />
+  <text>ClinicName; InstitutionName</text>
+  <effectiveTime value="201508220738" />
+  <subject typeCode="SBJ">
+    <patient classCode="PAT">
+      <id root="2.16.840.1.113883.6.117" extension="02141520" />
+      <patientPerson classCode="PSN" determinerCode="INSTANCE">
+        <id extension="1" />
+        <name>
+          <given>Annie</given>
+          <family>Proband</family>
+        </name>
+        <administrativeGenderCode code="F" />
+        <birthTime value="19700111" />
+        <deceasedInd value="false" />
+        <raceCode code="2054-5" codeSystemName="HL7" displayName="African American or Black" />
+        <relative classCode="PRS">
+          <code code="NMTH" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="2" />
+            <name>
+              <given>Harriet</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="F" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="4" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="5" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="65" />
+            </livingEstimatedAge>
+          </subjectOf1>
+          <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+              <code code="363443007" codeSystemName="SNOMED_CT" displayName="Ovarian Cancer" />
+              <subject typeCode="SUBJ">
+                <dataEstimatedAge classCode="OBS" moodCode="EVN">
+                  <code code="397659008" displayName="Age" codeSystemName="SNOMED_CT" />
+                  <value>
+                    <low value="45" />
+                    <high value="45" />
+                  </value>
+                </dataEstimatedAge>
+              </subject>
+            </clinicalObservation>
+          </subjectOf2>
+        </relative>
+        <relative classCode="PRS">
+          <code code="NFTH" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="3" />
+            <name>
+              <given>Donald</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="M" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="6" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="7" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="75" />
+            </livingEstimatedAge>
+          </subjectOf1>
+          <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+              <code code="49436004" codeSystemName="SNOMED_CT" displayName="Atrial fibrillation" />
+            </clinicalObservation>
+          </subjectOf2>
+        </relative>
+        <relative classCode="PRS">
+          <code code="MGRMTH" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="4" />
+            <name>
+              <given>Gladys</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="F" />
+            <deceasedInd value="true" />
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <deceasedEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="39016-1" displayName="AGE AT DEATH" codeSystemName="LOINC" />
+              <value value="77" />
+            </deceasedEstimatedAge>
+          </subjectOf1>
+          <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+              <code code="254837009" codeSystemName="SNOMED_CT" displayName="Breast Cancer" />
+              <subject typeCode="SUBJ">
+                <dataEstimatedAge classCode="OBS" moodCode="EVN">
+                  <code code="397659008" displayName="Age" codeSystemName="SNOMED_CT" />
+                  <value>
+                    <low value="55" />
+                    <high value="55" />
+                  </value>
+                </dataEstimatedAge>
+              </subject>
+            </clinicalObservation>
+          </subjectOf2>
+        </relative>
+        <relative classCode="PRS">
+          <code code="MGRFTH" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="5" />
+            <name>
+              <given>Ian</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="M" />
+            <deceasedInd value="true" />
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <deceasedEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="39016-1" displayName="AGE AT DEATH" codeSystemName="LOINC" />
+              <value value="76" />
+            </deceasedEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="PGRMTH" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="6" />
+            <name>
+              <given>Claire</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="F" />
+            <deceasedInd value="true" />
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <deceasedEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="39016-1" displayName="AGE AT DEATH" codeSystemName="LOINC" />
+              <value value="74" />
+            </deceasedEstimatedAge>
+          </subjectOf1>
+          <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+              <code code="56265001" codeSystemName="SNOMED_CT" displayName="Heart Attack" />
+            </clinicalObservation>
+          </subjectOf2>
+        </relative>
+        <relative classCode="PRS">
+          <code code="PGRFTH" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="7" />
+            <name>
+              <given>Bob</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="M" />
+            <deceasedInd value="true" />
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <deceasedEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="39016-1" displayName="AGE AT DEATH" codeSystemName="LOINC" />
+              <value value="73" />
+            </deceasedEstimatedAge>
+          </subjectOf1>
+          <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+              <code code="363510005" codeSystemName="SNOMED_CT" displayName="Colon or Rectal Cancer" />
+              <subject typeCode="SUBJ">
+                <dataEstimatedAge classCode="OBS" moodCode="EVN">
+                  <code code="397659008" displayName="Age" codeSystemName="SNOMED_CT" />
+                  <value>
+                    <low value="72" />
+                    <high value="72" />
+                  </value>
+                </dataEstimatedAge>
+              </subject>
+            </clinicalObservation>
+          </subjectOf2>
+        </relative>
+        <relative classCode="PRS">
+          <code code="NBRO" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="8" />
+            <name>
+              <given>Brian</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="M" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="2" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="3" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="47" />
+            </livingEstimatedAge>
+          </subjectOf1>
+          <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+              <code code="363351006" codeSystemName="SNOMED_CT" displayName="Rectal Cancer" />
+              <subject typeCode="SUBJ">
+                <dataEstimatedAge classCode="OBS" moodCode="EVN">
+                  <code code="397659008" displayName="Age" codeSystemName="SNOMED_CT" />
+                  <value>
+                    <low value="32" />
+                    <high value="32" />
+                  </value>
+                </dataEstimatedAge>
+              </subject>
+            </clinicalObservation>
+          </subjectOf2>
+        </relative>
+        <relative classCode="PRS">
+          <code code="NSIS" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="9" />
+            <name>
+              <given>Janet</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="F" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="2" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="3" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="39" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="NotAvailable" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="10" />
+            <name>
+              <given>Harold</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="M" />
+            <deceasedInd value="false" />
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="35" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="NEPHEW" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="11" />
+            <name>
+              <given>Martin</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="M" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="9" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="10" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="16" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="NIECE" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="12" />
+            <name>
+              <given>Linda</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="F" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="9" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="10" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="17" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="NotAvailable" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="13" />
+            <administrativeGenderCode code="M" />
+            <deceasedInd value="false" />
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="44" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="DAU" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="14" />
+            <name>
+              <given>Sally</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="F" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="1" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="13" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="16" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="PUNCLE" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="15" />
+            <name>
+              <given>Eric</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="M" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="6" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="7" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="59" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="PAUNT" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="16" />
+            <name>
+              <given>Fiona</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="F" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="6" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="7" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="47" />
+            </livingEstimatedAge>
+          </subjectOf1>
+          <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+              <code code="372244006" codeSystemName="SNOMED_CT" displayName="Melanoma" />
+            </clinicalObservation>
+          </subjectOf2>
+        </relative>
+        <relative classCode="PRS">
+          <code code="MUNCLE" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="17" />
+            <name>
+              <given>Rudy</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="M" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="4" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="5" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="58" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="MAUNT" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="18" />
+            <name>
+              <given>Julie</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="F" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="4" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="5" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="57" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="NotAvailable" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="19" />
+            <name>
+              <given>Mark</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="M" />
+            <deceasedInd value="false" />
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="55" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="MCOUSN" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="20" />
+            <name>
+              <given>Karren</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="F" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="18" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="19" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="47" />
+            </livingEstimatedAge>
+          </subjectOf1>
+          <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+              <code code="254837009" codeSystemName="SNOMED_CT" displayName="Breast Cancer" />
+              <subject typeCode="SUBJ">
+                <dataEstimatedAge classCode="OBS" moodCode="EVN">
+                  <code code="397659008" displayName="Age" codeSystemName="SNOMED_CT" />
+                  <value>
+                    <low value="30" />
+                    <high value="30" />
+                  </value>
+                </dataEstimatedAge>
+              </subject>
+            </clinicalObservation>
+          </subjectOf2>
+        </relative>
+        <relative classCode="PRS">
+          <code code="MCOUSN" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="21" />
+            <name>
+              <given>Mary</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="F" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="18" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="19" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="33" />
+            </livingEstimatedAge>
+          </subjectOf1>
+          <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+              <code code="85898001" codeSystemName="SNOMED_CT" displayName="Cardiomyopathy" />
+            </clinicalObservation>
+          </subjectOf2>
+        </relative>
+        <relative classCode="PRS">
+          <code code="NotAvailable" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="22" />
+            <name>
+              <given>Mike</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="M" />
+            <deceasedInd value="false" />
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="48" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="PCOUSN" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="23" />
+            <administrativeGenderCode code="M" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="16" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="22" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="18" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="MAUNT" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="24" />
+            <name>
+              <given>Jill</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="F" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="4" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="5" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="55" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="NotAvailable" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="25" />
+            <name>
+              <given>Bill</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="M" />
+            <deceasedInd value="false" />
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="54" />
+            </livingEstimatedAge>
+          </subjectOf1>
+        </relative>
+        <relative classCode="PRS">
+          <code code="MCOUSN" />
+          <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+            <id extension="26" />
+            <name>
+              <given>Susie</given>
+              <family />
+            </name>
+            <administrativeGenderCode code="F" />
+            <deceasedInd value="false" />
+            <relative classCode="PRS">
+              <code code="NMTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="24" />
+              </relationshipHolder>
+            </relative>
+            <relative classCode="PRS">
+              <code code="NFTH" />
+              <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                <id extension="25" />
+              </relationshipHolder>
+            </relative>
+          </relationshipHolder>
+          <subjectOf1 typeCode="SBJ">
+            <livingEstimatedAge classCode="OBS" moodCode="EVN">
+              <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+              <value value="34" />
+            </livingEstimatedAge>
+          </subjectOf1>
+          <subjectOf2 typeCode="SBJ">
+            <clinicalObservation classCode="OBS" moodCode="EVN">
+              <code code="254837009" codeSystemName="SNOMED_CT" displayName="Breast Cancer" />
+              <subject typeCode="SUBJ">
+                <dataEstimatedAge classCode="OBS" moodCode="EVN">
+                  <code code="397659008" displayName="Age" codeSystemName="SNOMED_CT" />
+                  <value>
+                    <low value="30" />
+                    <high value="30" />
+                  </value>
+                </dataEstimatedAge>
+              </subject>
+            </clinicalObservation>
+          </subjectOf2>
+        </relative>
+      </patientPerson>
+      <subjectOf1 typeCode="SBJ">
+        <livingEstimatedAge classCode="OBS" moodCode="EVN">
+          <code code="21611-9" displayName="ESTIMATED AGE" codeSystemName="LOINC" />
+          <value value="45" />
+        </livingEstimatedAge>
+      </subjectOf1>
+      <subjectOf2 typeCode="SBJ">
+        <clinicalObservation classCode="OBS" moodCode="EVN">
+          <code code="130" codeSystemName="UML" displayName="Menopausal Status" />
+          <statusCode code="3" />
+        </clinicalObservation>
+      </subjectOf2>
+      <subjectOf2 typeCode="SBJ">
+        <clinicalObservation classCode="OBS" moodCode="EVN">
+          <code code="135" codeSystemName="UML" displayName="HRT Use" />
+          <statusCode code="0" />
+        </clinicalObservation>
+      </subjectOf2>
+      <subjectOf2 typeCode="SBJ">
+        <clinicalObservation classCode="OBS" moodCode="EVN">
+          <code code="136" codeSystemName="UML" displayName="HRT Type" />
+          <statusCode code="0" />
+        </clinicalObservation>
+      </subjectOf2>
+      <subjectOf2 typeCode="SBJ">
+        <clinicalObservation classCode="OBS" moodCode="EVN">
+          <code code="137" codeSystemName="UML" displayName="HRT Length Past">
+            <qualifier>
+              <value code="-99" />
+            </qualifier>
+          </code>
+        </clinicalObservation>
+      </subjectOf2>
+      <subjectOf2 typeCode="SBJ">
+        <clinicalObservation classCode="OBS" moodCode="EVN">
+          <code code="138" codeSystemName="UML" displayName="HRT Length Intent">
+            <qualifier>
+              <value code="-99" />
+            </qualifier>
+          </code>
+        </clinicalObservation>
+      </subjectOf2>
+      <subjectOf2 typeCode="SBJ">
+        <clinicalObservation classCode="OBS" moodCode="EVN">
+          <code code="139" codeSystemName="UML" displayName="HRT Last Use">
+            <qualifier>
+              <value code="-99" />
+            </qualifier>
+          </code>
+        </clinicalObservation>
+      </subjectOf2>
+    </patient>
+  </subject>
+</FamilyHistory>

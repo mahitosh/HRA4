@@ -42,7 +42,9 @@ namespace HRA4.Mapper
                 PatientName = app.patientname,
                 DateCompleted = app.riskdatacompleted,
                 Survey = app.surveyType,
-                DoNotCall = dnc
+                DoNotCall = dnc,
+                appttime=app.appttime,
+                clinicID=app.clinicID
             };
         }
 

@@ -18,8 +18,10 @@
     <link href="~/css/navbar-fixed-top.css" rel="stylesheet">
     <link href="~/css/datepicker.css" rel="stylesheet" />
     <link href="~/css/custom.css" rel="stylesheet">
+    @*<link href="~/css/devcustom.css" rel="stylesheet">*@
     
     
+    <script src="~/Scripts/spin.min.js"></script>
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="~/assets/js/ie-emulation-modes-warning.js"></script>
@@ -30,8 +32,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </head>
 <body>
     
@@ -108,25 +111,25 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="~/assets/js/ie10-viewport-bug-workaround.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {      
-            window.onbeforeunload = function (event) {
+        $(document).ready(function () {
+        window.onbeforeunload = function (event) {
                 loading();
             };
             function loading() {
-                $("#loading").fadeIn();
-                var opts = {
-                    lines: 12, // The number of lines to draw
-                    length: 7, // The length of each line
-                    width: 4, // The line thickness
-                    radius: 10, // The radius of the inner circle
-                    color: '#000', // #rgb or #rrggbb
-                    speed: 1, // Rounds per second
-                    trail: 60, // Afterglow percentage
-                    shadow: false, // Whether to render a shadow
-                    hwaccel: false // Whether to use hardware acceleration
-                };
-                var target = document.getElementById('loading');
-                var spinner = new Spinner(opts).spin(target);
+            $("#loading").fadeIn();
+            var opts = {
+                lines: 12, // The number of lines to draw
+                length: 7, // The length of each line
+                width: 4, // The line thickness
+                radius: 10, // The radius of the inner circle
+                color: '#000', // #rgb or #rrggbb
+                speed: 1, // Rounds per second
+                trail: 60, // Afterglow percentage
+                shadow: false, // Whether to render a shadow
+                hwaccel: false // Whether to use hardware acceleration
+            };
+            var target = document.getElementById('loading');
+            var spinner = new Spinner(opts).spin(target);
 
             }
             $(document).ajaxStart(function () {

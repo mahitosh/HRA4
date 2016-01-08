@@ -109,7 +109,7 @@ namespace HRA4.Services
         
 
         }
-         
+
 
         public List<VM.Appointment> GetAppointments(int InstitutionId)
         {
@@ -176,8 +176,11 @@ namespace HRA4.Services
                 _institutionId = Convert.ToInt32(HttpContext.Current.Session["InstitutionId"]);
             
             Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
+            string rootPath = HttpContext.Current.Server.MapPath(@"~/App_Data/");
+
            
-            string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
+           // string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
+            string configTemplate = System.IO.File.ReadAllText(System.IO.Path.Combine(rootPath, "config.xml"));
             
             string configuration = Helpers.GetInstitutionConfiguration(configTemplate, inst.DbName);
                 _hraSessionManager = new HraSessionManager(_institutionId.ToString(), configuration);
@@ -186,10 +189,63 @@ namespace HRA4.Services
             
         }
 
+        private List<VM.Appointment> SearchOnAppointment(List<VM.Appointment> appts, string searchField, string searchParam)
+        {
+            List<VM.Appointment> newlist = new List<VM.Appointment>();
+            switch(searchField)
+            {
+                case Constants.MRN:
+                    newlist = appts.Where(list => list.MRN.Contains(searchParam)).ToList();
+                    break;
+                case Constants.AppointmentDate:
+                    newlist = appts.Where(list => list.AppointmentDate == Convert.ToDateTime(searchParam)).ToList();
+                    break;
+                case Constants.DateCompleted:
+                    newlist = appts.Where(list => list.DateCompleted == Convert.ToDateTime(searchParam)).ToList();
+                    break;
+                case Constants.DateOfBirth:
+                    newlist = appts.Where(list => list.DateOfBirth == Convert.ToDateTime(searchParam)).ToList();
+                    break;
+                case Constants.DiseaseHx:
+                    newlist = appts.Where(list => list.DiseaseHx == searchParam).ToList();
+                    break;
+                case Constants.DoNotCall:
+                    newlist = appts.Where(list => list.DoNotCall == Convert.ToBoolean(searchParam)).ToList();
+                    break;
+                case Constants.Id:
+                    newlist = appts.Where(list => list.Id == Convert.ToInt32(searchParam)).ToList();
+                    break;
+                case Constants.PatientName:
+                    newlist = appts.Where(list => list.PatientName == searchParam).ToList();
+                    break;
+                case Constants.Provider:
+                    newlist = appts.Where(list => list.Provider == searchParam).ToList();
+                    break;
+                case Constants.Survey:
+                    newlist = appts.Where(list => list.Survey == searchParam).ToList();
+                    break;
+            }
+            return newlist;
+        }
+
         public void SaveAppointments(VM.Appointment Appt, int InstitutionId)
         {
 
             UpdateMarkAsComplete(Appt, InstitutionId);
+
+
+        }
+         
+        public FileInfo RunAutomationDocuments(int InstitutionId, int apptid, string MRN)
+        {
+            Appointment.MarkComplete(apptid);
+            SessionManager.Instance.SetActivePatient(MRN, apptid);
+            Patient proband = SessionManager.Instance.GetActivePatient();
+            string toolsPath = HttpContext.Current.Server.MapPath(@"~/App_Data/RAFiles/");
+            proband.RecalculateRisk(false, toolsPath, "");
+            proband.RunAutomation();
+            return proband.file;
+          
 
         }
          
@@ -258,6 +314,10 @@ namespace HRA4.Services
 
 
 
+        }
+        public void DeleteAppointment(int InstitutionId, int apptid)
+        {
+            Appointment.DeleteApptData(apptid,false);
         }
 
         public void DrawImage(string unitnum, int apptid)

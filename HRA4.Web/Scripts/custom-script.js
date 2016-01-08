@@ -7,6 +7,10 @@ $(function () {
         .on('changeDate', function () { // when the datechanges
             $('#dob-date').datepicker('hide');      // hide the datepicker
         });
+     $('#todays-date').datepicker()//  id with "dob-date" will pop up a datepicker
+        .on('changeDate', function () { // when the datechanges
+            $('#dob-date').datepicker('hide');      // hide the datepicker
+        });
     if ($("#chkbox").is(":checked")) {
         $('#appt-date').datepicker()//  id with "dob-date" will pop up a datepicker
 .on('changeDate', function () { // when the datechanges

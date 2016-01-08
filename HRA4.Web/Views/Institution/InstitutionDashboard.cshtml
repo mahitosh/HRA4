@@ -40,110 +40,162 @@ else
 
 <!--container area start here-->
 
-    <form id="frmDashboard" defaultbutton="btnsearch">
-        <div class="content-area container-fluid ">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-4 horizontal-devider">
-                        <div class="form-group ">
-                            <label class="control-label " for="custom-clinic"> Choose Clinic</label>
+    @*<form id="frmDashboard" defaultbutton="btnsearch">*@
+    <div class="content-area container-fluid ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-4 horizontal-devider">
+                    <div class="form-group ">
+                        <label class="control-label " for="custom-clinic"> Choose Clinic</label>
                             @Html.DropDownList("ddClinic", ViewBag.ClinicList as SelectList, "All Clinics", new { @class = "form-control" })
                             @*<select class="form-control" id="custom-clinic" name="custom-clinic">
-                                    <option>Test1</option>
-                                    <option>Test2</option>
+                            <option>Test1</option>
+                            <option>Test2</option>
                                 </select>*@
 
-                        </div>
                     </div>
-                    <div class="visible-sm clear-float"></div>
-                    <div class="col-md-3 col-sm-4">
-                        <div class="form-group ">
-                            <label class="control-label " for="name">Quick Search</label>
-                            <input class="form-control" id="name" name="name" type="text" placeholder="First/Last Name" />
-                        </div>
+                </div>
+                <div class="visible-sm clear-float"></div>
+                <div class="col-md-3 col-sm-4">
+                    <div class="form-group ">
+                        <label class="control-label " for="name">Quick Search</label>
+                    <input class="form-control" id="name" name="name" type="text" placeholder="First/Last Name" />
                     </div>
-
-                    <div class="col-md-2 col-sm-3 Padding-T-28">
-                        <input id="chkbox" type="checkbox" checked="checked" />
-                        <div id="app-date" class="inner-addon right-addon">
-                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                </div>
+                         
+                <div class="col-md-2 col-sm-3 Padding-T-28">
+                    <input id="chkbox" type="checkbox" checked="checked" />
+                    <div id="app-date" class="inner-addon right-addon">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                             <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" value="@ViewBag.TodaysDate" />
-                        </div>
                     </div>
+                </div>
 
-                    <div class="col-md-2 col-sm-2 Padding-T-28 ">
-                        <div class="btn-group search-group">
-                            <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
-                            <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
-                        </div>
+            <div class="col-md-2 col-sm-2 Padding-T-28 ">
+                    <div class="btn-group search-group">
+                        <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
+                        <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
                     </div>
-                </div><!--row end-->
-            </div><!--container end-->
-
-            <div class="container-fluid row Padding-LR-0">
-                <hr class="hr-style" />
+                </div>
             </div><!--row end-->
+        </div><!--container end-->
+
+        <div class="container-fluid row Padding-LR-0">
+            <hr class="hr-style" />
+        </div><!--row end-->
 
 
-            <div class="container">
-                <div class="row">
-                    <ul class="nav nav-tabs col-sm-12" id="myTab">
-                        <li class="active">
+        <div class="container">
+            <div class="row">
+                <ul class="nav nav-tabs col-sm-12" id="myTab">
+                    <li class="active">
                             <a data-target="#Schedule" data-toggle="tab">Schedule <span id="ScheduleCount" class="dashboard-count">@ViewBag.AppointmentCount</span> </a>
                             <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" onclick="SearchAppointment()" /></a>
-                        </li>
-                        <li>
+                    </li>
+                    <li>
                             <a data-target="#LifetimeBC" data-toggle="tab">Lifetime Breast Cancer  <span class="dashboard-count">0</span></a>
-                            <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
-                        </li>
-                        <li>
+                        <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
+                    </li>
+                    <li>
                             <a data-target="#BRCA" data-toggle="tab">BRCA Mutation  <span class="dashboard-count">0</span></a>
-                            <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
-                        </li>
-                        <li class="pull-right add-appointment"><a href="#"><img src="~/images/appointment-ico.svg" alt="Refresh" width="40" height="40" /> Add Appointment</a></li>
-                    </ul>
+                        <a href="#" class="tab-refresh"><img src="~/images/tab-refresh-ico.svg" width="20" height="20" alt="Refresh" /></a>
+                    </li>
+                    <li class="pull-right add-appointment"><a href="#"><img src="~/images/appointment-ico.svg" alt="Refresh" width="40" height="40" /> Add Appointment</a></li>
+                </ul>
+            </div><!--row end-->
+        </div><!--container end-->
+
+        <div class="container-fluid row Padding-LR-0 bottom-container-area">
+            <div class="container">
+                <div class="tab-content row">
+                    <div class="tab-pane active" id="Schedule">
+                        <div class="table-responsive">
+                        <div id="divInstitutionGrid">
+                            @Html.Partial("_InstitutionGrid", Model)
+                        </div>
+                                <div id="divRecordStatus" style="color:red;text-align:center">@ViewBag.RecordStatus</div>
+                        </div>
+                    </div><!--schedule tab end here-->
+                    <div class="tab-pane" id="LifetimeBC">
+                        Lifetime cancer Lifetime cancer Lifetime cancer
+                    </div><!--lifetime cancer end-->
+                    <div class="tab-pane" id="BRCA">
+                        BRCA BRCA BRCA
+                    </div><!--BRCA tab end here-->
                 </div><!--row end-->
+
+                <div class="row">
+
+
+                </div><!--row end-->
+
             </div><!--container end-->
 
-            <div class="container-fluid row Padding-LR-0 bottom-container-area">
-                <div class="container">
-                    <div class="tab-content row">
-                        <div class="tab-pane active" id="Schedule">
-                            <div class="table-responsive">
-                                <div id="divInstitutionGrid">
-                                    @Html.Partial("_InstitutionGrid", Model)
-                                </div>
-                                <div id="divRecordStatus" style="color:red;text-align:center">@ViewBag.RecordStatus</div>
-                            </div>
-                        </div><!--schedule tab end here-->
-                        <div class="tab-pane" id="LifetimeBC">
-                            Lifetime cancer Lifetime cancer Lifetime cancer
-                        </div><!--lifetime cancer end-->
-                        <div class="tab-pane" id="BRCA">
-                            BRCA BRCA BRCA
-                        </div><!--BRCA tab end here-->
-                    </div><!--row end-->
-
-                    <div class="row">
-
-
-                    </div><!--row end-->
-
-                </div><!--container end-->
-
-            </div><!--container fluid end-->
-        </div> <!-- /container area end -->
-    </form>
+        </div><!--container fluid end-->
+    </div> <!-- /container area end -->
+    @*</form>*@
 }
-
+<style>
+    #progressbar .ui-progressbar-value {
+        background-color: #ccc;
+    }
+</style>
 <script type="text/javascript">
+    function spin() {
+        var opts = {
+            lines: 12, // The number of lines to draw
+            length: 7, // The length of each line
+            width: 4, // The line thickness
+            radius: 10, // The radius of the inner circle
+            color: '#000', // #rgb or #rrggbb
+            speed: 1, // Rounds per second
+            trail: 60, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false // Whether to use hardware acceleration
+        };
+        var target = document.getElementById('msgbody');
+        var spinner = new Spinner(opts).spin(target);
 
+    };
+    function RunDocs(MRN, apptid) {
+        $('.modal-backdrop').remove();
+        var globalGetJSONPath = '@Url.Action("RunAutomationDocuments", "Institution")';
+        $.ajax({
+            beforeSend: function () {
+                $("#line").hide();
+                $("#loading").hide();
+                $(".modal-footer").hide();
+                $('#Downloadbtn').prop('disabled', true);
+                $('#CloseBtn').prop('disabled', true);
+                $("#msgbody").html('<div id="progressbar"></div>');
+                $("#progressbar").progressbar({
+                    value: false
+                });
+               
+            },
+            type: "POST",
+            url: globalGetJSONPath,
+            data: { apptid: apptid, MRN: MRN },
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                $(".modal-footer").show();
+                $("#msgbody").html('<br><div id="line">Run Automation Documents Process Finished Click on download</div></br>');
+                $('#Downloadbtn').prop('disabled', false);
+                $('#CloseBtn').prop('disabled', false);
+            }
+        }).always(function (Data) {
 
+        });
+    };
 
+    function hide() {
+        $('#browse-xml').hide();
+        $('.modal-backdrop').remove();
 
-
+    };
     $(document).ready(function () {
-    
+
         $("#frmDashboard").keypress(function (e) {
             kCode = e.keyCode || e.charCode //for cross browser
         if (kCode == 13) { var defaultbtn = $(this).attr("DefaultButton");
@@ -152,6 +204,23 @@ else
         }
         });       
 
+
+
+
+        $('#Downloadbtn').click(function ()
+        {
+            var globalGetJSONPath = '@Url.Action("DownloadFile", "Institution")';
+            $.ajax({
+                type: "GET",
+                url: globalGetJSONPath,
+                success: function (data) {
+                    
+                }
+            }).always(function (Data) {
+                $("#loading").hide();
+            });
+
+        });
 
         $('#chkbox').change(function () {
             if ($(this).is(":checked")) {
@@ -171,7 +240,7 @@ else
                 */
                 $("#appt-date").prop('readonly', false);
                 $('#appt-date').prop('disabled', false);
-               
+                
                 
             } else {
                 $("#appt-date").prop('readonly', true);
@@ -200,7 +269,7 @@ else
 
 
 
-    });
+        });
 
 
     function SearchAppointment() {
@@ -243,30 +312,31 @@ else
 
     function AddRemoveTask(isDNC, unitnum, apptid) {
 
-        var name = $('#name').val();
-        var appdt = $('#appt-date').val();
+            var name = $('#name').val();
+            var appdt = $('#appt-date').val();
         var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val() : "-1";
 
         var globalGetJSONPath = '@Url.Action("AddRemoveTask", "Institution")';
 
-        $.ajax({
-            type: "POST",
-            url: globalGetJSONPath,
+            $.ajax({
+                type: "POST",
+                url: globalGetJSONPath,
             data: { name: name, appdt: appdt, isDNC: isDNC, unitnum: unitnum, apptid: apptid, clinicId: clinicId },
-            dataType: "json",
+                dataType: "json",
             async: true,
-            success: function (Data) {
+                success: function (Data) {
                 $('#divRecordStatus').html('');
                 $('#ScheduleCount').html(Data.apps_count);
-                $('#divInstitutionGrid').html(Data.view);
+                    $('#divInstitutionGrid').html(Data.view);
                 if (parseInt(Data.apps_count, 0) == 0) {
                     $('#divRecordStatus').html("No records found.");
                 }
-            }
+                }
+            })
+        };
 
-        })
 
 
-    }
+    
 
 </script>

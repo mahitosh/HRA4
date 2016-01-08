@@ -633,6 +633,7 @@ namespace RiskApps3.Model.Clinic
                 byte[] outPdfBuffer = converter.ConvertHtml(body, "");
                 
                 InputPdf inputPdf = new InputPdf(outPdfBuffer);
+                
                 //PrinterSettings settings = new PrinterSettings();
                 PrintJob printJob = new PrintJob(printername, inputPdf);
                 PrintJob.AddLicense("FPM20NXDLB2DHPnggbYuVwkquSU3u2ffoA/Pgph4rjG5wiNCxO8yEfbLf2j90rZw1J3VJQF2tsniVvl5CxYka6SmZX4ak6keSsOg");
