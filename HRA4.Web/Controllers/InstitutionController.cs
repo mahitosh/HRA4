@@ -272,10 +272,12 @@ namespace HRA4.Web.Controllers
         }
 
         public JsonResult RunAutomationDocuments(string  apptid,string MRN)
-        {
+        {   
+           
             FileInfo fileinfo=_applicationContext.ServiceContext.AppointmentService.RunAutomationDocuments(Convert.ToInt32(Session["InstitutionId"]),Convert.ToInt32(apptid),MRN);
             //var result = new { view = fileinfo };
             Session["FileInfo"] = fileinfo;
+           
             var result = new { view = "doc.." };
             return Json(result, JsonRequestBehavior.AllowGet);
 

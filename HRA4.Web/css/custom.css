@@ -216,7 +216,7 @@ small{font-size:0.7em;}
 .editmenu {
 }
 .btnClear{}
-.rundoc{}
+/*.rundoc{}*/ /*commented by nilesh*/
 
 /*all buttos*/
 .search-group{box-shadow: 1px 1px 4px #ccc;line-height:27px;}

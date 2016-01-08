@@ -134,6 +134,25 @@ else
         </div><!--container fluid end-->
     </div> <!-- /container area end -->
     @*</form>*@
+
+    <!-- Code Start for Model Popup  -->
+    <div id="browse-xml-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Run Automation Documents</h4>
+                </div>
+                <div id="progressbar" style="display:none"></div>
+                <div id="completeMsg" style="display:none">Run Automation Documents Process Finished Click on download</div>
+                <div class="modal-footer">
+                    <a href="@Url.Action("DownloadFile", "Institution")" id="Downloadbtn"  class="btn btn-default" > Download</a> @*target="_blank"*@
+                </div>
+            </div>
+        </div>
+    </div><!--import/export browse xml modal end-->
+   <!-- Code End for Model Popup  -->
 }
 <style>
     #progressbar .ui-progressbar-value {
@@ -141,36 +160,36 @@ else
     }
 </style>
 <script type="text/javascript">
-    function spin() {
-        var opts = {
-            lines: 12, // The number of lines to draw
-            length: 7, // The length of each line
-            width: 4, // The line thickness
-            radius: 10, // The radius of the inner circle
-            color: '#000', // #rgb or #rrggbb
-            speed: 1, // Rounds per second
-            trail: 60, // Afterglow percentage
-            shadow: false, // Whether to render a shadow
-            hwaccel: false // Whether to use hardware acceleration
-        };
-        var target = document.getElementById('msgbody');
-        var spinner = new Spinner(opts).spin(target);
+    //function spin() {
+    //    var opts = {
+    //        lines: 12, // The number of lines to draw
+    //        length: 7, // The length of each line
+    //        width: 4, // The line thickness
+    //        radius: 10, // The radius of the inner circle
+    //        color: '#000', // #rgb or #rrggbb
+    //        speed: 1, // Rounds per second
+    //        trail: 60, // Afterglow percentage
+    //        shadow: false, // Whether to render a shadow
+    //        hwaccel: false // Whether to use hardware acceleration
+    //    };
+       // var target = document.getElementById('msgbody'); //progrssbar 
+       // var spinner = new Spinner(opts).spin(target);
 
-    };
+    //};
     function RunDocs(MRN, apptid) {
-        $('.modal-backdrop').remove();
+        //$('.modal-backdrop').remove(); //commented by nilesh 
         var globalGetJSONPath = '@Url.Action("RunAutomationDocuments", "Institution")';
         $.ajax({
             beforeSend: function () {
-                $("#line").hide();
+                //$("#line").hide(); //commented by nilesh 
                 $("#loading").hide();
                 $(".modal-footer").hide();
                 $('#Downloadbtn').prop('disabled', true);
                 $('#CloseBtn').prop('disabled', true);
-                $("#msgbody").html('<div id="progressbar"></div>');
-                $("#progressbar").progressbar({
-                    value: false
-                });
+                $("#completeMsg").hide();
+                $("#progressbar").show();
+                //$("#msgbody").html('<div id="progressbar"></div>'); //progrssbar 
+               
                
             },
             type: "POST",
@@ -180,7 +199,9 @@ else
             async: true,
             success: function (data) {
                 $(".modal-footer").show();
-                $("#msgbody").html('<br><div id="line">Run Automation Documents Process Finished Click on download</div></br>');
+                $("#progressbar").hide();
+                $("#completeMsg").show();
+                //$("#progressbar").html('<div id="line">Run Automation Documents Process Finished Click on download</div></br>'); //commented by nilesh 
                 $('#Downloadbtn').prop('disabled', false);
                 $('#CloseBtn').prop('disabled', false);
             }
@@ -189,12 +210,12 @@ else
         });
     };
 
-    function hide() {
-        $('#browse-xml').hide();
-        $('.modal-backdrop').remove();
-
-    };
+ 
     $(document).ready(function () {
+
+        $("#progressbar").progressbar({
+            value: false
+        });
 
         $("#frmDashboard").keypress(function (e) {
             kCode = e.keyCode || e.charCode //for cross browser
@@ -214,10 +235,13 @@ else
                 type: "GET",
                 url: globalGetJSONPath,
                 success: function (data) {
-                    
+                    $("#loading").hide();
+                    $('#browse-xml-modal').modal('hide');
+                    //$('#browse-xml-modal').hide();
+                    //$('.modal-backdrop').remove(); // Commented by Nilesh S 
                 }
             }).always(function (Data) {
-                $("#loading").hide();
+               // $("#loading").hide();
             });
 
         });

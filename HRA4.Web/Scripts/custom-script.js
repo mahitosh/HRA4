@@ -48,8 +48,8 @@ $("#btnSaveQuick").click(function () {
     $(".editmenu").slideUp(100);
 });
 
-$(".btnClear").click(function () {
-    $(".editmenu").slideUp(100);
-});
+//$(".btnClear").click(function () {
+//    $(".editmenu").slideUp(100);
+//});
 
 
