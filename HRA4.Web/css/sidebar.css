@@ -127,7 +127,11 @@ li.active .BRCA-icon:hover, .BRCA-icon:hover{background: #53afee url("../images/
 .sidebar-nav li.add-appointment a{padding-left:0;border:0;}
 .sidebar-nav li.add-appointment a:hover{background:transparent;color:#333;text-decoration:underline;}
 #sidebar-wrapper label{line-height:20px;font-size:1.1em;}
-#dob-date{padding-right: 65px!important;}
+#appt-date{padding-right: 65px!important;}
+
+#bs-example-navbar-collapse-1 .navbar-toggle{position: absolute;margin:0; margin-top: 12px; padding: 0;position: absolute;width:20px;height:20px; z-index: 1000;left: 262px; -webkit-transition: left 0.5s; /* Safari */ transition: left 0.5s;}
+
+
 @media(min-width:768px) {
     #wrapper {
         padding-left: 270px;
@@ -151,12 +155,12 @@ li.active .BRCA-icon:hover, .BRCA-icon:hover{background: #53afee url("../images/
         width: 39px;
     }
     #wrapper.toggled-2 #sidebar-wrapper:hover {
-        width: 270px;
+        width: 39px;
     }
  
  
     #page-content-wrapper {
-        padding: 3px 20px 3px 0px;
+        padding: 5px 10px 3px 0px;
         position: relative;
         -webkit-transition: all 0.5s ease;
         -moz-transition: all 0.5s ease;
@@ -172,7 +176,7 @@ li.active .BRCA-icon:hover, .BRCA-icon:hover{background: #53afee url("../images/
     #wrapper.toggled-2 #page-content-wrapper {
         position: relative;
         margin-right: 0;
-        margin-left: -220px;
+        margin-left: -230px;
         -webkit-transition: all 0.5s ease;
         -moz-transition: all 0.5s ease;
         -o-transition: all 0.5s ease;

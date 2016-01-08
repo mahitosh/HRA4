@@ -170,6 +170,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="css\bootstrap-datetimepicker.min.css" />
+    <Content Include="css\bootstrap-timepicker.css" />
+    <Content Include="css\bootstrap-timepicker.min.css" />
     <Content Include="css\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="css\bootstrap\v3.3.6\bootstrap-theme.css" />
     <Content Include="css\bootstrap\v3.3.6\bootstrap-theme.min.css" />
@@ -290,6 +292,7 @@
     <Content Include="images\tab-refresh-ico.svg" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap-timepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\v3.3.6\bootstrap.js" />
@@ -305,6 +308,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\sidebar_menu.js" />
     <Content Include="Scripts\spin.min.js" />
     <Content Include="Scripts\__jquery.tablesorter\jquery-latest.js" />
     <Content Include="Scripts\__jquery.tablesorter\jquery.metadata.js" />

@@ -151,7 +151,7 @@ namespace HRA4.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult InstitutionSave(FormCollection frm, bool MarkAsComplete, string ddClinic)
+        public ActionResult InstitutionSave(FormCollection frm, bool MarkAsComplete, string Hfddlclinic)
         {
             HRA4.ViewModels.Appointment app = new ViewModels.Appointment();
             app.Id = Convert.ToInt32(frm["Id"]);
@@ -160,7 +160,9 @@ namespace HRA4.Web.Controllers
             //app.PatientName = Convert.ToString(frm["PatientName"]);
             //app.Survey = Convert.ToString(frm["Survey"]);
             //app.appttime = Convert.ToString(frm["TimeDropdown"]);
-            //app.clinicID = Convert.ToInt32(frm["ClinicDropdown"]);
+            if (Hfddlclinic!=null && Hfddlclinic!="")
+            app.clinicID = Convert.ToInt32(Hfddlclinic);
+            else app.clinicID = -1;
             app.SetMarkAsComplete = MarkAsComplete;
             _applicationContext.ServiceContext.AppointmentService.SaveAppointments(app, Convert.ToInt32(Session["InstitutionId"]));
             return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
