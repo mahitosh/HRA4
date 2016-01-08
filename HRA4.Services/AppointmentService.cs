@@ -27,6 +27,7 @@ using System.IO;
 using System.Xml.XPath;
 using System.Runtime.Serialization;
 using System.Xml.Linq;
+using System.Drawing;
 namespace HRA4.Services
 {
     public class AppointmentService : IAppointmentService
@@ -259,6 +260,19 @@ namespace HRA4.Services
 
         }
 
+        public void DrawImage(string unitnum, int apptid)
+        {
+
+
+            int Width = 1598;
+            int Height = 759;
+
+            System.Drawing.Bitmap b = new System.Drawing.Bitmap(Width, Height);
+            RiskApps3.View.PatientRecord.Pedigree.PedigreeControl pedigreeControl1 = new RiskApps3.View.PatientRecord.Pedigree.PedigreeControl();
+           
+            pedigreeControl1.DrawToBitmap(b, new Rectangle(pedigreeControl1.Location, pedigreeControl1.Size));
+
+        }
 
         public void AddTasks(int _institutionId, string unitnum, int apptid)
         {
@@ -279,6 +293,7 @@ namespace HRA4.Services
             RiskApps3.Model.PatientRecord.Communication.Task t = new RiskApps3.Model.PatientRecord.Communication.Task(p, "Task", null, assignedBy, DateTime.Now);
             HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
 
+         
 
 
             t.BackgroundPersistWork(args);
