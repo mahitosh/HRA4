@@ -158,11 +158,13 @@ else
 
     };
     function RunDocs(MRN, apptid) {
+        $('.modal-backdrop').remove();
         var globalGetJSONPath = '@Url.Action("RunAutomationDocuments", "Institution")';
         $.ajax({
             beforeSend: function () {
                 $("#line").hide();
                 $("#loading").hide();
+                $(".modal-footer").hide();
                 $('#Downloadbtn').prop('disabled', true);
                 $('#CloseBtn').prop('disabled', true);
                 $("#msgbody").html('<div id="progressbar"></div>');
@@ -177,6 +179,7 @@ else
             dataType: "json",
             async: true,
             success: function (data) {
+                $(".modal-footer").show();
                 $("#msgbody").html('<br><div id="line">Run Automation Documents Process Finished Click on download</div></br>');
                 $('#Downloadbtn').prop('disabled', false);
                 $('#CloseBtn').prop('disabled', false);
@@ -188,6 +191,7 @@ else
 
     function hide() {
         $('#browse-xml').hide();
+        $('.modal-backdrop').remove();
 
     };
     $(document).ready(function () {

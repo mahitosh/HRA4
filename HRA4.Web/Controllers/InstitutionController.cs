@@ -156,7 +156,6 @@ namespace HRA4.Web.Controllers
             HRA4.ViewModels.Appointment app = new ViewModels.Appointment();
             app.Id = Convert.ToInt32(frm["Id"]);
             app.MRN = Convert.ToString(frm["MRN"]);
-            
             //app.DateOfBirth = Convert.ToDateTime(frm["dob-date"]);
             //app.PatientName = Convert.ToString(frm["PatientName"]);
             //app.Survey = Convert.ToString(frm["Survey"]);
