@@ -75,7 +75,7 @@ namespace HRA4.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult ImportAsXml(HttpPostedFileBase file, string mrn, int apptId, bool deIdentified)
+        public ActionResult ImportAsXml(HttpPostedFileBase file, string mrn, int apptId)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace HRA4.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult ImportAsHL7(HttpPostedFileBase file, string mrn, int apptId, bool deIdentified)
+        public ActionResult ImportAsHL7(HttpPostedFileBase file, string mrn, int apptId)
         {
             try
             {
