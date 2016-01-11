@@ -203,8 +203,23 @@ img.add-istitution-list{margin:-3px 4px 0 30px;}
 .quick-add-links{font-size:1em;}
 .quick-add-links a{margin-right:12px;}
 .quick-add-links a:last-child{margin-right:0px;}
-
 /*all modal popup*/
+.modal-header{padding: 10px 15px; background-color: #53afee;color: #fff;border-radius:5px 5px 0 0;}
+.modal-title{font-weight:bold;}
+#add-edit-MRN .modal-dialog{width:400px;}
+.modal-dialog{margin-top:200px;}
+#schedule-new-doc-modal .modal-dialog, #pedigree-diagram-modal .modal-dialog{width:700px;margin-top:30px;}
+
+
+/*modal with two column*/
+.modal-sidebar{background:#f5f5f5;}
+.modal-sidebar h5{background-color: #d6efff;font-weight: bold;margin: 0 -15px;padding: 10px;}
+.modal-sidebar ul{font-size: 13px;list-style-type: none;padding: 10px 0;}
+.modal-sidebar ul li{border-bottom:solid 1px #dfdfdf;padding:5px 0;}
+.modal-sidebar ul li:last-child{border-bottom:none;}
+.modal-sidebar ul a{color:#333;}
+.modal-sidebar ul a:hover{text-decoration:underline;color: #358dca;}
+.view-doc-content{border:solid 1px #dfdfdf;height:400px;overflow:auto;}
 #browse-xml-modal{margin-top:200px;}
 
 
@@ -229,6 +244,9 @@ a:hover{text-decoration: none;}
 .Margin-L-10{margin-left:10px}
 .height-30{height:30px;}
 .Margin-0{margin:0!important;}
+.align-center{text-align:center}
+.align-left{text-align:left}
+.align-right{text-align:right}
 small{font-size:0.7em;}
 .hr-style{border-color: #dfdfdf;}
 .clear-float{clear:both;}
@@ -240,9 +258,6 @@ small{font-size:0.7em;}
 .editmenu {
 }
 .btnClear{}
-/*.rundoc{}*/ /*commented by nilesh*/
-
- }
 /*all buttos*/
 .search-group{box-shadow: 1px 1px 4px #ccc;line-height:27px;}
 .search-btn, .add-btn{background-color: #53afee;border-radius: 0;border:none;color: white;font-size:1.1em;padding:4px 12px;}
@@ -250,6 +265,8 @@ small{font-size:0.7em;}
 .search-btn-ico{background-color: #358dca;color: white;padding: 8px;cursor:pointer;top:0;}
 .search-btn:hover, .add-btn:hover, .search-btn.focus, .search-btn:focus{background-color: #358dca;color: white;}
 .add-btn{padding:3px 6px;font-size:1em;}
+.btn-primary{background-color: #53afee;border-color: #fff;}
+.btn-primary:hover{background-color: #358dca;border-color: #fff;}
 
 /*footer css*/
 footer{position:fixed; box-shadow: 10px 0 6px #ddd;background-color:#fff;width:100%;z-index:1000;bottom:0;right:0;}
@@ -264,6 +281,10 @@ footer .container{text-align: center;color:#838383;font-size:12px;}
 }
 
 
+* css for internet explorer only */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	li.nav-admintool a{background: #72b116 url('../images/admin-tool-ico.svg') no-repeat 0 3px;}
+}
 
 
 /*Media Queries Start here*/
