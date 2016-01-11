@@ -59,15 +59,7 @@ $("#lnkapptment").click(function(){
    $('#timepicker1').timepicker();
  });
  
- //schedule grid more deatils content
-$(document).ready(function(){
-$(".schedule-more-detail-content").hide();
-    $(".schedule-more-detail").click(function(){
-        $(".schedule-more-detail-content").toggle(200);
-		$("i",this).toggleClass("fa-plus-circle fa-minus-circle");
-    });
-});
- 
+
 //for quick edit		
 /*$(document).ready (function (){
 	$("#quick_edit_div").hide();

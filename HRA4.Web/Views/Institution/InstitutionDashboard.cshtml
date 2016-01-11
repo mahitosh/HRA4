@@ -146,6 +146,15 @@ else
        // var spinner = new Spinner(opts).spin(target);
 
     //};
+    //schedule grid more deatils content
+    $(document).ready(function () {
+        $(".schedule-more-detail-content").hide();
+        $(".schedule-more-detail").click(function () {
+            $(".schedule-more-detail-content").toggle(200);
+            $("i", this).toggleClass("fa-plus-circle fa-minus-circle");
+        });
+    });
+
     function RunDocs(MRN, apptid) {
         //$('.modal-backdrop').remove(); //commented by nilesh 
         var globalGetJSONPath = '@Url.Action("RunAutomationDocuments", "Institution")';

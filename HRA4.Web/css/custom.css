@@ -135,7 +135,7 @@ ul.import-menu:before{left: 4px;}
 .inner-addon {position: relative;}
 .inner-addon .glyphicon { position: absolute;padding: 10px;pointer-events: none;}
 .left-addon .glyphicon  { left:  0px;}
-.right-addon .glyphicon { right: 0px;}/
+.right-addon .glyphicon { right: 0px;}
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
 .bottom-container-area{/*background-color:#ffffff;border-top: 1px solid #ddd;box-shadow: 0px 4px 3px #ddd;*/padding-bottom:20px;min-height:600px;}
@@ -281,7 +281,7 @@ footer .container{text-align: center;color:#838383;font-size:12px;}
 }
 
 
-* css for internet explorer only */
+/* css for internet explorer only */
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 	li.nav-admintool a{background: #72b116 url('../images/admin-tool-ico.svg') no-repeat 0 3px;}
 }
