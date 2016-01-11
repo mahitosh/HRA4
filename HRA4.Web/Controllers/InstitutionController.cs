@@ -11,6 +11,7 @@ using System.Web.Mvc;
 //using HRA4.Repositories.Interfaces;
 using HRA4.Utilities;
 using HRA4.ViewModels;
+using System.Configuration;
 
 using VM = HRA4.ViewModels;
 namespace HRA4.Web.Controllers
@@ -166,6 +167,22 @@ namespace HRA4.Web.Controllers
             return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
         }
 
+
+        public JsonResult ShowPedigreeImage(string unitnum, string apptid)
+         {
+
+             string PedigreeImagePath = ConfigurationManager.AppSettings["PedigreeImagePath"].ToString();
+             int _institutionId = (int)Session["InstitutionId"];
+             //PedigreeImagePath = Url.Content(PedigreeImagePath + "ImageName.jpg");
+             string PedigreeImageSavePath = Server.MapPath(PedigreeImagePath);
+             string _ImageUrl = String.Empty;
+            _ImageUrl = _applicationContext.ServiceContext.AppointmentService.ShowPedigreeImage(_institutionId, unitnum, Convert.ToInt32(apptid), PedigreeImageSavePath);
+            PedigreeImagePath = Url.Content(PedigreeImagePath + _ImageUrl);
+            var result = new { ImageUrl = PedigreeImagePath };
+
+            return Json(result);
+
+        }
 
 
 

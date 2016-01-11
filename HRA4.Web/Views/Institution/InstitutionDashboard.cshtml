@@ -153,6 +153,30 @@ else
         </div>
     </div><!--import/export browse xml modal end-->
    <!-- Code End for Model Popup  -->
+
+    <!-- Pedigree Diagram  Models popup -->
+    <div id="pedigree-diagram-modal" class="modal fade" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Pedigree Diagram</h4>
+                </div>
+                <div class="modal-body">
+                    For: <b>Patient Name, MRN</b><br />
+                    <div class="view-doc-content Margin-T-10">
+                        <div id="imagediv" style="overflow:scroll" >
+
+                        </div>
+                    </div>
+                </div>
+            </div> <!--modal body end-->
+            <div class="clear-float"><br /></div>
+        </div>
+    </div>
+    <!--Pedigree Diagram modal end-->
+
 }
 <style>
     #progressbar .ui-progressbar-value {
@@ -172,25 +196,69 @@ else
     //        shadow: false, // Whether to render a shadow
     //        hwaccel: false // Whether to use hardware acceleration
     //    };
-       // var target = document.getElementById('msgbody'); //progrssbar 
-       // var spinner = new Spinner(opts).spin(target);
+    // var target = document.getElementById('msgbody'); //progrssbar
+    // var spinner = new Spinner(opts).spin(target);
 
     //};
+
+
+    /*====== Append image url dynamically ============ */
+
+    function ShowPedigreeImage(unitnum, apptid)
+    {
+
+        var globalGetJSONPath = '@Url.Action("ShowPedigreeImage", "Institution")';
+
+        $.ajax({
+            type: "POST",
+            url: globalGetJSONPath,
+            data: { unitnum: unitnum, apptid: apptid },
+            dataType: "json",
+            async: true,
+            success: function (Data) {
+                debugger;
+               
+                //var ImageUrl = Data.ImageUrl;
+
+                $("#imagediv").empty();
+                var img = $('<img id="imgPedigree">'); //Equivalent: $(document.createElement('img'))
+                img.attr('src', Data.ImageUrl);
+                img.appendTo('#imagediv');
+               
+            
+               // $('img[id="imgPedigree"]').attr({ src: Data.ImageUrl});
+                $('#pedigree-diagram-modal').modal('show');
+
+
+            }
+
+        })
+
+
+
+
+
+
+    }
+
+    /*======End Append image url dynamically ============ */
+
+
     function RunDocs(MRN, apptid) {
-        //$('.modal-backdrop').remove(); //commented by nilesh 
+        //$('.modal-backdrop').remove(); //commented by nilesh
         var globalGetJSONPath = '@Url.Action("RunAutomationDocuments", "Institution")';
         $.ajax({
             beforeSend: function () {
-                //$("#line").hide(); //commented by nilesh 
+                //$("#line").hide(); //commented by nilesh
                 $("#loading").hide();
                 $(".modal-footer").hide();
                 $('#Downloadbtn').prop('disabled', true);
                 $('#CloseBtn').prop('disabled', true);
                 $("#completeMsg").hide();
                 $("#progressbar").show();
-                //$("#msgbody").html('<div id="progressbar"></div>'); //progrssbar 
-               
-               
+                //$("#msgbody").html('<div id="progressbar"></div>'); //progrssbar
+
+
             },
             type: "POST",
             url: globalGetJSONPath,
@@ -201,7 +269,7 @@ else
                 $(".modal-footer").show();
                 $("#progressbar").hide();
                 $("#completeMsg").show();
-                //$("#progressbar").html('<div id="line">Run Automation Documents Process Finished Click on download</div></br>'); //commented by nilesh 
+                //$("#progressbar").html('<div id="line">Run Automation Documents Process Finished Click on download</div></br>'); //commented by nilesh
                 $('#Downloadbtn').prop('disabled', false);
                 $('#CloseBtn').prop('disabled', false);
             }
@@ -210,7 +278,7 @@ else
         });
     };
 
- 
+
     $(document).ready(function () {
 
         $("#progressbar").progressbar({
@@ -219,11 +287,11 @@ else
 
         $("#frmDashboard").keypress(function (e) {
             kCode = e.keyCode || e.charCode //for cross browser
-        if (kCode == 13) { var defaultbtn = $(this).attr("DefaultButton");
-            $("#" + defaultbtn).click();
-            return false;
-        }
-        });       
+            if (kCode == 13) { var defaultbtn = $(this).attr("DefaultButton");
+                $("#" + defaultbtn).click();
+                return false;
+            }
+        });
 
 
 
@@ -238,10 +306,10 @@ else
                     $("#loading").hide();
                     $('#browse-xml-modal').modal('hide');
                     //$('#browse-xml-modal').hide();
-                    //$('.modal-backdrop').remove(); // Commented by Nilesh S 
+                    //$('.modal-backdrop').remove(); // Commented by Nilesh S
                 }
             }).always(function (Data) {
-               // $("#loading").hide();
+                // $("#loading").hide();
             });
 
         });
@@ -264,13 +332,13 @@ else
                 */
                 $("#appt-date").prop('readonly', false);
                 $('#appt-date').prop('disabled', false);
-                
-                
+
+
             } else {
                 $("#appt-date").prop('readonly', true);
                 $('#appt-date').prop('disabled', true);
-               // $("#appt-date").val('');
-               
+                // $("#appt-date").val('');
+
             }
             SearchAppointment();
 
@@ -283,84 +351,84 @@ else
         $("#ddClinic").change(function (data) {
             SearchAppointment();
         });
-          
-       
-
-
-        
-       
 
 
 
 
-        });
+
+
+
+
+
+
+    });
 
 
     function SearchAppointment() {
 
-            var name = $('#name').val();
-            var appdt = $('#chkbox').is(":checked") ? $('#appt-date').val():"";
-            var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val(): "-1" ;
-         
-            var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
+        var name = $('#name').val();
+        var appdt = $('#chkbox').is(":checked") ? $('#appt-date').val():"";
+        var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val(): "-1" ;
 
-            $.ajax({
-                type: "POST",
+        var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
+
+        $.ajax({
+            type: "POST",
             url: globalGetJSONPath,
             data: { name: name, appdt: appdt, clinicId: clinicId },
-                dataType: "json",
+            dataType: "json",
             async: true,
             success: function (Data) {
-                    $('#divRecordStatus').html('');
-                    $('#ScheduleCount').html(Data.apps_count);
-                    $('#divInstitutionGrid').html(Data.view);
-                    //if ($('#chkbox').is(":checked"))
-                    //{
-                    //    alert("Hi");
-                    //    $("#appt-date").val(Data.todaysDate);
-                    //}
-                    
-                    if (parseInt(Data.apps_count, 0) == 0)
-                    {
-                        $('#divRecordStatus').html("No records found.");
-                    }
-                    
-                    
+                $('#divRecordStatus').html('');
+                $('#ScheduleCount').html(Data.apps_count);
+                $('#divInstitutionGrid').html(Data.view);
+                //if ($('#chkbox').is(":checked"))
+                //{
+                //    alert("Hi");
+                //    $("#appt-date").val(Data.todaysDate);
+                //}
+
+                if (parseInt(Data.apps_count, 0) == 0)
+                {
+                    $('#divRecordStatus').html("No records found.");
                 }
 
-            })
 
-        }
-   
-    
+            }
+
+        })
+
+    }
+
+
 
     function AddRemoveTask(isDNC, unitnum, apptid) {
 
-            var name = $('#name').val();
-            var appdt = $('#appt-date').val();
+        var name = $('#name').val();
+        var appdt = $('#appt-date').val();
         var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val() : "-1";
 
         var globalGetJSONPath = '@Url.Action("AddRemoveTask", "Institution")';
 
-            $.ajax({
-                type: "POST",
-                url: globalGetJSONPath,
+        $.ajax({
+            type: "POST",
+            url: globalGetJSONPath,
             data: { name: name, appdt: appdt, isDNC: isDNC, unitnum: unitnum, apptid: apptid, clinicId: clinicId },
-                dataType: "json",
+            dataType: "json",
             async: true,
-                success: function (Data) {
+            success: function (Data) {
                 $('#divRecordStatus').html('');
                 $('#ScheduleCount').html(Data.apps_count);
-                    $('#divInstitutionGrid').html(Data.view);
+                $('#divInstitutionGrid').html(Data.view);
                 if (parseInt(Data.apps_count, 0) == 0) {
                     $('#divRecordStatus').html("No records found.");
                 }
-                }
-            })
-        };
+            }
+        })
+    };
 
 
 
-    
+
 
 </script>

@@ -22,5 +22,6 @@ namespace HRA4.Services.Interfaces
        
         void DeleteTasks(int _institutionId, string unitnum, int apptid);
         List<VM.Clinic> GetClinics(int InstitutionId);
+        string ShowPedigreeImage(int _institutionId, string unitnum, int apptid, string PedigreeImagePath);
     }
 }
