@@ -91,7 +91,9 @@ else { }
                                     <a href="@Url.Action("InstitutionDashboard", "Institution", new { InstitutionId = item.Id })"><img src="~/images/dashboard-ico.svg" alt="Go to dashboard" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Go to Dashboard" /></a>
                                     <a href="#"><img src="~/images/add-clinic-ico.svg" alt="Add Clinic" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Add Clinic" /></a>
                                     @*<a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>*@
-                                    <a href="@Url.Action("DeleteInstitution", "Admin", new { Id = item.Id })"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
+                                    <a href="@Url.Action("DeleteInstitution", "Admin", new { Id = item.Id })" onclick="return DeleteInstitution();" ><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
+                                    @*<a href="#" onclick="DeleteInstitution('@item.Id.ToString()');"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>*@
+                                    
                                 </td>
                             </tr>
                             
@@ -112,7 +114,55 @@ else { }
  
 
 <script type="text/javascript">
+
+    function DeleteInstitution() {
+
+        var c = confirm("Are you sure you want to delete selected Institution ?");
+        return c; //you can just return c because it will be true or false
+
+    }
+    @*function DeleteInstitution(Id) {
+
+        var globalGetJSONPath = '@Url.Action("DeleteInstitution", "Admin")';
+
+        $.get(globalGetJSONPath, { Id: Id }, function (data) {
+            alert(data);
+        });*@
+
+
+        //$.ajax({
+        //    type: "POST",
+        //    url: globalGetJSONPath,
+        //    data: { Id: Id },
+        //    dataType: "json",
+        //    async: true,
+        //    success: function (Data) {
+        //        $('#divRecordStatus').html('');
+        //        $('#ScheduleCount').html(Data.apps_count);
+        //        $('#divInstitutionGrid').html(Data.view);
+        //        //if ($('#chkbox').is(":checked"))
+        //        //{
+        //        //    alert("Hi");
+        //        //    $("#appt-date").val(Data.todaysDate);
+        //        //}
+
+        //        if (parseInt(Data.apps_count, 0) == 0) {
+        //            $('#divRecordStatus').html("No records found.");
+        //        }
+
+
+        //    }
+
+        //})
+
+    //}
+
     $(document).ready(function () {
+
+
+        
+
+
         $("#tblInstitutions").tablesorter();
         $("#btnAdd").click(function () {
 

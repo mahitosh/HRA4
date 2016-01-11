@@ -195,12 +195,19 @@ namespace HRA4.Web.Controllers
                     }
 
                 }
-
-
-                NameValueCollection searchfilter = new NameValueCollection();
-                searchfilter.Add("name", name);
-                searchfilter.Add("appdt", appdt);
-                searchfilter.Add("clinicId", clinicId);
+                NameValueCollection searchfilter;
+                if(Session["SearchFilter"] != null)
+                {
+                    searchfilter = (NameValueCollection)Session[Constants.SearchFilter];
+                }
+                else
+                {
+                    searchfilter = new NameValueCollection();
+                    searchfilter.Add("name", name);
+                    searchfilter.Add("appdt", appdt);
+                    searchfilter.Add("clinicId", clinicId);
+                }
+           
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
                 apps_count = apps.Count();
                 view = RenderPartialView("_InstitutionGrid", apps);
@@ -228,6 +235,7 @@ namespace HRA4.Web.Controllers
                 searchfilter.Add("name", name);
                 searchfilter.Add("appdt", appdt);
                 searchfilter.Add("clinicId", clinicId);
+                Session[Constants.SearchFilter] = searchfilter;
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
                 apps_count  = apps.Count();
                 //ViewBag.AppointmentCount = apps.Count();
@@ -274,10 +282,12 @@ namespace HRA4.Web.Controllers
         }
 
         public JsonResult RunAutomationDocuments(string  apptid,string MRN)
-        {
+        {   
+           
             FileInfo fileinfo=_applicationContext.ServiceContext.AppointmentService.RunAutomationDocuments(Convert.ToInt32(Session["InstitutionId"]),Convert.ToInt32(apptid),MRN);
             //var result = new { view = fileinfo };
             Session["FileInfo"] = fileinfo;
+           
             var result = new { view = "doc.." };
             return Json(result, JsonRequestBehavior.AllowGet);
 

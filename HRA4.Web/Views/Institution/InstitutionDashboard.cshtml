@@ -19,12 +19,12 @@
 }
 else
 {
-
+        
 
     <div class="content-area container-fluid ">
         <div class="container-fluid row Padding-LR-0 bottom-container-area">
             <div class="container middle-content">
-                <div class="row">
+            <div class="row">
                     <div class="col-sm-12">
                         <div id="wrapper">
                             <!-- Sidebar -->
@@ -37,42 +37,42 @@ else
                                             <li class="add-appointment"><a href="#"><img src="~/images/add-appointment-ico.svg" alt="Refresh" width="25" height="25" /> Add Appointment</a></li>
                                             <li>
                                                 <div class="form-group">
-                                                    <label class="control-label " for="custom-clinic"> Choose Clinic</label>
-                                                    @Html.DropDownList("ddClinic", ViewBag.ClinicList as SelectList, "All Clinics", new { @class = "form-control" })
-                                                </div>
+                        <label class="control-label " for="custom-clinic"> Choose Clinic</label>
+                            @Html.DropDownList("ddClinic", ViewBag.ClinicList as SelectList, "All Clinics", new { @class = "form-control" })
+                    </div>
                                             </li>
 
                                             <li>
                                                 <div class="form-group">
-                                                    <label class="control-label " for="name">Quick Search</label>
+                        <label class="control-label " for="name">Quick Search</label>
                                                     <input class="form-control" id="name" name="name" type="text" placeholder="Name/MRN" />
-                                                </div>
+                    </div>
                                             </li>
                                             <li>
                                                 <div class="pull-left"><input type="checkbox" id="chkbox" checked="checked" name="appt-date-checkbox" class="" /></div>
                                                 <div id="app-date" class="inner-addon right-addon pull-right form-group">
-                                                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                                                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" value="@ViewBag.TodaysDate" />
-                                                </div>
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                            <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" value="@ViewBag.TodaysDate" />
+                    </div>
                                             </li>
                                             <li class="pull-right">
                                                 <div class="btn-group search-group Margin-B-10">
-                                                    <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
-                                                    <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
+                        <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
+                        <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
                                                 </div> <br />
                                             </li>
                                         </ul><!--sidebar child end here-->
                                     </li>
                                     <li class="clear-float">
                                         <a href="#" class="breast-cancer-icon">Breast</a>
-                                    </li>
-                                    <li>
+                    </li>
+                    <li>
                                         <a href="#" class="lifetime-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">(3)</span></a>
-                                    </li>
-                                    <li>
+                    </li>
+                    <li>
                                         <a href="#" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">(5)</span></a>
-                                    </li>
-                                </ul>
+                    </li>
+                </ul>
 
                             </div><!-- /#sidebar-wrapper -->
                             <div class="collapse navbar-collapse pull-left" id="bs-example-navbar-collapse-1">
@@ -91,17 +91,37 @@ else
 
                                         </div><!--schedule list div end here-->
                                         <div id="divRecordStatus" style="color:red;text-align:center">@ViewBag.RecordStatus</div>
-                                    </div><!--row end-->
-                                </div><!--container end-->
+            </div><!--row end-->
+        </div><!--container end-->
 
                             </div>
                             <!-- /#page-content-wrapper -->
                         </div>
-                    </div>
+                        </div>
                 </div><!--row end-->
             </div><!--container end-->
         </div><!--container fluid end-->
     </div> <!-- /container area end -->
+    @*</form>*@
+
+    <!-- Code Start for Model Popup  -->
+    <div id="browse-xml-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Run Automation Documents</h4>
+                </div>
+                <div id="progressbar" style="display:none"></div>
+                <div id="completeMsg" style="display:none">Run Automation Documents Process Finished Click on download</div>
+                <div class="modal-footer">
+                    <a href="@Url.Action("DownloadFile", "Institution")" id="Downloadbtn"  class="btn btn-default" > Download</a> @*target="_blank"*@
+                </div>
+            </div>
+        </div>
+    </div><!--import/export browse xml modal end-->
+   <!-- Code End for Model Popup  -->
 }
 
 <style>
@@ -110,37 +130,37 @@ else
     }
 </style>
 <script type="text/javascript">
-    function spin() {
-        var opts = {
-            lines: 12, // The number of lines to draw
-            length: 7, // The length of each line
-            width: 4, // The line thickness
-            radius: 10, // The radius of the inner circle
-            color: '#000', // #rgb or #rrggbb
-            speed: 1, // Rounds per second
-            trail: 60, // Afterglow percentage
-            shadow: false, // Whether to render a shadow
-            hwaccel: false // Whether to use hardware acceleration
-        };
-        var target = document.getElementById('msgbody');
-        var spinner = new Spinner(opts).spin(target);
+    //function spin() {
+    //    var opts = {
+    //        lines: 12, // The number of lines to draw
+    //        length: 7, // The length of each line
+    //        width: 4, // The line thickness
+    //        radius: 10, // The radius of the inner circle
+    //        color: '#000', // #rgb or #rrggbb
+    //        speed: 1, // Rounds per second
+    //        trail: 60, // Afterglow percentage
+    //        shadow: false, // Whether to render a shadow
+    //        hwaccel: false // Whether to use hardware acceleration
+    //    };
+       // var target = document.getElementById('msgbody'); //progrssbar 
+       // var spinner = new Spinner(opts).spin(target);
 
-    };
+    //};
     function RunDocs(MRN, apptid) {
-        $('.modal-backdrop').remove();
+        //$('.modal-backdrop').remove(); //commented by nilesh 
         var globalGetJSONPath = '@Url.Action("RunAutomationDocuments", "Institution")';
         $.ajax({
             beforeSend: function () {
-                $("#line").hide();
+                //$("#line").hide(); //commented by nilesh 
                 $("#loading").hide();
                 $(".modal-footer").hide();
                 $('#Downloadbtn').prop('disabled', true);
                 $('#CloseBtn').prop('disabled', true);
-                $("#msgbody").html('<div id="progressbar"></div>');
-                $("#progressbar").progressbar({
-                    value: false
-                });
-
+                $("#completeMsg").hide();
+                $("#progressbar").show();
+                //$("#msgbody").html('<div id="progressbar"></div>'); //progrssbar 
+               
+               
             },
             type: "POST",
             url: globalGetJSONPath,
@@ -149,7 +169,9 @@ else
             async: true,
             success: function (data) {
                 $(".modal-footer").show();
-                $("#msgbody").html('<br><div id="line">Run Automation Documents Process Finished Click on download</div></br>');
+                $("#progressbar").hide();
+                $("#completeMsg").show();
+                //$("#progressbar").html('<div id="line">Run Automation Documents Process Finished Click on download</div></br>'); //commented by nilesh 
                 $('#Downloadbtn').prop('disabled', false);
                 $('#CloseBtn').prop('disabled', false);
             }
@@ -158,11 +180,8 @@ else
         });
     };
 
-    function hide() {
-        $('#browse-xml').hide();
-        $('.modal-backdrop').remove();
 
-    };
+    
     function saveClinic() {
         var id = $("#ddClinic").val();
         console.log(id);
@@ -170,17 +189,21 @@ else
     };
     $(document).ready(function () {
 
+        $("#progressbar").progressbar({
+            value: false
+        });
+
         $("#frmDashboard").keypress(function (e) {
             kCode = e.keyCode || e.charCode //for cross browser
             if (kCode == 13) {
                 var defaultbtn = $(this).attr("DefaultButton");
-                $("#" + defaultbtn).click();
-                return false;
-            }
-        });
+            $("#" + defaultbtn).click();
+            return false;
+        }
+        });       
 
 
-        
+
 
         $('#Downloadbtn').click(function () {
             var globalGetJSONPath = '@Url.Action("DownloadFile", "Institution")';
@@ -188,16 +211,19 @@ else
                 type: "GET",
                 url: globalGetJSONPath,
                 success: function (data) {
-
+                    $("#loading").hide();
+                    $('#browse-xml-modal').modal('hide');
+                    //$('#browse-xml-modal').hide();
+                    //$('.modal-backdrop').remove(); // Commented by Nilesh S 
                 }
             }).always(function (Data) {
-                $("#loading").hide();
+               // $("#loading").hide();
             });
 
         });
 
         $('#chkbox').change(function () {
-             if ($(this).is(":checked")) {
+            if ($(this).is(":checked")) {
                 /*
                 var today = new Date();
                 var dd = today.getDate();
@@ -214,16 +240,16 @@ else
                 */
                 $("#appt-date").prop('readonly', false);
                 $('#appt-date').prop('disabled', false);
-
-
+                
+                
             } else {
                 $("#appt-date").prop('readonly', true);
                 $('#appt-date').prop('disabled', true);
-                // $("#appt-date").val('');
-
+               // $("#appt-date").val('');
+               
             }
-             SearchAppointment();
-           
+            SearchAppointment();
+
         });
 
         $("#btnsearch").click(function (data) {
@@ -234,76 +260,77 @@ else
         $("#ddClinic").change(function (data) {
             SearchAppointment();
         });
-
-
-    });
+          
+       
+        });
 
 
     function SearchAppointment() {
-        
-        var name = $('#name').val();
+
+            var name = $('#name').val();
         var appdt = $('#chkbox').is(":checked") ? $('#appt-date').val() : "";
         var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val() : "-1";
+         
+            var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
 
-        var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
-
-        $.ajax({
-            type: "POST",
+            $.ajax({
+                type: "POST",
             url: globalGetJSONPath,
             data: { name: name, appdt: appdt, clinicId: clinicId },
-            dataType: "json",
+                dataType: "json",
             async: true,
             success: function (Data) {
-                $('#divRecordStatus').html('');
-                $('#ScheduleCount').html(Data.apps_count);
-                $('#divInstitutionGrid').html(Data.view);
+                    $('#divRecordStatus').html('');
+                    $('#ScheduleCount').html(Data.apps_count);
+                    $('#divInstitutionGrid').html(Data.view);
                
-                //if ($('#chkbox').is(":checked"))
-                //{
-                //    alert("Hi");
-                //    $("#appt-date").val(Data.todaysDate);
-                //}
-
+                    //if ($('#chkbox').is(":checked"))
+                    //{
+                    //    alert("Hi");
+                    //    $("#appt-date").val(Data.todaysDate);
+                    //}
+                    
                 if (parseInt(Data.apps_count, 0) == 0) {
-                    $('#divRecordStatus').html("No records found.");
+                        $('#divRecordStatus').html("No records found.");
+                    }
+                    
+                    
                 }
 
+            })
 
-            }
-
-        })
-
-    }
-
-
+        }
+   
+    
 
     function AddRemoveTask(isDNC, unitnum, apptid) {
 
-        var name = $('#name').val();
-        var appdt = $('#appt-date').val();
+            var name = $('#name').val();
+            var appdt = $('#appt-date').val();
         var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val() : "-1";
 
         var globalGetJSONPath = '@Url.Action("AddRemoveTask", "Institution")';
 
-        $.ajax({
-            type: "POST",
-            url: globalGetJSONPath,
+            $.ajax({
+                type: "POST",
+                url: globalGetJSONPath,
             data: { name: name, appdt: appdt, isDNC: isDNC, unitnum: unitnum, apptid: apptid, clinicId: clinicId },
-            dataType: "json",
+                dataType: "json",
             async: true,
-            success: function (Data) {
+                success: function (Data) {
                 $('#divRecordStatus').html('');
                 $('#ScheduleCount').html(Data.apps_count);
-                $('#divInstitutionGrid').html(Data.view);
+                    $('#divInstitutionGrid').html(Data.view);
                 if (parseInt(Data.apps_count, 0) == 0) {
                     $('#divRecordStatus').html("No records found.");
                 }
-            }
-        })
-    };
+                }
+            })
+            return false;
+        };
 
 
 
-
+    
 
 </script>
