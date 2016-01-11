@@ -47,7 +47,10 @@ $(document).ready(function () {
 $("#btnSaveQuick").click(function () {
     $(".editmenu").slideUp(100);
 });
-
+$("#lnkapptment").click(function(){
+	$('#add-edit-MRN').modal('show');	
+	});
+    
    
 
 

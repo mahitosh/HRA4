@@ -36,9 +36,9 @@
                 </li>
                 <li><a href="#">Load from HL7</a></li>
             </ul>
-        </div><!--Import/export dropdown end--> 
-        
-       
+        </div><!--Import/export dropdown end-->
+
+
         <span onclick="RunDocs('@Model.MRN.ToString()','@Model.Id.ToString()');">
             <a data-toggle="modal" data-target="#browse-xml-modal">
                 <img src="~/images/run-auto-doc-ico.svg" alt="Run automation documents" width="30" height="30" title="Run automation documents" />
@@ -56,7 +56,16 @@
         @Html.HiddenFor(item => item.MRN)
 
         <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
-
+        <div class="row">
+            <div class="col-sm-12 align-right">
+                <div class="form-group">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(item => item.MarkAsComplete)Mark As Complete
+                        @Html.Hidden("Hfddlclinic")
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
@@ -91,6 +100,7 @@
                     </select>
                 </div>
             </div>
+
         </div><!--row end-->
         <div class="row">
             <div class="col-sm-3">
@@ -128,18 +138,12 @@
                     </select>
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="form-group">
-                    @Html.CheckBoxFor(item => item.MarkAsComplete)Mark As Complete
-                    @Html.Hidden("Hfddlclinic")
-                </div>
-            </div>
+
             <div class="col-sm-12 pull-right">
                 <button id="btnSaveQuick" onclick="saveClinic();" class="pull-right btn btn-success btn-sm  Margin-L-10">Save</button>
                 <button id="btnClearQuick" class="pull-right btn btn-danger btn-sm btnClear" onclick="return false;">Cancel</button>
             </div>
         </div><!--row end-->
-
     }
     <br />
     <div class="row">
