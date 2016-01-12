@@ -80,6 +80,18 @@ namespace HRA4.Services
            
         }
 
+        private void Audit()
+        {
+            //ParameterCollection pc = new ParameterCollection();
+            //pc.Add("application", "RiskApps3");
+            //pc.Add("userLogin", SessionManager.Instance.ActiveUser.userLogin);
+            //pc.Add("machineName", System.Environment.MachineName);
+            //pc.Add("message", "Accessed appointment");
+            //pc.Add("apptID", apptid);
+
+            //BCDB2.Instance.RunSPWithParams("sp_3_AuditUserActivity", pc);
+        }
+
 
     }
 }
