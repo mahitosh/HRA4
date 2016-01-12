@@ -136,7 +136,7 @@ else
                     <h4 class="modal-title">Pedigree Diagram</h4>
                 </div>
                 <div class="modal-body">
-                    For: <b>Patient Name, MRN</b><br />
+                    For: <b>Patient Name : <span id="spanPatientName"></span>  , MRN : <span id="spanMRN" ></span> </b><br />
                     <div class="view-doc-content Margin-T-10" style="overflow:scroll">
                         <div id="imagediv">
 
@@ -158,7 +158,7 @@ else
 
     /*====== Append image url dynamically ============ */
 
-    function ShowPedigreeImage(unitnum, apptid)
+    function ShowPedigreeImage(unitnum, apptid, PatientName)
     {
 
         var globalGetJSONPath = '@Url.Action("ShowPedigreeImage", "Institution")';
@@ -170,10 +170,12 @@ else
             dataType: "json",
             async: true,
             success: function (Data) {
-                debugger;
+                
                
                 //var ImageUrl = Data.ImageUrl;
 
+                $("#spanPatientName").html(PatientName);
+                $("#spanMRN").html(unitnum);
                 $("#imagediv").empty();
                 var img = $('<img id="imgPedigree">'); //Equivalent: $(document.createElement('img'))
                 img.attr('src', Data.ImageUrl);

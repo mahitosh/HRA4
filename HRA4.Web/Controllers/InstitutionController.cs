@@ -180,7 +180,7 @@ namespace HRA4.Web.Controllers
              string _ImageUrl = String.Empty;
             _ImageUrl = _applicationContext.ServiceContext.AppointmentService.ShowPedigreeImage(_institutionId, unitnum, Convert.ToInt32(apptid), PedigreeImageSavePath);
             PedigreeImagePath = Url.Content(PedigreeImagePath + _ImageUrl);
-            var result = new { ImageUrl = PedigreeImagePath };
+            var result = new { ImageUrl = PedigreeImagePath};
 
             return Json(result);
 
