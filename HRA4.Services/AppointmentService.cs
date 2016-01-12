@@ -255,6 +255,7 @@ namespace HRA4.Services
             NameValueCollection searchfilter = new NameValueCollection();
             searchfilter.Add("name", Appt.MRN);
             searchfilter.Add("appdt", null);
+            searchfilter.Add("clinicId",Appt.clinicID.ToString());
             List<VM.Appointment> filteredlist = GetAppointments(InstitutionId, searchfilter);
           //  List<VM.Appointment> filteredlist = SearchOnAppointment(apptlist, Constants.MRN, Appt.MRN);
 

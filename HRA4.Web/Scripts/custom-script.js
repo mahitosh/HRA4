@@ -1,10 +1,9 @@
 // JavaScript Document
-$(function () {
-
+$(function() {
 
     //hide datepicker calendar
-    $('#dob-date').datepicker()//  id with "dob-date" will pop up a datepicker
-        .on('changeDate', function () { // when the datechanges
+$('#dob-date, #edit-app-date').datepicker()//  id with "dob-date" will pop up a datepicker
+	.on('changeDate', function(){ // when the datechanges
             $('#dob-date').datepicker('hide');      // hide the datepicker
         });
      $('#todays-date').datepicker()//  id with "dob-date" will pop up a datepicker
@@ -13,10 +12,11 @@ $(function () {
         });
     if ($("#chkbox").is(":checked")) {
         $('#appt-date').datepicker()//  id with "dob-date" will pop up a datepicker
-.on('changeDate', function () { // when the datechanges
+.on('changeDate', function() { // when the datechanges
     $('#appt-date').datepicker('hide');      // hide the datepicker
 });
     }
+
 
 
     //show tooltip
@@ -25,18 +25,18 @@ $(function () {
 
 
 //dashboard popup
-$(window).load(function () {
+ $(window).load(function(){
     $('#dashboardmodal').modal('show');
 });
 
 
 //hide add appointment link
-function hideAppt() {
+function hideAppt(){
     $(".add-appointment").hide();
 }
 
 //show add appointment link
-function showAppt() {
+function showAppt(){
     $(".add-appointment").show();
 }
 
@@ -47,9 +47,35 @@ $(document).ready(function () {
 $("#btnSaveQuick").click(function () {
     $(".editmenu").slideUp(100);
 });
+$("#lnkapptment").click(function(){
+	$('#add-edit-MRN').modal('show');	
+	});
+    
+   
 
+
+//timepicker
+ $(function() {
+   $('#timepicker1').timepicker();
+ });
+ 
+
+//for quick edit		
+/*$(document).ready (function (){
+	$("#quick_edit_div").hide();
+	
+	$("#btnSaveQuick").click(function(){
+			$("#quick_edit_div").slideUp(100);
+	});
 //$(".btnClear").click(function () {
 //    $(".editmenu").slideUp(100);
 //});
 
+	$("#btnClearQuick").click(function(){
+			$("#quick_edit_div").slideUp(100);
+	});
 
+	$("#quick_edit").click(function(){
+			$("#quick_edit_div").slideDown(100);
+	});
+});*/

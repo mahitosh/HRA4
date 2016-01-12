@@ -4,154 +4,371 @@
 }
 @*<link href="~/css/tablesorter.css" rel="stylesheet" />*@
 
-    <div class="quick-add-inner-div">
-@*@using (Ajax.BeginForm("InstitutionSave", "Institution", new { @model = Model }, new AjaxOptions
-            {
-                HttpMethod = "POST"
-
-            }))*@
-@using (Html.BeginForm("InstitutionSave", "Institution", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-        <div class="col-sm-12 quick-add-links">
-            @Html.HiddenFor(item => item.Id)
-            @Html.HiddenFor(item => item.MRN)
-            <a href="#"><img src="~/images/new-doc-ico.svg" alt="New Document" width="30" height="30" title="New Document" /> New Document</a>
-            <a href="#"><img src="~/images/edit-survey-ico.svg" alt="Edit Survey" width="30" height="30" title="Edit Survey" /> Edit Survey</a>
-            <a href="#"><img src="~/images/risk-calc-ico.svg" alt="Risk Calculation" width="30" height="30"  title="Risk Calculation" /> Risk Calculation</a>
-            @{
+<div class="quick-add-inner-div">
+    @{
         string strMrn = Model.MRN;
         int apptId = Model.Id;
-            }            
-            <div class="dropdown" style="position:relative;display:inline">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="position:relative">
-                    <img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" /> Import &frasl;Export
-                </a>
-                <ul class="dropdown-menu import-menu">
-                    <li class="dropdown-submenu">
-                        <a href="#">Save as XML</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("ExportAsXml", "Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)" target="_blank">De-Identified</a></li>
-                            <li><a href="@Url.Action("ExportAsXml", "Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)" target="_blank">Identified</a></li>
-                        </ul>
-                    </li>
-                    <li><a href=".demo" data-toggle="modal" data-parent="browsexml" data-target=".demo">Load from XML</a></li>
-                    <li class="dropdown-submenu">
-                        <a href="#">Save as HL7</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("ExportAsHL7", "Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)" target="_blank">De-Identified</a></li>
-                            <li><a href="@Url.Action("ExportAsHL7", "Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)" target="_blank">Identified</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Load from HL7</a></li>
-                </ul>
-            </div><!--Import/export dropdown end-->
-            @*<a href="#"><img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" /> Import &frasl;Export</a>*@
-            <a href="#"><img src="~/images/risk-calc-ico.svg" alt="Risk Calculation" width="30" height="30" title="Risk Calculation" /> Risk Calculation</a>
-            <a href="#"><img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" /> Import &frasl;Export</a>
-            <span onclick="RunDocs('@Model.MRN.ToString()','@Model.Id.ToString()');">
-                <a data-toggle="modal" data-target="#browse-xml-modal">
-                    <img src="~/images/run-auto-doc-ico.svg" alt="Run automation documents" width="30" height="30" title="Run automation documents" />
-                    Run Automation Documents
-                </a>
-            </span>      
-            <a href="@Url.Action("DeleteAppointment", "Institution", new {apptid= @Model.Id})"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment</a>
-        </div>
-        <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
-        <div>@Html.CheckBoxFor(item => item.MarkAsComplete)Mark As Complete</div>
-        <div>
-            @*<table>
-                    <tr>
-                        <td>@Html.TextBoxFor(item => item.PatientName)</td>
-                        <td>@Html.TextBoxFor(item => item.MRN, new {@id="MRN"})</td>
-                        <td>
-                            @Html.DropDownList("GenderDropdown", new List<SelectListItem>
-                 { new SelectListItem { Text = "Male", Value = "M"},
-                   new SelectListItem { Text = "Female", Value = "F"}
-                  }, "Select Gender")
-                    </td>
-                    <td><input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="todays-date" placeholder="todays Date" /></td>
-                        <td>
-                            <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" placeholder="dob Date"
-                                   value="@Model.DateOfBirth" />
-                        </td>
-                        <td>@Html.TextBoxFor(item => item.Survey)</td>
-                        <td>
-                            @Html.DropDownList("TimeDropdown", new List<SelectListItem>
-                 { new SelectListItem { Text = "07:00 AM", Value = "07:00 AM"},
-                   new SelectListItem { Text = "07:15 AM", Value = "07:15 AM"}
-                  })
-                        </td>
-                        <td>
-                            @Html.DropDownList("ClinicDropdown", new List<SelectListItem>
-                 { new SelectListItem { Text = "Clinic1", Value = "1"},
-                   new SelectListItem { Text = "Clinic2", Value = "2"}
-                  })
-                        </td>
-                    </tr>
+    }
 
-                </table>*@
+    <div class="col-sm-12 quick-add-links">
+        <a href="#"><img src="~/images/new-doc-ico.svg" alt="New Document" width="30" height="30" title="New Document" /> New Document</a>
+        <a href="#"><img src="~/images/edit-survey-ico.svg" alt="Edit Survey" width="30" height="30" title="Edit Survey" /> Edit Survey</a>
+        <a href="#"><img src="~/images/risk-calc-ico.svg" alt="Risk Calculation" width="30" height="30" title="Risk Calculation" /> Risk Calculation</a>
+        <div class="dropdown" style="position:relative;display:inline">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="position:relative">
+                <img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" /> Import &frasl;Export
+            </a>
+            <ul class="dropdown-menu import-menu">
+                <li class="dropdown-submenu">
+                    <a href="#">Save as XML</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Action("ExportAsXml","Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)" target="_blank">De-Identified</a></li>
+                        <li><a href="@Url.Action("ExportAsXml","Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)" target="_blank">Identified</a></li>
+                    </ul>
+                </li>
+                <li><a href=".demo" data-toggle="modal" data-parent="browsexml" data-target=".demo">Load from XML</a></li>
+                <li class="dropdown-submenu">
+                    <a href="#">Save as HL7</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)" target="_blank">De-Identified</a></li>
+                        <li><a href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)" target="_blank">Identified</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Load from HL7</a></li>
+            </ul>
+        </div><!--Import/export dropdown end-->
 
 
-
-
-
-
-
-
-
-        </div>
-        @*<div id="browse-xml" class="modal fade rundoc" role="dialog">*@
-        <!-- Model code moved to InstitutionDashboard page  -->
-        <button id="btnSaveQuick" type="submit">Save</button>
-}
-        <button class="btnClear" id="btnClearQuick">Cancel</button>
+        <span onclick="RunDocs('@Model.MRN.ToString()','@Model.Id.ToString()');">
+            <a data-toggle="modal" data-target="#browse-xml-modal">
+                <img src="~/images/run-auto-doc-ico.svg" alt="Run automation documents" width="30" height="30" title="Run automation documents" />
+                Run Automation Documents
+            </a>
+        </span>
+        <a onclick="return confirmation();" href="@Url.Action("DeleteAppointment", "Institution", new {apptid= @Model.Id})"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment</a>
     </div>
 
+    @using(Html.BeginForm("InstitutionSave", "Institution", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    @Html.HiddenFor(item => item.Id)
+    @Html.HiddenFor(item => item.MRN)
 
-@using (Html.BeginForm("ImportAsHL7", "Institution", new { mrn = Model.MRN,apptId = Model.Id,deIdentified = true}, FormMethod.Post, new { enctype = "multipart/form-data" }))
-{ 
-    @Html.AntiForgeryToken()
-   
-        <div id="browsexml" class="demo modal fade" role="dialog">        
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Load from XML</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="editor-field"> @Html.TextBox("file", "", new { type = "file" }) </div>
-                        <div class="editor-field">@Html.CheckBox("chkHl7DeIdentified") De-Identified</div>
-                        <div class="editor-field"> <input type="submit" value="Upload" /> </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="editor-field"> <input type="submit" value="Upload" /> </div>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+    <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
+    <div class="row">
+        <div class="col-sm-12 align-right">
+            <div class="form-group">
+                <div class="checkbox">
+                    @Html.CheckBoxFor(item => item.MarkAsComplete)Mark As Complete
+                    @Html.Hidden("Hfddlclinic")
                 </div>
             </div>
-      
+        </div>
     </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>User Name</label>
+                @*@Html.TextBoxFor(item => item.PatientName)*@
+                <input class="form-control" />
+            </div>
 
-}
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>MRN</label>
+                @*@Html.TextBoxFor(item => item.MRN, new { @id = "MRN" })*@
+                <input class="form-control" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>DOB</label>
+                <div id="DOB" class="inner-addon right-addon form-group">
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Gender</label>
+                <select class="form-control">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+        </div>
 
-@using (Html.BeginForm("ImportAsXml", "Institution", new { mrn = Model.MRN, apptId = Model.Id, deIdentified = true }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    <fieldset>
-        <legend>Upload xml file</legend>
-        <div class="editor-field"> @Html.TextBox("file", "", new { type = "file" }) </div>
-        <div class="editor-field">@Html.CheckBox("chkXmlDeIdentified") De-Identified</div>
-        <div class="editor-field"> <input type="submit" value="Upload" /> </div>
-    </fieldset>
-}
+    </div><!--row end-->
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Appointment Date</label>
+                <div id="edit-app-date-container" class="inner-addon right-addon form-group">
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="edit-app-date" />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Time</label>
+                <div class="input-group bootstrap-timepicker timepicker">
+                    <input id="timepicker1" type="text" class="form-control input-small">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Survey</label>
+                @*@Html.TextBoxFor(item => item.Survey)*@
+                <input class="form-control" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Clinic</label>
+                <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+            </div>
+        </div>
 
-   <script type="text/javascript">
-       function CreateId(id)
-       {
-           alert(id);
-           return "#browse-xml"+ id;
-       }
-   </script>
+    </div><!--row end-->
+
+    <br />
+    <div class="row">
+        <div class="col-sm-12">
+            <a href="#" class="schedule-more-detail pull-right">More Details <i class="fa fa-plus-circle"></i></a>
+            <div class="schedule-more-detail-content clear-float">
+                <div class="row  header-bdr Padding-TB-10"><hr /></div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Area</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Assessment</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Language</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Race</label>
+                            <select class="form-control">
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div><!--row end-->
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Nationality</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Occupation</label>
+                            <input class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Education</label>
+                            <input class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Marital Status</label>
+                            <input class="form-control" />
+                        </div>
+                    </div>
+                </div><!--row end-->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Address 1</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Address 2</label>
+                            <input class="form-control" />
+                        </div>
+                    </div>
+                </div><!--row end-->
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>City</label>
+                            <input class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Zip</label>
+                            <input class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div><!--row end-->
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Home Phone</label>
+                            <div class="row phone-no-input">
+                                <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
+                                <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
+                                <div class="col-sm-4"><input class="form-control" maxlength="4" /> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Work Phone</label>
+                            <div class="row phone-no-input">
+                                <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
+                                <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
+                                <div class="col-sm-4"><input class="form-control" maxlength="4" /> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Mobile Phone</label>
+                            <div class="row phone-no-input">
+                                <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
+                                <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
+                                <div class="col-sm-4"><input class="form-control" maxlength="4" /> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--row end-->
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Appointment Physician</label>
+                            <input class="form-control" />
+                        </div>
+                    </div>
+                </div><!--row end-->
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Ref Phys</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>PCP</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Physician Name</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="form-group" style="margin-top:27px;">
+                            <a href="#" class="add-row"><i class="fa fa-plus-circle fa-2x"></i></a>
+                        </div>
+
+                    </div>
+                </div><!--row end-->
+               
+            </div><!--col-sm-12 end-->
+        </div><!--row end-->
+       
+    </div><!--quick-add-links end-->
+    <br />
+    <div class="row">
+        <div class="col-sm-12 align-right">
+            <div class="form-group">
+
+                <button id="btnSaveQuick" onclick="saveClinic();" class="pull-right btn btn-success btn-sm  Margin-L-10">Save</button>
+                <button id="btnClearQuick" class="pull-right btn btn-danger btn-sm btnClear" onclick="return false;">Cancel</button>
+            </div>
+        </div><!--schedule-more-detail-content end-->
+    </div>
+    }
+</div>
+
+
 

@@ -7,40 +7,16 @@
 <table id="myTable" class="table table-striped apppointment-table">
     <thead>
         <tr>
-            <th>
-                App Date/Time
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                MRN
-            </th>
-            <th>
-                DOB
-            </th>
-           
-            <th>
-                Provider
-            </th>
-            <th>
-                Date Completed
-                
-            </th>
-            <th>
-                Disease Hx
-                
-            </th>
-            <th>
-                Survey
-                
-            </th>
-            <th>
-                DNC
-            </th>
-            <th >
-                Quick Actions
-            </th>
+                <th>App Date/T</th>
+                <th>Name</th>
+                <th>MRN</th>
+                <th>DOB</th>
+                <th>Provider</th>
+                <th>Date Complete </th>
+                <th>Disease Hx</th>
+                <th>Survey </th>
+                <th>Do Not Call</th>
+                <th>Quick&nbsp;Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -62,7 +38,7 @@
                 </td>
                 <td>
                     @{
-                        string dob = (item.DateOfBirth == DateTime.MinValue ? "":item.DateOfBirth.ToString("MM/dd/yyyy") );
+           string dob = (item.DateOfBirth == DateTime.MinValue ? "" : item.DateOfBirth.ToString("MM/dd/yyyy"));
                     }
                     @Html.DisplayFor(modelItem => dob)
                 </td>
@@ -89,7 +65,6 @@
                     @{ 
                         var url = "";
                         if (item.DoNotCall == true)
-                            
                        {
 
                            url = Url.Content("~/images/DNC-N-ico.svg");
@@ -102,12 +77,12 @@
                        }
                        
                             }
-                    <div style="display:none" >@item.DoNotCall</div> 
-                    <a href="#"> <img src="@url" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." onclick="AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()');" /> </a> 
+                <div style="display:none">@item.DoNotCall</div>
+                <a href="#"> <img src="@url" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." onclick="return AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()');" /> </a>
                 </td>
                 <td>
                     @*<a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Risk Calculations" /></a>*@
-                    <a href="#" data-toggle="modal" onclick="ShowPedigreeImage('@item.MRN.ToString()','@item.Id.ToString()');"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="25" height="25" data-toggle="tooltip" data-placement="top" title="Pedigree" /></a>
+                    <a href="#" data-toggle="modal" onclick="ShowPedigreeImage('@item.MRN.ToString()','@item.Id.ToString()');"><img src="~/images/pedigree-ico.svg" alt="Pedigree" width="25" height="25" data-toggle="tooltip" data-placement="top" title="Pedigree" /></a>
                     <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Copy" /></a>
                     <a href="#" id="@item.Id" onclick="ShowEdit(this);"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>
                 </td>
@@ -119,12 +94,13 @@
             </tr>
         }
 
+
     </tbody>
 </table><!--schedule list end here-->
 <script type="text/javascript">
-
+    $(".editmenu").slideUp(0);
     $(document).ready(function () {
-        $(".editmenu").hide();
+
 
         $("#myTable").tablesorter(
             {
@@ -142,11 +118,11 @@
     $(".btnClear").click(function () {
         $(".editmenu").slideUp(100);
     });
-    function ShowEdit(obj)
-    {
+    function ShowEdit(obj) {
         //alert(obj.id + "-b");
-        var trid = "#"+obj.id + "-b";
+        var trid = "#" + obj.id + "-b";
         $(trid).slideDown(100);
 
     }
 </script>
+

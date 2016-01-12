@@ -1,0 +1,609 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class=" is-copy-enabled is-u2f-enabled">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=1020">
+    
+    
+    <title>bootstrap-3-timepicker/bootstrap-timepicker.min.css at master · rendom/bootstrap-3-timepicker · GitHub</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta content="@github" name="twitter:site" /><meta content="summary" name="twitter:card" /><meta content="rendom/bootstrap-3-timepicker" name="twitter:title" /><meta content="bootstrap-3-timepicker - A simple timepicker component for Twitter Bootstrap 3" name="twitter:description" /><meta content="https://avatars1.githubusercontent.com/u/1078548?v=3&amp;s=400" name="twitter:image:src" />
+      <meta content="GitHub" property="og:site_name" /><meta content="object" property="og:type" /><meta content="https://avatars1.githubusercontent.com/u/1078548?v=3&amp;s=400" property="og:image" /><meta content="rendom/bootstrap-3-timepicker" property="og:title" /><meta content="https://github.com/rendom/bootstrap-3-timepicker" property="og:url" /><meta content="bootstrap-3-timepicker - A simple timepicker component for Twitter Bootstrap 3" property="og:description" />
+      <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+    <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    
+    <meta name="pjax-timeout" content="1000">
+    
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="repo_source" data-pjax-transient>
+
+    <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+    <meta name="google-analytics" content="UA-3769691-2">
+
+<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="3BA04542:35CD:4BE4F5BE:568E0D7E" name="octolytics-dimension-request_id" />
+<meta content="/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show" data-pjax-transient="true" name="analytics-location" />
+<meta content="Rails, view, blob#show" data-pjax-transient="true" name="analytics-event" />
+
+
+  <meta class="js-ga-set" name="dimension1" content="Logged Out">
+
+
+
+        <meta name="hostname" content="github.com">
+    <meta name="user-login" content="">
+
+        <meta name="expected-hostname" content="github.com">
+
+      <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#4078c0">
+      <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+    <meta content="af37e97f54598df97a56eb500bd86e3544521706" name="form-nonce" />
+
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github-5ccfffb27ecb48e213b8582952578f145ffded2d5c7e090e9d9b98e7a9f7e4d2.css" integrity="sha256-XM//sn7LSOITuFgpUlePFF/97S1cfgkOnZuY56n35NI=" media="all" rel="stylesheet" />
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github2-bfa4d26fd36d7a0dcd2ae2d9fdc7f00efade56f7feb7655898f6918f4ae949e9.css" integrity="sha256-v6TSb9Nteg3NKuLZ/cfwDvreVvf+t2VYmPaRj0rpSek=" media="all" rel="stylesheet" />
+    
+    
+
+
+    <meta http-equiv="x-pjax-version" content="2302ce94cd22b012a1d3b8852afd9dd6">
+
+      
+  <meta name="description" content="bootstrap-3-timepicker - A simple timepicker component for Twitter Bootstrap 3">
+  <meta name="go-import" content="github.com/rendom/bootstrap-3-timepicker git https://github.com/rendom/bootstrap-3-timepicker.git">
+
+  <meta content="1078548" name="octolytics-dimension-user_id" /><meta content="rendom" name="octolytics-dimension-user_login" /><meta content="12505377" name="octolytics-dimension-repository_id" /><meta content="rendom/bootstrap-3-timepicker" name="octolytics-dimension-repository_nwo" /><meta content="true" name="octolytics-dimension-repository_public" /><meta content="true" name="octolytics-dimension-repository_is_fork" /><meta content="4175985" name="octolytics-dimension-repository_parent_id" /><meta content="jdewit/bootstrap-timepicker" name="octolytics-dimension-repository_parent_nwo" /><meta content="4175985" name="octolytics-dimension-repository_network_root_id" /><meta content="jdewit/bootstrap-timepicker" name="octolytics-dimension-repository_network_root_nwo" />
+  <link href="https://github.com/rendom/bootstrap-3-timepicker/commits/master.atom" rel="alternate" title="Recent Commits to bootstrap-3-timepicker:master" type="application/atom+xml">
+
+  </head>
+
+
+  <body class="logged_out   env-production windows vis-public fork page-blob">
+    <a href="#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+
+    
+    
+    
+
+
+
+      
+      <div class="header header-logged-out" role="banner">
+  <div class="container clearfix">
+
+    <a class="header-logo-wordmark" href="https://github.com/" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
+      <span class="mega-octicon octicon-logo-github"></span>
+    </a>
+
+    <div class="header-actions" role="navigation">
+        <a class="btn btn-primary" href="/join" data-ga-click="(Logged out) Header, clicked Sign up, text:sign-up">Sign up</a>
+      <a class="btn" href="/login?return_to=%2Frendom%2Fbootstrap-3-timepicker%2Fblob%2Fmaster%2Fcss%2Fbootstrap-timepicker.min.css" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Sign in</a>
+    </div>
+
+    <div class="site-search repo-scope js-site-search" role="search">
+      <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/rendom/bootstrap-3-timepicker/search" class="js-site-search-form" data-global-search-url="/search" data-repo-search-url="/rendom/bootstrap-3-timepicker/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+  <label class="js-chromeless-input-container form-control">
+    <div class="scope-badge">This repository</div>
+    <input type="text"
+      class="js-site-search-focus js-site-search-field is-clearable chromeless-input"
+      data-hotkey="s"
+      name="q"
+      placeholder="Search"
+      aria-label="Search this repository"
+      data-global-scope-placeholder="Search GitHub"
+      data-repo-scope-placeholder="Search"
+      tabindex="1"
+      autocapitalize="off">
+  </label>
+</form>
+    </div>
+
+      <ul class="header-nav left" role="navigation">
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="/explore" data-ga-click="(Logged out) Header, go to explore, text:explore">Explore</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="/features" data-ga-click="(Logged out) Header, go to features, text:features">Features</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="https://enterprise.github.com/" data-ga-click="(Logged out) Header, go to enterprise, text:enterprise">Enterprise</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="/pricing" data-ga-click="(Logged out) Header, go to pricing, text:pricing">Pricing</a>
+          </li>
+      </ul>
+
+  </div>
+</div>
+
+
+
+    <div id="start-of-content" class="accessibility-aid"></div>
+
+      <div id="js-flash-container">
+</div>
+
+
+    <div role="main" class="main-content">
+        <div itemscope itemtype="http://schema.org/WebPage">
+    <div id="js-repo-pjax-container" class="context-loader-container js-repo-nav-next" data-pjax-container>
+      
+<div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav">
+  <div class="container repohead-details-container">
+
+    
+
+<ul class="pagehead-actions">
+
+  <li>
+      <a href="/login?return_to=%2Frendom%2Fbootstrap-3-timepicker"
+    class="btn btn-sm btn-with-count tooltipped tooltipped-n"
+    aria-label="You must be signed in to watch a repository" rel="nofollow">
+    <span class="octicon octicon-eye"></span>
+    Watch
+  </a>
+  <a class="social-count" href="/rendom/bootstrap-3-timepicker/watchers">
+    8
+  </a>
+
+  </li>
+
+  <li>
+      <a href="/login?return_to=%2Frendom%2Fbootstrap-3-timepicker"
+    class="btn btn-sm btn-with-count tooltipped tooltipped-n"
+    aria-label="You must be signed in to star a repository" rel="nofollow">
+    <span class="octicon octicon-star "></span>
+    Star
+  </a>
+
+    <a class="social-count js-social-count" href="/rendom/bootstrap-3-timepicker/stargazers">
+      66
+    </a>
+
+  </li>
+
+  <li>
+      <a href="/login?return_to=%2Frendom%2Fbootstrap-3-timepicker"
+        class="btn btn-sm btn-with-count tooltipped tooltipped-n"
+        aria-label="You must be signed in to fork a repository" rel="nofollow">
+        <span class="octicon octicon-repo-forked "></span>
+        Fork
+      </a>
+
+    <a href="/rendom/bootstrap-3-timepicker/network" class="social-count">
+      1,011
+    </a>
+  </li>
+</ul>
+
+    <h1 itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public ">
+  <span class="octicon octicon-repo-forked "></span>
+  <span class="author"><a href="/rendom" class="url fn" itemprop="url" rel="author"><span itemprop="title">rendom</span></a></span><!--
+--><span class="path-divider">/</span><!--
+--><strong><a href="/rendom/bootstrap-3-timepicker" data-pjax="#js-repo-pjax-container">bootstrap-3-timepicker</a></strong>
+
+  <span class="page-context-loader">
+    <img alt="" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+  </span>
+
+    <span class="fork-flag">
+      <span class="text">forked from <a href="/jdewit/bootstrap-timepicker">jdewit/bootstrap-timepicker</a></span>
+    </span>
+</h1>
+
+  </div>
+  <div class="container">
+    
+<nav class="reponav js-repo-nav js-sidenav-container-pjax js-octicon-loaders"
+     role="navigation"
+     data-pjax="#js-repo-pjax-container">
+
+  <a href="/rendom/bootstrap-3-timepicker" aria-label="Code" aria-selected="true" class="js-selected-navigation-item selected reponav-item" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /rendom/bootstrap-3-timepicker">
+    <span class="octicon octicon-code "></span>
+    Code
+</a>
+    <a href="/rendom/bootstrap-3-timepicker/issues" class="js-selected-navigation-item reponav-item" data-hotkey="g i" data-selected-links="repo_issues repo_labels repo_milestones /rendom/bootstrap-3-timepicker/issues">
+      <span class="octicon octicon-issue-opened "></span>
+      Issues
+      <span class="counter">5</span>
+</a>
+  <a href="/rendom/bootstrap-3-timepicker/pulls" class="js-selected-navigation-item reponav-item" data-hotkey="g p" data-selected-links="repo_pulls /rendom/bootstrap-3-timepicker/pulls">
+    <span class="octicon octicon-git-pull-request "></span>
+    Pull requests
+    <span class="counter">1</span>
+</a>
+
+  <a href="/rendom/bootstrap-3-timepicker/pulse" class="js-selected-navigation-item reponav-item" data-selected-links="pulse /rendom/bootstrap-3-timepicker/pulse">
+    <span class="octicon octicon-pulse "></span>
+    Pulse
+</a>
+  <a href="/rendom/bootstrap-3-timepicker/graphs" class="js-selected-navigation-item reponav-item" data-selected-links="repo_graphs repo_contributors /rendom/bootstrap-3-timepicker/graphs">
+    <span class="octicon octicon-graph "></span>
+    Graphs
+</a>
+
+</nav>
+
+  </div>
+</div>
+
+<div class="container new-discussion-timeline experiment-repo-nav">
+  <div class="repository-content">
+
+    
+
+<a href="/rendom/bootstrap-3-timepicker/blob/e2ebc77d76170c3716c18db2ca3b2a349d3ddcb5/css/bootstrap-timepicker.min.css" class="hidden js-permalink-shortcut" data-hotkey="y">Permalink</a>
+
+<!-- blob contrib key: blob_contributors:v21:f5816c2205ac804af5ea27e65cd44805 -->
+
+<div class="file-navigation js-zeroclipboard-container">
+  
+<div class="select-menu js-menu-container js-select-menu left">
+  <button class="btn btn-sm select-menu-button js-menu-target css-truncate" data-hotkey="w"
+    title="master"
+    type="button" aria-label="Switch branches or tags" tabindex="0" aria-haspopup="true">
+    <i>Branch:</i>
+    <span class="js-select-button css-truncate-target">master</span>
+  </button>
+
+  <div class="select-menu-modal-holder js-menu-content js-navigation-container" data-pjax aria-hidden="true">
+
+    <div class="select-menu-modal">
+      <div class="select-menu-header">
+        <span aria-label="Close" class="octicon octicon-x js-menu-close" role="button"></span>
+        <span class="select-menu-title">Switch branches/tags</span>
+      </div>
+
+      <div class="select-menu-filters">
+        <div class="select-menu-text-filter">
+          <input type="text" aria-label="Filter branches/tags" id="context-commitish-filter-field" class="js-filterable-field js-navigation-enable" placeholder="Filter branches/tags">
+        </div>
+        <div class="select-menu-tabs">
+          <ul>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="branches" data-filter-placeholder="Filter branches/tags" class="js-select-menu-tab" role="tab">Branches</a>
+            </li>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="tags" data-filter-placeholder="Find a tag…" class="js-select-menu-tab" role="tab">Tags</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="branches" role="menu">
+
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/rendom/bootstrap-3-timepicker/blob/event-on-update/css/bootstrap-timepicker.min.css"
+               data-name="event-on-update"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <span class="select-menu-item-text css-truncate-target" title="event-on-update">
+                event-on-update
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/rendom/bootstrap-3-timepicker/blob/gh-pages/css/bootstrap-timepicker.min.css"
+               data-name="gh-pages"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <span class="select-menu-item-text css-truncate-target" title="gh-pages">
+                gh-pages
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open selected"
+               href="/rendom/bootstrap-3-timepicker/blob/master/css/bootstrap-timepicker.min.css"
+               data-name="master"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <span class="select-menu-item-text css-truncate-target" title="master">
+                master
+              </span>
+            </a>
+        </div>
+
+          <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="tags">
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/rendom/bootstrap-3-timepicker/tree/v0.2.3/css/bootstrap-timepicker.min.css"
+                 data-name="v0.2.3"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="v0.2.3">v0.2.3</a>
+            </div>
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/rendom/bootstrap-3-timepicker/tree/v0.2.2/css/bootstrap-timepicker.min.css"
+                 data-name="v0.2.2"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="v0.2.2">v0.2.2</a>
+            </div>
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/rendom/bootstrap-3-timepicker/tree/v0.2.1/css/bootstrap-timepicker.min.css"
+                 data-name="v0.2.1"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="v0.2.1">v0.2.1</a>
+            </div>
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/rendom/bootstrap-3-timepicker/tree/v0.2.0/css/bootstrap-timepicker.min.css"
+                 data-name="v0.2.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="v0.2.0">v0.2.0</a>
+            </div>
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/rendom/bootstrap-3-timepicker/tree/v0.1.1/css/bootstrap-timepicker.min.css"
+                 data-name="v0.1.1"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="v0.1.1">v0.1.1</a>
+            </div>
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/rendom/bootstrap-3-timepicker/tree/0.2.5/css/bootstrap-timepicker.min.css"
+                 data-name="0.2.5"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="0.2.5">0.2.5</a>
+            </div>
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/rendom/bootstrap-3-timepicker/tree/0.2.4/css/bootstrap-timepicker.min.css"
+                 data-name="0.2.4"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="0.2.4">0.2.4</a>
+            </div>
+        </div>
+
+        <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="btn-group right">
+    <a href="/rendom/bootstrap-3-timepicker/find/master"
+          class="js-show-file-finder btn btn-sm"
+          data-pjax
+          data-hotkey="t">
+      Find file
+    </a>
+    <button aria-label="Copy file path to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button">Copy path</button>
+  </div>
+  <div class="breadcrumb js-zeroclipboard-target">
+    <span class="repo-root js-repo-root"><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/rendom/bootstrap-3-timepicker" class="" data-branch="master" data-pjax="true" itemscope="url"><span itemprop="title">bootstrap-3-timepicker</span></a></span></span><span class="separator">/</span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/rendom/bootstrap-3-timepicker/tree/master/css" class="" data-branch="master" data-pjax="true" itemscope="url"><span itemprop="title">css</span></a></span><span class="separator">/</span><strong class="final-path">bootstrap-timepicker.min.css</strong>
+  </div>
+</div>
+
+
+  <div class="commit-tease">
+      <span class="right">
+        <a class="commit-tease-sha" href="/rendom/bootstrap-3-timepicker/commit/bdb56753b2a0a9f453bc9cf48d079d0aedd38825" data-pjax>
+          bdb5675
+        </a>
+        <time datetime="2013-02-01T05:01:40Z" is="relative-time">Jan 31, 2013</time>
+      </span>
+      <div>
+        <img alt="@jdewit" class="avatar" height="20" src="https://avatars3.githubusercontent.com/u/467498?v=3&amp;s=40" width="20" />
+        <a href="/jdewit" class="user-mention" rel="contributor">jdewit</a>
+          <a href="/rendom/bootstrap-3-timepicker/commit/bdb56753b2a0a9f453bc9cf48d079d0aedd38825" class="message" data-pjax="true" title="fix modal alignment issue
+
+fixes #72
+
+The dropdown is now bigger on smaller screensizes as well">fix modal alignment issue</a>
+      </div>
+
+    <div class="commit-tease-contributors">
+      <a class="muted-link contributors-toggle" href="#blob_contributors_box" rel="facebox">
+        <strong>1</strong>
+         contributor
+      </a>
+      
+    </div>
+
+    <div id="blob_contributors_box" style="display:none">
+      <h2 class="facebox-header" data-facebox-id="facebox-header">Users who have contributed to this file</h2>
+      <ul class="facebox-user-list" data-facebox-id="facebox-description">
+          <li class="facebox-user-list-item">
+            <img alt="@jdewit" height="24" src="https://avatars1.githubusercontent.com/u/467498?v=3&amp;s=48" width="24" />
+            <a href="/jdewit">jdewit</a>
+          </li>
+      </ul>
+    </div>
+  </div>
+
+<div class="file">
+  <div class="file-header">
+  <div class="file-actions">
+
+    <div class="btn-group">
+      <a href="/rendom/bootstrap-3-timepicker/raw/master/css/bootstrap-timepicker.min.css" class="btn btn-sm " id="raw-url">Raw</a>
+        <a href="/rendom/bootstrap-3-timepicker/blame/master/css/bootstrap-timepicker.min.css" class="btn btn-sm js-update-url-with-hash">Blame</a>
+      <a href="/rendom/bootstrap-3-timepicker/commits/master/css/bootstrap-timepicker.min.css" class="btn btn-sm " rel="nofollow">History</a>
+    </div>
+
+        <a class="octicon-btn tooltipped tooltipped-nw"
+           href="https://windows.github.com"
+           aria-label="Open this file in GitHub Desktop"
+           data-ga-click="Repository, open with desktop, type:windows">
+            <span class="octicon octicon-device-desktop "></span>
+        </a>
+
+        <button type="button" class="octicon-btn disabled tooltipped tooltipped-nw"
+          aria-label="You must be signed in to make or propose changes">
+          <span class="octicon octicon-pencil "></span>
+        </button>
+        <button type="button" class="octicon-btn octicon-btn-danger disabled tooltipped tooltipped-nw"
+          aria-label="You must be signed in to make or propose changes">
+          <span class="octicon octicon-trashcan "></span>
+        </button>
+  </div>
+
+  <div class="file-info">
+      10 lines (10 sloc)
+      <span class="file-info-divider"></span>
+    2.35 KB
+  </div>
+</div>
+
+  
+
+  <div class="blob-wrapper data type-css">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tr>
+        <td id="L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-c">/*!</span></td>
+      </tr>
+      <tr>
+        <td id="L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> * Timepicker Component for Twitter Bootstrap</span></td>
+      </tr>
+      <tr>
+        <td id="L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> *</span></td>
+      </tr>
+      <tr>
+        <td id="L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> * Copyright 2013 Joris de Wit</span></td>
+      </tr>
+      <tr>
+        <td id="L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> *</span></td>
+      </tr>
+      <tr>
+        <td id="L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="LC6" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> * Contributors https://github.com/jdewit/bootstrap-timepicker/graphs/contributors</span></td>
+      </tr>
+      <tr>
+        <td id="L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="LC7" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> *</span></td>
+      </tr>
+      <tr>
+        <td id="L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="LC8" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> * For the full copyright and license information, please view the LICENSE</span></td>
+      </tr>
+      <tr>
+        <td id="L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="LC9" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> * file that was distributed with this source code.</span></td>
+      </tr>
+      <tr>
+        <td id="L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="LC10" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> */.bootstrap-timepicker{position:relative}.bootstrap-timepicker.pull-right .bootstrap-timepicker-widget.dropdown-menu{left:auto;right:0}.bootstrap-timepicker.pull-right .bootstrap-timepicker-widget.dropdown-menu:before{left:auto;right:12px}.bootstrap-timepicker.pull-right .bootstrap-timepicker-widget.dropdown-menu:after{left:auto;right:13px}.bootstrap-timepicker .add-on{cursor:pointer}.bootstrap-timepicker .add-on i{display:inline-block;width:16px;height:16px}.bootstrap-timepicker-widget.dropdown-menu{padding:2px 3px 2px 2px}.bootstrap-timepicker-widget.dropdown-menu.open{display:inline-block}.bootstrap-timepicker-widget.dropdown-menu:before{border-bottom:7px solid rgba(0,0,0,0.2);border-left:7px solid transparent;border-right:7px solid transparent;content:&quot;&quot;;display:inline-block;left:9px;position:absolute;top:-7px}.bootstrap-timepicker-widget.dropdown-menu:after{border-bottom:6px solid #fff;border-left:6px solid transparent;border-right:6px solid transparent;content:&quot;&quot;;display:inline-block;left:10px;position:absolute;top:-6px}.bootstrap-timepicker-widget a.btn,.bootstrap-timepicker-widget input{border-radius:4px}.bootstrap-timepicker-widget table{width:100%;margin:0}.bootstrap-timepicker-widget table td{text-align:center;height:30px;margin:0;padding:2px}.bootstrap-timepicker-widget table td:not(.separator){min-width:30px}.bootstrap-timepicker-widget table td span{width:100%}.bootstrap-timepicker-widget table td a{border:1px transparent solid;width:100%;display:inline-block;margin:0;padding:8px 0;outline:0;color:#333}.bootstrap-timepicker-widget table td a:hover{text-decoration:none;background-color:#eee;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;border-color:#ddd}.bootstrap-timepicker-widget table td a i{margin-top:2px}.bootstrap-timepicker-widget table td input{width:25px;margin:0;text-align:center}.bootstrap-timepicker-widget .modal-content{padding:4px}@media(min-width:767px){.bootstrap-timepicker-widget.modal{width:200px;margin-left:-100px}}@media(max-width:767px){.bootstrap-timepicker{width:100%}.bootstrap-timepicker .dropdown-menu{width:100%}}</span></td>
+      </tr>
+</table>
+
+  </div>
+
+</div>
+
+<a href="#jump-to-line" rel="facebox[.linejump]" data-hotkey="l" style="display:none">Jump to Line</a>
+<div id="jump-to-line" style="display:none">
+  <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="" class="js-jump-to-line-form" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+    <input class="linejump-input js-jump-to-line-field" type="text" placeholder="Jump to line&hellip;" aria-label="Jump to line" autofocus>
+    <button type="submit" class="btn">Go</button>
+</form></div>
+
+  </div>
+  <div class="modal-backdrop"></div>
+</div>
+
+    </div>
+  </div>
+
+    </div>
+
+        <div class="container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links right">
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+      <li><a href="https://developer.github.com" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+        <li><a href="https://github.com/pricing" data-ga-click="Footer, go to pricing, text:pricing">Pricing</a></li>
+
+    </ul>
+
+    <a href="https://github.com" aria-label="Homepage">
+      <span class="mega-octicon octicon-mark-github " title="GitHub "></span>
+</a>
+    <ul class="site-footer-links">
+      <li>&copy; 2016 <span title="0.04412s from github-fe138-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+        <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+    
+    
+    
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span class="octicon octicon-alert"></span>
+      <button type="button" class="flash-close js-flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+        <span class="octicon octicon-x"></span>
+      </button>
+      Something went wrong with that request. Please try again.
+    </div>
+
+
+      <script crossorigin="anonymous" integrity="sha256-7460qJ7p88i3YTMH/liaj1cFgX987ie+xRzl6WMjSr8=" src="https://assets-cdn.github.com/assets/frameworks-ef8eb4a89ee9f3c8b7613307fe589a8f5705817f7cee27bec51ce5e963234abf.js"></script>
+      <script async="async" crossorigin="anonymous" integrity="sha256-W4O6Y+5YUQjsuCwXDQ5s0A5CQRTzHswN4c+YLlNrcNg=" src="https://assets-cdn.github.com/assets/github-5b83ba63ee585108ecb82c170d0e6cd00e424114f31ecc0de1cf982e536b70d8.js"></script>
+      
+      
+      
+    <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner hidden">
+      <span class="octicon octicon-alert"></span>
+      <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="">Reload</a> to refresh your session.</span>
+      <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="">Reload</a> to refresh your session.</span>
+    </div>
+  </body>
+</html>
+
