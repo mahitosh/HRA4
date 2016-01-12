@@ -64,11 +64,8 @@ else
                                         </ul><!--sidebar child end here-->
                                     </li>
                                     <li class="clear-float">
-                                        <a href="#" class="breast-cancer-icon">Breast</a>
-                    </li>
-                    <li>
-                                        <a href="#" class="lifetime-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">(0)</span></a>
-                    </li>
+                                        <a href="#" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">(0)</span></a> </li>
+                                    
                     <li>
                                         <a href="#" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">(0)</span></a>
                     </li>
@@ -111,10 +108,16 @@ else
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Run Automation Documents</h4>
+                    <h4 class="modal-title">Calculating Risk</h4>
                 </div>
-                <div id="progressbar" style="display:none"></div>
-                <div id="completeMsg" style="display:none">Run Automation Documents Process Finished Click on download</div>
+                <div class="modal-body align-center">
+                    <div id="progressdiv" class="form-group">
+                        <label>Calculating Risk Models</label>
+                        <br /><br />
+                        <img src="~/images/Preloder.GIF" alt="Preloader" />   
+                    </div>
+                    <div id="completeMsg">Run Automation Documents Process Finished Click on download</div>
+                </div>             
                 <div class="modal-footer">
                     <a href="@Url.Action("DownloadFile", "Institution")" id="Downloadbtn"  class="btn btn-default" > Download</a> @*target="_blank"*@
                 </div>
@@ -124,35 +127,10 @@ else
    <!-- Code End for Model Popup  -->
 }
 
-<style>
-    #progressbar .ui-progressbar-value {
-        background-color: #ccc;
-    }
-</style>
 <script type="text/javascript">
-    //function spin() {
-    //    var opts = {
-    //        lines: 12, // The number of lines to draw
-    //        length: 7, // The length of each line
-    //        width: 4, // The line thickness
-    //        radius: 10, // The radius of the inner circle
-    //        color: '#000', // #rgb or #rrggbb
-    //        speed: 1, // Rounds per second
-    //        trail: 60, // Afterglow percentage
-    //        shadow: false, // Whether to render a shadow
-    //        hwaccel: false // Whether to use hardware acceleration
-    //    };
-       // var target = document.getElementById('msgbody'); //progrssbar 
-       // var spinner = new Spinner(opts).spin(target);
-
-    //};
-    //schedule grid more deatils content
+    
     $(document).ready(function () {
-        $(".schedule-more-detail-content").hide();
-        $(".schedule-more-detail").click(function () {
-            $(".schedule-more-detail-content").toggle(200);
-            $("i", this).toggleClass("fa-plus-circle fa-minus-circle");
-        });
+        
     });
 
     function RunDocs(MRN, apptid) {
@@ -161,13 +139,13 @@ else
         $.ajax({
             beforeSend: function () {
                 //$("#line").hide(); //commented by nilesh 
+                $("#completeMsg").hide();
                 $("#loading").hide();
                 $(".modal-footer").hide();
                 $('#Downloadbtn').prop('disabled', true);
                 $('#CloseBtn').prop('disabled', true);
-                $("#completeMsg").hide();
-                $("#progressbar").show();
-                //$("#msgbody").html('<div id="progressbar"></div>'); //progrssbar 
+                $("#progressdiv").show();
+              
                
                
             },
@@ -178,9 +156,8 @@ else
             async: true,
             success: function (data) {
                 $(".modal-footer").show();
-                $("#progressbar").hide();
+                $("#progressdiv").hide();
                 $("#completeMsg").show();
-                //$("#progressbar").html('<div id="line">Run Automation Documents Process Finished Click on download</div></br>'); //commented by nilesh 
                 $('#Downloadbtn').prop('disabled', false);
                 $('#CloseBtn').prop('disabled', false);
             }
@@ -198,9 +175,7 @@ else
     };
     $(document).ready(function () {
 
-        $("#progressbar").progressbar({
-            value: false
-        });
+       
 
         $("#frmDashboard").keypress(function (e) {
             kCode = e.keyCode || e.charCode //for cross browser

@@ -98,9 +98,14 @@
 </table><!--schedule list end here-->
 <script type="text/javascript">
     $(".editmenu").slideUp(0);
+    $(".schedule-more-detail-content").hide();
+    $(".schedule-more-detail").click(function () {
+        $(".schedule-more-detail-content").toggle(200);
+        $("i", this).toggleClass("fa-plus-circle fa-minus-circle");
+    });
+
     $(document).ready(function () {
        
-
         $("#myTable").tablesorter(
             {
                 headers: {

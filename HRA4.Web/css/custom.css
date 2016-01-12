@@ -110,7 +110,7 @@ li.nav-logout a:hover, li.nav-logout a:focus{color:#ffffff!important;text-decora
 .help a{color:#333;opacity: 1;-webkit-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;transition: all 0.2s ease-in-out}
 .help a:hover{color:#358dca;}
 .nav .open > a.help-dropdown, .nav .open > a.help-dropdown:focus, .nav .open > a.help-dropdown:hover{background:transparent;}
-
+li.nav-help{padding-top:21px!important;padding-bottom:5px}
 
 /*sidebar
 #bs-example-navbar-collapse-1 .navbar-toggle:before{font-family: FontAwesome; content: "\f138";font-size: 12px;}*/
@@ -265,8 +265,13 @@ small{font-size:0.7em;}
 .search-btn-ico{background-color: #358dca;color: white;padding: 8px;cursor:pointer;top:0;}
 .search-btn:hover, .add-btn:hover, .search-btn.focus, .search-btn:focus{background-color: #358dca;color: white;}
 .add-btn{padding:3px 6px;font-size:1em;}
+.btn{font-size:14px;}
 .btn-primary{background-color: #53afee;border-color: #fff;}
 .btn-primary:hover{background-color: #358dca;border-color: #fff;}
+.btn-success{background-color: #73b210;border-color: transparent;}
+.btn-success:hover, .btn-success.focus, .btn-success:focus{background-color: #639c11;border-color: transparent;}
+.btn-cancel{background-color: #e6f3d2;border-color: transparent;color:#90a373;}
+.btn-cancel:hover{background-color: #ddebc7;border-color: transparent;color:#90a373;}
 
 /*footer css*/
 footer{position:fixed; box-shadow: 10px 0 6px #ddd;background-color:#fff;width:100%;z-index:1000;bottom:0;right:0;}
