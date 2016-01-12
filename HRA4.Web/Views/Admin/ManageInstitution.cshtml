@@ -63,7 +63,7 @@ else { }
                         </li>
                     </ul>
                 </div>
-                <a href="#" class="pull-right" onclick="location.href = '@Url.Action("SearchInstitution")?Institution=' + $('#inputGroupSuccess1').val()"><img src="~/images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh institution list</a>
+                <a href="#" class="pull-right" onclick="location.href = '@Url.Action("SearchInstitution")?Institution=' + $('#inputGroupSuccess1').val()"><img src="~/images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh Institution List</a>
 
 
             </div>
@@ -158,11 +158,7 @@ else { }
     //}
 
     $(document).ready(function () {
-
-
-        
-
-
+                       
         $("#tblInstitutions").tablesorter();
         $("#btnAdd").click(function () {
 
@@ -181,6 +177,7 @@ else { }
             };
             var target = document.getElementById('loading');
             var spinner = new Spinner(opts).spin(target);
+
             $.post(url,
             {                
                 instName: $('#txtInstitution').val()
@@ -190,6 +187,8 @@ else { }
             });
 
         });
+
+       
     });
 
 

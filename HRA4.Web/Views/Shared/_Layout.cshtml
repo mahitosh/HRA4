@@ -22,13 +22,10 @@
     <link rel="stylesheet" href="~/css/font-awesome-4.5.0/css/font-awesome.min.css">
     <link href="~/css/devcustom.css" rel="stylesheet">
 
-    
-    
-    <script src="~/Scripts/spin.min.js"></script>
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="~/assets/js/ie-emulation-modes-warning.js"></script>
-    <script src="~/Scripts/spin.min.js"></script>
+   
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -38,6 +35,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="~/Scripts/spin.min.js"></script>
 </head>
 <body>
     
@@ -121,35 +119,37 @@
     <script src="~/assets/js/ie10-viewport-bug-workaround.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-        window.onbeforeunload = function (event) {
-                loading();
-            };
             function loading() {
-            $("#loading").fadeIn();
-            var opts = {
-                lines: 12, // The number of lines to draw
-                length: 7, // The length of each line
-                width: 4, // The line thickness
-                radius: 10, // The radius of the inner circle
-                color: '#000', // #rgb or #rrggbb
-                speed: 1, // Rounds per second
-                trail: 60, // Afterglow percentage
-                shadow: false, // Whether to render a shadow
-                hwaccel: false // Whether to use hardware acceleration
-            };
-            var target = document.getElementById('loading');
-            var spinner = new Spinner(opts).spin(target);
+                $("#loading").fadeIn();
+                var opts = {
+                    lines: 12, // The number of lines to draw
+                    length: 7, // The length of each line
+                    width: 4, // The line thickness
+                    radius: 10, // The radius of the inner circle
+                    color: '#000', // #rgb or #rrggbb
+                    speed: 1, // Rounds per second
+                    trail: 60, // Afterglow percentage
+                    shadow: false, // Whether to render a shadow
+                    hwaccel: false // Whether to use hardware acceleration
+                };
+                var target = document.getElementById('loading');
+                var spinner = new Spinner(opts).spin(target);
 
             }
-            $(document).ajaxStart(function () {
+
+            window.onbeforeunload = function (event) {
+                loading();
+            };
+           
+            //$(document).ajaxStart(function () {
                 
-                //loading(); 
-            });
+            //    loading(); 
+            //});
 
-            $(document).ajaxComplete(function () {
-               // $("#loading").hide();                
+            //$(document).ajaxComplete(function () {
+            //    $("#loading").hide();                
 
-            });
+            //});
         });
     </script>
 </body>

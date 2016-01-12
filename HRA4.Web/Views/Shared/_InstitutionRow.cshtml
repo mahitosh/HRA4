@@ -22,23 +22,27 @@
                 <li class="dropdown-submenu">
                     <a href="#">Save as XML</a>
                     <ul class="dropdown-menu">
-                        <li><a href="@Url.Action("ExportAsXml","Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)" target="_blank">De-Identified</a></li>
-                        <li><a href="@Url.Action("ExportAsXml","Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)" target="_blank">Identified</a></li>
+                        <li><a href="@Url.Action("ExportAsXml","Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)">De-Identified</a></li>
+                        <li><a href="@Url.Action("ExportAsXml","Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)">Identified</a></li>
                     </ul>
                 </li>
-                <li><a href=".demo" data-toggle="modal" data-parent="browsexml" data-target=".demo">Load from XML</a></li>
+                <li>
+                    <a data-toggle="modal" data-target="#upload-xml">Load from XML</a>
+                </li>
+
+
                 <li class="dropdown-submenu">
                     <a href="#">Save as HL7</a>
                     <ul class="dropdown-menu">
-                        <li><a href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)" target="_blank">De-Identified</a></li>
-                        <li><a href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)" target="_blank">Identified</a></li>
+                        <li><a href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)">De-Identified</a></li>
+                        <li><a href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)">Identified</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Load from HL7</a></li>
             </ul>
-        </div><!--Import/export dropdown end-->
-
-
+        </div><!--Import/export dropdown end--> 
+        
+       
         <span onclick="RunDocs('@Model.MRN.ToString()','@Model.Id.ToString()');">
             <a data-toggle="modal" data-target="#browse-xml-modal">
                 <img src="~/images/run-auto-doc-ico.svg" alt="Run automation documents" width="30" height="30" title="Run automation documents" />
@@ -50,11 +54,11 @@
 
     @using(Html.BeginForm("InstitutionSave", "Institution", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-    @Html.HiddenFor(item => item.Id)
-    @Html.HiddenFor(item => item.MRN)
+        @Html.HiddenFor(item => item.Id)
+        @Html.HiddenFor(item => item.MRN)
 
-    <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
-    <div class="row">
+        <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
+        <div class="row">
         <div class="col-sm-12 align-right">
             <div class="form-group">
                 <div class="checkbox">
@@ -65,79 +69,79 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-3">
-            <div class="form-group">
-                <label>User Name</label>
-                @*@Html.TextBoxFor(item => item.PatientName)*@
-                <input class="form-control" />
-            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>User Name</label>
+                    @*@Html.TextBoxFor(item => item.PatientName)*@
+                    <input class="form-control" />
+                </div>
 
-        </div>
-        <div class="col-sm-3">
-            <div class="form-group">
-                <label>MRN</label>
-                @*@Html.TextBoxFor(item => item.MRN, new { @id = "MRN" })*@
-                <input class="form-control" />
             </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="form-group">
-                <label>DOB</label>
-                <div id="DOB" class="inner-addon right-addon form-group">
-                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" />
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>MRN</label>
+                    @*@Html.TextBoxFor(item => item.MRN, new { @id = "MRN" })*@
+                    <input class="form-control" />
                 </div>
             </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="form-group">
-                <label>Gender</label>
-                <select class="form-control">
-                    <option>Male</option>
-                    <option>Female</option>
-                </select>
-            </div>
-        </div>
-
-    </div><!--row end-->
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="form-group">
-                <label>Appointment Date</label>
-                <div id="edit-app-date-container" class="inner-addon right-addon form-group">
-                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="edit-app-date" />
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>DOB</label>
+                    <div id="DOB" class="inner-addon right-addon form-group">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                        <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="form-group">
-                <label>Time</label>
-                <div class="input-group bootstrap-timepicker timepicker">
-                    <input id="timepicker1" type="text" class="form-control input-small">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select class="form-control">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="form-group">
-                <label>Survey</label>
-                @*@Html.TextBoxFor(item => item.Survey)*@
-                <input class="form-control" />
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="form-group">
-                <label>Clinic</label>
-                <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-            </div>
-        </div>
 
-    </div><!--row end-->
+        </div><!--row end-->
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Appointment Date</label>
+                    <div id="edit-app-date-container" class="inner-addon right-addon form-group">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                        <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="edit-app-date" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Time</label>
+                    <div class="input-group bootstrap-timepicker timepicker">
+                        <input id="timepicker1" type="text" class="form-control input-small">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Survey</label>
+                    @*@Html.TextBoxFor(item => item.Survey)*@
+                    <input class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Clinic</label>
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+            </div>
+
+        </div><!--row end-->
 
     <br />
     <div class="row">
@@ -353,8 +357,8 @@
                     </div>
                 </div><!--row end-->
                
-            </div><!--col-sm-12 end-->
-        </div><!--row end-->
+        </div><!--col-sm-12 end-->
+    </div><!--row end-->
        
     </div><!--quick-add-links end-->
     <br />
@@ -365,7 +369,7 @@
                 <button id="btnClearQuick" class="pull-right btn btn-cancel btn-sm btnClear" onclick="return false;">Cancel</button>
             </div>
         </div><!--schedule-more-detail-content end-->
-    </div>
+        </div>
     }
 </div>
 
