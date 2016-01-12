@@ -59,23 +59,3 @@ $("#lnkapptment").click(function(){
    $('#timepicker1').timepicker();
  });
  
-
-//for quick edit		
-/*$(document).ready (function (){
-	$("#quick_edit_div").hide();
-	
-	$("#btnSaveQuick").click(function(){
-			$("#quick_edit_div").slideUp(100);
-	});
-//$(".btnClear").click(function () {
-//    $(".editmenu").slideUp(100);
-//});
-
-	$("#btnClearQuick").click(function(){
-			$("#quick_edit_div").slideUp(100);
-	});
-
-	$("#quick_edit").click(function(){
-			$("#quick_edit_div").slideDown(100);
-	});
-});*/
