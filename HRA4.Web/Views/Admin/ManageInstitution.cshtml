@@ -87,7 +87,7 @@ else { }
                             <tr>
                                 <td>@Html.DisplayFor(modelItem => item.InstitutionName)</td>
                                 <td>@Html.DisplayFor(modelItem => item.DateCreated)</td>
-                                <td class="quick-add-institution">
+                                <td class="quick-add-institution align-right">
                                     <a href="@Url.Action("InstitutionDashboard", "Institution", new { InstitutionId = item.Id })"><img src="~/images/dashboard-ico.svg" alt="Go to dashboard" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Go to Dashboard" /></a>
                                     <a href="#"><img src="~/images/add-clinic-ico.svg" alt="Add Clinic" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Add Clinic" /></a>
                                     @*<a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>*@
