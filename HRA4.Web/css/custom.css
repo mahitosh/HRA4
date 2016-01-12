@@ -116,7 +116,7 @@ li.nav-help{padding-top:21px!important;padding-bottom:5px}
 #bs-example-navbar-collapse-1 .navbar-toggle:before{font-family: FontAwesome; content: "\f138";font-size: 12px;}*/
 
 /*admin tool*/
-ul.admin-tool-menu, ul.help-menu, ul.import-menu{min-width:220px;border-radius:0;padding-top:10px;padding-bottom:10px;right: 19px!important;top:75px;}
+ul.admin-tool-menu, ul.help-menu, ul.import-menu{min-width:220px;border-radius:0;padding-top:10px;padding-bottom:10px;right: 14px!important;top:64px;}
 ul.admin-tool-menu li a, ul.help-menu li a, ul.import-menu li a{background:transparent; display: block;height: 35px;padding: 5px 15px;right: 0;top: 0;width: 92%;border-bottom:solid 1px #d8d7d7;margin:0 4%;}
 ul.admin-tool-menu li a:hover, ul.help-menu li a:hover, ul.import-menu li a:hover{color:#fff;}
 ul.admin-tool-menu li:last-child a, ul.help-menu li:last-child a, ul.import-menu li:last-child a{border-bottom:none;}
@@ -232,8 +232,9 @@ a:hover{text-decoration: none;}
 .Padding-LR-10{padding-left:10px;padding-right: 10px;}
 .Padding-L-0{padding-left: 0;}
 .Padding-R-0{padding-right: 0;}
+.Padding-R-15{padding-right: 15px!important;}
 .Padding-T-10{padding-top: 10px;}
-.Padding-T-15{padding-top: 15px;}
+.Padding-T-15{padding-top: 15px!important;}
 .Padding-T-24{padding-top: 24px;}
 .Padding-T-28{padding-top: 28px;}
 .Padding-TB-10{padding-top: 10px;padding-bottom:10px;}
@@ -242,6 +243,7 @@ a:hover{text-decoration: none;}
 .Margin-T-20{margin-top:20px}
 .Margin-B-10{margin-bottom:10px}
 .Margin-L-10{margin-left:10px}
+.Margin-R-10{margin-right:10px}
 .height-30{height:30px;}
 .Margin-0{margin:0!important;}
 .align-center{text-align:center}
