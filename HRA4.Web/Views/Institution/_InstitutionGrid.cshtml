@@ -81,7 +81,8 @@
                 <a href="#"> <img src="@url" alt="Do not call" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." onclick="return AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()');" /> </a>
             </td>
             <td>
-                <a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Risk Calculations" /></a>
+                    @*<a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Risk Calculations" /></a>*@
+                    <a href="#" data-toggle="modal" onclick="ShowPedigreeImage('@item.MRN.ToString()','@item.Id.ToString()','@item.PatientName');"><img src="~/images/pedigree-ico.svg" alt="Pedigree" width="25" height="25" data-toggle="tooltip" data-placement="top" title="Pedigree" /></a>
                 <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Copy" /></a>
                 <a href="#" id="@item.Id" onclick="ShowEdit(this);"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>
             </td>
@@ -98,9 +99,14 @@
 </table><!--schedule list end here-->
 <script type="text/javascript">
     $(".editmenu").slideUp(0);
+    $(".schedule-more-detail-content").hide();
+    $(".schedule-more-detail").click(function () {
+        $(".schedule-more-detail-content").toggle(200);
+        $("i", this).toggleClass("fa-plus-circle fa-minus-circle");
+    });
+
     $(document).ready(function () {
        
-
         $("#myTable").tablesorter(
             {
                 headers: {

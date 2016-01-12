@@ -321,19 +321,66 @@ namespace HRA4.Services
             Appointment.DeleteApptData(apptid,false);
         }
 
-        public void DrawImage(string unitnum, int apptid)
+        public string ShowPedigreeImage(int _institutionId, string unitnum, int apptid, string PedigreeImageSavePath)
         {
+            int Width = 625;
+            int Height = 625;
+            string _ImagePath = string.Empty;
+            string assignedBy = "";
+            
+            if (SessionManager.Instance.ActiveUser != null)
+            {
+                if (string.IsNullOrEmpty(SessionManager.Instance.ActiveUser.ToString()) == false)
+                {
+                    assignedBy = SessionManager.Instance.ActiveUser.ToString();
+                   
+                }
+            }
+            string _userlogin = SessionManager.Instance.ActiveUser.userLogin;
+            SessionManager.Instance.SetActivePatient(unitnum, apptid);
+            RiskApps3.Model.PatientRecord.Patient proband = SessionManager.Instance.GetActivePatient();    // TODO:  Check this!!
 
+            PedigreeGenerator pg = new PedigreeGenerator(Width, Height, proband);
+            Bitmap bmp;
+            if (proband != null)
+            {
+                bmp = pg.GeneratePedigreeImage(proband);
+            }
+            else
+            {
+                bmp = pg.GeneratePedigreeImage();
+            }
+            System.IO.MemoryStream stream = new System.IO.MemoryStream();
+            bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+            var base64Data = Convert.ToBase64String(stream.ToArray());
 
-            int Width = 1598;
-            int Height = 759;
+            _ImagePath = SaveImage(base64Data, _institutionId, _userlogin, apptid, PedigreeImageSavePath);
+           return _ImagePath;
 
-            System.Drawing.Bitmap b = new System.Drawing.Bitmap(Width, Height);
-            RiskApps3.View.PatientRecord.Pedigree.PedigreeControl pedigreeControl1 = new RiskApps3.View.PatientRecord.Pedigree.PedigreeControl();
-           
-            pedigreeControl1.DrawToBitmap(b, new Rectangle(pedigreeControl1.Location, pedigreeControl1.Size));
 
         }
+
+        public string SaveImage(string base64, int _institutionId, string _userlogin, int apptid, string PedigreeImageSavePath)
+        {
+            string _ImagePath = string.Empty;
+            using (System.IO.MemoryStream ms = new System.IO.MemoryStream(Convert.FromBase64String(base64)))
+            {
+                using (Bitmap bm2 = new Bitmap(ms))
+                {
+                    
+                    
+                 //  PedigreeImagePath = System.Web.Serv
+                    string _ImageName = _institutionId.ToString() +"_"+ _userlogin + "_" + apptid.ToString()+".png";
+
+                    bm2.Save(PedigreeImageSavePath + _ImageName);
+                    _ImagePath = _ImageName;
+                }
+            }
+
+            return _ImagePath;
+
+        }
+
 
         public void AddTasks(int _institutionId, string unitnum, int apptid)
         {
@@ -354,9 +401,7 @@ namespace HRA4.Services
             RiskApps3.Model.PatientRecord.Communication.Task t = new RiskApps3.Model.PatientRecord.Communication.Task(p, "Task", null, assignedBy, DateTime.Now);
             HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
 
-         
-
-
+        
             t.BackgroundPersistWork(args);
 
             RiskApps3.Model.PatientRecord.Communication.PtFollowup newFollowup = new RiskApps3.Model.PatientRecord.Communication.PtFollowup(t);
