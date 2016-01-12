@@ -73,7 +73,7 @@ else
 
                             </div><!-- /#sidebar-wrapper -->
                             <div class="collapse navbar-collapse pull-left" id="bs-example-navbar-collapse-1">
-                                <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"><i class="fa fa-chevron-circle-right fa-lg"></i></button>
+                                <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"><i class="fa fa-chevron-circle-left fa-lg"></i></button>
                             </div><!--  sidebar toggle div end -->
                             <!-- Page Content -->
 
@@ -169,7 +169,7 @@ else
     </div>
     <!--Pedigree Diagram modal end-->
 
-    }
+}
 
 <script type="text/javascript">
 
@@ -322,31 +322,17 @@ else
                 success: function (data) {
                     $("#loading").hide();
                     $('#browse-xml-modal').modal('hide');
-                    //$('#browse-xml-modal').hide();
-                    //$('.modal-backdrop').remove(); // Commented by Nilesh S 
+                  
                 }
             }).always(function (Data) {
-               // $("#loading").hide();
+              
             });
 
         });
 
         $('#chkbox').change(function () {
             if ($(this).is(":checked")) {
-                /*
-                var today = new Date();
-                var dd = today.getDate();
-                var mm = today.getMonth() + 1; //January is 0!
-                var yyyy = today.getFullYear();
-                if (dd < 10) {
-                    dd = '0' + dd
-                }
-                if (mm < 10) {
-                    mm = '0' + mm
-                }
-                var today = mm + '/' + dd + '/' + yyyy;
-                $("#appt-date").val(today);
-                */
+                
                 $("#appt-date").prop('readonly', false);
                 $('#appt-date').prop('disabled', false);
                 
@@ -354,7 +340,7 @@ else
             } else {
                 $("#appt-date").prop('readonly', true);
                 $('#appt-date').prop('disabled', true);
-               // $("#appt-date").val('');
+               
                
             }
             SearchAppointment();
