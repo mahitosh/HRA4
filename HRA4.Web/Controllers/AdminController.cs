@@ -132,6 +132,7 @@ namespace HRA4.Web.Controllers
         {
             InstitutionName = instName,
             DateCreated = DateTime.Now,
+            IsActive=true
         };
 
 
