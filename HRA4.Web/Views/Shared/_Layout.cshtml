@@ -35,7 +35,9 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="~/Scripts/spin.min.js"></script>
+     
 </head>
 <body>
     
@@ -117,6 +119,8 @@
     <script src="~/Scripts/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="~/assets/js/ie10-viewport-bug-workaround.js"></script>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="~/Scripts/spin.min.js"></script>*@
     <script type="text/javascript">
         $(document).ready(function () {
             function loading() {
@@ -141,15 +145,16 @@
                 loading();
             };
            
-            //$(document).ajaxStart(function () {
-                
-            //    loading(); 
-            //});
+            $(document).ajaxStart(function () {                
+               // loading(); 
+            });
 
-            //$(document).ajaxComplete(function () {
-            //    $("#loading").hide();                
+            $(document).ajaxComplete(function () {
+                // $("#loading").hide();                
+               // var target = document.getElementById('loading');
+               // var spinner = new Spinner(opts).stop();
 
-            //});
+            });
         });
     </script>
 </body>

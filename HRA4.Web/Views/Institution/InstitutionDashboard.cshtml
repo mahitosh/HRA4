@@ -300,7 +300,24 @@ else
     };
     $(document).ready(function () {
 
-       
+        function Searchloading() {
+            $("#loading").fadeIn();
+            var opts = {
+                lines: 12, // The number of lines to draw
+                length: 7, // The length of each line
+                width: 4, // The line thickness
+                radius: 10, // The radius of the inner circle
+                color: '#000', // #rgb or #rrggbb
+                speed: 1, // Rounds per second
+                trail: 60, // Afterglow percentage
+                shadow: false, // Whether to render a shadow
+                hwaccel: false // Whether to use hardware acceleration
+            };
+            var target = document.getElementById('loading');
+            alert(target);
+            var spinner = new Spinner(opts).spin(target);
+
+        }
 
         $("#frmDashboard").keypress(function (e) {
             kCode = e.keyCode || e.charCode //for cross browser
@@ -349,7 +366,8 @@ else
 
         $("#btnsearch").click(function (data) {
             SearchAppointment();
-           
+
+                      
         });
 
         $("#ddClinic").change(function (data) {
@@ -360,14 +378,32 @@ else
         });
 
 
+
     function SearchAppointment() {
 
             var name = $('#name').val();
         var appdt = $('#chkbox').is(":checked") ? $('#appt-date').val() : "";
         var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val() : "-1";
          
-            var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
-
+        var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
+        //Loading popup - Mahitosh
+        $("#loading").fadeIn();
+        var opts = {
+            lines: 12, // The number of lines to draw
+            length: 7, // The length of each line
+            width: 4, // The line thickness
+            radius: 10, // The radius of the inner circle
+            color: '#000', // #rgb or #rrggbb
+            speed: 1, // Rounds per second
+            trail: 60, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false // Whether to use hardware acceleration
+        };
+        var target = document.getElementById('loading');
+       // alert(target);
+        var spinner = new Spinner(opts).spin(target);
+        $(target).data('spinner', spinner);
+        // Loading popup - Mahitosh
             $.ajax({
                 type: "POST",
             url: globalGetJSONPath,
@@ -378,13 +414,9 @@ else
                     $('#divRecordStatus').html('');
                     $('#ScheduleCount').html(Data.apps_count);
                     $('#divInstitutionGrid').html(Data.view);
-               
-                    //if ($('#chkbox').is(":checked"))
-                    //{
-                    //    alert("Hi");
-                    //    $("#appt-date").val(Data.todaysDate);
-                    //}
                     
+                    $('#loading').data('spinner').stop();
+                    $('#loading').hide();
                 if (parseInt(Data.apps_count, 0) == 0) {
                         $('#divRecordStatus').html("No records found.");
                     }
