@@ -29,58 +29,58 @@
     
 }
 else { }
-<div class="content-area container-fluid ">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-4 pull-right">
+<div class="container middle-content Padding-R-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <br />
+            <h3 class="pull-left page-title">Manage Institutions</h3>
+            <div class="col-md-3 col-sm-4 pull-right Padding-R-0">
+
                 <div class="input-group">
-                    @Html.TextBox("inputGroupSuccess1", (string)ViewBag.SearchText, new{ @class="form-control" , placeholder="Search Institution" })
-                    @*<input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Search Institution">*@
-                    <span class="input-group-addon search-ico-bg" onclick="location.href = '@Url.Action("SearchInstitution")?Institution=' + $('#inputGroupSuccess1').val()"><span class="glyphicon glyphicon-search"></span></span>
+                   @Html.TextBox("inputGroupSuccess1", (string)ViewBag.SearchText, new { @class = "form-control", placeholder = "Search Institution" })
+                @*<input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Search Institution">*@
+                <span class="input-group-addon search-ico-bg" onclick="location.href = '@Url.Action("SearchInstitution")?Institution=' + $('#inputGroupSuccess1').val()"><span class="glyphicon glyphicon-search"></span></span>
                 </div><!--input group end here-->
-            </div>
-        </div><!--row end-->
-    </div><!--container end-->
-
-    <div class="container-fluid row Padding-LR-0">
-        <hr class="hr-style" />
-    </div><!--row end-->
 
 
-    <div class="container" id="institution-list">
-        <div class="row height-30">
-            <div class="col-md-6 col-sm-6 Padding-L-0">
-                <b>Select an institution below to view it's data.</b>
-            </div>
-            <div class="col-md-6 col-sm-6 pull-right" style="text-align:right;">
-                <div class="dropdown pull-right">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle"><img src="~/images/institution-ico.svg" class="add-istitution-list" alt="Add Institution" width="18" height="18" /> Add Institution</a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <label>Add Institution</label><br />
-                            <input class="form-control" id="txtInstitution" name="add-institution" type="text" placeholder="Enter Institution"  />
-                            <button class="btn btn-default add-btn Margin-T-10 pull-right" id="btnAdd" type="button">Add</button>
-                        </li>
-                    </ul>
+
+
+            </div> <!--search div end here-->
+            <div class="clear-float"></div>
+
+            <div class="row height-30 Padding-T-15" id="institution-list">
+                <div class="col-md-6 col-sm-6">
+                    <b>Select an institution below to view it's data.</b>
                 </div>
-                <a href="#" class="pull-right" onclick="location.href = '@Url.Action("SearchInstitution")?Institution=' + $('#inputGroupSuccess1').val()"><img src="~/images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh Institution List</a>
+                <div class="col-md-6 col-sm-6 pull-right" style="text-align:right;">
+                    <div class="dropdown pull-right">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><img src="~/images/institution-ico.svg" class="add-istitution-list" alt="Add Institution" width="18" height="18" /> Add Institution</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <label>Add Institution</label><br />
+                                <input class="form-control" id="txtInstitution" name="add-institution" type="text" placeholder="Enter Institution" />
+                                <button class="btn btn-default add-btn Margin-T-10 pull-right" id="btnAdd" type="button">Add</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="pull-right" onclick="location.href = '@Url.Action("SearchInstitution")?Institution=' + $('#inputGroupSuccess1').val()"><img src="~/images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh Institution List</a>
+
+                </div>
+            </div><!--row end-->
 
 
-            </div>
-        </div><!--row end-->
-    </div><!--container end-->
-
-    <div class="container-fluid row Padding-LR-0 bottom-container-area">
-        <div class="container">
-            <div class="row">
-                <table id="tblInstitutions" class="table table-striped apppointment-table Margin-T-20">
+            <div class="clear-float"></div>
+            <div class="table-responsive">
+                <table id="tblInstitutions" class="table table-striped apppointment-table Margin-T-10">
                     <thead>
                         <tr>
-                            <th width="55%">Institution Name</th>
-                            <th width="20%">Date Created</th>
-                            <th width="25%">Quick Actions</th>
+                            <th width="67%" class="header">
+                                Institution Name
+                            </th>
+                            <th width="15%">Date Created</th>
+                            <th width="18%" class="align-right" align="right">Quick&nbsp;Actions</th>
                         </tr>
-                    </thead>      
+                    </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
@@ -91,22 +91,22 @@ else { }
                                     <a href="@Url.Action("InstitutionDashboard", "Institution", new { InstitutionId = item.Id })"><img src="~/images/dashboard-ico.svg" alt="Go to dashboard" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Go to Dashboard" /></a>
                                     <a href="#"><img src="~/images/add-clinic-ico.svg" alt="Add Clinic" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Add Clinic" /></a>
                                     @*<a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>*@
-                                    <a href="@Url.Action("DeleteInstitution", "Admin", new { Id = item.Id })" onclick="return DeleteInstitution();" ><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
+                                    <a href="@Url.Action("DeleteInstitution", "Admin", new { Id = item.Id })" onclick="return DeleteInstitution();"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
                                     @*<a href="#" onclick="DeleteInstitution('@item.Id.ToString()');"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>*@
-                                    
+
                                 </td>
                             </tr>
-                            
+
                         }
                     </tbody>
                 </table><!--Institution list end here-->
                 <div id="divRecordStatus" style="color:red;text-align:center">@ViewBag.RecordStatus</div>
-            </div><!--row end-->
+            </div><!--schedule list div end here-->
 
         </div><!--container end-->
-
-    </div><!--container fluid end-->
-</div> <!-- /container area end -->
+    </div><!--col 12 end-->
+</div><!--row end-->
+</div><!--fluid container end-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script type="text/javascript"
