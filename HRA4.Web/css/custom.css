@@ -101,7 +101,7 @@ li.nav-admintool a{background: #72b116 url('../images/admin-tool-ico.svg') no-re
 li.nav-admintool a:hover, li.nav-admintool a:focus{background-color: #72b116!important}
 li.nav-profile, li.nav-logout{color:#ffffff;font-size:1.3em;font-family: 'open_sanslight', arial;line-height: 1em;}
 li.nav-profile svg{margin-left: 10px;}
-li.nav-logout{margin:15px 0px 0 15px;border-left: solid 1px #ffffff;padding-top:15px!important;}
+li.nav-logout{margin:15px 0px 0 15px;border-left: solid 1px #ffffff;padding-top:19px!important;}
 li.nav-logout a{padding-bottom: 5px;}
 li.nav-logout a:hover, li.nav-logout a:focus{color:#ffffff!important;text-decoration: underline;}
 .top-breadcrumb{font-size: 1.5em;padding-top: 7px;padding-left:0;}
@@ -260,7 +260,7 @@ small{font-size:0.7em;}
 .btnClear{}
 /*all buttos*/
 .search-group{box-shadow: 1px 1px 4px #ccc;line-height:27px;}
-.search-btn, .add-btn{background-color: #53afee;border-radius: 0;border:none;color: white;font-size:1.1em;padding:4px 12px;}
+.search-btn, .add-btn{background-color: #53afee;border-radius: 0;border:none;color: white;font-size:1.1em!important;padding:4px 12px;}
 
 .search-btn-ico{background-color: #358dca;color: white;padding: 8px;cursor:pointer;top:0;}
 .search-btn:hover, .add-btn:hover, .search-btn.focus, .search-btn:focus{background-color: #358dca;color: white;}
@@ -270,8 +270,8 @@ small{font-size:0.7em;}
 .btn-primary:hover{background-color: #358dca;border-color: #fff;}
 .btn-success{background-color: #73b210;border-color: transparent;}
 .btn-success:hover, .btn-success.focus, .btn-success:focus{background-color: #639c11;border-color: transparent;}
-.btn-cancel{background-color: #e6f3d2;border-color: transparent;color:#90a373;}
-.btn-cancel:hover{background-color: #ddebc7;border-color: transparent;color:#90a373;}
+.btn-cancel{background-color: #e6f3d2;border-color: transparent;color:#6b7a55;}
+.btn-cancel:hover{background-color: #ddebc7;border-color: transparent;color:#6b7a55;}
 
 /*footer css*/
 footer{position:fixed; box-shadow: 10px 0 6px #ddd;background-color:#fff;width:100%;z-index:1000;bottom:0;right:0;}
