@@ -40,9 +40,9 @@
                 </li>
                 <li><a href="#">Load from HL7</a></li>
             </ul>
-        </div><!--Import/export dropdown end-->
-
-
+        </div><!--Import/export dropdown end--> 
+        
+       
         <span onclick="RunDocs('@Model.MRN.ToString()','@Model.Id.ToString()');">
             <a data-toggle="modal" data-target="#browse-xml-modal">
                 <img src="~/images/run-auto-doc-ico.svg" alt="Run automation documents" width="30" height="30" title="Run automation documents" />
@@ -51,17 +51,24 @@
         </span>
         <a onclick="return confirmation();" href="@Url.Action("DeleteAppointment", "Institution", new {apptid= @Model.Id})"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment</a>
     </div>
-    @*<a data-toggle="modal" data-target=".rundoc" onclick="RunDocs('@Model.MRN.ToString()','@Model.Id.ToString()');"><img src="~/images/run-auto-doc-ico.svg" alt="Run automation documents" width="30" height="30" title="Run automation documents" />Run Automation Documents</a>
-        <a href="@Url.Action("DeleteAppointment","Institution", new {apptid=@Model.Id})"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment</a>*@
 
-    @using (Html.BeginForm("InstitutionSave", "Institution", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using(Html.BeginForm("InstitutionSave", "Institution", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.HiddenFor(item => item.Id)
         @Html.HiddenFor(item => item.MRN)
 
         <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
-
         <div class="row">
+        <div class="col-sm-12 align-right">
+            <div class="form-group">
+                <div class="checkbox">
+                    @Html.CheckBoxFor(item => item.MarkAsComplete)Mark As Complete
+                    @Html.Hidden("Hfddlclinic")
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>User Name</label>
@@ -95,6 +102,7 @@
                     </select>
                 </div>
             </div>
+
         </div><!--row end-->
         <div class="row">
             <div class="col-sm-3">
@@ -132,19 +140,9 @@
                     </select>
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="form-group">
-                    @Html.CheckBoxFor(item => item.MarkAsComplete)Mark As Complete
-                    @Html.Hidden("Hfddlclinic")
-                </div>
-            </div>
-            <div class="col-sm-12 pull-right">
-                <button id="btnSaveQuick" onclick="saveClinic();" class="pull-right btn btn-success btn-sm  Margin-L-10">Save</button>
-                <button id="btnClearQuick" class="pull-right btn btn-danger btn-sm btnClear" onclick="return false;">Cancel</button>
-            </div>
+
         </div><!--row end-->
 
-    }
     <br />
     <div class="row">
         <div class="col-sm-12">
@@ -358,43 +356,23 @@
 
                     </div>
                 </div><!--row end-->
-            </div><!--schedule-more-detail-content end-->
+               
         </div><!--col-sm-12 end-->
     </div><!--row end-->
+       
+    </div><!--quick-add-links end-->
     <br />
+    <div class="row">
+        <div class="col-sm-12 align-right">
+            <div class="form-group">
 
-    @using (Html.BeginForm("ImportAsHL7", "Institution", new { mrn = Model.MRN, apptId = Model.Id, deIdentified = true }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-
-        <div id="browsexml" class="demo modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Load from XML</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="editor-field"> @Html.TextBox("file", "", new { type = "file" }) </div>
-                        <div class="editor-field">@Html.CheckBox("chkHl7DeIdentified") De-Identified</div>
-                        <div class="editor-field"> <input type="submit" value="Upload" /> </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="editor-field"> <input type="submit" value="Upload" /> </div>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
+                <button id="btnSaveQuick" onclick="saveClinic();" class="pull-right btn btn-success btn-sm  Margin-L-10">Save</button>
+                <button id="btnClearQuick" class="pull-right btn btn-danger btn-sm btnClear" onclick="return false;">Cancel</button>
             </div>
+        </div><!--schedule-more-detail-content end-->
         </div>
     }
+</div>
 
-</div><!--quick-add-links end-->
-<script type="text/javascript">
-    function CreateId(id) {
-        alert(id);
-        return "#browse-xml" + id;
-    }
-</script>
 
 
