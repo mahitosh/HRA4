@@ -64,7 +64,8 @@ else
                                         </ul><!--sidebar child end here-->
                                     </li>
                                     <li class="clear-float">
-                                        <a href="#" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">(0)</span></a> </li>
+                                        <a href="#" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">(0)</span></a>
+                                    </li>
                                     
                     <li>
                                         <a href="#" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">(0)</span></a>
@@ -73,7 +74,7 @@ else
 
                             </div><!-- /#sidebar-wrapper -->
                             <div class="collapse navbar-collapse pull-left" id="bs-example-navbar-collapse-1">
-                                <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"><i class="fa fa-chevron-circle-right fa-lg"></i></button>
+                                <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"><i class="fa fa-chevron-circle-left fa-lg"></i></button>
                             </div><!--  sidebar toggle div end -->
                             <!-- Page Content -->
 
@@ -81,7 +82,7 @@ else
                                 <div class="container-fluid xyz clear-float">
                                     <div class="row">
                                         <h3 class="pull-left page-title">Schedule</h3>
-                                        <a class="pull-right left-title" onclick="SearchAppointment()"><img src="~/images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh Institution list</a>
+                                        <a class="pull-right left-title" onclick="SearchAppointment()"><img src="~/images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh Appointment List</a>
                                         <div class="clear-float"></div>
                                         <div class="table-responsive" id="divInstitutionGrid">
                                             @Html.Partial("_InstitutionGrid", Model)
@@ -118,16 +119,36 @@ else
                     </div>
                     <div id="completeMsg">Run Automation Documents Process Finished Click on download</div>
                 </div>             
+                <div id="progressbar" style="display:none"></div>
+                <div id="completeMsg" style="display:none;margin-left: 10px;">Run Automation Documents Process Finished Click on download</div>
                 <div class="modal-footer">
-                    <a href="@Url.Action("DownloadFile", "Institution")" id="Downloadbtn"  class="btn btn-default" > Download</a> @*target="_blank"*@
+                    <a href="@Url.Action("DownloadFile", "Institution")" id="Downloadbtn" class="btn btn-default"> Download</a> @*target="_blank"*@
                 </div>
             </div>
         </div>
     </div><!--import/export browse xml modal end-->
+    @(Html.BeginForm("ImportAsXml", "Institution", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div id="upload-xml" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Upload Document</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="editor-field"> @Html.TextBox("file", "", new { type = "file" }) </div>
+                        <div class="editor-field"> <input type="submit" onclick="UploadXml();" value="Upload" /> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
    <!-- Code End for Model Popup  -->
 
     <!-- Pedigree Diagram  Models popup -->
-    <div id="pedigree-diagram-modal" class="modal fade" role="dialog" aria-hidden="true" >
+    <div id="pedigree-diagram-modal" class="modal fade" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -158,8 +179,7 @@ else
 
     /*====== Append image url dynamically ============ */
 
-    function ShowPedigreeImage(unitnum, apptid, PatientName)
-    {
+    function ShowPedigreeImage(unitnum, apptid, PatientName) {
 
         var globalGetJSONPath = '@Url.Action("ShowPedigreeImage", "Institution")';
 
@@ -170,8 +190,8 @@ else
             dataType: "json",
             async: true,
             success: function (Data) {
-
-
+                
+               
                 //var ImageUrl = Data.ImageUrl;
 
                 $("#spanPatientName").html(PatientName);
@@ -180,7 +200,7 @@ else
                 var img = $('<img id="imgPedigree">'); //Equivalent: $(document.createElement('img'))
                 img.attr('src', Data.ImageUrl);
                 img.appendTo('#imagediv');
-
+               
                // $('img[id="imgPedigree"]').attr({ src: Data.ImageUrl});
                 $('#pedigree-diagram-modal').modal('show');
 
@@ -199,26 +219,59 @@ else
     /*======End Append image url dynamically ============ */
 
 
-    //schedule grid more deatils content
-    $(document).ready(function () {
+    function UploadXml() {
 
-    });
-
-    function RunDocs(MRN, apptid) {
-        //$('.modal-backdrop').remove(); //commented by nilesh
-        var globalGetJSONPath = '@Url.Action("RunAutomationDocuments", "Institution")';
+        var globalGetJSONPath = '@Url.Action("ImportAsXml", "Institution")';
+        var formData = new FormData($(this)[0]);
         $.ajax({
             beforeSend: function () {
                 //$("#line").hide(); //commented by nilesh
+                $("#loading").hide();
+                $(".modal-footer").hide();
+                $('#Downloadbtn').prop('disabled', true);
+                $('#CloseBtn').prop('disabled', true);
+                $("#completeMsg").hide();
+                $("#progressbar").show();
+                //$("#msgbody").html('<div id="progressbar"></div>'); //progrssbar
+
+
+            },
+            type: "POST",
+            url: globalGetJSONPath,
+            data: formData,
+            async: true,
+            success: function (data) {
+                $(".modal-footer").show();
+                $("#progressbar").hide();
+                $("#completeMsg").show();
+                //$("#progressbar").html('<div id="line">Run Automation Documents Process Finished Click on download</div></br>'); //commented by nilesh
+                $('#Downloadbtn').prop('disabled', false);
+                $('#CloseBtn').prop('disabled', false);
+            }
+        }).always(function (Data) {
+
+        });
+    }
+    //schedule grid more deatils content
+    $(document).ready(function () {
+        
+    });
+
+    function RunDocs(MRN, apptid) {
+        //$('.modal-backdrop').remove(); //commented by nilesh 
+        var globalGetJSONPath = '@Url.Action("RunAutomationDocuments", "Institution")';
+        $.ajax({
+            beforeSend: function () {
+                //$("#line").hide(); //commented by nilesh 
                 $("#completeMsg").hide();
                 $("#loading").hide();
                 $(".modal-footer").hide();
                 $('#Downloadbtn').prop('disabled', true);
                 $('#CloseBtn').prop('disabled', true);
                 $("#progressdiv").show();
-
-
-
+              
+               
+               
             },
             type: "POST",
             url: globalGetJSONPath,
@@ -238,7 +291,7 @@ else
     };
 
 
-
+    
     function saveClinic() {
         var id = $("#ddClinic").val();
         console.log(id);
@@ -246,16 +299,33 @@ else
     };
     $(document).ready(function () {
 
-
+        function Searchloading() {
+            $("#loading").fadeIn();
+            var opts = {
+                lines: 12, // The number of lines to draw
+                length: 7, // The length of each line
+                width: 4, // The line thickness
+                radius: 10, // The radius of the inner circle
+                color: '#000', // #rgb or #rrggbb
+                speed: 1, // Rounds per second
+                trail: 60, // Afterglow percentage
+                shadow: false, // Whether to render a shadow
+                hwaccel: false // Whether to use hardware acceleration
+            };
+            var target = document.getElementById('loading');
+            alert(target);
+            var spinner = new Spinner(opts).spin(target);
+       
+        }
 
         $("#frmDashboard").keypress(function (e) {
             kCode = e.keyCode || e.charCode //for cross browser
             if (kCode == 13) {
                 var defaultbtn = $(this).attr("DefaultButton");
-                $("#" + defaultbtn).click();
-                return false;
-            }
-        });
+            $("#" + defaultbtn).click();
+            return false;
+        }
+        });       
 
 
 
@@ -268,40 +338,26 @@ else
                 success: function (data) {
                     $("#loading").hide();
                     $('#browse-xml-modal').modal('hide');
-                    //$('#browse-xml-modal').hide();
-                    //$('.modal-backdrop').remove(); // Commented by Nilesh S
+
                 }
             }).always(function (Data) {
-                // $("#loading").hide();
+
             });
 
         });
 
         $('#chkbox').change(function () {
             if ($(this).is(":checked")) {
-                /*
-                var today = new Date();
-                var dd = today.getDate();
-                var mm = today.getMonth() + 1; //January is 0!
-                var yyyy = today.getFullYear();
-                if (dd < 10) {
-                    dd = '0' + dd
-                }
-                if (mm < 10) {
-                    mm = '0' + mm
-                }
-                var today = mm + '/' + dd + '/' + yyyy;
-                $("#appt-date").val(today);
-                */
+
                 $("#appt-date").prop('readonly', false);
                 $('#appt-date').prop('disabled', false);
-
-
+                
+                
             } else {
                 $("#appt-date").prop('readonly', true);
                 $('#appt-date').prop('disabled', true);
-                // $("#appt-date").val('');
 
+               
             }
             SearchAppointment();
 
@@ -309,86 +365,122 @@ else
 
         $("#btnsearch").click(function (data) {
             SearchAppointment();
+           
 
         });
 
         $("#ddClinic").change(function (data) {
             SearchAppointment();
         });
+          
+       
+        });
 
-
-    });
 
 
     function SearchAppointment() {
 
-        var name = $('#name').val();
+            var name = $('#name').val();
         var appdt = $('#chkbox').is(":checked") ? $('#appt-date').val() : "";
         var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val() : "-1";
-
-        var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
-
-        $.ajax({
-            type: "POST",
+         
+            var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
+        //Loading popup - Mahitosh
+        $("#loading").fadeIn();
+        var opts = {
+            lines: 12, // The number of lines to draw
+            length: 7, // The length of each line
+            width: 4, // The line thickness
+            radius: 10, // The radius of the inner circle
+            color: '#000', // #rgb or #rrggbb
+            speed: 1, // Rounds per second
+            trail: 60, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false // Whether to use hardware acceleration
+        };
+        var target = document.getElementById('loading');
+        // alert(target);
+        var spinner = new Spinner(opts).spin(target);
+        $(target).data('spinner', spinner);
+        // Loading popup - Mahitosh
+            $.ajax({
+                type: "POST",
             url: globalGetJSONPath,
             data: { name: name, appdt: appdt, clinicId: clinicId },
-            dataType: "json",
+                dataType: "json",
             async: true,
             success: function (Data) {
-                $('#divRecordStatus').html('');
-                $('#ScheduleCount').html(Data.apps_count);
-                $('#divInstitutionGrid').html(Data.view);
-
-                //if ($('#chkbox').is(":checked"))
-                //{
-                //    alert("Hi");
-                //    $("#appt-date").val(Data.todaysDate);
-                //}
-
+                    $('#divRecordStatus').html('');
+                    $('#ScheduleCount').html(Data.apps_count);
+                    $('#divInstitutionGrid').html(Data.view);
+                $("#myTable").tablesorter(
+                     {
+                         headers: {
+                             // assign the secound column (we start counting zero)
+                             9: {
+                                 // disable it by setting the property sorter to false
+                                 sorter: false
+                             }
+                    
+                         }
+                     });
+                $('#loading').data('spinner').stop();
+                $('#loading').hide();
                 if (parseInt(Data.apps_count, 0) == 0) {
-                    $('#divRecordStatus').html("No records found.");
+                        $('#divRecordStatus').html("No records found.");
+                    }
+                    
+                    
                 }
 
+            })
 
-            }
-
-        })
-
-    }
-
-
+        }
+   
+    
 
     function AddRemoveTask(isDNC, unitnum, apptid) {
 
-        var name = $('#name').val();
-        var appdt = $('#appt-date').val();
+            var name = $('#name').val();
+            var appdt = $('#appt-date').val();
         var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val() : "-1";
 
         var globalGetJSONPath = '@Url.Action("AddRemoveTask", "Institution")';
 
-        $.ajax({
-            type: "POST",
-            url: globalGetJSONPath,
+            $.ajax({
+                type: "POST",
+                url: globalGetJSONPath,
             data: { name: name, appdt: appdt, isDNC: isDNC, unitnum: unitnum, apptid: apptid, clinicId: clinicId },
-            dataType: "json",
+                dataType: "json",
             async: true,
-            success: function (Data) {
+                success: function (Data) {
                 $('#divRecordStatus').html('');
                 $('#ScheduleCount').html(Data.apps_count);
-                $('#divInstitutionGrid').html(Data.view);
+                    $('#divInstitutionGrid').html(Data.view);
+                $("#myTable").tablesorter(
+                    {
+                        headers: {
+                            // assign the secound column (we start counting zero)
+                            9: {
+                                // disable it by setting the property sorter to false
+                                sorter: false
+                            }
+
+                        }
+                    });
                 if (parseInt(Data.apps_count, 0) == 0) {
                     $('#divRecordStatus').html("No records found.");
                 }
-            }
-        })
-        return false;
-    };
+                }
+            })
+            return false;
+        };
 
     function confirmation() {
         var c = confirm("Are you sure you want to delete this Appointment?");
         return c;
     };
 
-
+    
 
 </script>

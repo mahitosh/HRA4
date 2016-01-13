@@ -1,5 +1,5 @@
 ﻿
-/*#loading
+#loading
     {
         display:none;
         position:fixed;
@@ -30,6 +30,6 @@
         font-size:larger;
         padding-top:80px;
     }
-    .demo{}*/
+    .demo{}
 
  /*#pedigree-diagram-modal .modal-dialog{width:630px;margin-top:30px;height:630px;}*/
