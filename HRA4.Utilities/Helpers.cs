@@ -23,16 +23,21 @@ namespace HRA4.Utilities
 
                 foreach (string commandText in result)
                 {
+                   
                     try
                     {
+                        if (myConn == null)
+                            myConn = new SqlConnection(conn);
                         if (myConn.State == ConnectionState.Closed)
                         {
                             myConn.Open();
                         }
-
-                        var cmd = new SqlCommand(commandText, myConn);
-                       // Logger.DebugFormat("Sql statement:{0}", commandText);
-                        cmd.ExecuteNonQuery();
+                        if (!string.IsNullOrWhiteSpace(commandText))
+                        {
+                            var cmd = new SqlCommand(commandText, myConn);
+                            // Logger.DebugFormat("Sql statement:{0}", commandText);
+                            cmd.ExecuteNonQuery();
+                        }
                     }
                     catch (System.Exception ex)
                     {
