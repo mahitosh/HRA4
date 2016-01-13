@@ -64,11 +64,11 @@ else
                                         </ul><!--sidebar child end here-->
                                     </li>
                                     <li class="clear-float">
-                                        <a href="#" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">(0)</span></a>
+                                        <a href="#" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">0</span></a>
                                     </li>
                                     
                     <li>
-                                        <a href="#" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">(0)</span></a>
+                                        <a href="#" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">0</span></a>
                     </li>
                 </ul>
 
@@ -215,22 +215,22 @@ else
         });
     }
     //schedule grid more deatils content
-
+ 
     function RunDocs(MRN, apptid) {
-        //$('.modal-backdrop').remove(); //commented by nilesh
+        //$('.modal-backdrop').remove(); //commented by nilesh 
         var globalGetJSONPath = '@Url.Action("RunAutomationDocuments", "Institution")';
         $.ajax({
             beforeSend: function () {
-                //$("#line").hide(); //commented by nilesh
+                //$("#line").hide(); //commented by nilesh 
                 $("#completeMsg").hide();
                 $("#loading").hide();
                 $(".modal-footer").hide();
                 $('#Downloadbtn').prop('disabled', true);
                 $('#CloseBtn').prop('disabled', true);
                 $("#progressdiv").show();
-
-
-
+              
+               
+               
             },
             type: "POST",
             url: globalGetJSONPath,
@@ -250,7 +250,7 @@ else
     };
 
 
-
+    
     function saveClinic() {
         var id = $("#ddClinic").val();
         console.log(id);
@@ -278,17 +278,17 @@ else
             var target = document.getElementById('loading');
             alert(target);
             var spinner = new Spinner(opts).spin(target);
-
+       
         }
 
         $("#frmDashboard").keypress(function (e) {
             kCode = e.keyCode || e.charCode //for cross browser
             if (kCode == 13) {
                 var defaultbtn = $(this).attr("DefaultButton");
-                $("#" + defaultbtn).click();
-                return false;
-            }
-        });
+            $("#" + defaultbtn).click();
+            return false;
+        }
+        });       
 
 
 
@@ -314,13 +314,13 @@ else
 
                 $("#appt-date").prop('readonly', false);
                 $('#appt-date').prop('disabled', false);
-
-
+                
+                
             } else {
                 $("#appt-date").prop('readonly', true);
                 $('#appt-date').prop('disabled', true);
 
-
+               
             }
             SearchAppointment('@Url.Action("FilteredInstitution", "Institution")');
 
@@ -328,15 +328,15 @@ else
 
         $("#divSearch").click(function (data) {
             SearchAppointment('@Url.Action("FilteredInstitution", "Institution")');
-
+           
 
         });
 
         $("#ddClinic").change(function (data) {
             SearchAppointment('@Url.Action("FilteredInstitution", "Institution")');
         });
-
-
+          
+       
         });
 
     function Applytablesorter()
@@ -357,11 +357,11 @@ else
     }
 
 
-
+         
     //AddRemoveTask and confirmation methode moved to Institution.js
 
 
 
-
+    
 
 </script>

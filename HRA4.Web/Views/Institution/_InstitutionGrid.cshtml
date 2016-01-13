@@ -12,7 +12,7 @@
                 <th>MRN</th>
                 <th>DOB</th>
                 <th>Provider</th>
-                <th>Date Complete </th>
+                <th>Mark Survey Complete</th>
                 <th>Disease Hx</th>
                 <th>Survey </th>
                 <th>Do Not Call</th>
@@ -120,14 +120,29 @@
                 }
             }
             );
-    });
-    */
-    $(".btnClear").click(function () {
+    });*/
+    //$(".btnClear").click(function () {
+    //    $(".editmenu").slideUp(100);
+    //});
+
+    function cancel(obj)
+    {
+        var chkid = "#" + obj.id + "chk";
+        var hfid = "#" + obj.id + "hf";
+        var initialvalue = $(hfid).val();
+        if (initialvalue=='True') {
+            $(chkid).prop("checked", true);
+            
+        } else {
+            $(chkid).prop("checked", false);
+           
+        }
+        
         $(".editmenu").slideUp(100);
-    });
+      
+    }
     function ShowEdit(obj) {
         $(".editmenu").slideUp(100);
-        //alert(obj.id + "-b");
         var trid = "#" + obj.id + "-b";
         $(trid).slideDown(100);
 
