@@ -137,7 +137,7 @@ else
                 </div>
                 <div class="modal-body">
                     For: <b>Patient Name : <span id="spanPatientName"></span>  , MRN : <span id="spanMRN" ></span> </b><br />
-                    <div class="view-doc-content Margin-T-10" style="overflow:scroll">
+                    <div class="view-doc-content Margin-T-10" > @*style="overflow:scroll"*@
                         <div id="imagediv">
 
                         </div>
@@ -170,8 +170,8 @@ else
             dataType: "json",
             async: true,
             success: function (Data) {
-                
-               
+
+
                 //var ImageUrl = Data.ImageUrl;
 
                 $("#spanPatientName").html(PatientName);
@@ -180,8 +180,7 @@ else
                 var img = $('<img id="imgPedigree">'); //Equivalent: $(document.createElement('img'))
                 img.attr('src', Data.ImageUrl);
                 img.appendTo('#imagediv');
-               
-            
+
                // $('img[id="imgPedigree"]').attr({ src: Data.ImageUrl});
                 $('#pedigree-diagram-modal').modal('show');
 
@@ -202,24 +201,24 @@ else
 
     //schedule grid more deatils content
     $(document).ready(function () {
-        
+
     });
 
     function RunDocs(MRN, apptid) {
-        //$('.modal-backdrop').remove(); //commented by nilesh 
+        //$('.modal-backdrop').remove(); //commented by nilesh
         var globalGetJSONPath = '@Url.Action("RunAutomationDocuments", "Institution")';
         $.ajax({
             beforeSend: function () {
-                //$("#line").hide(); //commented by nilesh 
+                //$("#line").hide(); //commented by nilesh
                 $("#completeMsg").hide();
                 $("#loading").hide();
                 $(".modal-footer").hide();
                 $('#Downloadbtn').prop('disabled', true);
                 $('#CloseBtn').prop('disabled', true);
                 $("#progressdiv").show();
-              
-               
-               
+
+
+
             },
             type: "POST",
             url: globalGetJSONPath,
@@ -239,7 +238,7 @@ else
     };
 
 
-    
+
     function saveClinic() {
         var id = $("#ddClinic").val();
         console.log(id);
@@ -247,16 +246,16 @@ else
     };
     $(document).ready(function () {
 
-       
+
 
         $("#frmDashboard").keypress(function (e) {
             kCode = e.keyCode || e.charCode //for cross browser
             if (kCode == 13) {
                 var defaultbtn = $(this).attr("DefaultButton");
-            $("#" + defaultbtn).click();
-            return false;
-        }
-        });       
+                $("#" + defaultbtn).click();
+                return false;
+            }
+        });
 
 
 
@@ -270,10 +269,10 @@ else
                     $("#loading").hide();
                     $('#browse-xml-modal').modal('hide');
                     //$('#browse-xml-modal').hide();
-                    //$('.modal-backdrop').remove(); // Commented by Nilesh S 
+                    //$('.modal-backdrop').remove(); // Commented by Nilesh S
                 }
             }).always(function (Data) {
-               // $("#loading").hide();
+                // $("#loading").hide();
             });
 
         });
@@ -296,13 +295,13 @@ else
                 */
                 $("#appt-date").prop('readonly', false);
                 $('#appt-date').prop('disabled', false);
-                
-                
+
+
             } else {
                 $("#appt-date").prop('readonly', true);
                 $('#appt-date').prop('disabled', true);
-               // $("#appt-date").val('');
-               
+                // $("#appt-date").val('');
+
             }
             SearchAppointment();
 
@@ -310,86 +309,86 @@ else
 
         $("#btnsearch").click(function (data) {
             SearchAppointment();
-           
+
         });
 
         $("#ddClinic").change(function (data) {
             SearchAppointment();
         });
-          
-       
-        });
+
+
+    });
 
 
     function SearchAppointment() {
 
-            var name = $('#name').val();
+        var name = $('#name').val();
         var appdt = $('#chkbox').is(":checked") ? $('#appt-date').val() : "";
         var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val() : "-1";
-         
-            var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
 
-            $.ajax({
-                type: "POST",
+        var globalGetJSONPath = '@Url.Action("FilteredInstitution", "Institution")';
+
+        $.ajax({
+            type: "POST",
             url: globalGetJSONPath,
             data: { name: name, appdt: appdt, clinicId: clinicId },
-                dataType: "json",
+            dataType: "json",
             async: true,
             success: function (Data) {
-                    $('#divRecordStatus').html('');
-                    $('#ScheduleCount').html(Data.apps_count);
-                    $('#divInstitutionGrid').html(Data.view);
-               
-                    //if ($('#chkbox').is(":checked"))
-                    //{
-                    //    alert("Hi");
-                    //    $("#appt-date").val(Data.todaysDate);
-                    //}
-                    
+                $('#divRecordStatus').html('');
+                $('#ScheduleCount').html(Data.apps_count);
+                $('#divInstitutionGrid').html(Data.view);
+
+                //if ($('#chkbox').is(":checked"))
+                //{
+                //    alert("Hi");
+                //    $("#appt-date").val(Data.todaysDate);
+                //}
+
                 if (parseInt(Data.apps_count, 0) == 0) {
-                        $('#divRecordStatus').html("No records found.");
-                    }
-                    
-                    
+                    $('#divRecordStatus').html("No records found.");
                 }
 
-            })
 
-        }
-   
-    
+            }
+
+        })
+
+    }
+
+
 
     function AddRemoveTask(isDNC, unitnum, apptid) {
 
-            var name = $('#name').val();
-            var appdt = $('#appt-date').val();
+        var name = $('#name').val();
+        var appdt = $('#appt-date').val();
         var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val() : "-1";
 
         var globalGetJSONPath = '@Url.Action("AddRemoveTask", "Institution")';
 
-            $.ajax({
-                type: "POST",
-                url: globalGetJSONPath,
+        $.ajax({
+            type: "POST",
+            url: globalGetJSONPath,
             data: { name: name, appdt: appdt, isDNC: isDNC, unitnum: unitnum, apptid: apptid, clinicId: clinicId },
-                dataType: "json",
+            dataType: "json",
             async: true,
-                success: function (Data) {
+            success: function (Data) {
                 $('#divRecordStatus').html('');
                 $('#ScheduleCount').html(Data.apps_count);
-                    $('#divInstitutionGrid').html(Data.view);
+                $('#divInstitutionGrid').html(Data.view);
                 if (parseInt(Data.apps_count, 0) == 0) {
                     $('#divRecordStatus').html("No records found.");
                 }
-                }
-            })
-            return false;
-        };
+            }
+        })
+        return false;
+    };
 
     function confirmation() {
         var c = confirm("Are you sure you want to delete this Appointment?");
         return c;
     };
 
-    
+
 
 </script>

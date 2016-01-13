@@ -179,7 +179,8 @@ namespace HRA4.Web.Controllers
              string PedigreeImageSavePath = Server.MapPath(PedigreeImagePath);
              string _ImageUrl = String.Empty;
             _ImageUrl = _applicationContext.ServiceContext.AppointmentService.ShowPedigreeImage(_institutionId, unitnum, Convert.ToInt32(apptid), PedigreeImageSavePath);
-            PedigreeImagePath = Url.Content(PedigreeImagePath + _ImageUrl);
+             //PedigreeImagePath = Url.Content(PedigreeImagePath + _ImageUrl);
+            PedigreeImagePath = @"data:image/png;base64,"+_ImageUrl+"";
             var result = new { ImageUrl = PedigreeImagePath};
 
             return Json(result);
