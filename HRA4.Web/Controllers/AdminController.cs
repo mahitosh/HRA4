@@ -103,7 +103,7 @@ namespace HRA4.Web.Controllers
         {
            
             ViewBag.SearchText = Institution;
-            var instituionList = _applicationContext.ServiceContext.AdminService.GetTenants().Where(a => a.InstitutionName.ToString().Contains(Institution.Trim()) && a.IsActive==true ).ToList();
+            var instituionList = _applicationContext.ServiceContext.AdminService.GetTenants().Where(a => a.InstitutionName.ToString().ToLower().Contains(Institution.ToLower().Trim()) && a.IsActive==true ).ToList();
             AssignRecordStatus(instituionList);
             return View("ManageInstitution", instituionList);
 
