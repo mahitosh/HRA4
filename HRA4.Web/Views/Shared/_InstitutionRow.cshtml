@@ -27,7 +27,12 @@
                     </ul>
                 </li>
                 <li>
-                    <a data-toggle="modal" data-target="#upload-xml">Load from XML</a>
+                    <span onclick="SetValues('@Model.MRN.ToString()', '@Model.Id.ToString()','xml');">
+                        <a data-toggle="modal" data-target="#upload-xml">Load from XML</a>
+                    </span>
+                    <input type="hidden" id="hidMrn" />
+                    <input type="hidden" id="hidAppid" />
+                    <input type="hidden" id="hidType" />
                 </li>
 
 
@@ -38,11 +43,15 @@
                         <li><a href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)">Identified</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Load from HL7</a></li>
+                <li>
+                    <span onclick="SetValues('@Model.MRN.ToString()', '@Model.Id.ToString()','hl7');">
+                        <a data-toggle="modal" data-target="#upload-xml">Load from XML</a>
+                    </span>
+                </li>
             </ul>
-        </div><!--Import/export dropdown end--> 
-        
-       
+        </div><!--Import/export dropdown end-->
+
+
         <span onclick="RunDocs('@Model.MRN.ToString()','@Model.Id.ToString()');">
             <a data-toggle="modal" data-target="#browse-xml-modal">
                 <img src="~/images/run-auto-doc-ico.svg" alt="Run automation documents" width="30" height="30" title="Run automation documents" />
@@ -52,23 +61,23 @@
         <a onclick="return confirmation();" href="@Url.Action("DeleteAppointment", "Institution", new {apptid= @Model.Id})"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment</a>
     </div>
 
-    @using(Html.BeginForm("InstitutionSave", "Institution", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("InstitutionSave", "Institution", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.HiddenFor(item => item.Id)
         @Html.HiddenFor(item => item.MRN)
 
         <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
         <div class="row">
-        <div class="col-sm-12 align-right">
-            <div class="form-group">
-                <div class="checkbox">
-                    @Html.CheckBoxFor(item => item.MarkAsComplete)Mark As Complete
-                    @Html.Hidden("Hfddlclinic")
+            <div class="col-sm-12 align-right">
+                <div class="form-group">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(item => item.MarkAsComplete)Mark As Complete
+                        @Html.Hidden("Hfddlclinic")
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
+        <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>User Name</label>
@@ -143,232 +152,232 @@
 
         </div><!--row end-->
 
-    <br />
-    <div class="row">
-        <div class="col-sm-12">
-            <a href="javascript:void(0)" class="schedule-more-detail pull-right">More Details <i class="fa fa-plus-circle"></i></a>
-            <div class="schedule-more-detail-content clear-float">
-                <div class="row  header-bdr Padding-TB-10"><hr /></div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Area</label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Assessment</label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Language</label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Race</label>
-                            <select class="form-control">
-                                <option>Male</option>
-                                <option>Female</option>
-                            </select>
-                        </div>
-                    </div>
-                </div><!--row end-->
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Nationality</label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Occupation</label>
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Education</label>
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Marital Status</label>
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                </div><!--row end-->
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Address 1</label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Address 2</label>
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                </div><!--row end-->
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>City</label>
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>State</label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Zip</label>
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Country</label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                        </div>
-                    </div>
-                </div><!--row end-->
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Home Phone</label>
-                            <div class="row phone-no-input">
-                                <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
-                                <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
-                                <div class="col-sm-4"><input class="form-control" maxlength="4" /> </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="javascript:void(0)" class="schedule-more-detail pull-right">More Details <i class="fa fa-plus-circle"></i></a>
+                <div class="schedule-more-detail-content clear-float">
+                    <div class="row  header-bdr Padding-TB-10"><hr /></div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Area</label>
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Work Phone</label>
-                            <div class="row phone-no-input">
-                                <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
-                                <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
-                                <div class="col-sm-4"><input class="form-control" maxlength="4" /> </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Assessment</label>
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Mobile Phone</label>
-                            <div class="row phone-no-input">
-                                <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
-                                <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
-                                <div class="col-sm-4"><input class="form-control" maxlength="4" /> </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Language</label>
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
-                </div><!--row end-->
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input class="form-control" />
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Race</label>
+                                <select class="form-control">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Appointment Physician</label>
-                            <input class="form-control" />
+                    </div><!--row end-->
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Nationality</label>
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                </div><!--row end-->
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                            <label>Ref Phys</label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Occupation</label>
+                                <input class="form-control" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>PCP</label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Education</label>
+                                <input class="form-control" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Physician Name</label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Marital Status</label>
+                                <input class="form-control" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-1">
-                        <div class="form-group" style="margin-top:27px;">
-                            <a href="#" class="add-row"><i class="fa fa-plus-circle fa-2x"></i></a>
+                    </div><!--row end-->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Address 1</label>
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Address 2</label>
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                    </div><!--row end-->
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>State</label>
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Zip</label>
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div><!--row end-->
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Home Phone</label>
+                                <div class="row phone-no-input">
+                                    <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
+                                    <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
+                                    <div class="col-sm-4"><input class="form-control" maxlength="4" /> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Work Phone</label>
+                                <div class="row phone-no-input">
+                                    <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
+                                    <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
+                                    <div class="col-sm-4"><input class="form-control" maxlength="4" /> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Mobile Phone</label>
+                                <div class="row phone-no-input">
+                                    <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
+                                    <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
+                                    <div class="col-sm-4"><input class="form-control" maxlength="4" /> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--row end-->
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Appointment Physician</label>
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                    </div><!--row end-->
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label>Ref Phys</label>
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>PCP</label>
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Physician Name</label>
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group" style="margin-top:27px;">
+                                <a href="#" class="add-row"><i class="fa fa-plus-circle fa-2x"></i></a>
+                            </div>
 
-                    </div>
-                </div><!--row end-->
-               
-        </div><!--col-sm-12 end-->
-    </div><!--row end-->
-       
-    </div><!--quick-add-links end-->
-    <br />
-    <div class="row">
-        <div class="col-sm-12 align-right">
-            <div class="form-group">
-                <button id="btnSaveQuick" onclick="saveClinic();" class="pull-right btn btn-success btn-sm  Margin-L-10">Save</button>
-                <button id="btnClearQuick" class="pull-right btn btn-cancel btn-sm btnClear" onclick="return false;">Cancel</button>
-            </div>
-        </div><!--schedule-more-detail-content end-->
+                        </div>
+                    </div><!--row end-->
+
+                </div><!--col-sm-12 end-->
+            </div><!--row end-->
+
+        </div><!--quick-add-links end-->
+        <br />
+        <div class="row">
+            <div class="col-sm-12 align-right">
+                <div class="form-group">
+                    <button id="btnSaveQuick" onclick="saveClinic();" class="pull-right btn btn-success btn-sm  Margin-L-10">Save</button>
+                    <button id="btnClearQuick" class="pull-right btn btn-cancel btn-sm btnClear" onclick="return false;">Cancel</button>
+                </div>
+            </div><!--schedule-more-detail-content end-->
         </div>
     }
 </div>
