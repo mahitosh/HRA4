@@ -56,7 +56,7 @@ else
                                                 </div>
                                             </li>
                                             <li class="pull-right">
-                                                <div class="btn-group search-group Margin-B-10">
+                                                <div class="btn-group search-group Margin-B-10" id="divSearch" >
                                                     <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
                                                     <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
                                                 </div> <br />
@@ -148,7 +148,7 @@ else
    <!-- Code End for Model Popup  -->
 
     <!-- Pedigree Diagram  Models popup -->
-    <div id="pedigree-diagram-modal" class="modal fade" role="dialog" aria-hidden="true">
+    <div id="pedigree-diagram-modal" class="modal fade" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -157,8 +157,9 @@ else
                     <h4 class="modal-title">Pedigree Diagram</h4>
                 </div>
                 <div class="modal-body">
-                    For: <b>Patient Name : <span id="spanPatientName"></span>  , MRN : <span id="spanMRN"></span> </b><br />
-                    <div class="view-doc-content Margin-T-10" style="overflow:scroll">
+                    @*For:*@ <b>Patient Name : <span id="spanPatientName"></span>  , MRN : <span id="spanMRN"></span> </b><br />
+                    <div class="view-doc-content Margin-T-10">
+                        @*style="overflow:scroll"*@
                         <div id="imagediv">
 
                         </div>
@@ -200,7 +201,6 @@ else
                 var img = $('<img id="imgPedigree">'); //Equivalent: $(document.createElement('img'))
                 img.attr('src', Data.ImageUrl);
                 img.appendTo('#imagediv');
-
 
                 // $('img[id="imgPedigree"]').attr({ src: Data.ImageUrl});
                 $('#pedigree-diagram-modal').modal('show');
@@ -254,9 +254,6 @@ else
         });
     }
     //schedule grid more deatils content
-    $(document).ready(function () {
-
-    });
 
     function RunDocs(MRN, apptid) {
         //$('.modal-backdrop').remove(); //commented by nilesh
@@ -299,6 +296,10 @@ else
         $("#Hfddlclinic").val(id);
     };
     $(document).ready(function () {
+
+
+
+        Applytablesorter()
 
         function Searchloading() {
             $("#loading").fadeIn();
@@ -364,7 +365,7 @@ else
 
         });
 
-        $("#btnsearch").click(function (data) {
+        $("#divSearch").click(function (data) {
             SearchAppointment();
 
 
@@ -377,7 +378,22 @@ else
 
     });
 
+    function Applytablesorter()
+    {
+        $("#myTable").tablesorter(
+           {
+               headers: {
+                   // assign the secound column (we start counting zero)
+                   9: {
+                       // disable it by setting the property sorter to false
+                       sorter: false
+                   }
 
+               }
+           }
+           );
+
+    }
 
     function SearchAppointment() {
 
@@ -414,17 +430,7 @@ else
                 $('#divRecordStatus').html('');
                 $('#ScheduleCount').html(Data.apps_count);
                 $('#divInstitutionGrid').html(Data.view);
-                $("#myTable").tablesorter(
-                     {
-                         headers: {
-                             // assign the secound column (we start counting zero)
-                             9: {
-                                 // disable it by setting the property sorter to false
-                                 sorter: false
-                             }
-
-                         }
-                     });
+                    Applytablesorter();
                 $('#loading').data('spinner').stop();
                 $('#loading').hide();
                 if (parseInt(Data.apps_count, 0) == 0) {
@@ -458,17 +464,7 @@ else
                 $('#divRecordStatus').html('');
                 $('#ScheduleCount').html(Data.apps_count);
                 $('#divInstitutionGrid').html(Data.view);
-                $("#myTable").tablesorter(
-                    {
-                        headers: {
-                            // assign the secound column (we start counting zero)
-                            9: {
-                                // disable it by setting the property sorter to false
-                                sorter: false
-                            }
-
-                        }
-                    });
+                    Applytablesorter();
                 if (parseInt(Data.apps_count, 0) == 0) {
                     $('#divRecordStatus').html("No records found.");
                 }

@@ -353,10 +353,11 @@ namespace HRA4.Services
             System.IO.MemoryStream stream = new System.IO.MemoryStream();
             bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
             var base64Data = Convert.ToBase64String(stream.ToArray());
-
+            /*
             _ImagePath = SaveImage(base64Data, _institutionId, _userlogin, apptid, PedigreeImageSavePath);
            return _ImagePath;
-
+            */
+            return base64Data;
 
         }
 
