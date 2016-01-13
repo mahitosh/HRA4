@@ -62,8 +62,9 @@
         <div class="col-sm-12 align-right">
             <div class="form-group">
                 <div class="checkbox">
-                    @Html.CheckBoxFor(item => item.MarkAsComplete)Mark As Complete
+                    @Html.CheckBoxFor(item => item.MarkAsComplete, new { @id = @Model.Id + "chk" })Mark As Complete
                     @Html.Hidden("Hfddlclinic")
+                    @Html.HiddenFor(item => item.MarkAsComplete, new { @id=@Model.Id+"hf"})
                 </div>
             </div>
         </div>
@@ -366,7 +367,7 @@
         <div class="col-sm-12 align-right">
             <div class="form-group">
                 <button id="btnSaveQuick" onclick="saveClinic();" class="pull-right btn btn-success btn-sm  Margin-L-10">Save</button>
-                <button id="btnClearQuick" class="pull-right btn btn-cancel btn-sm btnClear" onclick="return false;">Cancel</button>
+                <button id="@Model.Id" class="pull-right btn btn-cancel btn-sm btnClear" onclick="cancel(this); return false;">Cancel</button>
             </div>
         </div><!--schedule-more-detail-content end-->
         </div>
