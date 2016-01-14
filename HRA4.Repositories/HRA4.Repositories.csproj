@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlTemplateRepository.cs" />
+    <Compile Include="Interfaces\IHtmlTemplateRepository.cs" />
     <Compile Include="Interfaces\IRepositoryFactory.cs" />
     <Compile Include="Interfaces\ISuperAdminRepository.cs" />
     <Compile Include="Interfaces\ITenantMasterRepository.cs" />

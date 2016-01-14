@@ -187,46 +187,7 @@ else
     /*======End Append image url dynamically ============ */
 
 
-    function UploadXml() {
-
-        var strMrn = $("#hidMrn").val();
-        var apptId = $("#hidAppid").val();
-        var xmlType = $("#hidType").val();
-        var globalGetJSONPath;
-        if (xmlType == "xml") {
-             globalGetJSONPath = '@Url.Action("ImportAsXml", "Institution")';
-        }
-        else
-        {
-            globalGetJSONPath = '@Url.Action("ImportAsHL7", "Institution")';
-        }
-
-        globalGetJSONPath = globalGetJSONPath + '?mrn=' + strMrn + '&apptId=' + apptId;
-
-
-        var formData = new FormData();
-        var file = $("#txtFileUpload")[0].files[0];
-       // alert(file);
-        formData.append("file", file);
-
-       // alert(formData);
-        $.ajax({
-            type: "POST",
-            url: globalGetJSONPath,
-            data: formData,
-            dataType: 'json',
-            async: true,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                //alert('hi');
-                $("#upload-xml").modal('hide');
-
-            }
-        }).always(function (Data) {
-
-        });
-    }
+   
 
 
 
@@ -378,12 +339,7 @@ else
 
 
    
-    function SetValues(MRN, apptid, xmlType) {
-        $("#txtFileUpload").val('');
-        $("#hidMrn").val(MRN);
-        $("#hidAppid").val(apptid);
-        $("#hidType").val(xmlType);
-    }
+    
 
 
 </script>

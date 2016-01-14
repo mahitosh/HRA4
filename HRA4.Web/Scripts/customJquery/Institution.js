@@ -129,3 +129,43 @@ function confirmation() {
     return c;
 };
 /*======End Delete confirmation logic ============ */
+
+/* ============Upload===================== */
+function SetValues(MRN, apptid, xmlType,url) {
+    $("#txtFileUpload").val('');
+    $("#hidMrn").val(MRN);
+    $("#hidAppid").val(apptid);
+    $("#hidType").val(xmlType);
+    $("#hidUploadUrl").val(url);
+}
+
+function UploadXml() {
+
+    var strMrn = $("#hidMrn").val();
+    var apptId = $("#hidAppid").val();
+    var xmlType = $("#hidType").val();  
+    var globalGetJSONPath = $("#hidUploadUrl").val();
+    globalGetJSONPath = globalGetJSONPath + '?mrn=' + strMrn + '&apptId=' + apptId;
+    alert(globalGetJSONPath);
+    var formData = new FormData();
+    var file = $("#txtFileUpload")[0].files[0];    
+    formData.append("file", file);
+    
+    $.ajax({
+        type: "POST",
+        url: globalGetJSONPath,
+        data: formData,
+        dataType: 'json',
+        async: true,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            //alert('hi');
+            $("#upload-xml").modal('hide');
+
+        }
+    }).always(function (Data) {
+
+    });
+}
+/* ===================Xml Upload================== */

@@ -27,12 +27,13 @@
                     </ul>
                 </li>
                 <li>
-                    <span onclick="SetValues('@Model.MRN.ToString()', '@Model.Id.ToString()','xml');">
-                    <a data-toggle="modal" data-target="#upload-xml">Load from XML</a>
+                    <span onclick="SetValues('@Model.MRN.ToString()', '@Model.Id.ToString()','xml','@Url.Action("ImportAsXml", "Institution")');">
+                        <a data-toggle="modal" data-target="#upload-xml">Load from XML</a>
                     </span>
                     <input type="hidden" id="hidMrn" />
                     <input type="hidden" id="hidAppid" />
                     <input type="hidden" id="hidType" />
+                    <input type="hidden" id="hidUploadUrl" />
                 </li>
 
 
@@ -44,7 +45,7 @@
                     </ul>
                 </li>
                 <li>
-                    <span onclick="SetValues('@Model.MRN.ToString()', '@Model.Id.ToString()','hl7');">
+                    <span onclick="SetValues('@Model.MRN.ToString()', '@Model.Id.ToString()','hl7','@Url.Action("ImportAsHL7", "Institution")');">
                         <a data-toggle="modal" data-target="#upload-xml">Load from XML</a>
                     </span>
                 </li>
