@@ -175,6 +175,13 @@ else
 
 <script type="text/javascript">
 
+    function TestOnSuccess(data) {
+        //$('#loading').data('spinner').stop();
+        $('#loading').hide();
+        $('#divInstitutionGrid').html(data.view);
+        Applytablesorter();
+    }
+   
     //};
 
 
@@ -288,12 +295,30 @@ else
         });
     };
 
+    function Searchloading() {
+        $("#loading").fadeIn();
+        var opts = {
+            lines: 12, // The number of lines to draw
+            length: 7, // The length of each line
+            width: 4, // The line thickness
+            radius: 10, // The radius of the inner circle
+            color: '#000', // #rgb or #rrggbb
+            speed: 1, // Rounds per second
+            trail: 60, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false // Whether to use hardware acceleration
+        };
+        var target = document.getElementById('loading');
+        var spinner = new Spinner(opts).spin(target);
 
+    }
 
     function saveClinic() {
+     
         var id = $("#ddClinic").val();
-        console.log(id);
         $("#Hfddlclinic").val(id);
+        Searchloading();
+       
     };
     $(document).ready(function () {
 
@@ -301,24 +326,7 @@ else
 
         Applytablesorter()
 
-        function Searchloading() {
-            $("#loading").fadeIn();
-            var opts = {
-                lines: 12, // The number of lines to draw
-                length: 7, // The length of each line
-                width: 4, // The line thickness
-                radius: 10, // The radius of the inner circle
-                color: '#000', // #rgb or #rrggbb
-                speed: 1, // Rounds per second
-                trail: 60, // Afterglow percentage
-                shadow: false, // Whether to render a shadow
-                hwaccel: false // Whether to use hardware acceleration
-            };
-            var target = document.getElementById('loading');
-            alert(target);
-            var spinner = new Spinner(opts).spin(target);
-
-        }
+        
 
         $("#frmDashboard").keypress(function (e) {
             kCode = e.keyCode || e.charCode //for cross browser
@@ -437,10 +445,13 @@ else
                     $('#divRecordStatus').html("No records found.");
                 }
 
-
             }
+                     
 
-        })
+        }).error(function (xhr) {
+            console.log(xhr.responseText);
+                      
+        });
 
     }
 
