@@ -302,6 +302,7 @@
     <Content Include="Scripts\bootstrap\v3.3.6\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\v3.3.6\npm.js" />
     <Content Include="Scripts\custom-script.js" />
+    <Content Include="Scripts\customJquery\Institution.js" />
     <Content Include="Scripts\dev-custom.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

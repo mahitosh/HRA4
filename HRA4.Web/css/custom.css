@@ -208,7 +208,8 @@ img.add-istitution-list{margin:-3px 4px 0 30px;}
 .modal-title{font-weight:bold;}
 #add-edit-MRN .modal-dialog{width:400px;}
 .modal-dialog{margin-top:200px;}
-#schedule-new-doc-modal .modal-dialog, #pedigree-diagram-modal .modal-dialog{width:850px; margin-top:30px;}
+#schedule-new-doc-modal .modal-dialog, #pedigree-diagram-modal .modal-dialog{width:700px;margin-top:30px;}
+#pedigree-diagram-modal .view-doc-content{height:630px;}
 
 
 /*modal with two column*/

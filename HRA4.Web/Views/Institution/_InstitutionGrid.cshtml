@@ -12,7 +12,7 @@
                 <th>MRN</th>
                 <th>DOB</th>
                 <th>Provider</th>
-                <th>Date Complete </th>
+                <th>Mark Survey Complete</th>
                 <th>Disease Hx</th>
                 <th>Survey </th>
                 <th>Do Not Call</th>
@@ -78,11 +78,11 @@
 
                 }
                 <div style="display:none">@item.DoNotCall</div>
-                <a href="#"> <img src="@url" alt="Add to Do Not Call list." width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." onclick="return AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()');" /> </a>
+                <a href="#"> <img src="@url" alt="Add to Do Not Call list." width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." onclick="return AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()','@Url.Action("AddRemoveTask", "Institution")');" /> </a>
             </td>
             <td>
                     @*<a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Risk Calculations" /></a>*@
-                    <a href="#" data-toggle="modal" onclick="ShowPedigreeImage('@item.MRN.ToString()','@item.Id.ToString()','@item.PatientName');"><img src="~/images/pedigree-ico.svg" alt="Pedigree" width="25" height="25" data-toggle="tooltip" data-placement="top" title="Pedigree" /></a>
+                <a href="#" data-toggle="modal" onclick="ShowPedigreeImage('@item.MRN.ToString()','@item.Id.ToString()','@item.PatientName','@Url.Action("ShowPedigreeImage", "Institution")');"><img src="~/images/pedigree-ico.svg" alt="Pedigree" width="25" height="25" data-toggle="tooltip" data-placement="top" title="Pedigree" /></a>
                 <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Copy" /></a>
                 <a href="#" id="@item.Id" onclick="ShowEdit(this);"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>
             </td>
@@ -105,6 +105,7 @@
         $("i", this).toggleClass("fa-plus-circle fa-minus-circle");
     });
 
+    /*
     $(document).ready(function () {
        
         $("#myTable").tablesorter(
@@ -119,13 +120,29 @@
                 }
             }
             );
-    });
-    $(".btnClear").click(function () {
+    });*/
+    //$(".btnClear").click(function () {
+    //    $(".editmenu").slideUp(100);
+    //});
+
+    function cancel(obj)
+    {
+        var chkid = "#" + obj.id + "chk";
+        var hfid = "#" + obj.id + "hf";
+        var initialvalue = $(hfid).val();
+        if (initialvalue=='True') {
+            $(chkid).prop("checked", true);
+            
+        } else {
+            $(chkid).prop("checked", false);
+           
+        }
+        
         $(".editmenu").slideUp(100);
-    });
+      
+    }
     function ShowEdit(obj) {
         $(".editmenu").slideUp(100);
-        //alert(obj.id + "-b");
         var trid = "#" + obj.id + "-b";
         $(trid).slideDown(100);
 
