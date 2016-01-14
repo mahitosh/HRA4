@@ -157,8 +157,8 @@ namespace HRA4.Web.Controllers
             return File(fileBytes, "text/xml, application/xml", fileName);
         }
 
-        [HttpPost]
-        public ActionResult InstitutionSave(FormCollection frm, bool MarkAsComplete, string Hfddlclinic)
+        //[HttpPost]
+        public JsonResult InstitutionSave(FormCollection frm, bool MarkAsComplete, string Hfddlclinic)
         {
             HRA4.ViewModels.Appointment app = new ViewModels.Appointment();
             app.Id = Convert.ToInt32(frm["Id"]);
@@ -172,7 +172,34 @@ namespace HRA4.Web.Controllers
             else app.clinicID = -1;
             app.SetMarkAsComplete = MarkAsComplete;
             _applicationContext.ServiceContext.AppointmentService.SaveAppointments(app, Convert.ToInt32(Session["InstitutionId"]));
-            return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+           // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+
+            string view = string.Empty;
+            NameValueCollection searchfilter;
+            if (Session["SearchFilter"] != null)
+            {
+                searchfilter = (NameValueCollection)Session[Constants.SearchFilter];
+            }
+            else
+            {
+                searchfilter = new NameValueCollection();
+                searchfilter.Add("name", null);
+                searchfilter.Add("appdt", DateTime.Now.ToString("MM/dd/yyyy"));
+                if (Hfddlclinic != null && Hfddlclinic != "")
+                    searchfilter.Add("clinicId", Hfddlclinic);
+                else
+                    searchfilter.Add("clinicId", "-1");
+
+            }
+            int instId = 0;
+            if (Session != null && Session["InstitutionId"] != null)
+            {
+                instId = (int)Session["InstitutionId"];
+            }
+            var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
+            view = RenderPartialView("_InstitutionGrid", apps);
+            var result = new { view = view };
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
 

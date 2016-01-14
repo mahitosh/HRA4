@@ -178,6 +178,13 @@ else
 <script type="text/javascript" src="~/Scripts/customJquery/Institution.js"></script>
 <script type="text/javascript">
 
+    function TestOnSuccess(data) {
+        //$('#loading').data('spinner').stop();
+        $('#loading').hide();
+        $('#divInstitutionGrid').html(data.view);
+        Applytablesorter();
+    }
+   
     //};
 
 
@@ -187,7 +194,7 @@ else
     /*======End Append image url dynamically ============ */
 
 
-   
+
 
 
 
@@ -226,19 +233,6 @@ else
         });
     };
 
-
-
-    function saveClinic() {
-        var id = $("#ddClinic").val();
-        console.log(id);
-        $("#Hfddlclinic").val(id);
-    };
-    $(document).ready(function () {
-
-
-
-        Applytablesorter()
-
         function Searchloading() {
             $("#loading").fadeIn();
             var opts = {
@@ -253,10 +247,24 @@ else
                 hwaccel: false // Whether to use hardware acceleration
             };
             var target = document.getElementById('loading');
-
             var spinner = new Spinner(opts).spin(target);
 
         }
+
+    function saveClinic() {
+     
+        var id = $("#ddClinic").val();
+        $("#Hfddlclinic").val(id);
+        Searchloading();
+       
+    };
+    $(document).ready(function () {
+
+
+
+        Applytablesorter()
+
+        
 
         $("#frmDashboard").keypress(function (e) {
             kCode = e.keyCode || e.charCode //for cross browser

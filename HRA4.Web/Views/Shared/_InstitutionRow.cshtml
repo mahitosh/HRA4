@@ -62,7 +62,13 @@
         <a onclick="return confirmation();" href="@Url.Action("DeleteAppointment", "Institution", new {apptid= @Model.Id})"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment</a>
     </div>
 
-    @using (Html.BeginForm("InstitutionSave", "Institution", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Ajax.BeginForm("InstitutionSave", "Institution", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.InsertBefore,
+        OnSuccess = "TestOnSuccess",
+        OnBegin = "saveClinic"
+    }, new { id = "frmSaveInst" }))
     {
         @Html.HiddenFor(item => item.Id)
         @Html.HiddenFor(item => item.MRN)
@@ -376,13 +382,11 @@
     <div class="row">
         <div class="col-sm-12 align-right">
             <div class="form-group">
-                <button id="btnSaveQuick" onclick="saveClinic();" class="pull-right btn btn-success btn-sm  Margin-L-10">Save</button>
-                <button id="@Model.Id" class="pull-right btn btn-cancel btn-sm btnClear" onclick="cancel(this); return false;">Cancel</button>
+                <button id="btnSaveQuick" class="pull-right btn btn-success btn-sm  Margin-L-10">Save</button>
+                <button id="@Model.Id" type="button" class="pull-right btn btn-cancel btn-sm btnClear" onclick="cancel(this); return false;">Cancel</button>
             </div>
         </div><!--schedule-more-detail-content end-->
         </div>
     }
 </div>
-
-
 
