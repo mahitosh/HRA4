@@ -27,7 +27,12 @@
                     </ul>
                 </li>
                 <li>
+                    <span onclick="SetValues('@Model.MRN.ToString()', '@Model.Id.ToString()','xml');">
                     <a data-toggle="modal" data-target="#upload-xml">Load from XML</a>
+                    </span>
+                    <input type="hidden" id="hidMrn" />
+                    <input type="hidden" id="hidAppid" />
+                    <input type="hidden" id="hidType" />
                 </li>
 
 
@@ -38,7 +43,11 @@
                         <li><a href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)">Identified</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Load from HL7</a></li>
+                <li>
+                    <span onclick="SetValues('@Model.MRN.ToString()', '@Model.Id.ToString()','hl7');">
+                        <a data-toggle="modal" data-target="#upload-xml">Load from XML</a>
+                    </span>
+                </li>
             </ul>
         </div><!--Import/export dropdown end--> 
         
@@ -62,7 +71,7 @@
     {
         @Html.HiddenFor(item => item.Id)
         @Html.HiddenFor(item => item.MRN)
-        
+
         <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
         <div class="row">
         <div class="col-sm-12 align-right">

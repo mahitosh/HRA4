@@ -76,7 +76,7 @@ namespace HRA4.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult ImportAsXml(HttpPostedFileBase file, string mrn, int apptId)
+        public JsonResult ImportAsXml(HttpPostedFileBase file, string mrn, int apptId)
         {
             try
             {
@@ -94,18 +94,21 @@ namespace HRA4.Web.Controllers
                 }
                 ViewBag.Message = "Upload successful";
 
-
-                return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+                var result = new { view = "doc.." };
+                return Json(result, JsonRequestBehavior.AllowGet);
+               // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
             }
             catch (Exception ex)
             {
                 ViewBag.Message = "Upload failed";
-                return RedirectToAction("InstitutionDashboard");
+                var result = new { view = "doc.." };
+                return Json(result, JsonRequestBehavior.AllowGet);
+               // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
         }
         }
 
         [HttpPost]
-        public ActionResult ImportAsHL7(HttpPostedFileBase file, string mrn, int apptId)
+        public JsonResult ImportAsHL7(HttpPostedFileBase file, string mrn, int apptId)
         {
             try
             {
@@ -122,14 +125,17 @@ namespace HRA4.Web.Controllers
                     _applicationContext.ServiceContext.ExportImportService.ImportHL7(xmlFile, mrn, apptId);
                 }
                 ViewBag.Message = "Upload successful";
-               
 
-                return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+                var result = new { view = "doc.." };
+                return Json(result, JsonRequestBehavior.AllowGet);
+               // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
             }
             catch(Exception ex)
             {
                 ViewBag.Message = "Upload failed";
-                return RedirectToAction("InstitutionDashboard");
+               // return RedirectToAction("InstitutionDashboard");
+                var result = new { view = "doc.." };
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
         }
 

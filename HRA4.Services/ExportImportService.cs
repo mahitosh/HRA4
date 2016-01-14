@@ -174,7 +174,7 @@ namespace HRA4.Services
 
         public void ImportXml(VM.HraXmlFile xmlFIle, string mrn, int apptId)
         {
-
+            _hraSessionManager.SetActivePatient(mrn, apptId);
             DataContractSerializer ds = new DataContractSerializer(typeof(FamilyHistory));
             string filePath = xmlFIle.FilePath;
             FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
