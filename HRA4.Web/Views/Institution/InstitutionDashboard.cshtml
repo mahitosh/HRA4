@@ -56,7 +56,7 @@ else
                                                 </div>
                                             </li>
                                             <li class="pull-right">
-                                                <div class="btn-group search-group Margin-B-10" id="divSearch" >
+                                                <div class="btn-group search-group Margin-B-10" id="divSearch">
                                                     <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
                                                     <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
                                                 </div> <br />
@@ -127,27 +127,27 @@ else
             </div>
         </div>
     </div><!--import/export browse xml modal end-->
-   
-        <div id="upload-xml" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Upload Document</h4>
+
+    <div id="upload-xml" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Upload Document</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="editor-field">
+                        <input id="txtFileUpload" type="file" accept="text/xml" style="width:500px;" />
                     </div>
-                    <div class="modal-body">
-                        <div class="editor-field"> 
-                            <input id="txtFileUpload" type="file" accept="text/xml" style="width:500px;" />
-                       </div>
-                        <div class="modal-footer">
-                            <input class="btn btn-success" type="submit" onclick="UploadXml();" value="Upload" />
-                        </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-success" type="submit" onclick="UploadXml();" value="Upload" />
                     </div>
                 </div>
             </div>
         </div>
-   
+    </div>
+
    <!-- Code End for Model Popup  -->
 
     <!-- Pedigree Diagram  Models popup -->
@@ -174,6 +174,13 @@ else
     </div>
     <!--Pedigree Diagram modal end-->
 
+    <!-- risk-calc-display Models popup -->
+    <div id="risk-calc-display-modal" class="modal fade" role="dialog" aria-hidden="true">
+        <div id="divriskcalculate" class="modal-dialog">
+       
+        </div>
+    </div><!--risk-calc-display modal end-->
+
 }
 <script type="text/javascript" src="~/Scripts/customJquery/Institution.js"></script>
 <script type="text/javascript">
@@ -184,16 +191,20 @@ else
         $('#divInstitutionGrid').html(data.view);
         Applytablesorter();
     }
-   
+
     //};
 
 
     /*====== code moved to Institution.js  Append Pedigree image url dynamically ============ */
 
-   
+
     /*======End Append image url dynamically ============ */
 
 
+    @*//function RiskCalculate(MRN, apptid) {
+       
+        RiskCalculation('@Url.Action("RiskCalculation", "Institution")',MRN,apptid);
+    //};*@
 
 
 
@@ -233,30 +244,30 @@ else
         });
     };
 
-        function Searchloading() {
-            $("#loading").fadeIn();
-            var opts = {
-                lines: 12, // The number of lines to draw
-                length: 7, // The length of each line
-                width: 4, // The line thickness
-                radius: 10, // The radius of the inner circle
-                color: '#000', // #rgb or #rrggbb
-                speed: 1, // Rounds per second
-                trail: 60, // Afterglow percentage
-                shadow: false, // Whether to render a shadow
-                hwaccel: false // Whether to use hardware acceleration
-            };
-            var target = document.getElementById('loading');
-            var spinner = new Spinner(opts).spin(target);
+    function Searchloading() {
+        $("#loading").fadeIn();
+        var opts = {
+            lines: 12, // The number of lines to draw
+            length: 7, // The length of each line
+            width: 4, // The line thickness
+            radius: 10, // The radius of the inner circle
+            color: '#000', // #rgb or #rrggbb
+            speed: 1, // Rounds per second
+            trail: 60, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false // Whether to use hardware acceleration
+        };
+        var target = document.getElementById('loading');
+        var spinner = new Spinner(opts).spin(target);
 
-        }
+    }
 
     function saveClinic() {
-     
+
         var id = $("#ddClinic").val();
         $("#Hfddlclinic").val(id);
         Searchloading();
-       
+
     };
     $(document).ready(function () {
 
@@ -264,7 +275,7 @@ else
 
         Applytablesorter()
 
-        
+
 
         $("#frmDashboard").keypress(function (e) {
             kCode = e.keyCode || e.charCode //for cross browser
@@ -324,20 +335,19 @@ else
 
     });
 
-    function Applytablesorter()
-    {
-                $("#myTable").tablesorter(
-                     {
-                         headers: {
-                             // assign the secound column (we start counting zero)
-                             9: {
-                                 // disable it by setting the property sorter to false
-                                 sorter: false
-                             }
+    function Applytablesorter() {
+        $("#myTable").tablesorter(
+             {
+                 headers: {
+                     // assign the secound column (we start counting zero)
+                     9: {
+                         // disable it by setting the property sorter to false
+                         sorter: false
+                     }
 
-                         }
-            }
-           );
+                 }
+             }
+   );
 
     }
 
@@ -346,8 +356,8 @@ else
     //AddRemoveTask and confirmation methode moved to Institution.js
 
 
-   
-    
+
+
 
 
 </script>
