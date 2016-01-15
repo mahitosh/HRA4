@@ -353,6 +353,7 @@
     <Content Include="Views\Institution\InstitutionDashboard.cshtml" />
     <Content Include="Views\Institution\_InstitutionGrid.cshtml" />
     <Content Include="Views\Shared\_InstitutionRow.cshtml" />
+    <Content Include="Views\Shared\_leftMenuLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
