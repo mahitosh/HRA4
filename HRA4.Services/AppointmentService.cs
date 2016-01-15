@@ -334,8 +334,34 @@ namespace HRA4.Services
 
 
         }
+
+
+        public void CreateHtmlDocument()
+        {
+            //set active patient
+            DocumentTemplate dt = new DocumentTemplate();
+            dt.SetPatient(SessionManager.Instance.GetActivePatient());
+            string htmlPath = HttpContext.Current.Server.MapPath(Path.Combine(Constants.RAFilePath, "Temp", "SurveySummary.html"));
+            dt.htmlPath = htmlPath;
+            StringBuilder sb = new StringBuilder();
+            using (StreamReader sr = new StreamReader(htmlPath))
+            {
+                String line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    sb.AppendLine(line);
+                }
+            }
+             string html = sb.ToString();
+
+           
+            dt.htmlText = html;
+            dt.ProcessDocument();
+            string newhtml = dt.htmlText;
+        }
         public void DeleteAppointment(int InstitutionId, int apptid)
         {
+            
             Appointment.DeleteApptData(apptid,false);
         }
 
@@ -356,6 +382,7 @@ namespace HRA4.Services
             }
             string _userlogin = SessionManager.Instance.ActiveUser.userLogin;
             SessionManager.Instance.SetActivePatient(unitnum, apptid);
+           
             RiskApps3.Model.PatientRecord.Patient proband = SessionManager.Instance.GetActivePatient();    // TODO:  Check this!!
 
             PedigreeGenerator pg = new PedigreeGenerator(Width, Height, proband);

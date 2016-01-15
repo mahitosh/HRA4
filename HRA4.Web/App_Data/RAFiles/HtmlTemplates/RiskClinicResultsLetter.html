@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Risk Clinic New Patient PCP Letter</title>
+        <style type="text/css">
+        .break
+        {
+            page-break-before: auto;
+        }
+        .header
+        {
+            font-family: Tahoma;
+            font-weight: 700;
+            font-size: 12pt;
+            height: 35px;
+        }
+        .subHeader
+        {
+            font-family: Tahoma;
+            font-size: x-small;
+            font-weight: bold;
+            text-decoration: underline;
+            padding: 0;
+            margin: 10px 0px 0px 0px;
+        }
+        .xsmall
+        {
+            font-family: Tahoma;
+            font-size: x-small;
+        }
+        .riskTable
+        {
+            font-family: Tahoma;
+            font-size: x-small;
+            border: 1px solid black; 
+            border-collapse: collapse;
+        }
+        .nomargins
+        {
+            padding: 0;
+            margin: 0;
+        }
+        .valign
+        {
+            vertical-align: top;
+        }
+
+    </style>
+
+</head>
+    <body>
+        <div id="header" style="text-align:center">
+            <font color="navy" size="5" >
+                Cancer Genetics Risk<br />
+                Assessment Program<br />
+            </font>
+            <font color="navy" size="3" >
+            <i>
+                Kevin S. Hughes, MD, FACS<br />
+                Leslie R. Shane MS,CAGS,RN</i>
+            </font><br />
+        </div>
+        <div style="clear:both; height:5px"></div>
+        <div id="opening">
+            [SQLEXEC(SELECT CONVERT(nvarchar,DAY(apptdatetime)) + ' ' + DATENAME(MONTH, apptdatetime) + ' ' + CONVERT(nvarchar,year(apptdatetime))  from tblAppointments where apptid = #apptID#)]
+            <p>                   
+            [SQLEXEC(exec sp_formatAddressPCPLetterAsHTML #apptID#)]
+            </p>
+            <p>
+            Re: [SQLEXEC(SELECT dbo.fn_ToProperCase(dbo.fn_makeFirstNameFirst(tblAppointments.patientName)) FROM tblAppointments WHERE apptID=#apptID#)] &nbsp &nbsp &nbsp &nbsp DOB: [tblAppointments.dob] &nbsp &nbsp &nbsp &nbsp MRN: [tblAppointments.unitnum]
+            </p>
+        </div>
+        <div id="Bullets" tableDiv="yes" >
+            <table width ="100%">
+                <ul>
+                    <li style=" font-weight: bold;">
+                        [MakeList(exec sp_formatRiskClinicBullets @apptID=#apptID#, @letterType='Results')]
+                    </li>
+                </ul>
+            </table>
+        </div>
+         <div id="introduction">
+            <p>Dear [SQLEXEC(exec sp_formatGreetingPCPLetter @apptID=#apptID#)],</p>
+            It was a pleasure to meet [SQLEXEC(select dbo.fn_makeFirstNameFirst(patientname) from tblAppointments where apptid = #apptid#)] at our high risk program.  The patient was referred for genetic risk assessment, due to concern regarding hereditary cancer.
+        </div>
+        <div id = "GenTestResult">
+            <p>[SQLEXEC(SELECT dbo.fn_GetRecParagraphByType(#apptID#,'GenTestResult'))]</p>
+        </div>
+        <div id = "MmrGenTestResult">
+            <p>[SQLEXEC(SELECT dbo.fn_GetRecParagraphByType(#apptID#,'MmrGenTestResult'))]</p>
+        </div>
+        <div id = "closing">
+            <p>
+                I addressed the patient’s questions and concerns to the best of my ability. XX minutes were spent in face-to-face counseling of the patient. If there are any questions, please contact me.  Thank you for letting us share in the care of your patient.
+            </p>
+            <p>
+                Sincerely,
+            </p>
+            <img src="data:image/jpg;base64,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"/>
+            <p style="margin:1px 1px 1px 1px;">
+                Kevin S. Hughes, M.D.<br />
+                Medical Director<br />
+                Cancer Genetics Risk Assessment Program
+            </p>
+        </div>
+
+        <div id ="cc">
+            <br />
+            [SQLEXEC(exec sp_formatRiskClinicCCAsHTML #apptID#)]
+        </div>
+        <div id="footer" style="height:64px; text-align:center" pagefooter="true">
+            <font color="#666666" size="4" >
+                <br /><i>Cancer Genetics Clinic</i><br />
+                1 Main St, Boston, MA 02114 USA (617) 555-1212
+            </font>
+        </div>
+        <div style="display:none">
+            <div class="break" id="2nd page header" style="height:54px;" pageheader="true">
+                <hr />
+                <table style=" font-family: Tahoma; font-size: x-small; width: 100%;">
+                    <tr>
+                        <td>[v_survey.patientname]</td>
+                        <td>DOB: [v_survey.dob]</td>
+                        <td>Age: [v_survey.age]</td>
+                        <td>[v_survey.apptdate]</td>
+                    </tr>
+                    <tr>
+                        <td>Unit #: [v_survey.unitnum]</td>
+                        <td>Provider: [v_survey.Apptphysname]</td>
+                        <td>Gender: [v_survey.gender]</td>
+                        <td></td>
+                    </tr>
+                </table>
+                <hr />
+            </div>
+        </div>
+        <p>
+       </p>
+        <div id = "SurveySummary" style="page-break-before: always">
+            [InsertTemplate(1)]
+        </div>        
+    </body>
+</html>
