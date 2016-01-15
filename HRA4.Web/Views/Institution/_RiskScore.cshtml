@@ -1,0 +1,179 @@
+﻿@model HRA4.ViewModels.RiskScore
+@{
+    string x = (Model.RSRiskOfBRCA1andBRCA2.riskOfBRCA1andBRCA2 == null ? "" : Model.RSRiskOfBRCA1andBRCA2.riskOfBRCA1andBRCA2.ToString());
+
+}
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Risk Calculation Display </h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-6 Padding-LR-0">
+                    <h5><b>Breast/Ovarian</b></h5>
+                    <div class="view-doc-cont Margin-T-10">
+                        <div class="table-responsive">
+                            <table class="table table-striped data-display-table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Risk of BRCA1 or BRCA2 Mutation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Risk of BRCA1 or BRCA2 Mutation</td>
+                                        
+                                        <td>@Model.RSRiskOfBRCA1andBRCA2.S_riskOfBRCA1andBRCA2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Myraid</td>
+                                        <td>@Model.RSRiskOfBRCA1andBRCA2.S_MyRaid</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tyrer-Cuzick</td>
+                                        <td>@Model.RSRiskOfBRCA1andBRCA2.S_Tyrer_Cuzick</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tyrer-Cuzick v7</td>
+                                        <td>@Model.RSRiskOfBRCA1andBRCA2.S_Tyrer_Cuzick_v7</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped data-display-table">
+                                <thead>
+                                    <tr>
+                                        <th>Breast Cancer Risk</th>
+                                        <th>5 years Risk</th>
+                                        <th>Lifetime Risk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>BRCAPro</td>
+                                        <td>@Model.RSBreastCancerRisk.S_BRCAPro_5yearsRisk</td>
+                                        <td>@Model.RSBreastCancerRisk.S_BRCAPro_LifetimeRisk</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Claus</td>
+                                        <td>@Model.RSBreastCancerRisk.S_Claus_5yearsRisk</td>
+                                        <td>@Model.RSBreastCancerRisk.S_Claus_LifetimeRisk</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gail</td>
+                                        <td>@Model.RSBreastCancerRisk.S_Gail_5yearsRisk</td>
+                                        <td>@Model.RSBreastCancerRisk.S_Gail_LifetimeRisk</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tyrer-Cuzick</td>
+                                        <td>@Model.RSBreastCancerRisk.S_Tyrer_Cuzick_5yearsRisk</td>
+                                        <td>@Model.RSBreastCancerRisk.S_Tyrer_Cuzick_LifetimeRisk</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tyrer-Cuzick v7</td>
+                                        <td>@Model.RSBreastCancerRisk.S_Tyrer_Cuzick_v7_5yearsRisk</td>
+                                        <td>@Model.RSBreastCancerRisk.S_Tyrer_Cuzick_v7_LifetimeRisk</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped data-display-table">
+                                <thead>
+                                    <tr>
+                                        <th>Ovarian Cancer Risk</th>
+                                        <th>5 years Risk</th>
+                                        <th>Lifetime Risk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>BRCAPro</td>
+                                        <td>@Model.RSOvarianCancerRisk.S_BRCAPro_5yearsRisk</td>
+                                        <td>@Model.RSOvarianCancerRisk.S_BRCAPro_LifetimeRisk</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div><!--col 6 end-->
+                <div class="col-sm-6 Padding-R-0">
+                    <h5><b>Colorectal</b></h5>
+                    <div class="view-doc-cont Margin-T-10">
+                        <div class="table-responsive">
+                            <table class="table table-striped data-display-table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Risk of Lynch Syndrome Mutation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MMRPRO</td>
+                                        <td>@Model.RSRiskofLynchSyndromeMutation.S_MMRPRO</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PREMM2</td>
+                                        <td>@Model.RSRiskofLynchSyndromeMutation.S_PREMM2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped data-display-table">
+                                <thead>
+                                    <tr>
+                                        <th>Colon Cancer Risk</th>
+                                        <th>5 years Risk</th>
+                                        <th>Lifetime Risk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MMRPRO</td>
+                                        <td>@Model.RSColonCancerRisk.S_MMRPRO_5yearsRisk</td>
+                                        <td>@Model.RSColonCancerRisk.S_MMRPRO_LifetimeRisk</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td>CCRAT</td>
+                                        <td>@Model.RSColonCancerRisk.S_MMRPRO_5yearsRisk</td>
+                                        <td>@Model.RSColonCancerRisk.S_MMRPRO_LifetimeRisk</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped data-display-table">
+                                <thead>
+                                    <tr>
+                                        <th>Endometrial Risk</th>
+                                        <th>5 years Risk</th>
+                                        <th>Lifetime Risk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MMRPRO</td>
+                                        <td>@Model.RSEndometrialRisk.S_MMRPRO_5yearsRisk</td>
+                                        <td>@Model.RSEndometrialRisk.S_MMRPRO_LifetimeRisk</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!--view doc content end-->
+                </div><!--col 6 end-->
+                <div class="clear-float"></div>
+                <div class="col-sm-12">
+                    <br />
+                    <button type="button" class="btn btn-success pull-right Margin-L-10">Run Risk Modal</button>
+                    <button type="button" class="btn btn-cancel pull-right" data-dismiss="modal">Close</button>
+                </div>
+                <div class="clear-float"><br /></div>
+            </div> <!--modal body end-->
+        </div><br /><br />
+
+    

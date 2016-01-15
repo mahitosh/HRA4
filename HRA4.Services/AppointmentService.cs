@@ -238,17 +238,35 @@ namespace HRA4.Services
          
         public FileInfo RunAutomationDocuments(int InstitutionId, int apptid, string MRN)
         {
+            Patient proband = CalculateRiskAndRunAutomation(apptid, MRN);
+            return proband.file;
+        }
+
+        private Patient CalculateRiskAndRunAutomation(int apptid, string MRN)
+        {
             Appointment.MarkComplete(apptid);
             SessionManager.Instance.SetActivePatient(MRN, apptid);
             Patient proband = SessionManager.Instance.GetActivePatient();
-            string toolsPath = HttpContext.Current.Server.MapPath(@"~/App_Data/RAFiles/");
+            string toolsPath = HttpContext.Current.Server.MapPath(Constants.RAFilePath);
             proband.RecalculateRisk(false, toolsPath, "");
             proband.RunAutomation();
-            return proband.file;
-          
-
+            return proband;
         }
-         
+        public VM.RiskScore RiskScore(int apptid, string MRN)
+        {
+            SessionManager.Instance.SetActivePatient(MRN, apptid);
+            Patient proband = SessionManager.Instance.GetActivePatient();
+            proband.RP.LoadFullObject();
+            VM.RiskScore RS = RiskScoreMapper.ToRiskScore(proband.RP);
+            return RS;
+        }
+        public VM.RiskScore RiskCalculateAndRunAutomation(int apptid, string MRN)
+        {
+            Patient proband = CalculateRiskAndRunAutomation(apptid, MRN);
+            VM.RiskScore RS = RiskScoreMapper.ToRiskScore(proband.RP);
+            return RS;
+            
+        }
         private void UpdateMarkAsComplete(VM.Appointment Appt, int InstitutionId)
         {
            

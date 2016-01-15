@@ -1,4 +1,5 @@
 ﻿using RiskApps3.Model;
+using RiskApps3.Model.PatientRecord;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -23,5 +24,7 @@ namespace HRA4.Services.Interfaces
         void DeleteTasks(int _institutionId, string unitnum, int apptid);
         List<VM.Clinic> GetClinics(int InstitutionId);
         string ShowPedigreeImage(int _institutionId, string unitnum, int apptid, string PedigreeImagePath);
+        VM.RiskScore RiskScore(int apptid, string MRN);
+        VM.RiskScore RiskCalculateAndRunAutomation(int apptid, string MRN);
     }
 }

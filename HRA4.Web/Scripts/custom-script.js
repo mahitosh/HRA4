@@ -59,3 +59,49 @@ $("#lnkapptment").click(function(){
    $('#timepicker1').timepicker();
  });
  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+//for manage user add clinic		
+$(document).ready (function (){
+	$("#expand-div-content").hide();
+	
+	$("#btnSaveSlide").click(function(){
+			$("#expand-div-content, #change-password-content").slideUp(200);
+			$("#change-password-content").hide();
+	});
+	
+	$("#btnCancelSlide").click(function(){
+			$("#expand-div-content, #change-password-content").slideUp(200);
+			$("#change-password-content").hide();
+	});
+	
+	$(".expand-div").click(function(){
+			$("#expand-div-content, #change-password-content").slideDown(200);
+			$("#change-password-content").hide();
+	});
+});
+
+//for manage user change password		
+$(document).ready (function (){
+	$("#change-password-content").hide();
+	
+	$("#btnSavePassword").click(function(){
+			$("#change-password-content").slideUp(200);
+	});
+	
+	$("#btnCancelPassword").click(function(){
+			$("#change-password-content").slideUp(200);
+	});
+	
+	$(".change-password").click(function(){
+			$("#change-password-content").slideDown(200);
+	});
+});
