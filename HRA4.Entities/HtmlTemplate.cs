@@ -13,5 +13,13 @@ namespace HRA4.Entities
         public string TemplateName { get; set; }
         public byte[] Template { get; set; }
         public int RATemplateId { get; set; }
+        public string TemplateString
+        {
+            get
+            {
+                return System.Text.Encoding.UTF8.GetString(Template);
+            }
+        }
+
     }
 }
