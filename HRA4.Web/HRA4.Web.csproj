@@ -124,6 +124,15 @@
     <Content Include="App_Data\RAFiles\hra_to_ccd2.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd_remove_namespaces.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_hl7.xsl" />
+    <Content Include="App_Data\RAFiles\HtmlTemplates\LMN.html" />
+    <Content Include="App_Data\RAFiles\HtmlTemplates\RiskClinicLetter.html" />
+    <Content Include="App_Data\RAFiles\HtmlTemplates\RiskClinicResultsLetter.html" />
+    <Content Include="App_Data\RAFiles\HtmlTemplates\ScreeningMammoMriLmn.html" />
+    <Content Include="App_Data\RAFiles\HtmlTemplates\ScreeningMammoPatientLetter.html" />
+    <Content Include="App_Data\RAFiles\HtmlTemplates\ScreeningMammoPcpLetter.html" />
+    <Content Include="App_Data\RAFiles\HtmlTemplates\SurveySummary.html" />
+    <Content Include="App_Data\RAFiles\HtmlTemplates\TestRelative.html" />
+    <Content Include="App_Data\RAFiles\HtmlTemplates\TestRelativeMutationKnown.html" />
     <Content Include="App_Data\RAFiles\import.xml" />
     <Content Include="App_Data\RAFiles\MedsImport.xsl" />
     <Content Include="App_Data\RAFiles\Microsoft.TabletPC.Samples.InkSecureSignature.xml" />
@@ -133,6 +142,7 @@
     <Content Include="App_Data\RAFiles\removeNamespaces.xsl" />
     <Content Include="App_Data\RAFiles\riskMeanings.xml" />
     <Content Include="App_Data\RAFiles\sg_to_hl7.xsl" />
+    <Content Include="App_Data\RAFiles\Temp\SurveySummary.html" />
     <Content Include="assets\brand\bootstrap-outline.svg" />
     <Content Include="assets\brand\bootstrap-punchout.svg" />
     <Content Include="assets\brand\bootstrap-solid.svg" />
@@ -362,7 +372,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\RAFiles\Download\" />
-    <Folder Include="App_Data\RAFiles\Temp\" />
     <Folder Include="App_Data\RAFiles\Upload\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />

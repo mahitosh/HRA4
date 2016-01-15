@@ -11,6 +11,7 @@ namespace HRA4.Entities
         public int Id { get; set; }
         public int InstitutionId { get; set; }
         public string TemplateName { get; set; }
-        public string Template { get; set; }
+        public byte[] Template { get; set; }
+        public int RATemplateId { get; set; }
     }
 }
