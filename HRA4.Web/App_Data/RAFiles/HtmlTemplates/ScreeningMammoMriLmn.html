@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Screening Mammogrpahy MRI LMN</title>
+</head>
+    <body>
+        <div id="attn">
+            <p>
+                Attn: Pre-Authorization<br/>
+                [Insurance Corp]<br/>
+                [Insurance Addr]<br/>
+                [Insurance City State Zip]<br/>
+            </p>
+            <p>
+            </p>
+            <p>
+                ATTN: Pre-Authorization
+            </p>
+            <p>
+                Re: [tblAppointments.patientname] - [tblAppointments.unitnum] - DOB: [tblAppointments.dob]
+            </p>
+        </div>
+        <div>
+            <p>
+                Dear Medical Director:
+            </p>
+            <p>
+                I am writing to request coverage for a breast MRI for Jane Doe.  She is at a significantly increased risk as determined by the accepted models.
+            </p>
+            <p>
+                She meets the American Cancer Society Guidelines<sup>1</sup> and the National Cancer Center Network (NCCN)<sup>2</sup> guidelines for screening MRI of the breast.  Both guidelines recommend MRI of the breast if the patient has a lifetime risk of breast cancer of 20% or greater.  This patient's risk is elevated by an accepted model:  
+            </p>
+            <p>
+                [SQLEXEC(exec sp_formatHighRiskBreastLifetimeModels #apptid#)]
+            </p>
+            <p>
+                Thus, she is considered at significantly increased risk to develop breast cancer as compared to other women her age.  MRI would significantly increase the chance of finding breast cancer at an earlier, more treatable stage, and thus allow less aggressive treatment, and potentially to increase her chance of cure.
+            </p>
+            <p>
+                Please contact me if I can provide you with any additional information.
+            </p>
+            <p>
+                Sincerly,
+            </p> 
+            <p></p>            
+            <p></p>
+            <p>
+                <font size="2" color="gray">
+                    [ParagraphRule(15)]
+                </font>
+            </p>       
+        </div>
+    </body>
+</html>
