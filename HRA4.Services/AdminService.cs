@@ -40,8 +40,7 @@ namespace HRA4.Services
         {
             throw new NotImplementedException();
         }
-
-        
+                
 
         public Entities.Institution AddUpdateTenant(Entities.Institution tenant)
         {
@@ -53,21 +52,34 @@ namespace HRA4.Services
         {
             Institution _Institution = _repositoryFactory.TenantRepository.GetTenantById(Id);
             _Institution.IsActive = false;
-             int r = _repositoryFactory.TenantRepository.UpdateTenant(_Institution);
-           
+             int r = _repositoryFactory.TenantRepository.UpdateTenant(_Institution);           
+
+        }
+
+        private void CreateTemplateRecords(int institutionId)
+        {
+            try
+            {
+                List<HtmlTemplate> htmlTemplates = _repositoryFactory.HtmlTemplateRepository.GetAllTemplates(0);
+                foreach (var template in htmlTemplates)
+                {
+                    template.InstitutionId = institutionId;
+                    _repositoryFactory.HtmlTemplateRepository.Insert(template);
+                }
+            }
+            catch (Exception ex)
+            {                
+                 
+            }
+          
 
         }
         
-    
-
-        
-
         public bool CreateTenantDb(Institution tenant,string scriptPath)
         {
            // SuperAdmin admin = _repositoryFactory.SuperAdminRepository.GetAdminUser();
             //Added by Aditya on 21-12-2015
-
-            
+            Task.Factory.StartNew(() => CreateTemplateRecords(tenant.Id));
 
             string dbscript = System.IO.File.ReadAllText(scriptPath);
 
@@ -77,7 +89,7 @@ namespace HRA4.Services
             
             //End By Aditya
             string connectionString = ConfigurationSettings.CommonDbConnection;
-
+          
             Helpers.CreateInstitutionDb(connectionString, dbscript);
             
             return true;

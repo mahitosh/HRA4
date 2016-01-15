@@ -39,7 +39,7 @@ namespace HRA4.Utilities
                             cmd.ExecuteNonQuery();
                         }
                     }
-                    catch (System.Exception ex)
+                    catch (Exception ex)
                     {
                         Logger.Error(ex);
                     }
@@ -51,7 +51,7 @@ namespace HRA4.Utilities
             }
             catch (Exception ex)
             {
-
+                Logger.Error(ex);
             }
         }
 

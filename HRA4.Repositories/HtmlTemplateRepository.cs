@@ -17,7 +17,7 @@ namespace HRA4.Repositories
 
         public void Insert(Entities.HtmlTemplate template)
         {
-             
+            dbContext.HtmlTemplate.Insert(template);
         }
 
         public void Save(Entities.HtmlTemplate template)
@@ -30,9 +30,9 @@ namespace HRA4.Repositories
             throw new NotImplementedException();
         }
 
-        public Entities.HtmlTemplate GetAllTemplates(int institutionId)
+        public List<Entities.HtmlTemplate> GetAllTemplates(int institutionId)
         {
-            throw new NotImplementedException();
+            return dbContext.HtmlTemplate.FindAllByInstitutionId(institutionId);
         }
     }
 }

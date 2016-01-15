@@ -14,9 +14,11 @@ namespace HRA4.Services
         {
             this._repositoryFactory = repositoryFactory;
         }
+
         public List<Entities.HtmlTemplate> GetTemplatesByInstitution(int institutionId)
         {
-            throw new NotImplementedException();
+            return _repositoryFactory.HtmlTemplateRepository.GetAllTemplates(institutionId);
+
         }
 
         public Entities.HtmlTemplate GetTemplate(int institutionId, int id)

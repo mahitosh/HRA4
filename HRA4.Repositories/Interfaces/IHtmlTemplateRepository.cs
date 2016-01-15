@@ -12,6 +12,6 @@ namespace HRA4.Repositories.Interfaces
          void Insert(HtmlTemplate template);
          void Save(HtmlTemplate template);
          HtmlTemplate GetTemplateById(int instituionId, int templateId);
-         HtmlTemplate GetAllTemplates(int institutionId);
+         List<HtmlTemplate> GetAllTemplates(int institutionId);
     }
 }

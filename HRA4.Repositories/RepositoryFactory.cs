@@ -23,5 +23,11 @@ namespace HRA4.Repositories
         {
             get { return new TenantRepository(this.dbContext); }
         }
+            
+
+        public Interfaces.IHtmlTemplateRepository HtmlTemplateRepository
+        {
+            get { return new HtmlTemplateRepository(this.dbContext); }
+        }
     }
 }
