@@ -54,5 +54,11 @@ namespace HRA4.Services
         {
             get { return new ExportImportService(_repositoryFactory, _hraSessionManager); }
         }
+
+        public ITemplateService TemplateService
+        {
+            get { return new TemplateService(_repositoryFactory, _hraSessionManager); }
+        }
+
     }
 }

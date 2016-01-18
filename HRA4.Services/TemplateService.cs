@@ -1,4 +1,5 @@
 ﻿using HRA4.Repositories.Interfaces;
+using HRA4.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,11 @@ namespace HRA4.Services
         IRepositoryFactory _repositoryFactory;
         string[] supported = new string[] { "surveySummary", "riskClinic", "LMN", "relativeLetter", "relativeKnownMutationLetter", "Screening" };
         string routine = "screening";
-
-        public TemplateService(IRepositoryFactory repositoryFactory)
+        IHraSessionManager _hraSessionManager;
+        public TemplateService(IRepositoryFactory repositoryFactory, IHraSessionManager hraSessionManger)
         {
             this._repositoryFactory = repositoryFactory;
+            _hraSessionManager = hraSessionManger;
         }
 
         public List<Entities.HtmlTemplate> GetTemplatesByInstitution(int institutionId)

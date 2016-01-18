@@ -300,6 +300,15 @@ namespace HRA4.Web.Controllers
 
         }
 
+        public JsonResult NewDocument(string mrn,int apptid)
+        {
+            //string view = string.Empty;
+            //var apps = _applicationContext.ServiceContext.TemplateService.Ris(apptid, mrn);
+            //view = RenderPartialView("_NewDocument", apps);
+            var result = new { view = "" };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult RiskCalculation(string MRN, int apptid)
         {
             string view = string.Empty;

@@ -11,11 +11,16 @@
     }
 
     <div class="col-sm-12 quick-add-links">
-        <a href="#"><img src="~/images/new-doc-ico.svg" alt="New Document" width="30" height="30" title="New Document" /> New Document</a>
-        <a href="#"><img src="~/images/edit-survey-ico.svg" alt="Edit Survey" width="30" height="30" title="Edit Survey" /> Edit Survey</a>
-        <span onclick="RiskCalculation('@Url.Action("RiskCalculation", "Institution")','@Model.MRN.ToString()','@Model.Id.ToString()');">
-            <a href="#" data-toggle="modal" data-target="#risk-calc-display-modal"><img src="~/images/risk-calc-ico.svg" alt="Risk Calculation" width="30" height="30" title="Risk Calculation" /> Risk Calculation</a>
-        </span>
+        <span onclick="SetValues('@Model.MRN.ToString()', '@Model.Id.ToString()','','@Url.Action("ImportAsXml", "Institution")');">
+            <a href="#" data-toggle="modal" data-target="#schedule-new-doc-modal">
+                <img src="~/images/new-doc-ico.svg" alt="New Document" width="30" height="30" title="New Document" /> New Document
+            </a>
+            </span> 
+            @*<a href="#"><img src="~/images/new-doc-ico.svg" alt="New Document" width="30" height="30" title="New Document" /> New Document</a>*@
+            <a href="#"><img src="~/images/edit-survey-ico.svg" alt="Edit Survey" width="30" height="30" title="Edit Survey" /> Edit Survey</a>
+            <span onclick="RiskCalculation('@Url.Action("RiskCalculation", "Institution")','@Model.MRN.ToString()','@Model.Id.ToString()');">
+                <a href="#" data-toggle="modal" data-target="#risk-calc-display-modal"><img src="~/images/risk-calc-ico.svg" alt="Risk Calculation" width="30" height="30" title="Risk Calculation" /> Risk Calculation</a>
+            </span>
             <div class="dropdown" style="position:relative;display:inline">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="position:relative">
                     <img src="~/images/import-export-ico.svg" alt="Import or Export" width="30" height="30" title="Import or Export" /> Import &frasl;Export
