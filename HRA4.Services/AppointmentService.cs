@@ -134,6 +134,12 @@ namespace HRA4.Services
             return new List<VM.Appointment>();
         }
 
+        /// <summary>
+        /// To Show Appointments based on seacrh filter entered by user
+        /// </summary>
+        /// <param name="InstitutionId">Institution Id</param>
+        /// <param name="searchfilter">Namevalue collection of seacrh parameter like ClinicId,Appointment Date, Name Or MRN</param>
+        /// <returns>List of Appointments based on Search criteria</returns>
         public List<VM.Appointment> GetAppointments(int InstitutionId, NameValueCollection searchfilter)
         {
             Logger.DebugFormat("Institution Id: {0}", InstitutionId);
@@ -189,6 +195,13 @@ namespace HRA4.Services
             
         }
 
+        /// <summary>
+        /// It will do searching on passed Appointment list based on below parameters
+        /// </summary>
+        /// <param name="appts">Appointment list on which searching will be performed</param>
+        /// <param name="searchField">Column Name</param>
+        /// <param name="searchParam">Value to Search</param>
+        /// <returns>List of searched appointments</returns>
         private List<VM.Appointment> SearchOnAppointment(List<VM.Appointment> appts, string searchField, string searchParam)
         {
             List<VM.Appointment> newlist = new List<VM.Appointment>();
@@ -228,6 +241,11 @@ namespace HRA4.Services
             return newlist;
         }
 
+        /// <summary>
+        /// To Save Appointments
+        /// </summary>
+        /// <param name="Appt">Appointment Object to Save</param>
+        /// <param name="InstitutionId">Institution Id</param>
         public void SaveAppointments(VM.Appointment Appt, int InstitutionId)
         {
 
@@ -235,13 +253,25 @@ namespace HRA4.Services
 
 
         }
-         
+         /// <summary>
+         /// To do process of Run Automation Documents
+         /// </summary>
+        /// <param name="InstitutionId">Institution Id</param>
+        /// <param name="apptid">Appointment Id</param>
+        /// <param name="MRN">MRN Number</param>
+         /// <returns></returns>
         public FileInfo RunAutomationDocuments(int InstitutionId, int apptid, string MRN)
         {
             Patient proband = CalculateRiskAndRunAutomation(apptid, MRN);
             return proband.file;
         }
 
+        /// <summary>
+        /// Method which actually calculates Risk and Run Automation
+        /// </summary>
+        /// <param name="apptid">Appointment Id</param>
+        /// <param name="MRN">MRN Number</param>
+        /// <returns>Patient Model</returns>
         private Patient CalculateRiskAndRunAutomation(int apptid, string MRN)
         {
             Appointment.MarkComplete(apptid);
@@ -252,21 +282,45 @@ namespace HRA4.Services
             proband.RunAutomation();
             return proband;
         }
+
+        /// <summary>
+        ///To show Risk Score on Click of Risk Calculation  
+        /// </summary>
+        /// <param name="apptid">Appointment Id</param>
+        /// <param name="MRN">MRN Number</param>
+        /// <returns>Risk Score Model</returns>
         public VM.RiskScore RiskScore(int apptid, string MRN)
         {
             SessionManager.Instance.SetActivePatient(MRN, apptid);
             Patient proband = SessionManager.Instance.GetActivePatient();
             proband.RP.LoadFullObject();
             VM.RiskScore RS = RiskScoreMapper.ToRiskScore(proband.RP);
+            RS.ApptId = apptid;
+            RS.MRN = MRN;
             return RS;
         }
+
+        /// <summary>
+        /// To Show Risk Score on Click of Run Risk Models Button. It calculates Risk Score
+        /// </summary>
+        /// <param name="apptid">Appointment Id</param>
+        /// <param name="MRN">MRN Number</param>
+        /// <returns></returns>
         public VM.RiskScore RiskCalculateAndRunAutomation(int apptid, string MRN)
         {
             Patient proband = CalculateRiskAndRunAutomation(apptid, MRN);
+            proband.RP.LoadFullObject();
             VM.RiskScore RS = RiskScoreMapper.ToRiskScore(proband.RP);
+            RS.ApptId = apptid;
+            RS.MRN = MRN;
             return RS;
             
         }
+        /// <summary>
+        /// To Mark appointment as complete and incomplete
+        /// </summary>
+        /// <param name="Appt">Appointment Id</param>
+        /// <param name="InstitutionId">Institution Id</param>
         private void UpdateMarkAsComplete(VM.Appointment Appt, int InstitutionId)
         {
            
@@ -275,7 +329,7 @@ namespace HRA4.Services
             searchfilter.Add("appdt", null);
             searchfilter.Add("clinicId",Appt.clinicID.ToString());
             List<VM.Appointment> filteredlist = GetAppointments(InstitutionId, searchfilter);
-          //  List<VM.Appointment> filteredlist = SearchOnAppointment(apptlist, Constants.MRN, Appt.MRN);
+          //List<VM.Appointment> filteredlist = SearchOnAppointment(apptlist, Constants.MRN, Appt.MRN);
 
             foreach (var item in filteredlist)
             {

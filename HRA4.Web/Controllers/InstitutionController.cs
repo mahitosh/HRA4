@@ -300,16 +300,28 @@ namespace HRA4.Web.Controllers
 
         }
 
-        public JsonResult RiskCalculation(string MRN, int apptid)
+        public JsonResult RiskCalculation(string MRN, int apptid,string status)
         {
             string view = string.Empty;
-            var apps = _applicationContext.ServiceContext.AppointmentService.RiskScore(apptid,MRN);
+            var apps=(RiskScore)null;
+            if(status=="Show")
+            apps = _applicationContext.ServiceContext.AppointmentService.RiskScore(apptid,MRN);
+            else
+                apps = _applicationContext.ServiceContext.AppointmentService.RiskCalculateAndRunAutomation(apptid, MRN);
             view = RenderPartialView("_RiskScore", apps);
             var result = new { view = view };
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
+        //public JsonResult RunRiskModel(string MRN, int apptid)
+        //{
+        //    string view = string.Empty;
+        //    var apps = _applicationContext.ServiceContext.AppointmentService.RiskCalculateAndRunAutomation(apptid, MRN);
+        //    view = RenderPartialView("_RiskScore", apps);
+        //    var result = new { view = view };
+        //    return Json(result, JsonRequestBehavior.AllowGet);
 
+        //}
 
         protected virtual string RenderPartialView(string partialViewName, object model)
         {
