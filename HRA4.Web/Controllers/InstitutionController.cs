@@ -318,7 +318,7 @@ namespace HRA4.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult RiskCalculation(string MRN, int apptid)
+        public JsonResult RiskCalculation(string MRN, int apptid,string status)
         {
             string view = string.Empty;
             var apps=(RiskScore)null;
