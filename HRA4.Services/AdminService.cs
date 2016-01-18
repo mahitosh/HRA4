@@ -56,6 +56,10 @@ namespace HRA4.Services
 
         }
 
+         /// <summary>
+         /// Insert template records in database for an Institution.
+         /// </summary>
+         /// <param name="institutionId">Institution Id for which template has to be created.</param>
         private void CreateTemplateRecords(int institutionId)
         {
             try
@@ -77,8 +81,7 @@ namespace HRA4.Services
         
         public bool CreateTenantDb(Institution tenant,string scriptPath)
         {
-           // SuperAdmin admin = _repositoryFactory.SuperAdminRepository.GetAdminUser();
-            //Added by Aditya on 21-12-2015
+           
             Task.Factory.StartNew(() => CreateTemplateRecords(tenant.Id));
 
             string dbscript = System.IO.File.ReadAllText(scriptPath);

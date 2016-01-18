@@ -10,6 +10,9 @@ namespace HRA4.Services
     public class TemplateService:Interfaces.ITemplateService
     {
         IRepositoryFactory _repositoryFactory;
+        string[] supported = new string[] { "surveySummary", "riskClinic", "LMN", "relativeLetter", "relativeKnownMutationLetter", "Screening" };
+        string routine = "screening";
+
         public TemplateService(IRepositoryFactory repositoryFactory)
         {
             this._repositoryFactory = repositoryFactory;
@@ -39,6 +42,43 @@ namespace HRA4.Services
         public Entities.HtmlTemplate UpdateTemplate(Entities.HtmlTemplate template)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Create the list of Suggested and other templates 
+        /// </summary>
+        /// <param name="institutionId">Institution Id</param>
+        /// <returns>Returns the list of templates categorised as Suggested and others</returns>
+        public ViewModels.TemplateList GetTemplates(int institutionId)
+        {
+            List<Entities.HtmlTemplate> _templates = _repositoryFactory.HtmlTemplateRepository.GetAllTemplates(institutionId);
+            ViewModels.TemplateList templateList = new ViewModels.TemplateList();
+
+            foreach(var template in _templates)
+            {
+                if (supported.Contains(template.RoutineName))
+                {
+                    if (string.Compare(routine, template.RoutineName, true) == 0 || string.Compare(template.RoutineName, "surveySummary", true) == 0)
+                    {
+                        templateList.SuggestedDocument.Add(new ViewModels.Template()
+                        {
+                            Id=template.Id,
+                            TemplateName= template.TemplateName
+                        });
+                    }
+                    else
+                    {
+                        templateList.OtherDocuments.Add(new ViewModels.Template()
+                        {
+                            Id = template.Id,
+                            TemplateName = template.TemplateName
+                        });
+                    }
+                }
+            }
+
+            return templateList;
+
         }
     }
 }
