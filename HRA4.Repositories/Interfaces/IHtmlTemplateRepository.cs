@@ -13,5 +13,7 @@ namespace HRA4.Repositories.Interfaces
          void Save(HtmlTemplate template);
          HtmlTemplate GetTemplateById(int instituionId, int templateId);
          List<HtmlTemplate> GetAllTemplates(int institutionId);
+         int UpdateHtmlTemplate(Entities.HtmlTemplate HtmlTemplate);
+        
     }
 }

@@ -22,7 +22,7 @@
 </div>
 <div class="col-sm-9 Padding-R-0">
     <h4 class="Margin-T-0">Editing Template : Template Name</h4>
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("SaveTemplate", "DocumentEditor"))
         {
             <div class="view-doc-content"> @Html.EditorFor(model => model.Content) </div>
             <div class="pull-right">
