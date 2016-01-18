@@ -5,6 +5,7 @@ using RiskApps3.Model.Clinic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HRA4.Entities;
 using System.Text;
 using System.Threading.Tasks;
 using HRA4.Utilities;
@@ -32,7 +33,7 @@ namespace HRA4.Services
 
         public Entities.HtmlTemplate GetTemplate(int institutionId, int id)
         {
-            return _repositoryFactory.HtmlTemplateRepository.GetTemplateById(institutionId, id);
+           return _repositoryFactory.HtmlTemplateRepository.GetTemplateById(institutionId, id);
         }
 
         public Entities.HtmlTemplate GetTemplateByRaTemplateId(int institutionId, int raTemplateId)
@@ -45,9 +46,12 @@ namespace HRA4.Services
             throw new NotImplementedException();
         }
 
-        public Entities.HtmlTemplate UpdateTemplate(Entities.HtmlTemplate template)
+        public int UpdateTemplate(int institutionId, int id ,string TemplateString )
         {
-            throw new NotImplementedException();
+            HtmlTemplate template = _repositoryFactory.HtmlTemplateRepository.GetTemplateById(institutionId, id);
+            template.Template = System.Text.Encoding.UTF8.GetBytes(TemplateString);
+            return _repositoryFactory.HtmlTemplateRepository.UpdateHtmlTemplate(template);
+            
         }
 
         /// <summary>

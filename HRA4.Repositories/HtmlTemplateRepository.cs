@@ -27,12 +27,18 @@ namespace HRA4.Repositories
 
         public Entities.HtmlTemplate GetTemplateById(int instituionId, int templateId)
         {
-            throw new NotImplementedException();
+            return dbContext.HtmlTemplate.FindByInstitutionIdAndId(instituionId, templateId);
         }
 
         public List<Entities.HtmlTemplate> GetAllTemplates(int institutionId)
         {
             return dbContext.HtmlTemplate.FindAllByInstitutionId(institutionId);
         }
+        public int UpdateHtmlTemplate(Entities.HtmlTemplate HtmlTemplate)
+        {
+            return dbContext.HtmlTemplate.Update(HtmlTemplate);
+        }
+        
+
     }
 }
