@@ -16,6 +16,11 @@ namespace HRA4.Services
     {
         IRepositoryFactory _repositoryFactory;
         public string Username { get; private set; }
+        public string InstitutionId
+        {
+            get;
+            private set;
+        }
         public HraSessionManager(IRepositoryFactory repositoryFactory, string user)
         {
             _repositoryFactory = repositoryFactory;
@@ -25,6 +30,7 @@ namespace HRA4.Services
         }
         public HraSessionManager(string InstitutionId, string config)
         {
+            this.InstitutionId = InstitutionId;
             Cache.SetCache<string>(InstitutionId, config);
         }
 
@@ -49,6 +55,7 @@ namespace HRA4.Services
 
         public void SetConfig(string InstitutionId, string config)
         {
+            this.InstitutionId = InstitutionId;
             Cache.SetCache<string>(InstitutionId, config);
         }
 
@@ -68,7 +75,8 @@ namespace HRA4.Services
         {
             if (HttpContext.Current.Session != null && HttpContext.Current.Session["InstitutionId"] != null)
             {
-                int _institutionId = Convert.ToInt32(HttpContext.Current.Session["InstitutionId"]);
+                this.InstitutionId = HttpContext.Current.Session["InstitutionId"].ToString();
+                int _institutionId = Convert.ToInt32(  this.InstitutionId);                
                 string rootPath = HttpContext.Current.Server.MapPath(Constants.RootPath);
                 string configTemplate = System.IO.File.ReadAllText(System.IO.Path.Combine(rootPath, "config.xml"));
                 Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
@@ -93,5 +101,7 @@ namespace HRA4.Services
         }
 
 
+
+        
     }
 }

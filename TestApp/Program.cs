@@ -17,6 +17,8 @@ namespace TestApp
     {
         static void Main(string[] args)
         {
+            CreateDefaultTemplates();
+            
             //IApplicationContext app = new ApplicationContext();
             //var tmp = app.ServiceContext.AdminService.GetTenants();
 
@@ -62,8 +64,60 @@ namespace TestApp
                 ConfigurationTemplate = config
 
             };
-            commonDbContext.SuperAdmin.Insert(admin);
+           
+        }
 
+        private static void CreateDefaultTemplates()
+        {
+            string conn1 = "Server=.\\SQLEXPRESS;Database=RiskappCommon;User Id=sa;Password=mk#12345;";
+            //We cannot run/use Simple.Data when support for legacy framework is allowed.
+            dynamic commonDbContext = Simple.Data.Database.OpenConnection(conn1);
+            List<HtmlTemplate> templates = commonDbContext.HtmlTemplate.FindAllByInstitutionId(0);
+            try
+            {
+
+                CreateTemplate(commonDbContext, @"C:\Program Files\RiskAppsV2\templates\html\ScreeningMammoMriLmn.html", 1001, "MRI LMN","Screening");
+                CreateTemplate(commonDbContext, @"C:\Program Files\RiskAppsV2\templates\html\RiskClinicResultsLetter.html", 105, "Risk Clinic Test Results PCP Letter", "riskClinic");
+                CreateTemplate(commonDbContext, @"C:\Program Files\RiskAppsV2\templates\html\LMN.html", 120, "Letter of Medical Necessity", "LMN");
+                CreateTemplate(commonDbContext, @"C:\Program Files\RiskAppsV2\templates\html\TestRelativeMutationKnown.html", 140, "Known Mutation Relative Letter", "relativeKnownMutationLetter");
+                CreateTemplate(commonDbContext, @"C:\Program Files\RiskAppsV2\templates\html\TestRelative.html", 130, "Consider Testing Relative Letter", "relativeLetter");
+                CreateTemplate(commonDbContext, @"C:\Program Files\RiskAppsV2\templates\html\SurveySummary.html", 1, "Survey Summary", "surveySummary");
+                CreateTemplate(commonDbContext, @"C:\Program Files\RiskAppsV2\templates\html\ScreeningMammoPcpLetter.html", 1000, "Screening Mammogrpahy PCP Letter", "Screening");
+                CreateTemplate(commonDbContext, @"C:\Program Files\RiskAppsV2\templates\html\ScreeningMammoPatientLetter.html", 1002, "Screening Mammogrpahy Patient Letter", "Screening");
+                CreateTemplate(commonDbContext, @"C:\Program Files\RiskAppsV2\templates\html\RiskClinicLetter.html", 100, "Risk Clinic New Patient PCP Letter", "riskClinic");
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private static void CreateTemplate(dynamic commonDbContext,string path,int raTemplateId,string templateName,string routineName)
+        {
+            try
+            {
+                var templateHtml = File.ReadAllBytes(path);
+                HtmlTemplate template = new HtmlTemplate()
+                {
+                    InstitutionId = 0,
+                    RATemplateId = raTemplateId,
+                    Template = templateHtml,
+                    TemplateName = templateName,
+                    RoutineName = routineName
+
+                };
+
+                var newTemp = commonDbContext.HtmlTemplate.Insert(template);
+                 
+            }
+            catch (Exception ex)
+            {
+                
+                 
+            }
+          
         }
     }
 }

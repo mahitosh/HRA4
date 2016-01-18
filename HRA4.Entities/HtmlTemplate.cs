@@ -20,6 +20,7 @@ namespace HRA4.Entities
                 return System.Text.Encoding.UTF8.GetString(Template);
             }
         }
+        public string RoutineName { get; set; }
 
     }
 }

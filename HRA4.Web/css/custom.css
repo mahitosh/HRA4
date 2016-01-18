@@ -141,22 +141,30 @@ ul.import-menu:before{left: 4px;}
 .bottom-container-area{/*background-color:#ffffff;border-top: 1px solid #ddd;box-shadow: 0px 4px 3px #ddd;*/padding-bottom:20px;min-height:600px;}
 .middle-content{background-color:#ffffff;margin-top:20px;border:solid 1px #ddd;min-height:600px;margin-bottom:80px;}
 .page-title{Padding:0;margin:0;}
+.page-title small{font-size: 55%;color:#72b116;}
 .left-title{padding-top:5px;margin-bottom:5px;color:#333333;}
 a.left-title:hover{text-decoration:underline;}
 
 /*dashboard tab css*/
 .nav-tabs{padding-right:0;}
 .dashboard-count{font-family: 'open_sansbold', arial; margin-right:10px;float:right;}
-.nav-tabs > li > a{font-size: 1.3em;color:#333333;border:none;border-bottom:solid 8px #e6e6e6; margin-right: 30px;cursor: pointer;padding-left:0;padding-right:30px;}
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover, .nav-tabs > li > a:hover{background-color: transparent;border:none;border-bottom:solid 8px #53afee;border-radius:0;}
+.nav-tabs > li > a{font-size: 1.2em;color:#333333;border:none;border-bottom:solid 5px #e6e6e6; margin-right: 30px;cursor: pointer;padding:3px 5px;padding-left:0;}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover, .nav-tabs > li > a:hover{background-color: transparent;border:none;border-bottom:solid 5px #53afee;border-radius:0;}
 .nav-tabs{ border-bottom: 0;}
+.nav-tabs a:hover{text-decoration:none!important;}
 .nav-tabs .tab-refresh{ border: 0!important;padding: 9px 0;position:absolute; right: -4px; top: 0; z-index: 1000;cursor: pointer!important;}
-.tab-content > .tab-pane{padding-top:20px;}
+.tab-content{margin-top: 15px;}
+.tab-content > .tab-pane{/*padding-top:10px;*/border: solid 1px #dfdfdf;}
 .nav-tabs > li > a:focus{background: transparent}
-
+#CancerRiskChild{border-bottom:solid 2px #e6e6e6;}
+#CancerRiskChild li a{font-size:1em;border-bottom:0;padding-bottom: 3px;}
+#CancerRiskChild > li.active > a, #CancerRiskChild > li.active > a:focus, #CancerRiskChild > li.active > a:hover, #CancerRiskChild > li > a:hover{border-bottom:solid 2px #53afee;padding-bottom: 3px;}
 /*appointment table css*/
-.apppointment-table thead th{background-color: #53afee;color:#ffffff;border:none;padding:12px 3px;font-size:1.1em;position:relative;}
-.apppointment-table tbody td{background-color: #d5ecfc; border-top: 1px solid #99c1dd!important;vertical-align: middle!important;padding:8px 3px!important;}
+.apppointment-table thead th, .data-display-table thead th{background-color: #53afee;color:#ffffff;border:none;padding:12px 3px;font-size:1.1em;position:relative;}
+.apppointment-table tbody tr, .apppointment-table tbody tr:nth-of-type(2n+1), .data-display-table tbody tr, .data-display-table tbody tr:nth-of-type(2n+1)
+
+{background-color: #d5ecfc;}
+.apppointment-table tbody td{ border-top: 1px solid #99c1dd!important;vertical-align: middle!important;padding:8px 3px!important;}
 li.add-appointment a{border:none; padding: 10px 0 0 0;margin-right:0;}
 li.add-appointment a:hover{border:none;}
 #dashboardmodal{margin-top:300px;}
@@ -208,8 +216,10 @@ img.add-istitution-list{margin:-3px 4px 0 30px;}
 .modal-title{font-weight:bold;}
 #add-edit-MRN .modal-dialog{width:400px;}
 .modal-dialog{margin-top:200px;}
-#schedule-new-doc-modal .modal-dialog, #pedigree-diagram-modal .modal-dialog{width:700px;margin-top:30px;}
+#schedule-new-doc-modal .modal-dialog, #pedigree-diagram-modal .modal-dialog, #risk-calc-display-modal .modal-dialog, #about-us-moadal .modal-dialog{width:700px;margin-top:30px;}
 #pedigree-diagram-modal .view-doc-content{height:630px;}
+#about-us-moadal .modal-dialog ul{Height:300px;overflow:auto;}
+#about-us-moadal .modal-dialog ul li{line-height:25px;}
 
 
 /*modal with two column*/
@@ -220,7 +230,12 @@ img.add-istitution-list{margin:-3px 4px 0 30px;}
 .modal-sidebar ul li:last-child{border-bottom:none;}
 .modal-sidebar ul a{color:#333;}
 .modal-sidebar ul a:hover{text-decoration:underline;color: #358dca;}
-.view-doc-content{border:solid 1px #dfdfdf;height:400px;overflow:auto;}
+.view-doc-content, .view-doc-cont{border:solid 1px #dfdfdf;height:400px;overflow:auto;}
+.view-doc-cont{border:0;}
+/*page content wrapper two column*/
+#page-content-wrapper .modal-sidebar ul{font-size: 14px;}
+
+#page-content-wrapper .view-doc-content{height:450px;}
 #browse-xml-modal{margin-top:200px;}
 
 
@@ -229,6 +244,7 @@ a{cursor: pointer;}
 a:focus{outline:none;}
 a:hover{text-decoration: none;}
 .btn{border-radius:0;}
+.btn-sm{padding: 2px 10px;}
 .Padding-LR-0{padding-left:0;padding-right: 0;}
 .Padding-LR-10{padding-left:10px;padding-right: 10px;}
 .Padding-L-0{padding-left: 0;}
@@ -240,11 +256,13 @@ a:hover{text-decoration: none;}
 .Padding-T-28{padding-top: 28px;}
 .Padding-TB-10{padding-top: 10px;padding-bottom:10px;}
 .Margin-L-0{margin-left:0px!important;}
+.Margin-T-0{margin-top:0px}
 .Margin-T-10{margin-top:10px}
 .Margin-T-20{margin-top:20px}
 .Margin-B-10{margin-bottom:10px}
 .Margin-L-10{margin-left:10px}
 .Margin-R-10{margin-right:10px}
+.Margin-TB-10{margin-top: 10px;margin-bottom:10px;}
 .height-30{height:30px;}
 .Margin-0{margin:0!important;}
 .align-center{text-align:center}
@@ -253,14 +271,15 @@ a:hover{text-decoration: none;}
 small{font-size:0.7em;}
 .hr-style{border-color: #dfdfdf;}
 .clear-float{clear:both;}
+.bold-txt{font-weight:bold;}
 .horizontal-devider{border-right: solid 1px #ddd;}
 .tooltip{font-family: 'open_sanslight', arial;font-style: normal;}
 .phone-no-input div:first-child{padding-right:0;}
 .phone-no-input div:nth-child(2){padding-right:5px;padding-left:5px;}
 .phone-no-input div:last-child{padding-left:0px;}
-.editmenu {
-}
-.btnClear{}
+
+.highlight-row{background-color:#a6d2f0!important;}
+.fixed-height-300{max-height:300px;overflow:auto;height:auto;}
 /*all buttos*/
 .search-group{box-shadow: 1px 1px 4px #ccc;line-height:27px;}
 .search-btn, .add-btn{background-color: #53afee;border-radius: 0;border:none;color: white;font-size:1.1em!important;padding:4px 12px;}
@@ -275,6 +294,7 @@ small{font-size:0.7em;}
 .btn-success:hover, .btn-success.focus, .btn-success:focus{background-color: #639c11;border-color: transparent;}
 .btn-cancel{background-color: #e6f3d2;border-color: transparent;color:#6b7a55;}
 .btn-cancel:hover{background-color: #ddebc7;border-color: transparent;color:#6b7a55;}
+.slide-save, .slide-cancel{}
 
 /*footer css*/
 footer{position:fixed; box-shadow: 10px 0 6px #ddd;background-color:#fff;width:100%;z-index:1000;bottom:0;right:0;}

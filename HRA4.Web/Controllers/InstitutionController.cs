@@ -25,7 +25,7 @@ namespace HRA4.Web.Controllers
             List<ViewModels.Appointment> apps = new List<ViewModels.Appointment>();
             var instList = _applicationContext.ServiceContext.AdminService.GetTenants();
             ViewBag.instListcount = instList.Count;
-         
+
 
 
             if (instList.Count == 0)
@@ -36,14 +36,14 @@ namespace HRA4.Web.Controllers
             {
                 if (Session["InstitutionId"] == null || Session["InstitutionId"].ToString() != InstitutionId.ToString())
                 {
-                Session.Add("InstitutionId", InstitutionId);
+                    Session.Add("InstitutionId", InstitutionId);
                     //ReInitializing Application Context with Institution Details.
                     System.Web.HttpContext.Current.Session["ApplicationContext"] = null;
                     _applicationContext = new ApplicationContext();
                     System.Web.HttpContext.Current.Session["ApplicationContext"] = _applicationContext;
-                    
+
                 }
-                
+
                 int v2 = InstitutionId ?? default(int);
                 NameValueCollection searchfilter = new NameValueCollection();
                 searchfilter.Add("name", null);
@@ -53,22 +53,22 @@ namespace HRA4.Web.Controllers
                 ViewBag.AppointmentCount = apps.Count();
                 ViewBag.RecordStatus = "";
                 ViewBag.TodaysDate = DateTime.Now.ToString("MM/dd/yyyy");
-                if(apps.Count==0)
+                if (apps.Count == 0)
                 {
                     ViewBag.RecordStatus = "No records found.";
                 }
-                
+
                 /*=======Start Load Clinic Dropdown======================*/
                 var _ClinicList = _applicationContext.ServiceContext.AppointmentService.GetClinics((int)Session["InstitutionId"]);
-                ViewBag.ClinicList = new SelectList(_ClinicList.ToList(),"clinicID","clinicName");
+                ViewBag.ClinicList = new SelectList(_ClinicList.ToList(), "clinicID", "clinicName");
 
                 /*=======End Load Clinic Dropdown======================*/
 
                 return View(apps);
-                
+
             }
 
-          
+
 
             return RedirectToAction("ManageInstitution", "Admin");
 
@@ -83,7 +83,7 @@ namespace HRA4.Web.Controllers
                 if (file.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(Server.MapPath(Constants.RAFilePath),"Upload", fileName);
+                    var path = Path.Combine(Server.MapPath(Constants.RAFilePath), "Upload", fileName);
                     file.SaveAs(path);
                     VM.HraXmlFile xmlFile = new VM.HraXmlFile()
                     {
@@ -96,15 +96,15 @@ namespace HRA4.Web.Controllers
 
                 var result = new { view = "doc.." };
                 return Json(result, JsonRequestBehavior.AllowGet);
-               // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+                // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
             }
             catch (Exception ex)
             {
                 ViewBag.Message = "Upload failed";
                 var result = new { view = "doc.." };
                 return Json(result, JsonRequestBehavior.AllowGet);
-               // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
-        }
+                // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+            }
         }
 
         [HttpPost]
@@ -120,7 +120,7 @@ namespace HRA4.Web.Controllers
                     VM.HraXmlFile xmlFile = new VM.HraXmlFile()
                     {
                         FileName = fileName,
-                        FilePath = path,                        
+                        FilePath = path,
                     };
                     _applicationContext.ServiceContext.ExportImportService.ImportHL7(xmlFile, mrn, apptId);
                 }
@@ -128,26 +128,26 @@ namespace HRA4.Web.Controllers
 
                 var result = new { view = "doc.." };
                 return Json(result, JsonRequestBehavior.AllowGet);
-               // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+                // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.Message = "Upload failed";
-               // return RedirectToAction("InstitutionDashboard");
+                // return RedirectToAction("InstitutionDashboard");
                 var result = new { view = "doc.." };
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
         }
 
-        public FileContentResult ExportAsHL7(FormCollection frm,string mrn, int apptId, bool identified)
-        {           
-            VM.HraXmlFile xmlFile = _applicationContext.ServiceContext.ExportImportService.ExportAsHL7(mrn, apptId, identified);            
+        public FileContentResult ExportAsHL7(FormCollection frm, string mrn, int apptId, bool identified)
+        {
+            VM.HraXmlFile xmlFile = _applicationContext.ServiceContext.ExportImportService.ExportAsHL7(mrn, apptId, identified);
             byte[] fileBytes = System.IO.File.ReadAllBytes(xmlFile.FilePath);
             string fileName = string.Format("{0}{1}", xmlFile.FileName, xmlFile.Estension);
             return File(fileBytes, "text/xml, application/xml", fileName);
         }
 
-        public FileContentResult ExportAsXml(FormCollection frm,string mrn, int apptId, bool identified)
+        public FileContentResult ExportAsXml(FormCollection frm, string mrn, int apptId, bool identified)
         {
             VM.HraXmlFile xmlFile = _applicationContext.ServiceContext.ExportImportService.ExportAsXml(mrn, apptId, identified);
 
@@ -167,12 +167,12 @@ namespace HRA4.Web.Controllers
             //app.PatientName = Convert.ToString(frm["PatientName"]);
             //app.Survey = Convert.ToString(frm["Survey"]);
             //app.appttime = Convert.ToString(frm["TimeDropdown"]);
-            if (Hfddlclinic!=null && Hfddlclinic!="")
-            app.clinicID = Convert.ToInt32(Hfddlclinic);
+            if (Hfddlclinic != null && Hfddlclinic != "")
+                app.clinicID = Convert.ToInt32(Hfddlclinic);
             else app.clinicID = -1;
             app.SetMarkAsComplete = MarkAsComplete;
             _applicationContext.ServiceContext.AppointmentService.SaveAppointments(app, Convert.ToInt32(Session["InstitutionId"]));
-           // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+            // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
 
             string view = string.Empty;
             NameValueCollection searchfilter;
@@ -204,17 +204,17 @@ namespace HRA4.Web.Controllers
 
 
         public JsonResult ShowPedigreeImage(string unitnum, string apptid)
-         {
+        {
 
-             string PedigreeImagePath = ConfigurationManager.AppSettings["PedigreeImagePath"].ToString();
-             int _institutionId = (int)Session["InstitutionId"];
-             //PedigreeImagePath = Url.Content(PedigreeImagePath + "ImageName.jpg");
-             string PedigreeImageSavePath = Server.MapPath(PedigreeImagePath);
-             string _ImageUrl = String.Empty;
+            string PedigreeImagePath = ConfigurationManager.AppSettings["PedigreeImagePath"].ToString();
+            int _institutionId = (int)Session["InstitutionId"];
+            //PedigreeImagePath = Url.Content(PedigreeImagePath + "ImageName.jpg");
+            string PedigreeImageSavePath = Server.MapPath(PedigreeImagePath);
+            string _ImageUrl = String.Empty;
             _ImageUrl = _applicationContext.ServiceContext.AppointmentService.ShowPedigreeImage(_institutionId, unitnum, Convert.ToInt32(apptid), PedigreeImageSavePath);
-             //PedigreeImagePath = Url.Content(PedigreeImagePath + _ImageUrl);
-            PedigreeImagePath = @"data:image/png;base64,"+_ImageUrl+"";
-            var result = new { ImageUrl = PedigreeImagePath};
+            //PedigreeImagePath = Url.Content(PedigreeImagePath + _ImageUrl);
+            PedigreeImagePath = @"data:image/png;base64," + _ImageUrl + "";
+            var result = new { ImageUrl = PedigreeImagePath };
 
             return Json(result);
 
@@ -247,7 +247,7 @@ namespace HRA4.Web.Controllers
 
                 }
                 NameValueCollection searchfilter;
-                if(Session["SearchFilter"] != null)
+                if (Session["SearchFilter"] != null)
                 {
                     searchfilter = (NameValueCollection)Session[Constants.SearchFilter];
                 }
@@ -258,7 +258,7 @@ namespace HRA4.Web.Controllers
                     searchfilter.Add("appdt", appdt);
                     searchfilter.Add("clinicId", clinicId);
                 }
-           
+
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
                 apps_count = apps.Count();
                 view = RenderPartialView("_InstitutionGrid", apps);
@@ -274,10 +274,10 @@ namespace HRA4.Web.Controllers
 
         public JsonResult FilteredInstitution(string name, string appdt, string clinicId)
         {
-            
+
             string view = string.Empty;
-            int apps_count=0;
-        
+            int apps_count = 0;
+
             if (Session != null && Session["InstitutionId"] != null)
             {
                 int instId = (int)Session["InstitutionId"];
@@ -288,7 +288,7 @@ namespace HRA4.Web.Controllers
                 searchfilter.Add("clinicId", clinicId);
                 Session[Constants.SearchFilter] = searchfilter;
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
-                apps_count  = apps.Count();
+                apps_count = apps.Count();
                 //ViewBag.AppointmentCount = apps.Count();
                 view = RenderPartialView("_InstitutionGrid", apps);
 
@@ -300,6 +300,24 @@ namespace HRA4.Web.Controllers
 
         }
 
+        public JsonResult NewDocument(string mrn,int apptid)
+        {
+            string view = string.Empty;
+            var templates = _applicationContext.ServiceContext.TemplateService.GetTemplates();
+            view = RenderPartialView("_NewDocument", templates);
+            var result = new { view = "" };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult RiskCalculation(string MRN, int apptid)
+        {
+            string view = string.Empty;
+            var apps = _applicationContext.ServiceContext.AppointmentService.RiskScore(apptid,MRN);
+            view = RenderPartialView("_RiskScore", apps);
+            var result = new { view = view };
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
 
 
         protected virtual string RenderPartialView(string partialViewName, object model)
@@ -328,22 +346,22 @@ namespace HRA4.Web.Controllers
 
         public ActionResult DeleteAppointment(int apptid)
         {
-            _applicationContext.ServiceContext.AppointmentService.DeleteAppointment(Convert.ToInt32(Session["InstitutionId"]),apptid);
+            _applicationContext.ServiceContext.AppointmentService.DeleteAppointment(Convert.ToInt32(Session["InstitutionId"]), apptid);
             return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
         }
 
-        public JsonResult RunAutomationDocuments(string  apptid,string MRN)
-        {   
-           
-            FileInfo fileinfo=_applicationContext.ServiceContext.AppointmentService.RunAutomationDocuments(Convert.ToInt32(Session["InstitutionId"]),Convert.ToInt32(apptid),MRN);
+        public JsonResult RunAutomationDocuments(string apptid, string MRN)
+        {
+
+            FileInfo fileinfo = _applicationContext.ServiceContext.AppointmentService.RunAutomationDocuments(Convert.ToInt32(Session["InstitutionId"]), Convert.ToInt32(apptid), MRN);
             //var result = new { view = fileinfo };
             Session["FileInfo"] = fileinfo;
-           
+
             var result = new { view = "doc.." };
             return Json(result, JsonRequestBehavior.AllowGet);
 
-    }
-     
+        }
+
         public FileContentResult DownloadFile()
         {
             FileInfo fileinfo = (FileInfo)Session["FileInfo"];

@@ -169,3 +169,37 @@ function UploadXml() {
     });
 }
 /* ===================Xml Upload================== */
+
+
+/*======Start RiskCalculation logic ============ */
+function RiskCalculation(globalGetJSONPath,MRN,apptid) {
+
+    $.ajax({
+        type: "POST",
+        url: globalGetJSONPath,
+        data: {MRN: MRN, apptid: apptid},
+        dataType: "json",
+        async: true,
+        success: function (Data) {
+            $('#divriskcalculate').html(Data.view);
+        }
+
+    })
+
+}
+/*======End RiskCalculation logic ============ */
+
+function NewDocument(globalGetJSONPath, MRN, apptid)
+{
+    alert(globalGetJSONPath);
+    $.ajax({
+        type: "POST",
+        url: globalGetJSONPath,
+        data: { mrn: MRN, apptid: apptid },
+        dataType: "json",
+        async: true,
+        success: function (Data) {
+            $('#divNewDocument').html(Data.view);
+        }
+    })
+}
