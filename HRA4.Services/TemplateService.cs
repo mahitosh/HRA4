@@ -48,12 +48,11 @@ namespace HRA4.Services
 
         /// <summary>
         /// Create the list of Suggested and other templates 
-        /// </summary>
-        /// <param name="institutionId">Institution Id</param>
+        /// </summary>       
         /// <returns>Returns the list of templates categorised as Suggested and others</returns>
-        public ViewModels.TemplateList GetTemplates(int institutionId)
+        public ViewModels.TemplateList GetTemplates()
         {
-            List<Entities.HtmlTemplate> _templates = _repositoryFactory.HtmlTemplateRepository.GetAllTemplates(institutionId);
+            List<Entities.HtmlTemplate> _templates = _repositoryFactory.HtmlTemplateRepository.GetAllTemplates(Convert.ToInt32(_hraSessionManager.InstitutionId));
             ViewModels.TemplateList templateList = new ViewModels.TemplateList();
 
             foreach(var template in _templates)

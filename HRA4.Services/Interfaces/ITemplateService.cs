@@ -14,6 +14,6 @@ namespace HRA4.Services.Interfaces
         HtmlTemplate GetTemplateByRaTemplateId(int institutionId, int raTemplateId);
         HtmlTemplate InsertTemplate(HtmlTemplate template);
         HtmlTemplate UpdateTemplate(HtmlTemplate template);
-        TemplateList GetTemplates(int institutionId);
+        TemplateList GetTemplates();
     }
 }

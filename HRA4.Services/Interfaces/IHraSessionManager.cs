@@ -8,6 +8,7 @@ namespace HRA4.Services.Interfaces
 {
     public interface IHraSessionManager
     {
+        string InstitutionId { get;}
         string Username { get; }
         void SetRaActiveUser(string user);
         void SetActivePatient(string mrn, int apptId);

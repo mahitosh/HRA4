@@ -11,11 +11,11 @@
     }
 
     <div class="col-sm-12 quick-add-links">
-        <span onclick="SetValues('@Model.MRN.ToString()', '@Model.Id.ToString()','','@Url.Action("ImportAsXml", "Institution")');">
+        <span onclick="NewDocument('@Url.Action("NewDocument", "Institution")','@Model.MRN.ToString()', '@Model.Id.ToString()');">
             <a href="#" data-toggle="modal" data-target="#schedule-new-doc-modal">
                 <img src="~/images/new-doc-ico.svg" alt="New Document" width="30" height="30" title="New Document" /> New Document
             </a>
-            </span> 
+        </span> 
             @*<a href="#"><img src="~/images/new-doc-ico.svg" alt="New Document" width="30" height="30" title="New Document" /> New Document</a>*@
             <a href="#"><img src="~/images/edit-survey-ico.svg" alt="Edit Survey" width="30" height="30" title="Edit Survey" /> Edit Survey</a>
             <span onclick="RiskCalculation('@Url.Action("RiskCalculation", "Institution")','@Model.MRN.ToString()','@Model.Id.ToString()');">

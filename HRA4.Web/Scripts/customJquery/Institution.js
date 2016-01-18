@@ -191,14 +191,15 @@ function RiskCalculation(globalGetJSONPath,MRN,apptid) {
 
 function NewDocument(globalGetJSONPath, MRN, apptid)
 {
+    alert(globalGetJSONPath);
     $.ajax({
         type: "POST",
         url: globalGetJSONPath,
-        data: { MRN: MRN, apptid: apptid },
+        data: { mrn: MRN, apptid: apptid },
         dataType: "json",
         async: true,
         success: function (Data) {
-            $('#divriskcalculate').html(Data.view);
+            $('#divNewDocument').html(Data.view);
         }
     })
 }

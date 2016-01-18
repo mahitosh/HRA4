@@ -302,9 +302,9 @@ namespace HRA4.Web.Controllers
 
         public JsonResult NewDocument(string mrn,int apptid)
         {
-            //string view = string.Empty;
-            //var apps = _applicationContext.ServiceContext.TemplateService.Ris(apptid, mrn);
-            //view = RenderPartialView("_NewDocument", apps);
+            string view = string.Empty;
+            var templates = _applicationContext.ServiceContext.TemplateService.GetTemplates();
+            view = RenderPartialView("_NewDocument", templates);
             var result = new { view = "" };
             return Json(result, JsonRequestBehavior.AllowGet);
         }

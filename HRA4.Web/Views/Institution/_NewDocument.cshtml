@@ -10,13 +10,18 @@
         <div class="modal-body">
             <div class="col-sm-4 modal-sidebar">
                 <h5 style="background-color:#d6efff;">Suggested Documents</h5>
+                
                 <ul style="list-style-type:none;">
-                    <li><a href="#">Survey Summary</a></li>
+                    @foreach (var item in Model.SuggestedDocument)
+                    {
+                        <li><a href="#">@item.TemplateName</a></li>
+                    }
+                    @*<li><a href="#">Survey Summary</a></li>
                     <li><a href="#">Screening Mammography PCP Letter</a></li>
                     <li><a href="#">MRI LMN</a></li>
-                    <li><a href="#">Screening Mammography Patient Letter</a></li>
+                    <li><a href="#">Screening Mammography Patient Letter</a></li>*@
                 </ul>
-                <h5>Suggested Documents</h5>
+                <h5>Others</h5>
                 <ul>
                     <li><a href="#">Risk Clinic New Patient PCP Letter </a></li>
                     <li><a href="#">Risk Clinic Test Result PCP Letter</a></li>
