@@ -10,5 +10,6 @@ namespace HRA4.Repositories.Interfaces
     {
         ISuperAdminRepository SuperAdminRepository { get; }
         ITenantMasterRepository TenantRepository { get; }
+        IHtmlTemplateRepository HtmlTemplateRepository { get; }
     }
 }

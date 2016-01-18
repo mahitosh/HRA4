@@ -172,28 +172,7 @@ namespace HRA4.Services
             return new List<VM.Appointment>();
         }
 
-        /// <summary>
-        /// Initialize session as per selected institution.
-        /// </summary>
-        private void SetUserSession1()
-        {
-            if (HttpContext.Current.Session != null && HttpContext.Current.Session["InstitutionId"] != null)
-            {
-                _institutionId = Convert.ToInt32(HttpContext.Current.Session["InstitutionId"]);
-            
-            Institution inst = _repositoryFactory.TenantRepository.GetTenantById(_institutionId);
-            string rootPath = HttpContext.Current.Server.MapPath(@"~/App_Data/");
-
-           
-           // string configTemplate = _repositoryFactory.SuperAdminRepository.GetAdminUser().ConfigurationTemplate;
-            string configTemplate = System.IO.File.ReadAllText(System.IO.Path.Combine(rootPath, "config.xml"));
-            
-            string configuration = Helpers.GetInstitutionConfiguration(configTemplate, inst.DbName);
-                _hraSessionManager = new HraSessionManager(_institutionId.ToString(), configuration);
-                _hraSessionManager.SetRaActiveUser(_username);
-            }
-            
-        }
+      
 
         /// <summary>
         /// It will do searching on passed Appointment list based on below parameters
@@ -390,29 +369,7 @@ namespace HRA4.Services
         }
 
 
-        public void CreateHtmlDocument()
-        {
-            //set active patient
-            DocumentTemplate dt = new DocumentTemplate();
-            dt.SetPatient(SessionManager.Instance.GetActivePatient());
-            string htmlPath = HttpContext.Current.Server.MapPath(Path.Combine(Constants.RAFilePath, "Temp", "SurveySummary.html"));
-            dt.htmlPath = htmlPath;
-            StringBuilder sb = new StringBuilder();
-            using (StreamReader sr = new StreamReader(htmlPath))
-            {
-                String line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    sb.AppendLine(line);
-                }
-            }
-             string html = sb.ToString();
-
-           
-            dt.htmlText = html;
-            dt.ProcessDocument();
-            string newhtml = dt.htmlText;
-        }
+       
         public void DeleteAppointment(int InstitutionId, int apptid)
         {
             

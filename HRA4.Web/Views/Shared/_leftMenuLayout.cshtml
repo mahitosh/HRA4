@@ -1,5 +1,76 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="content-area container-fluid ">
+    <div class="container-fluid row Padding-LR-0 bottom-container-area">
+        <div class="container middle-content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="wrapper">
+                        <!-- Sidebar -->
+                        <div id="sidebar-wrapper">
 
+                            <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+                                <li class="active">
+                                    <a href="#" class="schedule-icon"> Schedule @*<span id="ScheduleCount" class="dashboard-count">@ViewBag.AppointmentCount</span>*@</a>
+                                    @*<ul class="nav-pills nav-stacked sidebar-nav-child" style="list-style-type:none;">
+                                        <li class="add-appointment"><a href="#"><img src="~/images/add-appointment-ico.svg" alt="Refresh" width="25" height="25" /> Add Appointment</a></li>
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label " for="custom-clinic"> Choose Clinic</label>
+                                                @Html.DropDownList("ddClinic", ViewBag.ClinicList as SelectList, "All Clinics", new { @class = "form-control" })
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label " for="name">Quick Search</label>
+                                                <input class="form-control" id="name" name="name" type="text" placeholder="Name/MRN" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="pull-left"><input type="checkbox" id="chkbox" checked="checked" name="appt-date-checkbox" class="" /></div>
+                                            <div id="app-date" class="inner-addon right-addon pull-right form-group">
+                                                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                                <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" value="@ViewBag.TodaysDate" />
+                                            </div>
+                                        </li>
+                                        <li class="pull-right">
+                                            <div class="btn-group search-group Margin-B-10" id="divSearch">
+                                                <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
+                                                <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
+                                            </div> <br />
+                                        </li>
+                                    </ul>*@<!--sidebar child end here-->
+                                </li>
+                                <li class="clear-float">
+                                    <a href="#" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">0</span></a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">0</span></a>
+                                </li>
+                            </ul>
+
+                        </div><!-- /#sidebar-wrapper -->
+                        <div class="collapse navbar-collapse pull-left" id="bs-example-navbar-collapse-1">
+                            <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"><i class="fa fa-chevron-circle-left fa-lg"></i></button>
+                        </div><!--  sidebar toggle div end -->
+                        <!-- Page Content -->
+
+                        <div id="page-content-wrapper" class="clear-float">
+                            <div class="container-fluid xyz clear-float">
+                                <div class="row">
+                                    @RenderBody()
+                                </div><!--row end-->
+                            </div><!--container end-->
+
+                        </div>
+                        <!-- /#page-content-wrapper -->
+                    </div>
+                </div>
+            </div><!--row end-->
+        </div><!--container end-->
+    </div><!--container fluid end-->
+</div> <!-- /container area end -->
 

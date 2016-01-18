@@ -12,6 +12,7 @@ namespace HRA4.Services.Interfaces
         IUserService UserService { get; }
         IAdminService AdminService { get; }
         IExportImportService ExportImportService { get; }
+        ITemplateService TemplateService { get; }
 
     }
 }

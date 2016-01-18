@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HRA4.Entities;
+using HRA4.ViewModels;
 namespace HRA4.Services.Interfaces
 {
     public interface ITemplateService
@@ -12,6 +13,8 @@ namespace HRA4.Services.Interfaces
         HtmlTemplate GetTemplate(int institutionId, int id);
         HtmlTemplate GetTemplateByRaTemplateId(int institutionId, int raTemplateId);
         HtmlTemplate InsertTemplate(HtmlTemplate template);
-        HtmlTemplate UpdateTemplate(HtmlTemplate template);
+        int UpdateTemplate(int institutionId, int id, string TemplateString);
+        TemplateList GetTemplates();
+        Template GenerateHtmlFromTemplate(int templateId);
     }
 }
