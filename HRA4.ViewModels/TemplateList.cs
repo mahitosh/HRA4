@@ -10,6 +10,7 @@ namespace HRA4.ViewModels
     {
         public int Id { get; set; }
         public string TemplateName { get; set; }
+        public string FinalHtml { get; set; }
     }
     
     public class TemplateList

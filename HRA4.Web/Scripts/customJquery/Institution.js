@@ -191,7 +191,7 @@ function RiskCalculation(globalGetJSONPath,MRN,apptid) {
 
 function NewDocument(globalGetJSONPath, MRN, apptid)
 {
-    alert(globalGetJSONPath);
+    
     $.ajax({
         type: "POST",
         url: globalGetJSONPath,

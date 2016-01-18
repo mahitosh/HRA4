@@ -357,6 +357,7 @@
     <Content Include="Views\Institution\_RiskScore.cshtml" />
     <Content Include="Views\Shared\_leftMenuLayout.cshtml" />
     <Content Include="Views\Institution\_NewDocument.cshtml" />
+    <Content Include="Views\Institution\_ShowHtmlDocument.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -300,12 +300,21 @@ namespace HRA4.Web.Controllers
 
         }
 
+        public JsonResult ShowHtml(int templateId)
+        {
+            string view = string.Empty;
+            var templates = _applicationContext.ServiceContext.TemplateService.GetTemplates();
+            view = RenderPartialView("_NewDocument", templates);
+            var result = new { view = view };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult NewDocument(string mrn,int apptid)
         {
             string view = string.Empty;
             var templates = _applicationContext.ServiceContext.TemplateService.GetTemplates();
             view = RenderPartialView("_NewDocument", templates);
-            var result = new { view = "" };
+            var result = new { view = view };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
