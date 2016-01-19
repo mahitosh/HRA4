@@ -15,6 +15,7 @@ namespace HRA4.Services.Interfaces
         HtmlTemplate InsertTemplate(HtmlTemplate template);
         int UpdateTemplate( int id, string TemplateString);
         TemplateList GetTemplates();
-        Template GenerateHtmlFromTemplate(int templateId);
+        Template GenerateHtmlFromTemplate(int templateId,string mrn,int apptId);
+       
     }
 }

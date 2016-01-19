@@ -133,7 +133,6 @@
     <Content Include="App_Data\RAFiles\removeNamespaces.xsl" />
     <Content Include="App_Data\RAFiles\riskMeanings.xml" />
     <Content Include="App_Data\RAFiles\sg_to_hl7.xsl" />
-    <Content Include="App_Data\RAFiles\Temp\SurveySummary.html" />
     <Content Include="assets\brand\bootstrap-outline.svg" />
     <Content Include="assets\brand\bootstrap-punchout.svg" />
     <Content Include="assets\brand\bootstrap-solid.svg" />
@@ -549,6 +548,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\RAFiles\Download\" />
+    <Folder Include="App_Data\RAFiles\Temp\" />
     <Folder Include="App_Data\RAFiles\Upload\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

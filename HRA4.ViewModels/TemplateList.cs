@@ -14,11 +14,9 @@ namespace HRA4.ViewModels
         public int Id { get; set; }
         public string FinalHtml { get; set; }
         public string TemplateName { get; set; }
-        /*
-        [AllowHtml]
-        [UIHint("tinymce_jquery_full")]
-        public string Content { get; set; }
-         */ 
+         
+        public string PdfFilePath { get; set; }
+        public string DownloadFileName { get; set; }
     }
     
     public class TemplateList
