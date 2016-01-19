@@ -51,6 +51,7 @@ namespace HRA4.Services
             SessionManager.Instance.MetaData.Users.BackgroundListLoad();
             var users = SessionManager.Instance.MetaData.Users;// We can cache users.
             SessionManager.Instance.ActiveUser = users.GetUser(user);
+            RiskApps3.Model.HraObject.AuditUserLogin(user);
         }
 
         public void SetConfig(string InstitutionId, string config)
