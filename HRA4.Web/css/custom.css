@@ -155,17 +155,18 @@ a.left-title:hover{text-decoration:underline;}
 .nav-tabs .tab-refresh{ border: 0!important;padding: 9px 0;position:absolute; right: -4px; top: 0; z-index: 1000;cursor: pointer!important;}
 .tab-content{margin-top: 15px;}
 .tab-content > .tab-pane{/*padding-top:10px;*/border: solid 1px #dfdfdf;}
+#cancer-risk-factor .tab-pane{border:none;}
 .nav-tabs > li > a:focus{background: transparent}
 #CancerRiskChild{border-bottom:solid 2px #e6e6e6;}
-#CancerRiskChild li a{font-size:1em;border-bottom:0;padding-bottom: 3px;}
-#CancerRiskChild > li.active > a, #CancerRiskChild > li.active > a:focus, #CancerRiskChild > li.active > a:hover, #CancerRiskChild > li > a:hover{border-bottom:solid 2px #53afee;padding-bottom: 3px;}
+#CancerRiskChild li a{font-size:1em;border-bottom: 3px solid transparent;padding-bottom: 3px;}
+#CancerRiskChild > li.active > a, #CancerRiskChild > li.active > a:focus, #CancerRiskChild > li.active > a:hover, #CancerRiskChild > li > a:hover{border-bottom:solid 3px #53afee;padding-bottom: 3px;}
 /*appointment table css*/
 .apppointment-table thead th, .data-display-table thead th{background-color: #53afee;color:#ffffff;border:none;padding:12px 3px;font-size:1.1em;position:relative;}
 .apppointment-table tbody tr, .apppointment-table tbody tr:nth-of-type(2n+1), .data-display-table tbody tr, .data-display-table tbody tr:nth-of-type(2n+1)
 
 {background-color: #d5ecfc;}
 .apppointment-table tbody td{ border-top: 1px solid #99c1dd!important;vertical-align: middle!important;padding:8px 3px!important;}
-li.add-appointment a{border:none; padding: 10px 0 0 0;margin-right:0;}
+li.add-appointment a{border:none; padding: 0px 0 0 10px;margin-right:0;}
 li.add-appointment a:hover{border:none;}
 #dashboardmodal{margin-top:300px;}
 #dashboardmodal a{color:#333;text-decoration:underline}
@@ -238,7 +239,18 @@ img.add-istitution-list{margin:-3px 4px 0 30px;}
 #page-content-wrapper .view-doc-content{height:450px;}
 #browse-xml-modal{margin-top:200px;}
 
-
+/*accordion csss*/
+.accordion-toggle:hover {text-decoration: none;}
+.BreastCancerAccordion .panel-heading, .ColorectalCancerRiskAccordion .panel-heading{padding: 10px 20px 8px 20px;}
+.BreastCancerAccordion .panel-title, .ColorectalCancerRiskAccordion .panel-title{font-size: 14px;}
+.BreastCancerAccordion .panel-body, .ColorectalCancerRiskAccordion .panel-body {padding: 15px;font-size: 12px;}
+.BreastCancerAccordion .accordion-toggle .glyphicon{margin-right:5px;}
+.BreastCancerAccordion .activeAccordion, .BreastCancerAccordion .panel-heading:hover{background-color:#52aeef;color:#fff;}
+.panel-heading a:focus, .panel-heading a:hover{text-decoration:none!important;}
+#accordion label{font-size: 13px;}
+#accordion .input-small{width:35%!important;}
+#accordion select{min-width:50%;}
+#accordion .form-inline div{padding-right:0;}
 /*common classes*/
 a{cursor: pointer;}
 a:focus{outline:none;}
@@ -257,6 +269,7 @@ a:hover{text-decoration: none;}
 .Padding-TB-10{padding-top: 10px;padding-bottom:10px;}
 .Margin-L-0{margin-left:0px!important;}
 .Margin-T-0{margin-top:0px}
+.Margin-T-5{margin-top:5px}
 .Margin-T-10{margin-top:10px}
 .Margin-T-20{margin-top:20px}
 .Margin-B-10{margin-bottom:10px}
@@ -352,6 +365,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     .search-btn{padding:6px;}
     .horizontal-devider{border-right: 0;}
     .nav-tabs > li > a{padding-right: 20px;margin-right: 15px; font-size: 1.2em;}
+	.nav-tabs > li:nth-child(3) > a{margin-right: 0px;}
     .dashboard-count{ margin-left: 5px;}
     #Schedule .table{max-width:130%;width:130%;}
 }/*980 end here*/

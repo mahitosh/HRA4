@@ -178,7 +178,10 @@ function RiskCalculation(globalGetJSONPath,MRN,apptid,status) {
         beforeSend: function () {
             if (status == 'Run')
             {
-               $("#RiskScoreProgressdiv").show();
+                $("#RiskScoreProgressdiv").show();
+                $("#divfooter > button").prop("disabled", true);
+                $("#divheader > button").prop("disabled", true);
+                
             }
             
         },
@@ -191,6 +194,8 @@ function RiskCalculation(globalGetJSONPath,MRN,apptid,status) {
            
             $('#divriskcalculate').html(Data.view);
             $("#RiskScoreProgressdiv").hide();
+            $("#divfooter > button").prop("disabled", false);
+            $("#divheader > button").prop("disabled", false);
         }
 
     })

@@ -26,7 +26,7 @@ else
             <div class="container middle-content">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div id="wrapper">
+                        <div id="wrapper" class="toggled-2">
                             <!-- Sidebar -->
                             <div id="sidebar-wrapper">
 
@@ -74,7 +74,7 @@ else
 
                             </div><!-- /#sidebar-wrapper -->
                             <div class="collapse navbar-collapse pull-left" id="bs-example-navbar-collapse-1">
-                                <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"><i class="fa fa-chevron-circle-left fa-lg"></i></button>
+                                <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2" style="left:32px;"><i class="fa fa-chevron-circle-right fa-lg"></i></button>
                             </div><!--  sidebar toggle div end -->
                             <!-- Page Content -->
 
@@ -280,11 +280,11 @@ else
     $(document).ready(function () {
 
 
+        $('#menu ul').hide();
+        Applytablesorter();
 
-        Applytablesorter()
 
-
-
+        
         $("#frmDashboard").keypress(function (e) {
             kCode = e.keyCode || e.charCode //for cross browser
             if (kCode == 13) {

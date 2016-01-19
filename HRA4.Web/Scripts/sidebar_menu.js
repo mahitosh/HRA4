@@ -1,5 +1,8 @@
-
 // Create sidebar
+$(document).ready(function() {
+    $('#menu ul').hide();
+	$("ul#menu").off("click");
+});
 
 $("#menu-toggle").click(function(e) {
         e.preventDefault();
