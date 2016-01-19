@@ -7,6 +7,8 @@ using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Data;
 using log4net;
+using System.Web.Mvc;
+using System.Web;
 namespace HRA4.Utilities
 {
     public class Helpers
@@ -81,7 +83,32 @@ namespace HRA4.Utilities
             return instConfiguration;
         }
 
-        
+        /*
+        protected virtual string RenderPartialView(string partialViewName, object model)
+        {
+            if ( ControllerContext == null)
+                return string.Empty;
+
+            if (model == null)
+                throw new ArgumentNullException("model");
+
+            if (string.IsNullOrEmpty(partialViewName))
+                throw new ArgumentNullException("partialViewName");
+
+            ModelState.Clear();//Remove possible model binding error.
+
+            ViewData.Model = model;//Set the model to the partial view
+
+            using (var sw = new StringWriter())
+            {
+                var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, partialViewName);
+                var viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+                return sw.GetStringBuilder().ToString();
+            }
+        }
+
+        */
 
     }
 }

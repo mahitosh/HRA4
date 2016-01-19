@@ -8,6 +8,7 @@ namespace HRA4.Web.Models {
         [AllowHtml]
         [UIHint("tinymce_jquery_full")]
         public string Content { get; set; }
+        public string TemplateName { get; set; }
 
     }
 }
