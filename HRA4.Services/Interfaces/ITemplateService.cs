@@ -10,10 +10,10 @@ namespace HRA4.Services.Interfaces
     public interface ITemplateService
     {
         List<HtmlTemplate> GetTemplatesByInstitution(int institutionId);
-        HtmlTemplate GetTemplate(int institutionId, int id);
+        HtmlTemplate GetTemplate(int id);
         HtmlTemplate GetTemplateByRaTemplateId(int institutionId, int raTemplateId);
         HtmlTemplate InsertTemplate(HtmlTemplate template);
-        int UpdateTemplate(int institutionId, int id, string TemplateString);
+        int UpdateTemplate( int id, string TemplateString);
         TemplateList GetTemplates();
         Template GenerateHtmlFromTemplate(int templateId,string mrn,int apptId);
        
