@@ -31,9 +31,9 @@ namespace HRA4.Services
 
         }
 
-        public Entities.HtmlTemplate GetTemplate(int institutionId, int id)
+        public Entities.HtmlTemplate GetTemplate( int id)
         {
-           return _repositoryFactory.HtmlTemplateRepository.GetTemplateById(institutionId, id);
+            return _repositoryFactory.HtmlTemplateRepository.GetTemplateById(Convert.ToInt32(_hraSessionManager.InstitutionId), id);
         }
 
         public Entities.HtmlTemplate GetTemplateByRaTemplateId(int institutionId, int raTemplateId)
@@ -46,9 +46,9 @@ namespace HRA4.Services
             throw new NotImplementedException();
         }
 
-        public int UpdateTemplate(int institutionId, int id ,string TemplateString )
+        public int UpdateTemplate(int id ,string TemplateString )
         {
-            HtmlTemplate template = _repositoryFactory.HtmlTemplateRepository.GetTemplateById(institutionId, id);
+            HtmlTemplate template = _repositoryFactory.HtmlTemplateRepository.GetTemplateById(Convert.ToInt32(_hraSessionManager.InstitutionId), id);
             template.Template = System.Text.Encoding.UTF8.GetBytes(TemplateString);
             return _repositoryFactory.HtmlTemplateRepository.UpdateHtmlTemplate(template);
             
@@ -61,7 +61,7 @@ namespace HRA4.Services
         /// <returns></returns>
         public ViewModels.Template GenerateHtmlFromTemplate(int templateId)
         {
-            Entities.HtmlTemplate _template = GetTemplate(0, templateId);
+            Entities.HtmlTemplate _template = GetTemplate(templateId);
             string tempFileName = Guid.NewGuid().ToString();
             string path = HttpContext.Current.Server.MapPath(System.IO.Path.Combine(Constants.RAFilePath, "Temp", tempFileName));
             System.IO.File.WriteAllText(path, _template.TemplateString);

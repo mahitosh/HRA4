@@ -61,16 +61,24 @@ namespace HRA4.Web.Controllers
                 /*=======Start Load Clinic Dropdown======================*/
                 var _ClinicList = _applicationContext.ServiceContext.AppointmentService.GetClinics((int)Session["InstitutionId"]);
                 ViewBag.ClinicList = new SelectList(_ClinicList.ToList(), "clinicID", "clinicName");
-
+            
                 /*=======End Load Clinic Dropdown======================*/
-
                 return View(apps);
+               
+
+            }
+            else if (Session["InstitutionId"] != null)
+            {
+
+                   InstitutionId = Convert.ToInt32(Session["InstitutionId"]);
+                   return RedirectToAction("InstitutionDashboard", new { InstitutionId = InstitutionId });
+              
+
 
             }
 
-
-
-            return RedirectToAction("ManageInstitution", "Admin");
+            return RedirectToAction("ManageInstitution", "Admin");    
+            
 
 
         }
