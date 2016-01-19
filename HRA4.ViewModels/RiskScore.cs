@@ -15,6 +15,8 @@ namespace HRA4.ViewModels
         public RiskofLynchSyndromeMutation RSRiskofLynchSyndromeMutation { get; set; }
         public ColonCancerRisk RSColonCancerRisk { get; set; }
         public EndometrialRisk RSEndometrialRisk { get; set; }
+        public int ApptId { get; set; }
+        public string MRN { get; set; }
     }
 
 

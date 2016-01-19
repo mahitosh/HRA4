@@ -172,16 +172,25 @@ function UploadXml() {
 
 
 /*======Start RiskCalculation logic ============ */
-function RiskCalculation(globalGetJSONPath,MRN,apptid) {
-
+function RiskCalculation(globalGetJSONPath,MRN,apptid,status) {
+   
     $.ajax({
+        beforeSend: function () {
+            if (status == 'Run')
+            {
+               $("#RiskScoreProgressdiv").show();
+            }
+            
+        },
         type: "POST",
         url: globalGetJSONPath,
-        data: {MRN: MRN, apptid: apptid},
+        data: {MRN: MRN, apptid: apptid,status:status},
         dataType: "json",
         async: true,
         success: function (Data) {
+           
             $('#divriskcalculate').html(Data.view);
+            $("#RiskScoreProgressdiv").hide();
         }
 
     })
