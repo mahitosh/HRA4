@@ -1,0 +1,386 @@
+﻿
+@{
+    ViewBag.Title = "AuditReports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--container area start here-->
+<div class="content-area container-fluid ">
+
+
+    <div class="container-fluid row Padding-LR-0 bottom-container-area">
+        <div class="container middle-content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="wrapper" class="toggled-2">
+                        <!-- Sidebar -->
+                        <div id="sidebar-wrapper">
+
+                            <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+                                <li class="active">
+                                    <a href="#" class="schedule-icon"> Schedule <span class="dashboard-count">(140)</span></a>
+                                    <ul class="nav-pills nav-stacked sidebar-nav-child" style="list-style-type:none;">
+                                        <li class="add-appointment">
+                                            <a href="#" id="lnkapptment" data-toggle="modal" data-target="#add-edit-MRN">
+                                                <img src="images/add-appointment-ico.svg" alt="Refresh" width="25" height="25" /> Add Appointment
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label " for="custom-clinic"> Choose Clinic</label>
+                                                <select class="form-control" id="custom-clinic" name="custom-clinic">
+                                                    <option>Test1</option>
+                                                    <option>Test2</option>
+                                                </select>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label " for="name">Quick Search</label>
+                                                <input class="form-control" id="name" name="name" type="text" placeholder="Name/MRN" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="pull-left"><input type="checkbox" name="appt-date-checkbox" class="" /></div>
+                                            <div id="app-date" class="inner-addon right-addon pull-right form-group">
+                                                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                                <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" /></input>
+                                            </div>
+                                        </li>
+                                        <li class="pull-right">
+                                            <div class="btn-group search-group Margin-B-10">
+                                                <button class="btn btn-default search-btn" type="button">Search</button>
+                                                <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
+                                            </div> <br />
+                                        </li>
+                                    </ul><!--sidebar child end here-->
+                                </li>
+                                <li class="clear-float">
+                                    <a href="#" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">(3)</span></a>
+                                </li>
+                                <!-- <li>
+                                     <a href="#" class="lifetime-cancer-icon"></a>
+                                 </li>-->
+                                <li>
+                                    <a href="#" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">(5)</span></a>
+                                </li>
+                            </ul>
+
+                        </div><!-- /#sidebar-wrapper -->
+                        <!--
+                        <div class="collapse navbar-collapse pull-left" id="bs-example-navbar-collapse-1">
+                           <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"  style="left:32px;"><i class="fa fa-chevron-circle-right fa-lg"></i></button>
+                              </div>
+                              sidebar toggle div end -->
+                        <!-- Page Content start -->
+                        <div id="page-content-wrapper" class="clear-float">
+                            <div class="container-fluid xyz clear-float">
+                                <div class="row">
+                                    <h3 class="page-title Margin-B-10">Audit Trail Report</h3>
+                                </div>
+                                <div class="clear-float row"><hr class="hr-style Margin-TB-10" /></div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        Medical Record Number
+
+                                        <input type="text" id="txtMRNForReport" />
+
+                                        <button type="button" class="btn btn-success">Run Report</button>
+                                    </div>
+
+                                </div><!--row end-->
+
+                                <div class="clear-float row"><hr class="hr-style Margin-TB-10" /></div>
+
+
+
+
+
+                                <div class="row Margin-T-10">
+                                    <ul class="nav nav-tabs col-sm-12" id="myTab">
+                                        <li class="active" id="Schedule-Tab">
+                                            <a data-target="#v3-report" data-toggle="tab" onclick="showAppt()">Audit V3 Access</a>
+                                        </li>
+                                        <li>
+                                            <a data-target="#v2-report" data-toggle="tab" onclick="hideAppt()">Audit V2 Access</a>
+                                        </li>
+                                    </ul>
+                                </div><!--tab row end-->
+
+
+
+                                <div class="tab-content row">
+                                    <div class="tab-pane active" id="v3-report">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped apppointment-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Time Stamp</th>
+                                                        <th>User Name</th>
+                                                        <th>Unit Number</th>
+                                                        <th>Appt ID</th>
+                                                        <th>Stored Procedure</th>
+                                                        <th>Attribute Value List</th>
+                                                        <th>Relative ID</th>
+                                                        <th>Entity</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>01/06/20016 10:10:08 AM</td>
+                                                        <td>
+                                                            admin
+                                                        </td>
+                                                        <td>
+                                                            UNIT001
+                                                        </td>
+
+                                                        <td>
+                                                            233
+                                                        </td>
+                                                        <td>sp_risk_calculation</td>
+                                                        <td>
+                                                            12,34,55,66
+                                                        </td>
+                                                        <td>23</td>
+                                                        <td>
+                                                            Risk Entity
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>01/06/20016 10:10:08 AM</td>
+                                                        <td>
+                                                            admin
+                                                        </td>
+                                                        <td>
+                                                            UNIT001
+                                                        </td>
+
+                                                        <td>
+                                                            233
+                                                        </td>
+                                                        <td>sp_risk_calculation</td>
+                                                        <td>
+                                                            12,34,55,66
+                                                        </td>
+                                                        <td>23</td>
+                                                        <td>
+                                                            Risk Entity
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>01/06/20016 10:10:08 AM</td>
+                                                        <td>
+                                                            admin
+                                                        </td>
+                                                        <td>
+                                                            UNIT001
+                                                        </td>
+
+                                                        <td>
+                                                            233
+                                                        </td>
+                                                        <td>sp_risk_calculation</td>
+                                                        <td>
+                                                            12,34,55,66
+                                                        </td>
+                                                        <td>23</td>
+                                                        <td>
+                                                            Risk Entity
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>01/06/20016 10:10:08 AM</td>
+                                                        <td>
+                                                            admin
+                                                        </td>
+                                                        <td>
+                                                            UNIT001
+                                                        </td>
+
+                                                        <td>
+                                                            233
+                                                        </td>
+                                                        <td>sp_risk_calculation</td>
+                                                        <td>
+                                                            12,34,55,66
+                                                        </td>
+                                                        <td>23</td>
+                                                        <td>
+                                                            Risk Entity
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table><!--V3 Table  end here-->
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="tab-pane" id="v2-report">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped apppointment-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Start Time</th>
+                                                        <th>End Time</th>
+                                                        <th>Created By</th>
+                                                        <th>Machine Name</th>
+                                                        <th>MRN</th>
+                                                        <th>Appt ID</th>
+                                                        <th>Message</th>
+                                                        <th>Application</th>
+                                                        <th>Table</th>
+                                                        <th>Field</th>
+                                                        <th>Field Meaning</th>
+                                                        <th>Old Value</th>
+                                                        <th>New Value</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>01/06/20016 10:10:08 AM</td>
+                                                        <td>01/06/20016 10:16:08 AM</td>
+                                                        <td>
+                                                            admin
+                                                        </td>
+                                                        <td>
+                                                            LAPTOP-0190
+                                                        </td>
+                                                        <td>99912345679</td>
+                                                        <td>
+                                                            233
+                                                        </td>
+                                                        <td>Accessed the Appointment</td>
+                                                        <td>
+                                                            RiskApps3
+                                                        </td>
+                                                        <td> tbl_appointment</td>
+                                                        <td>
+                                                            risk_model_desc
+                                                        </td>
+                                                        <td>
+                                                            Risk Model Description
+                                                        </td>
+                                                        <td>
+                                                            BRCA 10%
+                                                        </td>
+                                                        <td>
+                                                            BRCA 12%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>01/06/20016 10:10:08 AM</td>
+                                                        <td>01/06/20016 10:16:08 AM</td>
+                                                        <td>
+                                                            admin
+                                                        </td>
+                                                        <td>
+                                                            LAPTOP-0190
+                                                        </td>
+                                                        <td>99912345679</td>
+                                                        <td>
+                                                            233
+                                                        </td>
+                                                        <td>Accessed the Appointment</td>
+                                                        <td>
+                                                            RiskApps3
+                                                        </td>
+                                                        <td> tbl_appointment</td>
+                                                        <td>
+                                                            risk_model_desc
+                                                        </td>
+                                                        <td>
+                                                            Risk Model Description
+                                                        </td>
+                                                        <td>
+                                                            BRCA 10%
+                                                        </td>
+                                                        <td>
+                                                            BRCA 12%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>01/06/20016 10:10:08 AM</td>
+                                                        <td>01/06/20016 10:16:08 AM</td>
+                                                        <td>
+                                                            admin
+                                                        </td>
+                                                        <td>
+                                                            LAPTOP-0190
+                                                        </td>
+                                                        <td>99912345679</td>
+                                                        <td>
+                                                            233
+                                                        </td>
+                                                        <td>Accessed the Appointment</td>
+                                                        <td>
+                                                            RiskApps3
+                                                        </td>
+                                                        <td> tbl_appointment</td>
+                                                        <td>
+                                                            risk_model_desc
+                                                        </td>
+                                                        <td>
+                                                            Risk Model Description
+                                                        </td>
+                                                        <td>
+                                                            BRCA 10%
+                                                        </td>
+                                                        <td>
+                                                            BRCA 12%
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>01/06/20016 10:10:08 AM</td>
+                                                        <td>01/06/20016 10:16:08 AM</td>
+                                                        <td>
+                                                            admin
+                                                        </td>
+                                                        <td>
+                                                            LAPTOP-0190
+                                                        </td>
+                                                        <td>99912345679</td>
+                                                        <td>
+                                                            233
+                                                        </td>
+                                                        <td>Accessed the Appointment</td>
+                                                        <td>
+                                                            RiskApps3
+                                                        </td>
+                                                        <td> tbl_appointment</td>
+                                                        <td>
+                                                            risk_model_desc
+                                                        </td>
+                                                        <td>
+                                                            Risk Model Description
+                                                        </td>
+                                                        <td>
+                                                            BRCA 10%
+                                                        </td>
+                                                        <td>
+                                                            BRCA 12%
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table><!--family history end here-->
+                                        </div>
+
+
+
+
+                                    </div><!--row end-->
+                                </div><!--container end-->
+
+                            </div>
+                            <!-- /#page-content-wrapper -->
+                        </div>
+                    </div>
+                </div><!--row end-->
+            </div><!--container end-->
+        </div><!--container fluid end-->
+    </div> <!-- /container area end -->
+</div>

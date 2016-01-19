@@ -6,7 +6,7 @@ using RiskApps3.Utilities;
 
 namespace RiskApps3.Model.Clinic.Reports
 {
-    class AuditMrnAccessV2 : HRAList
+    public class AuditMrnAccessV2 : HRAList  //Silicus:Marked class as public
     {
         public DateTime StartTime;
         public DateTime EndTime;
@@ -57,7 +57,7 @@ namespace RiskApps3.Model.Clinic.Reports
             [HraAttribute] public string newValue;
     }
 
-    class AuditMrnAccessV3 : HRAList
+    public class AuditMrnAccessV3 : HRAList  //Silicus:Marked class as public
     {
         public DateTime StartTime;
         public DateTime EndTime;

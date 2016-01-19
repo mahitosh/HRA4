@@ -502,6 +502,7 @@
     <Compile Include="Controllers\DocumentEditorController.cs" />
     <Compile Include="Controllers\InstitutionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -540,6 +541,7 @@
     <Content Include="Views\Shared\EditorTemplates\tinymce_full.cshtml" />
     <Content Include="Views\Institution\_NewDocument.cshtml" />
     <Content Include="Views\Institution\_ShowHtmlDocument.cshtml" />
+    <Content Include="Views\Reports\AuditReports.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

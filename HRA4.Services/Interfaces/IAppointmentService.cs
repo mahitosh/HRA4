@@ -26,5 +26,6 @@ namespace HRA4.Services.Interfaces
         string ShowPedigreeImage(int _institutionId, string unitnum, int apptid, string PedigreeImagePath);
         VM.RiskScore RiskScore(int apptid, string MRN);
         VM.RiskScore RiskCalculateAndRunAutomation(int apptid, string MRN);
+        VM.AuditReports GetAuditReports(string MRN, string startdate, string enddate);
     }
 }
