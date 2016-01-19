@@ -11,6 +11,8 @@ namespace HRA4.ViewModels
         public int Id { get; set; }
         public string TemplateName { get; set; }
         public string FinalHtml { get; set; }
+        public string PdfFilePath { get; set; }
+        public string DownloadFileName { get; set; }
     }
     
     public class TemplateList

@@ -26,12 +26,11 @@ namespace HRA4.Web.Controllers
             var instList = _applicationContext.ServiceContext.AdminService.GetTenants();
             ViewBag.instListcount = instList.Count;
 
-
-
             if (instList.Count == 0)
             {
                 return View(apps);
             }
+
             if (InstitutionId != null && InstitutionId > 0)
             {
                 if (Session["InstitutionId"] == null || Session["InstitutionId"].ToString() != InstitutionId.ToString())
@@ -41,7 +40,6 @@ namespace HRA4.Web.Controllers
                     System.Web.HttpContext.Current.Session["ApplicationContext"] = null;
                     _applicationContext = new ApplicationContext();
                     System.Web.HttpContext.Current.Session["ApplicationContext"] = _applicationContext;
-
                 }
 
                 int v2 = InstitutionId ?? default(int);
@@ -300,7 +298,16 @@ namespace HRA4.Web.Controllers
 
         }
 
-        public JsonResult ShowHtml(int templateId)
+        public JsonResult ShowHtml(int templateId, string mrn, int apptId)
+        {
+            string view = string.Empty;
+            var template = _applicationContext.ServiceContext.TemplateService.GenerateHtmlFromTemplate(templateId, mrn, apptId);
+            view = RenderPartialView("_ShowHtmlDocument", template);
+            var result = new { view = view };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult NewDocument(string mrn, int apptid)
         {
             string view = string.Empty;
             var templates = _applicationContext.ServiceContext.TemplateService.GetTemplates();
@@ -309,19 +316,47 @@ namespace HRA4.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult NewDocument(string mrn,int apptid)
+
+        public FileStreamResult DownloadDocument(string filePath, string templateName, string id_mrn, int templateId)
         {
-            string view = string.Empty;
-            var templates = _applicationContext.ServiceContext.TemplateService.GetTemplates();
-            view = RenderPartialView("_NewDocument", templates);
-            var result = new { view = view };
-            return Json(result, JsonRequestBehavior.AllowGet);
+            string mrn = id_mrn.Split('-')[1];
+            int apptId = Convert.ToInt32(id_mrn.Split('-')[0]);
+            if (System.IO.File.Exists(filePath))
+            {
+                byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+                var fileStream = new MemoryStream(fileBytes);
+                try
+                {
+                    System.IO.File.Delete(filePath);
+                }
+                catch (Exception ex)
+                {
+
+                }
+                return File(fileStream, "application/pdf", string.Format("{0}_{1}.pdf", mrn, templateName));
+            }
+            else
+            {
+                var template = _applicationContext.ServiceContext.TemplateService.GenerateHtmlFromTemplate(templateId, mrn, apptId);
+                byte[] fileBytes = System.IO.File.ReadAllBytes(template.PdfFilePath);
+                var fileStream = new MemoryStream(fileBytes);
+                try
+                {
+                    System.IO.File.Delete(template.PdfFilePath);
+                }
+                catch (Exception ex)
+                {
+
+                }
+                return File(fileStream, "application/pdf", string.Format("{0}_{1}.pdf", mrn, templateName));
+            }
+           
         }
 
         public JsonResult RiskCalculation(string MRN, int apptid)
         {
             string view = string.Empty;
-            var apps = _applicationContext.ServiceContext.AppointmentService.RiskScore(apptid,MRN);
+            var apps = _applicationContext.ServiceContext.AppointmentService.RiskScore(apptid, MRN);
             view = RenderPartialView("_RiskScore", apps);
             var result = new { view = view };
             return Json(result, JsonRequestBehavior.AllowGet);
