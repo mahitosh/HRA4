@@ -105,3 +105,15 @@ $(document).ready (function (){
 			$("#change-password-content").slideDown(200);
 	});
 });
+//Collapsible panel
+$('.collapse').on('shown.bs.collapse', function(){
+$(this).parent().find(".glyphicon-plus-sign").removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
+}).on('hidden.bs.collapse', function(){
+$(this).parent().find(".glyphicon-minus-sign").removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
+});
+
+//collapsible panel active
+$('.BreastCancerAccordion .panel-heading').on('click', function () {   
+    $('.BreastCancerAccordion .panel-heading').removeClass('activeAccordion');
+    $(this).addClass('activeAccordion');
+ });
