@@ -85,6 +85,7 @@ else
                                         <a class="pull-right left-title" onclick="SearchAppointment('@Url.Action("FilteredInstitution", "Institution")');"><img src="~/images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh Appointment List</a>
                                         <div class="clear-float"></div>
                                         <div class="table-responsive" id="divInstitutionGrid">
+                                       
                                             @Html.Partial("_InstitutionGrid", Model)
 
                                         </div><!--schedule list div end here-->
@@ -183,7 +184,7 @@ else
 
     <!-- New Document Models popup -->
     <div id="schedule-new-doc-modal" class="modal fade" role="dialog" aria-hidden="true">
-    <div id="divNewDocument" class="modal-dialog">
+    <div id="divNewDocument" class="modal-dialog newdoc">
 
     </div>
       

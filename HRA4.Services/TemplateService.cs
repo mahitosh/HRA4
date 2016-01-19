@@ -31,9 +31,9 @@ namespace HRA4.Services
 
         }
 
-        public Entities.HtmlTemplate GetTemplate(int institutionId, int id)
+        public Entities.HtmlTemplate GetTemplate( int id)
         {
-           return _repositoryFactory.HtmlTemplateRepository.GetTemplateById(institutionId, id);
+            return _repositoryFactory.HtmlTemplateRepository.GetTemplateById(Convert.ToInt32(_hraSessionManager.InstitutionId), id);
         }
 
         public Entities.HtmlTemplate GetTemplateByRaTemplateId(int institutionId, int raTemplateId)
@@ -46,9 +46,9 @@ namespace HRA4.Services
             throw new NotImplementedException();
         }
 
-        public int UpdateTemplate(int institutionId, int id ,string TemplateString )
+        public int UpdateTemplate(int id ,string TemplateString )
         {
-            HtmlTemplate template = _repositoryFactory.HtmlTemplateRepository.GetTemplateById(institutionId, id);
+            HtmlTemplate template = _repositoryFactory.HtmlTemplateRepository.GetTemplateById(Convert.ToInt32(_hraSessionManager.InstitutionId), id);
             template.Template = System.Text.Encoding.UTF8.GetBytes(TemplateString);
             return _repositoryFactory.HtmlTemplateRepository.UpdateHtmlTemplate(template);
             
@@ -59,15 +59,18 @@ namespace HRA4.Services
         /// </summary>
         /// <param name="templateId"></param>
         /// <returns></returns>
-        public ViewModels.Template GenerateHtmlFromTemplate(int templateId)
+        public ViewModels.Template GenerateHtmlFromTemplate(int templateId,string mrn,int apptId)
         {
-            Entities.HtmlTemplate _template = GetTemplate(0, templateId);
+            Entities.HtmlTemplate _template = GetTemplate(templateId);
             string tempFileName = Guid.NewGuid().ToString();
             string path = HttpContext.Current.Server.MapPath(System.IO.Path.Combine(Constants.RAFilePath, "Temp", tempFileName));
             System.IO.File.WriteAllText(path, _template.TemplateString);
-           string finalHtml= CreateHtmlDocument(path);
+           string finalHtml= CreateHtmlDocument(path,mrn,apptId);
+             string tempFile = System.IO.Path.GetTempFileName();
            try
            {
+              // Task.Factory.StartNew(() => GeneratePdfFromHtml(finalHtml, tempFile));    
+               GeneratePdfFromHtml(finalHtml, tempFile);
                File.Delete(path);
            }
            catch (Exception ex)
@@ -79,17 +82,20 @@ namespace HRA4.Services
            {
                Id=templateId,
                FinalHtml = finalHtml,
-               TemplateName = _template.TemplateName
+               TemplateName = _template.TemplateName,
+               PdfFilePath =tempFile,
+               DownloadFileName = string.Format("{0}-{1}", apptId, mrn)
            };
 
         }
 
-        private string CreateHtmlDocument(string htmlPath)
+        private string CreateHtmlDocument(string htmlPath,string mrn,int apptId)
         {
             //set active patient
             DocumentTemplate dt = new DocumentTemplate();
+            SessionManager.Instance.SetActivePatient(mrn, apptId);
             dt.SetPatient(SessionManager.Instance.GetActivePatient());
-            //string htmlPath = HttpContext.Current.Server.MapPath(Path.Combine(Constants.RAFilePath, "Temp", "SurveySummary.html"));
+           // string htmlPath = HttpContext.Current.Server.MapPath(Path.Combine(Constants.RAFilePath, "Temp", "SurveySummary.html"));
             dt.htmlPath = htmlPath;
             StringBuilder sb = new StringBuilder();
             using (StreamReader sr = new StreamReader(htmlPath))
@@ -104,6 +110,7 @@ namespace HRA4.Services
             dt.htmlText = html;
             dt.ProcessDocument();
             string newhtml = dt.htmlText;
+           
             return newhtml;
         }
 
@@ -142,6 +149,23 @@ namespace HRA4.Services
             templateList.OtherDocuments.OrderBy(o => o.TemplateName);
             return templateList;
 
+        }
+
+
+
+        private void GeneratePdfFromHtml(string newhtml,string filePath)
+        {
+            try
+            {
+                byte[] pdfFile = DocumentTemplate.ConvertToPdfBuffer(newhtml);
+                File.WriteAllBytes(filePath, pdfFile);
+            }
+            catch (Exception ex)
+            {                
+                
+            }
+           
+            
         }
     }
 }
