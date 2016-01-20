@@ -7,12 +7,13 @@ using HRA4.Repositories.Interfaces;
 using HRA4.Entities;
 using HRA4.Utilities;
 using System.Web;
+using log4net;
 namespace HRA4.Services
 {
      class AdminService:Interfaces.IAdminService
     {
         IRepositoryFactory _repositoryFactory;
-        
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(AdminService));
         public AdminService(IRepositoryFactory repositoryFactory)
         {
             this._repositoryFactory = repositoryFactory;
@@ -62,6 +63,7 @@ namespace HRA4.Services
          /// <param name="institutionId">Institution Id for which template has to be created.</param>
         private void CreateTemplateRecords(int institutionId)
         {
+            Logger.Debug("CreateTemplateRecords: Start");
             try
             {
                 List<HtmlTemplate> htmlTemplates = _repositoryFactory.HtmlTemplateRepository.GetAllTemplates(0);
@@ -72,10 +74,10 @@ namespace HRA4.Services
                 }
             }
             catch (Exception ex)
-            {                
-                 
+            {
+                Logger.Error(ex);
             }
-          
+            Logger.Debug("CreateTemplateRecords: End");
 
         }
         

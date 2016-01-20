@@ -293,6 +293,7 @@
     <Content Include="images\schedule-ico-hover.svg" />
     <Content Include="images\schedule-ico.svg" />
     <Content Include="images\tab-refresh-ico.svg" />
+    <Content Include="images\tools-ico.svg" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap-timepicker.js" />
@@ -729,6 +730,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DocumentEditorController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InstitutionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -773,6 +775,12 @@
     <Content Include="Views\Institution\_ShowHtmlDocument.cshtml" />
     <Content Include="Views\Reports\AuditReports.cshtml" />
     <Content Include="Views\TestPatient\TestPatients.cshtml" />
+    <Content Include="Views\Error\BadRequest.cshtml" />
+    <Content Include="Views\Error\CustomError.cshtml" />
+    <Content Include="Views\Error\Forbidden.cshtml" />
+    <Content Include="Views\Error\PageNotFound.cshtml" />
+    <Content Include="Views\Error\ServerError.cshtml" />
+    <Content Include="Views\Error\Unauthorized.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -784,6 +792,7 @@
     <Folder Include="App_Data\RAFiles\Download\" />
     <Folder Include="App_Data\RAFiles\Temp\" />
     <Folder Include="App_Data\RAFiles\Upload\" />
+    <Folder Include="Filters\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

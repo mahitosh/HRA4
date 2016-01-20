@@ -8,6 +8,7 @@ $(document).ready(function () {
         $("#ddlsurveystext").val(txt);
     });
 
+    $("#divNotification").css("display", "none");
     $('#menu ul').hide();
     $("ul#menu").off("click");
     $("#tblInstitutions").tablesorter();
@@ -38,7 +39,7 @@ $(document).ready(function () {
 
     });
 
-    
+
 
 
 });
