@@ -1,5 +1,5 @@
 // Create sidebar
-$(document).ready(function() {
+$(document).ready(function(e) {
     $('#menu ul').hide();
 	$("ul#menu").off("click");
 });

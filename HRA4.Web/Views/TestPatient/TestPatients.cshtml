@@ -1,0 +1,322 @@
+﻿@model HRA4.ViewModels.TestPatient
+<!--container area start here-->
+
+<div class="content-area container-fluid ">
+
+
+    <div class="container-fluid row Padding-LR-0 bottom-container-area">
+        <div class="container middle-content">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="wrapper" class="toggled-2">
+                        <!-- Sidebar -->
+                        <div id="sidebar-wrapper">
+
+                            <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+                                <li class="active">
+                                    <a href="#" class="schedule-icon"> Schedule <span class="dashboard-count">(140)</span></a>
+                                    <ul class="nav-pills nav-stacked sidebar-nav-child" style="list-style-type:none;">
+                                        <li class="add-appointment">
+                                            <a href="#" id="lnkapptment" data-toggle="modal" data-target="#add-edit-MRN">
+                                                <img src="images/add-appointment-ico.svg" alt="Refresh" width="25" height="25" /> Add Appointment
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label " for="custom-clinic"> Choose Clinic</label>
+                                                <select class="form-control" id="custom-clinic" name="custom-clinic">
+                                                    <option>Test1</option>
+                                                    <option>Test2</option>
+                                                </select>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label " for="name">Quick Search</label>
+                                                <input class="form-control" id="name" name="name" type="text" placeholder="Name/MRN" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="pull-left"><input type="checkbox" name="appt-date-checkbox" class="" /></div>
+                                            <div id="app-date" class="inner-addon right-addon pull-right form-group">
+                                                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                                <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" /></input>
+                                            </div>
+                                        </li>
+                                        <li class="pull-right">
+                                            <div class="btn-group search-group Margin-B-10">
+                                                <button class="btn btn-default search-btn" type="button">Search</button>
+                                                <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
+                                            </div> <br />
+                                        </li>
+                                    </ul><!--sidebar child end here-->
+                                </li>
+                                <li class="clear-float">
+                                    <a href="#" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">(3)</span></a>
+                                </li>
+                                <!-- <li>
+                                     <a href="#" class="lifetime-cancer-icon"></a>
+                                 </li>-->
+                                <li>
+                                    <a href="#" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">(5)</span></a>
+                                </li>
+                            </ul>
+
+                        </div><!-- /#sidebar-wrapper -->
+                        <!--
+                        <div class="collapse navbar-collapse pull-left" id="bs-example-navbar-collapse-1">
+                           <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"  style="left:32px;"><i class="fa fa-chevron-circle-right fa-lg"></i></button>
+                              </div>
+                              sidebar toggle div end -->
+                        <!-- Page Content start -->
+
+
+                        <div id="page-content-wrapper" class="clear-float">
+                            <div class="container-fluid xyz clear-float">
+                                <div class="row">
+                                    <h3 class="page-title Margin-B-10">Manage Test Patients</h3>
+                                </div>
+
+                                <div class="row Margin-T-10">
+                                    <ul class="nav nav-tabs col-sm-12" id="myTab">
+                                        <li class="active" id="Schedule-Tab">
+                                            <a data-target="#add-testpatients" data-toggle="tab" onclick="showAppt()">Create Test Patients</a>
+                                        </li>
+                                        <li>
+                                            <a data-target="#delete-testpatients" data-toggle="tab" onclick="hideAppt()">Delete Test Patients</a>
+                                        </li>
+                                    </ul>
+                                </div><!--tab row end-->
+
+
+
+                                <div class="tab-content row">
+@using (Html.BeginForm("TestPatients", "TestPatient", FormMethod.Post))
+{
+                               <div class="tab-pane active" id="add-testpatients">
+
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <label>Number</label>
+                                                    <select id="AppCount" name="AppCount" class="form-control">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>5</option>
+                                                        <option>10</option>
+                                                        <option>20</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <label>Appointment Date</label>
+                                                    <div id="DOB" class="inner-addon right-addon form-group">
+                                                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                                        <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" name="dob-date" id="dob-date" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <label>Survey</label>
+                                                    @Html.DropDownList("ddlsurveys", new SelectList(@Model.Surveys, "id", "Surveyname", "--select--"), new {@class="form-control" })
+                                                    @Html.Hidden("ddlsurveystext")
+                                                   
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-2">
+
+
+
+                                                <div class="form-group">
+                                                    <label>Clinic</label>
+                                                    
+                                                      @Html.DropDownList("ddlclinics", new SelectList(@Model.Clinics, "clinicID", "clinicName", "--select--"), new { @class = "form-control" })
+                                                    
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-sm-12 pull-right">
+                                            <button id="btnSaveQuick" type="submit" class="pull-right btn btn-success btn-sm  Margin-L-10">Create</button>
+                                            <button id="btnClearQuick" class="pull-right btn btn-cancel btn-sm">Cancel</button>
+                                        </div>
+                               </div>
+}
+
+                                    <div class="tab-pane" id="delete-testpatients">
+                                        <div class="row" id="testpatient-list">
+                                            <div class="col-sm-6">
+                                                <b>Select test patients from below.</b>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a href="#" class="pull-right Margin-L-10">
+                                                    <img src="~/images/refresh-grid-ico.svg" class="refresh-institution-list" alt="Refresh All" height="22" />Refresh List
+                                                </a>
+
+                                                <a href="#" class="pull-right Margin-L-10">
+                                                    <img src="~/images/refresh-grid-ico.svg" class="refresh-institution-list" alt="Mark NOT Test Patients" height="22" />Mark NOT Test Patients
+                                                </a>
+                                                <a href="#" class="pull-right Margin-L-10">
+                                                    <img src="~/images/delete-ico.svg" class="refresh-institution-list" alt="Delete Records" height="22" />Delete Records
+                                                </a>
+
+                                                <a href="#" class="pull-right Margin-L-10">
+                                                    <img src="~/images/refresh-grid-ico.svg" class="refresh-institution-list" alt="Select All Records" height="22" />Select All
+                                                </a>
+                                            </div>
+                                        </div><!--row end-->
+
+
+
+                                        <div class="table-responsive">
+
+                                            <table class="table table-striped apppointment-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>MRN</th>
+                                                        <th>Name</th>
+                                                        <th>DOB</th>
+
+                                                        <th>Appt Date & Time</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+
+                                                        <td>
+                                                            <input type="checkbox" name="chk_selectPatient1" value="0" />
+                                                        </td>
+                                                        <td>99912345679</td>
+                                                        <td>
+                                                            TestShortBreastColon, Mary
+                                                        </td>
+                                                        <td>
+                                                            04/05/1989
+                                                        </td>
+
+                                                        <td>01/06/20016 10:10:08 AM</td>
+
+                                                    </tr>
+                                                    <tr>
+
+                                                        <td>
+                                                            <input type="checkbox" name="chk_selectPatient1" value="0" />
+                                                        </td>
+                                                        <td>99912345679</td>
+                                                        <td>
+                                                            TestShortBreastColon, Mary
+                                                        </td>
+                                                        <td>
+                                                            04/05/1989
+                                                        </td>
+
+                                                        <td>01/06/20016 10:10:08 AM</td>
+
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <td>
+                                                            <input type="checkbox" name="chk_selectPatient1" value="0" />
+                                                        </td>
+                                                        <td>99912345649</td>
+                                                        <td>
+                                                            TestShortBreastColon, Nicole
+                                                        </td>
+                                                        <td>
+                                                            04/05/1989
+                                                        </td>
+
+                                                        <td>01/06/20016 10:10:08 AM</td>
+
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <td>
+                                                            <input type="checkbox" name="chk_selectPatient1" value="0" />
+                                                        </td>
+                                                        <td>99912345679</td>
+                                                        <td>
+                                                            TestShortBreastColon, Paige
+                                                        </td>
+                                                        <td>
+                                                            04/05/1989
+                                                        </td>
+
+                                                        <td>01/06/20016 10:10:08 AM</td>
+
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <td>
+                                                            <input type="checkbox" name="chk_selectPatient1" value="0" />
+                                                        </td>
+                                                        <td>99912345679</td>
+                                                        <td>
+                                                            TestShortBreastColon, Anna
+                                                        </td>
+                                                        <td>
+                                                            04/05/1989
+                                                        </td>
+
+                                                        <td>01/06/20016 10:10:08 AM</td>
+
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <td>
+                                                            <input type="checkbox" name="chk_selectPatient1" value="0" />
+                                                        </td>
+                                                        <td>99912345679</td>
+                                                        <td>
+                                                            TestShortBreastColon, Myra
+                                                        </td>
+                                                        <td>
+                                                            04/05/1989
+                                                        </td>
+
+                                                        <td>01/06/20016 10:10:08 AM</td>
+
+                                                    </tr>
+
+
+
+
+                                                </tbody>
+                                            </table><!--family history end here-->
+                                        </div>
+
+
+
+
+                                    </div><!--row end-->
+                                </div><!--container end-->
+
+                            </div>
+                            <!-- /#page-content-wrapper -->
+                        </div>
+
+                    </div>
+                </div><!--row end-->
+            </div><!--container end-->
+
+        </div><!--container fluid end-->
+    </div> <!-- /container area end -->
+
+</div>
+<script type="text/javascript">
+
+   
+</script>

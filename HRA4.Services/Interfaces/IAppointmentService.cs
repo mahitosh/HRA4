@@ -27,5 +27,7 @@ namespace HRA4.Services.Interfaces
         VM.RiskScore RiskScore(int apptid, string MRN);
         VM.RiskScore RiskCalculateAndRunAutomation(int apptid, string MRN);
         VM.AuditReports GetAuditReports(string MRN, string startdate, string enddate);
+        void CreateTestPatients(int NoOfPatients, string dtAppointmentDate, int surveyID, string SurveyName, int clinicID);
+        VM.TestPatient LoadCreateTestPatients();
     }
 }

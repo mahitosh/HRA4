@@ -117,3 +117,13 @@ $('.BreastCancerAccordion .panel-heading').on('click', function () {
     $('.BreastCancerAccordion .panel-heading').removeClass('activeAccordion');
     $(this).addClass('activeAccordion');
  });
+//hide add MRI link
+function hideMRI(){	
+	$(".add-MRI").hide();
+}
+
+//show add MRI link
+function showMRI(){	
+	$(".add-MRI").show();
+}
+	
