@@ -86,7 +86,7 @@
                                     <div class="col-sm-6">
                                         Medical Record Number
 
-                                        <input type="text" name="txtMRNForReport" id="txtMRNForReport" />
+                                        <input type="text" name="txtMRNForReport" id="txtMRNForReport" value="@ViewBag.PostedMRN" />
 
                                         <button type="submit" class="btn btn-success">Run Report</button>
                               
@@ -148,7 +148,9 @@
 
                                                 </tbody>
                                             </table><!--V3 Table  end here-->
+                                            <div id="divRecordStatusv3" style="color:red;text-align:center">@ViewBag.RecordStatusV3</div>
                                         </div>
+
                                     </div>
 
 
@@ -195,14 +197,16 @@
                                                     }
                                                 </tbody>
                                             </table><!--family history end here-->
+                                            <div id="divRecordStatusv2" style="color:red;text-align:center">@ViewBag.RecordStatusV2</div>
                                         </div>
 
 
 
 
                                     </div><!--row end-->
+                                 
                                 </div><!--container end-->
-                               
+                                
                             </div>
                             <!-- /#page-content-wrapper -->
                         </div>
@@ -211,5 +215,24 @@
              </div><!--container end-->
         </div><!--container fluid end-->
     </div> <!-- /container area end -->
-    
+    <div id="divgrid"></div>
 </div>
+<script type="text/javascript">
+
+    window.onbeforeunload = function (event) {
+        $("#divgrid").fadeIn();
+        var opts = {
+            lines: 12, // The number of lines to draw
+            length: 7, // The length of each line
+            width: 4, // The line thickness
+            radius: 10, // The radius of the inner circle
+            color: '#000', // #rgb or #rrggbb
+            speed: 1, // Rounds per second
+            trail: 60, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false // Whether to use hardware acceleration
+        };
+        var target = document.getElementById('divgrid');
+        var spinner = new Spinner(opts).spin(target);
+    };
+</script>

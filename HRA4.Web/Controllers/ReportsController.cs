@@ -20,6 +20,15 @@ namespace HRA4.Web.Controllers
         {
             var MRN = Convert.ToString(frm["txtMRNForReport"]);
             var models = _applicationContext.ServiceContext.AppointmentService.GetAuditReports(MRN, "1/19/1950 8:05:21 PM", DateTime.Now.ToString());
+            ViewBag.PostedMRN=MRN;
+            if(models.RSAuditMrnAccessV2Entry.Count>0)
+            ViewBag.RecordStatusV2 ="";
+            else
+                ViewBag.RecordStatusV2 = "No Records Found";
+            if (models.RSAuditMrnAccessV3Entry.Count>0)
+            ViewBag.RecordStatusV3 = "";
+            else
+                ViewBag.RecordStatusV3 = "No Records Found";
             return View("AuditReports", models);  
                                                         
         }
