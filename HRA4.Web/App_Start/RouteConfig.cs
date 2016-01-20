@@ -23,6 +23,7 @@ namespace HRA4.Web
                url: "{controller}/{action}/{id}",
                defaults: new { controller = "Institution", action = "InstitutionDashboard", id = UrlParameter.Optional }
            );
+            
         }
     }
 }

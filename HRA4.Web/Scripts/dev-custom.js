@@ -1,5 +1,6 @@
 ﻿
 $(document).ready(function () {
+    $("#divNotification").css("display", "none");
     $('#menu ul').hide();
     $("ul#menu").off("click");
     $("#tblInstitutions").tablesorter();

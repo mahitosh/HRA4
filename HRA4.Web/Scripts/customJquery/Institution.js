@@ -146,7 +146,7 @@ function UploadXml() {
     var xmlType = $("#hidType").val();  
     var globalGetJSONPath = $("#hidUploadUrl").val();
     globalGetJSONPath = globalGetJSONPath + '?mrn=' + strMrn + '&apptId=' + apptId;
-    alert(globalGetJSONPath);
+    //alert(globalGetJSONPath);
     var formData = new FormData();
     var file = $("#txtFileUpload")[0].files[0];    
     formData.append("file", file);
@@ -159,16 +159,48 @@ function UploadXml() {
         async: true,
         contentType: false,
         processData: false,
-        success: function (data) {
-            //alert('hi');
+        success: function (data) {            
             $("#upload-xml").modal('hide');
-
+            
+            $("#divNotification").text('File uploaded successfully');
+            $("#divNotification").fadeToggle("slow");
+            $("#divNotification").fadeToggle("slow");
         }
     }).always(function (Data) {
 
     });
 }
 /* ===================Xml Upload================== */
+
+/*=======Delete Appointment=======*/
+function DeleteAppointment()
+{
+  //  alert('delete');    
+    var apptId = $("#hidAppid").val();    
+    var globalGetJSONPath = $("#hidUploadUrl").val();
+    globalGetJSONPath = globalGetJSONPath + '?apptId=' + apptId;
+    //alert(globalGetJSONPath); 
+
+    $.ajax({
+        type: "Get",
+        url: globalGetJSONPath,  
+        async: true,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            $("#confirm-xml").modal('hide');
+            $("#divNotification").text('Appointment deleted successfully');
+            $("#divNotification").fadeToggle("slow");
+            $("#divNotification").fadeToggle("slow");
+            //@Url.Action("FilteredInstitution", "Institution")
+            SearchAppointment('/Institution/FilteredInstitution');
+        }
+    }).always(function (Data) {
+
+    });
+
+}
+/*=======Delete Appointment=======*/
 
 
 /*======Start RiskCalculation logic ============ */
