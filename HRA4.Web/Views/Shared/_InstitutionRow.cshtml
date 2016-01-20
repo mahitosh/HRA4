@@ -11,6 +11,7 @@
     }
 
     <div class="col-sm-12 quick-add-links">
+        
         <span onclick="NewDocument('@Url.Action("NewDocument", "Institution")','@Model.MRN.ToString()', '@Model.Id.ToString()');">
             <a href="#" data-toggle="modal" data-target="#schedule-new-doc-modal">
                 <img src="~/images/new-doc-ico.svg" alt="New Document" width="30" height="30" title="New Document" /> New Document
