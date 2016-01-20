@@ -1,4 +1,4 @@
-﻿
+﻿@model HRA4.ViewModels.AuditReports
 @{
     ViewBag.Title = "AuditReports";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -81,13 +81,17 @@
                                 </div>
                                 <div class="clear-float row"><hr class="hr-style Margin-TB-10" /></div>
                                 <div class="row">
+@using (Html.BeginForm("GetReports", "Reports", FormMethod.Post))
+{
                                     <div class="col-sm-6">
                                         Medical Record Number
 
-                                        <input type="text" id="txtMRNForReport" />
+                                        <input type="text" name="txtMRNForReport" id="txtMRNForReport" />
 
-                                        <button type="button" class="btn btn-success">Run Report</button>
+                                        <button type="submit" class="btn btn-success">Run Report</button>
+                              
                                     </div>
+}
 
                                 </div><!--row end-->
 
@@ -127,90 +131,21 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>01/06/20016 10:10:08 AM</td>
-                                                        <td>
-                                                            admin
-                                                        </td>
-                                                        <td>
-                                                            UNIT001
-                                                        </td>
+                                                    @foreach (var item in @Model.RSAuditMrnAccessV3Entry)
+                                                    {
+                                                        <tr>
+                                                            <td>@Html.DisplayFor(modelItem => item.timestamp)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.userName)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.MRN)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.apptID)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.storedProcedure)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.hraAttributeValueList)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.relativeID)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.hraObject)</td>
+                                                        </tr>
 
-                                                        <td>
-                                                            233
-                                                        </td>
-                                                        <td>sp_risk_calculation</td>
-                                                        <td>
-                                                            12,34,55,66
-                                                        </td>
-                                                        <td>23</td>
-                                                        <td>
-                                                            Risk Entity
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>01/06/20016 10:10:08 AM</td>
-                                                        <td>
-                                                            admin
-                                                        </td>
-                                                        <td>
-                                                            UNIT001
-                                                        </td>
+                                                    }
 
-                                                        <td>
-                                                            233
-                                                        </td>
-                                                        <td>sp_risk_calculation</td>
-                                                        <td>
-                                                            12,34,55,66
-                                                        </td>
-                                                        <td>23</td>
-                                                        <td>
-                                                            Risk Entity
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>01/06/20016 10:10:08 AM</td>
-                                                        <td>
-                                                            admin
-                                                        </td>
-                                                        <td>
-                                                            UNIT001
-                                                        </td>
-
-                                                        <td>
-                                                            233
-                                                        </td>
-                                                        <td>sp_risk_calculation</td>
-                                                        <td>
-                                                            12,34,55,66
-                                                        </td>
-                                                        <td>23</td>
-                                                        <td>
-                                                            Risk Entity
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>01/06/20016 10:10:08 AM</td>
-                                                        <td>
-                                                            admin
-                                                        </td>
-                                                        <td>
-                                                            UNIT001
-                                                        </td>
-
-                                                        <td>
-                                                            233
-                                                        </td>
-                                                        <td>sp_risk_calculation</td>
-                                                        <td>
-                                                            12,34,55,66
-                                                        </td>
-                                                        <td>23</td>
-                                                        <td>
-                                                            Risk Entity
-                                                        </td>
-                                                    </tr>
                                                 </tbody>
                                             </table><!--V3 Table  end here-->
                                         </div>
@@ -240,131 +175,24 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>01/06/20016 10:10:08 AM</td>
-                                                        <td>01/06/20016 10:16:08 AM</td>
-                                                        <td>
-                                                            admin
-                                                        </td>
-                                                        <td>
-                                                            LAPTOP-0190
-                                                        </td>
-                                                        <td>99912345679</td>
-                                                        <td>
-                                                            233
-                                                        </td>
-                                                        <td>Accessed the Appointment</td>
-                                                        <td>
-                                                            RiskApps3
-                                                        </td>
-                                                        <td> tbl_appointment</td>
-                                                        <td>
-                                                            risk_model_desc
-                                                        </td>
-                                                        <td>
-                                                            Risk Model Description
-                                                        </td>
-                                                        <td>
-                                                            BRCA 10%
-                                                        </td>
-                                                        <td>
-                                                            BRCA 12%
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>01/06/20016 10:10:08 AM</td>
-                                                        <td>01/06/20016 10:16:08 AM</td>
-                                                        <td>
-                                                            admin
-                                                        </td>
-                                                        <td>
-                                                            LAPTOP-0190
-                                                        </td>
-                                                        <td>99912345679</td>
-                                                        <td>
-                                                            233
-                                                        </td>
-                                                        <td>Accessed the Appointment</td>
-                                                        <td>
-                                                            RiskApps3
-                                                        </td>
-                                                        <td> tbl_appointment</td>
-                                                        <td>
-                                                            risk_model_desc
-                                                        </td>
-                                                        <td>
-                                                            Risk Model Description
-                                                        </td>
-                                                        <td>
-                                                            BRCA 10%
-                                                        </td>
-                                                        <td>
-                                                            BRCA 12%
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>01/06/20016 10:10:08 AM</td>
-                                                        <td>01/06/20016 10:16:08 AM</td>
-                                                        <td>
-                                                            admin
-                                                        </td>
-                                                        <td>
-                                                            LAPTOP-0190
-                                                        </td>
-                                                        <td>99912345679</td>
-                                                        <td>
-                                                            233
-                                                        </td>
-                                                        <td>Accessed the Appointment</td>
-                                                        <td>
-                                                            RiskApps3
-                                                        </td>
-                                                        <td> tbl_appointment</td>
-                                                        <td>
-                                                            risk_model_desc
-                                                        </td>
-                                                        <td>
-                                                            Risk Model Description
-                                                        </td>
-                                                        <td>
-                                                            BRCA 10%
-                                                        </td>
-                                                        <td>
-                                                            BRCA 12%
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>01/06/20016 10:10:08 AM</td>
-                                                        <td>01/06/20016 10:16:08 AM</td>
-                                                        <td>
-                                                            admin
-                                                        </td>
-                                                        <td>
-                                                            LAPTOP-0190
-                                                        </td>
-                                                        <td>99912345679</td>
-                                                        <td>
-                                                            233
-                                                        </td>
-                                                        <td>Accessed the Appointment</td>
-                                                        <td>
-                                                            RiskApps3
-                                                        </td>
-                                                        <td> tbl_appointment</td>
-                                                        <td>
-                                                            risk_model_desc
-                                                        </td>
-                                                        <td>
-                                                            Risk Model Description
-                                                        </td>
-                                                        <td>
-                                                            BRCA 10%
-                                                        </td>
-                                                        <td>
-                                                            BRCA 12%
-                                                        </td>
-                                                    </tr>
-
+                                                    @foreach (var item in @Model.RSAuditMrnAccessV2Entry)
+                                                    {
+                                                        <tr>
+                                                            <td>@Html.DisplayFor(modelItem => item.startTime)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.endTime)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.createdBy)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.machineName)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.MRN)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.apptid)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.message)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.application)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.table)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.field)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.fieldMeaning)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.oldValue)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.newValue)</td>
+                                                        </tr>
+                                                    }
                                                 </tbody>
                                             </table><!--family history end here-->
                                         </div>
@@ -374,13 +202,14 @@
 
                                     </div><!--row end-->
                                 </div><!--container end-->
-
+                               
                             </div>
                             <!-- /#page-content-wrapper -->
                         </div>
                     </div>
                 </div><!--row end-->
-            </div><!--container end-->
+             </div><!--container end-->
         </div><!--container fluid end-->
     </div> <!-- /container area end -->
+    
 </div>
