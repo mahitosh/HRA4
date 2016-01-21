@@ -117,7 +117,7 @@ namespace RiskApps3.Controllers
 
             selectedRelative = (Person)activePatient;
 
-            if (HttpContext.Current == null)
+            if (HttpContext.Current == null) // Silicus: LoadObject has Async calls.
             activePatient.LoadObject();
 
             if (NewActivePatient != null)

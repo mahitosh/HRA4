@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HtmlTemplate.cs" />
+    <Compile Include="PatientDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SuperAdmin.cs" />
     <Compile Include="Institution.cs" />

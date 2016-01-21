@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Appointment.cs" />
     <Compile Include="AuditReports.cs" />
+    <Compile Include="HighRisk.cs" />
     <Compile Include="HraXmlFile.cs" />
     <Compile Include="Clinic.cs" />
     <Compile Include="RiskScore.cs" />
