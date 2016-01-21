@@ -14,6 +14,7 @@ using HRA4.Mapper;
 using HRA4.Repositories.Interfaces;
 using HRA4.Entities;
 using HRA4.Utilities;
+using HRA4.Services;
 using System.Web;
 using log4net;
 using WeifenLuo.WinFormsUI.Docking;
@@ -29,6 +30,7 @@ using System.Xml.XPath;
 using System.Runtime.Serialization;
 using System.Xml.Linq;
 using System.Drawing;
+using System.Data.SqlClient;
  
 namespace HRA4.Services
 {
@@ -96,20 +98,27 @@ namespace HRA4.Services
             if (InstitutionId > 0)
             {
                 //SetUserSession();
-
+                
                 _institutionId = InstitutionId;
 
-                var list = new RAM.ClinicList();
-                list.user_login = SessionManager.Instance.ActiveUser.userLogin;
-                list.BackgroundListLoad();
-
-                clinics = list.FromRClinicList();
+                clinics = GetClinicList();
 
                 return clinics;
             }
             return new List<VM.Clinic>();
 
 
+        }
+
+        private static List<VM.Clinic> GetClinicList()
+        {
+            List<VM.Clinic> clinics = new List<VM.Clinic>();
+            var list = new RAM.ClinicList();
+            list.user_login = SessionManager.Instance.ActiveUser.userLogin;
+            list.BackgroundListLoad();
+
+            clinics = list.FromRClinicList();
+            return clinics;
         }
 
 
@@ -522,5 +531,29 @@ namespace HRA4.Services
 
 
         }
+
+
+        #region TestPatients
+
+        public VM.TestPatient LoadCreateTestPatients()
+        {
+            VM.TestPatient tp = new VM.TestPatient();
+            TestPatientManager Tpm=new TestPatientManager();
+            tp.Surveys = Tpm.GetSurveys();
+            tp.Clinics = GetClinicList();
+            tp.InitateTestPatients = Tpm.InitiateTestPatients();
+
+            return tp;
+                         
+        }
+
+        public void CreateTestPatients(int NoOfPatients, string dtAppointmentDate, int surveyID,string SurveyName,int clinicID)
+        {
+            TestPatientManager Pm = new TestPatientManager();
+            Pm.CreateTestPatients(NoOfPatients, dtAppointmentDate, surveyID, SurveyName, clinicID);
+
+        }
+
+        #endregion
     }
 }

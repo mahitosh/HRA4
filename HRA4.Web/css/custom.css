@@ -112,6 +112,7 @@ li.nav-logout a:hover, li.nav-logout a:focus{color:#ffffff!important;text-decora
 .nav .open > a.help-dropdown, .nav .open > a.help-dropdown:focus, .nav .open > a.help-dropdown:hover{background:transparent;}
 li.nav-help{padding-top:21px!important;padding-bottom:5px}
 
+
 /*sidebar
 #bs-example-navbar-collapse-1 .navbar-toggle:before{font-family: FontAwesome; content: "\f138";font-size: 12px;}*/
 
@@ -154,26 +155,31 @@ a.left-title:hover{text-decoration:underline;}
 .nav-tabs a:hover{text-decoration:none!important;}
 .nav-tabs .tab-refresh{ border: 0!important;padding: 9px 0;position:absolute; right: -4px; top: 0; z-index: 1000;cursor: pointer!important;}
 .tab-content{margin-top: 15px;}
-.tab-content > .tab-pane{/*padding-top:10px;*/border: solid 1px #dfdfdf;}
+.tab-content > .tab-pane, .tab-pane{/*padding-top:10px;*/border: solid 1px #dfdfdf;}
 #cancer-risk-factor .tab-pane{border:none;}
 .nav-tabs > li > a:focus{background: transparent}
 #CancerRiskChild{border-bottom:solid 2px #e6e6e6;}
 #CancerRiskChild li a{font-size:1em;border-bottom: 3px solid transparent;padding-bottom: 3px;}
 #CancerRiskChild > li.active > a, #CancerRiskChild > li.active > a:focus, #CancerRiskChild > li.active > a:hover, #CancerRiskChild > li > a:hover{border-bottom:solid 3px #53afee;padding-bottom: 3px;}
+
 /*appointment table css*/
 .apppointment-table thead th, .data-display-table thead th{background-color: #53afee;color:#ffffff;border:none;padding:12px 3px;font-size:1.1em;position:relative;}
 .apppointment-table tbody tr, .apppointment-table tbody tr:nth-of-type(2n+1), .data-display-table tbody tr, .data-display-table tbody tr:nth-of-type(2n+1)
 
 {background-color: #d5ecfc;}
 .apppointment-table tbody td{ border-top: 1px solid #99c1dd!important;vertical-align: middle!important;padding:8px 3px!important;}
-li.add-appointment a{border:none; padding: 0px 0 0 10px;margin-right:0;}
-li.add-appointment a:hover{border:none;}
+li.add-appointment a, li.add-MRI a{border:none; padding: 0px 0 0 10px;margin-right:0;}
+li.add-appointment a:hover, li.add-MRI a:hover{border:none;}
 #dashboardmodal{margin-top:300px;}
 #dashboardmodal a{color:#333;text-decoration:underline}
-.apppointment-table th:after, .apppointment-table th.headerSortUp:after, .apppointment-table th.headerSortDown:after { cursor: pointer;font-weight: bold;padding-left: 5px;margin-left: -3px;font-family: FontAwesome; content: "\f0dc";font-size: 12px; } 
-.apppointment-table th.headerSortUp:after {content: "\f0de";  } 
+.apppointment-table th:after, .apppointment-table th.headerSortUp:after, .apppointment-table th.headerSortDown:after,
+#v3-report .apppointment-table th:after, #v3-report .apppointment-table th.headerSortUp:after, #v3-report .apppointment-table th.headerSortDown:after, #v2-report .apppointment-table th:after, #v2-report .apppointment-table th.headerSortUp:after, #v2-report .apppointment-table th.headerSortDown:after
+ { cursor: pointer;font-weight: bold;padding-left: 5px;margin-left: -3px;font-family: FontAwesome; content: "\f0dc";font-size: 12px; } 
+.apppointment-table th.headerSortUp:after{content: "\f0de";  } 
 .apppointment-table th.headerSortDown:after {content: "\f0dd";  } 
 .apppointment-table th:last-child::after, .apppointment-table th.headerSortUp:last-child::after, .apppointment-table th.headerSortDown:last-child::after {content: "";}
+/*for all td sorting table*/ 
+.all-cell-sorting-table th:after, .aall-cell-sorting-table th.headerSortUp:after, .all-cell-sorting-table th.headerSortDown:after{content: "\f0dc"!important;} 
 
 /*fixed table header*/
 .table-fixed thead {width: 97%;}
@@ -194,6 +200,7 @@ li.add-appointment a:hover{border:none;}
 .schedule-more-detail .fa{color:#53afee;Font-size:1.2em;}
 #page-content-wrapper a:hover{text-decoration:underline;}
 #page-content-wrapper .form-control{height:30px;padding:3px 12px;}
+#page-content-wrapper textarea.form-control{height:auto;}
 #page-content-wrapper .inner-addon .glyphicon{padding:7px 10px;}
 
 /*Institution list css*/
@@ -207,18 +214,23 @@ img.add-istitution-list{margin:-3px 4px 0 30px;}
 #institution-list .dropdown-menu{min-width: 260px;}
 #institution-list label{font-size:14px;}
 
+/*Survey Editor*/
+#SurveyEditor .checkbox{border:none;margin: 0px;} 
+
+
 /*quick add div*/
 .quick-add-inner-div{width:98%;height:auto;margin:1%;background:#fff;padding:1.5%;}
 .quick-add-links{font-size:1em;}
 .quick-add-links a{margin-right:12px;}
 .quick-add-links a:last-child{margin-right:0px;}
+
 /*all modal popup*/
 .modal-header{padding: 10px 15px; background-color: #53afee;color: #fff;border-radius:5px 5px 0 0;}
 .modal-title{font-weight:bold;}
 #add-edit-MRN .modal-dialog{width:400px;}
 .modal-dialog{margin-top:200px;}
-#schedule-new-doc-modal .modal-dialog, #pedigree-diagram-modal .modal-dialog, #risk-calc-display-modal .modal-dialog, #about-us-moadal .modal-dialog{width:700px;margin-top:30px;}
-#pedigree-diagram-modal .view-doc-content{height:630px;}
+#schedule-new-doc-modal .modal-dialog, #pedigree-diagram-modal .modal-dialog, #risk-calc-display-modal .modal-dialog, #about-us-moadal .modal-dialog, #BRCA-pedigree-diagram-modal .modal-dialog, #LifetimeCancer-pedigree-diagram-modal .modal-dialog{width:700px;margin-top:30px;}
+#pedigree-diagram-modal .view-doc-content, #BRCA-pedigree-diagram-modal .view-doc-cont, #LifetimeCancer-pedigree-diagram-modal .view-doc-cont{height:630px;}
 #about-us-moadal .modal-dialog ul{Height:300px;overflow:auto;}
 #about-us-moadal .modal-dialog ul li{line-height:25px;}
 
@@ -244,22 +256,26 @@ img.add-istitution-list{margin:-3px 4px 0 30px;}
 .BreastCancerAccordion .panel-heading, .ColorectalCancerRiskAccordion .panel-heading{padding: 10px 20px 8px 20px;}
 .BreastCancerAccordion .panel-title, .ColorectalCancerRiskAccordion .panel-title{font-size: 14px;}
 .BreastCancerAccordion .panel-body, .ColorectalCancerRiskAccordion .panel-body {padding: 15px;font-size: 12px;}
-.BreastCancerAccordion .accordion-toggle .glyphicon{margin-right:5px;}
-.BreastCancerAccordion .activeAccordion, .BreastCancerAccordion .panel-heading:hover{background-color:#52aeef;color:#fff;}
+.BreastCancerAccordion .accordion-toggle .glyphicon, .ColorectalCancerRiskAccordion .accordion-toggle .glyphicon{margin-right:5px;}
+.BreastCancerAccordion .activeAccordion, .BreastCancerAccordion .panel-heading:hover, .ColorectalCancerRiskAccordion .activeAccordion, .ColorectalCancerRiskAccordion .panel-heading:hover
+{background-color:#52aeef;color:#fff;}
 .panel-heading a:focus, .panel-heading a:hover{text-decoration:none!important;}
-#accordion label{font-size: 13px;}
-#accordion .input-small{width:35%!important;}
+#accordion label, #accordion1 label{font-size: 13px;}
+#accordion .input-small, #accordion1 .input-small{width:35%!important;}
 #accordion select{min-width:50%;}
-#accordion .form-inline div{padding-right:0;}
+#accordion1 select{min-width:30%;}
+#accordion .form-inline div, #accordion1 .form-inline div{padding-right:0;}
+
 /*common classes*/
 a{cursor: pointer;}
 a:focus{outline:none;}
 a:hover{text-decoration: none;}
 .btn{border-radius:0;}
 .btn-sm{padding: 2px 10px;}
+.Padding-15{padding:15px;}
 .Padding-LR-0{padding-left:0;padding-right: 0;}
 .Padding-LR-10{padding-left:10px;padding-right: 10px;}
-.Padding-L-0{padding-left: 0;}
+.Padding-L-0{padding-left: 0!important;}
 .Padding-R-0{padding-right: 0;}
 .Padding-R-15{padding-right: 15px!important;}
 .Padding-T-10{padding-top: 10px;}
@@ -274,7 +290,9 @@ a:hover{text-decoration: none;}
 .Margin-T-20{margin-top:20px}
 .Margin-B-10{margin-bottom:10px}
 .Margin-L-10{margin-left:10px}
+.Margin-L-15{margin-left:15px}
 .Margin-R-10{margin-right:10px}
+.Margin-TB-5{margin-top: 5px;margin-bottom:5px;}
 .Margin-TB-10{margin-top: 10px;margin-bottom:10px;}
 .height-30{height:30px;}
 .Margin-0{margin:0!important;}
@@ -293,6 +311,9 @@ small{font-size:0.7em;}
 
 .highlight-row{background-color:#a6d2f0!important;}
 .fixed-height-300{max-height:300px;overflow:auto;height:auto;}
+
+.no-border{border:0px!important;}
+
 /*all buttos*/
 .search-group{box-shadow: 1px 1px 4px #ccc;line-height:27px;}
 .search-btn, .add-btn{background-color: #53afee;border-radius: 0;border:none;color: white;font-size:1.1em!important;padding:4px 12px;}
@@ -308,6 +329,9 @@ small{font-size:0.7em;}
 .btn-cancel{background-color: #e6f3d2;border-color: transparent;color:#6b7a55;}
 .btn-cancel:hover{background-color: #ddebc7;border-color: transparent;color:#6b7a55;}
 .slide-save, .slide-cancel{}
+/*multiselct */
+.multiselect {border-radius:4px;padding:4px 10px;}
+.multiselect-container li.active a, .multiselect-container li.active a:hover{background-color:#f1f1f1;color:#333333;}
 
 /*footer css*/
 footer{position:fixed; box-shadow: 10px 0 6px #ddd;background-color:#fff;width:100%;z-index:1000;bottom:0;right:0;}

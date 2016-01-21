@@ -1,5 +1,13 @@
 ﻿
 $(document).ready(function () {
+    var txt = $('#ddlsurveys option:selected').text();
+    $("#ddlsurveystext").val(txt);
+
+    $("#ddlsurveys").change(function () {
+        var txt = $('#ddlsurveys option:selected').text();
+        $("#ddlsurveystext").val(txt);
+    });
+
     $("#divNotification").css("display", "none");
     $('#menu ul').hide();
     $("ul#menu").off("click");
@@ -30,6 +38,8 @@ $(document).ready(function () {
         });
 
     });
+
+
 
 
 });

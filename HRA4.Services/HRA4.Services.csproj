@@ -61,11 +61,13 @@
     <Compile Include="Interfaces\IRiskAppServices.cs" />
     <Compile Include="Interfaces\IServiceContext.cs" />
     <Compile Include="Interfaces\ITemplateService.cs" />
+    <Compile Include="Interfaces\ITestPatientManager.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RiskappService.cs" />
     <Compile Include="ServiceContext.cs" />
     <Compile Include="TemplateService.cs" />
+    <Compile Include="TestPatientManager.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
