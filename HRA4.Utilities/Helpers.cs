@@ -9,6 +9,8 @@ using System.Data;
 using log4net;
 using System.Web.Mvc;
 using System.Web;
+using System.Drawing;
+using RiskApps3.Utilities;
 namespace HRA4.Utilities
 {
     public class Helpers
@@ -57,6 +59,27 @@ namespace HRA4.Utilities
             }
         }
 
+        public static string ShowPedigreeImage(RiskApps3.Model.PatientRecord.Patient proband)
+        {
+            int Width = 625;
+            int Height = 625;
+            PedigreeGenerator pg = new PedigreeGenerator(Width, Height, proband);
+            Bitmap bmp;
+            if (proband != null)
+            {
+                bmp = pg.GeneratePedigreeImage(proband);
+            }
+            else
+            {
+                bmp = pg.GeneratePedigreeImage();
+            }
+            System.IO.MemoryStream stream = new System.IO.MemoryStream();
+            bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+            var base64Data = Convert.ToBase64String(stream.ToArray());
+
+            return base64Data;
+        }
+
         private static string[] ParseSqlStatementBatch(string sqlStatementBatch)
         {
             // split the sql into seperate batches by dividing on the GO statement
@@ -82,6 +105,10 @@ namespace HRA4.Utilities
             instConfiguration = instConfiguration.Replace("[PWD]", ConfigurationSettings.InstitutionPassword);
             return instConfiguration;
         }
+
+
+
+
 
         /*
         protected virtual string RenderPartialView(string partialViewName, object model)

@@ -60,5 +60,12 @@ namespace HRA4.Services
             get { return new TemplateService(_repositoryFactory, _hraSessionManager); }
         }
 
+        public IRiskClinicServices RiskClinicServices
+        {
+            get { return new RiskClinicServices(_repositoryFactory, _hraSessionManager); }
+        }
+
+
+
     }
 }
