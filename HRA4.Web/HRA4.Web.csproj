@@ -328,6 +328,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\sidebar_menu.js" />
     <Content Include="Scripts\spin.min.js" />
+    <Content Include="Scripts\TestPatient.js" />
     <Content Include="Scripts\SudoNotify\jquery.sudo-notify.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.js" />
     <Content Include="Scripts\tinymce\langs\en.js" />
@@ -742,6 +743,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DocumentEditorController.cs" />
+    <Compile Include="Controllers\HighRiskFollowupController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InstitutionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -785,6 +787,8 @@
     <Content Include="Views\Shared\EditorTemplates\tinymce_full.cshtml" />
     <Content Include="Views\Institution\_NewDocument.cshtml" />
     <Content Include="Views\Institution\_ShowHtmlDocument.cshtml" />
+    <Content Include="Views\HighRiskFollowup\Index.cshtml" />
+    <Content Include="Views\HighRiskFollowup\_HighRiskLifetimeBreastGrid.cshtml" />
     <Content Include="Views\Reports\AuditReports.cshtml" />
     <Content Include="Views\TestPatient\TestPatients.cshtml" />
     <Content Include="Views\Error\BadRequest.cshtml" />

@@ -17,6 +17,7 @@ namespace HRA4.Web.Controllers
         {
             TestPatient tp = new TestPatient();
             tp = _applicationContext.ServiceContext.AppointmentService.LoadCreateTestPatients();
+            tp.InitateTestPatients = null;
             ViewBag.TodaysDate = DateTime.Now.ToString("MM/dd/yyyy");
             return View(tp);
         }
@@ -31,6 +32,34 @@ namespace HRA4.Web.Controllers
             _applicationContext.ServiceContext.AppointmentService.CreateTestPatients(NoOfAppointments,date,surveyid,surveynm,clinicid);
 
             return RedirectToAction("TestPatients");
+        }
+        public ActionResult DeleteTestPatientsByapptids(string ids)
+        {
+            string[] stringOfapptids = ids.Split(',');
+            int[] apptids = Array.ConvertAll(stringOfapptids,int.Parse);
+            _applicationContext.ServiceContext.AppointmentService.DeleteTestPatientsByapptids(apptids);
+            TestPatient tp = new TestPatient();
+            tp = _applicationContext.ServiceContext.AppointmentService.LoadCreateTestPatients();
+            return PartialView("_DeleteTestPatientGrid",tp);
+
+
+        }
+        public ActionResult ExcludeTestPatientsByapptids(string ids)
+        {
+            string[] stringOfapptids = ids.Split(',');
+            int[] apptids = Array.ConvertAll(stringOfapptids, int.Parse);
+            _applicationContext.ServiceContext.AppointmentService.ExcludeTestPatientsByapptids(apptids);
+            TestPatient tp = new TestPatient();
+            tp = _applicationContext.ServiceContext.AppointmentService.LoadCreateTestPatients();
+            return PartialView("_DeleteTestPatientGrid", tp);
+            
+        }
+        public ActionResult RefreshTestPatients()
+        {
+            TestPatient tp = new TestPatient();
+            tp = _applicationContext.ServiceContext.AppointmentService.LoadCreateTestPatients();
+            return PartialView("_DeleteTestPatientGrid", tp);
+
         }
 
     }

@@ -149,5 +149,27 @@ namespace HRA4.Services
             return Testpatients;
         }
 
+        public void DeleteTestPatients(int[] apptids)
+        {
+            foreach (var item in apptids)
+            {
+                ParameterCollection pc = new ParameterCollection();
+                pc.Add("apptID", item);
+                BCDB2.Instance.RunSPWithParams("sp_deleteWebAppointment", pc);
+            }
+           
+        }
+        public void ExcludeTestPatients(int[] apptids)
+        {
+            foreach (var item in apptids)
+            {
+                ParameterCollection pc = new ParameterCollection();
+                pc.Add("apptID", item);
+                BCDB2.Instance.RunSPWithParams("sp_AddTestPatientExclusion", pc);
+            }
+
+
+        }
+
     }
 }

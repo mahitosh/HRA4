@@ -554,6 +554,17 @@ namespace HRA4.Services
 
         }
 
+        public void DeleteTestPatientsByapptids(int[] apptids)
+        {
+            TestPatientManager Pm = new TestPatientManager();
+            Pm.DeleteTestPatients(apptids);
+        }
+        public void ExcludeTestPatientsByapptids(int[] apptids)
+        {
+            TestPatientManager Pm = new TestPatientManager();
+            Pm.ExcludeTestPatients(apptids);
+
+        }
         #endregion
     }
 }
