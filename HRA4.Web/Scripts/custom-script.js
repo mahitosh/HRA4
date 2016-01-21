@@ -1,6 +1,12 @@
 // JavaScript Document
 $(function() {
 
+$(document).ready(function() {
+    $(".add-MRI").hide();
+});
+
+
+
     //hide datepicker calendar
 $('#dob-date, #edit-app-date').datepicker()//  id with "dob-date" will pop up a datepicker
 	.on('changeDate', function(){ // when the datechanges
@@ -10,6 +16,7 @@ $('#dob-date, #edit-app-date').datepicker()//  id with "dob-date" will pop up a 
         .on('changeDate', function () { // when the datechanges
             $('#dob-date').datepicker('hide');      // hide the datepicker
         });
+
     if ($("#chkbox").is(":checked")) {
         $('#appt-date').datepicker()//  id with "dob-date" will pop up a datepicker
 .on('changeDate', function() { // when the datechanges
@@ -19,15 +26,21 @@ $('#dob-date, #edit-app-date').datepicker()//  id with "dob-date" will pop up a 
 
 
 
+
+
+
     //show tooltip
     $('[data-toggle="tooltip"]').tooltip();
 }); //function end here
+
 
 
 //dashboard popup
  $(window).load(function(){
     $('#dashboardmodal').modal('show');
 });
+
+
 
 
 //hide add appointment link
@@ -40,18 +53,51 @@ function showAppt(){
     $(".add-appointment").show();
 }
 
+
 //for quick edit		
 $(document).ready(function () {
     $(".editmenu").hide();
 });
+
 $("#btnSaveQuick").click(function () {
+
+
+
+
     $(".editmenu").slideUp(100);
 });
 $("#lnkapptment").click(function(){
 	$('#add-edit-MRN').modal('show');	
+
+
+
+
+
+
+
+
+
 	});
+
+
+
+
+//MRN edit content
+	$("#quick_add_MRNdiv").hide();
+	$("#edit-MRN").click( function() {
+		$("#quick_add_MRNdiv").toggle(300);	
+	});
+	$(".close_toggleDiv").click( function(){
+		$("#quick_add_MRNdiv").hide(300);
+	});
+	
+	
+	//multiselect dropdown
+	$('#race-multiselect').multiselect();
+	$("#colo-race-multiselect").multiselect();
     
    
+
 
 
 //timepicker
@@ -60,14 +106,6 @@ $("#lnkapptment").click(function(){
  });
  
 
- 
- 
- 
- 
- 
- 
- 
- 
 
 //for manage user add clinic		
 $(document).ready (function (){
@@ -105,6 +143,7 @@ $(document).ready (function (){
 			$("#change-password-content").slideDown(200);
 	});
 });
+
 //Collapsible panel
 $('.collapse').on('shown.bs.collapse', function(){
 $(this).parent().find(".glyphicon-plus-sign").removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
@@ -117,6 +156,7 @@ $('.BreastCancerAccordion .panel-heading').on('click', function () {
     $('.BreastCancerAccordion .panel-heading').removeClass('activeAccordion');
     $(this).addClass('activeAccordion');
  });
+
 //hide add MRI link
 function hideMRI(){	
 	$(".add-MRI").hide();

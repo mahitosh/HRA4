@@ -93,212 +93,90 @@
 
 
                                 <div class="tab-content row">
-@using (Html.BeginForm("TestPatients", "TestPatient", FormMethod.Post))
-{
-                               <div class="tab-pane active" id="add-testpatients">
-
-                                        <div class="row">
-                                            <div class="col-sm-2">
-                                                <div class="form-group">
-                                                    <label>Number</label>
-                                                    <select id="AppCount" name="AppCount" class="form-control">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>5</option>
-                                                        <option>10</option>
-                                                        <option>20</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <div class="form-group">
-                                                    <label>Appointment Date</label>
-                                                    <div id="DOB" class="inner-addon right-addon form-group">
-                                                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                                                        <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" name="dob-date" id="dob-date" />
+                                    @using (Html.BeginForm("TestPatients", "TestPatient", FormMethod.Post))
+                                    {
+                                        <div class="tab-pane active Padding-15" id="add-testpatients">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label>Number</label>
+                                                        <select id="AppCount" name="AppCount" class="form-control">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>5</option>
+                                                            <option>10</option>
+                                                            <option>20</option>
+                                                        </select>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <div class="form-group">
-                                                    <label>Survey</label>
-                                                    @Html.DropDownList("ddlsurveys", new SelectList(@Model.Surveys, "id", "Surveyname", "--select--"), new {@class="form-control" })
-                                                    @Html.Hidden("ddlsurveystext")
-                                                   
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label>Appointment Date</label>
+                                                        <div id="DOB" class="inner-addon right-addon form-group">
+                                                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                                            <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" name="dob-date" id="dob-date" value="@ViewBag.TodaysDate" />
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label>Survey</label>
+                                                        @Html.DropDownList("ddlsurveys", new SelectList(@Model.Surveys, "id", "Surveyname", "--select--"), new { @class = "form-control" })
+                                                        @Html.Hidden("ddlsurveystext")
 
-                                            <div class="col-sm-2">
-
-
-
-                                                <div class="form-group">
-                                                    <label>Clinic</label>
-                                                    
-                                                      @Html.DropDownList("ddlclinics", new SelectList(@Model.Clinics, "clinicID", "clinicName", "--select--"), new { @class = "form-control" })
-                                                    
+                                                    </div>
                                                 </div>
+
+                                                <div class="col-sm-3">
+
+
+
+                                                    <div class="form-group">
+                                                        <label>Clinic</label>
+
+                                                        @Html.DropDownList("ddlclinics", new SelectList(@Model.Clinics, "clinicID", "clinicName", "--select--"), new { @class = "form-control" })
+
+                                                    </div>
+                                                </div>
+
+
                                             </div>
-
-
+                                            <div class="col-sm-12 pull-right">
+                                                <button id="btnSaveQuick" type="submit" class="pull-right btn btn-success btn-sm  Margin-L-10">Create</button>
+                                                <button id="btnClearQuick" class="pull-right btn btn-cancel btn-sm">Cancel</button>
+                                            </div>
+                                            <div class="clear-float"></div>
                                         </div>
-                                        <div class="col-sm-12 pull-right">
-                                            <button id="btnSaveQuick" type="submit" class="pull-right btn btn-success btn-sm  Margin-L-10">Create</button>
-                                            <button id="btnClearQuick" class="pull-right btn btn-cancel btn-sm">Cancel</button>
-                                        </div>
-                               </div>
-}
+                                    }
 
                                     <div class="tab-pane" id="delete-testpatients">
-                                        <div class="row" id="testpatient-list">
-                                            <div class="col-sm-6">
+                                        <div class="col-sm-12 Padding-T-10" id="testpatient-list">
+                                            <div class="col-md-4 col-sm-12 Padding-L-0">
                                                 <b>Select test patients from below.</b>
                                             </div>
-                                            <div class="col-sm-6">
+                                            <div class="col-md-8 col-sm-12">
                                                 <a href="#" class="pull-right Margin-L-10">
-                                                    <img src="~/images/refresh-grid-ico.svg" class="refresh-institution-list" alt="Refresh All" height="22" />Refresh List
+                                                    <img src="~/images/refresh-grid-ico.svg" class="refresh-institution-list" alt="Refresh All" height="22" width="22" />Refresh List
                                                 </a>
 
                                                 <a href="#" class="pull-right Margin-L-10">
-                                                    <img src="~/images/refresh-grid-ico.svg" class="refresh-institution-list" alt="Mark NOT Test Patients" height="22" />Mark NOT Test Patients
+                                                    <img src="~/images/close-circle-ico.svg" class="refresh-institution-list" alt="Mark NOT Test Patients" height="22" /> Mark NOT Test Patients
                                                 </a>
                                                 <a href="#" class="pull-right Margin-L-10">
                                                     <img src="~/images/delete-ico.svg" class="refresh-institution-list" alt="Delete Records" height="22" />Delete Records
                                                 </a>
 
                                                 <a href="#" class="pull-right Margin-L-10">
-                                                    <img src="~/images/refresh-grid-ico.svg" class="refresh-institution-list" alt="Select All Records" height="22" />Select All
+                                                    <img src="~/images/select-all-ico.svg" class="refresh-institution-list" alt="Select All Records" height="22" />Select All
                                                 </a>
                                             </div>
                                         </div><!--row end-->
 
+                                        @Html.Partial("_DeleteTestPatientGrid",@Model)
+                                                                         
 
-
-                                        <div class="table-responsive">
-
-                                            <table class="table table-striped apppointment-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>MRN</th>
-                                                        <th>Name</th>
-                                                        <th>DOB</th>
-
-                                                        <th>Appt Date & Time</th>
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-
-                                                        <td>
-                                                            <input type="checkbox" name="chk_selectPatient1" value="0" />
-                                                        </td>
-                                                        <td>99912345679</td>
-                                                        <td>
-                                                            TestShortBreastColon, Mary
-                                                        </td>
-                                                        <td>
-                                                            04/05/1989
-                                                        </td>
-
-                                                        <td>01/06/20016 10:10:08 AM</td>
-
-                                                    </tr>
-                                                    <tr>
-
-                                                        <td>
-                                                            <input type="checkbox" name="chk_selectPatient1" value="0" />
-                                                        </td>
-                                                        <td>99912345679</td>
-                                                        <td>
-                                                            TestShortBreastColon, Mary
-                                                        </td>
-                                                        <td>
-                                                            04/05/1989
-                                                        </td>
-
-                                                        <td>01/06/20016 10:10:08 AM</td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td>
-                                                            <input type="checkbox" name="chk_selectPatient1" value="0" />
-                                                        </td>
-                                                        <td>99912345649</td>
-                                                        <td>
-                                                            TestShortBreastColon, Nicole
-                                                        </td>
-                                                        <td>
-                                                            04/05/1989
-                                                        </td>
-
-                                                        <td>01/06/20016 10:10:08 AM</td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td>
-                                                            <input type="checkbox" name="chk_selectPatient1" value="0" />
-                                                        </td>
-                                                        <td>99912345679</td>
-                                                        <td>
-                                                            TestShortBreastColon, Paige
-                                                        </td>
-                                                        <td>
-                                                            04/05/1989
-                                                        </td>
-
-                                                        <td>01/06/20016 10:10:08 AM</td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td>
-                                                            <input type="checkbox" name="chk_selectPatient1" value="0" />
-                                                        </td>
-                                                        <td>99912345679</td>
-                                                        <td>
-                                                            TestShortBreastColon, Anna
-                                                        </td>
-                                                        <td>
-                                                            04/05/1989
-                                                        </td>
-
-                                                        <td>01/06/20016 10:10:08 AM</td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td>
-                                                            <input type="checkbox" name="chk_selectPatient1" value="0" />
-                                                        </td>
-                                                        <td>99912345679</td>
-                                                        <td>
-                                                            TestShortBreastColon, Myra
-                                                        </td>
-                                                        <td>
-                                                            04/05/1989
-                                                        </td>
-
-                                                        <td>01/06/20016 10:10:08 AM</td>
-
-                                                    </tr>
-
-
-
-
-                                                </tbody>
-                                            </table><!--family history end here-->
-                                        </div>
-
-
+                                        <div class="clear-float"></div>
 
 
                                     </div><!--row end-->
@@ -307,16 +185,8 @@
                             </div>
                             <!-- /#page-content-wrapper -->
                         </div>
-
                     </div>
                 </div><!--row end-->
             </div><!--container end-->
-
         </div><!--container fluid end-->
     </div> <!-- /container area end -->
-
-</div>
-<script type="text/javascript">
-
-   
-</script>
