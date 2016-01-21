@@ -192,6 +192,7 @@
     <Content Include="css\navbar-fixed-top.css" />
     <Content Include="css\sidebar.css" />
     <Content Include="css\sticky-footer.css" />
+    <Content Include="css\SudoNotify\jquery.sudo-notify.css" />
     <Content Include="css\tablesorter.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -327,6 +328,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\sidebar_menu.js" />
     <Content Include="Scripts\spin.min.js" />
+    <Content Include="Scripts\SudoNotify\jquery.sudo-notify.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.js" />
     <Content Include="Scripts\tinymce\langs\en.js" />
     <Content Include="Scripts\tinymce\license.txt" />
@@ -740,6 +742,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DocumentEditorController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InstitutionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />

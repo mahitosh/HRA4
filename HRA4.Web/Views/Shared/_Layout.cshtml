@@ -39,13 +39,15 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="~/Scripts/spin.min.js"></script>
-     
+    <link rel="stylesheet" href="~/css/SudoNotify/jquery.sudo-notify.css">
+    
+    <script src="~/Scripts/SudoNotify/jquery.sudo-notify.js"></script>
 </head>
 <body>
     
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid top-header-bg">
+        <div class="container-fluid top-header-bg">            
             <div class="top-navbar">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
@@ -88,6 +90,7 @@
             </div> <!--/top navbar end -->
 
         </div>
+      
     </nav><!--fixed header end here-->
     <!--container area start here-->
     
@@ -103,7 +106,9 @@
             </p>
         </div>
     </div>
+   
     <footer>
+        <div class="notification-container"></div>
         <div class="footer-style pull-left"></div>
         <div class="container">Copyrights &copy; 2016 <img src="~/images/footer-logo.svg" width="130" height="50" alt="HRA" />. All rights reserved. </div>
     </footer>
