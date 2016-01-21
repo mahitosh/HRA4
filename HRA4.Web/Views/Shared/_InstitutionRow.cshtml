@@ -72,7 +72,7 @@
                 <img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment
             </a>
         </span>
-        <a onclick="return confirmation();" href="@Url.Action("DeleteAppointment", "Institution", new {apptid= @Model.Id})"><img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment</a>
+        
     </div>
 
     @using (Ajax.BeginForm("InstitutionSave", "Institution", new AjaxOptions

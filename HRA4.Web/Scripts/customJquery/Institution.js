@@ -163,8 +163,8 @@ function UploadXml() {
             $("#upload-xml").modal('hide');
             
             $("#divNotification").text('File uploaded successfully');
-            $("#divNotification").fadeToggle("slow");
-            $("#divNotification").fadeToggle("slow");
+            $("#divNotification").fadeToggle(2000);
+            $("#divNotification").fadeToggle(2000);
         }
     }).always(function (Data) {
 
@@ -190,8 +190,8 @@ function DeleteAppointment()
         success: function (data) {
             $("#confirm-xml").modal('hide');
             $("#divNotification").text('Appointment deleted successfully');
-            $("#divNotification").fadeToggle("slow");
-            $("#divNotification").fadeToggle("slow");
+            $("#divNotification").fadeToggle(2000);
+            $("#divNotification").fadeToggle(2000);
             //@Url.Action("FilteredInstitution", "Institution")
             SearchAppointment('/Institution/FilteredInstitution');
         }

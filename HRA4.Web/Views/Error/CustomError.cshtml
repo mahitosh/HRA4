@@ -1,0 +1,18 @@
+﻿@using System.Configuration
+@model System.Web.Mvc.HandleErrorInfo
+@{
+    ViewBag.Title = "CustomError";
+    Layout = "~/Views/Shared/_ErrorLayout.cshtml";
+}
+<div id="main">
+    <div class="container error" id="main-container">
+        <h1>Error</h1>
+        <p>
+            <i class="fa fa-bug"></i> Error<br>
+            <div>
+                @Model.Exception.Message
+            </div>
+            <a href="javascript:history.go(-1)" data-rel="back">Back to homepage</a>
+        </p>
+    </div>
+</div> <!-- /main -->

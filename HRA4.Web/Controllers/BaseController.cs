@@ -4,13 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HRA4.Context;
+using log4net;
 namespace HRA4.Web.Controllers
 {
     [Authorize]
     public class BaseController : Controller
     {
         public IApplicationContext _applicationContext;
-
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(BaseController));
 
         public BaseController()
         {           
@@ -27,12 +28,16 @@ namespace HRA4.Web.Controllers
         {
             Exception ex = filterContext.Exception;
             filterContext.ExceptionHandled = true;
-
-            var model = new HandleErrorInfo(filterContext.Exception, "Error", "ServerError");
-
+            Logger.ErrorFormat("Controller: {0}", filterContext.RouteData.Values["controller"].ToString());
+            Logger.ErrorFormat("Action: {0}", filterContext.RouteData.Values["action"].ToString());
+            Logger.Error(filterContext.Exception);
+            var model = new HandleErrorInfo(filterContext.Exception,
+                filterContext.RouteData.Values["controller"].ToString(),
+                filterContext.RouteData.Values["action"].ToString());
+             
             filterContext.Result = new ViewResult()
             {
-                ViewName = "ServerError",
+                ViewName = "~/Views/Error/CustomError.cshtml",
                 ViewData = new ViewDataDictionary(model)
             };
              
