@@ -91,8 +91,11 @@ else { }
                                     <a href="@Url.Action("InstitutionDashboard", "Institution", new { InstitutionId = item.Id })"><img src="~/images/dashboard-ico.svg" alt="Go to dashboard" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Go to Dashboard" /></a>
                                     <a href="#"><img src="~/images/add-clinic-ico.svg" alt="Add Clinic" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Add Clinic" /></a>
                                     @*<a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>*@
-                                    <a href="@Url.Action("DeleteInstitution", "Admin", new { Id = item.Id })" onclick="return DeleteInstitution();"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
-                                    @*<a href="#" onclick="DeleteInstitution('@item.Id.ToString()');"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>*@
+                                    <span onclick="SetInstValues('@item.Id','@Url.Action("DeleteInstitution", "Admin")');">
+                                        <a data-toggle="modal" data-target="#confirm-xml" href="#"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
+                                    </span>
+                                    
+                                    @* <a href="@Url.Action("DeleteInstitution", "Admin", new { Id = item.Id })" onclick="return DeleteInstitution();"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>*@
 
                                 </td>
                             </tr>
@@ -100,6 +103,8 @@ else { }
                         }
                     </tbody>
                 </table><!--Institution list end here-->
+            <input type="hidden" id="hidUrl" />
+            <input type="hidden" id="hidId" />
                 <div id="divRecordStatus" style="color:red;text-align:center">@ViewBag.RecordStatus</div>
             </div><!--schedule list div end here-->
 
@@ -107,6 +112,29 @@ else { }
     </div><!--col 12 end-->
 </div><!--row end-->
 </div><!--fluid container end-->
+ <!--Delete confirmation-->
+<div id="confirm-xml" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"> Confirm Operation</h4>
+            </div>
+            <div class="modal-body">
+                <div class="editor-field">
+                    <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Are you sure you want to delete.</strong><br /><br />
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-success confirmyes pull-right" type="button" onclick="DeleteInstitution();" value="Yes" />
+                    <input class="btn btn-cancel pull-right Margin-R-10" data-dismiss="modal" type="button" value="Cancel" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Delete Confirmation-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script type="text/javascript"
@@ -116,10 +144,33 @@ else { }
 <script type="text/javascript">
 
     function DeleteInstitution() {
+        var apptId = $("#hidId").val();
+        var globalGetJSONPath = $("#hidUrl").val();
+        globalGetJSONPath = globalGetJSONPath + '?Id=' + apptId;
+       // alert(globalGetJSONPath); 
+       
+       // alert(filter);
+        $.ajax({
+            type: "Get",
+            url: globalGetJSONPath,
+            async: true,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $("#confirm-xml").modal('hide');
+                location.reload();
+                //SearchAppointment('/Admin/SearchInstitution/'+filter);
+            }
+        }).always(function (Data) {
 
-        var c = confirm("Are you sure you want to delete selected Institution ?");
-        return c; //you can just return c because it will be true or false
+        });
+        
 
+    }
+    function SetInstValues(id,url)
+    {
+        $("#hidUrl").val(url);
+        $("#hidId").val(id);
     }
     @*function DeleteInstitution(Id) {
 
