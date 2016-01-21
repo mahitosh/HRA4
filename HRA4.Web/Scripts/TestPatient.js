@@ -47,13 +47,13 @@ function getSelectedIds(){
 function DeleteTestPatients() {
 
     var apptids = getSelectedIds();
-   
-    alert(apptids);
+  
     $.ajax({
         url: '/TestPatient/DeleteTestPatientsByapptids',
         data: { ids: apptids },
         dataType: 'html',
         success: function (data) {
+            $("#confirm-xml").modal('hide');
             $('#testpatientsgrid').html('');
             $('#testpatientsgrid').html(data);
         }
@@ -63,8 +63,7 @@ function DeleteTestPatients() {
 function MarkAsNotTestPatients() {
 
     var apptids = getSelectedIds();
-
-    alert(apptids);
+  
     $.ajax({
         url: '/TestPatient/ExcludeTestPatientsByapptids',
         data: { ids: apptids },

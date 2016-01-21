@@ -82,10 +82,10 @@
                                 <div class="row Margin-T-10">
                                     <ul class="nav nav-tabs col-sm-12" id="myTab">
                                         <li class="active" id="Schedule-Tab">
-                                            <a data-target="#add-testpatients" data-toggle="tab">Create Test Patients</a>
+                                            <a data-target="#add-testpatients" data-toggle="tab" href="#">Create Test Patients</a>
                                         </li>
                                         <li>
-                                            <a data-target="#delete-testpatients" data-toggle="tab" onclick="hidedelete()">Delete Test Patients</a>
+                                            <a href="#"  data-target="#delete-testpatients" data-toggle="tab" onclick="hidedelete()">Delete Test Patients</a>
                                         </li>
                                     </ul>
                                 </div><!--tab row end-->
@@ -93,9 +93,10 @@
 
 
                                 <div class="tab-content row">
-                                    @using (Html.BeginForm("TestPatients", "TestPatient", FormMethod.Post))
-                                    {
+                                   
                                         <div class="tab-pane active Padding-15" id="add-testpatients">
+                                            @using (Html.BeginForm("TestPatients", "TestPatient", FormMethod.Post))
+                                            {
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
@@ -147,8 +148,9 @@
                                                 <button id="btnClearQuick" class="pull-right btn btn-cancel btn-sm">Cancel</button>
                                             </div>
                                             <div class="clear-float"></div>
+                                            }
                                         </div>
-                                    }
+                                   
 
                                     <div class="tab-pane" id="delete-testpatients">
                                         <div class="col-sm-12 Padding-T-10" id="testpatient-list">
@@ -163,7 +165,7 @@
                                                 <a href="#" class="pull-right Margin-L-10" onclick="MarkAsNotTestPatients();">
                                                     <img src="~/images/close-circle-ico.svg" class="refresh-institution-list" alt="Mark NOT Test Patients" height="22" /> Mark NOT Test Patients
                                                 </a>
-                                                <a href="#" class="pull-right Margin-L-10" onclick="DeleteTestPatients();">
+                                                <a data-toggle="modal" data-target="#confirm-xml" href="#" class="pull-right Margin-L-10" >
                                                     <img src="~/images/delete-ico.svg" class="refresh-institution-list" alt="Delete Records" height="22" />Delete Records
                                                 </a>
 
@@ -174,11 +176,7 @@
                                         </div><!--row end-->
                                         <div id="testpatientsgrid"></div>
                                          @*@Html.Partial("_DeleteTestPatientGrid", @Model)*@
-
-
                                         <div class="clear-float"></div>
-
-
                                     </div><!--row end-->
                                 </div><!--container end-->
 
@@ -190,6 +188,30 @@
             </div><!--container end-->
         </div><!--container fluid end-->
     </div> <!-- /container area end -->
+    <!--Delete confirmation-->
+    <div id="confirm-xml" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"> Confirm Operation</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="editor-field">
+                        <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Are you sure you want to delete.</strong><br /><br />
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-success confirmyes pull-right" type="button" onclick="DeleteTestPatients();" value="Yes" />
+                        <input class="btn btn-cancel pull-right Margin-R-10" data-dismiss="modal" type="button" value="Cancel" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Delete Confirmation-->
+
     
     <script src="~/Scripts/TestPatient.js"></script>
    
