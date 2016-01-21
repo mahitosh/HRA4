@@ -11,10 +11,12 @@ using System.Threading.Tasks;
 using HRA4.Utilities;
 using System.Web;
 using System.IO;
+using log4net;
 namespace HRA4.Services
 {
     public class TemplateService:Interfaces.ITemplateService
     {
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(TemplateService));
         IRepositoryFactory _repositoryFactory;
         string[] supported = new string[] { "surveySummary", "riskClinic", "LMN", "relativeLetter", "relativeKnownMutationLetter", "Screening" };
         string routine = "screening";
@@ -61,12 +63,18 @@ namespace HRA4.Services
         /// <returns></returns>
         public ViewModels.Template GenerateHtmlFromTemplate(int templateId,string mrn,int apptId)
         {
+            Logger.Debug("GenerateHtmlFromTemplate: Start");
             Entities.HtmlTemplate _template = GetTemplate(templateId);
             string tempFileName = Guid.NewGuid().ToString();
-            string path = HttpContext.Current.Server.MapPath(System.IO.Path.Combine(Constants.RAFilePath, "Temp", tempFileName));
+            string tempPath = HttpContext.Current.Server.MapPath(System.IO.Path.Combine(Constants.RAFilePath, "Temp"));
+            if (!Directory.Exists(tempPath))
+                Directory.CreateDirectory(tempPath);
+
+            string path = System.IO.Path.Combine(tempPath, tempFileName);
             System.IO.File.WriteAllText(path, _template.TemplateString);
            string finalHtml= CreateHtmlDocument(path,mrn,apptId);
              string tempFile = System.IO.Path.GetTempFileName();
+            
            try
            {
               // Task.Factory.StartNew(() => GeneratePdfFromHtml(finalHtml, tempFile));    
@@ -74,10 +82,10 @@ namespace HRA4.Services
                File.Delete(path);
            }
            catch (Exception ex)
-           {               
-               
+           {
+               Logger.Error(ex);
            }
-
+           Logger.Debug("GenerateHtmlFromTemplate: End");
            return new ViewModels.Template()
            {
                Id=templateId,
@@ -91,6 +99,7 @@ namespace HRA4.Services
 
         private string CreateHtmlDocument(string htmlPath,string mrn,int apptId)
         {
+            Logger.Debug("CreateHtmlDocument: Start");
             //set active patient
             DocumentTemplate dt = new DocumentTemplate();
             SessionManager.Instance.SetActivePatient(mrn, apptId);
@@ -110,7 +119,7 @@ namespace HRA4.Services
             dt.htmlText = html;
             dt.ProcessDocument();
             string newhtml = dt.htmlText;
-           
+            Logger.Debug("CreateHtmlDocument: End");
             return newhtml;
         }
 
@@ -155,16 +164,17 @@ namespace HRA4.Services
 
         private void GeneratePdfFromHtml(string newhtml,string filePath)
         {
+            Logger.Debug("GeneratePdfFromHtml: Start");
             try
             {
                 byte[] pdfFile = DocumentTemplate.ConvertToPdfBuffer(newhtml);
                 File.WriteAllBytes(filePath, pdfFile);
             }
             catch (Exception ex)
-            {                
-                
+            {
+                Logger.Error(ex);
             }
-           
+            Logger.Debug("GeneratePdfFromHtml: End");
             
         }
     }

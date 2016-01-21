@@ -49,10 +49,9 @@ namespace HRA4.Services
         /// <param name="Identified">True for DeIdentified and false for Identitify</param>
         /// <returns>Returns xml file for download.</returns>
         public VM.HraXmlFile ExportAsHL7(string mrn, int apptId, bool Identified)
-        {
-
+        {            
             string rootPath = HttpContext.Current.Server.MapPath(Constants.RAFilePath);
-
+             
             _hraSessionManager.SetActivePatient(mrn, apptId);
             Patient _patient = SessionManager.Instance.GetActivePatient();
             _patient.LoadFullObject();
@@ -70,6 +69,11 @@ namespace HRA4.Services
                 SessionManager.Instance.GetActivePatient().unitnum +
                 " HL7 " +
                 DateTime.Now.ToString("yyyy-MM-dd-HHmm");
+            if(!Directory.Exists(System.IO.Path.Combine(rootPath, "Download")))
+            {
+                Directory.CreateDirectory(System.IO.Path.Combine(rootPath, "Download"));
+            }
+
             string filePath = System.IO.Path.Combine(rootPath, "Download", filename);
             hl7FHData.Save(filePath);
 
@@ -83,7 +87,7 @@ namespace HRA4.Services
         public void ImportHL7(VM.HraXmlFile xmlFile, string mrn, int apptId)
         {
             Appointment.DeleteApptData(apptId, true);
-            string rootPath = HttpContext.Current.Server.MapPath(@"~/App_Data/RAFiles/");
+            string rootPath = HttpContext.Current.Server.MapPath(Constants.RAFilePath);
             string riskMeanings = File.ReadAllText(Path.Combine(rootPath, "riskMeanings.xml"));
             string HL7Relationships = File.ReadAllText(Path.Combine(rootPath, "HL7Relationships.xml"));
             string hl7 = File.ReadAllText(xmlFile.FilePath);
@@ -138,6 +142,11 @@ namespace HRA4.Services
                 SessionManager.Instance.GetActivePatient().unitnum +
                 " Serialization " +
                 DateTime.Now.ToString("yyyy-MM-dd-HHmm");
+
+            if (!Directory.Exists(System.IO.Path.Combine(rootPath, "Download")))
+            {
+                Directory.CreateDirectory(System.IO.Path.Combine(rootPath, "Download"));
+            }
             string filePath = System.IO.Path.Combine(rootPath, "Download", fileName);
             if (!Identified)
             {

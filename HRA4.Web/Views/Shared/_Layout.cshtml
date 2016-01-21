@@ -11,8 +11,10 @@
     <title>HRA - Dashboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/dev-custom.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="~/css/bootstrap/v3.3.6/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/font-awesome-4.5.0/css/font-awesome.min.css">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="~/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -20,7 +22,6 @@
     <link href="~/css/datepicker.css" rel="stylesheet" />
     <link href="~/css/custom.css" rel="stylesheet">
     <link href="~/css/sidebar.css" rel="stylesheet"> 
-    <link rel="stylesheet" href="~/css/font-awesome-4.5.0/css/font-awesome.min.css">
     <link href="~/css/devcustom.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -63,7 +64,8 @@
                                     <li><a href="#"><i class="fa fa-user-md"></i> Manage Providers</a></li>
                                     <li><a href="#"><i class="fa fa-list"></i> Manage Survey List</a></li>
                                     <li><a href="@Url.Action("Index", "DocumentEditor")"><i class="fa fa-file-o"></i> Manage Document</a></li>
-                                    <li><a href="#"><i class="fa fa-file-text-o"></i> Audit Reports</a></li>
+                                    <li><a href="@Url.Action("AuditReports", "Reports")"><i class="fa fa-file-text-o"></i> Audit Reports</a></li>
+                                    <li><a href="@Url.Action("TestPatients", "TestPatient")"><i class="fa fa-file-text-o"></i>Test Patient</a></li>
                                 </ul>
                             </div>
                         </li>

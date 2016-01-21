@@ -2,6 +2,7 @@
 using RiskApps3.Controllers;
 using RiskApps3.Model;
 using RiskApps3.Model.Clinic;
+using RiskApps3.Model.Clinic.Reports;
 using RAM = RiskApps3.Model.MetaData;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using HRA4.Mapper;
 using HRA4.Repositories.Interfaces;
 using HRA4.Entities;
 using HRA4.Utilities;
+using HRA4.Services;
 using System.Web;
 using log4net;
 using WeifenLuo.WinFormsUI.Docking;
@@ -28,6 +30,8 @@ using System.Xml.XPath;
 using System.Runtime.Serialization;
 using System.Xml.Linq;
 using System.Drawing;
+using System.Data.SqlClient;
+ 
 namespace HRA4.Services
 {
     public class AppointmentService : IAppointmentService
@@ -93,21 +97,28 @@ namespace HRA4.Services
             List<VM.Clinic> clinics = new List<VM.Clinic>();
             if (InstitutionId > 0)
             {
-                 //SetUserSession();
+                //SetUserSession();
                 
                 _institutionId = InstitutionId;
-              
-                var list = new  RAM.ClinicList ();
-                list.user_login = SessionManager.Instance.ActiveUser.userLogin ;
-                list.BackgroundListLoad();
 
-                clinics = list.FromRClinicList();
+                clinics = GetClinicList();
 
                 return clinics;
             }
             return new List<VM.Clinic>();
-        
 
+
+        }
+
+        private static List<VM.Clinic> GetClinicList()
+        {
+            List<VM.Clinic> clinics = new List<VM.Clinic>();
+            var list = new RAM.ClinicList();
+            list.user_login = SessionManager.Instance.ActiveUser.userLogin;
+            list.BackgroundListLoad();
+
+            clinics = list.FromRClinicList();
+            return clinics;
         }
 
 
@@ -119,16 +130,16 @@ namespace HRA4.Services
             {
 
                 _institutionId = InstitutionId;
-               // SetUserSession();
+                // SetUserSession();
                 //appointments = HRACACHE.GetCache<List<VM.Appointment>>(InstitutionId);
                 var list = new AppointmentList();
-                 
+
                 list.clinicId = 1;
                 list.Date = DateTime.Now.ToString("MM/dd/yyyy");
                 list.BackgroundListLoad();
-               
-                 appointments = list.FromRAppointmentList();
-                 
+
+                appointments = list.FromRAppointmentList();
+
                 return appointments;
             }
             return new List<VM.Appointment>();
@@ -148,22 +159,22 @@ namespace HRA4.Services
             if (InstitutionId != null)
             {
                 _institutionId = InstitutionId;
-               // SetUserSession();
+                // SetUserSession();
                 var list = new AppointmentList();
                 if (Convert.ToString(searchfilter["clinicId"]) != null && Convert.ToString(searchfilter["clinicId"]) != "")
                     list.clinicId = Convert.ToInt32(searchfilter["clinicId"]);
                 if (Convert.ToString(searchfilter["appdt"]) != null && Convert.ToString(searchfilter["appdt"]) != "")
                     list.Date = Convert.ToString(searchfilter["appdt"]);
                 if (Convert.ToString(searchfilter["name"]) != null && Convert.ToString(searchfilter["name"]) != "")
-                list.NameOrMrn = Convert.ToString(searchfilter["name"]);
+                    list.NameOrMrn = Convert.ToString(searchfilter["name"]);
                 list.BackgroundListLoad();
                 foreach (RA.Appointment app in list)
                 {
-                    
+
                     bool _DNCStatus = GetDNCStatus(InstitutionId, app.unitnum);
                     appointments.Add(app.FromRAppointment(_DNCStatus));
 
-            }
+                }
 
                 return appointments;
 
@@ -172,7 +183,7 @@ namespace HRA4.Services
             return new List<VM.Appointment>();
         }
 
-      
+
 
         /// <summary>
         /// It will do searching on passed Appointment list based on below parameters
@@ -184,7 +195,7 @@ namespace HRA4.Services
         private List<VM.Appointment> SearchOnAppointment(List<VM.Appointment> appts, string searchField, string searchParam)
         {
             List<VM.Appointment> newlist = new List<VM.Appointment>();
-            switch(searchField)
+            switch (searchField)
             {
                 case Constants.MRN:
                     newlist = appts.Where(list => list.MRN.Contains(searchParam)).ToList();
@@ -232,13 +243,13 @@ namespace HRA4.Services
 
 
         }
-         /// <summary>
-         /// To do process of Run Automation Documents
-         /// </summary>
+        /// <summary>
+        /// To do process of Run Automation Documents
+        /// </summary>
         /// <param name="InstitutionId">Institution Id</param>
         /// <param name="apptid">Appointment Id</param>
         /// <param name="MRN">MRN Number</param>
-         /// <returns></returns>
+        /// <returns></returns>
         public FileInfo RunAutomationDocuments(int InstitutionId, int apptid, string MRN)
         {
             Patient proband = CalculateRiskAndRunAutomation(apptid, MRN);
@@ -293,7 +304,7 @@ namespace HRA4.Services
             RS.ApptId = apptid;
             RS.MRN = MRN;
             return RS;
-            
+
         }
         /// <summary>
         /// To Mark appointment as complete and incomplete
@@ -302,13 +313,13 @@ namespace HRA4.Services
         /// <param name="InstitutionId">Institution Id</param>
         private void UpdateMarkAsComplete(VM.Appointment Appt, int InstitutionId)
         {
-           
+
             NameValueCollection searchfilter = new NameValueCollection();
             searchfilter.Add("name", Appt.MRN);
             searchfilter.Add("appdt", null);
-            searchfilter.Add("clinicId",Appt.clinicID.ToString());
+            searchfilter.Add("clinicId", Appt.clinicID.ToString());
             List<VM.Appointment> filteredlist = GetAppointments(InstitutionId, searchfilter);
-          //List<VM.Appointment> filteredlist = SearchOnAppointment(apptlist, Constants.MRN, Appt.MRN);
+            //List<VM.Appointment> filteredlist = SearchOnAppointment(apptlist, Constants.MRN, Appt.MRN);
 
             foreach (var item in filteredlist)
             {
@@ -325,7 +336,7 @@ namespace HRA4.Services
             }
         }
 
-        
+
         public void DeleteTasks(int _institutionId, string unitnum, int apptid)
         {
             //SetUserSession();
@@ -369,11 +380,11 @@ namespace HRA4.Services
         }
 
 
-       
+
         public void DeleteAppointment(int InstitutionId, int apptid)
         {
-            
-            Appointment.DeleteApptData(apptid,false);
+
+            Appointment.DeleteApptData(apptid, false);
         }
 
         public string ShowPedigreeImage(int _institutionId, string unitnum, int apptid, string PedigreeImageSavePath)
@@ -382,18 +393,18 @@ namespace HRA4.Services
             int Height = 625;
             string _ImagePath = string.Empty;
             string assignedBy = "";
-            
+
             if (SessionManager.Instance.ActiveUser != null)
             {
                 if (string.IsNullOrEmpty(SessionManager.Instance.ActiveUser.ToString()) == false)
                 {
                     assignedBy = SessionManager.Instance.ActiveUser.ToString();
-                   
+
                 }
             }
             string _userlogin = SessionManager.Instance.ActiveUser.userLogin;
             SessionManager.Instance.SetActivePatient(unitnum, apptid);
-           
+
             RiskApps3.Model.PatientRecord.Patient proband = SessionManager.Instance.GetActivePatient();    // TODO:  Check this!!
 
             PedigreeGenerator pg = new PedigreeGenerator(Width, Height, proband);
@@ -424,10 +435,10 @@ namespace HRA4.Services
             {
                 using (Bitmap bm2 = new Bitmap(ms))
                 {
-                    
-                    
-                 //  PedigreeImagePath = System.Web.Serv
-                    string _ImageName = _institutionId.ToString() +"_"+ _userlogin + "_" + apptid.ToString()+".png";
+
+
+                    //  PedigreeImagePath = System.Web.Serv
+                    string _ImageName = _institutionId.ToString() + "_" + _userlogin + "_" + apptid.ToString() + ".png";
 
                     bm2.Save(PedigreeImageSavePath + _ImageName);
                     _ImagePath = _ImageName;
@@ -458,7 +469,7 @@ namespace HRA4.Services
             RiskApps3.Model.PatientRecord.Communication.Task t = new RiskApps3.Model.PatientRecord.Communication.Task(p, "Task", null, assignedBy, DateTime.Now);
             HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
 
-        
+
             t.BackgroundPersistWork(args);
 
             RiskApps3.Model.PatientRecord.Communication.PtFollowup newFollowup = new RiskApps3.Model.PatientRecord.Communication.PtFollowup(t);
@@ -477,6 +488,72 @@ namespace HRA4.Services
 
         }
 
+        public VM.AuditReports GetAuditReports(string MRN, string startdate, string enddate)
+        {
 
+            //For getting list of AuditMrnAccessV2
+            AuditMrnAccessV2 auditMrnAccessV2 = new AuditMrnAccessV2();
+            auditMrnAccessV2.StartTime =Convert.ToDateTime(startdate);
+            auditMrnAccessV2.EndTime =Convert.ToDateTime(enddate);
+            auditMrnAccessV2.unitnum = MRN;
+            auditMrnAccessV2.BackgroundListLoad();
+          
+            List<VM.AuditMrnAccessV2Entry> auditMrnAccessV2Entry = new List<VM.AuditMrnAccessV2Entry>();
+            foreach (AuditMrnAccessV2Entry item in auditMrnAccessV2)
+            {
+                //you have to convert item to VM.V2Access model
+                VM.AuditMrnAccessV2Entry a = AuditReportsMapper.ToAuditMrnAccessV2Entry(item);
+                auditMrnAccessV2Entry.Add(a);
+
+            }
+
+            //For getting list of AuditMrnAccessV3
+            AuditMrnAccessV3 auditMrnAccessV3 = new AuditMrnAccessV3();
+            auditMrnAccessV3.StartTime = Convert.ToDateTime(startdate);
+            auditMrnAccessV3.EndTime = Convert.ToDateTime(enddate);
+            auditMrnAccessV3.unitnum = MRN;
+            auditMrnAccessV3.BackgroundListLoad();
+
+            List<VM.AuditMrnAccessV3Entry> auditMrnAccessV3Entry = new List<VM.AuditMrnAccessV3Entry>();
+            foreach (AuditMrnAccessV3Entry item in auditMrnAccessV3)
+            {
+                //you have to convert item to VM.V2Access model
+                VM.AuditMrnAccessV3Entry a = AuditReportsMapper.ToAuditMrnAccessV3Entry(item);
+                auditMrnAccessV3Entry.Add(a);
+
+            }
+
+            VM.AuditReports reports = new VM.AuditReports();
+            reports.RSAuditMrnAccessV2Entry = auditMrnAccessV2Entry;
+            reports.RSAuditMrnAccessV3Entry = auditMrnAccessV3Entry;
+
+            return reports;
+
+
+        }
+
+
+        #region TestPatients
+
+        public VM.TestPatient LoadCreateTestPatients()
+        {
+            VM.TestPatient tp = new VM.TestPatient();
+            TestPatientManager Tpm=new TestPatientManager();
+            tp.Surveys = Tpm.GetSurveys();
+            tp.Clinics = GetClinicList();
+            tp.InitateTestPatients = Tpm.InitiateTestPatients();
+
+            return tp;
+                         
+        }
+
+        public void CreateTestPatients(int NoOfPatients, string dtAppointmentDate, int surveyID,string SurveyName,int clinicID)
+        {
+            TestPatientManager Pm = new TestPatientManager();
+            Pm.CreateTestPatients(NoOfPatients, dtAppointmentDate, surveyID, SurveyName, clinicID);
+
+        }
+
+        #endregion
     }
 }

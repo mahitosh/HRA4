@@ -48,6 +48,18 @@ namespace HRA4.Mapper
             };
         }
 
+        public static TestPatientAppointment FromRATestAppointment(this TestAppointment app)
+        {
+            return new TestPatientAppointment()
+            {
+                apptID=app.apptID,
+                MRN=app.unitnum,
+                patientName=app.patientName,
+                DOB = app.DOB,
+                apptdatetime=app.apptdatetime
+                
+            };
+        }
 
         public static RAT.Task ToRATTasks(this Tasks tasks)
         {

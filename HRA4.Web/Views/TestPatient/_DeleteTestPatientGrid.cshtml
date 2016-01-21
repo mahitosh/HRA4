@@ -1,0 +1,39 @@
+﻿@model HRA4.ViewModels.TestPatient
+<div class="table-responsive clear-float col-sm-12 Margin-T-10">
+
+    <table class="table table-striped apppointment-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>MRN</th>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>Appt Date & Time</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in @Model.InitateTestPatients)
+            { 
+                <tr>
+
+                   <td>
+                       <input type="checkbox" name="chk_selectPatient1" value="0" />
+                    </td>
+                    <td>@Html.DisplayFor(modelitem=>item.MRN)</td>
+                    <td>
+                      @Html.DisplayFor(modelitem => item.patientName)
+                    </td>
+                    <td>
+                       @Html.DisplayFor(modelitem => item.DOB)
+                    </td>
+
+                    <td>@Html.DisplayFor(modelitem => item.apptdatetime)</td>
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table><!--family history end here-->
+</div>

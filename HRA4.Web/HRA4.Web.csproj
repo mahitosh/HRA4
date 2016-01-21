@@ -171,6 +171,7 @@
     <Content Include="Content\PedigreeImages\ImageName.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="css\bootstrap-datetimepicker.min.css" />
+    <Content Include="css\bootstrap-multiselect.css" />
     <Content Include="css\bootstrap-timepicker.css" />
     <Content Include="css\bootstrap-timepicker.min.css" />
     <Content Include="css\bootstrap\fonts\glyphicons-halflings-regular.svg" />
@@ -252,6 +253,11 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="images\add-appointment-ico.svg" />
     <Content Include="images\add-clinic-ico.svg" />
+    <Content Include="images\add-MRI-ico.svg" />
+    <Content Include="images\add-relative-ico.svg" />
+    <Content Include="images\add-user-ico-1.svg" />
+    <Content Include="images\add-user-ico.svg" />
+    <Content Include="images\add-user-ico1.svg" />
     <Content Include="images\admin-tool-ico.svg" />
     <Content Include="images\appointment-ico.svg" />
     <Content Include="images\asc.gif" />
@@ -263,6 +269,7 @@
     <Content Include="images\BRCAmutation-ico.svg" />
     <Content Include="images\breast-ico-hover.svg" />
     <Content Include="images\breast-ico.svg" />
+    <Content Include="images\close-circle-ico.svg" />
     <Content Include="images\copy-grid-ico.svg" />
     <Content Include="images\dashboard-ico.svg" />
     <Content Include="images\delete-appointment-ico.svg" />
@@ -287,14 +294,18 @@
     <Content Include="images\new-doc-ico.svg" />
     <Content Include="images\pedigree-ico.svg" />
     <Content Include="images\Preloder.GIF" />
+    <Content Include="images\provider-ico.svg" />
     <Content Include="images\refresh-grid-ico.svg" />
     <Content Include="images\risk-calc-ico.svg" />
     <Content Include="images\run-auto-doc-ico.svg" />
     <Content Include="images\schedule-ico-hover.svg" />
     <Content Include="images\schedule-ico.svg" />
+    <Content Include="images\select-all-ico.svg" />
     <Content Include="images\tab-refresh-ico.svg" />
+    <Content Include="images\tools-ico.svg" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Scripts\bootstrap-timepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -732,6 +743,8 @@
     <Compile Include="Controllers\HighRiskFollowupController.cs" />
     <Compile Include="Controllers\InstitutionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\TestPatientController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -772,6 +785,15 @@
     <Content Include="Views\Institution\_ShowHtmlDocument.cshtml" />
     <Content Include="Views\HighRiskFollowup\Index.cshtml" />
     <Content Include="Views\HighRiskFollowup\_HighRiskLifetimeBreastGrid.cshtml" />
+    <Content Include="Views\Reports\AuditReports.cshtml" />
+    <Content Include="Views\TestPatient\TestPatients.cshtml" />
+    <Content Include="Views\Error\BadRequest.cshtml" />
+    <Content Include="Views\Error\CustomError.cshtml" />
+    <Content Include="Views\Error\Forbidden.cshtml" />
+    <Content Include="Views\Error\PageNotFound.cshtml" />
+    <Content Include="Views\Error\ServerError.cshtml" />
+    <Content Include="Views\Error\Unauthorized.cshtml" />
+    <Content Include="Views\TestPatient\_DeleteTestPatientGrid.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -783,6 +805,19 @@
     <Folder Include="App_Data\RAFiles\Download\" />
     <Folder Include="App_Data\RAFiles\Temp\" />
     <Folder Include="App_Data\RAFiles\Upload\" />
+    <Folder Include="Filters\" />
+    <Folder Include="Scripts\__jquery.tablesorter\addons\.svn\prop-base\" />
+    <Folder Include="Scripts\__jquery.tablesorter\addons\.svn\props\" />
+    <Folder Include="Scripts\__jquery.tablesorter\addons\.svn\text-base\" />
+    <Folder Include="Scripts\__jquery.tablesorter\addons\.svn\tmp\prop-base\" />
+    <Folder Include="Scripts\__jquery.tablesorter\addons\.svn\tmp\props\" />
+    <Folder Include="Scripts\__jquery.tablesorter\addons\.svn\tmp\text-base\" />
+    <Folder Include="Scripts\__jquery.tablesorter\addons\pager\.svn\prop-base\" />
+    <Folder Include="Scripts\__jquery.tablesorter\addons\pager\.svn\props\" />
+    <Folder Include="Scripts\__jquery.tablesorter\addons\pager\.svn\text-base\" />
+    <Folder Include="Scripts\__jquery.tablesorter\addons\pager\.svn\tmp\prop-base\" />
+    <Folder Include="Scripts\__jquery.tablesorter\addons\pager\.svn\tmp\props\" />
+    <Folder Include="Scripts\__jquery.tablesorter\addons\pager\.svn\tmp\text-base\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

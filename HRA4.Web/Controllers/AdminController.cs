@@ -137,9 +137,9 @@ namespace HRA4.Web.Controllers
 
 
             string scriptPath = HttpContext.Server.MapPath(@"~/App_Data/HRATenantDBCreation.sql");
-
             institution = _applicationContext.ServiceContext.AdminService.AddUpdateTenant(institution);
             _applicationContext.ServiceContext.AdminService.CreateTenantDb(institution, scriptPath);
+           
           //  Task taskA = Task.Run(() => _applicationContext.ServiceContext.AdminService.CreateTenantDb(institution,scriptPath));
             return RedirectToAction("ManageInstitution");
         }
