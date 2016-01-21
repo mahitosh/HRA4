@@ -82,10 +82,10 @@
                                 <div class="row Margin-T-10">
                                     <ul class="nav nav-tabs col-sm-12" id="myTab">
                                         <li class="active" id="Schedule-Tab">
-                                            <a data-target="#add-testpatients" data-toggle="tab" onclick="showAppt()">Create Test Patients</a>
+                                            <a data-target="#add-testpatients" data-toggle="tab">Create Test Patients</a>
                                         </li>
                                         <li>
-                                            <a data-target="#delete-testpatients" data-toggle="tab" onclick="hideAppt()">Delete Test Patients</a>
+                                            <a data-target="#delete-testpatients" data-toggle="tab" onclick="hidedelete()">Delete Test Patients</a>
                                         </li>
                                     </ul>
                                 </div><!--tab row end-->
@@ -156,25 +156,25 @@
                                                 <b>Select test patients from below.</b>
                                             </div>
                                             <div class="col-md-8 col-sm-12">
-                                                <a href="#" class="pull-right Margin-L-10">
+                                                <a href="#" class="pull-right Margin-L-10" onclick="RefreshTestPatients();">
                                                     <img src="~/images/refresh-grid-ico.svg" class="refresh-institution-list" alt="Refresh All" height="22" width="22" />Refresh List
                                                 </a>
 
-                                                <a href="#" class="pull-right Margin-L-10">
+                                                <a href="#" class="pull-right Margin-L-10" onclick="MarkAsNotTestPatients();">
                                                     <img src="~/images/close-circle-ico.svg" class="refresh-institution-list" alt="Mark NOT Test Patients" height="22" /> Mark NOT Test Patients
                                                 </a>
-                                                <a href="#" class="pull-right Margin-L-10">
+                                                <a href="#" class="pull-right Margin-L-10" onclick="DeleteTestPatients();">
                                                     <img src="~/images/delete-ico.svg" class="refresh-institution-list" alt="Delete Records" height="22" />Delete Records
                                                 </a>
 
-                                                <a href="#" class="pull-right Margin-L-10">
+                                                <a href="#" class="pull-right Margin-L-10" onclick="CheckAllBoxes();">
                                                     <img src="~/images/select-all-ico.svg" class="refresh-institution-list" alt="Select All Records" height="22" />Select All
                                                 </a>
                                             </div>
                                         </div><!--row end-->
+                                        <div id="testpatientsgrid"></div>
+                                         @*@Html.Partial("_DeleteTestPatientGrid", @Model)*@
 
-                                        @Html.Partial("_DeleteTestPatientGrid",@Model)
-                                                                         
 
                                         <div class="clear-float"></div>
 
@@ -190,3 +190,6 @@
             </div><!--container end-->
         </div><!--container fluid end-->
     </div> <!-- /container area end -->
+    
+    <script src="~/Scripts/TestPatient.js"></script>
+   

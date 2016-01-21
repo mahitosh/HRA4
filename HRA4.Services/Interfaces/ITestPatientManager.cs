@@ -14,5 +14,7 @@ namespace HRA4.Services.Interfaces
         List<Survey> GetSurveys();
         List<Survey> getSurveyList(string commandString);
         List<TestPatientAppointment> InitiateTestPatients();
+        void DeleteTestPatients(int[] apptids);
+        void ExcludeTestPatients(int[] apptids);
     }
 }

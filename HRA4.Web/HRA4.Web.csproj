@@ -327,6 +327,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\sidebar_menu.js" />
     <Content Include="Scripts\spin.min.js" />
+    <Content Include="Scripts\TestPatient.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.js" />
     <Content Include="Scripts\tinymce\langs\en.js" />
     <Content Include="Scripts\tinymce\license.txt" />
