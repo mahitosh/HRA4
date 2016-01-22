@@ -9,10 +9,13 @@ $(document).ready(function () {
         $("#ddlsurveystext").val(txt);
     });
 
-    $("#divNotification").css("display", "none");
+   
     $('#menu ul').hide();
     $("ul#menu").off("click");
-    $("#tblInstitutions").tablesorter();
+    //alert('hi');
+    //$('#loading').data('spinner').stop();
+    //$('#loading').hide();
+    
     $("#btnAdd").click(function () {
 
         var url = '@Url.Action("Create")';
