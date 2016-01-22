@@ -23,7 +23,7 @@
     <link href="~/css/custom.css" rel="stylesheet">
     <link href="~/css/sidebar.css" rel="stylesheet"> 
     <link href="~/css/devcustom.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="~/css/SudoNotify/jquery.sudo-notify.css">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="~/assets/js/ie-emulation-modes-warning.js"></script>
@@ -34,18 +34,18 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">    
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="~/Scripts/SudoNotify/jquery.sudo-notify.js"></script>
+    <script src="~/Scripts/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
     <script src="~/Scripts/spin.min.js"></script>
-     
 </head>
 <body>
     
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid top-header-bg">
+        <div class="container-fluid top-header-bg">            
             <div class="top-navbar">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
@@ -88,6 +88,7 @@
             </div> <!--/top navbar end -->
 
         </div>
+      
     </nav><!--fixed header end here-->
     <!--container area start here-->
     
@@ -103,7 +104,9 @@
             </p>
         </div>
     </div>
+   
     <footer>
+        <div class="notification-container"></div>
         <div class="footer-style pull-left"></div>
         <div class="container">Copyrights &copy; 2016 <img src="~/images/footer-logo.svg" width="130" height="50" alt="HRA" />. All rights reserved. </div>
     </footer>
@@ -119,7 +122,7 @@
     <script type="text/javascript" src="~/Scripts/custom-script.js"></script>
     <script src="~/Scripts/sidebar_menu.js"></script>
     @*<script src="~/Scripts/__jquery.tablesorter/jquery-latest.js"></script>*@
-    <script src="~/Scripts/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
+    
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="~/assets/js/ie10-viewport-bug-workaround.js"></script>
     @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -141,20 +144,24 @@
                     hwaccel: false // Whether to use hardware acceleration
                 };
                 var target = document.getElementById('loading');
-                var spinner = new Spinner(opts).spin(target);
-
+                var spinner = new Spinner(opts).spin(target);               
+                $(target).data('spinner', spinner);
             }
-
+            
             window.onbeforeunload = function (event) {
-                loading();
+               
+               // loading();
             };
-           
+            
             $(document).ajaxStart(function () {                
                // loading(); 
             });
 
             $(document).ajaxComplete(function () {
-                // $("#loading").hide();                
+                //$('#loading').data('spinner').stop();
+                //$('#loading').hide();
+                // $("#loading").hide();   
+
                // var target = document.getElementById('loading');
                // var spinner = new Spinner(opts).stop();
 

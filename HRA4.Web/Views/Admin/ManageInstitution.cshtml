@@ -24,11 +24,7 @@
         </div>
     </div>  }*@
 
-@if (Model == null || Model.Count() == 0)
-{
-    
-}
-else { }
+
 <div class="container middle-content Padding-R-15">
     <div class="row">
         <div class="col-sm-12">
@@ -37,9 +33,9 @@ else { }
             <div class="col-md-3 col-sm-4 pull-right Padding-R-0">
 
                 <div class="input-group">
-                   @Html.TextBox("inputGroupSuccess1", (string)ViewBag.SearchText, new { @class = "form-control", placeholder = "Search Institution" })
-                @*<input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Search Institution">*@
-                <span class="input-group-addon search-ico-bg" onclick="location.href = '@Url.Action("SearchInstitution")?Institution=' + $('#inputGroupSuccess1').val()"><span class="glyphicon glyphicon-search"></span></span>
+                    @Html.TextBox("inputGroupSuccess1", (string)ViewBag.SearchText, new { @class = "form-control", placeholder = "Search Institution" })
+                    @*<input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Search Institution">*@
+                    <span class="input-group-addon search-ico-bg" onclick="location.href = '@Url.Action("SearchInstitution")?Institution=' + $('#inputGroupSuccess1').val()"><span class="glyphicon glyphicon-search"></span></span>
                 </div><!--input group end here-->
 
 
@@ -84,35 +80,35 @@ else { }
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>@Html.DisplayFor(modelItem => item.InstitutionName)</td>
-                                <td>@Html.DisplayFor(modelItem => item.DateCreated)</td>
-                                <td class="quick-add-institution align-right">
-                                    <a href="@Url.Action("InstitutionDashboard", "Institution", new { InstitutionId = item.Id })"><img src="~/images/dashboard-ico.svg" alt="Go to dashboard" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Go to Dashboard" /></a>
-                                    <a href="#"><img src="~/images/add-clinic-ico.svg" alt="Add Clinic" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Add Clinic" /></a>
-                                    @*<a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>*@
-                                    <span onclick="SetInstValues('@item.Id','@Url.Action("DeleteInstitution", "Admin")');">
-                                        <a data-toggle="modal" data-target="#confirm-xml" href="#"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
-                                    </span>
-                                    
-                                    @* <a href="@Url.Action("DeleteInstitution", "Admin", new { Id = item.Id })" onclick="return DeleteInstitution();"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>*@
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.InstitutionName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.DateCreated)</td>
+                            <td class="quick-add-institution align-right">
+                                <a href="@Url.Action("InstitutionDashboard", "Institution", new { InstitutionId = item.Id })"><img src="~/images/dashboard-ico.svg" alt="Go to dashboard" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Go to Dashboard" /></a>
+                                <a href="#"><img src="~/images/add-clinic-ico.svg" alt="Add Clinic" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Add Clinic" /></a>
+                                @*<a href="#"><img src="~/images/edit-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>*@
+                                <span onclick="SetInstValues('@item.Id','@Url.Action("DeleteInstitution", "Admin")');">
+                                    <a data-toggle="modal" data-target="#confirm-xml" href="#"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
+                                </span>
 
-                                </td>
-                            </tr>
+                                @* <a href="@Url.Action("DeleteInstitution", "Admin", new { Id = item.Id })" onclick="return DeleteInstitution();"><img src="~/images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>*@
+
+                            </td>
+                        </tr>
 
                         }
                     </tbody>
                 </table><!--Institution list end here-->
-            <input type="hidden" id="hidUrl" />
-            <input type="hidden" id="hidId" />
+                <input type="hidden" id="hidUrl" />
+                <input type="hidden" id="hidId" />
                 <div id="divRecordStatus" style="color:red;text-align:center">@ViewBag.RecordStatus</div>
             </div><!--schedule list div end here-->
 
         </div><!--container end-->
     </div><!--col 12 end-->
 </div><!--row end-->
-</div><!--fluid container end-->
- <!--Delete confirmation-->
+<!--fluid container end-->
+<!--Delete confirmation-->
 <div id="confirm-xml" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -139,17 +135,17 @@ else { }
 
 <script type="text/javascript"
         src="@Url.Content("~/Scripts/spin.min.js")"></script>
- 
 
+<script src="~/Scripts/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
 <script type="text/javascript">
 
     function DeleteInstitution() {
         var apptId = $("#hidId").val();
         var globalGetJSONPath = $("#hidUrl").val();
         globalGetJSONPath = globalGetJSONPath + '?Id=' + apptId;
-       // alert(globalGetJSONPath); 
-       
-       // alert(filter);
+        // alert(globalGetJSONPath);
+
+        // alert(filter);
         $.ajax({
             type: "Get",
             url: globalGetJSONPath,
@@ -159,57 +155,23 @@ else { }
             success: function (data) {
                 $("#confirm-xml").modal('hide');
                 location.reload();
+                $("#tblInstitutions").tablesorter();
                 //SearchAppointment('/Admin/SearchInstitution/'+filter);
             }
         }).always(function (Data) {
 
         });
-        
+
 
     }
-    function SetInstValues(id,url)
-    {
+    function SetInstValues(id, url) {
         $("#hidUrl").val(url);
         $("#hidId").val(id);
     }
-    @*function DeleteInstitution(Id) {
-
-        var globalGetJSONPath = '@Url.Action("DeleteInstitution", "Admin")';
-
-        $.get(globalGetJSONPath, { Id: Id }, function (data) {
-            alert(data);
-        });*@
-
-
-        //$.ajax({
-        //    type: "POST",
-        //    url: globalGetJSONPath,
-        //    data: { Id: Id },
-        //    dataType: "json",
-        //    async: true,
-        //    success: function (Data) {
-        //        $('#divRecordStatus').html('');
-        //        $('#ScheduleCount').html(Data.apps_count);
-        //        $('#divInstitutionGrid').html(Data.view);
-        //        //if ($('#chkbox').is(":checked"))
-        //        //{
-        //        //    alert("Hi");
-        //        //    $("#appt-date").val(Data.todaysDate);
-        //        //}
-
-        //        if (parseInt(Data.apps_count, 0) == 0) {
-        //            $('#divRecordStatus').html("No records found.");
-        //        }
-
-
-        //    }
-
-        //})
-
-    //}
+   
 
     $(document).ready(function () {
-                       
+
         $("#tblInstitutions").tablesorter();
         $("#btnAdd").click(function () {
 
@@ -228,21 +190,21 @@ else { }
             };
             var target = document.getElementById('loading');
             var spinner = new Spinner(opts).spin(target);
-            
+
             $.post(url,
-            {                
+            {
                 instName: $('#txtInstitution').val()
             },
             function (data, status) {
                 location.reload(true);
+                $("#tblInstitutions").tablesorter();
             });
 
         });
 
-       
+
     });
 
 
 </script>
 
- 

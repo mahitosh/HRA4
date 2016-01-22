@@ -2,17 +2,18 @@
 
 <div>
     <h4>@Model.TemplateName</h4>
-    <div class="view-doc-content">
+    <div id="divPrint" class="view-doc-content">
        @Html.Raw(Model.FinalHtml)        
          
     </div>
     <div class="pull-right">
         <br />
+        @*<input type="button" id="btnDocCancel" onclick="CloseDocModel();" class="btn btn-cancel" data-dismiss="modal" value="Cancel" />*@
         <button id="btnDocCancel" type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
 
         @*<button type="button" class="btn btn-success">Download</button>*@
         <a id="btnDocDownload" href="@Url.Action("DownloadDocument", "Institution", new { filePath = Model.PdfFilePath, templateName = Model.TemplateName, id_mrn = Model.DownloadFileName, templateId = Model.Id }, null)" class="btn btn-success Margin-L-10">Download</a>
-     
+        <input type="button" class="btn btn-success Margin-L-10" value="Print" onclick="return pop_print();" />
         @*<button type="button" class="btn btn-success">Save</button>
         <button type="button" class="btn btn-success">Save &amp; Print</button>*@
 

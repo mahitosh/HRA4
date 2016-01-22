@@ -160,11 +160,11 @@ function UploadXml() {
         contentType: false,
         processData: false,
         success: function (data) {            
-            $("#upload-xml").modal('hide');
-            
-            $("#divNotification").text('File uploaded successfully');
-            $("#divNotification").fadeToggle(2000);
-            $("#divNotification").fadeToggle(2000);
+            $("#upload-xml").modal('hide');          
+            ShowNotification('File uploaded successfully');
+           // $("#divNotification").text('File uploaded successfully');
+           // $("#divNotification").fadeToggle(2000);
+            //$("#divNotification").fadeToggle(2000);
         }
     }).always(function (Data) {
 
@@ -178,8 +178,9 @@ function DeleteAppointment()
   //  alert('delete');    
     var apptId = $("#hidAppid").val();    
     var globalGetJSONPath = $("#hidUploadUrl").val();
+    var deleteUrl = $("#hidType").val();
     globalGetJSONPath = globalGetJSONPath + '?apptId=' + apptId;
-    //alert(globalGetJSONPath); 
+    alert(globalGetJSONPath); 
 
     $.ajax({
         type: "Get",
@@ -189,11 +190,10 @@ function DeleteAppointment()
         processData: false,
         success: function (data) {
             $("#confirm-xml").modal('hide');
-            $("#divNotification").text('Appointment deleted successfully');
-            $("#divNotification").fadeToggle(2000);
-            $("#divNotification").fadeToggle(2000);
-            //@Url.Action("FilteredInstitution", "Institution")
-            SearchAppointment('/Institution/FilteredInstitution');
+            ShowNotification('Appointment deleted successfully');           
+          
+            SearchAppointment(deleteUrl);
+ 
         }
     }).always(function (Data) {
 
@@ -205,7 +205,6 @@ function DeleteAppointment()
 
 /*======Start RiskCalculation logic ============ */
 function RiskCalculation(globalGetJSONPath,MRN,apptid,status) {
-
     $.ajax({
         beforeSend: function () {
             if (status == 'Run')
@@ -270,6 +269,7 @@ function ShowDocument(globalGetJSONPath, templateid) {
     // alert(target);
     var spinner = new Spinner(opts).spin(target);
     $(target).data('spinner', spinner);
+
     $("#btnDocDownload").attr('disabled', true);
     $("#btnDocCancel").attr('disabled', true);
     // alert(mrn); btnDocCancel
@@ -281,9 +281,51 @@ function ShowDocument(globalGetJSONPath, templateid) {
         dataType: "json",
         async: true,
         success: function (Data) {
+            $('#divShowHtml').data('spinner').stop();
+            //$('#divShowHtml').hide();
             $("#btnDocDownload").attr('disabled', false);
             $("#btnDocCancel").attr('disabled', false);
             $('#divShowHtml').html(Data.view);
+           
         }
     })
 }
+function pop_print() {
+    w = window.open(null, 'Print_Page', 'scrollbars=yes');
+    w.document.write(jQuery('#divPrint').html());
+    w.document.close();
+    w.print();
+}
+
+function printDiv(divID) {
+
+
+    //Get the HTML of div
+    var divElements = document.getElementById('divPrint').innerHTML;
+    //Get the HTML of whole page
+    var oldPage = document.body.innerHTML;
+
+    //Reset the page's HTML with div's HTML only
+    document.body.innerHTML =
+      "<html><head> <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script><title>Test</title></head><body>" +
+      divElements + "</body>";
+
+    //Print Page
+    window.print();
+   // $("#schedule-new-doc-modal").modal("hide");
+    //Restore orignal HTML
+    document.body.innerHTML = oldPage;
+   
+    //location.reload();
+   // $("#schedule-new-doc-modal").modal('hide');
+    return true;
+
+}
+
+function CloseDocModel()
+{
+   // alert($("#schedule-new-doc-modal"));
+    document.getElementById('schedule-new-doc-modal').style.display = "none";
+    $("#schedule-new-doc-modal").modal("hide");
+}
+

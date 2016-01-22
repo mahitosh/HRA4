@@ -29,5 +29,7 @@ namespace HRA4.Services.Interfaces
         VM.AuditReports GetAuditReports(string MRN, string startdate, string enddate);
         void CreateTestPatients(int NoOfPatients, string dtAppointmentDate, int surveyID, string SurveyName, int clinicID);
         VM.TestPatient LoadCreateTestPatients();
+        void DeleteTestPatientsByapptids(int[] apptids);
+        void ExcludeTestPatientsByapptids(int[] apptids);
     }
 }
