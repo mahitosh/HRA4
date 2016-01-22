@@ -47,18 +47,19 @@ function getSelectedIds(){
 function DeleteTestPatients() {
 
     var apptids = getSelectedIds();
-  
-    $.ajax({
-        url: '/TestPatient/DeleteTestPatientsByapptids',
-        data: { ids: apptids },
-        dataType: 'html',
-        success: function (data) {
-            $("#confirm-xml").modal('hide');
-            $('#testpatientsgrid').html('');
-            $('#testpatientsgrid').html(data);
-        }
-    });
-}
+   
+        $.ajax({
+            url: '/TestPatient/DeleteTestPatientsByapptids',
+            data: { ids: apptids },
+            dataType: 'html',
+            success: function (data) {
+                $("#confirm-xml").modal('hide');
+                ShowNotification('Test Patients Deleted Successfully');
+                $('#testpatientsgrid').html('');
+                $('#testpatientsgrid').html(data);
+            }
+        });
+ }
 
 function MarkAsNotTestPatients() {
 
@@ -69,8 +70,11 @@ function MarkAsNotTestPatients() {
         data: { ids: apptids },
         dataType: 'html',
         success: function (data) {
+            $("#confirm-xml2").modal('hide');
+            ShowNotification('Test Patients Maked As Not Test Patient');
             $('#testpatientsgrid').html('');
             $('#testpatientsgrid').html(data);
+
         }
     });
 }
@@ -85,4 +89,39 @@ function RefreshTestPatients() {
         }
     });
 
+}
+function showNotification() {
+    ShowNotification('Test Patients Created Successfully');
+}
+
+function Appendtextonpopup(msg){
+    var apptids = getSelectedIds();
+    console.log(apptids);
+    if(!apptids)
+    {
+        if (msg == "Delete") {
+            $("#divnotblank").hide();
+            $("#divblank").show();
+            $("#btnyes").hide();
+        } else {
+            $("#divnotblankMark").hide();
+            $("#divblankMark").show();
+            $("#btnyesMark").hide();
+        }
+
+        
+    }
+    else
+    {
+        if (msg == "Delete") {
+            $("#divblank").hide();
+            $("#divnotblank").show();
+            $("#btnyes").show();
+        } else {
+            $("#divblankMark").hide();
+            $("#divnotblankMark").show();
+            $("#btnyesMark").show();
+        }
+        
+    }
 }

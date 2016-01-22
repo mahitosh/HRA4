@@ -144,7 +144,7 @@
 
                                             </div>
                                             <div class="col-sm-12 pull-right">
-                                                <button id="btnSaveQuick" type="submit" class="pull-right btn btn-success btn-sm  Margin-L-10">Create</button>
+                                                <button id="btnSaveQuick" type="submit" onclick="showNotification();" class="pull-right btn btn-success btn-sm  Margin-L-10">Create</button>
                                                 <button id="btnClearQuick" class="pull-right btn btn-cancel btn-sm">Cancel</button>
                                             </div>
                                             <div class="clear-float"></div>
@@ -158,24 +158,28 @@
                                                 <b>Select test patients from below.</b>
                                             </div>
                                             <div class="col-md-8 col-sm-12">
+
                                                 <a href="#" class="pull-right Margin-L-10" onclick="RefreshTestPatients();">
                                                     <img src="~/images/refresh-grid-ico.svg" class="refresh-institution-list" alt="Refresh All" height="22" width="22" />Refresh List
                                                 </a>
+                                                <span onclick="Appendtextonpopup('MarNot');">
+                                                    <a data-toggle="modal" data-target="#confirm-xml2" href="#" class="pull-right Margin-L-10">
+                                                        <img src="~/images/close-circle-ico.svg" class="refresh-institution-list" alt="Mark NOT Test Patients" height="22" /> Mark NOT Test Patients
+                                                    </a>
+                                                </span>
+                                                <span onclick="Appendtextonpopup('Delete');">
+                                                    <a data-toggle="modal" data-target="#confirm-xml" href="#" class="pull-right Margin-L-10">
+                                                        <img src="~/images/delete-ico.svg" class="refresh-institution-list" alt="Delete Records" height="22" />Delete Records
+                                                    </a>
+                                                </span>
 
-                                                <a href="#" class="pull-right Margin-L-10" onclick="MarkAsNotTestPatients();">
-                                                    <img src="~/images/close-circle-ico.svg" class="refresh-institution-list" alt="Mark NOT Test Patients" height="22" /> Mark NOT Test Patients
-                                                </a>
-                                                <a data-toggle="modal" data-target="#confirm-xml" href="#" class="pull-right Margin-L-10" >
-                                                    <img src="~/images/delete-ico.svg" class="refresh-institution-list" alt="Delete Records" height="22" />Delete Records
-                                                </a>
-
-                                                <a href="#" class="pull-right Margin-L-10" onclick="CheckAllBoxes();">
-                                                    <img src="~/images/select-all-ico.svg" class="refresh-institution-list" alt="Select All Records" height="22" />Select All
-                                                </a>
-                                            </div>
+                                                    <a href="#" class="pull-right Margin-L-10" onclick="CheckAllBoxes();">
+                                                        <img src="~/images/select-all-ico.svg" class="refresh-institution-list" alt="Select All Records" height="22" />Select All
+                                                    </a>
+</div>
                                         </div><!--row end-->
                                         <div id="testpatientsgrid"></div>
-                                         @*@Html.Partial("_DeleteTestPatientGrid", @Model)*@
+                                       
                                         <div class="clear-float"></div>
                                     </div><!--row end-->
                                 </div><!--container end-->
@@ -197,12 +201,15 @@
                     <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title"> Confirm Operation</h4>
                 </div>
-                <div class="modal-body">
-                    <div class="editor-field">
+                <div id="divbody" class="modal-body">
+                    <div id="divblank" class="editor-field">
+                        <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Please Select Test Patient!</strong><br /><br />
+                    </div>
+                    <div id="divnotblank" class="editor-field">
                         <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Are you sure you want to delete.</strong><br /><br />
                     </div>
                     <div class="modal-footer">
-                        <input class="btn btn-success confirmyes pull-right" type="button" onclick="DeleteTestPatients();" value="Yes" />
+                        <input class="btn btn-success confirmyes pull-right" type="button" id="btnyes" onclick="DeleteTestPatients();" value="Yes" />
                         <input class="btn btn-cancel pull-right Margin-R-10" data-dismiss="modal" type="button" value="Cancel" />
 
                     </div>
@@ -212,6 +219,33 @@
     </div>
     <!--Delete Confirmation-->
 
-    
-    <script src="~/Scripts/TestPatient.js"></script>
+    <!--Mark Not As Test Patient-->
+    <div id="confirm-xml2" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"> Confirm Operation</h4>
+                </div>
+                <div id="divbody" class="modal-body">
+                    <div id="divblankMark" class="editor-field">
+                        <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Please Select Test Patient!</strong><br /><br />
+                    </div>
+                    <div id="divnotblankMark" class="editor-field">
+                        <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Are you sure you want to Mark As not a Test Patient.</strong><br /><br />
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-success confirmyes pull-right" type="button" id="btnyesMark" onclick="MarkAsNotTestPatients();" value="Yes" />
+                        <input class="btn btn-cancel pull-right Margin-R-10" data-dismiss="modal" type="button" value="Cancel" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Mark Not As Test Patient-->
+
+
+    <script src="~/Scripts/customJquery/TestPatient.js"></script>
    
