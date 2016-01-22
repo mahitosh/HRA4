@@ -1,17 +1,5 @@
 ﻿
 
-//show add appointment link
-function hidedelete() {
-    $.ajax({
-        url: '/TestPatient/RefreshTestPatients',
-        dataType: 'html',
-        success: function (data) {
-            $('#testpatientsgrid').html('');
-            $('#testpatientsgrid').html(data);
-        }
-    });
-}
-
 $('#menu ul').hide();
 $("ul#menu").off("click");
 
@@ -44,12 +32,12 @@ function getSelectedIds(){
 }
 
 
-function DeleteTestPatients() {
+function DeleteTestPatients(url) {
 
     var apptids = getSelectedIds();
    
         $.ajax({
-            url: '/TestPatient/DeleteTestPatientsByapptids',
+            url: url,
             data: { ids: apptids },
             dataType: 'html',
             success: function (data) {
@@ -61,12 +49,12 @@ function DeleteTestPatients() {
         });
  }
 
-function MarkAsNotTestPatients() {
+function MarkAsNotTestPatients(url) {
 
     var apptids = getSelectedIds();
   
     $.ajax({
-        url: '/TestPatient/ExcludeTestPatientsByapptids',
+        url: url,
         data: { ids: apptids },
         dataType: 'html',
         success: function (data) {
@@ -79,9 +67,9 @@ function MarkAsNotTestPatients() {
     });
 }
 
-function RefreshTestPatients() {
+function RefreshTestPatients(url) {
     $.ajax({
-        url: '/TestPatient/RefreshTestPatients',
+        url: url,
         dataType: 'html',
         success: function (data) {
             $('#testpatientsgrid').html('');

@@ -206,7 +206,6 @@ function DeleteAppointment()
 
 /*======Start RiskCalculation logic ============ */
 function RiskCalculation(globalGetJSONPath,MRN,apptid,status) {
-
     $.ajax({
         beforeSend: function () {
             if (status == 'Run')
