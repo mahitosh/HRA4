@@ -64,11 +64,11 @@ else
                                         </ul><!--sidebar child end here-->
                                     </li>
                                     <li class="clear-float">
-                                        <a href="#" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">0</span></a>
+                                        <a href="@Url.Action("Index", "HighRiskFollowup", new { type = "LBC" })" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">@ViewBag.LBCCount</span></a>
                                     </li>
 
                                     <li>
-                                        <a href="#" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">0</span></a>
+                                        <a href="@Url.Action("Index", "HighRiskFollowup", new { type = "BRCA" })" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">@ViewBag.BRCACount</span></a>
                                     </li>
                                 </ul>
 

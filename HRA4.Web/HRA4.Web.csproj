@@ -313,6 +313,7 @@
     <Content Include="Scripts\bootstrap\v3.3.6\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\v3.3.6\npm.js" />
     <Content Include="Scripts\custom-script.js" />
+    <Content Include="Scripts\customJquery\HighRiskFollowup.js" />
     <Content Include="Scripts\customJquery\Institution.js" />
     <Content Include="Scripts\dev-custom.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -795,6 +796,7 @@
     <Content Include="Views\Error\Unauthorized.cshtml" />
     <Content Include="Views\TestPatient\_DeleteTestPatientGrid.cshtml" />
     <Content Include="Views\Shared\_ErrorLayout.cshtml" />
+    <Content Include="Views\HighRiskFollowup\_HighRiskBrcaGrid.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

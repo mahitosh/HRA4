@@ -8,49 +8,49 @@
 
 }
     
+<div class="row">
+    <h3 class="page-title Margin-B-10">Document Template List <small>* Select a template to edit it.</small></h3>
+    <div class="clear-float"></div>
+    <div class="col-sm-3 modal-sidebar">
+        <h5 style="background-color:#d6efff;">Template Names</h5>
+        <ul>
 
-<h3 class="page-title Margin-B-10">Document Template List <small>* Select a template to edit it.</small></h3>
-<div class="clear-float"></div>
-<div class="col-sm-3 modal-sidebar">
-    <h5 style="background-color:#d6efff;">Template Names</h5>
-    <ul>
+
+            @foreach (var item in Model.SuggestedDocument)
+            {
+
+                <li><a href='@Url.Action("SelectTemplate", "DocumentEditor", new { @Id = item.Id, @TemplateName=item.TemplateName })'>@item.TemplateName</a></li>
+
+            }
+            @foreach (var item in Model.OtherDocuments)
+            {
+
+                <li><a href='@Url.Action("SelectTemplate", "DocumentEditor", new { @Id = item.Id, @TemplateName=item.TemplateName })'>@item.TemplateName</a></li>
+
+            }
 
 
-        @foreach (var item in Model.SuggestedDocument)
+
+        </ul>
+    </div>
+    <div class="col-sm-9 Padding-R-0" id="textEditor">
+        <h4 class="Margin-T-0">Editing Template : @Html.DisplayFor(model => model.TemplateName) </h4>
+        @using (Html.BeginForm("SaveTemplate", "DocumentEditor"))
         {
+            @Html.HiddenFor(m => m.TemplateName)
+            @Html.HiddenFor(m => m.Id)
+            <div>@Html.EditorFor(model => model.Content) </div> @*class="view-doc-content"*@
+            <span style="text-align:left;color:green">@ViewBag.Message</span>
+            <span style="text-align:left;color:red">@Html.ValidationMessage("Content")</span>
+            <div class="pull-right">
+                <br />
 
-            <li><a href='@Url.Action("SelectTemplate", "DocumentEditor", new { @Id = item.Id, @TemplateName=item.TemplateName })'>@item.TemplateName</a></li>
+                <button type="button" class="btn btn-cancel" data-dismiss="modal" onclick="location.href='@Url.Action("Cancel")'">Cancel</button>
+                <button type="submit" class="btn btn-success">Save Changes</button>
 
+            </div>
         }
-        @foreach (var item in Model.OtherDocuments)
-        {
-
-            <li><a href='@Url.Action("SelectTemplate", "DocumentEditor", new { @Id = item.Id, @TemplateName=item.TemplateName })'>@item.TemplateName</a></li>
-
-        }
-
-
-        
-    </ul>
-</div>
-<div class="col-sm-9 Padding-R-0" id="textEditor" >
-    <h4 class="Margin-T-0">Editing Template : @Html.DisplayFor(model => model.TemplateName) </h4>
-    @using (Html.BeginForm("SaveTemplate", "DocumentEditor"))
-    {
-        @Html.HiddenFor(m => m.TemplateName)
-        @Html.HiddenFor(m => m.Id)
-        <div >@Html.EditorFor(model => model.Content) </div> @*class="view-doc-content"*@
-        <span style="text-align:left;color:green">@ViewBag.Message</span>
-        <span style="text-align:left;color:red">@Html.ValidationMessage("Content")</span>
-        <div class="pull-right">
-            <br />
-            
-            <button type="button" class="btn btn-cancel" data-dismiss="modal" onclick="location.href='@Url.Action("Cancel")'" >Cancel</button>
-            <button type="submit" class="btn btn-success">Save Changes</button>
-
-        </div>
-    }
-</div>
-
+    </div>
+    </div>
 
 

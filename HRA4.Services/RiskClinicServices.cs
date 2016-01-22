@@ -32,8 +32,7 @@ namespace HRA4.Services
         {
             Entities.PatientDetails objPatient = new Entities.PatientDetails();
 
-             unitnum = "12312041502";
-             apptid = -1;
+         
             string assignedBy = "";
             string Base64 = string.Empty;
 
@@ -82,32 +81,33 @@ namespace HRA4.Services
         }
 
 
-        public System.Data.DataTable GetPatients(int ClinicID)
+        public System.Data.DataTable GetPatients(int ClinicID, string PageType)
         {
 
-            
-           
-            
-            
-            
-
-
-
-
             System.Data.DataTable dt = new System.Data.DataTable();
-            HighRiskLifetimeBreastQueue obj = new HighRiskLifetimeBreastQueue();
-            obj.BackgroundLoadWork();
-            dt= obj.dt;
 
+            if (PageType.Trim().ToLower() == "LBC".Trim().ToLower())
+            {
+                
+                HighRiskLifetimeBreastQueue obj = new HighRiskLifetimeBreastQueue();
+                obj.BackgroundLoadWork();
+                dt = obj.dt;
+            }
+            else
+            { 
+            HighRiskBrcaQueue objBrca = new HighRiskBrcaQueue();
+            objBrca.BackgroundLoadWork();
+            dt = objBrca.dt;
+            }
             return dt;
         }
 
 
-        public List<ViewModels.HighRiskLifetimeBreast> GetPatients()
+        public List<ViewModels.HighRisk> GetPatients(string PageType)
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            dt = GetPatients(-1);
-
+            dt = GetPatients(-1, PageType);
+            /*
             string type = "";
              type= dt.Columns["patientName"].DataType.ToString();
              type = dt.Columns["unitnum"].DataType.ToString();
@@ -116,9 +116,10 @@ namespace HRA4.Services
              type = dt.Columns["LastMRI"].DataType.ToString();
              type = dt.Columns["Diseases"].DataType.ToString();
              type = dt.Columns["dob"].DataType.ToString();
+            */
 
-            List<ViewModels.HighRiskLifetimeBreast> items = dt.AsEnumerable().Select(row =>
-                 new ViewModels.HighRiskLifetimeBreast
+            List<ViewModels.HighRisk> items = dt.AsEnumerable().Select(row =>
+                 new ViewModels.HighRisk
                  {
                      patientName = row.Field<string>("patientName"),
                      unitnum = row.Field<string>("unitnum"),
@@ -126,8 +127,12 @@ namespace HRA4.Services
                      LastCompApptDate = row.Field<DateTime?>("LastCompApptDate"),
                      LastMRI = row.Field<DateTime?>("LastMRI"),
                      Diseases = row.Field<string>("Diseases"),
-                     dob = row.Field<string>("dob")
-
+                     dob = row.Field<string>("dob"),
+                     isRCPt = row.Field<int?>("isRCPt"),
+                     genTested = row.Field<int?>("genTested"),
+                     DoNotContact = row.Field<int?>("DoNotContact"),
+                     MaxBRCAScore = row.Field<double>("MaxBRCAScore"),
+                     geneNames = row.Field<string>("geneNames"),
                  }).ToList();
 
             return items;

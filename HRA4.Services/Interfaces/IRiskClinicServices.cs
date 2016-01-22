@@ -9,8 +9,8 @@ namespace HRA4.Services.Interfaces
 {
     public interface IRiskClinicServices
     {
-        DataTable GetPatients(int ClinicID);
-        List<ViewModels.HighRiskLifetimeBreast> GetPatients();
+        DataTable GetPatients(int ClinicID, string PageType);
+        List<ViewModels.HighRisk> GetPatients(string PageType);
         Entities.PatientDetails GetPatientDetails(string unitnum, int apptid);
 
     }
