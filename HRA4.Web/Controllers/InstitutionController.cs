@@ -51,6 +51,10 @@ namespace HRA4.Web.Controllers
                 ViewBag.AppointmentCount = apps.Count();
                 ViewBag.RecordStatus = "";
                 ViewBag.TodaysDate = DateTime.Now.ToString("MM/dd/yyyy");
+
+                ViewBag.LBCCount = _applicationContext.ServiceContext.RiskClinicServices.GetPatients("LBC").Count();
+                ViewBag.BRCACount = _applicationContext.ServiceContext.RiskClinicServices.GetPatients("BRCA").Count(); 
+
                 if (apps.Count == 0)
                 {
                     ViewBag.RecordStatus = "No records found.";

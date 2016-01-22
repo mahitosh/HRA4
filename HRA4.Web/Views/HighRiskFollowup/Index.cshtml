@@ -1,133 +1,102 @@
-﻿@model IEnumerable<HRA4.ViewModels.HighRiskLifetimeBreast>
+﻿@*@model IEnumerable<HRA4.ViewModels.HighRiskLifetimeBreast>*@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_leftMenuLayout.cshtml";
 }
-
-<h3 class="page-title Margin-B-10">Patients at an Elevated Lifetime</h3>
-<div class="clear-float"><hr class="hr-style Margin-TB-10" /></div>
-<div class="col-sm-12 Padding-L-0">
-    <div class="checkbox">
-        <label class="Padding-L-0"><strong>Exclude:</strong></label>
-        <label class="Margin-L-10"><input type="checkbox" value="">Cancer Genetics Patients</label>
-        <label class="Margin-L-15"><input type="checkbox" value="">DNC Patients</label>
-        <label class="Margin-L-15"><input type="checkbox" value="">Genetics Testing Patients</label>
-    </div>
-</div> <!--checkbox end -->
 <div class="row">
-    <div class="col-sm-6 Padding-L-0 Margin-T-10">
-        <div class="col-md-8 col-md-7 col-sm-6" style="padding-top:3px;"><input type="text" class="form-control" /></div>
-        <button type="button" class="btn btn-primary" onclick="Search()" ><i class="fa fa-search"></i> Search </button>
-        <button type="button" class="btn btn-cancel">Clear</button>
-    </div>
-    <div class="clear-float"><br /></div>
-    <div class="table-responsive col-sm-12" id="divTable">
-       
-    @*@Html.Partial("_HighRiskLifetimeBreastGrid",Model)*@
-    </div><!--lifetime cancer div end here-->
-    <div class="col-sm-12">0 Patients</div>
-</div><!--left container-->
-<div id="LifetimeCancer-pedigree-diagram-modal" class="modal fade" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Pedigree Diagram</h4>
-            </div>
-            <div class="modal-body">
-                <div class="view-doc-cont Padding-LR-0">
-                    <div class="col-sm-12 align-right">
-                        <span class="bold-txt">Age:<span id="spanAge" ></span> </span> | <span><b>MRN:</b> <span id="spanMRN" ></span>  </span> | <span><b>DOB:</b> <span id="spanDOB"></span>  </span> <br />
-                        <span class="Margin-R-10"><b>H:</b> <span id="spanH"></span>  </span>
-                        <span class="Margin-R-10"><b>C:</b> <span id="spanC"></span> </span>
-                        <span class="Margin-R-10"><b>W:</b> <span id="spanW"></span> </span>
-                        <span><b>PCP:</b> <span id="spanPCP" ></span>  </span>
+    <h3 class="page-title Margin-B-10">Patients at an Elevated Lifetime</h3>
+    <div class="clear-float"><hr class="hr-style Margin-TB-10" /></div>
 
-                    </div>
 
-                    <div class="col-sm-12 Padding-LR-0">
-                        <hr class="hr-style Margin-TB-5" />
-                    </div>
+    <div class="col-sm-12 Padding-L-0">
+        <div class="checkbox">
+            <label class="Padding-L-0"><strong>Exclude:</strong></label>
 
-                    <div class="col-sm-12 Padding-LR-0">
-                        <h5><strong>Pedigree</strong></h5>
-                        <div class="view-doc-content" style="height:520px;">
-                            <div id="imagediv">
+            <label class="Margin-L-10"><input type="checkbox" id="chkExcludeCancerGeneticsPatients" value="">Cancer Genetics Patients</label>
+            <label class="Margin-L-15"><input type="checkbox" value="" id="chkExcludeDoNotContactPatients">DNC Patients</label>
+            <label class="Margin-L-15"><input type="checkbox" value="" id="chkExcludepatientswithgenetictesting">Genetics Testing Patients</label>
+        </div>
+    </div> <!--checkbox end -->
+    <div class="row">
+        <div class="col-sm-6 Padding-L-0 Margin-T-10">
+            <div class="col-md-8 col-md-7 col-sm-6" style="padding-top:3px;"><input type="text" id="txtSearch" class="form-control" /></div>
+            <button type="button" class="btn btn-primary" onclick="SetValuesAndSearch('@Url.Action( "Search", "HighRiskFollowup")');"><i class="fa fa-search"></i> Search </button>
+            <button type="button" class="btn btn-cancel" onclick="Clear()">Clear</button>
+        </div>
+        <div class="clear-float"><br /></div>
+        <div class="table-responsive col-sm-12" id="divTable">
 
+        </div><!--lifetime cancer div end here-->
+        <div id="divRecordStatus" style="color:red;text-align:center"></div>
+        <div class="col-sm-12"><span id="spanRecordCount" ></span> Patients</div>
+    </div><!--left container-->
+
+    <div id="LifetimeCancer-pedigree-diagram-modal" class="modal fade" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Pedigree Diagram</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="view-doc-cont Padding-LR-0">
+                        <div class="col-sm-12 align-right">
+                            <span class="bold-txt">Age:<span id="spanAge"></span> </span> | <span><b>MRN:</b> <span id="spanMRN"></span>  </span> | <span><b>DOB:</b> <span id="spanDOB"></span>  </span> <br />
+                            <span class="Margin-R-10"><b>H:</b> <span id="spanH"></span>  </span>
+                            <span class="Margin-R-10"><b>C:</b> <span id="spanC"></span> </span>
+                            <span class="Margin-R-10"><b>W:</b> <span id="spanW"></span> </span>
+                            <span><b>PCP:</b> <span id="spanPCP"></span>  </span>
+
+                        </div>
+
+                        <div class="col-sm-12 Padding-LR-0">
+                            <hr class="hr-style Margin-TB-5" />
+                        </div>
+
+                        <div class="col-sm-12 Padding-LR-0">
+                            <h5><strong>Pedigree</strong></h5>
+                            <div class="view-doc-content" style="height:520px;">
+                                <div id="imagediv">
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div><!--row end-->
-            </div>
-        </div> <!--modal body end-->
-        <div class="clear-float"><br /></div>
+                    </div><!--row end-->
+                </div>
+            </div> <!--modal body end-->
+            <div class="clear-float"><br /></div>
+        </div>
     </div>
 </div>
-
+<script src="~/Scripts/customJquery/HighRiskFollowup.js"></script>
 <script type="text/javascript">
-
-
-  
     $(document).ready(function () {
-        Search();
+        Search("", false, false, false, '@Url.Action("Search", "HighRiskFollowup")');
     }
     );
 
 
-    function GetPatientDetails(unitnum, globalGetJSONPath) {
-
-        
-
-        $.ajax({
-            type: "POST",
-            url: globalGetJSONPath,
-            data: { unitnum: unitnum},
-            dataType: "json",
-            async: true,
-            success: function (Data) {
-
-              
-                $("#spanPatientName").html(Data.obj.name);
-                $("#spanMRN").html(Data.obj.unitnum);
-                $("#spanAge").html(Data.obj.age);
-                $("#spanH").html(Data.obj.homephone);
-                $("#spanC").html(Data.obj.cellphone);
-                $("#spanW").html(Data.obj.workphone);
-                $("#spanDOB").html(Data.obj.dob);
-                $("#spanPCP").html('');
-                $("#imagediv").empty();
-                var img = $('<img id="imgPedigree">'); 
-                img.attr('src', Data.ImageUrl);
-                img.appendTo('#imagediv');
-                $('#LifetimeCancer-pedigree-diagram-modal').modal('show');
+    var chkExcludeCancerGeneticsPatients = false;
+    var chkExcludeDoNotContactPatients = false;
+    var chkExcludepatientswithgenetictesting = false;
+    var txtSearch = "";
 
 
-            }
+    $('#chkExcludeCancerGeneticsPatients').change(function () {
 
-        })
+        SetValuesAndSearch('@Url.Action( "Search", "HighRiskFollowup")');
 
 
 
+    });
+    $('#chkExcludeDoNotContactPatients').change(function () {
 
+        SetValuesAndSearch('@Url.Action( "Search", "HighRiskFollowup")');
+    });
+    $('#chkExcludepatientswithgenetictesting').change(function () {
 
-
-    }
-
-
-
-
-    function Search()
-    {
-
-        $.ajax({
-            url: '/HighRiskFollowup/Search',
-            dataType: 'html',
-            success: function (data) {
-                $('#divTable').html('');
-                $('#divTable').html(data);
-            }
-        });
-    }
+        SetValuesAndSearch('@Url.Action( "Search", "HighRiskFollowup")');
+    });
 
 </script>

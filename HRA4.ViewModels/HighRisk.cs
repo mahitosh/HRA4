@@ -7,7 +7,7 @@ using System.Data;
 
 namespace HRA4.ViewModels
 {
-    public class HighRiskLifetimeBreast
+    public class HighRisk
     {
 
         public string patientName { get; set; }
@@ -17,18 +17,17 @@ namespace HRA4.ViewModels
         public DateTime? LastMRI { get; set; }
         public string Diseases { get; set; }
         public string dob { get; set; }
+        public int? isRCPt { get; set; }  // ExcludeCancerGeneticsPatients
+        public int? genTested { get; set; }  // excludePatientsWithGeneticTesting
+        public int? DoNotContact { get; set; } //ExcludeDoNotContactPatients 
+        public double MaxBRCAScore { get; set; }
+        public string geneNames { get; set; }
 
-        
         
 
 
     }
-    public class HighRiskBrca
-    {
-
-
-
-    }
+  
     
 
     
