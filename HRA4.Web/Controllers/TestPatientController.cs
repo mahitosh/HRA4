@@ -17,7 +17,7 @@ namespace HRA4.Web.Controllers
         {
             TestPatient tp = new TestPatient();
             tp = _applicationContext.ServiceContext.AppointmentService.LoadCreateTestPatients();
-            tp.InitateTestPatients = null;
+            tp.InitateTestPatients = new List<TestPatientAppointment>();
             ViewBag.TodaysDate = DateTime.Now.ToString("MM/dd/yyyy");
             return View(tp);
         }
