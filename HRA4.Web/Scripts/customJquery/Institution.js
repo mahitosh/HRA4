@@ -178,8 +178,9 @@ function DeleteAppointment()
   //  alert('delete');    
     var apptId = $("#hidAppid").val();    
     var globalGetJSONPath = $("#hidUploadUrl").val();
+    var deleteUrl = $("#hidType").val();
     globalGetJSONPath = globalGetJSONPath + '?apptId=' + apptId;
-    //alert(globalGetJSONPath); 
+    alert(globalGetJSONPath); 
 
     $.ajax({
         type: "Get",
@@ -189,12 +190,10 @@ function DeleteAppointment()
         processData: false,
         success: function (data) {
             $("#confirm-xml").modal('hide');
-            ShowNotification('Appointment deleted successfully');
-            //$("#divNotification").text('Appointment deleted successfully');
-            //$("#divNotification").fadeToggle(2000);
-            //$("#divNotification").fadeToggle(2000);
-            //@Url.Action("FilteredInstitution", "Institution")
-            SearchAppointment('/Institution/FilteredInstitution');
+            ShowNotification('Appointment deleted successfully');           
+          
+            SearchAppointment(deleteUrl);
+ 
         }
     }).always(function (Data) {
 
@@ -330,3 +329,4 @@ function CloseDocModel()
     document.getElementById('schedule-new-doc-modal').style.display = "none";
     $("#schedule-new-doc-modal").modal("hide");
 }
+

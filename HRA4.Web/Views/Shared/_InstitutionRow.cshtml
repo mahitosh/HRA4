@@ -9,7 +9,7 @@
         string strMrn = Model.MRN;
         int apptId = Model.Id;
     }
-    
+
     <div class="col-sm-12 quick-add-links">
 
         <span onclick="NewDocument('@Url.Action("NewDocument", "Institution")','@Model.MRN.ToString()', '@Model.Id.ToString()');">
@@ -48,7 +48,8 @@
                 <li class="dropdown-submenu">
                     <a href="#">Save as HL7</a>
                     <ul class="dropdown-menu">
-                        <li><a href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)">De-Identified</a></li>
+                        <li>
+                            <a  href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)">De-Identified</a></li>
                         <li><a href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)">Identified</a></li>
                     </ul>
                 </li>
@@ -67,12 +68,12 @@
                 Run Automation Documents
             </a>
         </span>
-        <span onclick="SetValues('@Model.MRN.ToString()', '@Model.Id.ToString()','','@Url.Action("DeleteAppointment", "Institution")');">
+        <span onclick="SetValues('@Model.MRN.ToString()', '@Model.Id.ToString()','@Url.Action("FilteredInstitution", "Institution")','@Url.Action("DeleteAppointment", "Institution")');">
             <a data-toggle="modal" data-target="#confirm-xml" href="#">
                 <img src="~/images/delete-appointment-ico.svg" alt="Delete Appointment" width="30" height="30" title="Delete Appointment" /> Delete Appointment
             </a>
         </span>
-        
+
     </div>
 
     @using (Ajax.BeginForm("InstitutionSave", "Institution", new AjaxOptions
