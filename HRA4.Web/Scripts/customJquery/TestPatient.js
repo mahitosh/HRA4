@@ -36,7 +36,7 @@ function Applytablesorter() {
          {
              headers: {
                  // assign the secound column (we start counting zero)
-                 1: {
+                 5: {
                      // disable it by setting the property sorter to false
                      sorter: false
                  }
