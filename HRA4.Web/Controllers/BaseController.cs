@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using HRA4.Context;
 using log4net;
+using HRA4.ViewModels;
+using HRA4.Entities.UserManagement;
 namespace HRA4.Web.Controllers
 {
     [Authorize]
@@ -19,10 +21,15 @@ namespace HRA4.Web.Controllers
             {
                 _applicationContext = new ApplicationContext();
                 System.Web.HttpContext.Current.Session["ApplicationContext"] = _applicationContext;
+               // ViewBag.MenuList = CreateMenu();
             }
             else
                 _applicationContext = System.Web.HttpContext.Current.Session["ApplicationContext"] as ApplicationContext;
+            
         }
+     
+
+        
 
         protected override void OnException(ExceptionContext filterContext)
         {
