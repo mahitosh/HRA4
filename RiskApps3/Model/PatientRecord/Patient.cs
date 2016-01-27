@@ -67,7 +67,7 @@ namespace RiskApps3.Model.PatientRecord
         private string toolsPath = "";
         private string strServiceBinding = "";
 
-        public FileInfo file { get;set;}
+        public FileInfo file { get;set;} //Silicus: Added the property to get the file info details.
         /**************************************************************************************************/
         public void summarize()
         {
@@ -342,7 +342,7 @@ namespace RiskApps3.Model.PatientRecord
                 }
                 if (reader.IsDBNull(3) == false)
                 {
-                    if(HttpContext.Current!=null)
+                    if(HttpContext.Current!=null)// Silicus
                         saveLocation = HttpContext.Current.Server.MapPath(reader.GetString(3));
                     else
                     saveLocation = reader.GetString(3);

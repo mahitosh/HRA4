@@ -231,7 +231,8 @@ namespace HRA4.Services
             {
                 fhx.proband.unitnum = mrn;  //just continue to use the existing unitnum for the appt we're overwriting
             }
-            Appointment.UpdateAppointmentUnitnum(apptId, fhx.proband.unitnum);
+            //The below line is commented out as the new library doesn't have any such method.
+           // Appointment.UpdateAppointmentUnitnum(apptId, fhx.proband.unitnum); 
             fhx.proband.PersistFullObject(new HraModelChangedEventArgs(null));
 
             fs.Close();

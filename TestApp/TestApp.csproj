@@ -85,9 +85,9 @@
       <Project>{7fca466d-dff4-44c2-9aea-aedf89a9a03a}</Project>
       <Name>HRA4.ViewModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RiskApps3\RiskApps3.csproj">
+    <ProjectReference Include="..\RiskApps3\RiskApps3Old.csproj">
       <Project>{16b371c4-551b-43c6-93db-5ecf4c70bc66}</Project>
-      <Name>RiskApps3</Name>
+      <Name>RiskApps3Old</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

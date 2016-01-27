@@ -60,9 +60,16 @@ namespace HRA4.Services
             Cache.SetCache<string>(InstitutionId, config);
         }
 
+        /// <summary>
+        /// Set the active patient according to MRN and Appointment Id.
+        /// </summary>
+        /// <param name="mrn">MRN number.</param>
+        /// <param name="apptId">Appointment Id</param>
         public void SetActivePatient(string mrn, int apptId)
         {
             SessionManager.Instance.SetActivePatient(mrn, apptId);
+            //Since the default LoadPatient has been by passed in RiskApp3 library we have to 
+            SessionManager.Instance.GetActivePatient().LoadObject();
         }
         public Patient GetActivePatient()
         {

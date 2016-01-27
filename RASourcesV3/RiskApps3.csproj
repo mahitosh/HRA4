@@ -1,0 +1,2392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B6074344-DCF2-4316-8363-7C9E01AB26E1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RiskApps3</RootNamespace>
+    <AssemblyName>RiskApps3</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <ApplicationIcon>Resources\hraicontest30.ICO</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>http://localhost/RiskApps3/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>3.5.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CipherLite, Version=1.5.0.0, Culture=neutral, PublicKeyToken=29e81a0118de2e3b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\CipherLite.dll</HintPath>
+    </Reference>
+    <Reference Include="dotnetCharting.WinForms, Version=5.2.3313.20168, Culture=neutral, PublicKeyToken=c3f34d622663b9f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\dotnetCharting.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="evohtmltopdf, Version=5.4.0.0, Culture=neutral, PublicKeyToken=e1fcbb86597de299, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\evohtmltopdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Foxit.PDF.Printing.35.x86, Version=2.0.1.25123, Culture=neutral, PublicKeyToken=3d05fb91323a0e7e, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\Foxit.PDF.Printing.35.x86.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=9.2.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>packages\JetBrains.Annotations.9.2.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LetterGenerator, Version=3.1.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\LetterGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="MRG.Controls.UI, Version=1.0.2601.14400, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\MRG.Controls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ObjectListView, Version=2.5.0.23892, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\ObjectListView.dll</HintPath>
+    </Reference>
+    <Reference Include="RiskApp">
+      <HintPath>C:\Program Files\RiskAppsV2\tools\RiskApp.exe</HintPath>
+    </Reference>
+    <Reference Include="RiskAppCore, Version=2.68.5.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\RiskAppCore.dll</HintPath>
+    </Reference>
+    <Reference Include="RiskAppUtils, Version=2.68.5.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <ExecutableExtension>.exe</ExecutableExtension>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\RiskAppUtils.exe</HintPath>
+    </Reference>
+    <Reference Include="RiskClinicApp, Version=2.71.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\RiskClinicApp.exe</HintPath>
+    </Reference>
+    <Reference Include="RiskModels, Version=2.68.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\RiskModels.dll</HintPath>
+    </Reference>
+    <Reference Include="saxon9he">
+      <HintPath>C:\Program Files\RiskAppsV2\tools\saxon9he.dll</HintPath>
+    </Reference>
+    <Reference Include="saxon9he-api, Version=9.5.1.6, Culture=neutral, PublicKeyToken=e1fdd002d5083fe6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\saxon9he-api.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartHotKey, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\SmartHotKey.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.DirectoryServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.DirectoryServices.AccountManagement">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Threading, Version=1.0.2856.102, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\System.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Transitions, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\Transitions.dll</HintPath>
+    </Reference>
+    <Reference Include="Utility, Version=1.0.5007.24421, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.5.0.27760, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="WinFormHtmlEditor">
+      <HintPath>C:\Program Files\RiskAppsV2\tools\WinFormHtmlEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AddEditCopyApptController.cs" />
+    <Compile Include="Controllers\Pedigree\AnimationThread.cs" />
+    <Compile Include="Controllers\Pedigree\LayoutEngine.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\AttractCouples.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\AutoSave.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\CenterParents.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\ComputeCenters.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\DetectForceConvergence.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\DetectPlanarity.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\DetectValidOrdering.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\EllapsedTimeCheck.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\IncrementControllerVariables.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\IncrementIOVariables.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\IncrementVelocities.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\interaction\DragPoints.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\interaction\Pan.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\LayoutCouples.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\LayoutHoldingPen.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\LayoutSibships.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\LayoutSipshipsTwo.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\LevelRestrictedForceDirectedLayout.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\PlaceIndividualsOverCouples.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\PullToTargetPositions.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\PullTowardCenterHorizontally.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\PullTowardIdealVerticalPositions.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\RepelIndividuals.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\RepelIndividualSets.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\SnapToGrid.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\StaticLayout.cs" />
+    <Compile Include="Controllers\Pedigree\layoutSteps\experimental\SwapSibs.cs" />
+    <Compile Include="Controllers\Pedigree\PedigreeController.cs" />
+    <Compile Include="Controllers\Pedigree\PedigreeUtils.cs" />
+    <Compile Include="Controllers\SessionManager.cs" />
+    <Compile Include="Controllers\UserInterface.cs" />
+    <Compile Include="HraAboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HraAboutBox.Designer.cs">
+      <DependentUpon>HraAboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainFormLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormLoading.Designer.cs">
+      <DependentUpon>MainFormLoading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Clinic\AppointmentList.cs" />
+    <Compile Include="Model\Clinic\Dashboard\AnyCancerRiskQueue.cs" />
+    <Compile Include="Model\Clinic\Dashboard\AtRisk.cs" />
+    <Compile Include="Model\Clinic\Dashboard\BeingFollowedQueue.cs" />
+    <Compile Include="Model\Clinic\Dashboard\BreastImagingModelElement.cs" />
+    <Compile Include="Model\Clinic\Dashboard\FollowupQueue.cs" />
+    <Compile Include="Model\Clinic\Dashboard\ModerateBreastRiskQueue.cs" />
+    <Compile Include="Model\Clinic\Reports\BreastRiskFrequency.cs" />
+    <Compile Include="Model\Clinic\Reports\BrOvCancerFrequency.cs" />
+    <Compile Include="Model\Clinic\Reports\ColonRiskFrequency.cs" />
+    <Compile Include="Model\Clinic\Reports\LynchCancerFrequency.cs" />
+    <Compile Include="Model\Clinic\Reports\LynchRiskFrequency.cs" />
+    <Compile Include="Model\Clinic\Reports\MutationRiskFrequency.cs" />
+    <Compile Include="Model\Clinic\Dashboard\myPatientsQueue.cs" />
+    <Compile Include="Model\Clinic\Dashboard\BrcaPositiveQueue.cs" />
+    <Compile Include="Model\Clinic\Dashboard\Queue.cs" />
+    <Compile Include="Model\Clinic\Dashboard\HighRiskBrcaQueue.cs" />
+    <Compile Include="Model\Clinic\Dashboard\HighRiskColonQueue.cs" />
+    <Compile Include="Model\Clinic\Dashboard\HighRiskLifetimeBreastQueue.cs" />
+    <Compile Include="Model\Clinic\Dashboard\NotYetInformedGeneticTests.cs" />
+    <Compile Include="Model\Clinic\Dashboard\NotYetInformedGeneticTest.cs" />
+    <Compile Include="Model\Clinic\Dashboard\NotYetInformedGeneticTestList.cs" />
+    <Compile Include="Model\Clinic\Dashboard\DashboardProviderList.cs" />
+    <Compile Include="Model\Clinic\Dashboard\MyPatients.cs" />
+    <Compile Include="Model\Clinic\Dashboard\PatientsFollowed.cs" />
+    <Compile Include="Model\Clinic\Dashboard\PendingGeneticTest.cs" />
+    <Compile Include="Model\Clinic\Dashboard\PendingGeneticTestList.cs" />
+    <Compile Include="Model\Clinic\Dashboard\PendingTaskQueue.cs" />
+    <Compile Include="Model\Clinic\Dashboard\PendingTasks.cs" />
+    <Compile Include="Model\Clinic\Dashboard\PendingGeneticTests.cs" />
+    <Compile Include="Model\Clinic\Dashboard\QueueData.cs" />
+    <Compile Include="Model\Clinic\Letters\DocumentArgs.cs" />
+    <Compile Include="Model\Clinic\Letters\DocumentTemplate.cs" />
+    <Compile Include="Model\Clinic\Followup\FollowupStatus.cs" />
+    <Compile Include="Model\Clinic\Letters\HraHtmlDocument.cs" />
+    <Compile Include="Model\Clinic\Letters\HraLetterTags\AreaProvidersTag.cs" />
+    <Compile Include="Model\Clinic\Letters\HraLetterTags\HraLetterTag.cs" />
+    <Compile Include="Model\Clinic\Letters\HraLetterTags\ImageTag.cs" />
+    <Compile Include="Model\Clinic\Letters\HraLetterTags\InsertTemplateTag.cs" />
+    <Compile Include="Model\Clinic\Letters\HraLetterTags\MakeListTag.cs" />
+    <Compile Include="Model\Clinic\Letters\HraLetterTags\MakeResponseTableTag.cs" />
+    <Compile Include="Model\Clinic\Letters\HraLetterTags\MakeTableTag.cs" />
+    <Compile Include="Model\Clinic\Letters\HraLetterTags\ParagraphRuleTag.cs" />
+    <Compile Include="Model\Clinic\Letters\HraLetterTags\RiskChartTag.cs" />
+    <Compile Include="Model\Clinic\Letters\HraLetterTags\PedigreeTag.cs" />
+    <Compile Include="Model\Clinic\Letters\PrintUtils.cs" />
+    <Compile Include="Model\Clinic\Letters\Sectionizer.cs" />
+    <Compile Include="Model\Clinic\Letters\HraLetterTags\SqlExecTag.cs" />
+    <Compile Include="Model\Clinic\Letters\HraLetterTags\TableColumnTag.cs" />
+    <Compile Include="Model\Clinic\PatientList.cs" />
+    <Compile Include="Model\Clinic\PatientTable.cs" />
+    <Compile Include="Model\Clinic\Provider.cs" />
+    <Compile Include="Model\Clinic\ProviderList.cs" />
+    <Compile Include="Model\Clinic\Queues\FollowupCohort.cs" />
+    <Compile Include="Model\Clinic\Queues\HighRiskBrcaQueue.cs" />
+    <Compile Include="Model\Clinic\Queues\HighRiskColonQueue.cs" />
+    <Compile Include="Model\Clinic\Reports\AppointmentHistoryStats.cs" />
+    <Compile Include="Model\Clinic\Reports\AuditMrnAccess.cs" />
+    <Compile Include="Model\Clinic\Reports\AuditUserLoginsReport.cs" />
+    <Compile Include="Model\Clinic\Reports\EthnicityFrequency.cs" />
+    <Compile Include="Model\Clinic\Reports\OptInOrOutReport.cs" />
+    <Compile Include="Model\Clinic\Reports\EmailReport.cs" />
+    <Compile Include="Model\Clinic\Reports\RiskClinicEthnicityCohort.cs" />
+    <Compile Include="Model\Clinic\Reports\RiskClinicPatientCohort.cs" />
+    <Compile Include="Model\Clinic\Reports\RiskClinicReferringProviders.cs" />
+    <Compile Include="Model\Clinic\Reports\RiskClinicTestingCohort.cs" />
+    <Compile Include="Model\HraAttribute.cs" />
+    <Compile Include="Model\HRAList.cs" />
+    <Compile Include="Model\HraModelChangedEventArgscs.cs" />
+    <Compile Include="Model\HraObject.cs" />
+    <Compile Include="Model\MetaData\AllBrOvCdsRecs.cs" />
+    <Compile Include="Model\MetaData\AllProviders.cs" />
+    <Compile Include="Model\MetaData\ApptProviderList.cs" />
+    <Compile Include="Model\MetaData\AssessmentList.cs" />
+    <Compile Include="Model\MetaData\AutomationQueueEntry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\MetaData\AutomationQueueEntryList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\MetaData\BreastCancerDetailsLookups.cs" />
+    <Compile Include="Model\MetaData\ActiveSurvey.cs" />
+    <Compile Include="Model\MetaData\ActiveSurveyList.cs" />
+    <Compile Include="Model\MetaData\PrintQueueEntry.cs" />
+    <Compile Include="Model\MetaData\PrintQueueEntryList.cs" />
+    <Compile Include="Model\MetaData\QueueParameter.cs" />
+    <Compile Include="Model\MetaData\QueueParameterList.cs" />
+    <Compile Include="Model\MetaData\ZipCodes.cs" />
+    <Compile Include="Model\PatientRecord\GoldenAppointment.cs" />
+    <Compile Include="Model\PatientRecord\PMH\MammographyHx.cs" />
+    <Compile Include="Model\PatientRecord\SurveyResponse.cs" />
+    <Compile Include="Model\MetaData\ClinicList.cs" />
+    <Compile Include="Model\MetaData\DefaultParagraphList.cs" />
+    <Compile Include="Model\MetaData\DiseaseList.cs" />
+    <Compile Include="Model\MetaData\GeneticTestObject.cs" />
+    <Compile Include="Model\MetaData\GeneticTestList.cs" />
+    <Compile Include="Model\MetaData\DiseaseObject.cs" />
+    <Compile Include="Model\MetaData\GlobalSettings.cs" />
+    <Compile Include="Model\MetaData\MasterParagraph.cs" />
+    <Compile Include="Model\MetaData\MasterParagraphList.cs" />
+    <Compile Include="Model\MetaData\MetaData.cs" />
+    <Compile Include="Model\MetaData\MutationList.cs" />
+    <Compile Include="Model\MetaData\MutationObject.cs" />
+    <Compile Include="Model\MetaData\OrderTypesList.cs" />
+    <Compile Include="Model\MetaData\OrderTypeObject.cs" />
+    <Compile Include="Model\MetaData\ProviderParagraphList.cs" />
+    <Compile Include="Model\PatientRecord\SurveyResponseList.cs" />
+    <Compile Include="Model\MetaData\User.cs" />
+    <Compile Include="Model\MetaData\UserGroupList.cs" />
+    <Compile Include="Model\MetaData\UserGroupMembership.cs" />
+    <Compile Include="Model\MetaData\UserList.cs" />
+    <Compile Include="Model\MetaData\ProviderParagraph.cs" />
+    <Compile Include="Model\MetaData\VariantsFromKB.cs" />
+    <Compile Include="Model\PatientRecord\Appointment.cs" />
+    <Compile Include="Model\PatientRecord\BreastBx.cs" />
+    <Compile Include="Model\PatientRecord\CDSBreastOvary.cs" />
+    <Compile Include="Model\PatientRecord\PediatricConsiderations.cs" />
+    <Compile Include="Model\PatientRecord\Pedigree\PedigreeAnnotations.cs" />
+    <Compile Include="Model\PatientRecord\PMH\ColonCancerDetails.cs" />
+    <Compile Include="Model\PatientRecord\Risk\CCRAT.cs" />
+    <Compile Include="Model\PatientRecord\Risk\NCCN.cs" />
+    <Compile Include="Model\PatientRecord\Risk\TyrerCuzick_v7.cs" />
+    <Compile Include="Model\PatientRecord\RunCdsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Model\PatientRecord\RunCdsForm.Designer.cs">
+      <DependentUpon>RunCdsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\AggregatorServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\AggregatorServiceReference2\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\AggregatorServiceReferenceDev3\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\HraRiskAggregator\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\DocumentGenerator3.cs" />
+    <Compile Include="Utilities\MRNValidator.cs" />
+    <Compile Include="Utilities\PedigreeGenerator.cs" />
+    <Compile Include="Utilities\UserControlExtensions.cs" />
+    <Compile Include="Utilities\GedcomParser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\GedcomParser.Designer.cs">
+      <DependentUpon>GedcomParser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\HL7FormatTranslator.cs" />
+    <Compile Include="Utilities\InterfaceInstance.cs" />
+    <Compile Include="Utilities\InterfaceUtils.cs" />
+    <Compile Include="Utilities\LegacyCoreAPI.cs" />
+    <Compile Include="Utilities\MLLP.cs" />
+    <Compile Include="Utilities\NamedColorChooser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\NamedColorChooser.Designer.cs">
+      <DependentUpon>NamedColorChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\RiskChartGenerator.cs" />
+    <Compile Include="Utilities\RefreshTables.cs">
+    </Compile>
+    <Compile Include="Utilities\RegistrationService.cs" />
+    <Compile Include="Utilities\RunRiskModelsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\RunRiskModelsDialog.Designer.cs">
+      <DependentUpon>RunRiskModelsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\TimedWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilities\toolsStripDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilities\TransformUtils.cs" />
+    <Compile Include="Utilities\TripleArg.cs" />
+    <Compile Include="View\Admin\AuditReportsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Admin\AuditReportsForm.Designer.cs">
+      <DependentUpon>AuditReportsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\AutomationQueueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Admin\AutomationQueueForm.Designer.cs">
+      <DependentUpon>AutomationQueueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\CreateTestPatientsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Admin\CreateTestPatientsForm.Designer.cs">
+      <DependentUpon>CreateTestPatientsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\EditProviderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Admin\EditProviderForm.Designer.cs">
+      <DependentUpon>EditProviderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\MakeUserProviderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Admin\MakeUserProviderForm.Designer.cs">
+      <DependentUpon>MakeUserProviderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\QueueParameterEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Admin\QueueParameterEditor.Designer.cs">
+      <DependentUpon>QueueParameterEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\QueueParameterRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Admin\QueueParameterRow.Designer.cs">
+      <DependentUpon>QueueParameterRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Appointments\ChangeMRNPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Appointments\ChangeMRNPopup.designer.cs" />
+    <Compile Include="View\Appointments\CloudMRNReconcile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Appointments\CloudMRNReconcile.Designer.cs">
+      <DependentUpon>CloudMRNReconcile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Appointments\DeleteTestAppointmentsPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Appointments\DeleteTestAppointmentsPopup.Designer.cs">
+      <DependentUpon>DeleteTestAppointmentsPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Appointments\NullDateRenderer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Appointments\OlderApptFilter.cs" />
+    <Compile Include="View\Appointments\WebAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Appointments\WebAppointments.Designer.cs">
+      <DependentUpon>WebAppointments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Appointments\WebApptSynchToSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Appointments\WebApptSynchToSchedule.Designer.cs">
+      <DependentUpon>WebApptSynchToSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Appointments\WebSurveyPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Appointments\WebSurveyPreview.Designer.cs">
+      <DependentUpon>WebSurveyPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\BreastImaging\EditSurveyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\BreastImaging\EditSurveyForm.Designer.cs">
+      <DependentUpon>EditSurveyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\EditComments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Common\HtmlEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Common\HtmlEditor.Designer.cs">
+      <DependentUpon>HtmlEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\ExpressFamilyHistoryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\ExpressFamilyHistoryView.Designer.cs">
+      <DependentUpon>ExpressFamilyHistoryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\RecommendationDetailsPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\RecommendationDetailsPopup.Designer.cs">
+      <DependentUpon>RecommendationDetailsPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\BrcaRiskElement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\BrcaRiskElement.Designer.cs">
+      <DependentUpon>BrcaRiskElement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\BreastLifetimeRiskElement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\BreastLifetimeRiskElement.Designer.cs">
+      <DependentUpon>BreastLifetimeRiskElement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\BreastImaging\BreastImagingDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\BreastImaging\BreastImagingDashboard.Designer.cs">
+      <DependentUpon>BreastImagingDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\ApptHistoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\ApptHistoryControl.Designer.cs">
+      <DependentUpon>ApptHistoryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\BreastRiskFrequencyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\BreastRiskFrequencyControl.Designer.cs">
+      <DependentUpon>BreastRiskFrequencyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\BrOvCancerFrequencyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\BrOvCancerFrequencyControl.Designer.cs">
+      <DependentUpon>BrOvCancerFrequencyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\ColonRiskFrequencyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\ColonRiskFrequencyControl.Designer.cs">
+      <DependentUpon>ColonRiskFrequencyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\EthnicityFrequencyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\EthnicityFrequencyControl.Designer.cs">
+      <DependentUpon>EthnicityFrequencyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\LynchCancerFrequencyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\LynchCancerFrequencyControl.Designer.cs">
+      <DependentUpon>LynchCancerFrequencyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\LynchRiskElement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\LynchRiskElement.Designer.cs">
+      <DependentUpon>LynchRiskElement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\LynchRiskFrequencyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\LynchRiskFrequencyControl.Designer.cs">
+      <DependentUpon>LynchRiskFrequencyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\MutationRiskFrequencyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\MutationRiskFrequencyControl.Designer.cs">
+      <DependentUpon>MutationRiskFrequencyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\RiskElementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\RiskElementControl.Designer.cs">
+      <DependentUpon>RiskElementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\ReportElement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\ReportElement.Designer.cs">
+      <DependentUpon>ReportElement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reporting\ReportInfoMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\ReportInfoMessage.Designer.cs">
+      <DependentUpon>ReportInfoMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\CloseAppValidationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Common\CloseAppValidationForm.Designer.cs">
+      <DependentUpon>CloseAppValidationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\FinalizeRecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Common\FinalizeRecordForm.Designer.cs">
+      <DependentUpon>FinalizeRecordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\GenericProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Common\GenericProgressForm.Designer.cs">
+      <DependentUpon>GenericProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\LegacyApptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Common\LegacyApptForm.Designer.cs">
+      <DependentUpon>LegacyApptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ActiveSurveyEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Admin\ActiveSurveyEditor.Designer.cs">
+      <DependentUpon>ActiveSurveyEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ActiveSurveyRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Admin\ActiveSurveyRow.Designer.cs">
+      <DependentUpon>ActiveSurveyRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\AdditionalCancerRiskFactorsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\AdditionalCancerRiskFactorsView.Designer.cs">
+      <DependentUpon>AdditionalCancerRiskFactorsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\ColonCancerRiskFactors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\ColonCancerRiskFactors.Designer.cs">
+      <DependentUpon>ColonCancerRiskFactors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PatientRecord\Communication\FollowupTimeline.cs" />
+    <Compile Include="Model\PatientRecord\Communication\PtFollowup.cs" />
+    <Compile Include="Model\PatientRecord\Communication\CommunicationHx.cs" />
+    <Compile Include="Model\PatientRecord\Communication\PtFollowupList.cs" />
+    <Compile Include="Model\PatientRecord\Communication\Task.cs" />
+    <Compile Include="Model\PatientRecord\Communication\TaskList.cs" />
+    <Compile Include="Model\PatientRecord\Nationality.cs" />
+    <Compile Include="Model\PatientRecord\Order.cs" />
+    <Compile Include="Model\PatientRecord\OrderList.cs" />
+    <Compile Include="Model\PatientRecord\PatientsByGroup.cs" />
+    <Compile Include="Model\PatientRecord\PMH\BreastCancerDetails.cs" />
+    <Compile Include="Model\PatientRecord\PMH\ClinicalObservationList.cs" />
+    <Compile Include="Model\PatientRecord\PMH\DiseaseDetails.cs" />
+    <Compile Include="Model\PatientRecord\PMH\GeneticTestList.cs" />
+    <Compile Include="Model\PatientRecord\Pedigree\GUIPreference.cs" />
+    <Compile Include="Model\PatientRecord\Pedigree\GUIPreferenceList.cs" />
+    <Compile Include="Model\PatientRecord\Risk\BracproLifetimeRisk.cs" />
+    <Compile Include="Model\PatientRecord\Risk\Claus.cs" />
+    <Compile Include="Model\PatientRecord\Risk\Gail.cs" />
+    <Compile Include="Model\PatientRecord\Risk\MmrproCancerRiskList.cs" />
+    <Compile Include="Model\PatientRecord\Risk\TyrerCuzick.cs" />
+    <Compile Include="Model\SurgicalClinic\CreatedSurgery.cs" />
+    <Compile Include="NullDockingConfigException.cs" />
+    <Compile Include="View\Admin\AdminMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Admin\AdminMainForm.designer.cs">
+      <DependentUpon>AdminMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\EditParagraphControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Admin\EditParagraphControl.Designer.cs">
+      <DependentUpon>EditParagraphControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\MasterParagraphListView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Admin\MasterParagraphListView.designer.cs">
+      <DependentUpon>MasterParagraphListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\PedigreeModuleNavigation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Common\PedigreeModuleNavigation.Designer.cs">
+      <DependentUpon>PedigreeModuleNavigation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\DockingUtils.cs" />
+    <Compile Include="View\Common\TimeLineChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\CommunicationTimeline.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\CommunicationTimeline.Designer.cs">
+      <DependentUpon>CommunicationTimeline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\NewHtmlDocumentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\NewHtmlDocumentForm.Designer.cs">
+      <DependentUpon>NewHtmlDocumentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\NewToDoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\NewToDoView.Designer.cs">
+      <DependentUpon>NewToDoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\PatientContactView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\PatientContactView.Designer.cs">
+      <DependentUpon>PatientContactView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\PendingTasksSummaryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\PendingTasksSummaryView.Designer.cs">
+      <DependentUpon>PendingTasksSummaryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\PendingTaskSummaryRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\PendingTaskSummaryRow.Designer.cs">
+      <DependentUpon>PendingTaskSummaryRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\PtFollowupRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\PtFollowupRow.Designer.cs">
+      <DependentUpon>PtFollowupRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PatientRecord\Diagnostic.cs" />
+    <Compile Include="Model\PatientRecord\FollowupStatus.cs" />
+    <Compile Include="Model\PatientRecord\Imaging\BreastImagingHx.cs" />
+    <Compile Include="Model\PatientRecord\PMH\GeneticTestResult.cs" />
+    <Compile Include="Model\PatientRecord\Diet.cs" />
+    <Compile Include="Model\PatientRecord\FHx\Bloodline.cs" />
+    <Compile Include="Model\PatientRecord\FHx\Relationship.cs" />
+    <Compile Include="Model\PatientRecord\Imaging\TransvaginalImagingHx.cs" />
+    <Compile Include="Model\PatientRecord\Labs\LabsHx.cs" />
+    <Compile Include="Model\PatientRecord\PhysicalExamination.cs" />
+    <Compile Include="Model\PatientRecord\PMH\Chemoprevention.cs" />
+    <Compile Include="Model\PatientRecord\PMH\ClincalObservation.cs" />
+    <Compile Include="Model\PatientRecord\Condition.cs" />
+    <Compile Include="Model\PatientRecord\FHx\FamilyHistory.cs" />
+    <Compile Include="Model\PatientRecord\Gender.cs" />
+    <Compile Include="Model\PatientRecord\PMH\GeneticTest.cs" />
+    <Compile Include="Model\PatientRecord\Medication.cs" />
+    <Compile Include="Model\PatientRecord\MedicationHx.cs" />
+    <Compile Include="Model\PatientRecord\PMH\ObGynHistory.cs" />
+    <Compile Include="Model\PatientRecord\PMH\PastMedicalHistory.cs" />
+    <Compile Include="Model\PatientRecord\Patient.cs" />
+    <Compile Include="Model\PatientRecord\Pedigree\PedigreeCouple.cs" />
+    <Compile Include="Model\PatientRecord\Pedigree\PedigreeCoupleEdge.cs" />
+    <Compile Include="Model\PatientRecord\Pedigree\PedigreeIndividual.cs" />
+    <Compile Include="Model\PatientRecord\Pedigree\PedigreeIndividualSet.cs" />
+    <Compile Include="Model\PatientRecord\Pedigree\PedigreeIOVariables.cs" />
+    <Compile Include="Model\PatientRecord\Pedigree\PedigreeModel.cs" />
+    <Compile Include="Model\PatientRecord\Pedigree\PedigreeParameters.cs" />
+    <Compile Include="Model\PatientRecord\Pedigree\PointWithVelocity.cs" />
+    <Compile Include="Model\PatientRecord\Person.cs" />
+    <Compile Include="Model\PatientRecord\Problem.cs" />
+    <Compile Include="Model\PatientRecord\ProcedureHx.cs" />
+    <Compile Include="Model\PatientRecord\EthnicBackground.cs" />
+    <Compile Include="Model\PatientRecord\Risk\RiskProfile.cs" />
+    <Compile Include="Model\PatientRecord\SocialHistory.cs" />
+    <Compile Include="Model\Security\SecurityContext.cs" />
+    <Compile Include="Model\Session\Lookups.cs" />
+    <Compile Include="Model\Session\SessionContext.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="HraAboutBox.resx">
+      <DependentUpon>HraAboutBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFormLoading.resx">
+      <DependentUpon>MainFormLoading.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\PatientRecord\RunCdsForm.resx">
+      <DependentUpon>RunCdsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\GedcomParser.resx">
+      <DependentUpon>GedcomParser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\NamedColorChooser.resx">
+      <DependentUpon>NamedColorChooser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\RunRiskModelsDialog.resx">
+      <DependentUpon>RunRiskModelsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\AuditReportsForm.resx">
+      <DependentUpon>AuditReportsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\AutomationQueueForm.resx">
+      <DependentUpon>AutomationQueueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\CreateTestPatientsForm.resx">
+      <DependentUpon>CreateTestPatientsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\EditProviderForm.resx">
+      <DependentUpon>EditProviderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\MakeUserProviderForm.resx">
+      <DependentUpon>MakeUserProviderForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\QueueParameterEditor.resx">
+      <DependentUpon>QueueParameterEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\QueueParameterRow.resx">
+      <DependentUpon>QueueParameterRow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Appointments\ChangeMRNPopup.resx" />
+    <EmbeddedResource Include="View\Appointments\CloudMRNReconcile.resx">
+      <DependentUpon>CloudMRNReconcile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Appointments\DeleteTestAppointmentsPopup.resx">
+      <DependentUpon>DeleteTestAppointmentsPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Appointments\WebAppointments.resx">
+      <DependentUpon>WebAppointments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Appointments\WebApptSynchToSchedule.resx">
+      <DependentUpon>WebApptSynchToSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Appointments\WebSurveyPreview.resx">
+      <DependentUpon>WebSurveyPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\BreastImaging\EditSurveyForm.resx">
+      <DependentUpon>EditSurveyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\EditComments.resx">
+      <DependentUpon>EditComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\HtmlEditor.resx">
+      <DependentUpon>HtmlEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\FamilyHistory\ExpressFamilyHistoryView.resx">
+      <DependentUpon>ExpressFamilyHistoryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Risk\RecommendationDetailsPopup.resx">
+      <DependentUpon>RecommendationDetailsPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\BrcaRiskElement.resx">
+      <DependentUpon>BrcaRiskElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\BreastLifetimeRiskElement.resx">
+      <DependentUpon>BreastLifetimeRiskElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\BreastImaging\BreastImagingDashboard.resx">
+      <DependentUpon>BreastImagingDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\ApptHistoryControl.resx">
+      <DependentUpon>ApptHistoryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\BreastRiskFrequencyControl.resx">
+      <DependentUpon>BreastRiskFrequencyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\BrOvCancerFrequencyControl.resx">
+      <DependentUpon>BrOvCancerFrequencyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\ColonRiskFrequencyControl.resx">
+      <DependentUpon>ColonRiskFrequencyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\EthnicityFrequencyControl.resx">
+      <DependentUpon>EthnicityFrequencyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\LynchCancerFrequencyControl.resx">
+      <DependentUpon>LynchCancerFrequencyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\LynchRiskElement.resx">
+      <DependentUpon>LynchRiskElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\LynchRiskFrequencyControl.resx">
+      <DependentUpon>LynchRiskFrequencyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\MutationRiskFrequencyControl.resx">
+      <DependentUpon>MutationRiskFrequencyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\RiskElementControl.resx">
+      <DependentUpon>RiskElementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\ReportInfoMessage.resx">
+      <DependentUpon>ReportInfoMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\CloseAppValidationForm.resx">
+      <DependentUpon>CloseAppValidationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\FinalizeRecordForm.resx">
+      <DependentUpon>FinalizeRecordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\GenericProgressForm.resx">
+      <DependentUpon>GenericProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\LegacyApptForm.resx">
+      <DependentUpon>LegacyApptForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\ActiveSurveyEditor.resx">
+      <DependentUpon>ActiveSurveyEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\ActiveSurveyRow.resx">
+      <DependentUpon>ActiveSurveyRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\AdditionalCancerRiskFactorsView.resx">
+      <DependentUpon>AdditionalCancerRiskFactorsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\ColonCancerRiskFactors.resx">
+      <DependentUpon>ColonCancerRiskFactors.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\AdminMainForm.resx">
+      <DependentUpon>AdminMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\EditParagraphControl.resx">
+      <DependentUpon>EditParagraphControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\MasterParagraphListView.resx">
+      <DependentUpon>MasterParagraphListView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\PedigreeModuleNavigation.resx">
+      <DependentUpon>PedigreeModuleNavigation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Communication\CommunicationTimeline.resx">
+      <DependentUpon>CommunicationTimeline.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Communication\NewHtmlDocumentForm.resx">
+      <DependentUpon>NewHtmlDocumentForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Communication\NewToDoView.resx">
+      <DependentUpon>NewToDoView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Communication\PatientContactView.resx">
+      <DependentUpon>PatientContactView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Communication\PendingTasksSummaryView.resx">
+      <DependentUpon>PendingTasksSummaryView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Communication\PendingTaskSummaryRow.resx">
+      <DependentUpon>PendingTaskSummaryRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Communication\PtFollowupRow.resx">
+      <DependentUpon>PtFollowupRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Appointments\AddAppointmentView.resx">
+      <DependentUpon>AddAppointmentView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Appointments\AppointmentsView.resx">
+      <DependentUpon>AppointmentsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Appointments\PatientListView.resx">
+      <DependentUpon>PatientListView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Appointments\PatientTableView.resx">
+      <DependentUpon>PatientTableView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\AutoSearchTextBox\AutoCompleteComboBox.resx">
+      <DependentUpon>AutoCompleteComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\AutoSearchTextBox\AutoCompleteTextBox.resx">
+      <DependentUpon>AutoCompleteTextBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\AutoSearchTextBox\CoolComboBox.resx">
+      <DependentUpon>CoolComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\AutoSearchTextBox\CoolTextBox.resx">
+      <DependentUpon>CoolTextBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\ColorSlider.resx">
+      <DependentUpon>ColorSlider.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\CoolCollapsibleControl.resx">
+      <DependentUpon>CoolCollapsibleControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\MaskedTextBox\MaskedTextBox.resx">
+      <DependentUpon>MaskedTextBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Common\PatientNavigation.resx">
+      <DependentUpon>PatientNavigation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\HraView.resx">
+      <DependentUpon>HraView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Communication\PatientCommunicationView.resx">
+      <DependentUpon>PatientCommunicationView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Communication\TaskView.resx">
+      <DependentUpon>TaskView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Communication\TaskViewUC.resx">
+      <DependentUpon>TaskViewUC.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\FamilyHistory\AdditionalRelativeDetailsView.resx">
+      <DependentUpon>AdditionalRelativeDetailsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\FamilyHistory\FamilyHistoryViewSerializer.resx">
+      <DependentUpon>FamilyHistoryViewSerializer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\FamilyHistory\NationalityPopup.resx">
+      <DependentUpon>NationalityPopup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\FamilyHistory\ShortRelativeHeader.resx">
+      <DependentUpon>ShortRelativeHeader.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\GeneticTesting\GeneticTestingASOResultRow.resx">
+      <DependentUpon>GeneticTestingASOResultRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\GeneticTesting\GeneticTestingASOResultRowHeader.resx">
+      <DependentUpon>GeneticTestingASOResultRowHeader.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\GeneticTesting\GeneticTestingFamilySummaryView.resx">
+      <DependentUpon>GeneticTestingFamilySummaryView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\GeneticTesting\MutationDeltaPopup.resx">
+      <DependentUpon>MutationDeltaPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\PediatricRecsView.resx">
+      <DependentUpon>PediatricRecsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Pedigree\PedigreeImageView.resx">
+      <DependentUpon>PedigreeImageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Pedigree\PedigreeSymbolEditor.resx">
+      <DependentUpon>PedigreeSymbolEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Pedigree\PedigreeSymbolRow.resx">
+      <DependentUpon>PedigreeSymbolRow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\PMH\BreastCancerDetailsView.resx">
+      <DependentUpon>BreastCancerDetailsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\PMH\ColonCancerDetailsView.resx">
+      <DependentUpon>ColonCancerDetailsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Risk\CancerRiskView.resx">
+      <DependentUpon>CancerRiskView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Risk\ColoEndoCancerRiskView.resx">
+      <DependentUpon>ColoEndoCancerRiskView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Risk\NCCNView.resx">
+      <DependentUpon>NCCNView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\TestsView.resx">
+      <DependentUpon>TestsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\GeneticTesting\GeneticTestingResultRowHeader.resx">
+      <DependentUpon>GeneticTestingResultRowHeader.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\OrderRow.resx">
+      <DependentUpon>OrderRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Pedigree\PedigreeComment.resx">
+      <DependentUpon>PedigreeComment.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Pedigree\PedigreeComponent.resx">
+      <DependentUpon>PedigreeComponent.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Pedigree\PedigreeLegendRow.resx">
+      <DependentUpon>PedigreeLegendRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Pedigree\PedigreeTitleBlock.resx">
+      <DependentUpon>PedigreeTitleBlock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\DiagnosticReportsView.resx">
+      <DependentUpon>DiagnosticReportsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Imaging\MammographySummary.resx">
+      <DependentUpon>MammographySummary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Imaging\TvsSummary.resx">
+      <DependentUpon>TvsSummary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Labs\LabSummary.resx">
+      <DependentUpon>LabSummary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Pedigree\PedigreeLegend.resx">
+      <DependentUpon>PedigreeLegend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Risk\RelativeToConsiderRow.resx">
+      <DependentUpon>RelativeToConsiderRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Recommendations.resx">
+      <DependentUpon>Recommendations.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Imaging\AddImagingForm.resx">
+      <DependentUpon>AddImagingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\BreastCancerRiskFactors.resx">
+      <DependentUpon>BreastCancerRiskFactors.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\DocumentUploader\AddingFilesForm.resx">
+      <DependentUpon>AddingFilesForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\DocumentUploader\DocumentUploadView.resx">
+      <DependentUpon>DocumentUploadView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\FamilyHistory\RelativeDetailsView.resx">
+      <DependentUpon>RelativeDetailsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\FamilyHistory\RelativeHeader.resx">
+      <DependentUpon>RelativeHeader.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\DocumentUploader\FileUploadControl.resx">
+      <DependentUpon>FileUploadControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\GeneticTesting\GeneticTestingResultRow.resx">
+      <DependentUpon>GeneticTestingResultRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\GeneticTesting\GeneticTestingView.resx">
+      <DependentUpon>GeneticTestingView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\GeneticTesting\GeneticTestingRowExpandable.resx">
+      <DependentUpon>GeneticTestingRowExpandable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Imaging\BreastImagingRow.resx">
+      <DependentUpon>BreastImagingRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Imaging\BreastImagingView.resx">
+      <DependentUpon>BreastImagingView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Labs\LabRow.resx">
+      <DependentUpon>LabRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Labs\LabsGridView.resx">
+      <DependentUpon>LabsGridView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Labs\LabsView.resx">
+      <DependentUpon>LabsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\OrdersView.resx">
+      <DependentUpon>OrdersView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\PMH\AddDiseasePopup.resx">
+      <DependentUpon>AddDiseasePopup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\PMH\PMHRowHeader.resx">
+      <DependentUpon>PMHRowHeader.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\PMH\PMHRow.resx">
+      <DependentUpon>PMHRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\GenTestRecommendationView.resx">
+      <DependentUpon>GenTestRecommendationView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Risk\BrOvCancerRiskView.resx">
+      <DependentUpon>BrOvCancerRiskView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Risk\RelativesToConsiderView.resx">
+      <DependentUpon>RelativesToConsiderView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Risk\RiskScoresView.resx">
+      <DependentUpon>RiskScoresView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Risk\SimpleRiskModelView.resx">
+      <DependentUpon>SimpleRiskModelView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reporting\Reporting.resx">
+      <DependentUpon>Reporting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\MammographyHxView.resx">
+      <DependentUpon>MammographyHxView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\MarkStartedAndPullForwardForm.resx">
+      <DependentUpon>MarkStartedAndPullForwardForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\NewAppointmentWizard.resx">
+      <DependentUpon>NewAppointmentWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\PendingToDoView.resx">
+      <DependentUpon>PendingToDoView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\NotYetInformedGeneticTestsView.resx">
+      <DependentUpon>NotYetInformedGeneticTestsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\PendingGeneticTestsView.resx">
+      <DependentUpon>PendingGeneticTestsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\HighRiskFollowupStatusView.resx">
+      <DependentUpon>HighRiskFollowupStatusView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\HighRiskFollowupView.resx">
+      <DependentUpon>HighRiskFollowupView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\MyScheduleView.resx">
+      <DependentUpon>MyScheduleView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\PatientSummary\DiagnosticSummaryResultView.resx">
+      <DependentUpon>DiagnosticSummaryResultView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\PatientSummary\FullReportTextPopup.resx">
+      <DependentUpon>FullReportTextPopup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\PatientSummary\LastKnownValueRow.resx">
+      <DependentUpon>LastKnownValueRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\PatientSummary\PatientSummaryHeader.resx">
+      <DependentUpon>PatientSummaryHeader.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\PatientSummary\SummaryEditCategory.resx">
+      <DependentUpon>SummaryEditCategory.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\PatientSummary\SummaryItemRow.resx">
+      <DependentUpon>SummaryItemRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\PatientSummary\SummaryStatusElement.resx">
+      <DependentUpon>SummaryStatusElement.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\PrintQueueForm.resx">
+      <DependentUpon>PrintQueueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\QueueNotesView.resx">
+      <DependentUpon>QueueNotesView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\RiskClinicDashboard.resx">
+      <DependentUpon>RiskClinicDashboard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\DemographicsView.resx">
+      <DependentUpon>DemographicsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\FamilyHistory\FamilyHistoryRelativeRow.resx">
+      <DependentUpon>FamilyHistoryRelativeRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\FamilyHistory\FamilyHistoryView.resx">
+      <DependentUpon>FamilyHistoryView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Medications\MedicationsView.resx">
+      <DependentUpon>MedicationsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Pedigree\Annotation.resx">
+      <DependentUpon>Annotation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Pedigree\PedigreeControl.resx">
+      <DependentUpon>PedigreeControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Pedigree\PedigreeForm.resx">
+      <DependentUpon>PedigreeForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\Pedigree\PedigreeSettingsForm.resx">
+      <DependentUpon>PedigreeSettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\PMH\PastMedicalHistoryView.resx">
+      <DependentUpon>PastMedicalHistoryView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientRecord\PatientRecordHeader.resx">
+      <DependentUpon>PatientRecordHeader.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\RiskClinicFamilyHistoryView.resx">
+      <DependentUpon>RiskClinicFamilyHistoryView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\RiskClinicMainForm.resx">
+      <DependentUpon>RiskClinicMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\PatientSummary\SummaryFollowupView.resx">
+      <DependentUpon>SummaryFollowupView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\RiskClinicNotesView.resx">
+      <DependentUpon>RiskClinicNotesView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RiskClinic\RiskClinicReport.resx">
+      <DependentUpon>RiskClinicReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Documentation\BigPicture.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Utilities\BCDB2.cs" />
+    <Compile Include="Utilities\Configurator.cs" />
+    <Compile Include="Utilities\IntegerTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilities\Logger.cs" />
+    <Compile Include="Utilities\MapiMailMessage.cs" />
+    <Compile Include="Utilities\ParameterCollection.cs" />
+    <Compile Include="Utilities\Polygon.cs" />
+    <Compile Include="Utilities\UIUtils.cs" />
+    <Compile Include="View\Appointments\AddAppointmentView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Appointments\AddAppointmentView.Designer.cs">
+      <DependentUpon>AddAppointmentView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Appointments\AppointmentsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Appointments\AppointmentsView.Designer.cs">
+      <DependentUpon>AppointmentsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Appointments\PatientListView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Appointments\PatientListView.Designer.cs">
+      <DependentUpon>PatientListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Appointments\PatientTableView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Appointments\PatientTableView.Designer.cs">
+      <DependentUpon>PatientTableView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\AutoSearchTextBox\AutoCompleteComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Common\AutoSearchTextBox\AutoCompleteEntry.cs" />
+    <Compile Include="View\Common\AutoSearchTextBox\AutoCompleteEntryCollection.cs" />
+    <Compile Include="View\Common\AutoSearchTextBox\AutoCompleteTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Common\AutoSearchTextBox\AutoCompleteTrigger.cs" />
+    <Compile Include="View\Common\AutoSearchTextBox\AutoCompleteTriggerCollection.cs" />
+    <Compile Include="View\Common\AutoSearchTextBox\AutoCompleteUtils.cs" />
+    <Compile Include="View\Common\AutoSearchTextBox\CoolComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Common\AutoSearchTextBox\CoolTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Common\AutoSearchTextBox\IAutoCompleteEntry.cs" />
+    <Compile Include="View\Common\AutoSearchTextBox\Messages.cs" />
+    <Compile Include="View\Common\AutoSearchTextBox\ShortCutTrigger.cs" />
+    <Compile Include="View\Common\AutoSearchTextBox\TextLengthTrigger.cs" />
+    <Compile Include="View\Common\AutoSearchTextBox\TriggerState.cs" />
+    <Compile Include="View\Common\BitmapButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Common\ColorSlider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Common\ColorSlider.designer.cs">
+      <DependentUpon>ColorSlider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\CoolCollapsibleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Common\CoolCollapsibleControl.Designer.cs">
+      <DependentUpon>CoolCollapsibleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\FhxSortByRelativeID.cs" />
+    <Compile Include="View\Common\ListViewColumnSorter.cs" />
+    <Compile Include="View\Common\MaskedTextBox\MaskedTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Common\OrientedTextLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Common\PatientNavigation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Common\PatientNavigation.Designer.cs">
+      <DependentUpon>PatientNavigation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\PatientCommunicationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\PatientCommunicationView.Designer.cs">
+      <DependentUpon>PatientCommunicationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\TaskView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\TaskView.Designer.cs">
+      <DependentUpon>TaskView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\TaskViewUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Communication\TaskViewUC.Designer.cs">
+      <DependentUpon>TaskViewUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\AdditionalRelativeDetailsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\AdditionalRelativeDetailsView.Designer.cs">
+      <DependentUpon>AdditionalRelativeDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\FamilyHistoryViewSerializer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\FamilyHistoryViewSerializer.Designer.cs">
+      <DependentUpon>FamilyHistoryViewSerializer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\NationalityPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\NationalityPopup.Designer.cs">
+      <DependentUpon>NationalityPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\ShortRelativeHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\ShortRelativeHeader.Designer.cs">
+      <DependentUpon>ShortRelativeHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingASOResultRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingASOResultRow.Designer.cs">
+      <DependentUpon>GeneticTestingASOResultRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingASOResultRowHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingASOResultRowHeader.Designer.cs">
+      <DependentUpon>GeneticTestingASOResultRowHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingFamilySummaryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingFamilySummaryView.Designer.cs">
+      <DependentUpon>GeneticTestingFamilySummaryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\MutationDeltaPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\MutationDeltaPopup.Designer.cs">
+      <DependentUpon>MutationDeltaPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\PediatricRecsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\PediatricRecsView.Designer.cs">
+      <DependentUpon>PediatricRecsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeImageView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeImageView.Designer.cs">
+      <DependentUpon>PedigreeImageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeSymbolEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeSymbolEditor.Designer.cs">
+      <DependentUpon>PedigreeSymbolEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeSymbolRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeSymbolRow.Designer.cs">
+      <DependentUpon>PedigreeSymbolRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\PMH\BreastCancerDetailsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\PMH\BreastCancerDetailsView.Designer.cs">
+      <DependentUpon>BreastCancerDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\PMH\ColonCancerDetailsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\PMH\ColonCancerDetailsView.Designer.cs">
+      <DependentUpon>ColonCancerDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\CancerRiskView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\CancerRiskView.Designer.cs">
+      <DependentUpon>CancerRiskView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\ColoEndoCancerRiskView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\ColoEndoCancerRiskView.Designer.cs">
+      <DependentUpon>ColoEndoCancerRiskView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\NCCNView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\NCCNView.Designer.cs">
+      <DependentUpon>NCCNView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\TestsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\TestsView.Designer.cs">
+      <DependentUpon>TestsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingResultRowHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingResultRowHeader.Designer.cs">
+      <DependentUpon>GeneticTestingResultRowHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\OrderRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\OrderRow.Designer.cs">
+      <DependentUpon>OrderRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeComment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeComment.Designer.cs">
+      <DependentUpon>PedigreeComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeComponent.Designer.cs">
+      <DependentUpon>PedigreeComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeLegendRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeLegendRow.Designer.cs">
+      <DependentUpon>PedigreeLegendRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeTitleBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeTitleBlock.Designer.cs">
+      <DependentUpon>PedigreeTitleBlock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\DiagnosticReportsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\DiagnosticReportsView.Designer.cs">
+      <DependentUpon>DiagnosticReportsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Imaging\MammographySummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Imaging\MammographySummary.Designer.cs">
+      <DependentUpon>MammographySummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Imaging\TvsSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Imaging\TvsSummary.Designer.cs">
+      <DependentUpon>TvsSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Labs\LabSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Labs\LabSummary.Designer.cs">
+      <DependentUpon>LabSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeLegend.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeLegend.Designer.cs">
+      <DependentUpon>PedigreeLegend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\RelativeToConsiderRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\RelativeToConsiderRow.Designer.cs">
+      <DependentUpon>RelativeToConsiderRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Recommendations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Recommendations.Designer.cs">
+      <DependentUpon>Recommendations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Imaging\AddImagingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Imaging\AddImagingForm.Designer.cs">
+      <DependentUpon>AddImagingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\BreastCancerRiskFactors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\BreastCancerRiskFactors.Designer.cs">
+      <DependentUpon>BreastCancerRiskFactors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\DocumentUploader\AddingFilesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\DocumentUploader\AddingFilesForm.designer.cs">
+      <DependentUpon>AddingFilesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\DocumentUploader\DocumentUploadView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\DocumentUploader\DocumentUploadView.Designer.cs">
+      <DependentUpon>DocumentUploadView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\RelativeDetailsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\RelativeDetailsView.Designer.cs">
+      <DependentUpon>RelativeDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\RelativeHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\RelativeHeader.Designer.cs">
+      <DependentUpon>RelativeHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\DocumentUploader\FileUploadControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\DocumentUploader\FileUploadControl.Designer.cs">
+      <DependentUpon>FileUploadControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingResultRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingResultRow.Designer.cs">
+      <DependentUpon>GeneticTestingResultRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingView.Designer.cs">
+      <DependentUpon>GeneticTestingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingRowExpandable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\GeneticTesting\GeneticTestingRowExpandable.designer.cs">
+      <DependentUpon>GeneticTestingRowExpandable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Imaging\BreastImagingRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Imaging\BreastImagingRow.Designer.cs">
+      <DependentUpon>BreastImagingRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Imaging\BreastImagingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Imaging\BreastImagingView.Designer.cs">
+      <DependentUpon>BreastImagingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Imaging\ImagingSummaryRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Imaging\ImagingSummaryRow.Designer.cs">
+      <DependentUpon>ImagingSummaryRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Labs\LabRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Labs\LabRow.Designer.cs">
+      <DependentUpon>LabRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Labs\LabsGridView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Labs\LabsGridView.Designer.cs">
+      <DependentUpon>LabsGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Labs\LabsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Labs\LabsView.Designer.cs">
+      <DependentUpon>LabsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\OrdersView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\OrdersView.Designer.cs">
+      <DependentUpon>OrdersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\drawingSteps\DrawLasso.cs" />
+    <Compile Include="View\PatientRecord\PMH\AddDiseasePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\PMH\AddDiseasePopup.Designer.cs">
+      <DependentUpon>AddDiseasePopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\PMH\PMHRowHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\PMH\PMHRowHeader.Designer.cs">
+      <DependentUpon>PMHRowHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\PMH\PMHRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\PMH\PMHRow.Designer.cs">
+      <DependentUpon>PMHRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\GenTestRecommendationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\GenTestRecommendationView.Designer.cs">
+      <DependentUpon>GenTestRecommendationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\BrOvCancerRiskView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\BrOvCancerRiskView.Designer.cs">
+      <DependentUpon>BrOvCancerRiskView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\RelativesToConsiderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\RelativesToConsiderView.Designer.cs">
+      <DependentUpon>RelativesToConsiderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\RiskScoresView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\RiskScoresView.Designer.cs">
+      <DependentUpon>RiskScoresView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Positioning.cs" />
+    <Compile Include="Model\Clinic\Reports\ReportElement.cs" />
+    <Compile Include="View\Reporting\Reporting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reporting\Reporting.Designer.cs">
+      <DependentUpon>Reporting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\MammographyHxView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\MammographyHxView.Designer.cs">
+      <DependentUpon>MammographyHxView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\MarkStartedAndPullForwardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\MarkStartedAndPullForwardForm.Designer.cs">
+      <DependentUpon>MarkStartedAndPullForwardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\NewAppointmentWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\NewAppointmentWizard.Designer.cs">
+      <DependentUpon>NewAppointmentWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\PendingToDoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\PendingToDoView.Designer.cs">
+      <DependentUpon>PendingToDoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\NotYetInformedGeneticTestsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\NotYetInformedGeneticTestsView.Designer.cs">
+      <DependentUpon>NotYetInformedGeneticTestsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\PendingGeneticTestsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\PendingGeneticTestsView.Designer.cs">
+      <DependentUpon>PendingGeneticTestsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\HighRiskFollowupStatusView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\HighRiskFollowupStatusView.Designer.cs">
+      <DependentUpon>HighRiskFollowupStatusView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\HighRiskFollowupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\HighRiskFollowupView.Designer.cs">
+      <DependentUpon>HighRiskFollowupView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\MyScheduleView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\MyScheduleView.designer.cs">
+      <DependentUpon>MyScheduleView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\DiagnosticSummaryResultView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\DiagnosticSummaryResultView.Designer.cs">
+      <DependentUpon>DiagnosticSummaryResultView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\FullReportTextPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\FullReportTextPopup.Designer.cs">
+      <DependentUpon>FullReportTextPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\LastKnownValueRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\LastKnownValueRow.Designer.cs">
+      <DependentUpon>LastKnownValueRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\PatientSummaryHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\PatientSummaryHeader.Designer.cs">
+      <DependentUpon>PatientSummaryHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\SummaryEditCategory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\SummaryEditCategory.Designer.cs">
+      <DependentUpon>SummaryEditCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\SummaryItemRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\SummaryItemRow.Designer.cs">
+      <DependentUpon>SummaryItemRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\SummaryStatusElement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\SummaryStatusElement.Designer.cs">
+      <DependentUpon>SummaryStatusElement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\PrintQueueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\PrintQueueForm.designer.cs">
+      <DependentUpon>PrintQueueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\QueueNotesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\QueueNotesView.Designer.cs">
+      <DependentUpon>QueueNotesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\RiskClinicDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\RiskClinicDashboard.Designer.cs">
+      <DependentUpon>RiskClinicDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\FamilyHistoryRelativeRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\FamilyHistoryRelativeRow.Designer.cs">
+      <DependentUpon>FamilyHistoryRelativeRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\FamilyHistoryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\FamilyHistory\FamilyHistoryView.Designer.cs">
+      <DependentUpon>FamilyHistoryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Medications\MedicationsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Medications\MedicationsView.Designer.cs">
+      <DependentUpon>MedicationsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\Annotation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\Annotation.designer.cs">
+      <DependentUpon>Annotation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Medications\DrawingEngine.cs" />
+    <Compile Include="View\PatientRecord\Pedigree\drawingSteps\DrawAncestralConnectionLines.cs" />
+    <Compile Include="View\PatientRecord\Pedigree\drawingSteps\DrawCouplesGraphEdges.cs" />
+    <Compile Include="View\PatientRecord\Pedigree\drawingSteps\DrawCouplesGraphNodes.cs" />
+    <Compile Include="View\PatientRecord\Pedigree\drawingSteps\DrawIndividuals.cs" />
+    <Compile Include="View\PatientRecord\Pedigree\drawingSteps\DrawLayoutSteps.cs" />
+    <Compile Include="View\PatientRecord\Pedigree\drawingSteps\DrawLoading.cs" />
+    <Compile Include="View\PatientRecord\Pedigree\drawingSteps\DrawZoom.cs" />
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeContextMenu.cs" />
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeControl.Designer.cs">
+      <DependentUpon>PedigreeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\drawingSteps\ClearBackground.cs" />
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeForm.designer.cs">
+      <DependentUpon>PedigreeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeSettingsForm.designer.cs">
+      <DependentUpon>PedigreeSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Pedigree\PedigreeView.cs" />
+    <Compile Include="View\PatientRecord\PMH\PastMedicalHistoryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\PMH\PastMedicalHistoryView.Designer.cs">
+      <DependentUpon>PastMedicalHistoryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\PatientRecordHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\PatientRecordHeader.Designer.cs">
+      <DependentUpon>PatientRecordHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\DemographicsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\DemographicsView.Designer.cs">
+      <DependentUpon>DemographicsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\SimpleRiskModelView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientRecord\Risk\SimpleRiskModelView.Designer.cs">
+      <DependentUpon>SimpleRiskModelView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\HraView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\RiskClinicFamilyHistoryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\RiskClinicFamilyHistoryView.Designer.cs">
+      <DependentUpon>RiskClinicFamilyHistoryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\RiskClinicMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\RiskClinicMainForm.Designer.cs">
+      <DependentUpon>RiskClinicMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\SummaryFollowupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\PatientSummary\SummaryFollowupView.Designer.cs">
+      <DependentUpon>SummaryFollowupView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\RiskClinicNotesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\RiskClinicNotesView.Designer.cs">
+      <DependentUpon>RiskClinicNotesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RiskClinic\RiskClinicReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RiskClinic\RiskClinicReport.Designer.cs">
+      <DependentUpon>RiskClinicReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewConfiguration.cs" />
+    <Compile Include="Web References\HraCloudServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AggregatorServiceReference1\RiskApps3.AggregatorServiceReference1.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AggregatorServiceReference1\Service1.wsdl" />
+    <None Include="Service References\AggregatorServiceReference1\WcfRiskService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AggregatorServiceReference1\WcfRiskService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AggregatorServiceReference1\WcfRiskService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AggregatorServiceReference2\RiskApps3.AggregatorServiceReference2.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AggregatorServiceReference2\Service1.wsdl" />
+    <None Include="Service References\AggregatorServiceReference2\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AggregatorServiceReference2\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AggregatorServiceReference2\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AggregatorServiceReferenceDev3\RiskApps3.AggregatorServiceReferenceDev3.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AggregatorServiceReferenceDev3\Service1.wsdl" />
+    <None Include="Service References\AggregatorServiceReferenceDev3\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AggregatorServiceReferenceDev3\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AggregatorServiceReferenceDev3\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HraRiskAggregator\RiskApps3.HraRiskAggregator.AnyClass.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HraRiskAggregator\RiskApps3.HraRiskAggregator.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HraRiskAggregator\Service1.wsdl" />
+    <None Include="View\Common\Background1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MyPatients_620_square.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MyPatients_130_square_label.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AtRisk_370_square_label.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AtRisk_130_square_label.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PendingTest_130_square_label.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PatientsFollwed_130_square_label.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MyPatients_250_square.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AtRisk_250_square.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PendingTest_250_square.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PatientsFollwed_250_square.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HraRiskAggregator\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\HraRiskAggregator\configuration.svcinfo" />
+    <None Include="Service References\HraRiskAggregator\configuration91.svcinfo" />
+    <None Include="Service References\AggregatorServiceReferenceDev3\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\AggregatorServiceReferenceDev3\configuration.svcinfo" />
+    <None Include="Service References\AggregatorServiceReferenceDev3\configuration91.svcinfo" />
+    <None Include="Service References\AggregatorServiceReferenceDev3\Service1.disco" />
+    <None Include="Service References\AggregatorServiceReference2\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\AggregatorServiceReference2\configuration.svcinfo" />
+    <None Include="Service References\AggregatorServiceReference2\configuration91.svcinfo" />
+    <None Include="Service References\AggregatorServiceReference2\Service1.disco" />
+    <None Include="Service References\AggregatorServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\AggregatorServiceReference1\configuration.svcinfo" />
+    <None Include="Service References\AggregatorServiceReference1\configuration91.svcinfo" />
+    <None Include="Service References\AggregatorServiceReference1\WcfRiskService.disco" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Resources\AlignObjectsCenteredHorizontalHS.png" />
+    <None Include="Resources\BrcaPosFamilies_130_square_label.bmp" />
+    <None Include="Resources\Clear_130_square_label.bmp" />
+    <None Include="Resources\ClearImage1.png" />
+    <None Include="Resources\Clear_130_square_label.png" />
+    <None Include="Resources\DocumentsButton_v2.bmp" />
+    <None Include="Resources\FolllowUpButton_v2.bmp" />
+    <None Include="Resources\AddApptButton_v2.bmp" />
+    <None Include="Resources\FullBlueCaptionBackground.bmp" />
+    <None Include="Resources\Edit_UndoHS.png" />
+    <None Include="Resources\AlignObjectsCenteredVerticalHS.png" />
+    <None Include="Resources\BreakpointHS.png" />
+    <None Include="Resources\gear_1.bmp" />
+    <None Include="Resources\DistributeHorizontal.bmp" />
+    <None Include="Resources\DistributeVertical.bmp" />
+    <Content Include="hraicontest30.ICO" />
+    <Content Include="HTMLPage1.html" />
+    <Content Include="Resources\AddAppt.png" />
+    <Content Include="Resources\AtRiskButtonFinal.bmp" />
+    <Content Include="Resources\BackArrow.bmp" />
+    <Content Include="Resources\Batch Print.png" />
+    <Content Include="Resources\BC_Ribbon.png" />
+    <Content Include="Resources\Blank_250_square.bmp" />
+    <Content Include="Resources\BreastCancer2.png" />
+    <Content Include="Resources\Calculator2.png" />
+    <Content Include="Resources\CalendarButtonFinal.bmp" />
+    <Content Include="Resources\Center.bmp" />
+    <None Include="Resources\IncreaseHorSpacing.bmp" />
+    <None Include="Resources\DecreaseHorSpacing.bmp" />
+    <None Include="Resources\green-check.bmp" />
+    <Content Include="Resources\CopyAppt.png" />
+    <Content Include="Resources\delete-X.bmp" />
+    <Content Include="Resources\DeleteAppt.png" />
+    <Content Include="Resources\Documents.bmp" />
+    <Content Include="Resources\documents2.bmp" />
+    <Content Include="Resources\documentsFinal.bmp" />
+    <Content Include="Resources\EditAppt.png" />
+    <Content Include="Resources\EmptyCal_250_square.bmp" />
+    <Content Include="Resources\familyButtonFinal.bmp" />
+    <Content Include="Resources\ForwardArrow.bmp" />
+    <Content Include="Resources\FutureAppt.bmp" />
+    <Content Include="Resources\GoldenAppt.bmp" />
+    <Content Include="Resources\hraicontest30.ICO">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\MutationButtonFinal.bmp" />
+    <Content Include="Resources\MyPatientsButton.bmp" />
+    <Content Include="Resources\NewDocument2.png" />
+    <Content Include="Resources\PastAppt.bmp" />
+    <None Include="Resources\Question.bmp" />
+    <Content Include="Resources\refresh.bmp" />
+    <Content Include="Resources\RiskClinic.png" />
+    <Content Include="Resources\Snap2Grid.bmp" />
+    <Content Include="Resources\hughesRiskAppsLogo.bmp" />
+    <None Include="Resources\PendingTasks_130_square_label.bmp" />
+    <None Include="Resources\RiskClinicButton_v2.bmp" />
+    <None Include="Resources\InfoButton.png" />
+    <None Include="Resources\NotesButton_v2.bmp" />
+    <None Include="Resources\SnapParents.png" />
+    <Content Include="Resources\SquareButton.bmp" />
+    <Content Include="Resources\TaskButton.bmp" />
+    <Content Include="Resources\UploadButton.bmp" />
+    <None Include="Web References\HraCloudServices\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\HraCloudServices\RiskAppsCloudServices.disco" />
+    <None Include="Web References\HraCloudServices\RiskAppsCloudServices.wsdl" />
+    <None Include="Resources\White_130_square_label.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost/HraCloud/RiskAppsCloudServices.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\HraCloudServices\</RelPath>
+      <UpdateFromURL>http://localhost/HraCloud/RiskAppsCloudServices.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>RiskApps3_HraCloudServices_RiskAppsCloudServices</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Reporting\" />
+    <Folder Include="View\PatientRecord\DocumentViewer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AggregatorServiceReference1\" />
+    <WCFMetadataStorage Include="Service References\AggregatorServiceReference2\" />
+    <WCFMetadataStorage Include="Service References\AggregatorServiceReferenceDev3\" />
+    <WCFMetadataStorage Include="Service References\HraRiskAggregator\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
