@@ -266,9 +266,13 @@
     <Content Include="images\bg.gif" />
     <Content Include="images\bg.png" />
     <Content Include="images\body-bg.jpg" />
+    <Content Include="images\BRCAmutation-ico-hover.png" />
     <Content Include="images\BRCAmutation-ico-hover.svg" />
+    <Content Include="images\BRCAmutation-ico.png" />
     <Content Include="images\BRCAmutation-ico.svg" />
+    <Content Include="images\breast-ico-hover.png" />
     <Content Include="images\breast-ico-hover.svg" />
+    <Content Include="images\breast-ico.png" />
     <Content Include="images\breast-ico.svg" />
     <Content Include="images\close-circle-ico.svg" />
     <Content Include="images\copy-grid-ico.svg" />
@@ -299,7 +303,9 @@
     <Content Include="images\refresh-grid-ico.svg" />
     <Content Include="images\risk-calc-ico.svg" />
     <Content Include="images\run-auto-doc-ico.svg" />
+    <Content Include="images\schedule-ico-hover.png" />
     <Content Include="images\schedule-ico-hover.svg" />
+    <Content Include="images\schedule-ico.png" />
     <Content Include="images\schedule-ico.svg" />
     <Content Include="images\select-all-ico.svg" />
     <Content Include="images\tab-refresh-ico.svg" />

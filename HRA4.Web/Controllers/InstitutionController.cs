@@ -432,10 +432,22 @@ namespace HRA4.Web.Controllers
 
         public FileContentResult DownloadFile()
         {
-            FileInfo fileinfo = (FileInfo)Session["FileInfo"];
-            byte[] fileBytes = System.IO.File.ReadAllBytes(fileinfo.FullName);
-            string fileName = string.Format("{0}{1}", fileinfo.Name, fileinfo.Extension);
-            return File(fileBytes, "Application/pdf", fileName);
+
+            byte[] fileBytes=null;
+            string fileName=string.Empty;
+            if (Session["FileInfo"] != null)
+            {
+                FileInfo fileinfo = (FileInfo)Session["FileInfo"];
+                fileBytes = System.IO.File.ReadAllBytes(fileinfo.FullName);
+                fileName = string.Format("{0}{1}", fileinfo.Name, fileinfo.Extension);
+
+                return File(fileBytes, "Application/pdf", fileName);
+            }
+            else
+            {
+                throw new Exception("File Download Failed!");
+            }
+            
         }
 
     }
