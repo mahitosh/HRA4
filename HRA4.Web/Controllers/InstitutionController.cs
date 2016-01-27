@@ -443,11 +443,7 @@ namespace HRA4.Web.Controllers
 
                 return File(fileBytes, "Application/pdf", fileName);
             }
-            else
-            {
-                throw new Exception("File Download Failed!");
-            }
-            
+            return File(new byte[0], "Application/pdf", "ErrorOccured"); 
         }
 
     }

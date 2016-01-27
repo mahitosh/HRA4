@@ -31,7 +31,21 @@ function getSelectedIds(){
     return apptids;
 }
 
+function Applytablesorter() {
+    $("#testpatientdiv").tablesorter(
+         {
+             headers: {
+                 // assign the secound column (we start counting zero)
+                 1: {
+                     // disable it by setting the property sorter to false
+                     sorter: false
+                 }
 
+             }
+         }
+    );
+
+}
 function DeleteTestPatients(url) {
 
     var apptids = getSelectedIds();
@@ -126,19 +140,5 @@ function Appendtextonpopup(msg){
         }
         
     }
-    function Applytablesorter() {
-        $("#testpatientdiv").tablesorter(
-             {
-                 headers: {
-                     // assign the secound column (we start counting zero)
-                     9: {
-                         // disable it by setting the property sorter to false
-                         sorter: false
-                     }
-
-                 }
-             }
-        );
-
-    }
+    
 }
