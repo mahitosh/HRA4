@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using HRA4.ViewModels;
 using HRA4.Services;
 using System.Web.Security;
+//using HRA4.Entities.UserManagement;
 
 namespace HRA4.Web.Controllers
 {
@@ -31,7 +32,9 @@ namespace HRA4.Web.Controllers
                 bool result = false;
                 if (ModelState.IsValid)
                 {
+                     
                     result = _applicationContext.ServiceContext.AdminService.Login(user.Username, user.Password);
+                   // result = entities.SUsers.Any(u => u.Username == user.Username);
                     Session["Username"] = _applicationContext.ServiceContext.AdminService.GetUserName();
                     if ( user.Username == null || user.Password == null)
                     {
@@ -42,7 +45,9 @@ namespace HRA4.Web.Controllers
                     if (result)
                     {
                         System.Web.HttpContext.Current.Session["ApplicationContext"] = null;
+
                         FormsAuthentication.SetAuthCookie(user.Username, false);
+
                         if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                         {
@@ -80,7 +85,7 @@ namespace HRA4.Web.Controllers
             return View();
         }
 
-
+         
         public ActionResult ManageInstitution()
         {
             ViewBag.SearchText = "";
