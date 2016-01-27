@@ -4,7 +4,7 @@
             <tr>
                 <th width="15%">Name</th>
                 <th width="10%">MRN</th>
-                <th width="20%">Lifetime Breast Cancer</th>
+                <th width="20%">Lifetime Breast Risk</th>
                 <th width="20%">Last Assessment</th>
                 <th width="15%">Last MRI</th>
                 <th width="15%">Diseases</th>
@@ -19,7 +19,7 @@
                 <tr>
                     <td>@item.patientName</td>
                     <td>@item.unitnum</td>
-                    <td>@item.MaxLifetimeScore</td>
+                    <td>@item.MaxLifetimeScore.ToString("00.0")</td>
                     <td>@item.LastCompApptDate</td>
                     <td>@item.LastMRI</td>
                     <td>@item.Diseases</td>
@@ -36,6 +36,8 @@
 <script type="text/javascript" >
 
     $(document).ready(function () {
+        $("#hTitle").html('Patients at an Elevated Lifetime Risk of Breast Cancer');
+        Applytablesorter('#tblHighRisk',7);
         RemoveCss('#liBRCA')
         AddCss('#liLBC');
     }

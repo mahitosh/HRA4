@@ -64,11 +64,11 @@ else
                                         </ul><!--sidebar child end here-->
                                     </li>
                                     <li class="clear-float">
-                                        <a href="@Url.Action("Index", "HighRiskFollowup", new { type = "LBC" })" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">@ViewBag.LBCCount</span></a>
+                                        <a title="Lifetime Breast Cancer" href="@Url.Action("Index", "HighRiskFollowup", new { type = "LBC" })" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">@ViewBag.LBCCount</span></a>
                                     </li>
 
                                     <li>
-                                        <a href="@Url.Action("Index", "HighRiskFollowup", new { type = "BRCA" })" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">@ViewBag.BRCACount</span></a>
+                                        <a title="BRCA Mutation" href="@Url.Action("Index", "HighRiskFollowup", new { type = "BRCA" })" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">@ViewBag.BRCACount</span></a>
                                     </li>
                                 </ul>
 
@@ -219,7 +219,7 @@ else
 }
 <script type="text/javascript" src="~/Scripts/customJquery/Institution.js"></script>
 <script type="text/javascript">
-    $('#risk-calc-display-modal').modal({ backdrop: 'static', keyboard: false })
+   // $('#risk-calc-display-modal').modal({ backdrop: 'static', keyboard: false })
     function TestOnSuccess(data) {
         //$('#loading').data('spinner').stop();
         $('#loading').hide();

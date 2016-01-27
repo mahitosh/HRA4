@@ -31,6 +31,21 @@ function Clear(url)
    // Search(txtSearch, chkExcludeCancerGeneticsPatients, chkExcludeDoNotContactPatients, chkExcludepatientswithgenetictesting, url);
 }
 
+function Applytablesorter(tableid,columnid) {
+    $(tableid).tablesorter(
+         {
+             headers: {
+                 // assign the secound column (we start counting zero)
+                 columnid: {
+                     // disable it by setting the property sorter to false
+                     sorter: false
+                 }
+
+             }
+         }
+);
+
+}
 
 
 

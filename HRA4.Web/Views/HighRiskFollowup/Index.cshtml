@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_leftMenuLayout.cshtml";
 }
 <div class="row">
-    <h3 class="page-title Margin-B-10">Patients at an Elevated Lifetime</h3>
+    <h3 class="page-title Margin-B-10" id="hTitle" ></h3>
     <div class="clear-float"><hr class="hr-style Margin-TB-10" /></div>
 
 
@@ -42,6 +42,7 @@
                 <div class="modal-body">
                     <div class="view-doc-cont Padding-LR-0">
                         <div class="col-sm-12 align-right">
+                            <span class="Margin-R-10"><b>Name:</b> <span id="spanPatientName"></span>  </span>
                             <span class="bold-txt">Age:<span id="spanAge"></span> </span> | <span><b>MRN:</b> <span id="spanMRN"></span>  </span> | <span><b>DOB:</b> <span id="spanDOB"></span>  </span> <br />
                             <span class="Margin-R-10"><b>H:</b> <span id="spanH"></span>  </span>
                             <span class="Margin-R-10"><b>C:</b> <span id="spanC"></span> </span>
