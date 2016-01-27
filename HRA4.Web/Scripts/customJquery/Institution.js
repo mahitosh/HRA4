@@ -109,6 +109,7 @@ function AddRemoveTask(isDNC, unitnum, apptid, globalGetJSONPath) {
         dataType: "json",
         async: true,
         success: function (Data) {
+          
             $('#divRecordStatus').html('');
             $('#ScheduleCount').html(Data.apps_count);
             $('#divInstitutionGrid').html(Data.view);
@@ -180,7 +181,8 @@ function DeleteAppointment()
     var globalGetJSONPath = $("#hidUploadUrl").val();
     var deleteUrl = $("#hidType").val();
     globalGetJSONPath = globalGetJSONPath + '?apptId=' + apptId;
-    
+  
+
     $.ajax({
         type: "Get",
         url: globalGetJSONPath,  
@@ -204,7 +206,6 @@ function DeleteAppointment()
 
 /*======Start RiskCalculation logic ============ */
 function RiskCalculation(globalGetJSONPath,MRN,apptid,status) {
-
     $.ajax({
         beforeSend: function () {
             if (status == 'Run')

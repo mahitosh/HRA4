@@ -538,6 +538,10 @@ namespace HRA4.Services
 
         #region TestPatients
 
+        /// <summary>
+        /// for loading Test patient page
+        /// </summary>
+        /// <returns></returns>
         public VM.TestPatient LoadCreateTestPatients()
         {
             VM.TestPatient tp = new VM.TestPatient();
@@ -550,6 +554,14 @@ namespace HRA4.Services
                          
         }
 
+        /// <summary>
+        /// FOr creating test patients 
+        /// </summary>
+        /// <param name="NoOfPatients"></param>
+        /// <param name="dtAppointmentDate"></param>
+        /// <param name="surveyID"></param>
+        /// <param name="SurveyName"></param>
+        /// <param name="clinicID"></param>
         public void CreateTestPatients(int NoOfPatients, string dtAppointmentDate, int surveyID,string SurveyName,int clinicID)
         {
             TestPatientManager Pm = new TestPatientManager();
@@ -557,11 +569,19 @@ namespace HRA4.Services
 
         }
 
+        /// <summary>
+        /// Delete test Patients permanently
+        /// </summary>
+        /// <param name="apptids"></param>
         public void DeleteTestPatientsByapptids(int[] apptids)
         {
             TestPatientManager Pm = new TestPatientManager();
             Pm.DeleteTestPatients(apptids);
         }
+        /// <summary>
+        /// To exclude patients as test patient
+        /// </summary>
+        /// <param name="apptids"></param>
         public void ExcludeTestPatientsByapptids(int[] apptids)
         {
             TestPatientManager Pm = new TestPatientManager();

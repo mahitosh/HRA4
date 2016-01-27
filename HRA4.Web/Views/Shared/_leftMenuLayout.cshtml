@@ -11,16 +11,16 @@
                         <div id="sidebar-wrapper">
 
                             <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-                                <li> @*class="active"*@
+                                <li id="liInstitution">
+                                    @*class="active"*@
                                     <a href="@Url.Action("InstitutionDashboard", "Institution")" class="schedule-icon"> Schedule</a>
                                     <!--sidebar child end here-->
                                 </li>
-                                <li class="clear-float">
-                                    <a href="@Url.Action("Index", "HighRiskFollowup")" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">0</span></a>
+                                <li id="liLBC"> @*class="clear-float"*@
+                                    <a title="Lifetime Breast Cancer" href="@Url.Action("Index", "HighRiskFollowup", new { type = "LBC" })" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">0</span></a>
                                 </li>
-
-                                <li>
-                                    <a href="#" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">0</span></a>
+                                <li id="liBRCA">
+                                    <a title="BRCA Mutation" href="@Url.Action("Index", "HighRiskFollowup", new { type = "BRCA" })" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">0</span></a>
                                 </li>
                             </ul>
 
@@ -30,9 +30,9 @@
 
                         <div id="page-content-wrapper" class="clear-float">
                             <div class="container-fluid xyz clear-float">
-                                <div class="row">
+                           
                                     @RenderBody()
-                                </div><!--row end-->
+                              
                             </div><!--container end-->
 
                         </div>
@@ -44,3 +44,14 @@
     </div><!--container fluid end-->
 </div> <!-- /container area end -->
 
+<script type="text/javascript" >
+    function AddCss(id)
+    {
+        $(id).addClass("active");
+    }
+    function RemoveCss(id)
+    {
+        $(id).removeClass("active")
+    }
+
+</script>

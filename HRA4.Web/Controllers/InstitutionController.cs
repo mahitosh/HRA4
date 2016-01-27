@@ -52,6 +52,10 @@ namespace HRA4.Web.Controllers
                 ViewBag.AppointmentCount = apps.Count();
                 ViewBag.RecordStatus = "";
                 ViewBag.TodaysDate = DateTime.Now.ToString("MM/dd/yyyy");
+
+                ViewBag.LBCCount = _applicationContext.ServiceContext.RiskClinicServices.GetPatients("LBC").Count();
+                ViewBag.BRCACount = _applicationContext.ServiceContext.RiskClinicServices.GetPatients("BRCA").Count(); 
+
                 if (apps.Count == 0)
                 {
                     ViewBag.RecordStatus = "No records found.";
@@ -431,10 +435,18 @@ namespace HRA4.Web.Controllers
 
         public FileContentResult DownloadFile()
         {
-            FileInfo fileinfo = (FileInfo)Session["FileInfo"];
-            byte[] fileBytes = System.IO.File.ReadAllBytes(fileinfo.FullName);
-            string fileName = string.Format("{0}{1}", fileinfo.Name, fileinfo.Extension);
-            return File(fileBytes, "Application/pdf", fileName);
+
+            byte[] fileBytes=null;
+            string fileName=string.Empty;
+            if (Session["FileInfo"] != null)
+            {
+                FileInfo fileinfo = (FileInfo)Session["FileInfo"];
+                fileBytes = System.IO.File.ReadAllBytes(fileinfo.FullName);
+                fileName = string.Format("{0}{1}", fileinfo.Name, fileinfo.Extension);
+
+                return File(fileBytes, "Application/pdf", fileName);
+            }
+            return File(new byte[0], "Application/pdf", "ErrorOccured"); 
         }
 
     }

@@ -1,251 +1,172 @@
 ﻿@model HRA4.ViewModels.TestPatient
-<!--container area start here-->
 
-<div class="content-area container-fluid ">
+@{
 
+    Layout = "~/Views/Shared/_leftMenuLayout.cshtml";
 
-    <div class="container-fluid row Padding-LR-0 bottom-container-area">
-        <div class="container middle-content">
+}
 
-            <div class="row">
-                <div class="col-sm-12">
-                    <div id="wrapper" class="toggled-2">
-                        <!-- Sidebar -->
-                        <div id="sidebar-wrapper">
-
-                            <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-                                <li class="active">
-                                    <a href="#" class="schedule-icon"> Schedule <span class="dashboard-count">(140)</span></a>
-                                    <ul class="nav-pills nav-stacked sidebar-nav-child" style="list-style-type:none;">
-                                        <li class="add-appointment">
-                                            <a href="#" id="lnkapptment" data-toggle="modal" data-target="#add-edit-MRN">
-                                                <img src="images/add-appointment-ico.svg" alt="Refresh" width="25" height="25" /> Add Appointment
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div class="form-group">
-                                                <label class="control-label " for="custom-clinic"> Choose Clinic</label>
-                                                <select class="form-control" id="custom-clinic" name="custom-clinic">
-                                                    <option>Test1</option>
-                                                    <option>Test2</option>
-                                                </select>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <div class="form-group">
-                                                <label class="control-label " for="name">Quick Search</label>
-                                                <input class="form-control" id="name" name="name" type="text" placeholder="Name/MRN" />
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="pull-left"><input type="checkbox" name="appt-date-checkbox" class="" /></div>
-                                            <div id="app-date" class="inner-addon right-addon pull-right form-group">
-                                                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                                                <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="appt-date" placeholder="Appointment Date" /></input>
-                                            </div>
-                                        </li>
-                                        <li class="pull-right">
-                                            <div class="btn-group search-group Margin-B-10">
-                                                <button class="btn btn-default search-btn" type="button">Search</button>
-                                                <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
-                                            </div> <br />
-                                        </li>
-                                    </ul><!--sidebar child end here-->
-                                </li>
-                                <li class="clear-float">
-                                    <a href="#" class="breast-cancer-icon">Lifetime Breast Cancer <span class="dashboard-count">(3)</span></a>
-                                </li>
-                                <!-- <li>
-                                     <a href="#" class="lifetime-cancer-icon"></a>
-                                 </li>-->
-                                <li>
-                                    <a href="#" class="BRCA-icon">BRCA Mutation <span class="dashboard-count">(5)</span></a>
-                                </li>
-                            </ul>
-
-                        </div><!-- /#sidebar-wrapper -->
-                        <!--
-                        <div class="collapse navbar-collapse pull-left" id="bs-example-navbar-collapse-1">
-                           <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"  style="left:32px;"><i class="fa fa-chevron-circle-right fa-lg"></i></button>
-                              </div>
-                              sidebar toggle div end -->
-                        <!-- Page Content start -->
-
-
-                        <div id="page-content-wrapper" class="clear-float">
-                            <div class="container-fluid xyz clear-float">
-                                <div class="row">
-                                    <h3 class="page-title Margin-B-10">Manage Test Patients</h3>
-                                </div>
-
-                                <div class="row Margin-T-10">
-                                    <ul class="nav nav-tabs col-sm-12" id="myTab">
-                                        <li class="active" id="Schedule-Tab">
-                                            <a data-target="#add-testpatients" data-toggle="tab" href="#">Create Test Patients</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"  data-target="#delete-testpatients" data-toggle="tab" onclick="hidedelete()">Delete Test Patients</a>
-                                        </li>
-                                    </ul>
-                                </div><!--tab row end-->
-
-
-
-                                <div class="tab-content row">
-                                   
-                                        <div class="tab-pane active Padding-15" id="add-testpatients">
-                                            @using (Html.BeginForm("TestPatients", "TestPatient", FormMethod.Post))
-                                            {
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <label>Number</label>
-                                                        <select id="AppCount" name="AppCount" class="form-control">
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>5</option>
-                                                            <option>10</option>
-                                                            <option>20</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <label>Appointment Date</label>
-                                                        <div id="DOB" class="inner-addon right-addon form-group">
-                                                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                                                            <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" name="dob-date" id="dob-date" value="@ViewBag.TodaysDate" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <label>Survey</label>
-                                                        @Html.DropDownList("ddlsurveys", new SelectList(@Model.Surveys, "id", "Surveyname", "--select--"), new { @class = "form-control" })
-                                                        @Html.Hidden("ddlsurveystext")
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-3">
-
-
-
-                                                    <div class="form-group">
-                                                        <label>Clinic</label>
-
-                                                        @Html.DropDownList("ddlclinics", new SelectList(@Model.Clinics, "clinicID", "clinicName", "--select--"), new { @class = "form-control" })
-
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                            <div class="col-sm-12 pull-right">
-                                                <button id="btnSaveQuick" type="submit" onclick="showNotification();" class="pull-right btn btn-success btn-sm  Margin-L-10">Create</button>
-                                                <button id="btnClearQuick" class="pull-right btn btn-cancel btn-sm">Cancel</button>
-                                            </div>
-                                            <div class="clear-float"></div>
-                                            }
-                                        </div>
-                                   
-
-                                    <div class="tab-pane" id="delete-testpatients">
-                                        <div class="col-sm-12 Padding-T-10" id="testpatient-list">
-                                            <div class="col-md-4 col-sm-12 Padding-L-0">
-                                                <b>Select test patients from below.</b>
-                                            </div>
-                                            <div class="col-md-8 col-sm-12">
-
-                                                <a href="#" class="pull-right Margin-L-10" onclick="RefreshTestPatients();">
-                                                    <img src="~/images/refresh-grid-ico.svg" class="refresh-institution-list" alt="Refresh All" height="22" width="22" />Refresh List
-                                                </a>
-                                                <span onclick="Appendtextonpopup('MarNot');">
-                                                    <a data-toggle="modal" data-target="#confirm-xml2" href="#" class="pull-right Margin-L-10">
-                                                        <img src="~/images/close-circle-ico.svg" class="refresh-institution-list" alt="Mark NOT Test Patients" height="22" /> Mark NOT Test Patients
-                                                    </a>
-                                                </span>
-                                                <span onclick="Appendtextonpopup('Delete');">
-                                                    <a data-toggle="modal" data-target="#confirm-xml" href="#" class="pull-right Margin-L-10">
-                                                        <img src="~/images/delete-ico.svg" class="refresh-institution-list" alt="Delete Records" height="22" />Delete Records
-                                                    </a>
-                                                </span>
-
-                                                    <a href="#" class="pull-right Margin-L-10" onclick="CheckAllBoxes();">
-                                                        <img src="~/images/select-all-ico.svg" class="refresh-institution-list" alt="Select All Records" height="22" />Select All
-                                                    </a>
+<div class="row">
+    <h3 class="page-title Margin-B-10">Manage Test Patients</h3>
 </div>
-                                        </div><!--row end-->
-                                        <div id="testpatientsgrid"></div>
-                                       
-                                        <div class="clear-float"></div>
-                                    </div><!--row end-->
-                                </div><!--container end-->
 
-                            </div>
-                            <!-- /#page-content-wrapper -->
+<div class="row Margin-T-10">
+    <ul class="nav nav-tabs col-sm-12" id="myTab">
+        <li class="active" id="Schedule-Tab">
+            <a data-target="#add-testpatients" data-toggle="tab" href="#">Create Test Patients</a>
+        </li>
+        <li>
+            <a href="#" data-target="#delete-testpatients" data-toggle="tab" onclick="RefreshTestPatients('@Url.Action("RefreshTestPatients", "TestPatient")')">Delete Test Patients</a>
+        </li>
+    </ul>
+</div><!--tab row end-->
+
+
+
+<div class="tab-content row">
+
+    <div class="tab-pane active Padding-15" id="add-testpatients">
+        @using (Html.BeginForm("TestPatients", "TestPatient", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Number</label>
+                        <select id="AppCount" name="AppCount" class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>5</option>
+                            <option selected="selected">10</option>
+                            <option>20</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Appointment Date</label>
+                        <div id="DOB" class="inner-addon right-addon form-group">
+                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                            <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" name="dob-date" id="dob-date" value="@ViewBag.TodaysDate" />
                         </div>
                     </div>
-                </div><!--row end-->
-            </div><!--container end-->
-        </div><!--container fluid end-->
-    </div> <!-- /container area end -->
-    <!--Delete confirmation-->
-    <div id="confirm-xml" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"> Confirm Operation</h4>
                 </div>
-                <div id="divbody" class="modal-body">
-                    <div id="divblank" class="editor-field">
-                        <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Please Select Test Patient!</strong><br /><br />
-                    </div>
-                    <div id="divnotblank" class="editor-field">
-                        <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Are you sure you want to delete.</strong><br /><br />
-                    </div>
-                    <div class="modal-footer">
-                        <input class="btn btn-success confirmyes pull-right" type="button" id="btnyes" onclick="DeleteTestPatients();" value="Yes" />
-                        <input class="btn btn-cancel pull-right Margin-R-10" data-dismiss="modal" type="button" value="Cancel" />
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Survey</label>
+                        @Html.DropDownList("ddlsurveys", new SelectList(@Model.Surveys, "id", "Surveyname", "--select--"), new { @class = "form-control" })
+                        @Html.Hidden("ddlsurveystext")
 
                     </div>
+                </div>
+
+                <div class="col-sm-3">
+
+
+
+                    <div class="form-group">
+                        <label>Clinic</label>
+
+                        @Html.DropDownList("ddlclinics", new SelectList(@Model.Clinics, "clinicID", "clinicName", "--select--"), new { @class = "form-control" })
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-sm-12 pull-right">
+                <button id="btnSaveQuick" type="submit" onclick="return showNotification();" class="pull-right btn btn-success btn-sm  Margin-L-10">Create</button>
+                @*<button id="btnClearQuick" onclick="return false;" class="pull-right btn btn-cancel btn-sm">Cancel</button>*@
+            </div>
+            <div class="clear-float"></div>
+        }
+    </div>
+
+
+    <div class="tab-pane" id="delete-testpatients">
+        <div class="col-sm-12 Padding-T-10" id="testpatient-list">
+            <div class="col-md-4 col-sm-12 Padding-L-0">
+                <b>Select test patients from below.</b>
+            </div>
+            <div class="col-md-8 col-sm-12">
+
+                <a href="#" class="pull-right Margin-L-10" onclick="RefreshTestPatients('@Url.Action("RefreshTestPatients", "TestPatient")');">
+                    <img src="~/images/refresh-grid-ico.svg" class="refresh-institution-list" alt="Refresh All" height="22" width="22" />Refresh List
+                </a>
+                <span onclick="Appendtextonpopup('MarNot');">
+                    <a data-toggle="modal" data-target="#confirm-xml2" href="#" class="pull-right Margin-L-10">
+                        <img src="~/images/close-circle-ico.svg" class="refresh-institution-list" alt="Mark NOT Test Patients" height="22" /> Mark NOT Test Patients
+                    </a>
+                </span>
+                <span onclick="Appendtextonpopup('Delete');">
+                    <a data-toggle="modal" data-target="#confirm-xml" href="#" class="pull-right Margin-L-10">
+                        <img src="~/images/delete-ico.svg" class="refresh-institution-list" alt="Delete Records" height="22" />Delete Records
+                    </a>
+                </span>
+
+                <a href="#" class="pull-right Margin-L-10" onclick="CheckAllBoxes();">
+                    <img src="~/images/select-all-ico.svg" class="refresh-institution-list" alt="Select All Records" height="22" />Select All
+                </a>
+            </div>
+        </div><!--row end-->
+        <div id="testpatientsgrid"></div>
+
+        <div class="clear-float"></div>
+    </div><!--row end-->
+</div><!--container end-->
+<!--Delete confirmation-->
+<div id="confirm-xml" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"> Confirm Operation</h4>
+            </div>
+            <div id="divbody" class="modal-body">
+                <div id="divblank" class="editor-field">
+                    <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Please Select Test Patient!</strong><br /><br />
+                </div>
+                <div id="divnotblank" class="editor-field">
+                    <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Are you sure you want to delete.</strong><br /><br />
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-success confirmyes pull-right" type="button" id="btnyes" onclick="DeleteTestPatients('@Url.Action("DeleteTestPatientsByapptids", "TestPatient")');" value="Yes" />
+                    <input class="btn btn-cancel pull-right Margin-R-10" data-dismiss="modal" type="button" value="Cancel" />
+
                 </div>
             </div>
         </div>
     </div>
-    <!--Delete Confirmation-->
-
-    <!--Mark Not As Test Patient-->
-    <div id="confirm-xml2" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"> Confirm Operation</h4>
+</div>
+<!--Delete Confirmation-->
+<!--Mark Not As Test Patient-->
+<div id="confirm-xml2" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"> Confirm Operation</h4>
+            </div>
+            <div id="divbody" class="modal-body">
+                <div id="divblankMark" class="editor-field">
+                    <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Please Select Test Patient!</strong><br /><br />
                 </div>
-                <div id="divbody" class="modal-body">
-                    <div id="divblankMark" class="editor-field">
-                        <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Please Select Test Patient!</strong><br /><br />
-                    </div>
-                    <div id="divnotblankMark" class="editor-field">
-                        <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Are you sure you want to Mark As not a Test Patient.</strong><br /><br />
-                    </div>
-                    <div class="modal-footer">
-                        <input class="btn btn-success confirmyes pull-right" type="button" id="btnyesMark" onclick="MarkAsNotTestPatients();" value="Yes" />
-                        <input class="btn btn-cancel pull-right Margin-R-10" data-dismiss="modal" type="button" value="Cancel" />
+                <div id="divnotblankMark" class="editor-field">
+                    <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Are you sure you want to Mark As not a Test Patient.</strong><br /><br />
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-success confirmyes pull-right" type="button" id="btnyesMark" onclick="MarkAsNotTestPatients('@Url.Action("ExcludeTestPatientsByapptids", "TestPatient")');" value="Yes" />
+                    <input class="btn btn-cancel pull-right Margin-R-10" data-dismiss="modal" type="button" value="Cancel" />
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--Mark Not As Test Patient-->
+</div>
+<!--Mark Not As Test Patient-->
 
 
-    <script src="~/Scripts/customJquery/TestPatient.js"></script>
-   
+<script src="~/Scripts/customJquery/TestPatient.js"></script>
+

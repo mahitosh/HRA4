@@ -64,21 +64,22 @@
 
                 @{
            var url = "";
+           var title = "";
            if (item.DoNotCall == true)
            {
 
                url = Url.Content("~/images/DNC-N-ico.svg");
-
+               title = "Remove to Do Not Call list.";
            }
            else
            {
                url = Url.Content("~/images/DNC-Y-ico.svg");
-
+               title = "Add to Do Not Call list.";
            }
 
                 }
                 <div style="display:none">@item.DoNotCall</div>
-                <a href="#"> <img src="@url" alt="Add to Do Not Call list." width="30" height="30" data-toggle="tooltip" data-placement="top" title="Add to Do Not Call list." onclick="return AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()','@Url.Action("AddRemoveTask", "Institution")');" /> </a>
+                <a href="#"> <img src="@url" alt="Add to Do Not Call list." title="@title" width="30" height="30" data-toggle="tooltip" data-placement="top"  onclick="return AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()','@Url.Action("AddRemoveTask", "Institution")');" /> </a>
             </td>
             <td>
                 <input type="hidden" id="hidSelectedMrn" />
@@ -100,6 +101,11 @@
     </tbody>
 </table><!--schedule list end here-->
 <script type="text/javascript">
+
+       
+          
+
+  
     $(".editmenu").slideUp(0);
     $(".schedule-more-detail-content").hide();
     $(".schedule-more-detail").click(function () {
@@ -152,5 +158,6 @@
       
          
     }
+
 </script>
 
