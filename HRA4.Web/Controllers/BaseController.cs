@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using HRA4.Context;
 using log4net;
 using HRA4.ViewModels;
-using HRA4.Entities.UserManagement;
+//using HRA4.Entities.UserManagement;
 namespace HRA4.Web.Controllers
 {
     [Authorize]

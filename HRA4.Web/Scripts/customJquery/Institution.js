@@ -1,8 +1,59 @@
-﻿/*======Start Append Pedigree image url dynamically ============ */
+﻿
+$(".editmenu").slideUp(0);
+$(".schedule-more-detail-content").hide();
+
+function moredetails() {
+    $(".schedule-more-detail-content").toggle(200);
+    $("i", this).toggleClass("fa-plus-circle fa-minus-circle");
+}
+function ShowEdit(obj, mrn, apptid, path) {
+    $(".editmenu").slideUp(0);
+    var trid = "#" + obj.id + "-b";
+    $(trid).slideDown(100);
+    $("#hidSelectedMrn").val(mrn);
+    $("#hidSelectedAppId").val(apptid);
+    ///
+    var dt = $("#appt-date").val();
+    var nm = $("#name").val();
+    var clinicId = $("#ddClinic").val();
+    $.ajax({
+        type: "POST",
+        url: path,
+        data: { apptid: apptid, name: nm, appdt: dt, clinicId: clinicId },
+        dataType: "json",
+        async: true,
+        success: function (Data) {
+            $('.InstitutionPartialdiv').html('');
+            $('.InstitutionPartialdiv').html(Data.view);
+            Applytablesorter();
+            $(".schedule-more-detail-content").hide();
+        }
+    })
+
+
+}
+
+function cancel(obj) {
+    var chkid = "#" + obj.id + "chk";
+    var hfid = "#" + obj.id + "hf";
+    var initialvalue = $(hfid).val();
+    if (initialvalue == 'True') {
+        $(chkid).prop("checked", true);
+
+    } else {
+        $(chkid).prop("checked", false);
+
+    }
+
+    $(".editmenu").slideUp(100);
+
+}
+
+/*======Start Append Pedigree image url dynamically ============ */
 
 function ShowPedigreeImage(unitnum, apptid, PatientName, globalGetJSONPath) {
-   
-   // var globalGetJSONPath = '@Url.Action("ShowPedigreeImage", "Institution")';
+
+    // var globalGetJSONPath = '@Url.Action("ShowPedigreeImage", "Institution")';
 
     $.ajax({
         type: "POST",
@@ -42,8 +93,8 @@ function ShowPedigreeImage(unitnum, apptid, PatientName, globalGetJSONPath) {
 
 /*======Start Search for Appointment logic ============ */
 function SearchAppointment(globalGetJSONPath) {
-    
-    
+
+
     var name = $('#name').val();
     var appdt = $('#chkbox').is(":checked") ? $('#appt-date').val() : "";
     var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val() : "-1";
@@ -80,6 +131,7 @@ function SearchAppointment(globalGetJSONPath) {
             Applytablesorter();
             $('#loading').data('spinner').stop();
             $('#loading').hide();
+            $(".editmenu").slideUp(0);
             if (parseInt(Data.apps_count, 0) == 0) {
                 $('#divRecordStatus').html("No records found.");
             }
@@ -100,7 +152,7 @@ function AddRemoveTask(isDNC, unitnum, apptid, globalGetJSONPath) {
     var appdt = $('#appt-date').val();
     var clinicId = $('#ddClinic').val().length > 0 ? $('#ddClinic').val() : "-1";
 
-   // var globalGetJSONPath = '@Url.Action("AddRemoveTask", "Institution")';
+    // var globalGetJSONPath = '@Url.Action("AddRemoveTask", "Institution")';
 
     $.ajax({
         type: "POST",
@@ -109,10 +161,11 @@ function AddRemoveTask(isDNC, unitnum, apptid, globalGetJSONPath) {
         dataType: "json",
         async: true,
         success: function (Data) {
-          
+
             $('#divRecordStatus').html('');
             $('#ScheduleCount').html(Data.apps_count);
             $('#divInstitutionGrid').html(Data.view);
+            $(".editmenu").slideUp(0);
             Applytablesorter();
             if (parseInt(Data.apps_count, 0) == 0) {
                 $('#divRecordStatus').html("No records found.");
@@ -132,7 +185,7 @@ function confirmation() {
 /*======End Delete confirmation logic ============ */
 
 /* ============Upload===================== */
-function SetValues(MRN, apptid, xmlType,url) {
+function SetValues(MRN, apptid, xmlType, url) {
     $("#txtFileUpload").val('');
     $("#hidMrn").val(MRN);
     $("#hidAppid").val(apptid);
@@ -144,14 +197,14 @@ function UploadXml() {
 
     var strMrn = $("#hidMrn").val();
     var apptId = $("#hidAppid").val();
-    var xmlType = $("#hidType").val();  
+    var xmlType = $("#hidType").val();
     var globalGetJSONPath = $("#hidUploadUrl").val();
     globalGetJSONPath = globalGetJSONPath + '?mrn=' + strMrn + '&apptId=' + apptId;
     //alert(globalGetJSONPath);
     var formData = new FormData();
-    var file = $("#txtFileUpload")[0].files[0];    
+    var file = $("#txtFileUpload")[0].files[0];
     formData.append("file", file);
-    
+
     $.ajax({
         type: "POST",
         url: globalGetJSONPath,
@@ -160,11 +213,11 @@ function UploadXml() {
         async: true,
         contentType: false,
         processData: false,
-        success: function (data) {            
-            $("#upload-xml").modal('hide');          
+        success: function (data) {
+            $("#upload-xml").modal('hide');
             ShowNotification('File uploaded successfully');
-           // $("#divNotification").text('File uploaded successfully');
-           // $("#divNotification").fadeToggle(2000);
+            // $("#divNotification").text('File uploaded successfully');
+            // $("#divNotification").fadeToggle(2000);
             //$("#divNotification").fadeToggle(2000);
         }
     }).always(function (Data) {
@@ -174,27 +227,34 @@ function UploadXml() {
 /* ===================Xml Upload================== */
 
 /*=======Delete Appointment=======*/
-function DeleteAppointment()
-{
-   
-    var apptId = $("#hidAppid").val();    
+function DeleteAppointment() {
+
+    var apptId = $("#hidAppid").val();
     var globalGetJSONPath = $("#hidUploadUrl").val();
     var deleteUrl = $("#hidType").val();
     globalGetJSONPath = globalGetJSONPath + '?apptId=' + apptId;
-  
+
 
     $.ajax({
         type: "Get",
-        url: globalGetJSONPath,  
+        url: globalGetJSONPath,
         async: true,
         contentType: false,
         processData: false,
-        success: function (data) {
+        success: function (Data) {
             $("#confirm-xml").modal('hide');
-            ShowNotification('Appointment deleted successfully');           
-          
-            SearchAppointment(deleteUrl);
- 
+            $('#divRecordStatus').html('');
+            $('#ScheduleCount').html(Data.apps_count);
+            $('#divInstitutionGrid').html(Data.view);
+            Applytablesorter();
+            $(".editmenu").slideUp(0);
+            if (parseInt(Data.apps_count, 0) == 0) {
+                $('#divRecordStatus').html("No records found.");
+            }
+            ShowNotification('Appointment deleted successfully');
+            //SearchAppointment(deleteUrl);
+            
+
         }
     }).always(function (Data) {
 
@@ -205,25 +265,24 @@ function DeleteAppointment()
 
 
 /*======Start RiskCalculation logic ============ */
-function RiskCalculation(globalGetJSONPath,MRN,apptid,status) {
+function RiskCalculation(globalGetJSONPath, MRN, apptid, status) {
     $.ajax({
         beforeSend: function () {
-            if (status == 'Run')
-            {
+            if (status == 'Run') {
                 $("#RiskScoreProgressdiv").show();
                 $("#divfooter > button").prop("disabled", true);
                 $("#divheader > button").prop("disabled", true);
-                
+
             }
-            
+
         },
         type: "POST",
         url: globalGetJSONPath,
-        data: {MRN: MRN, apptid: apptid,status:status},
+        data: { MRN: MRN, apptid: apptid, status: status },
         dataType: "json",
         async: true,
         success: function (Data) {
-           
+
             $('#divriskcalculate').html(Data.view);
             $("#RiskScoreProgressdiv").hide();
             $("#divfooter > button").prop("disabled", false);
@@ -235,9 +294,8 @@ function RiskCalculation(globalGetJSONPath,MRN,apptid,status) {
 }
 /*======End RiskCalculation logic ============ */
 
-function NewDocument(globalGetJSONPath, MRN, apptid)
-{
-    
+function NewDocument(globalGetJSONPath, MRN, apptid) {
+
     $.ajax({
         type: "POST",
         url: globalGetJSONPath,
@@ -249,9 +307,9 @@ function NewDocument(globalGetJSONPath, MRN, apptid)
         }
     })
 }
- 
+
 function ShowDocument(globalGetJSONPath, templateid) {
-    var mrn=$("#hidSelectedMrn").val();
+    var mrn = $("#hidSelectedMrn").val();
     var apptId = $("#hidSelectedAppId").val();
 
     $("#divShowHtml").fadeIn();
@@ -278,7 +336,7 @@ function ShowDocument(globalGetJSONPath, templateid) {
     $.ajax({
         type: "POST",
         url: globalGetJSONPath,
-        data: { templateId: templateid,mrn:mrn,apptId:apptId },
+        data: { templateId: templateid, mrn: mrn, apptId: apptId },
         dataType: "json",
         async: true,
         success: function (Data) {
@@ -287,7 +345,7 @@ function ShowDocument(globalGetJSONPath, templateid) {
             $("#btnDocDownload").attr('disabled', false);
             $("#btnDocCancel").attr('disabled', false);
             $('#divShowHtml').html(Data.view);
-           
+
         }
     })
 }
@@ -313,19 +371,18 @@ function printDiv(divID) {
 
     //Print Page
     window.print();
-   // $("#schedule-new-doc-modal").modal("hide");
+    // $("#schedule-new-doc-modal").modal("hide");
     //Restore orignal HTML
     document.body.innerHTML = oldPage;
-   
+
     //location.reload();
-   // $("#schedule-new-doc-modal").modal('hide');
+    // $("#schedule-new-doc-modal").modal('hide');
     return true;
 
 }
 
-function CloseDocModel()
-{
-   // alert($("#schedule-new-doc-modal"));
+function CloseDocModel() {
+    // alert($("#schedule-new-doc-modal"));
     document.getElementById('schedule-new-doc-modal').style.display = "none";
     $("#schedule-new-doc-modal").modal("hide");
 }

@@ -381,16 +381,32 @@ namespace HRA4.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
-        //public JsonResult RunRiskModel(string MRN, int apptid)
-        //{
-        //    string view = string.Empty;
-        //    var apps = _applicationContext.ServiceContext.AppointmentService.RiskCalculateAndRunAutomation(apptid, MRN);
-        //    view = RenderPartialView("_RiskScore", apps);
-        //    var result = new { view = view };
-        //    return Json(result, JsonRequestBehavior.AllowGet);
+        public JsonResult GetAppoitmentForEdit(string apptid,string name,string appdt,string clinicId)
+        {
+            string view = string.Empty;
+            if (Session != null && Session["InstitutionId"] != null)
+            {
+                int instId = (int)Session["InstitutionId"];
+                NameValueCollection searchfilter = new NameValueCollection();
+                if (Session["SearchFilter"] != null)
+                {
+                    searchfilter = (NameValueCollection)Session[Constants.SearchFilter];
+                }
+                else
+                {
+                    searchfilter = new NameValueCollection();
+                    searchfilter.Add("name", name);
+                    searchfilter.Add("appdt", appdt);
+                    searchfilter.Add("clinicId", clinicId);
+                }
+                var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointment(instId, searchfilter, apptid);
+                view = RenderPartialView("_InstitutionRow", apps);
 
-        //}
+            }
+            var result = new { view = view };
+            return Json(result, JsonRequestBehavior.AllowGet);
 
+        }
         protected virtual string RenderPartialView(string partialViewName, object model)
         {
             if (ControllerContext == null)
@@ -415,10 +431,38 @@ namespace HRA4.Web.Controllers
             }
         }
 
-        public ActionResult DeleteAppointment(int apptid)
+        public JsonResult DeleteAppointment(int apptid, string name, string appdt, string clinicId)
         {
             _applicationContext.ServiceContext.AppointmentService.DeleteAppointment(Convert.ToInt32(Session["InstitutionId"]), apptid);
-            return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+            string view = string.Empty;
+            int apps_count = 0;
+
+            if (Session != null && Session["InstitutionId"] != null)
+            {
+                int instId = (int)Session["InstitutionId"];
+
+                NameValueCollection searchfilter = new NameValueCollection();
+                if (Session["SearchFilter"] != null)
+                {
+                    searchfilter = (NameValueCollection)Session[Constants.SearchFilter];
+                }
+                else
+                {
+                    searchfilter = new NameValueCollection();
+                    searchfilter.Add("name", name);
+                    searchfilter.Add("appdt", appdt);
+                    searchfilter.Add("clinicId", clinicId);
+                }
+                var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
+                apps_count = apps.Count();
+                //ViewBag.AppointmentCount = apps.Count();
+                view = RenderPartialView("_InstitutionGrid", apps);
+
+
+
+            }
+            var result = new { view = view, apps_count = apps_count, todaysDate = DateTime.Now.ToString("MM/dd/yyyy") };
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult RunAutomationDocuments(string apptid, string MRN)

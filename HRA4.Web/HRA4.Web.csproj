@@ -120,6 +120,7 @@
     <Content Include="App_Data\RAFiles\hraGetGail.xsl" />
     <Content Include="App_Data\RAFiles\hraMap.xsl" />
     <Content Include="App_Data\RAFiles\hra_serialized_to_hl7.xsl" />
+    <Content Include="App_Data\RAFiles\hra_serialized_to_RISK.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd2.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd_remove_namespaces.xsl" />
@@ -769,7 +770,6 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\TestPatientController.cs" />
-    <Compile Include="Filters\CustomAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

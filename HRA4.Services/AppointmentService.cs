@@ -129,11 +129,13 @@ namespace HRA4.Services
             if (InstitutionId != null)
             {
 
+                
+
                 _institutionId = InstitutionId;
                 // SetUserSession();
                 //appointments = HRACACHE.GetCache<List<VM.Appointment>>(InstitutionId);
                 var list = new AppointmentList();
-
+                
                 list.clinicId = 1;
                 list.Date = DateTime.Now.ToString("MM/dd/yyyy");
                 list.BackgroundListLoad();
@@ -153,6 +155,7 @@ namespace HRA4.Services
         /// <returns>List of Appointments based on Search criteria</returns>
         public List<VM.Appointment> GetAppointments(int InstitutionId, NameValueCollection searchfilter)
         {
+
             Logger.DebugFormat("Institution Id: {0}", InstitutionId);
             List<VM.Appointment> appointments = new List<VM.Appointment>();
 
@@ -175,15 +178,40 @@ namespace HRA4.Services
                     appointments.Add(app.FromRAppointment(_DNCStatus));
 
                 }
+                 return appointments;
 
-                return appointments;
 
                 //return list.FromRAppointmentList();
             }
             return new List<VM.Appointment>();
         }
 
+        public VM.Appointment GetAppointment(int InstitutionId, NameValueCollection searchfilter,string apptid)
+        {
+            List<VM.Appointment> ap=GetAppointments(InstitutionId,searchfilter);
+            List<VM.Appointment> Filteredlist = SearchOnAppointment(ap,Constants.Id,apptid);
 
+            VM.Appointment item = new VM.Appointment();
+            foreach (var app in Filteredlist)
+            {
+                item.Id=app.Id;
+                item.AppointmentDate=app.AppointmentDate;
+                item.appttime=app.appttime;
+                item.clinicID=app.clinicID;
+                item.DateCompleted = app.DateCompleted;
+                item.DateOfBirth = app.DateOfBirth;
+                item.DiseaseHx = app.DiseaseHx;
+                item.DoNotCall = app.DoNotCall;
+                item.MarkAsComplete = app.MarkAsComplete;
+                item.MRN = app.MRN;
+                item.PatientName = app.PatientName;
+                item.Provider = app.Provider;
+                item.SetMarkAsComplete = app.SetMarkAsComplete;
+                item.Survey = app.Survey;
+                
+            }
+            return item;
+        }
 
         /// <summary>
         /// It will do searching on passed Appointment list based on below parameters
