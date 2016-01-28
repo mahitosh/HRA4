@@ -57,16 +57,16 @@
                     <ul class="nav navbar-nav navbar-right" style="background:#80c31f;color:#fff;">
                         <li class="nav-admintool">
                             @*@Html.Partial("_menuLayout")*@
-                           <div class="dropdown">
+                            <div class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="left" title="Admin Tool" id="admin-dropdown" aria-haspopup="true" aria-expanded="true"></a>
                                 <ul class="dropdown-menu admin-tool-menu" aria-labelledby="admin-dropdown">
                                     <li><a href="#"><i class="fa fa-user"></i> Manage Users</a></li>
                                     <li><a href="@Url.Action("ManageInstitution", "Admin")"><i class="fa fa-university"></i> Manage Institutions</a></li>
                                     <li><a href="#"><i class="fa fa-user-md"></i> Manage Providers</a></li>
-                                    <li><a href="#"><i class="fa fa-list"></i> Manage Survey List</a></li>
+                                  
                                     <li><a href="@Url.Action("Index", "DocumentEditor")"><i class="fa fa-file-o"></i> Manage Document</a></li>
                                     <li><a href="@Url.Action("AuditReports", "Reports")"><i class="fa fa-file-text-o"></i> Audit Reports</a></li>
-                                    <li><a href="@Url.Action("TestPatients", "TestPatient")"><i class="fa fa-user-plus"></i>Test Patients</a></li>
+                                    <li><a href="@Url.Action("TestPatients", "TestPatient")"><i class="fa fa-file-text-o"></i>Test Patients</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -122,11 +122,13 @@
     <script src="~/Scripts/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="~/Scripts/custom-script.js"></script>
     <script src="~/Scripts/sidebar_menu.js"></script>
+   
     @*<script src="~/Scripts/__jquery.tablesorter/jquery-latest.js"></script>*@
     
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="~/assets/js/ie10-viewport-bug-workaround.js"></script>
     @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <script src="~/Scripts/spin.min.js"></script>*@
     <script type="text/javascript">
         $(document).ready(function () {
@@ -151,7 +153,7 @@
             
             window.onbeforeunload = function (event) {
                
-               // loading();
+                loading();
             };
             
             $(document).ajaxStart(function () {                

@@ -3,7 +3,6 @@ Don't forget to reference the JQuery Library here, inside your view or layout.
 <script src="@Url.Content("~/Scripts/jquery-x.x.x.min.js")" type="text/javascript"></script>
 *@
 
-<script src="@Url.Content("~/Scripts/tinymce/jquery.tinymce.js")" type="text/javascript"></script>
 
 <script type="text/javascript">
 
@@ -47,9 +46,20 @@ Don't forget to reference the JQuery Library here, inside your view or layout.
       });
 
     })();
+   
+    $(".dropdown").on("show.bs.dropdown", function (event) {
+        $('ul.admin-tool-menu').css("display", "block");
+    });
+
+    $(".dropdown").on("hide.bs.dropdown", function (event) {
+        $('ul.admin-tool-menu').css("display", "none");
+    });
 
 </script>
 
 @Html.TextArea(string.Empty, /* Name suffix */
     ViewData.TemplateInfo.FormattedModelValue /* Initial value */
+
 )
+
+<script src="@Url.Content("~/Scripts/tinymce/jquery.tinymce.js")" type="text/javascript"></script>
