@@ -264,7 +264,7 @@ namespace HRA4.Services
         /// <returns>Patient Model</returns>
         private Patient CalculateRiskAndRunAutomation(int apptid, string MRN)
         {
-            Appointment.MarkComplete(apptid);
+           // Appointment.MarkComplete(apptid);// Commented this code as the new library is giving error.
             SessionManager.Instance.SetActivePatient(MRN, apptid);
             Patient proband = SessionManager.Instance.GetActivePatient();
             string toolsPath = HttpContext.Current.Server.MapPath(Constants.RAFilePath);
@@ -325,13 +325,16 @@ namespace HRA4.Services
             {
                 Appointment appt = ((Appointment)(item.ToRAppointment()));
 
+                //Commented below line as the new library is giving error.
                 if (Appt.SetMarkAsComplete)
                 {
-                    Appointment.MarkComplete(appt.apptID);
+                    appt.MarkComplete();
+                    //Appointment.MarkComplete(appt.apptID);
                 }
                 else
                 {
-                    Appointment.MarkIncomplete(appt.apptID);
+                    appt.MarkIncomplete();
+                    //Appointment.MarkIncomplete(appt.apptID);
                 }
             }
         }

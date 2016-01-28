@@ -176,7 +176,7 @@ function UploadXml() {
 /*=======Delete Appointment=======*/
 function DeleteAppointment()
 {
-  //  alert('delete');    
+   
     var apptId = $("#hidAppid").val();    
     var globalGetJSONPath = $("#hidUploadUrl").val();
     var deleteUrl = $("#hidType").val();

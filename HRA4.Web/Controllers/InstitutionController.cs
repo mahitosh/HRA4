@@ -25,7 +25,8 @@ namespace HRA4.Web.Controllers
             List<ViewModels.Appointment> apps = new List<ViewModels.Appointment>();
             var instList = _applicationContext.ServiceContext.AdminService.GetTenants();
             ViewBag.instListcount = instList.Count;
-
+           
+             
             if (instList.Count == 0)
             {
                 return View(apps);
@@ -63,7 +64,7 @@ namespace HRA4.Web.Controllers
                 /*=======Start Load Clinic Dropdown======================*/
                 var _ClinicList = _applicationContext.ServiceContext.AppointmentService.GetClinics((int)Session["InstitutionId"]);
                 ViewBag.ClinicList = new SelectList(_ClinicList.ToList(), "clinicID", "clinicName");
-            
+                
                 /*=======End Load Clinic Dropdown======================*/
                 return View(apps);
                
@@ -84,6 +85,8 @@ namespace HRA4.Web.Controllers
 
 
         }
+
+    
 
         [HttpPost]
         public JsonResult ImportAsXml(HttpPostedFileBase file, string mrn, int apptId)
