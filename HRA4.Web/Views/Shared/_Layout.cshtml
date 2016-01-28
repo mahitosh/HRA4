@@ -27,7 +27,7 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="~/assets/js/ie-emulation-modes-warning.js"></script>
-   
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -62,10 +62,10 @@
                                     <li><a href="#"><i class="fa fa-user"></i> Manage Users</a></li>
                                     <li><a href="@Url.Action("ManageInstitution", "Admin")"><i class="fa fa-university"></i> Manage Institutions</a></li>
                                     <li><a href="#"><i class="fa fa-user-md"></i> Manage Providers</a></li>
-                                    <li><a href="#"><i class="fa fa-list"></i> Manage Survey List</a></li>
+                                  
                                     <li><a href="@Url.Action("Index", "DocumentEditor")"><i class="fa fa-file-o"></i> Manage Document</a></li>
                                     <li><a href="@Url.Action("AuditReports", "Reports")"><i class="fa fa-file-text-o"></i> Audit Reports</a></li>
-                                    <li><a href="@Url.Action("TestPatients", "TestPatient")"><i class="fa fa-file-text-o"></i>Test Patient</a></li>
+                                    <li><a href="@Url.Action("TestPatients", "TestPatient")"><i class="fa fa-file-text-o"></i>Test Patients</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -121,11 +121,13 @@
     <script src="~/Scripts/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="~/Scripts/custom-script.js"></script>
     <script src="~/Scripts/sidebar_menu.js"></script>
+   
     @*<script src="~/Scripts/__jquery.tablesorter/jquery-latest.js"></script>*@
     
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="~/assets/js/ie10-viewport-bug-workaround.js"></script>
     @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <script src="~/Scripts/spin.min.js"></script>*@
     <script type="text/javascript">
         $(document).ready(function () {
@@ -150,7 +152,7 @@
             
             window.onbeforeunload = function (event) {
                
-               // loading();
+                loading();
             };
             
             $(document).ajaxStart(function () {                
