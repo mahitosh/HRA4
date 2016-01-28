@@ -13,8 +13,9 @@ namespace HRA4.Services
 
         public List<RiskApps3.Model.HraObject> GetUsers()
         {
-            SessionManager.Instance.MetaData.Users.BackgroundListLoad();
-            return SessionManager.Instance.MetaData.Users;            
+            throw new NotImplementedException();
+            //SessionManager.Instance.MetaData.Users.BackgroundListLoad();
+            //return SessionManager.Instance.MetaData.Users;            
         }
     }
 }

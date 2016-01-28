@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
  /* Toggle Styles */
  
@@ -112,17 +112,17 @@
 .sidebar-nav-child li{text-indent: 0px;clear:both;}
 .sidebar-nav li:nth-child(2) {border-top:solid 1px #ddd;}
 #sidebar-wrapper .nav-stacked > li + li{margin-top:0;}
-li.active a.schedule-icon, a.schedule-icon:hover{background: #53afee url("../images/schedule-ico-hover.svg") no-repeat 5px 7px!important;background-size: 28px 28px!important;}
-a.schedule-icon{background: #f7f7f7 url("../images/schedule-ico.svg") no-repeat 5px 7px;background-size: 28px 28px;}
+li.active a.schedule-icon, a.schedule-icon:hover{background: #53afee url("../images/schedule-ico-hover.png") no-repeat 5px 7px!important;background-size: 28px 28px!important;}
+a.schedule-icon{background: #f7f7f7 url("../images/schedule-ico.png") no-repeat 5px 7px;background-size: 28px 28px;display: block;}
 
-.breast-cancer-icon{background: #f7f7f7 url("../images/breast-ico.svg") no-repeat 5px 7px;background-size: 28px 28px;}
-a.breast-cancer-icon:hover{background: #53afee url("../images/breast-ico-hover.svg") no-repeat 5px 7px!important;background-size: 28px 28px!important;}
+.breast-cancer-icon{background: #f7f7f7 url("../images/breast-ico.png") no-repeat 5px 7px;background-size: 28px 28px; background-attachment:scroll;}
+a.breast-cancer-icon:hover{background: #53afee url("../images/breast-ico-hover.png") no-repeat 5px 7px!important;background-size: 28px 28px!important;}
 
-.lifetime-cancer-icon{background: #f7f7f7 url("../images/lifetime-cancer-ico.svg") no-repeat 5px 7px;background-size: 28px 28px;}
-li.active a.lifetime-cancer-icon, a.lifetime-cancer-icon:hover{background: #53afee url("../images/lifetime-cancer-ico-hover.svg") no-repeat 5px 7px!important;background-size: 28px 28px!important;}
+.lifetime-cancer-icon{background: #f7f7f7 url("../images/lifetime-cancer-ico.png") no-repeat 5px 7px;background-size: 28px 28px;}
+li.active a.lifetime-cancer-icon, a.lifetime-cancer-icon:hover{background: #53afee url("../images/lifetime-cancer-ico-hover.png") no-repeat 5px 7px!important;background-size: 28px 28px!important;}
 
-.BRCA-icon{background: #f7f7f7 url("../images/BRCAmutation-ico.svg") no-repeat 5px 7px;background-size: 28px 28px;}
-li.active .BRCA-icon:hover, .BRCA-icon:hover{background: #53afee url("../images/BRCAmutation-ico-hover.svg") no-repeat 5px 7px!important;background-size: 28px 28px!important;}
+.BRCA-icon{background: #f7f7f7 url("../images/BRCAmutation-ico.png") no-repeat 5px 7px;background-size: 28px 28px;}
+li.active .BRCA-icon:hover, .BRCA-icon:hover{background: #53afee url("../images/BRCAmutation-ico-hover.png") no-repeat 5px 7px!important;background-size: 28px 28px!important;}
 
 .sidebar-nav li.add-appointment a{padding-left:0;border:0;}
 .sidebar-nav li.add-appointment a:hover{background:transparent;color:#333;text-decoration:underline;}

@@ -801,7 +801,7 @@ namespace RiskApps3.Model
             //TODO should very strongly consider moving this to some kind of object state manager class which can utilize connection and thread pooling
             if (e != null) //Silicus: Check for null
             {
-                if (HttpContext.Current != null)
+                if (HttpContext.Current != null) //Silicus: Setting e.Persist to true to avoid any astnc call.
                     e.Persist = false;
 
             if (e.Persist)

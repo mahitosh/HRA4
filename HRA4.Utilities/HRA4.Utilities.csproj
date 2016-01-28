@@ -76,8 +76,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RiskApps3\RiskApps3.csproj">
-      <Project>{16b371c4-551b-43c6-93db-5ecf4c70bc66}</Project>
+    <ProjectReference Include="..\RASourcesV3\RiskApps3.csproj">
+      <Project>{b6074344-dcf2-4316-8363-7c9e01ab26e1}</Project>
       <Name>RiskApps3</Name>
     </ProjectReference>
   </ItemGroup>

@@ -25,7 +25,8 @@ namespace HRA4.Web.Controllers
             List<ViewModels.Appointment> apps = new List<ViewModels.Appointment>();
             var instList = _applicationContext.ServiceContext.AdminService.GetTenants();
             ViewBag.instListcount = instList.Count;
-
+           
+             
             if (instList.Count == 0)
             {
                 return View(apps);
@@ -63,7 +64,7 @@ namespace HRA4.Web.Controllers
                 /*=======Start Load Clinic Dropdown======================*/
                 var _ClinicList = _applicationContext.ServiceContext.AppointmentService.GetClinics((int)Session["InstitutionId"]);
                 ViewBag.ClinicList = new SelectList(_ClinicList.ToList(), "clinicID", "clinicName");
-            
+                
                 /*=======End Load Clinic Dropdown======================*/
                 return View(apps);
                
@@ -84,6 +85,8 @@ namespace HRA4.Web.Controllers
 
 
         }
+
+    
 
         [HttpPost]
         public JsonResult ImportAsXml(HttpPostedFileBase file, string mrn, int apptId)
@@ -432,10 +435,18 @@ namespace HRA4.Web.Controllers
 
         public FileContentResult DownloadFile()
         {
-            FileInfo fileinfo = (FileInfo)Session["FileInfo"];
-            byte[] fileBytes = System.IO.File.ReadAllBytes(fileinfo.FullName);
-            string fileName = string.Format("{0}{1}", fileinfo.Name, fileinfo.Extension);
-            return File(fileBytes, "Application/pdf", fileName);
+
+            byte[] fileBytes=null;
+            string fileName=string.Empty;
+            if (Session["FileInfo"] != null)
+            {
+                FileInfo fileinfo = (FileInfo)Session["FileInfo"];
+                fileBytes = System.IO.File.ReadAllBytes(fileinfo.FullName);
+                fileName = string.Format("{0}{1}", fileinfo.Name, fileinfo.Extension);
+
+                return File(fileBytes, "Application/pdf", fileName);
+            }
+            return File(new byte[0], "Application/pdf", "ErrorOccured"); 
         }
 
     }

@@ -31,7 +31,21 @@ function getSelectedIds(){
     return apptids;
 }
 
+function Applytablesorter() {
+    $("#testpatientdiv").tablesorter(
+         {
+             headers: {
+                 // assign the secound column (we start counting zero)
+                 0: {
+                     // disable it by setting the property sorter to false
+                     sorter: false
+                 }
 
+             }
+         }
+    );
+
+}
 function DeleteTestPatients(url) {
 
     var apptids = getSelectedIds();
@@ -45,6 +59,7 @@ function DeleteTestPatients(url) {
                 ShowNotification('Test Patients Deleted Successfully');
                 $('#testpatientsgrid').html('');
                 $('#testpatientsgrid').html(data);
+                Applytablesorter();
             }
         });
  }
@@ -62,6 +77,7 @@ function MarkAsNotTestPatients(url) {
             ShowNotification('Test Patients Maked As Not Test Patient');
             $('#testpatientsgrid').html('');
             $('#testpatientsgrid').html(data);
+            Applytablesorter();
 
         }
     });
@@ -74,14 +90,26 @@ function RefreshTestPatients(url) {
         success: function (data) {
             $('#testpatientsgrid').html('');
             $('#testpatientsgrid').html(data);
+            Applytablesorter();
         }
     });
 
 }
 function showNotification() {
-    ShowNotification('Test Patients Created Successfully');
+    var date = $("#dob-date").val();
+    var result = validateDate(date);
+    if (result) {
+        ShowNotification('Test Patients Created Successfully');
+    }else
+    {
+        ShowNotification('Invalid Date! Please select Date in proper format');
+        return false;
+    }
 }
-
+function validateDate(testdate) {
+    var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+    return date_regex.test(testdate);
+}
 function Appendtextonpopup(msg){
     var apptids = getSelectedIds();
     console.log(apptids);
@@ -112,4 +140,5 @@ function Appendtextonpopup(msg){
         }
         
     }
+    
 }
