@@ -179,7 +179,8 @@ li.add-appointment a:hover, li.add-MRI a:hover{border:none;}
 .apppointment-table th.headerSortDown:after {content: "\f0dd";  } 
 .apppointment-table th:last-child::after, .apppointment-table th.headerSortUp:last-child::after, .apppointment-table th.headerSortDown:last-child::after {content: "";}
 /*for all td sorting table*/ 
-.all-cell-sorting-table th:after, .aall-cell-sorting-table th.headerSortUp:after, .all-cell-sorting-table th.headerSortDown:after{content: "\f0dc"!important;} 
+.all-cell-sorting-table th:after, .all-cell-sorting-table th.headerSortUp:after, .all-cell-sorting-table th.headerSortDown:after{content: "\f0dc"!important;} 
+th.hide-sorting.headerSortUp::after, th.hide-sorting.headerSortUp::after, th.hide-sorting::after{content: ""!important;}
 
 /*fixed table header*/
 .table-fixed thead {width: 97%;}
@@ -332,6 +333,7 @@ small{font-size:0.7em;}
 /*multiselct */
 .multiselect {border-radius:4px;padding:4px 10px;}
 .multiselect-container li.active a, .multiselect-container li.active a:hover{background-color:#f1f1f1;color:#333333;}
+.bg-success {padding: 10px;color: #3f6405;font-weight: bold;}
 
 /*footer css*/
 footer{position:fixed; box-shadow: 10px 0 6px #ddd;background-color:#fff;width:100%;z-index:1000;bottom:0;right:0;}
