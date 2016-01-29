@@ -3,6 +3,7 @@ $(function() {
 
 $(document).ready(function() {
     $(".add-MRI").hide();
+	$("ul#menu").off("click");
 });
 
 
@@ -17,6 +18,8 @@ $('#dob-date, #edit-app-date').datepicker()//  id with "dob-date" will pop up a 
             $('#dob-date').datepicker('hide');      // hide the datepicker
         });
 
+
+		
     if ($("#chkbox").is(":checked")) {
         $('#appt-date').datepicker()//  id with "dob-date" will pop up a datepicker
 .on('changeDate', function() { // when the datechanges
@@ -166,4 +169,14 @@ function hideMRI(){
 function showMRI(){	
 	$(".add-MRI").show();
 }
+	
+//add tooltip on ellipse
+$('td, th').bind('mouseenter', function () {
+		  var $this = $(this);
+		  
+		  if (this.offsetWidth < this.scrollWidth && !$this.attr('title')) {
+			  $this.attr('title', $this.text());
+			
+		  }
+	  });
 	

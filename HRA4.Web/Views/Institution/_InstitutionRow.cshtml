@@ -101,86 +101,86 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label>User Name</label>
-                    @*@Html.TextBoxFor(item => item.PatientName)*@
-                    <input class="form-control" />
-                </div>
-
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label>MRN</label>
-                    @*@Html.TextBoxFor(item => item.MRN, new { @id = "MRN" })*@
-                    <input class="form-control" />
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label>DOB</label>
-                    <div id="DOB" class="inner-addon right-addon form-group">
-                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label>Gender</label>
-                    <select class="form-control">
-                        <option>Male</option>
-                        <option>Female</option>
-                    </select>
-                </div>
+    <div class="row redfields">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>User Name *</label>
+                @*@Html.TextBoxFor(item => item.PatientName)*@
+                <input class="form-control" />
             </div>
 
-        </div><!--row end-->
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label>Appointment Date</label>
-                    <div id="edit-app-date-container" class="inner-addon right-addon form-group">
-                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="edit-app-date" />
-                    </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>MRN *</label>
+                @*@Html.TextBoxFor(item => item.MRN, new { @id = "MRN" })*@
+                <input class="form-control" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>DOB *</label>
+                <div id="DOB" class="inner-addon right-addon form-group">
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" />
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label>Time</label>
-                    <div class="input-group bootstrap-timepicker timepicker">
-                        <input id="timepicker1" type="text" class="form-control input-small">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                    </div>
-                </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Gender *</label>
+                <select class="form-control">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
             </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label>Survey</label>
-                    @*@Html.TextBoxFor(item => item.Survey)*@
-                    <input class="form-control" />
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label>Clinic</label>
-                    <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
-                </div>
-            </div>
+        </div>
 
-        </div><!--row end-->
+    </div><!--row end-->
+    <div class="row redfields">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Appointment Date *</label>
+                <div id="edit-app-date-container" class="inner-addon right-addon form-group">
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="edit-app-date" />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Time *</label>
+                <div class="input-group bootstrap-timepicker timepicker">
+                    <input id="timepicker1" type="text" class="form-control input-small">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Survey *</label>
+                @*@Html.TextBoxFor(item => item.Survey)*@
+                <input class="form-control" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Clinic *</label>
+                <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+            </div>
+        </div>
+
+    </div><!--row end-->
 
         <br />
         <div class="row">
             <div class="col-sm-12">
                 <a href="javascript:void(0)" onclick="moredetails();" class="schedule-more-detail pull-right">More Details <i class="fa fa-plus-circle"></i></a>
-                <div class="schedule-more-detail-content clear-float">
+                <div id="" class="schedule-more-detail-content clear-float addAppointmemntDiv">
                     <div class="row  header-bdr Padding-TB-10"><hr /></div>
                     <div class="row">
                         <div class="col-sm-3">
@@ -351,44 +351,44 @@
                             </div>
                         </div>
                     </div><!--row end-->
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <div class="form-group">
+                    <div id="AddProvidersDiv">
+                        <div class="row">
+                            <div class="col-sm-1">
                                 <label>Ref Phys</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
                             </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
+                            <div class="col-sm-1">
                                 <label>PCP</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Physician Name</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-1">
-                            <div class="form-group" style="margin-top:27px;">
-                                <a href="#" class="add-row"><i class="fa fa-plus-circle fa-2x"></i></a>
                             </div>
 
-                        </div>
-                    </div><!--row end-->
+                        </div><!--row end---->
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <input type="radio" />
+                            </div>
+                            <div class="col-sm-1">
+                                <input type="radio" />
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control">
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control">
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-1">
+                                @Html.Hidden("AddCounter")
+                                <a href="javascript:void(0)" onclick="AddDynamicRow('@Url.Action("BindDynamicProviderRow", "Institution")');" class="add-row"><i class="fa fa-plus-circle fa-2x"></i></a>
+                            </div>
+                        </div><!--row end---->
+                    </div>
+                    <br />
 
                 </div><!--col-sm-12 end-->
             </div><!--row end-->

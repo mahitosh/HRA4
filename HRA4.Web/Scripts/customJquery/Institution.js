@@ -2,6 +2,28 @@
 $(".editmenu").slideUp(0);
 $(".schedule-more-detail-content").hide();
 
+function AddDynamicRow(path) {
+    var count = $("#AddCounter").val();
+    
+    if (typeof count === 'undefined') { count = 0;}
+    if (count >= 4)
+    { ShowNotification('More than 5 Not Allowed'); } else {
+        count++;
+        $("#AddCounter").val(count);
+        $.ajax({
+            type: "POST",
+            url: path,
+            dataType: "json",
+            async: true,
+            success: function (Data) {
+                $('.addAppointmemntDiv').append(Data.view);
+
+            }
+        })
+    }
+   
+}
+
 function moredetails() {
     $(".schedule-more-detail-content").toggle(200);
     $("i", this).toggleClass("fa-plus-circle fa-minus-circle");

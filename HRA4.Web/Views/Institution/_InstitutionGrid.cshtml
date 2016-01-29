@@ -5,20 +5,7 @@
 @*<link href="~/css/tablesorter.css" rel="stylesheet" />*@
 
     <table id="myTable" class="table table-striped apppointment-table">
-        <thead>
-            <tr>
-                <th>App Date/T</th>
-                <th>Name</th>
-                <th>MRN</th>
-                <th>DOB</th>
-                <th>Provider</th>
-                <th>Mark Survey Complete</th>
-                <th>Disease Hx</th>
-                <th>Survey </th>
-                <th>Do Not Call</th>
-                <th>Quick&nbsp;Actions</th>
-            </tr>
-        </thead>
+        
     <tbody>
        @foreach (var item in Model)
        {
@@ -93,7 +80,7 @@
         <tr class="editmenu" id="@item.Id-b">
             <td colspan="10">
                 <div class="InstitutionPartialdiv"></div>
-                @*@Html.Partial("_InstitutionRow", item)*@
+               
             </td>
         </tr>
        }

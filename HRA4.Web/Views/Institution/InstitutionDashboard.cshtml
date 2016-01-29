@@ -93,11 +93,29 @@ else
                                         <div class="clear-float">                                              
                                         </div>
                                          
-                                        <div class="table-responsive" id="divInstitutionGrid">
-
-                                            @Html.Partial("_InstitutionGrid", Model)
-
-                                        </div><!--schedule list div end here-->
+                                        <div class="table-responsive fixed-table-header" id="divInstitutionGrid">
+                                            <div class="panel panel-default">
+                                                <table class="table table-condensed apppointment-table Margin-T-10">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>App Date/T</th>
+                                                            <th>Name</th>
+                                                            <th>MRN</th>
+                                                            <th>DOB</th>
+                                                            <th>Provider</th>
+                                                            <th>Mark Survey Complete</th>
+                                                            <th>Disease Hx</th>
+                                                            <th>Survey </th>
+                                                            <th>Do Not Call</th>
+                                                            <th>Quick&nbsp;Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div><!--table header end here-->
+                                            <div class="div-table-content">
+                                                @Html.Partial("_InstitutionGrid", Model)
+                                            </div>
+                                            </div><!--schedule list div end here-->
                                         <div id="divRecordStatus" style="color:red;text-align:center">@ViewBag.RecordStatus</div>
                                     </div><!--row end-->
                                 </div><!--container end-->

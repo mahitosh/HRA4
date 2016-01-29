@@ -465,6 +465,14 @@ namespace HRA4.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult BindDynamicProviderRow()
+        {
+            string view = string.Empty;
+            var apps = "";
+            view = RenderPartialView("_InstitutionProviders", apps);
+            var result = new { view = view };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult RunAutomationDocuments(string apptid, string MRN)
         {
 
