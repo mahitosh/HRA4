@@ -2212,6 +2212,7 @@
     <None Include="Resources\PatientsFollwed_250_square.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\viewType.bmp" />
     <None Include="Service References\HraRiskAggregator\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -2266,13 +2267,20 @@
     <Content Include="Resources\Batch Print.png" />
     <Content Include="Resources\BC_Ribbon.png" />
     <Content Include="Resources\Blank_250_square.bmp" />
+    <Content Include="Resources\BlueCaptionBackground.bmp" />
+    <Content Include="Resources\blueSteel_backkground.JPG" />
+    <Content Include="Resources\blue_steel_squat.JPG" />
+    <Content Include="Resources\BRCA.png" />
+    <Content Include="Resources\BreastCancer.png" />
     <Content Include="Resources\BreastCancer2.png" />
+    <Content Include="Resources\Calculator.png" />
     <Content Include="Resources\Calculator2.png" />
     <Content Include="Resources\CalendarButtonFinal.bmp" />
     <Content Include="Resources\Center.bmp" />
     <None Include="Resources\IncreaseHorSpacing.bmp" />
     <None Include="Resources\DecreaseHorSpacing.bmp" />
     <None Include="Resources\green-check.bmp" />
+    <Content Include="Resources\Check.bmp" />
     <Content Include="Resources\CopyAppt.png" />
     <Content Include="Resources\delete-X.bmp" />
     <Content Include="Resources\DeleteAppt.png" />
@@ -2280,6 +2288,7 @@
     <Content Include="Resources\documents2.bmp" />
     <Content Include="Resources\documentsFinal.bmp" />
     <Content Include="Resources\EditAppt.png" />
+    <Content Include="Resources\EditSurvey.png" />
     <Content Include="Resources\EmptyCal_250_square.bmp" />
     <Content Include="Resources\familyButtonFinal.bmp" />
     <Content Include="Resources\ForwardArrow.bmp" />
@@ -2288,13 +2297,19 @@
     <Content Include="Resources\hraicontest30.ICO">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\hraicontest30_48x48.ICO" />
+    <Content Include="Resources\Lynch.png" />
     <Content Include="Resources\MutationButtonFinal.bmp" />
     <Content Include="Resources\MyPatientsButton.bmp" />
+    <Content Include="Resources\NewDocument.png" />
     <Content Include="Resources\NewDocument2.png" />
     <Content Include="Resources\PastAppt.bmp" />
     <None Include="Resources\Question.bmp" />
+    <Content Include="Resources\Pedigree.png" />
     <Content Include="Resources\refresh.bmp" />
+    <Content Include="Resources\RiskCalcs.png" />
     <Content Include="Resources\RiskClinic.png" />
+    <Content Include="Resources\SmallBlueCaptionBackground.bmp" />
     <Content Include="Resources\Snap2Grid.bmp" />
     <Content Include="Resources\hughesRiskAppsLogo.bmp" />
     <None Include="Resources\PendingTasks_130_square_label.bmp" />
@@ -2303,7 +2318,11 @@
     <None Include="Resources\NotesButton_v2.bmp" />
     <None Include="Resources\SnapParents.png" />
     <Content Include="Resources\SquareButton.bmp" />
+    <Content Include="Resources\steel_backkground.JPG" />
+    <Content Include="Resources\steel_short_border.bmp" />
+    <Content Include="Resources\steel_short_wide.JPG" />
     <Content Include="Resources\steel_square.JPG" />
+    <Content Include="Resources\steel_tall_skinny.bmp" />
     <Content Include="Resources\TaskButton.bmp" />
     <Content Include="Resources\UploadButton.bmp" />
     <None Include="Web References\HraCloudServices\Reference.map">
