@@ -43,6 +43,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceAssemblies", "Refe
 		ReferenceAssemblies\IKVM.OpenJDK.Util.dll = ReferenceAssemblies\IKVM.OpenJDK.Util.dll
 		ReferenceAssemblies\IKVM.OpenJDK.XML.API.dll = ReferenceAssemblies\IKVM.OpenJDK.XML.API.dll
 		ReferenceAssemblies\IKVM.Runtime.dll = ReferenceAssemblies\IKVM.Runtime.dll
+		ReferenceAssemblies\JetBrains.Annotations.dll = ReferenceAssemblies\JetBrains.Annotations.dll
 		ReferenceAssemblies\WeifenLuo.WinFormsUI.Docking.dll = ReferenceAssemblies\WeifenLuo.WinFormsUI.Docking.dll
 	EndProjectSection
 EndProject
