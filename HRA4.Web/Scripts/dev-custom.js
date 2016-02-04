@@ -5,7 +5,7 @@
 
 $(document).ready(function () {
     
-    $("#dob-date,#edit-app-date").datepicker();
+    $("#dob-date,#edit-app-date,#appt-date").datepicker();
     var txt = $('#ddlsurveys option:selected').text();
     $("#ddlsurveystext").val(txt);
 
