@@ -8,6 +8,7 @@ using HRA4.Entities;
 using HRA4.Utilities;
 using System.Web;
 using log4net;
+using System.IO;
 namespace HRA4.Services
 {
      class AdminService:Interfaces.IAdminService
@@ -93,11 +94,25 @@ namespace HRA4.Services
             dbscript = dbscript.Replace("db2008", tenantDbName); // contruct db name using institution name
             
             //End By Aditya
-            string connectionString = ConfigurationSettings.CommonDbConnection;
-          
+            string connectionString = ConfigurationSettings.CommonDbConnection;            
             Helpers.CreateInstitutionDb(connectionString, dbscript);
-            
+
+            connectionString = connectionString.Replace("RiskappCommon", tenantDbName);
+            RunUpdateScripts(connectionString);
+
             return true;
+        }
+
+        private void RunUpdateScripts(string conn)
+        {
+            string rootPath = HttpContext.Current.Server.MapPath(Constants.RootPath);
+            string scriptPath = System.IO.Path.Combine(rootPath, "DbUpdates");
+            string[] files = Directory.GetFiles(scriptPath, "*.sql", SearchOption.AllDirectories);
+            foreach (string filePath in files)
+            {
+                string tmp = File.ReadAllText(filePath);
+                HRA4.Utilities.Helpers.CreateInstitutionDb(conn, tmp);
+            }
         }
 
 
