@@ -31,7 +31,7 @@ using System.Runtime.Serialization;
 using System.Xml.Linq;
 using System.Drawing;
 using System.Data.SqlClient;
- 
+
 namespace HRA4.Services
 {
     public class AppointmentService : IAppointmentService
@@ -98,7 +98,7 @@ namespace HRA4.Services
             if (InstitutionId > 0)
             {
                 //SetUserSession();
-                
+
                 _institutionId = InstitutionId;
 
                 clinics = GetClinicList();
@@ -129,13 +129,13 @@ namespace HRA4.Services
             if (InstitutionId != null)
             {
 
-                
+
 
                 _institutionId = InstitutionId;
                 // SetUserSession();
                 //appointments = HRACACHE.GetCache<List<VM.Appointment>>(InstitutionId);
                 var list = new AppointmentList();
-                
+
                 list.clinicId = 1;
                 list.Date = DateTime.Now.ToString("MM/dd/yyyy");
                 list.BackgroundListLoad();
@@ -178,7 +178,9 @@ namespace HRA4.Services
                     appointments.Add(app.FromRAppointment(_DNCStatus));
 
                 }
-                 return appointments;
+
+
+                return appointments;
 
 
                 //return list.FromRAppointmentList();
@@ -186,32 +188,68 @@ namespace HRA4.Services
             return new List<VM.Appointment>();
         }
 
-        public VM.Appointment GetAppointment(int InstitutionId, NameValueCollection searchfilter,string apptid)
+        public VM.Appointment GetAppointment(int InstitutionId, NameValueCollection searchfilter, string apptid)
         {
-            List<VM.Appointment> ap=GetAppointments(InstitutionId,searchfilter);
-            List<VM.Appointment> Filteredlist = SearchOnAppointment(ap,Constants.Id,apptid);
+            // I want a appointment using AppointmentID
 
-            VM.Appointment item = new VM.Appointment();
-            foreach (var app in Filteredlist)
-            {
-                item.Id=app.Id;
-                item.AppointmentDate=app.AppointmentDate;
-                item.appttime=app.appttime;
-                item.clinicID=app.clinicID;
-                item.DateCompleted = app.DateCompleted;
-                item.DateOfBirth = app.DateOfBirth;
-                item.DiseaseHx = app.DiseaseHx;
-                item.DoNotCall = app.DoNotCall;
-                item.MarkAsComplete = app.MarkAsComplete;
-                item.MRN = app.MRN;
-                item.PatientName = app.PatientName;
-                item.Provider = app.Provider;
-                item.SetMarkAsComplete = app.SetMarkAsComplete;
-                item.Survey = app.Survey;
-                
-            }
-            return item;
+
+            List<VM.Appointment> ap = GetAppointments(InstitutionId, searchfilter);
+            VM.Appointment Filteredlist = SearchOnAppointment(ap, Constants.Id, apptid).FirstOrDefault();
+            if (Filteredlist == null)
+                return new VM.Appointment();
+
+            SessionManager.Instance.SetActivePatient(Filteredlist.MRN, Filteredlist.Id);
+            SessionManager.Instance.GetActivePatient().BackgroundLoadWork();
+            Patient p = SessionManager.Instance.GetActivePatient();
+            p.Providers.LoadFullList();
+            Filteredlist.clinics = GetClinicList();
+            Filteredlist.FromRAppointment(p);
+            return Filteredlist;
         }
+
+        public VM.Appointment GetAppointmentForAdd(string MRN, int clinicId)
+        {
+            GoldenAppointment _appointment = new GoldenAppointment();
+            _appointment.MRN = MRN;
+            _appointment.Load();
+            Patient _patient;
+            if (_appointment.apptid.HasValue)
+            {
+                AppointmentList appts = new AppointmentList();
+                appts.BackgroundListLoad();
+               
+
+                Appointment goldenAppointment = appts.First(appt => appt.apptID == _appointment.apptid);
+
+                SessionManager.Instance.SetActivePatient(goldenAppointment.unitnum, goldenAppointment.apptID);
+                SessionManager.Instance.GetActivePatient().BackgroundLoadWork();
+                _patient = SessionManager.Instance.GetActivePatient();
+                _patient.Providers.LoadFullList();
+                VM.Appointment app = goldenAppointment.FromRAppointment();
+                app.clinics= GetClinicList();
+                app.FromRAppointment(_patient);
+                app.IsGoldenAppointment = "Yes";
+                return app;
+
+            }
+            else
+            {
+                _patient = new Patient(MRN);
+                _patient.Providers.LoadFullList();
+
+                SessionManager.Instance.SetActivePatient(_patient.unitnum, _patient.apptid);
+                Appointment appointment = new Appointment();
+                appointment = new Appointment(clinicId, MRN) { };
+                VM.Appointment app = appointment.FromRAppointment();
+                app.clinics=GetClinicList();
+                app.FromRAppointment(_patient);
+                app.IsGoldenAppointment = "No";
+                return app;
+
+            }
+
+        }
+
 
         /// <summary>
         /// It will do searching on passed Appointment list based on below parameters
@@ -266,10 +304,27 @@ namespace HRA4.Services
         /// <param name="InstitutionId">Institution Id</param>
         public void SaveAppointments(VM.Appointment Appt, int InstitutionId)
         {
-
+            SaveAppointments(Appt);
             UpdateMarkAsComplete(Appt, InstitutionId);
 
 
+        }
+
+        private void SaveAppointments(VM.Appointment Appt)
+        {
+            var raAppt = Appt.ToRAppointment();
+
+            raAppt.BackgroundPersistWork(new HraModelChangedEventArgs(null));
+
+            var raPatient = Appt.ToRAPatient();
+            //raPatient.LoadFullObject();
+
+            //Patient raPatient = new Patient(Appt.MRN);
+            //raPatient.apptid = Appt.Id;
+            //raPatient.occupation = Appt.Occupation;
+            //raPatient.address2 = Appt.Address2;   
+
+            raPatient.BackgroundPersistWork(new HraModelChangedEventArgs(null));
         }
         /// <summary>
         /// To do process of Run Automation Documents
@@ -292,7 +347,7 @@ namespace HRA4.Services
         /// <returns>Patient Model</returns>
         private Patient CalculateRiskAndRunAutomation(int apptid, string MRN)
         {
-           // Appointment.MarkComplete(apptid);// Commented this code as the new library is giving error.
+            // Appointment.MarkComplete(apptid);// Commented this code as the new library is giving error.
             SessionManager.Instance.SetActivePatient(MRN, apptid);
             Patient proband = SessionManager.Instance.GetActivePatient();
             string toolsPath = HttpContext.Current.Server.MapPath(Constants.RAFilePath);
@@ -524,11 +579,11 @@ namespace HRA4.Services
 
             //For getting list of AuditMrnAccessV2
             AuditMrnAccessV2 auditMrnAccessV2 = new AuditMrnAccessV2();
-            auditMrnAccessV2.StartTime =Convert.ToDateTime(startdate);
-            auditMrnAccessV2.EndTime =Convert.ToDateTime(enddate);
+            auditMrnAccessV2.StartTime = Convert.ToDateTime(startdate);
+            auditMrnAccessV2.EndTime = Convert.ToDateTime(enddate);
             auditMrnAccessV2.unitnum = MRN;
             auditMrnAccessV2.BackgroundListLoad();
-          
+
             List<VM.AuditMrnAccessV2Entry> auditMrnAccessV2Entry = new List<VM.AuditMrnAccessV2Entry>();
             foreach (AuditMrnAccessV2Entry item in auditMrnAccessV2)
             {
@@ -573,13 +628,13 @@ namespace HRA4.Services
         public VM.TestPatient LoadCreateTestPatients()
         {
             VM.TestPatient tp = new VM.TestPatient();
-            TestPatientManager Tpm=new TestPatientManager();
+            TestPatientManager Tpm = new TestPatientManager();
             tp.Surveys = Tpm.GetSurveys();
             tp.Clinics = GetClinicList();
             tp.InitateTestPatients = Tpm.InitiateTestPatients();
 
             return tp;
-                         
+
         }
 
         /// <summary>
@@ -590,7 +645,7 @@ namespace HRA4.Services
         /// <param name="surveyID"></param>
         /// <param name="SurveyName"></param>
         /// <param name="clinicID"></param>
-        public void CreateTestPatients(int NoOfPatients, string dtAppointmentDate, int surveyID,string SurveyName,int clinicID)
+        public void CreateTestPatients(int NoOfPatients, string dtAppointmentDate, int surveyID, string SurveyName, int clinicID)
         {
             TestPatientManager Pm = new TestPatientManager();
             Pm.CreateTestPatients(NoOfPatients, dtAppointmentDate, surveyID, SurveyName, clinicID);
@@ -617,5 +672,7 @@ namespace HRA4.Services
 
         }
         #endregion
+
+
     }
 }

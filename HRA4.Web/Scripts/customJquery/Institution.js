@@ -1,28 +1,67 @@
 ﻿
+
 $(".editmenu").slideUp(0);
 $(".schedule-more-detail-content").hide();
 
-function AddDynamicRow(path) {
-    var count = $("#AddCounter").val();
-    
-    if (typeof count === 'undefined') { count = 0;}
-    if (count >= 4)
-    { ShowNotification('More than 5 Not Allowed'); } else {
-        count++;
-        $("#AddCounter").val(count);
-        $.ajax({
-            type: "POST",
-            url: path,
-            dataType: "json",
-            async: true,
-            success: function (Data) {
-                $('.addAppointmemntDiv').append(Data.view);
-
-            }
-        })
-    }
-   
+function HideAddAppt() {
+    $("#EnteredMRN").val('');
+    $("#add-edit-MRN").modal('hide');
 }
+function ShowAddAppointment(path) {
+    
+    var MRN = $("#EnteredMRN").val();
+    var clinicId = $("#ddClinic").val();
+    if (clinicId == '')
+        clinicId = "-1";
+    $.ajax({
+        type: "POST",
+        url: path,
+        data: { MRN: MRN, clinicId: clinicId},
+        dataType: "json",
+        async: true,
+        success: function (Data) {
+            $("#MRNBody").hide();
+            $("#ApptFooter").hide();
+            $('#ApptBody').html(Data.view);
+
+        }
+    })
+
+
+}
+
+function validateDate(testdate) {
+    var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+    return date_regex.test(testdate);
+}
+function ValidateModel() {
+   
+    var PatientName = $("#PatientName").val();
+    var MRN = $("#MRN").val();
+    var dobdate = $("#dob-date").val();
+    var ddlGenders = $("#ddlGenders").val();
+    var editappdate = $("#edit-app-date").val();
+    var ddlappttimes = $("#ddlappttimes").val();
+    var Survey = $("#Survey").val();
+    var ddlclinics = $("#ddlclinics").val();
+
+    if(PatientName==''||MRN==''||dobdate==''||editappdate==''||Survey=='')
+    {
+        ShowNotification('Please fill Mandatory fields!');
+        return false;
+    }
+    //var result1=validateDate(dobdate);
+    //var result2=validateDate(editappdate);
+    //if (result1==false ||result2==false)
+    //{
+    //    ShowNotification("Invalid Date!");
+    //    return false;
+    //}
+    $("#add-edit-MRN").modal('hide');
+    ShowNotification('Appointment Saved Successfully!');
+    return true;
+}
+
 
 function moredetails() {
     $(".schedule-more-detail-content").toggle(200);
@@ -55,19 +94,46 @@ function ShowEdit(obj, mrn, apptid, path) {
 
 }
 
-function cancel(obj) {
-    var chkid = "#" + obj.id + "chk";
-    var hfid = "#" + obj.id + "hf";
-    var initialvalue = $(hfid).val();
-    if (initialvalue == 'True') {
-        $(chkid).prop("checked", true);
+function cancel(obj,status,path,apptid,IsGoldenAppointment) {
+    if (status != "Yes")
+    {
+        if (IsGoldenAppointment == "No") {
+            var clinicId = $("#ddClinic").val();
+            if (clinicId == '')
+                clinicId = "-1";
+            $.ajax({
+                type: "POST",
+                url: path,
+                data: { apptid: apptid, name: '', appdt: '', clinicId: clinicId },
+                dataType: "json",
+                async: true,
+                success: function (Data) {
+                                     
 
-    } else {
-        $(chkid).prop("checked", false);
-
+                }
+            })
+        }
+        $("#MRNBody").show();
+        $("#ApptFooter").show();
+        $("#ApptBody").html('');
+        $("#EnteredMRN").val('');
+        $("#add-edit-MRN").modal('hide');
     }
+    else {
+        var chkid = "#" + obj.id + "chk";
+        var hfid = "#" + obj.id + "hf";
+        var initialvalue = $(hfid).val();
+        if (initialvalue == 'True') {
+            $(chkid).prop("checked", true);
 
-    $(".editmenu").slideUp(100);
+        } else {
+            $(chkid).prop("checked", false);
+
+        }
+
+        $(".editmenu").slideUp(100);
+    }
+    
 
 }
 

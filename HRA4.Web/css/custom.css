@@ -104,8 +104,8 @@ li.nav-admintool a{background: #72b116 url('../images/admin-tool-ico.svg') no-re
 li.nav-admintool a:hover, li.nav-admintool a:focus{background-color: #72b116!important}
 li.nav-profile, li.nav-logout{color:#ffffff;font-size:1.3em;font-family: 'open_sanslight', arial;line-height: 1em;}
 li.nav-profile svg{margin-left: 10px;}
-li.nav-logout{margin:15px 0px 0 15px;border-left: solid 1px #ffffff;padding-top:19px!important;}
-li.nav-logout a{padding-bottom: 5px;}
+li.nav-logout{margin:13px 0px 0 15px;border-left: solid 1px #ffffff;padding-top:11px!important;}
+li.nav-logout a{padding-bottom: 0px;}
 li.nav-logout a:hover, li.nav-logout a:focus{color:#ffffff!important;text-decoration: underline;}
 .top-breadcrumb{font-size: 1.5em;padding-top: 7px;padding-left:0;}
 .help::before {background: #000;border-color: #fff #f3f9e9 #fff #f3f9e9;border-style: solid;border-width: 0 35px 49px 0;content: "";display: block;left: -22%;position: absolute; top: 0px; width: 0;}
@@ -113,8 +113,9 @@ li.nav-logout a:hover, li.nav-logout a:focus{color:#ffffff!important;text-decora
 .help a{color:#333;opacity: 1;-webkit-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;transition: all 0.2s ease-in-out}
 .help a:hover{color:#358dca;}
 .nav .open > a.help-dropdown, .nav .open > a.help-dropdown:focus, .nav .open > a.help-dropdown:hover{background:transparent;}
-li.nav-help{padding-top:21px!important;padding-bottom:5px}
+li.nav-help{padding-top:13px!important;padding-bottom:1px}
 
+li.tenant-name{position:absolute;top:47px;left:65px;font-size: 12px;}
 
 /*sidebar
 #bs-example-navbar-collapse-1 .navbar-toggle:before{font-family: FontAwesome; content: "\f138";font-size: 12px;}*/
@@ -183,7 +184,7 @@ li.add-appointment a:hover, li.add-MRI a:hover{border:none;}
 .apppointment-table th.headerSortDown:after {content: "\f0dd";  } 
 .apppointment-table th:last-child::after, .apppointment-table th.headerSortUp:last-child::after, .apppointment-table th.headerSortDown:last-child::after {content: "";}
 /*for all td sorting table*/ 
-.all-cell-sorting-table th:after, .all-cell-sorting-table th.headerSortUp:after, .all-cell-sorting-table th.headerSortDown:after{content: "\f0dc"!important;} 
+.all-cell-sorting-table th:after, .aall-cell-sorting-table th.headerSortUp:after, .all-cell-sorting-table th.headerSortDown:after{content: "\f0dc"!important;} 
 th.hide-sorting.headerSortUp::after, th.hide-sorting.headerSortUp::after, th.hide-sorting::after{content: ""!important;}
 
 /*fixed table header*/
@@ -232,8 +233,8 @@ img.add-istitution-list{margin:-3px 4px 0 30px;}
 /*all modal popup*/
 .modal-header{padding: 10px 15px; background-color: #53afee;color: #fff;border-radius:5px 5px 0 0;}
 .modal-title{font-weight:bold;}
-#add-edit-MRN .modal-dialog{width:400px;}
-.modal-dialog{margin-top:200px;}
+#add-edit-MRN .modal-dialog{width:830px;height:630px;}
+.modal-dialog{margin-top:100px;}
 #schedule-new-doc-modal .modal-dialog, #pedigree-diagram-modal .modal-dialog, #risk-calc-display-modal .modal-dialog, #about-us-moadal .modal-dialog, #BRCA-pedigree-diagram-modal .modal-dialog, #LifetimeCancer-pedigree-diagram-modal .modal-dialog, #edit-provider .modal-dialog{width:700px;margin-top:30px;}
 #pedigree-diagram-modal .view-doc-content, #BRCA-pedigree-diagram-modal .view-doc-cont, #LifetimeCancer-pedigree-diagram-modal .view-doc-cont{height:630px;}
 #about-us-moadal .modal-dialog ul{Height:300px;overflow:auto;}
@@ -286,6 +287,7 @@ a:hover{text-decoration: none;}
 .Padding-L-0{padding-left: 0!important;}
 .Padding-R-0{padding-right: 0;}
 .Padding-R-15{padding-right: 15px!important;}
+.Padding-T-5{padding-top: 5px;}
 .Padding-T-10{padding-top: 10px;}
 .Padding-T-15{padding-top: 15px!important;}
 .Padding-T-24{padding-top: 24px;}
@@ -322,6 +324,7 @@ small{font-size:0.7em;}
 .fixed-height-300{max-height:300px;overflow:auto;height:auto;}
 
 .no-border{border:0px!important;}
+.red-text{color:red;}
 
 /*all buttos*/
 .search-group{box-shadow: 1px 1px 4px #ccc;line-height:27px;}

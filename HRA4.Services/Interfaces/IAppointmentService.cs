@@ -32,5 +32,6 @@ namespace HRA4.Services.Interfaces
         VM.TestPatient LoadCreateTestPatients();
         void DeleteTestPatientsByapptids(int[] apptids);
         void ExcludeTestPatientsByapptids(int[] apptids);
+        VM.Appointment GetAppointmentForAdd(string MRN, int clinicId);
     }
 }

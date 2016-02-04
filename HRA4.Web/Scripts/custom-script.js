@@ -6,8 +6,6 @@ $(document).ready(function() {
 	$("ul#menu").off("click");
 });
 
-
-
     //hide datepicker calendar
 $('#dob-date, #edit-app-date').datepicker()//  id with "dob-date" will pop up a datepicker
 	.on('changeDate', function(){ // when the datechanges
@@ -18,9 +16,7 @@ $('#dob-date, #edit-app-date').datepicker()//  id with "dob-date" will pop up a 
             $('#dob-date').datepicker('hide');      // hide the datepicker
         });
 
-
-		
-    if ($("#chkbox").is(":checked")) {
+   if ($("#chkbox").is(":checked")) {
         $('#appt-date').datepicker()//  id with "dob-date" will pop up a datepicker
 .on('changeDate', function() { // when the datechanges
     $('#appt-date').datepicker('hide');      // hide the datepicker
@@ -69,18 +65,7 @@ $("#btnSaveQuick").click(function () {
 
     $(".editmenu").slideUp(100);
 });
-$("#lnkapptment").click(function(){
-	$('#add-edit-MRN').modal('show');	
 
-
-
-
-
-
-
-
-
-	});
 
 
 
@@ -94,11 +79,14 @@ $("#lnkapptment").click(function(){
 		$("#quick_add_MRNdiv").hide(300);
 	});
 	
+//timepicker
+	$('#timepicker1').timepicker();
 	
 	//multiselect dropdown
 	$('#race-multiselect').multiselect();
 	$("#colo-race-multiselect").multiselect();
-    
+	
+	$('.modal').modal({backdrop: 'static', keyboard: false})
    
 
 

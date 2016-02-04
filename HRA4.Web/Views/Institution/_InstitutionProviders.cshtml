@@ -1,26 +1,99 @@
-﻿<div id="AddProvidersDiv">
-      <div class="row">
-        <div class="col-sm-1">
-            <input type="radio" />
+﻿@model IEnumerable<HRA4.ViewModels.ListOfProvider>
+
+@if (Model.Count() == 0 ||Model==null)
+{
+   <div id="AddProvidersDiv">
+        <div class="row">
+            <div class="col-sm-1">
+                <label>Ref Phys</label>
+            </div>
+            <div class="col-sm-1">
+                <label>PCP</label>
+            </div>
+
+        </div><!--row end---->
+        <div class="row">
+            <div class="col-sm-1">
+                <input type="radio" />
+            </div>
+            <div class="col-sm-1">
+                <input type="radio" />
+            </div>
+            <div class="col-sm-3">
+                <select class="form-control">
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <select class="form-control">
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+            <div class="col-sm-1">
+                @Html.Hidden("AddCounter")
+                <a href="javascript:void(0)" onclick="AddDynamicRow('@Url.Action("BindDynamicProviderRow", "Institution")');" class="add-row"><i class="fa fa-plus-circle fa-2x"></i></a>
+            </div>
+        </div><!--row end---->
+    </div>
+    <br />
+
+}
+else
+{
+    int counter = Model.Count();
+    int i = 1;
+    while (i <= counter)
+    {
+        <div id="AddProvidersDiv">
+            if(i==1)
+            {
+            <div class="row">
+                <div class="col-sm-1">
+                    <label>Ref Phys</label>
+                </div>
+                <div class="col-sm-1">
+                    <label>PCP</label>
+                </div>
+            }
+            </div><!--row end---->
+            <div class="row">
+                <div class="col-sm-1">
+                    <input type="radio" />
+                </div>
+                <div class="col-sm-1">
+                    <input type="radio" />
+                </div>
+                <div class="col-sm-3">
+                    <select class="form-control">
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <select class="form-control">
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+            @if(i==1)
+            { 
+                <div class="col-sm-1">
+                    @Html.Hidden("AddCounter")
+                    <a href="javascript:void(0)" onclick="AddDynamicRow('@Url.Action("BindDynamicProviderRow", "Institution")');" class="add-row"><i class="fa fa-plus-circle fa-2x"></i></a>
+                </div>
+            }
+            i++;
+            </div><!--row end---->
         </div>
-        <div class="col-sm-1">
-            <input type="radio" />
-        </div>
-        <div class="col-sm-3">
-            <select class="form-control">
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-        </div>
-        <div class="col-sm-3">
-            <select class="form-control">
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-        </div>
-        
-    </div><!--row end---->
-</div>
-<br />
+        <br />
+    }
+
+
+}
+

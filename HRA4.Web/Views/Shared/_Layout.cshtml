@@ -11,7 +11,7 @@
     <title>HRA - Dashboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="~/Scripts/dev-custom.js"></script>
+   
     <!-- Bootstrap core CSS -->
     <link href="~/css/bootstrap/v3.3.6/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/font-awesome-4.5.0/css/font-awesome.min.css">
@@ -71,7 +71,20 @@
                             </div>
                         </li>
                         <li class="nav-profile">
-                            <div class="pull-left Padding-T-5 user-name"><small>Welcome</small><br />@Session["Username"].ToString()</div>
+                            @{
+                                string username = string.Empty;
+                                string tenantName = string.Empty;
+
+                                if (Session != null && Session["Username"] != null)
+                                {
+                                    username = Session["Username"].ToString();
+                                }
+                                if (Session != null && Session["InstitutionName"] != null)
+                                {
+                                    tenantName = Session["InstitutionName"].ToString();
+                                }
+                            }
+                            <div class="pull-left Padding-T-5 user-name"><small>Welcome</small><br />@username </div>
                         </li>
                         <li class="nav-logout"><a href="@Url.Action("LogOut", "Admin")">Logout <img src="~/images/logout-ico.svg" width="25" height="25" alt="logout" /></a></li>
                         <li class="nav-logout Margin-L-0 nav-help">
@@ -120,10 +133,12 @@
     
     @*<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>*@
     <script src="~/Scripts/bootstrap/v3.3.6/bootstrap.min.js"></script>
-    <script src="~/Scripts/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="~/Scripts/custom-script.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-datepicker.js"></script>
+   <script type="text/javascript" src="~/Scripts/bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-timepicker.js"></script>
+   @* <script type="text/javascript" src="~/Scripts/custom-script.js"></script>*@
     <script src="~/Scripts/sidebar_menu.js"></script>
-   
+    <script src="~/Scripts/dev-custom.js"></script>
     @*<script src="~/Scripts/__jquery.tablesorter/jquery-latest.js"></script>*@
     
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

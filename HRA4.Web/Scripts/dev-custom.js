@@ -1,6 +1,11 @@
 ﻿
+
+//$("#dob-date,#edit-app-date").datepicker();
+
+
 $(document).ready(function () {
     
+    $("#dob-date,#edit-app-date").datepicker();
     var txt = $('#ddlsurveys option:selected').text();
     $("#ddlsurveystext").val(txt);
 
@@ -115,4 +120,8 @@ function ShowNotification(msg)
 
     sudoNotify.success(msg);
 }
+
+$("#lnkapptment").click(function () {
+    $('#add-edit-MRN').modal('show');
+});
 
