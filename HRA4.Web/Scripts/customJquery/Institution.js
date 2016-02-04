@@ -57,8 +57,9 @@ function ValidateModel() {
     //    ShowNotification("Invalid Date!");
     //    return false;
     //}
-    $("#add-edit-MRN").modal('hide');
+    
     ShowNotification('Appointment Saved Successfully!');
+    $("#add-edit-MRN").modal('hide');
     return true;
 }
 
@@ -104,7 +105,7 @@ function cancel(obj,status,path,apptid,IsGoldenAppointment) {
             $.ajax({
                 type: "POST",
                 url: path,
-                data: { apptid: apptid, name: '', appdt: '', clinicId: clinicId },
+                data: { apptid: apptid, name: '', appdt: '', clinicId: clinicId ,flag:'true'},
                 dataType: "json",
                 async: true,
                 success: function (Data) {
@@ -320,15 +321,16 @@ function DeleteAppointment() {
     var apptId = $("#hidAppid").val();
     var globalGetJSONPath = $("#hidUploadUrl").val();
     var deleteUrl = $("#hidType").val();
-    globalGetJSONPath = globalGetJSONPath + '?apptId=' + apptId;
-
+    
+    alert(globalGetJSONPath);
 
     $.ajax({
         type: "Get",
         url: globalGetJSONPath,
+        data: { apptid: apptId, flag: 'false' },
         async: true,
-        contentType: false,
-        processData: false,
+        //contentType: false,
+        //processData: false,
         success: function (Data) {
             $("#confirm-xml").modal('hide');
             $('#divRecordStatus').html('');

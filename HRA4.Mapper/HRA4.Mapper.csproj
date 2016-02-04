@@ -42,6 +42,7 @@
     <Compile Include="AppointmentMapper.cs" />
     <Compile Include="AuditReportsMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProviderMapper.cs" />
     <Compile Include="RiskScoreMapper.cs" />
     <Compile Include="UserMapper.cs" />
   </ItemGroup>

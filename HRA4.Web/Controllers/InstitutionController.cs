@@ -198,8 +198,8 @@ namespace HRA4.Web.Controllers
             app.Maritalstatus = Convert.ToString(frm["Maritalstatus"]);
             app.Nationality = Convert.ToString(frm["ddlNationalities"]);
             app.Occupation = Convert.ToString(frm["Occupation"]);
-            //app.Patient_Comment = Convert.ToString(frm["TimeDropdown"]);
-            //app.PCP.providerIDString = Convert.ToString(frm["TimeDropdown"]);
+            app.PCP = Convert.ToInt32(frm["ddlPCP"]);
+            app.RefPhysician = Convert.ToInt32(frm["ddlRefPhysician"]);
             app.clinicID = Convert.ToInt32(frm["ddlclinics"]);
             app.Race = Convert.ToString(frm["ddlRaces"]);
             app.State = Convert.ToString(frm["ddlStates"]);
@@ -215,7 +215,7 @@ namespace HRA4.Web.Controllers
 
             string view = string.Empty;
             NameValueCollection searchfilter = new NameValueCollection();
-            searchfilter = GetSearchFilter(null, null, app.clinicID.ToString(), searchfilter);
+            searchfilter = GetSearchFilter(null, null, app.clinicID.ToString());
             int instId = 0;
             if (Session != null && Session["InstitutionId"] != null)
             {
@@ -272,7 +272,7 @@ namespace HRA4.Web.Controllers
 
                 }
                 NameValueCollection searchfilter = new NameValueCollection();
-                searchfilter = GetSearchFilter(name, appdt, clinicId, searchfilter);
+                searchfilter = GetSearchFilter(name, appdt, clinicId);
 
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
                 apps_count = apps.Count();
@@ -298,7 +298,7 @@ namespace HRA4.Web.Controllers
                 int instId = (int)Session["InstitutionId"];
 
                 NameValueCollection searchfilter = new NameValueCollection();
-                searchfilter = GetSearchFilter(name, appdt, clinicId, searchfilter);
+                searchfilter = GetSearchFilter(name, appdt, clinicId);
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
                 apps_count = apps.Count();
                 //ViewBag.AppointmentCount = apps.Count();
@@ -387,7 +387,7 @@ namespace HRA4.Web.Controllers
             {
                 int instId = (int)Session["InstitutionId"];
                 NameValueCollection searchfilter = new NameValueCollection();
-                searchfilter = GetSearchFilter(name, appdt, clinicId, searchfilter);
+                searchfilter = GetSearchFilter(name, appdt, clinicId);
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointment(instId, searchfilter, apptid);
                 apps.DisplayHeaderMenus = "Yes";
                 view = RenderPartialView("_InstitutionRow", apps);
@@ -433,9 +433,9 @@ namespace HRA4.Web.Controllers
             }
         }
 
-        public JsonResult DeleteAppointment(int apptid, string name, string appdt, string clinicId)
+        public JsonResult DeleteAppointment(int apptid,bool flag)
         {
-            _applicationContext.ServiceContext.AppointmentService.DeleteAppointment(Convert.ToInt32(Session["InstitutionId"]), apptid);
+            _applicationContext.ServiceContext.AppointmentService.DeleteAppointment(Convert.ToInt32(Session["InstitutionId"]), apptid,Convert.ToBoolean(flag));
             string view = string.Empty;
             int apps_count = 0;
 
@@ -444,7 +444,7 @@ namespace HRA4.Web.Controllers
                 int instId = (int)Session["InstitutionId"];
 
                 NameValueCollection searchfilter = new NameValueCollection();
-                searchfilter = GetSearchFilter(name, appdt, clinicId, searchfilter);
+                searchfilter = GetSearchFilter("", "", "");
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
                 apps_count = apps.Count();
                 //ViewBag.AppointmentCount = apps.Count();
@@ -457,8 +457,9 @@ namespace HRA4.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        private NameValueCollection GetSearchFilter(string name, string appdt, string clinicId, NameValueCollection searchfilter)
+        private NameValueCollection GetSearchFilter(string name, string appdt, string clinicId)
         {
+            NameValueCollection searchfilter;
             if (Session[Constants.SearchFilter] != null)
             {
                 searchfilter = (NameValueCollection)Session[Constants.SearchFilter];

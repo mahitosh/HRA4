@@ -14,7 +14,7 @@ namespace HRA4.Mapper
 {
     public static class AppointmentMapper
     {
-        public static RA.Patient ToRAPatient(this Appointment appt)
+        public static RA.Patient  ToRAPatient(this Appointment appt)
         {
             return new RA.Patient(appt.MRN)
             {               
@@ -34,6 +34,7 @@ namespace HRA4.Mapper
                 workphone=appt.Workphone,
                 zip=appt.Zip,
                 relativeID = 1,
+                
                 //unitnum = appt.MRN,
                // apptid = appt.Id,
                 owningFHx = new RA.FHx.FamilyHistory(){
@@ -139,7 +140,9 @@ namespace HRA4.Mapper
             appt.Maritalstatus = patient.maritalstatus;
             appt.Occupation = patient.occupation;
             appt.Patient_Comment = patient.comment;//mapping needs to verify
-            //appt.ListOfProvider = GetProviders(patient.Providers);
+
+            appt.RefPhysician = GetrefPhysProviderId(patient);
+            appt.PCP = GetrefPCPProviderId(patient);
             appt.State = patient.state;
             appt.Workphone = patient.workphone;
             appt.Zip = patient.zip;
@@ -148,17 +151,30 @@ namespace HRA4.Mapper
 
         }
 
-        private static List<ViewModels.ListOfProvider> GetProviders(ProviderList providerList)
+        private static int GetrefPhysProviderId(RA.Patient patient)
         {
-            List<ViewModels.ListOfProvider> provider = new List<ViewModels.ListOfProvider>();
+            if (patient.Providers.Count > 0 && patient.Providers.FirstOrDefault(x => x.refPhys == true) != null)
+                return patient.Providers.FirstOrDefault(x => x.refPhys == true).providerID;
+            else return 0;
+        }
+        private static int GetrefPCPProviderId(RA.Patient patient)
+        {
+            if (patient.Providers.Count > 0 && patient.Providers.FirstOrDefault(p => p.PCP == true) != null)
+                return patient.Providers.FirstOrDefault(p => p.PCP == true).providerID;
+            else return 0;
+        }
+        private static List<ViewModels.Provider> GetProviders(ProviderList providerList)
+        {
+            List<ViewModels.Provider> provider = new List<ViewModels.Provider>();
             foreach (var p in providerList)
             {
-                provider.Add(new ViewModels.ListOfProvider()
+               
+                provider.Add(new ViewModels.Provider()
                             {
-                                PCP = p.PCP,
-                                providerIDString=p.providerID.ToString(),
-                                refPhys=p.refPhys,
-                                role=p.defaultRole
+                                //PCP = p.PCP,
+                                //providerIDString=p.providerID.ToString(),
+                                //refPhys=p.refPhys,
+                                //role=p.defaultRole
                             });
             }
             return provider;

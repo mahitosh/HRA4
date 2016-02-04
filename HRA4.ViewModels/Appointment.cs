@@ -85,8 +85,8 @@ namespace HRA4.ViewModels
         public string AppointmentPhysician { get; set; }
         public List<Provider> Providers { get; set; }
         //public List<ProviderType> ProviderTypes { get; set; }
-        public ListOfProvider RefPhysician { get; set; }
-        public ListOfProvider PCP { get; set; }
+        public int RefPhysician { get; set; }
+        public int PCP { get; set; }
         public string DisplayHeaderMenus { get; set; }
         public string IsGoldenAppointment { get; set; }
     }
