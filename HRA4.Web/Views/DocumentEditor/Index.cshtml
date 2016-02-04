@@ -9,10 +9,10 @@
 }
     
 <div class="row">
-    <h3 class="page-title Margin-B-10">Document Template List <small>* Select a template to edit it.</small></h3>
+    <h3 class="page-title Margin-B-10">Document Template List</h3>
     <div class="clear-float"></div>
     <div class="col-sm-3 modal-sidebar">
-        <h5 style="background-color:#d6efff;">Template Names</h5>
+        <h5 style="background-color:#d6efff;">Template List - <small><b>Select a template to edit it.</b></small></h5>
         <ul>
 
 
@@ -37,10 +37,11 @@
         <h4 class="Margin-T-0">Editing Template : @Html.DisplayFor(model => model.TemplateName) </h4>
         @using (Html.BeginForm("SaveTemplate", "DocumentEditor"))
         {
+             <span style="text-align:left;color:green">@ViewBag.Message</span>
             @Html.HiddenFor(m => m.TemplateName)
             @Html.HiddenFor(m => m.Id)
             <div >@Html.EditorFor(model => model.Content) </div> @*class="view-doc-content"*@
-            <span style="text-align:left;color:green">@ViewBag.Message</span>
+           
             <span style="text-align:left;color:red">@Html.ValidationMessage("Content")</span>
             <div class="pull-right">
                 <br />

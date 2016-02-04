@@ -38,6 +38,10 @@
       <xd:p>gene test possible result of 'favor polymorphism' changed to 'favor_polymorphism' since original wasn't HL7 valid</xd:p>
       <xd:p>Modified: August 31, 2015</xd:p>
       <xd:p>Optionally add provided HL7 Relationship Code as last column in bayesmendel super matrix</xd:p>
+      <xd:p>Modified: November 17, 2015</xd:p>
+      <xd:p>Changed prior change to "addCustomColumns"; when 1, adds HL7 Relationship Code, AffectedDCIS, and AgeDCIS to BayesMendel Super Matrix</xd:p>
+      <xd:p>Modified: November 20, 2015</xd:p>
+      <xd:p>When "addCustomColumns" true, don't use UML 140 as BC, but as DCIS, for riskmeaning</xd:p>
     </xd:desc>
   </xd:doc>
   
@@ -45,13 +49,13 @@
   <xsl:strip-space elements="*"/>
 
   <!-- Following can be overidden by transformer invocation with parameter set -->
-  <xsl:param name="localBaseUri" select="xs:string('file:/d:/vbshare/')"/>
+  <xsl:param name="localBaseUri" select="xs:string('file:/./App_Data/RAFiles/')"/>
   <!-- BayesMendel default is that DCIS is not considered cancer, but with this flag we can go either way -->
   <xsl:param name="dcisAsCancer" select="'0'"/>  
   <!-- Default is Risk Service need to use altered (sequential) ids, but wcfRiskService needs original ids bayesmendel super matrix -->
   <xsl:param name="useOrigIds" select="'0'"/>  
-  <!-- Optionally add provided HL7 Relationship code as last column in bayesmendel super matrix -->
-  <xsl:param name="addProvidedHL7RelCode" select="'0'"/>  
+  <!-- Optionally add provided HL7 Relationship code, AffectedDCIS, and AgeDCIS as last columns in bayesmendel super matrix -->
+  <xsl:param name="addCustomColumns" select="'0'"/>  
   
   <!-- Constants -->
   <xsl:variable name="FEMALE_SNOMED" select="'248152002'"/>
@@ -395,7 +399,16 @@
     <xsl:param name="code"/>
     <xsl:param name="codeSystemIn"/>
     <xsl:variable name="codeSystem" select="if (starts-with(upper-case($codeSystemIn), 'SNOMED')) then 'SNOMED_CT' else $codeSystemIn"></xsl:variable>
-    <xsl:sequence select="$riskMeanings/root/row[(code eq $code) and (codeSystem eq $codeSystem)]/meaning"/>
+    <!-- In the special case of optionally outputing extra columns, which therefore include DCIS columns, we always classify DCIS as such, and BC as BC -->
+    <!-- This won't affect BrcaPro input matrix because extra columns are not used for that; in that case we honor the UML 140 if present, which classifies DCIS as BC -->
+    <xsl:choose >
+      <xsl:when test="($addCustomColumns ne '0') and ($code eq '140') and ($codeSystem = 'UML')">
+        <xsl:sequence select="'DCIS'"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="$riskMeanings/root/row[(code eq $code) and (codeSystem eq $codeSystem)]/meaning"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:function>
   
   <!-- Variables -->
@@ -429,11 +442,11 @@
   
   <!-- Begin Main template -->
   <xsl:template match="/">
-    <xsl:if test="$addProvidedHL7RelCode eq '0'">
+    <xsl:if test="$addCustomColumns eq '0'">
       <xsl:text>ID Gender FatherID MotherID AffectedBreast AffectedOvary AgeBreast AgeOvary AgeBreastContralateral Twins ethnic Oophorectomy AgeOophorectomy Mastectomy AgeMastectomy ER CK14 CK5.6 PR HER2 BRCA1 BRCA2 TestDate AffectedColon AffectedEndometrium AgeColon AgeEndometrium MSI location MLH1 MSH2 MSH6 MMRTestDate ECC AffectedPancreas AgePancreas AffectedSkin AgeSkin P16 P16TestDate&#xa;</xsl:text>
     </xsl:if>
-    <xsl:if test="$addProvidedHL7RelCode ne '0'">
-      <xsl:text>ID Gender FatherID MotherID AffectedBreast AffectedOvary AgeBreast AgeOvary AgeBreastContralateral Twins ethnic Oophorectomy AgeOophorectomy Mastectomy AgeMastectomy ER CK14 CK5.6 PR HER2 BRCA1 BRCA2 TestDate AffectedColon AffectedEndometrium AgeColon AgeEndometrium MSI location MLH1 MSH2 MSH6 MMRTestDate ECC AffectedPancreas AgePancreas AffectedSkin AgeSkin P16 P16TestDate ProvidedHL7RelCode&#xa;</xsl:text>
+    <xsl:if test="$addCustomColumns ne '0'">
+      <xsl:text>ID Gender FatherID MotherID AffectedBreast AffectedOvary AgeBreast AgeOvary AgeBreastContralateral Twins ethnic Oophorectomy AgeOophorectomy Mastectomy AgeMastectomy ER CK14 CK5.6 PR HER2 BRCA1 BRCA2 TestDate AffectedColon AffectedEndometrium AgeColon AgeEndometrium MSI location MLH1 MSH2 MSH6 MMRTestDate ECC AffectedPancreas AgePancreas AffectedSkin AgeSkin P16 P16TestDate ProvidedHL7RelCode AffectedDCIS AgeDCIS&#xa;</xsl:text>
     </xsl:if>
     <xsl:for-each select="$idMapping/relID">
       <xsl:value-of select="if ($useOrigIds eq '0') then . else ./@orig" /><xsl:text> </xsl:text>
@@ -454,9 +467,10 @@
       <xsl:call-template name="getSkinCancersAndAges"/>
       <xsl:call-template name="getSkinGermline"/>
       
-      <!-- begin optional HL7 Relationship Code -->
-      <xsl:if test="$addProvidedHL7RelCode ne '0'">
+      <!-- begin optional HL7 Relationship Code and DCIS Info -->
+      <xsl:if test="$addCustomColumns ne '0'">
         <xsl:call-template name="getProvidedHL7RelCode"/>
+        <xsl:call-template name="getDCISInfo"/>
       </xsl:if>
       
       <xsl:text>&#xa;</xsl:text>
@@ -1152,7 +1166,36 @@
       else (key('relative',$origID,$in)/code/@code, 'NA')[1]"></xsl:value-of>
   </xsl:template> 
   
-<!-- Debug message -->
+  <xsl:template name="getDCISInfo">
+    <xsl:param name="origID" as="xs:string" select="./@orig"/>
+
+    <!-- Let clinObs be the node set of clinical observations for the current person; there could be more than one -->
+    <xsl:variable name="clinObs" select="if ($origID=$probandID) then ($in/FamilyHistory/subject/patient/subjectOf2/clinicalObservation)
+      else ($in//*/relative/relationshipHolder/id[@extension=$origID]/../../*/clinicalObservation)">
+    </xsl:variable>
+    
+    <!-- Get clinical observations that are DCIS (could be 0, 1, or more nodes in this sequence) -->
+    <!-- $dcis shows count -->
+    <xsl:variable name="clinObsDCIS" select="$clinObs[hra:meaning(code/@code, code/@codeSystemName) = 'DCIS']"/>
+    <xsl:variable name="dcis" select="
+      if (empty($clinObsDCIS))
+      then '0'
+      else xs:string(count($clinObsDCIS))"/>
+
+    <!-- If the relative has one or more DCIS, use the minimum age of all DCIS provided; if none available, use NA --> 
+    <!-- If the relative has no DCIS, use NA --> 
+    <xsl:variable name="ageDCIS" select="
+      if ($dcis ne '0')
+      then (min((for $i in $clinObsDCIS return hra:avgAge($i))), 'NA')[1]
+      else 'NA'"/>
+
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$dcis"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$ageDCIS"/>
+  </xsl:template> 
+  
+  <!-- Debug message -->
   <xsl:template name="debug">
     <xsl:message>This s/b male: <xsl:value-of select="(hra:meaning('248153007', 'SNOMED_CT'),'emptySeq')[1]"/></xsl:message>
   </xsl:template>

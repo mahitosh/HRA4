@@ -27,7 +27,7 @@ namespace HRA4.Web.Controllers
             }
             else
                 _applicationContext = System.Web.HttpContext.Current.Session["ApplicationContext"] as ApplicationContext;
-
+            
             SetMenus();
         }
 
@@ -45,11 +45,11 @@ namespace HRA4.Web.Controllers
                     ViewBag.ExcludeIds = _applicationContext.ServiceContext.UserService.GetExcludeControlIds(roleId);
                 }
                     
-            }
-
-           
         }
-       
+     
+
+        }
+        
 
         protected override void OnException(ExceptionContext filterContext)
         {

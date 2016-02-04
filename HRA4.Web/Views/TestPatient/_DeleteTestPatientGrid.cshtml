@@ -1,10 +1,10 @@
 ﻿@model HRA4.ViewModels.TestPatient
 <div class="table-responsive clear-float col-sm-12 Margin-T-10">
 
-    <table id="testpatientdiv" class="table table-striped apppointment-table">
+    <table id="testpatientdiv" class="table table-striped apppointment-table all-cell-sorting-table">
         <thead>
             <tr>
-                <th></th>
+                <th class="hide-sorting"></th>
                 <th>MRN</th>
                 <th>Name</th>
                 <th>DOB</th>
@@ -13,19 +13,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var item in @Model.InitateTestPatients)
-            { 
+            @foreach (var item in @Model.InitateTestPatients)
+            {
                 <tr>
 
-                   <td>
-                       <input type="checkbox" id="@item.apptID" name="chk_selectPatient1" value="0" class="sid" />
-                    </td>
-                    <td>@Html.DisplayFor(modelitem=>item.MRN)</td>
                     <td>
-                      @Html.DisplayFor(modelitem => item.patientName)
+                        <input type="checkbox" id="@item.apptID" name="chk_selectPatient1" value="0" class="sid" />
+                    </td>
+                    <td>@Html.DisplayFor(modelitem => item.MRN)</td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.patientName)
                     </td>
                     <td>
-                       @Html.DisplayFor(modelitem => item.DOB)
+                        @Html.DisplayFor(modelitem => item.DOB)
                     </td>
 
                     <td>@Html.DisplayFor(modelitem => item.apptdatetime)</td>

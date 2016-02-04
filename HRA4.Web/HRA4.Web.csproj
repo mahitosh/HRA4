@@ -120,6 +120,7 @@
     <Content Include="App_Data\RAFiles\hraGetGail.xsl" />
     <Content Include="App_Data\RAFiles\hraMap.xsl" />
     <Content Include="App_Data\RAFiles\hra_serialized_to_hl7.xsl" />
+    <Content Include="App_Data\RAFiles\hra_serialized_to_RISK.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd2.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd_remove_namespaces.xsl" />
@@ -324,6 +325,7 @@
     <Content Include="Scripts\customJquery\Institution.js" />
     <Content Include="Scripts\customJquery\User.js" />
     <Content Include="Scripts\dev-custom.js" />
+    <Content Include="Scripts\fixed-table-header.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -791,7 +793,7 @@
     <Content Include="Views\Login\_Login.cshtml" />
     <Content Include="Views\Institution\InstitutionDashboard.cshtml" />
     <Content Include="Views\Institution\_InstitutionGrid.cshtml" />
-    <Content Include="Views\Shared\_InstitutionRow.cshtml" />
+    <Content Include="Views\Institution\_InstitutionRow.cshtml" />
     <Content Include="Views\Institution\_RiskScore.cshtml" />
     <Content Include="Views\Shared\_leftMenuLayout.cshtml" />
     <Content Include="Views\DocumentEditor\Index.cshtml" />
@@ -830,6 +832,7 @@
     <Content Include="Views\User\_UserProfile.cshtml" />
     <Content Include="Views\User\_UserProfileList.cshtml" />
     <Content Include="Views\User\_AddNewUser.cshtml" />
+    <Content Include="Views\Institution\_InstitutionProviders.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

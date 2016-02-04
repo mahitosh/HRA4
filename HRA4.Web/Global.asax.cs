@@ -8,7 +8,7 @@ using HRA4.Context;
 using System.IO;
 using log4net;
 using System.Web.Security;
-using HRA4.Entities.UserManagement;
+
 namespace HRA4.Web
 {
     public class MvcApplication : System.Web.HttpApplication

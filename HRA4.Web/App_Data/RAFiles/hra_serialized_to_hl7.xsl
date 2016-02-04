@@ -144,6 +144,7 @@
       </xsl:call-template>
       <xsl:apply-templates select="gender"/>
       <xsl:apply-templates select="dob"/>
+      <xsl:apply-templates select="dateOfDeath"/>
       <xsl:apply-templates select="vitalStatus"/>
       <xsl:apply-templates select="Ethnicity"/>
       <xsl:apply-templates select="isAshkenazi"/>
@@ -202,6 +203,14 @@
     <xsl:if test="$deIdentify eq '0'">
       <!-- presumed always in mm/dd/yyyy format; need to change to yyyymmdd -->
       <birthTime value="{concat(substring(.,7,4), substring(.,1,2), substring(.,4,2))}"/>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="HraObject[@type='Patient']/dateOfDeath">
+    <!-- only keep if we're not de-identifying -->
+    <xsl:if test="$deIdentify eq '0'">
+      <!-- presumed always in mm/dd/yyyy format; need to change to yyyymmdd -->
+      <deceasedTime value="{concat(substring(.,7,4), substring(.,1,2), substring(.,4,2))}"/>
     </xsl:if>
   </xsl:template>
 
@@ -356,8 +365,19 @@
         if (string($last)) then string($last)
         else if (string($parsedLast)) then string($parsedLast)
         else ''"/>
+      <!-- TODO this is probably wrong - given and family may or may not need to be elements, 
+      usable attributes may include more than just formatted, given, and first -->
       <xsl:if test="$given or $family">
         <name>
+          <xsl:attribute name ="formatted">
+            <xsl:value-of select="$full"/>
+          </xsl:attribute>
+          <xsl:attribute name ="given">
+            <xsl:value-of select="$given"/>
+          </xsl:attribute>
+          <xsl:attribute name ="family">
+            <xsl:value-of select="$family"/>
+          </xsl:attribute>
           <given><xsl:value-of select="$given"/></given>
           <family><xsl:value-of select="$family"/></family>
         </name>

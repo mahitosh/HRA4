@@ -19,8 +19,8 @@ namespace TestApp
     {
         static void Main(string[] args)
         {
-            SaveAppointment();
-          //  RunScript();
+           // SaveAppointment();
+            RunScript();
           //  CreateMenu();
           //  CreateDefaultTemplates();
 
@@ -71,8 +71,8 @@ namespace TestApp
         private static void RunScript()
         {
             //Server=.\SQLEXPRESS;Database=HRA_T1_941d0d25;User Id=sa;Password = mk#12345;
-            string conString = @"Server=.\SQLEXPRESS;Database=HRA_T1_941d0d25;User Id=sa;Password = mk#12345;";
-            string[] files = Directory.GetFiles(@"D:\Shared\Aditya\version363", "*.sql", SearchOption.AllDirectories);
+            string conString = @"Server=.\SQLEXPRESS;Database=HRA_DOCTEMPLATE_60528aa4;User Id=sa;Password = mk#12345;";
+            string[] files = Directory.GetFiles(@"D:\Shared\Aditya\version370", "*.sql", SearchOption.AllDirectories);
             foreach(string filePath in files)
             {
                 string tmp = File.ReadAllText(filePath);
