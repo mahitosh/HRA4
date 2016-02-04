@@ -2303,6 +2303,7 @@
     <None Include="Resources\NotesButton_v2.bmp" />
     <None Include="Resources\SnapParents.png" />
     <Content Include="Resources\SquareButton.bmp" />
+    <Content Include="Resources\steel_square.JPG" />
     <Content Include="Resources\TaskButton.bmp" />
     <Content Include="Resources\UploadButton.bmp" />
     <None Include="Web References\HraCloudServices\Reference.map">
