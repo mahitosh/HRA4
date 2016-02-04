@@ -17,7 +17,7 @@ namespace HRA4.Services.Interfaces
         List<VM.Appointment> GetAppointments(int InstitutionId,NameValueCollection Collection);
         VM.Appointment GetAppointment(int InstitutionId, NameValueCollection searchfilter, string apptid);
         void SaveAppointments(VM.Appointment Appt, int InstitutionId);
-        void DeleteAppointment(int InstitutionId,int apptid);
+        void DeleteAppointment(int InstitutionId, int apptid, bool flag);
         FileInfo RunAutomationDocuments(int InstitutionId, int apptid, string MRN);
 
         void AddTasks(int _institutionId, string unitnum, int apptid);

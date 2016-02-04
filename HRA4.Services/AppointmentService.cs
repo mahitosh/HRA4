@@ -31,7 +31,7 @@ using System.Runtime.Serialization;
 using System.Xml.Linq;
 using System.Drawing;
 using System.Data.SqlClient;
-
+using RiskApps3.Model.MetaData;
 namespace HRA4.Services
 {
     public class AppointmentService : IAppointmentService
@@ -188,6 +188,8 @@ namespace HRA4.Services
             return new List<VM.Appointment>();
         }
 
+        
+
         public VM.Appointment GetAppointment(int InstitutionId, NameValueCollection searchfilter, string apptid)
         {
             // I want a appointment using AppointmentID
@@ -200,10 +202,16 @@ namespace HRA4.Services
 
             SessionManager.Instance.SetActivePatient(Filteredlist.MRN, Filteredlist.Id);
             SessionManager.Instance.GetActivePatient().BackgroundLoadWork();
+            SessionManager.Instance.MetaData.AllProviders.BackgroundListLoad();
+
             Patient p = SessionManager.Instance.GetActivePatient();
-            p.Providers.LoadFullList();
+            p.Providers.BackgroundListLoad();
+
             Filteredlist.clinics = GetClinicList();
             Filteredlist.FromRAppointment(p);
+
+            
+            Filteredlist.Providers = SessionManager.Instance.MetaData.AllProviders.ToProviderList();
             return Filteredlist;
         }
 
@@ -223,10 +231,12 @@ namespace HRA4.Services
 
                 SessionManager.Instance.SetActivePatient(goldenAppointment.unitnum, goldenAppointment.apptID);
                 SessionManager.Instance.GetActivePatient().BackgroundLoadWork();
+                SessionManager.Instance.MetaData.AllProviders.BackgroundListLoad();
                 _patient = SessionManager.Instance.GetActivePatient();
-                _patient.Providers.LoadFullList();
+                _patient.Providers.BackgroundListLoad();
                 VM.Appointment app = goldenAppointment.FromRAppointment();
                 app.clinics= GetClinicList();
+                app.Providers = SessionManager.Instance.MetaData.AllProviders.ToProviderList();
                 app.FromRAppointment(_patient);
                 app.IsGoldenAppointment = "Yes";
                 return app;
@@ -242,6 +252,8 @@ namespace HRA4.Services
                 appointment = new Appointment(clinicId, MRN) { };
                 VM.Appointment app = appointment.FromRAppointment();
                 app.clinics=GetClinicList();
+                SessionManager.Instance.MetaData.AllProviders.BackgroundListLoad();
+                app.Providers = SessionManager.Instance.MetaData.AllProviders.ToProviderList();
                 app.FromRAppointment(_patient);
                 app.IsGoldenAppointment = "No";
                 return app;
@@ -309,7 +321,8 @@ namespace HRA4.Services
 
 
         }
-
+       
+        
         private void SaveAppointments(VM.Appointment Appt)
         {
             var raAppt = Appt.ToRAppointment();
@@ -317,14 +330,30 @@ namespace HRA4.Services
             raAppt.BackgroundPersistWork(new HraModelChangedEventArgs(null));
 
             var raPatient = Appt.ToRAPatient();
-            //raPatient.LoadFullObject();
-
-            //Patient raPatient = new Patient(Appt.MRN);
-            //raPatient.apptid = Appt.Id;
-            //raPatient.occupation = Appt.Occupation;
-            //raPatient.address2 = Appt.Address2;   
-
+            raPatient.Providers.AddRange(SaveProvider(Appt));           
             raPatient.BackgroundPersistWork(new HraModelChangedEventArgs(null));
+            raPatient.Providers.PersistFullList(new HraModelChangedEventArgs(null));
+        }
+
+        private ProviderList SaveProvider(VM.Appointment Appt)
+        {
+            SessionManager.Instance.MetaData.AllProviders.BackgroundListLoad();
+            AllProviders allproviders= SessionManager.Instance.MetaData.AllProviders;
+            Provider providerRef = allproviders.Where(p => p.providerID == Appt.RefPhysician).FirstOrDefault();
+            providerRef.refPhys = true;
+            providerRef.PCP = false;
+            providerRef.apptid = Appt.Id;
+            Provider providerPCP = allproviders.Where(p => p.providerID == Appt.PCP).FirstOrDefault();
+            providerPCP.refPhys = false;
+            providerPCP.PCP = true;
+            providerPCP.apptid = Appt.Id;
+            ProviderList pl = new ProviderList();
+            pl.Add(providerPCP);
+            pl.Add(providerRef);
+            
+            return pl;
+
+
         }
         /// <summary>
         /// To do process of Run Automation Documents
@@ -467,10 +496,10 @@ namespace HRA4.Services
 
 
 
-        public void DeleteAppointment(int InstitutionId, int apptid)
+        public void DeleteAppointment(int InstitutionId, int apptid,bool flag)
         {
 
-            Appointment.DeleteApptData(apptid, false);
+            Appointment.DeleteApptData(apptid,flag);
         }
 
         public string ShowPedigreeImage(int _institutionId, string unitnum, int apptid, string PedigreeImageSavePath)
