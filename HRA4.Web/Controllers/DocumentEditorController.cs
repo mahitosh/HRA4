@@ -7,11 +7,11 @@ using System.Web;
 using System.Web.Mvc;
 using HRA4.Services;
 using System.IO;
-//using HRA4.Web.Filters;
+using HRA4.Web.Filters;
 
 namespace HRA4.Web.Controllers
 {
-   // [CustomAuthorize(Roles = "ClinicAdmin")]
+   [CustomAuthorize(Roles = "SuperAdmin,Administrator,Clinician")] 
     public class DocumentEditorController : BaseController
     {
         // GET: DocumentEditor

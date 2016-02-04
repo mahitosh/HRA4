@@ -1,0 +1,151 @@
+﻿@model IEnumerable<HRA4.ViewModels.User>
+@{
+    ViewBag.Title = "Manage Users";
+    Layout = "~/Views/Shared/_leftMenuLayout.cshtml";
+
+}
+
+
+
+<div class="row">
+    <h3 class="page-title Margin-B-10 pull-left">Users</h3>
+    <div class="col-sm-6 pull-right">
+        <a class="pull-right left-title">
+            <img src="images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh list
+        </a>
+        <a class="pull-right left-title Margin-R-10" data-target="#add-user" data-toggle="modal">
+            <img src="images/add-user-ico-1.svg" class="refresh-istitution-list" alt="Add User" width="24" height="24" />Add New User
+        </a>
+    </div>
+    <div class="clear-float" />
+    <div class="table-responsive">
+        <table id="tblUsers" class="table table-striped apppointment-table Margin-T-10">
+            <thead>
+                <tr>
+                    <th width="35%" class="header">Username</th>
+                    <th width="15%">First Name</th>
+                    <th width="15%">Last Name</th>
+                    <th width="35%" class="align-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                        <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                        <td class="quick-add-institution" align="right">
+                            <a href="#" class="pull-right">
+                                <img src="images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" />
+                            </a>
+                            <button type="button" class="btn btn-success pull-right btn-sm Margin-L-10 change-password" onclick="ChangePassword('@Url.Action("ChangePassword", "User")','@item.Username')">Password</button>
+                            <button type="button" class="btn btn-success pull-right btn-sm expand-div" onclick="SetProfile('@Url.Action("SetProfile", "User")', '@item.Username');">Clinic</button>
+                        </td>
+                    </tr>
+
+                    <tr class="trEditProfile" id="@item.Username-expand-div-content">
+                        <td colspan="4">
+                            <div id="@item.Username-divProfile">
+
+                            </div>
+
+                            <!--quick-add-inner-div end-->
+                        </td>
+                    </tr>
+
+                <!--add clinic for user end here-->
+                <!--change password for user start-->
+                    <tr class="trEditPassword" id="@item.Username-change-password-content">
+                        <td colspan="4">
+                            <div id="@item.Username-divChangePassword">
+
+                            </div>
+
+
+                            <!--quick-add-inner-div end-->
+                        </td>
+                    </tr>
+                }
+                <!--add clinic for user start-->
+                <!--change password for user end here-->
+            </tbody>
+        </table>
+        <!--User list end here-->
+    </div>
+    <!--row end-->
+</div>
+<!--container end-->
+<!-- /#page-content-wrapper -->
+<!--Add New User-->
+<div id="add-user" role="dialog" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog" style="margin-top:0px;width:700px;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            @using (Html.BeginForm("AddNewUser", "User", FormMethod.Post))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add New User</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+                    <b>
+                        <span class="red-text">*</span>Indicates required fields
+                    </b>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="row">
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3">
+                                            User&nbsp;Name<span class="red-text">*</span>
+                                        </label>
+                                        <div class="col-xs-9">
+                                            <input id="txtUserName" type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3">First&nbsp;Name<span class="red-text">*</span></label>
+                                        <div class="col-xs-9">
+                                            <input id="txtFirstName" type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3">
+                                            Last&nbsp;Name<span class="red-text">*</span>
+                                        </label>
+                                        <div class="col-xs-9">
+                                            <input id="txtLastname" type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--row end-->
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success" onclick="return ValidateNewUser();">Save</button>
+                </div>
+            }
+        </div>
+        <!-- Modal content End-->
+
+    </div>
+</div>
+<!--Add New User-->
+
+<script type="text/javascript" src="~/Scripts/customJquery/User.js"></script>
+

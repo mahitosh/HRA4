@@ -106,5 +106,11 @@ namespace HRA4.Services
             SuperAdmin admin = _repositoryFactory.SuperAdminRepository.GetAdminUser() as SuperAdmin;
             return string.Format("{0} {1}", admin.FirstName, admin.LastName);
         }
+
+        public string GetInstitutionName(int institutionId)
+        {
+            Institution _Institution = _repositoryFactory.TenantRepository.GetTenantById(institutionId);
+            return _Institution.InstitutionName;
+        }
     }
 }

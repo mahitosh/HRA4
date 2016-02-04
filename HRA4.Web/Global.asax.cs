@@ -21,10 +21,18 @@ namespace HRA4.Web
             log4net.Config.XmlConfigurator.Configure(new FileInfo(Server.MapPath("~/Web.config")));
         }
 
+        protected void Application_Disposed(object sender, EventArgs e)
+        {
+            //FormsAuthentication.SignOut();
+            //Session.Abandon();
+        }
+
         protected void Application_Error(object sender, EventArgs e)
         {
             var exception = Server.GetLastError();
             Logger.Error(exception);
+            FormsAuthentication.SignOut();
+            Session.Abandon();
             switch(exception.GetType().ToString())
             {
                 case "System.Web.HttpException":

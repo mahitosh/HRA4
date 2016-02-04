@@ -1,0 +1,59 @@
+﻿@model IEnumerable<HRA4.ViewModels.UserProfile>
+@using (Html.BeginForm("SaveProfile", "User", FormMethod.Post))
+{
+    <div class="quick-add-inner-div">
+        <div class="quick-add-links">
+            <h4 class="pull-left">User Profiles</h4>
+            <span onclick="AddNewProfile('@Url.Action("AddNewProfile", "User")','@Model.FirstOrDefault().User.Username');">
+                <a href="#" class="pull-right Padding-T-10">
+                    <i class="fa fa-plus-circle" /> Add Profile
+                </a>
+            </span>
+         
+        </div>
+        <!--quick-add-links end-->
+        <div class="clear-float header-bdr">
+            <hr />
+        </div>
+        <div class="table-responsive fixed-height-300">
+            <table id="tblProfile" class="table table-striped apppointment-table Margin-T-10">
+                <thead>
+                    <tr>
+                        <th width="24%" class="header">Login</th>
+                        <th width="22%">Clinic</th>
+                        <th width="22%">Role</th>
+                        <th width="22%" class="align-center">Module</th>
+                        <th width="10%" class="align-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.User.Username</td>
+                            <td>
+                                @Html.DropDownListFor(M => item.Clinics, new SelectList(item.Clinics, "clinicID", "clinicName", item.SelectedClinicId))
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(M => item.Roles, new SelectList(item.Roles, item.SelectedRoleId))
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(M => item.Modules, new SelectList(item.Modules, item.SelectedModule))
+                            </td>
+                            <td class="quick-add-institution" align="center">
+                                <a href="#">
+                                    <img src="images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" />
+                                </a>
+                            </td>
+                        </tr>
+                       
+                    }
+                </tbody>
+            </table>
+            <!--User list end here-->
+            <button id="btnSaveSlide" type="submit" class="pull-right btn btn-success btn-sm  Margin-L-10">Save</button>
+            <button id="btnCancelSlide" class="pull-right btn btn-cancel btn-sm" onclick="return CancelProfile('@Model.FirstOrDefault().User.Username');">Cancel</button>
+        </div>
+        <!--table responsive end-->
+    </div>
+}

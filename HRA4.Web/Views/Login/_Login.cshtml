@@ -40,7 +40,7 @@
 </head>
 
 <body>
-    @using (Html.BeginForm("Index", "Admin", FormMethod.Post))
+    @using (Html.BeginForm("Index", "Admin",new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         <div class="left-corner-wrapper">
@@ -54,11 +54,16 @@
                     <div class="panel-title"><img src="~/images/login-hra-logo.svg" width="350" height="50" alt="HRA" /></div>
                 </div>
                 <div style="padding-top:40px" class="panel-body">
+                    @if (ViewData["Message"] != null)
+                    {
+                        <div id="login-alert" class="alert alert-danger col-sm-12">@ViewData["Message"]</div>
+                    }
+                    
                     @if(ViewBag.msg!=null)
                     { 
                         <div id="login-alert" class="alert alert-danger col-sm-12">@Html.ValidationSummary(true)</div>
                     }
-                                                           
+                                                         
                     <p>
                         Hughes riskApps™ specifically disclaims any warranties, merchantability and fitness for a particular purpose regarding this product or any such service or item. hughes riskApps™ makes no warranty that the information contained in this product is complete
                         or accurate. hughes riskApps™ does not assume and hereby disclaims any liability to any person or entity for any loss or damages (including, without limitation, special, indirect, incidental or consequential damages) caused by errors omissions in the infor-mation contained in the product, your installation and/or use of the product and/or any service or item provided to you as a result of your use of this product, regardless of whether resulting from negligence, accident of any other cause whatsoever.<br /><img src="~/images/login-page-logo.png" alt="HL7" class="pull-right" /><br /><br />

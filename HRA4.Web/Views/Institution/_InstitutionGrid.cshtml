@@ -63,10 +63,22 @@
                url = Url.Content("~/images/DNC-Y-ico.svg");
                title = "Add to Do Not Call list.";
            }
+            bool dncFlag = true;
+            if (ViewBag.ExcludeIds != null)
+            {
+                foreach (string str in ViewBag.ExcludeIds)
+                {
+                    if (str == "8")
+                    { dncFlag = false; }
+                }
+            }
 
                 }
                 <div style="display:none">@item.DoNotCall</div>
-                <a href="#"> <img src="@url" alt="Add to Do Not Call list." title="@title" width="30" height="30" data-toggle="tooltip" data-placement="top"  onclick="return AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()','@Url.Action("AddRemoveTask", "Institution")');" /> </a>
+                    @if(dncFlag)
+                    { 
+                    <a href="#"> <img src="@url" alt="Add to Do Not Call list." title="@title" width="30" height="30" data-toggle="tooltip" data-placement="top" onclick="return AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()','@Url.Action("AddRemoveTask", "Institution")');" /> </a>
+                    }
             </td>
             <td>
                 <input type="hidden" id="hidSelectedMrn" />
@@ -89,5 +101,5 @@
     </tbody>
 </table><!--schedule list end here-->
 
-
+            
 

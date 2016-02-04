@@ -1,0 +1,21 @@
+﻿@{
+    var menuItems = ViewBag.MenuList as IEnumerable<HRA4.Entities.Menu>;
+}
+
+<div class="dropdown">
+
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="left" title="Admin Tool" id="admin-dropdown" aria-haspopup="true" aria-expanded="true"></a>
+    @if (menuItems != null && menuItems.Count() > 0)
+    {
+        <ul class="dropdown-menu admin-tool-menu" aria-labelledby="admin-dropdown">
+
+            @foreach (var item in menuItems)
+            {
+            <li><a href="@Url.Action(item.Action, item.Controller)"><i class='@item.cssClass'></i> @item.MenuName</a></li>
+            }
+
+
+        </ul>
+    }
+
+</div>

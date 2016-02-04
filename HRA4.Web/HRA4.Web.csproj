@@ -323,6 +323,7 @@
     <Content Include="Scripts\custom-script.js" />
     <Content Include="Scripts\customJquery\HighRiskFollowup.js" />
     <Content Include="Scripts\customJquery\Institution.js" />
+    <Content Include="Scripts\customJquery\User.js" />
     <Content Include="Scripts\dev-custom.js" />
     <Content Include="Scripts\fixed-table-header.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -771,6 +772,8 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\TestPatientController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\CustomAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -823,6 +826,12 @@
     <Content Include="Views\Shared\_ErrorLayout.cshtml" />
     <Content Include="Views\HighRiskFollowup\_HighRiskBrcaGrid.cshtml" />
     <Content Include="Views\Shared\_menuLayout.cshtml" />
+    <Content Include="Views\Institution\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\_ChangePassword.cshtml" />
+    <Content Include="Views\User\_UserProfile.cshtml" />
+    <Content Include="Views\User\_UserProfileList.cshtml" />
+    <Content Include="Views\User\_AddNewUser.cshtml" />
     <Content Include="Views\Institution\_InstitutionProviders.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

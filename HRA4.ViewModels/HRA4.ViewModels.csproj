@@ -55,6 +55,7 @@
     <Compile Include="TestPatient.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SAdmin\" />

@@ -40,7 +40,7 @@ namespace HRA4.Services
 
         public IUserService UserService
         {
-            get { return new UserService(); }
+            get { return new UserService(_repositoryFactory, _hraSessionManager); }
         }
 
 

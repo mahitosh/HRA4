@@ -16,7 +16,7 @@ $('#dob-date, #edit-app-date').datepicker()//  id with "dob-date" will pop up a 
             $('#dob-date').datepicker('hide');      // hide the datepicker
         });
 
-   if ($("#chkbox").is(":checked")) {
+    if ($("#chkbox").is(":checked")) {
         $('#appt-date').datepicker()//  id with "dob-date" will pop up a datepicker
 .on('changeDate', function() { // when the datechanges
     $('#appt-date').datepicker('hide');      // hide the datepicker
@@ -85,7 +85,7 @@ $("#btnSaveQuick").click(function () {
 	//multiselect dropdown
 	$('#race-multiselect').multiselect();
 	$("#colo-race-multiselect").multiselect();
-	
+    
 	$('.modal').modal({backdrop: 'static', keyboard: false})
    
 

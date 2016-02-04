@@ -187,6 +187,8 @@ li.add-appointment a:hover, li.add-MRI a:hover{border:none;}
 .all-cell-sorting-table th:after, .aall-cell-sorting-table th.headerSortUp:after, .all-cell-sorting-table th.headerSortDown:after{content: "\f0dc"!important;} 
 th.hide-sorting.headerSortUp::after, th.hide-sorting.headerSortUp::after, th.hide-sorting::after{content: ""!important;}
 
+/*.apppointment-table th > span:after{content: "\f0dc"; font-family: FontAwesome;position: absolute;right: -1px;top: 12px;}*/
+
 /*fixed table header*/
 .table-fixed thead {width: 97%;}
 .table-fixed tbody {height: 230px;overflow-y: auto;width: 100%;}
@@ -326,10 +328,9 @@ small{font-size:0.7em;}
 .no-border{border:0px!important;}
 .red-text{color:red;}
 
-/*all buttos*/
+/*all buttons*/
 .search-group{box-shadow: 1px 1px 4px #ccc;line-height:27px;}
 .search-btn, .add-btn{background-color: #53afee;border-radius: 0;border:none;color: white;font-size:1.1em!important;padding:4px 12px;}
-
 .search-btn-ico{background-color: #358dca;color: white;padding: 8px;cursor:pointer;top:0;}
 .search-btn:hover, .add-btn:hover, .search-btn.focus, .search-btn:focus{background-color: #358dca;color: white;}
 .add-btn{padding:3px 6px;font-size:1em;}
@@ -345,6 +346,7 @@ small{font-size:0.7em;}
 .multiselect {border-radius:4px;padding:4px 10px;}
 .multiselect-container li.active a, .multiselect-container li.active a:hover{background-color:#f1f1f1;color:#333333;}
 .bg-success {padding: 10px;color: #3f6405;font-weight: bold;}
+
 
 /*footer css*/
 footer{position:fixed; box-shadow: 10px 0 6px #ddd;background-color:#fff;width:100%;z-index:1000;bottom:0;right:0;}
@@ -371,7 +373,6 @@ table tr th, table tr td{white-space: nowrap;overflow: hidden;text-overflow: ell
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .search-btn{padding: 4.5px 12px;}
 }
-
 
 /* css for internet explorer only */
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {

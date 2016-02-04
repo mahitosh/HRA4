@@ -14,8 +14,12 @@ using HRA4.ViewModels;
 using System.Configuration;
 
 using VM = HRA4.ViewModels;
+using HRA4.Entities.UserManagement;
+using System.Web.Security;
+using HRA4.Web.Filters;
 namespace HRA4.Web.Controllers
 {
+    [CustomAuthorize(Roles = "SuperAdmin,Administrator,Clinician")] 
     public class InstitutionController : BaseController
     {
 
@@ -25,8 +29,8 @@ namespace HRA4.Web.Controllers
             List<ViewModels.Appointment> apps = new List<ViewModels.Appointment>();
             var instList = _applicationContext.ServiceContext.AdminService.GetTenants();
             ViewBag.instListcount = instList.Count;
-
-
+           
+             
             if (instList.Count == 0)
             {
                 return View(apps);
@@ -44,6 +48,8 @@ namespace HRA4.Web.Controllers
                 }
 
                 int v2 = InstitutionId ?? default(int);
+                string InstName = _applicationContext.ServiceContext.AdminService.GetInstitutionName(v2);
+                Session["InstitutionName"] = InstName;
                 NameValueCollection searchfilter = new NameValueCollection();
                 searchfilter.Add("name", null);
                 searchfilter.Add("appdt", DateTime.Now.ToString("MM/dd/yyyy"));
@@ -54,7 +60,7 @@ namespace HRA4.Web.Controllers
                 ViewBag.TodaysDate = DateTime.Now.ToString("MM/dd/yyyy");
 
                 ViewBag.LBCCount = _applicationContext.ServiceContext.RiskClinicServices.GetPatients("LBC").Count();
-                ViewBag.BRCACount = _applicationContext.ServiceContext.RiskClinicServices.GetPatients("BRCA").Count();
+                ViewBag.BRCACount = _applicationContext.ServiceContext.RiskClinicServices.GetPatients("BRCA").Count(); 
 
                 if (apps.Count == 0)
                 {
@@ -64,29 +70,30 @@ namespace HRA4.Web.Controllers
                 /*=======Start Load Clinic Dropdown======================*/
                 var _ClinicList = _applicationContext.ServiceContext.AppointmentService.GetClinics((int)Session["InstitutionId"]);
                 ViewBag.ClinicList = new SelectList(_ClinicList.ToList(), "clinicID", "clinicName");
-
+                
                 /*=======End Load Clinic Dropdown======================*/
                 return View(apps);
-
+               
 
             }
             else if (Session["InstitutionId"] != null)
             {
-
-                InstitutionId = Convert.ToInt32(Session["InstitutionId"]);
-                return RedirectToAction("InstitutionDashboard", new { InstitutionId = InstitutionId });
-
-
-
+                   InstitutionId = Convert.ToInt32(Session["InstitutionId"]);
+                   return RedirectToAction("InstitutionDashboard", new { InstitutionId = InstitutionId });
             }
 
-            return RedirectToAction("ManageInstitution", "Admin");
-
+            return RedirectToAction("ManageInstitution", "Admin");    
+            
 
 
         }
 
-
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index", "Admin");
+        }
 
         [HttpPost]
         public JsonResult ImportAsXml(HttpPostedFileBase file, string mrn, int apptId)
@@ -364,7 +371,7 @@ namespace HRA4.Web.Controllers
                 }
                 return File(fileStream, "application/pdf", string.Format("{0}_{1}.pdf", mrn, templateName));
             }
-
+           
         }
 
         public JsonResult RiskCalculation(string MRN, int apptid, string status)
@@ -504,7 +511,7 @@ namespace HRA4.Web.Controllers
 
                 return File(fileBytes, "Application/pdf", fileName);
             }
-            return File(new byte[0], "Application/pdf", "ErrorOccured");
+            return File(new byte[0], "Application/pdf", "ErrorOccured"); 
         }
 
     }
