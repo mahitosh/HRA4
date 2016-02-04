@@ -11,7 +11,7 @@ using HRA4.Web.Filters;
 
 namespace HRA4.Web.Controllers
 {
-   // [CustomAuthorize(Roles = "ClinicAdmin")]
+   [CustomAuthorize(Roles = "SuperAdmin,Administrator,Clinician")] 
     public class DocumentEditorController : BaseController
     {
         // GET: DocumentEditor

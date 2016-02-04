@@ -53,9 +53,11 @@
   <ItemGroup>
     <Compile Include="HtmlTemplateRepository.cs" />
     <Compile Include="Interfaces\IHtmlTemplateRepository.cs" />
+    <Compile Include="Interfaces\IMenuRepository.cs" />
     <Compile Include="Interfaces\IRepositoryFactory.cs" />
     <Compile Include="Interfaces\ISuperAdminRepository.cs" />
     <Compile Include="Interfaces\ITenantMasterRepository.cs" />
+    <Compile Include="MenuRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryFactory.cs" />
     <Compile Include="SuperAdminRepository.cs" />

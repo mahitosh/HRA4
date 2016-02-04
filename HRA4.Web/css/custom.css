@@ -56,6 +56,9 @@ body{background:#fbffff url("../images/body-bg.jpg") repeat 0 0;min-height: 500p
 .panel-body{padding:30px 40px;font-size:12px;}
 #loginform .form-control{border-radius:0;height:40px;font-size:1.2em;}
 #loginform .input-group-addon{border-radius:0;background-color: #000066;color:#fff;font-size: 18px;}
+#loginform .visible-password{background-color:transparent;color:#000;border-left:none;}
+#loginform .visible-password a{color:#000;}
+#loginform .visible-password a:hover{color:#52b2ef;}
 #loginform .btn-success, #loginform .btn-danger{border:none;border-radius:0;font-size:1.2em;
 opacity: 1;-webkit-transition: all 2s ease;-moz-transition: all 2s ease;-ms-transition: all 2s ease;  -o-transition: all 2s ease; transition: all 2s ease
 }
@@ -101,8 +104,8 @@ li.nav-admintool a{background: #72b116 url('../images/admin-tool-ico.svg') no-re
 li.nav-admintool a:hover, li.nav-admintool a:focus{background-color: #72b116!important}
 li.nav-profile, li.nav-logout{color:#ffffff;font-size:1.3em;font-family: 'open_sanslight', arial;line-height: 1em;}
 li.nav-profile svg{margin-left: 10px;}
-li.nav-logout{margin:15px 0px 0 15px;border-left: solid 1px #ffffff;padding-top:19px!important;}
-li.nav-logout a{padding-bottom: 5px;}
+li.nav-logout{margin:13px 0px 0 15px;border-left: solid 1px #ffffff;padding-top:11px!important;}
+li.nav-logout a{padding-bottom: 0px;}
 li.nav-logout a:hover, li.nav-logout a:focus{color:#ffffff!important;text-decoration: underline;}
 .top-breadcrumb{font-size: 1.5em;padding-top: 7px;padding-left:0;}
 .help::before {background: #000;border-color: #fff #f3f9e9 #fff #f3f9e9;border-style: solid;border-width: 0 35px 49px 0;content: "";display: block;left: -22%;position: absolute; top: 0px; width: 0;}
@@ -110,8 +113,8 @@ li.nav-logout a:hover, li.nav-logout a:focus{color:#ffffff!important;text-decora
 .help a{color:#333;opacity: 1;-webkit-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;transition: all 0.2s ease-in-out}
 .help a:hover{color:#358dca;}
 .nav .open > a.help-dropdown, .nav .open > a.help-dropdown:focus, .nav .open > a.help-dropdown:hover{background:transparent;}
-li.nav-help{padding-top:21px!important;padding-bottom:5px}
-
+li.nav-help{padding-top:13px!important;padding-bottom:1px}
+li.tenant-name{position:absolute;top:47px;left:65px;font-size: 12px;}
 
 /*sidebar
 #bs-example-navbar-collapse-1 .navbar-toggle:before{font-family: FontAwesome; content: "\f138";font-size: 12px;}*/
@@ -136,7 +139,7 @@ ul.import-menu:before{left: 4px;}
 .inner-addon {position: relative;}
 .inner-addon .glyphicon { position: absolute;padding: 10px;pointer-events: none;}
 .left-addon .glyphicon  { left:  0px;}
-.right-addon .glyphicon { right: 0px;}
+.right-addon .glyphicon { right: 0px;}/
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
 .bottom-container-area{/*background-color:#ffffff;border-top: 1px solid #ddd;box-shadow: 0px 4px 3px #ddd;*/padding-bottom:20px;min-height:600px;}
@@ -155,7 +158,7 @@ a.left-title:hover{text-decoration:underline;}
 .nav-tabs a:hover{text-decoration:none!important;}
 .nav-tabs .tab-refresh{ border: 0!important;padding: 9px 0;position:absolute; right: -4px; top: 0; z-index: 1000;cursor: pointer!important;}
 .tab-content{margin-top: 15px;}
-.tab-content > .tab-pane, .tab-pane{/*padding-top:10px;*/border: solid 1px #dfdfdf;}
+.tab-content > .tab-pane{/*padding-top:10px;*/border: solid 1px #dfdfdf;}
 #cancer-risk-factor .tab-pane{border:none;}
 .nav-tabs > li > a:focus{background: transparent}
 #CancerRiskChild{border-bottom:solid 2px #e6e6e6;}
@@ -163,6 +166,7 @@ a.left-title:hover{text-decoration:underline;}
 #CancerRiskChild > li.active > a, #CancerRiskChild > li.active > a:focus, #CancerRiskChild > li.active > a:hover, #CancerRiskChild > li > a:hover{border-bottom:solid 3px #53afee;padding-bottom: 3px;}
 
 /*appointment table css*/
+.table-cell-bdr tbody td{border-right:solid 1px #98c7e7;}
 .apppointment-table thead th, .data-display-table thead th{background-color: #53afee;color:#ffffff;border:none;padding:12px 3px;font-size:1.1em;position:relative;}
 .apppointment-table tbody tr, .apppointment-table tbody tr:nth-of-type(2n+1), .data-display-table tbody tr, .data-display-table tbody tr:nth-of-type(2n+1)
 
@@ -180,6 +184,8 @@ li.add-appointment a:hover, li.add-MRI a:hover{border:none;}
 .apppointment-table th:last-child::after, .apppointment-table th.headerSortUp:last-child::after, .apppointment-table th.headerSortDown:last-child::after {content: "";}
 /*for all td sorting table*/ 
 .all-cell-sorting-table th:after, .aall-cell-sorting-table th.headerSortUp:after, .all-cell-sorting-table th.headerSortDown:after{content: "\f0dc"!important;} 
+
+/*.apppointment-table th > span:after{content: "\f0dc"; font-family: FontAwesome;position: absolute;right: -1px;top: 12px;}*/
 
 /*fixed table header*/
 .table-fixed thead {width: 97%;}
@@ -220,7 +226,7 @@ img.add-istitution-list{margin:-3px 4px 0 30px;}
 
 /*quick add div*/
 .quick-add-inner-div{width:98%;height:auto;margin:1%;background:#fff;padding:1.5%;}
-.quick-add-links{font-size:1em;}
+.quick-add-links{font-size:1em;white-space: normal;word-wrap: break-word;}
 .quick-add-links a{margin-right:12px;}
 .quick-add-links a:last-child{margin-right:0px;}
 
@@ -229,11 +235,14 @@ img.add-istitution-list{margin:-3px 4px 0 30px;}
 .modal-title{font-weight:bold;}
 #add-edit-MRN .modal-dialog{width:400px;}
 .modal-dialog{margin-top:200px;}
-#schedule-new-doc-modal .modal-dialog, #pedigree-diagram-modal .modal-dialog, #risk-calc-display-modal .modal-dialog, #about-us-moadal .modal-dialog, #BRCA-pedigree-diagram-modal .modal-dialog, #LifetimeCancer-pedigree-diagram-modal .modal-dialog{width:700px;margin-top:30px;}
+#schedule-new-doc-modal .modal-dialog, #pedigree-diagram-modal .modal-dialog, #risk-calc-display-modal .modal-dialog, #about-us-moadal .modal-dialog, #BRCA-pedigree-diagram-modal .modal-dialog, #LifetimeCancer-pedigree-diagram-modal .modal-dialog, #edit-provider .modal-dialog{width:700px;margin-top:30px;}
 #pedigree-diagram-modal .view-doc-content, #BRCA-pedigree-diagram-modal .view-doc-cont, #LifetimeCancer-pedigree-diagram-modal .view-doc-cont{height:630px;}
 #about-us-moadal .modal-dialog ul{Height:300px;overflow:auto;}
 #about-us-moadal .modal-dialog ul li{line-height:25px;}
-
+#edit-provider .form-horizontal .control-label{font-weight:normal;font-size:14px;}
+#edit-provider .form-horizontal .form-control {height:30px;}
+#edit-provider .form-horizontal select.form-control{padding:3px 12px;}
+#edit-provider .form-horizontal .btn {padding:4px 12px;} 
 
 /*modal with two column*/
 .modal-sidebar{background:#f5f5f5;}
@@ -247,9 +256,8 @@ img.add-istitution-list{margin:-3px 4px 0 30px;}
 .view-doc-cont{border:0;}
 /*page content wrapper two column*/
 #page-content-wrapper .modal-sidebar ul{font-size: 14px;}
-
 #page-content-wrapper .view-doc-content{height:450px;}
-#browse-xml-modal{margin-top:40px;}
+
 
 /*accordion csss*/
 .accordion-toggle:hover {text-decoration: none;}
@@ -278,6 +286,7 @@ a:hover{text-decoration: none;}
 .Padding-L-0{padding-left: 0!important;}
 .Padding-R-0{padding-right: 0;}
 .Padding-R-15{padding-right: 15px!important;}
+.Padding-T-5{padding-top: 5px;}
 .Padding-T-10{padding-top: 10px;}
 .Padding-T-15{padding-top: 15px!important;}
 .Padding-T-24{padding-top: 24px;}
@@ -300,6 +309,7 @@ a:hover{text-decoration: none;}
 .align-left{text-align:left}
 .align-right{text-align:right}
 small{font-size:0.7em;}
+.small-txt{font-size:12px;font-weight:normal!important;}
 .hr-style{border-color: #dfdfdf;}
 .clear-float{clear:both;}
 .bold-txt{font-weight:bold;}
@@ -308,16 +318,14 @@ small{font-size:0.7em;}
 .phone-no-input div:first-child{padding-right:0;}
 .phone-no-input div:nth-child(2){padding-right:5px;padding-left:5px;}
 .phone-no-input div:last-child{padding-left:0px;}
-
 .highlight-row{background-color:#a6d2f0!important;}
 .fixed-height-300{max-height:300px;overflow:auto;height:auto;}
-
 .no-border{border:0px!important;}
+.red-text{color:red;}
 
-/*all buttos*/
+/*all buttons*/
 .search-group{box-shadow: 1px 1px 4px #ccc;line-height:27px;}
 .search-btn, .add-btn{background-color: #53afee;border-radius: 0;border:none;color: white;font-size:1.1em!important;padding:4px 12px;}
-
 .search-btn-ico{background-color: #358dca;color: white;padding: 8px;cursor:pointer;top:0;}
 .search-btn:hover, .add-btn:hover, .search-btn.focus, .search-btn:focus{background-color: #358dca;color: white;}
 .add-btn{padding:3px 6px;font-size:1em;}
@@ -333,6 +341,7 @@ small{font-size:0.7em;}
 .multiselect {border-radius:4px;padding:4px 10px;}
 .multiselect-container li.active a, .multiselect-container li.active a:hover{background-color:#f1f1f1;color:#333333;}
 
+
 /*footer css*/
 footer{position:fixed; box-shadow: 10px 0 6px #ddd;background-color:#fff;width:100%;z-index:1000;bottom:0;right:0;}
 .footer-style{width: 46px;background-color: #e0ecc7;height: 50px;opacity: 0.8;filter: alpha(opacity=80); /* For IE8 and earlier */}
@@ -340,11 +349,25 @@ footer:before{background: transparent ;border-color: transparent #72b116;border-
 .footer-style:after{background: transparent ;border-color: transparent #e0ecc7;border-style: solid;border-width: 50px 0 0 85px;content: "";display: block;left: 46px;position: absolute; top: 0; width: 0;z-index:-1;opacity: 0.8;filter: alpha(opacity=80); /* For IE8 and earlier */}
 footer .container{text-align: center;color:#838383;font-size:12px;}
 
+/*fixed table header*/
+table {table-layout:fixed;}
+.div-table-content {height:430px; overflow-y:auto;}
+.fixed-table-header .panel{border:0!important;border-radius: 0px;box-shadow:0 0 0;margin-bottom:0;}
+.fixed-table-header  tr:first-child, .fixed-table-header  th:first-child, tr:last-child, th:last-child
+{border-top-left-radius:0!important;border-top-right-radius:0!important;}
+.fixed-table-header th{padding-top:10px!important;padding-bottom:10px!important;}
+/*table content ellipse*/
+table tr th, table tr td{white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+/*erroe page*/
+.errorpage{min-height:480px; padding-top:80px}
+.errorpage h1{font-size:150px; color:#d9241f; font-weight:bold;text-shadow:2px 2px 4px #999;}
+.errorpage h1 span{font-size:36px; color:#000;text-transform:uppercase;text-shadow:0 0 0 #fff;}
+.errorpage p{font-size:18px;}
+
 /* css for google chrome only */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .search-btn{padding: 4.5px 12px;}
 }
-
 
 /* css for internet explorer only */
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {

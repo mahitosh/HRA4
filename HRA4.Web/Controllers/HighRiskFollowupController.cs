@@ -7,8 +7,10 @@ using System.Web.Mvc;
 using HRA4.Services;
 using HRA4.ViewModels;
 using System.Reflection;
+using HRA4.Web.Filters;
 namespace HRA4.Web.Controllers
 {
+    [CustomAuthorize(Roles = "SuperAdmin,Administrator,Clinician")] 
     public class HighRiskFollowupController : BaseController
     {
 

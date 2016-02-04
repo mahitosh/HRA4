@@ -46,11 +46,16 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.5.0.27760, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\RiskAppsV2\tools\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -85,9 +90,9 @@
       <Project>{7fca466d-dff4-44c2-9aea-aedf89a9a03a}</Project>
       <Name>HRA4.ViewModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RiskApps3\RiskApps3Old.csproj">
-      <Project>{16b371c4-551b-43c6-93db-5ecf4c70bc66}</Project>
-      <Name>RiskApps3Old</Name>
+    <ProjectReference Include="..\RASourcesV3\RiskApps3.csproj">
+      <Project>{b6074344-dcf2-4316-8363-7c9e01ab26e1}</Project>
+      <Name>RiskApps3</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

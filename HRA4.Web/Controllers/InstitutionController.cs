@@ -14,13 +14,17 @@ using HRA4.ViewModels;
 using System.Configuration;
 
 using VM = HRA4.ViewModels;
+using HRA4.Entities.UserManagement;
+using System.Web.Security;
+using HRA4.Web.Filters;
 namespace HRA4.Web.Controllers
 {
+    [CustomAuthorize(Roles = "SuperAdmin,Administrator,Clinician")] 
     public class InstitutionController : BaseController
-    {
+    {      
 
         // GET: Institution
-        public ActionResult InstitutionDashboard(int? InstitutionId)
+        public ActionResult InstitutionDashboard(int? InstitutionId)        
         {
             List<ViewModels.Appointment> apps = new List<ViewModels.Appointment>();
             var instList = _applicationContext.ServiceContext.AdminService.GetTenants();
@@ -44,6 +48,8 @@ namespace HRA4.Web.Controllers
                 }
 
                 int v2 = InstitutionId ?? default(int);
+                string InstName = _applicationContext.ServiceContext.AdminService.GetInstitutionName(v2);
+                Session["InstitutionName"] = InstName;
                 NameValueCollection searchfilter = new NameValueCollection();
                 searchfilter.Add("name", null);
                 searchfilter.Add("appdt", DateTime.Now.ToString("MM/dd/yyyy"));
@@ -72,12 +78,8 @@ namespace HRA4.Web.Controllers
             }
             else if (Session["InstitutionId"] != null)
             {
-
                    InstitutionId = Convert.ToInt32(Session["InstitutionId"]);
                    return RedirectToAction("InstitutionDashboard", new { InstitutionId = InstitutionId });
-              
-
-
             }
 
             return RedirectToAction("ManageInstitution", "Admin");    
@@ -86,7 +88,12 @@ namespace HRA4.Web.Controllers
 
         }
 
-    
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index", "Admin");
+        }
 
         [HttpPost]
         public JsonResult ImportAsXml(HttpPostedFileBase file, string mrn, int apptId)

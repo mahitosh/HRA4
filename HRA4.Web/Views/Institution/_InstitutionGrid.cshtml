@@ -4,108 +4,120 @@
 }
 @*<link href="~/css/tablesorter.css" rel="stylesheet" />*@
 
-    <table id="myTable" class="table table-striped apppointment-table">
-        <thead>
-            <tr>
-                <th>App Date/T</th>
-                <th>Name</th>
-                <th>MRN</th>
-                <th>DOB</th>
-                <th>Provider</th>
-                <th>Mark Survey Complete</th>
-                <th>Disease Hx</th>
-                <th>Survey </th>
-                <th>Do Not Call</th>
-                <th>Quick&nbsp;Actions</th>
-            </tr>
-        </thead>
-    <tbody>
-       @foreach (var item in Model)
-       {
+<table id="myTable" class="table table-striped apppointment-table">
+    <thead>
         <tr>
-            <td>
-                @{
-           string appdate = (item.AppointmentDate == DateTime.MinValue ? "" : item.AppointmentDate.ToString("MM/dd/yyyy hh:mm:ss tt"));
+            <th>App Date/T</th>
+            <th>Name</th>
+            <th>MRN</th>
+            <th>DOB</th>
+            <th>Provider</th>
+            <th>Mark Survey Complete</th>
+            <th>Disease Hx</th>
+            <th>Survey </th>
+            <th>Do Not Call</th>
+            <th>Quick&nbsp;Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @{
+            string appdate = (item.AppointmentDate == DateTime.MinValue ? "" : item.AppointmentDate.ToString("MM/dd/yyyy hh:mm:ss tt"));
+                    }
+                    @Html.DisplayFor(modelItem => appdate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MRN)
+                </td>
+                <td>
+                    @{
+            string dob = (item.DateOfBirth == DateTime.MinValue ? "" : item.DateOfBirth.ToString("MM/dd/yyyy"));
+                    }
+                    @Html.DisplayFor(modelItem => dob)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Provider)
+                </td>
+                <td>
+                    @{
+            string dateCompleted = (item.DateCompleted == DateTime.MinValue ? "" : item.DateCompleted.ToString("MM/dd/yyyy hh:mm:ss tt"));
+                    }
+                    @Html.DisplayFor(modelItem => dateCompleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiseaseHx)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Survey)
+                </td>
+                <td>
+
+                    @*@Html.DisplayFor(modelItem => item.DoNotCall)*@
+
+                    @{
+            var url = "";
+            var title = "";
+            if (item.DoNotCall == true)
+            {
+
+                url = Url.Content("~/images/DNC-N-ico.svg");
+                title = "Remove to Do Not Call list.";
+            }
+            else
+            {
+                url = Url.Content("~/images/DNC-Y-ico.svg");
+                title = "Add to Do Not Call list.";
+            }
+            bool dncFlag = true;
+            if (ViewBag.ExcludeIds != null)
+            {
+                foreach (string str in ViewBag.ExcludeIds)
+                {
+                    if (str == "8")
+                    { dncFlag = false; }
                 }
-                @Html.DisplayFor(modelItem => appdate)
-            </td>
+            }
 
-            <td>
-                @Html.DisplayFor(modelItem => item.PatientName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MRN)
-            </td>
-            <td>
-                @{
-           string dob = (item.DateOfBirth == DateTime.MinValue ? "" : item.DateOfBirth.ToString("MM/dd/yyyy"));
-                }
-                @Html.DisplayFor(modelItem => dob)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Provider)
-            </td>
-            <td>
-                @{
-           string dateCompleted = (item.DateCompleted == DateTime.MinValue ? "" : item.DateCompleted.ToString("MM/dd/yyyy hh:mm:ss tt"));
-                }
-                @Html.DisplayFor(modelItem => dateCompleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiseaseHx)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Survey)
-            </td>
-            <td>
-
-                @*@Html.DisplayFor(modelItem => item.DoNotCall)*@
-
-                @{
-           var url = "";
-           var title = "";
-           if (item.DoNotCall == true)
-           {
-
-               url = Url.Content("~/images/DNC-N-ico.svg");
-               title = "Remove to Do Not Call list.";
-           }
-           else
-           {
-               url = Url.Content("~/images/DNC-Y-ico.svg");
-               title = "Add to Do Not Call list.";
-           }
-
-                }
-                <div style="display:none">@item.DoNotCall</div>
-                <a href="#"> <img src="@url" alt="Add to Do Not Call list." title="@title" width="30" height="30" data-toggle="tooltip" data-placement="top"  onclick="return AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()','@Url.Action("AddRemoveTask", "Institution")');" /> </a>
-            </td>
-            <td>
-                <input type="hidden" id="hidSelectedMrn" />
-                <input type="hidden" id="hidSelectedAppId" />
+                    }
+                    <div style="display:none">@item.DoNotCall</div>
+                    @if(dncFlag)
+                    { 
+                    <a href="#"> <img src="@url" alt="Add to Do Not Call list." title="@title" width="30" height="30" data-toggle="tooltip" data-placement="top" onclick="return AddRemoveTask('@item.DoNotCall.ToString()','@item.MRN.ToString()','@item.Id.ToString()','@Url.Action("AddRemoveTask", "Institution")');" /> </a>
+                    }
+                </td>
+                <td>
+                    <input type="hidden" id="hidSelectedMrn" />
+                    <input type="hidden" id="hidSelectedAppId" />
                     @*<a href="#"><img src="~/images/refresh-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Risk Calculations" /></a>*@
-                <a href="#" data-toggle="modal" onclick="ShowPedigreeImage('@item.MRN.ToString()','@item.Id.ToString()','@item.PatientName','@Url.Action("ShowPedigreeImage", "Institution")');"><img src="~/images/pedigree-ico.svg" alt="Pedigree" width="25" height="25" data-toggle="tooltip" data-placement="top" title="Pedigree" /></a>
-                <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Copy" /></a>
-                <a href="javascript:void(0);" id="@item.Id" onclick="ShowEdit(this,'@item.MRN.ToString()','@item.Id.ToString()');"><img src="~/images/tools-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>
-            </td>
-        </tr>
-        <tr class="editmenu" id="@item.Id-b">
-            <td colspan="10">
-                @Html.Partial("_InstitutionRow", item)
-            </td>
-        </tr>
-       }
+                    <a href="#" data-toggle="modal" onclick="ShowPedigreeImage('@item.MRN.ToString()','@item.Id.ToString()','@item.PatientName','@Url.Action("ShowPedigreeImage", "Institution")');"><img src="~/images/pedigree-ico.svg" alt="Pedigree" width="25" height="25" data-toggle="tooltip" data-placement="top" title="Pedigree" /></a>
+                    <a href="#"><img src="~/images/copy-grid-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Copy" /></a>
+                    <a href="javascript:void(0);" id="@item.Id" onclick="ShowEdit(this,'@item.MRN.ToString()','@item.Id.ToString()');"><img src="~/images/tools-ico.svg" alt="Refresh" width="30" height="30" data-toggle="tooltip" data-placement="top" title="Edit" /></a>
+                </td>
+            </tr>
+            <tr class="editmenu" id="@item.Id-b">
+                <td colspan="10">
+                    @Html.Partial("_InstitutionRow", item)
+                </td>
+            </tr>
+        }
 
 
     </tbody>
 </table><!--schedule list end here-->
 <script type="text/javascript">
 
-       
-          
 
-  
+
+
+
     $(".editmenu").slideUp(0);
     $(".schedule-more-detail-content").hide();
     $(".schedule-more-detail").click(function () {
@@ -115,7 +127,7 @@
 
     /*
     $(document).ready(function () {
-       
+
         $("#myTable").tablesorter(
             {
                 headers: {
@@ -140,14 +152,14 @@
         var initialvalue = $(hfid).val();
         if (initialvalue=='True') {
             $(chkid).prop("checked", true);
-            
+
         } else {
             $(chkid).prop("checked", false);
-           
+
         }
-        
+
         $(".editmenu").slideUp(100);
-      
+
     }
     function ShowEdit(obj,mrn,apptid) {
         $(".editmenu").slideUp(100);
@@ -155,8 +167,8 @@
         $(trid).slideDown(100);
         $("#hidSelectedMrn").val(mrn);
         $("#hidSelectedAppId").val(apptid);
-      
-         
+
+
     }
 
 </script>

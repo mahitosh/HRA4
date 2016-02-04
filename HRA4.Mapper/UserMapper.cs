@@ -13,7 +13,7 @@ namespace HRA4.Mapper
 {
     public static class UserMapper
     {
-        public static RA.User ToRAppointment(this User user)
+        public static RA.User ToRUser(this User user)
         {
             return new RA.User()
             {
@@ -21,8 +21,20 @@ namespace HRA4.Mapper
                 userFirstName = user.FirstName,
                 userLastName= user.LastName,
                 
+                
             };
         }
 
+        public static User FromRUser(this RA.User raUser)
+        {
+            return new User()
+            {
+                Username = raUser.userLogin,
+                FirstName = raUser.userFirstName,
+                LastName = raUser.userLastName,
+                
+
+            };
+        }
     }
 }

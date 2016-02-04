@@ -9,57 +9,96 @@ using System.Threading.Tasks;
 using HRA4.ViewModels;
 using HRA4.Services;
 using System.Web.Security;
-//using HRA4.Entities.UserManagement;
+using HRA4.Entities.UserManagement;
+using HRA4.Web.Filters;
+using HRA4.Context;
 
 namespace HRA4.Web.Controllers
 {
+    [CustomAuthorize(Roles="SuperAdmin")]
     public class AdminController : BaseController
     {
+        //public AdminController()
+        //{
+
+        //}
         // GET: Admin
         [AllowAnonymous]
-        public ActionResult Index()
-        {
+        public ActionResult Index(string ReturnUrl)
+        {            
+            ViewBag.ReturnUrl = ReturnUrl;
             return View();
         }
         //Added by Aditya on 21-12-2015
         //Authenticate the Admin user.
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Index(User user, string action, string returnUrl)
+        public ActionResult Index(User user, string action, string ReturnUrl)
         {
             if (action == "Submit")
             {
                 bool result = false;
+                string msg = string.Empty;
+                string fullName = string.Empty;
                 if (ModelState.IsValid)
                 {
-                     
-                    result = _applicationContext.ServiceContext.AdminService.Login(user.Username, user.Password);
+                    Entities.UserManagement.SampleData entities = new SampleData();
+                  
                    // result = entities.SUsers.Any(u => u.Username == user.Username);
-                    Session["Username"] = _applicationContext.ServiceContext.AdminService.GetUserName();
+                    
                     if ( user.Username == null || user.Password == null)
                     {
                         ModelState.AddModelError("", "Please enter Username / Password !");
                         ViewBag.msg = "Error";
                         return View();
                     }
-                    if (result)
+                    if (user.Username == "sadmin")
                     {
-                        System.Web.HttpContext.Current.Session["ApplicationContext"] = null;
-
-                        FormsAuthentication.SetAuthCookie(user.Username, false);
-
-                        if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
-                        {
-                            return Redirect(returnUrl);
-                        }
-                        else
-                            return RedirectToAction("ManageInstitution", "Admin");
+                        result = _applicationContext.ServiceContext.AdminService.Login(user.Username, user.Password);
+                        fullName = _applicationContext.ServiceContext.AdminService.GetUserName();
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Invalid Username / Password !");
+                        if (Url.IsLocalUrl(ReturnUrl) && ReturnUrl.Length > 1 && ReturnUrl.StartsWith("/")
+                        && !ReturnUrl.StartsWith("//") && !ReturnUrl.StartsWith("/\\"))
+                        {
+                            string InstitutionId = ReturnUrl.Split('=')[1];
+                            Session.Add("InstitutionId", InstitutionId);
+                            //ReInitializing Application Context with Institution Details.
+                            System.Web.HttpContext.Current.Session["ApplicationContext"] = null;
+                            _applicationContext = new ApplicationContext();
+                            System.Web.HttpContext.Current.Session["ApplicationContext"] = _applicationContext;
+
+                            result = _applicationContext.ServiceContext.UserService.AuthenticateUser(user.Username, user.Password, out msg, out fullName);
+                        }
+                       
+                       
+                    }
+                    if (result)
+                    {
+                        Session["Username"] = fullName;
+                        System.Web.HttpContext.Current.Session["ApplicationContext"] = null;
+                        Session["InstitutionId"] = null;
+                        FormsAuthentication.SetAuthCookie(user.Username, false);
+
+                        if (Url.IsLocalUrl(ReturnUrl) && ReturnUrl.Length > 1 && ReturnUrl.StartsWith("/")
+                        && !ReturnUrl.StartsWith("//") && !ReturnUrl.StartsWith("/\\"))
+                        {
+                            return Redirect(ReturnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("ManageInstitution", "Admin");
+                        }
+                    }
+                    else
+                    {
+                        if (string.IsNullOrWhiteSpace(msg))
+                            msg = "Invalid username / Password !";
+                        ModelState.AddModelError("", msg);
                         ViewBag.msg = "Error";
+                        string tmp = System.Web.HttpContext.Current.Request.RawUrl;
+                       // RedirectToAction("Index", "Admin", new { ReturnUrl = ReturnUrl });
                         return View();
                     }
                 }
@@ -73,12 +112,8 @@ namespace HRA4.Web.Controllers
             return View();
 
         }
-        public ActionResult LogOut()
-        {
-            FormsAuthentication.SignOut();
-            Session.Abandon();
-            return RedirectToAction("Index", "Admin");
-        }
+
+       
         //End by Aditya
         public ActionResult Institution(string tenant)
         {
@@ -89,6 +124,7 @@ namespace HRA4.Web.Controllers
         public ActionResult ManageInstitution()
         {
             ViewBag.SearchText = "";
+            ViewBag.MenuList = new List<Menu>();
             var instituionList = _applicationContext.ServiceContext.AdminService.GetTenants().Where(a => a.IsActive == true).ToList();
             AssignRecordStatus(instituionList);
             return View(instituionList);

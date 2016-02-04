@@ -29,5 +29,10 @@ namespace HRA4.Repositories
         {
             get { return new HtmlTemplateRepository(this.dbContext); }
         }
+
+        public Interfaces.IMenuRepository MenuRepository
+        {
+            get { return new MenuRepository(this.dbContext); }
+        }
     }
 }

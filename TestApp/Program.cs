@@ -10,6 +10,8 @@ using HRA4.Entities;
 using RiskApps3.Controllers;
 using RiskApps3.Model.PatientRecord;
 using RiskApps3.Model.MetaData;
+using HRA4.Entities.UserManagement;
+using RiskApps3.Model;
 
 namespace TestApp
 {
@@ -17,7 +19,9 @@ namespace TestApp
     {
         static void Main(string[] args)
         {
-            CreateMenu();
+            SaveAppointment();
+          //  RunScript();
+          //  CreateMenu();
           //  CreateDefaultTemplates();
 
             //IApplicationContext app = new ApplicationContext();
@@ -39,12 +43,56 @@ namespace TestApp
 
         }
 
+        private static void SaveAppointment()
+        {
+           /// RiskApps3.View.Appointments.AddAppointmentView appview = new RiskApps3.View.Appointments.AddAppointmentView("9995623145", 1);
+           
+            RiskApps3.Model.PatientRecord.Appointment appointment = new Appointment(1, "999111111")
+            {
+                apptdate="02/01/2016",
+                appttime="8:00 PM",
+                dob = "10/25/1985",
+                gender= "FeMale",
+                language="EN",
+                nationality="Indian",
+                patientname="mk Test",
+                
+
+            };
+
+            HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
+            args.updatedMembers.Add(appointment.GetMemberByName("appttime")); // Edit And save
+            appointment.BackgroundPersistWork(args);
+
+            appointment.BackgroundPersistWork(new HraModelChangedEventArgs(null));// New Appointment
+
+        }
+
+        private static void RunScript()
+        {
+            //Server=.\SQLEXPRESS;Database=HRA_T1_941d0d25;User Id=sa;Password = mk#12345;
+            string conString = @"Server=.\SQLEXPRESS;Database=HRA_T1_941d0d25;User Id=sa;Password = mk#12345;";
+            string[] files = Directory.GetFiles(@"D:\Shared\Aditya\version363", "*.sql", SearchOption.AllDirectories);
+            foreach(string filePath in files)
+            {
+                string tmp = File.ReadAllText(filePath);
+                HRA4.Utilities.Helpers.CreateInstitutionDb(conString, tmp);
+            }
+            
+        }
+
         private static void CreateMenu()
         {
             string conn1 = "Server=.\\SQLEXPRESS;Database=RiskappCommon;User Id=sa;Password=mk#12345;";
             //We cannot run/use Simple.Data when support for legacy framework is allowed.
             dynamic commonDbContext = Simple.Data.Database.OpenConnection(conn1);
-            HRA4.ViewModels.Menu menu = new HRA4.ViewModels.Menu()
+
+            List<MenuRights> menuRights = commonDbContext.MenuRights.All();
+
+            string menuIds = menuRights.FirstOrDefault(m=>m.RoleId == 1).MenuIds;
+
+            Console.WriteLine(menuIds);
+            HRA4.Entities.Menu menu = new HRA4.Entities.Menu()
             {
                 MenuName = "Manage Users",
                 Roles = "SuperAdmin|Administrator",
@@ -53,7 +101,7 @@ namespace TestApp
             };
             commonDbContext.Menu.Insert(menu);
 
-            menu = new HRA4.ViewModels.Menu()
+            menu = new HRA4.Entities.Menu()
             {
                 MenuName = "Manage Institution",
                 Roles = "SuperAdmin",
@@ -62,7 +110,7 @@ namespace TestApp
             };
             commonDbContext.Menu.Insert(menu);
 
-            menu = new HRA4.ViewModels.Menu()
+            menu = new HRA4.Entities.Menu()
             {
                 MenuName = "Manage Providers",
                 Roles = "SuperAdmin|Administrator",
@@ -71,7 +119,7 @@ namespace TestApp
             };
             commonDbContext.Menu.Insert(menu);
 
-            menu = new HRA4.ViewModels.Menu()
+            menu = new HRA4.Entities.Menu()
             {
                 MenuName = "Manage Documents",
                 Roles = "SuperAdmin|Administrator",
@@ -80,7 +128,7 @@ namespace TestApp
             };
             commonDbContext.Menu.Insert(menu);
 
-            menu = new HRA4.ViewModels.Menu()
+            menu = new HRA4.Entities.Menu()
             {
                 MenuName = "Audit Reports",
                 Roles = "SuperAdmin|Administrator",
@@ -89,8 +137,8 @@ namespace TestApp
             };
             commonDbContext.Menu.Insert(menu);
 
-         
-            menu = new HRA4.ViewModels.Menu()
+
+            menu = new HRA4.Entities.Menu()
             {
                 MenuName = "TestPatient",
                 Roles = "SuperAdmin|Administrator",
@@ -99,7 +147,7 @@ namespace TestApp
             };
             commonDbContext.Menu.Insert(menu);
 
-            menu = new HRA4.ViewModels.Menu()
+            menu = new HRA4.Entities.Menu()
             {
                 MenuName = "Manage Clinics",
                 Roles = "SuperAdmin|Administrator",

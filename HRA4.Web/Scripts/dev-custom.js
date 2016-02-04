@@ -1,6 +1,8 @@
 ﻿
 $(document).ready(function () {
     
+   
+
     var txt = $('#ddlsurveys option:selected').text();
     $("#ddlsurveystext").val(txt);
 
@@ -47,6 +49,74 @@ $(document).ready(function () {
 
 
 });
+
+function ShowErrorNotification(msg) {
+    var sudoNotify = $('.notification-container').sudoNotify({
+
+        // auto hide after x seconds set in duration opiton
+        autoHide: true,
+
+        // displat a close button
+        showCloseButton: true,
+
+        // for autoHide option
+        duration: 2, //seconds
+
+        // top or bottom
+        position: 'bottom',
+
+        // log all messages to console with timestamp
+        log: false,
+
+        // notification bar opacity levels
+        opacity: 0.95,
+
+        // custom styles for default notification bar
+        defaultStyle: {
+            maxWidth: '1000px',
+            fontSize: '16px'
+        },
+
+        // custom styles for error notification bar
+        errorStyle: {
+            color: '#000000',
+            backgroundColor: '#FF9494'
+        },
+
+        // custom styles for warning notification bar
+        warningStyle: {
+            color: '#000000',
+            backgroundColor: '#FFFF96'
+        },
+
+        // custom styles for succsee notification bar
+        successStyle: {
+            color: '#000000',
+            backgroundColor: '#B8FF6D'
+        },
+
+        // fade, scroll-left, scroll-left-fade, scroll-right, 
+        // scroll-right-fade, slide, slide-fade or none
+        animation: {
+            type: 'slide-fade',
+            showSpeed: 400,
+            hideSpeed: 250
+        },
+
+        // fire a function when a notificatio bar is closed
+        onClose: function (notificationType) {
+            // alert(notificationType + ' notification closed');
+        },
+
+        // fire a function when a notification bar is trigged.
+        onShow: function (notificationType) {
+            //  alert(notificationType + ' notification showing');
+        }
+    });
+
+    sudoNotify.error(msg);
+}
+
 
 function ShowNotification(msg)
 {
@@ -115,4 +185,5 @@ function ShowNotification(msg)
 
     sudoNotify.success(msg);
 }
+
 

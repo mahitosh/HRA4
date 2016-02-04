@@ -170,7 +170,7 @@ namespace HRA4.Services
                 list.BackgroundListLoad();
                 foreach (RA.Appointment app in list)
                 {
-
+                    
                     bool _DNCStatus = GetDNCStatus(InstitutionId, app.unitnum);
                     appointments.Add(app.FromRAppointment(_DNCStatus));
 
