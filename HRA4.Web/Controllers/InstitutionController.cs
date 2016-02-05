@@ -38,6 +38,14 @@ namespace HRA4.Web.Controllers
 
             if (InstitutionId != null && InstitutionId > 0)
             {
+                //Added to avoid direct injection of Istitution ID.
+                if(HttpContext.User.Identity.Name != "sadmin")
+                if (Session["InstitutionId"] != null && Session["InstitutionId"].ToString() != InstitutionId.ToString())
+                {
+                    FormsAuthentication.SignOut();
+                    Session.Abandon();                     
+                    return RedirectToAction("Index", "Admin", new { Error = "Sorry you are not Authorized to Perform this Action" });
+                }
                 if (Session["InstitutionId"] == null || Session["InstitutionId"].ToString() != InstitutionId.ToString())
                 {
                     Session.Add("InstitutionId", InstitutionId);
