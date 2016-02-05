@@ -311,7 +311,7 @@ namespace HRA4.Web.Controllers
             if (Session != null && Session["InstitutionId"] != null)
             {
                 int instId = (int)Session["InstitutionId"];
-
+                Session[Constants.SearchFilter] = null;
                 NameValueCollection searchfilter = new NameValueCollection();
                 searchfilter = GetSearchFilter(name, appdt, clinicId);
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();

@@ -110,7 +110,7 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>Name *</label>
-                    @Html.TextBoxFor(item => item.PatientName, new { @class = "form-control" })
+                    @Html.TextBoxFor(item => item.PatientName, new { @class = "form-control",@maxlength="100" })
                     @Html.Hidden("Hfddlclinic")
                 </div>
 
@@ -118,7 +118,7 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>MRN *</label>
-                    @Html.TextBoxFor(item => item.MRN, new { @id = "MRN", @class = "form-control" })
+                    @Html.TextBoxFor(item => item.MRN, new { @id = "MRN", @class = "form-control", @maxlength = "50" })
 
                 </div>
             </div>
@@ -163,7 +163,7 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>Survey *</label>
-                    @Html.TextBoxFor(item => item.Survey, new { @class = "form-control" })
+                    @Html.TextBoxFor(item => item.Survey, new { @class = "form-control",@maxlength = "50" })
 
                 </div>
             </div>
@@ -231,19 +231,19 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Occupation</label>
-                                @Html.TextBoxFor(item => item.Occupation, new { @class = "form-control" })
+                                @Html.TextBoxFor(item => item.Occupation, new { @class = "form-control", @maxlength = "50" })
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Education</label>
-                                @Html.TextBoxFor(item => item.Education, new { @class = "form-control" })
+                                @Html.TextBoxFor(item => item.Education, new { @class = "form-control", @maxlength = "100" })
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Marital Status</label>
-                                @Html.TextBoxFor(item => item.Maritalstatus, new { @class = "form-control" })
+                                @Html.TextBoxFor(item => item.Maritalstatus, new { @class = "form-control", @maxlength = "100" })
                             </div>
                         </div>
                     </div><!--row end-->
@@ -251,13 +251,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Address 1</label>
-                                @Html.TextBoxFor(item => item.Address1, new { @class = "form-control" })
+                                @Html.TextBoxFor(item => item.Address1, new { @class = "form-control", @maxlength = "100" })
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Address 2</label>
-                                @Html.TextBoxFor(item => item.Address2, new { @class = "form-control" })
+                                @Html.TextBoxFor(item => item.Address2, new { @class = "form-control", @maxlength = "100" })
                             </div>
                         </div>
                     </div><!--row end-->
@@ -265,7 +265,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>City</label>
-                                @Html.TextBoxFor(item => item.City, new { @class = "form-control" })
+                                @Html.TextBoxFor(item => item.City, new { @class = "form-control", @maxlength = "50" })
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -291,7 +291,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Home Phone</label>
-                                @Html.TextBoxFor(item => item.Homephone, new { @class = "form-control", @type = "number" })
+                                @Html.TextBoxFor(item => item.Homephone, new { @class = "form-control", @type = "number", @maxlength = "50" })
                                 @*<div class="row phone-no-input">
 
                                         <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
@@ -303,13 +303,13 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Work Phone</label>
-                                @Html.TextBoxFor(item => item.Workphone, new { @class = "form-control", @type = "number" })
+                                @Html.TextBoxFor(item => item.Workphone, new { @class = "form-control", @type = "number", @maxlength = "50" })
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Mobile Phone</label>
-                                @Html.TextBoxFor(item => item.Cellphone, new { @class = "form-control", @type = "number" })
+                                @Html.TextBoxFor(item => item.Cellphone, new { @class = "form-control", @type = "number", @maxlength = "50" })
                             </div>
                         </div>
                     </div><!--row end-->
@@ -317,7 +317,7 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Email Address</label>
-                                @Html.TextBoxFor(item => item.EmailAddress, new { @class = "form-control" })
+                                @Html.TextBoxFor(item => item.EmailAddress, new { @class = "form-control", @maxlength = "50" })
                             </div>
                         </div>
                         <div class="col-sm-3">

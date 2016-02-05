@@ -5,7 +5,7 @@
 
 $(document).ready(function () {
     
-    $("#dob-date,#edit-app-date").datepicker();
+    $("#dob-date,#edit-app-date,#appt-date").datepicker();
     var txt = $('#ddlsurveys option:selected').text();
     $("#ddlsurveystext").val(txt);
 
@@ -191,5 +191,10 @@ function ShowNotification(msg)
 
 $("#lnkapptment").click(function () {
     $('#add-edit-MRN').modal('show');
+    $('#add-edit-MRN').modal({
+        backdrop: 'static',
+        keyboard: false
+    })
+   
 });
 
