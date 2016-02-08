@@ -24,9 +24,14 @@ namespace HRA4.Web.Controllers
         //}
         // GET: Admin
         [AllowAnonymous]
-        public ActionResult Index(string ReturnUrl)
+        public ActionResult Index(string ReturnUrl, string Error)   
         {            
             ViewBag.ReturnUrl = ReturnUrl;
+            if(!string.IsNullOrWhiteSpace(Error))
+            {
+                ModelState.AddModelError("", Error);
+                ViewBag.msg = "Error";
+            }
             return View();
         }
         //Added by Aditya on 21-12-2015
