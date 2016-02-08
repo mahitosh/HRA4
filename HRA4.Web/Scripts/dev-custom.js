@@ -190,10 +190,11 @@ function ShowNotification(msg)
 }
 
 $("#lnkapptment").click(function () {
-    $('#add-edit-MRN').modal('show');
+    
     $('#add-edit-MRN').modal({
         backdrop: 'static',
-        keyboard: false
+        keyboard: false,
+        show:true
     })
    
 });

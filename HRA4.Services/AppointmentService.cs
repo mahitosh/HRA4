@@ -209,7 +209,7 @@ namespace HRA4.Services
 
             Filteredlist.clinics = GetClinicList();
             Filteredlist.FromRAppointment(p);
-
+            Filteredlist.IsCopyAppointment = "No";
             
             Filteredlist.Providers = SessionManager.Instance.MetaData.AllProviders.ToProviderList();
             return Filteredlist;
@@ -239,6 +239,7 @@ namespace HRA4.Services
                 app.Providers = SessionManager.Instance.MetaData.AllProviders.ToProviderList();
                 app.FromRAppointment(_patient);
                 app.IsGoldenAppointment = "Yes";
+                app.IsCopyAppointment = "No";
                 return app;
 
             }
@@ -256,13 +257,40 @@ namespace HRA4.Services
                 app.Providers = SessionManager.Instance.MetaData.AllProviders.ToProviderList();
                 app.FromRAppointment(_patient);
                 app.IsGoldenAppointment = "No";
+                app.IsCopyAppointment = "No";
                 return app;
 
             }
 
         }
 
+        public VM.Appointment GetAppointmentForCopy(string ApptId, int InstitutionId, NameValueCollection searchfilter)
+        {
+            Patient _patient;
+            List<VM.Appointment> ap = GetAppointments(InstitutionId, searchfilter);
+            VM.Appointment copyAppt = SearchOnAppointment(ap, Constants.Id, ApptId).FirstOrDefault();
+            if (copyAppt == null)
+                return new VM.Appointment();
+            Appointment toCopy = copyAppt.ToRAppointment();
+            Appointment copiedFromExisting = new Appointment(toCopy, copyAppt.clinicID);
+            copiedFromExisting.BackgroundPersistWork(new HraModelChangedEventArgs(null));
 
+            SessionManager.Instance.SetActivePatient(copiedFromExisting.unitnum, copiedFromExisting.apptID);
+            SessionManager.Instance.GetActivePatient().BackgroundLoadWork();
+            SessionManager.Instance.MetaData.AllProviders.BackgroundListLoad();
+            _patient = SessionManager.Instance.GetActivePatient();
+            _patient.Providers.BackgroundListLoad();
+            VM.Appointment app = copiedFromExisting.FromRAppointment();
+            app.clinics = GetClinicList();
+            app.Providers = SessionManager.Instance.MetaData.AllProviders.ToProviderList();
+            app.FromRAppointment(_patient);
+            app.AppointmentDate = DateTime.Now;
+            app.appttime = null;
+            app.IsGoldenAppointment = "No";
+            app.IsCopyAppointment = "Yes";
+           // SavePatient(app);
+            return app;
+        }
         /// <summary>
         /// It will do searching on passed Appointment list based on below parameters
         /// </summary>
@@ -318,19 +346,25 @@ namespace HRA4.Services
         {
             SaveAppointments(Appt);
             UpdateMarkAsComplete(Appt, InstitutionId);
-
-
+            
         }
        
         
         private void SaveAppointments(VM.Appointment Appt)
         {
             var raAppt = Appt.ToRAppointment();
-
+           // raAppt.CreateAppointmentRecordsIfNeeded();
             raAppt.BackgroundPersistWork(new HraModelChangedEventArgs(null));
 
+
+            SavePatient(Appt);
+        }
+
+        private void SavePatient(VM.Appointment Appt)
+        {
             var raPatient = Appt.ToRAPatient();
-            raPatient.Providers.AddRange(SaveProvider(Appt));           
+           // raPatient.AddStockRelatives();
+            raPatient.Providers.AddRange(SaveProvider(Appt));
             raPatient.BackgroundPersistWork(new HraModelChangedEventArgs(null));
             raPatient.Providers.PersistFullList(new HraModelChangedEventArgs(null));
         }

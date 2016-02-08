@@ -306,6 +306,7 @@ namespace HRA4.Web.Controllers
                 Session[Constants.SearchFilter] = null;
                 NameValueCollection searchfilter = new NameValueCollection();
                 searchfilter = GetSearchFilter(name, appdt, clinicId);
+                Session[Constants.SearchFilter] = searchfilter;
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
                 apps_count = apps.Count();
                 //ViewBag.AppointmentCount = apps.Count();
@@ -415,7 +416,22 @@ namespace HRA4.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
+        public JsonResult GetAppoitmentForCopy(string ApptId, string appdt, string name, string clinicId)
+        {
+            string view = string.Empty;
+            if (Session != null && Session["InstitutionId"] != null)
+            {
+                int instId = (int)Session["InstitutionId"];
+                NameValueCollection searchfilter = new NameValueCollection();
+                searchfilter = GetSearchFilter(name, appdt, clinicId);
+                var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointmentForCopy(ApptId, instId, searchfilter);
+                apps.DisplayHeaderMenus = "No";
+                view = RenderPartialView("_InstitutionRow", apps);
+            }
+            var result = new { view = view };
+            return Json(result, JsonRequestBehavior.AllowGet);
 
+        }
         protected virtual string RenderPartialView(string partialViewName, object model)
         {
             if (ControllerContext == null)

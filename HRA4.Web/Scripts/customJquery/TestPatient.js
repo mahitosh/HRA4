@@ -102,7 +102,7 @@ function showNotification() {
         ShowNotification('Test Patients Created Successfully');
     }else
     {
-        ShowNotification('Invalid Date! Please select Date in proper format');
+        ShowErrorNotification('Invalid Date!');
         return false;
     }
 }

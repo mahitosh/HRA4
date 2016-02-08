@@ -89,6 +89,7 @@ namespace HRA4.ViewModels
         public int PCP { get; set; }
         public string DisplayHeaderMenus { get; set; }
         public string IsGoldenAppointment { get; set; }
+        public string IsCopyAppointment { get; set; }
     }
 
     public class ListOfProvider

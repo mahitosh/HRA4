@@ -3,6 +3,47 @@
 $(".editmenu").slideUp(0);
 $(".schedule-more-detail-content").hide();
 
+function ShowCopyApptModel(ApptId, path) {
+    $("#loading").fadeIn();
+    var opts = {
+        lines: 12, // The number of lines to draw
+        length: 7, // The length of each line
+        width: 4, // The line thickness
+        radius: 10, // The radius of the inner circle
+        color: '#000', // #rgb or #rrggbb
+        speed: 1, // Rounds per second
+        trail: 60, // Afterglow percentage
+        shadow: false, // Whether to render a shadow
+        hwaccel: false // Whether to use hardware acceleration
+    };
+    var target = document.getElementById('loading');
+    // alert(target);
+    var spinner = new Spinner(opts).spin(target);
+    $(target).data('spinner', spinner);
+    var dt = $("#appt-date").val();
+    var nm = $("#name").val();
+    var clinicId = $("#ddClinic").val();
+    $.ajax({
+        type: "POST",
+        url: path,
+        data: { ApptId: ApptId, appdt: dt, name: nm, clinicId: clinicId },
+        dataType: "json",
+        async: true,
+        success: function (Data) {
+            $('#loading').data('spinner').stop();
+            $('#loading').hide();
+             $('#Copy-Appt').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show:true
+            })
+             $('#CopyApptBody').html(Data.view);
+
+        }
+    })
+}
+
+
 function HideAddAppt() {
     $("#EnteredMRN").val('');
     $("#add-edit-MRN").modal('hide');
@@ -34,31 +75,34 @@ function validateDate(testdate) {
     var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
     return date_regex.test(testdate);
 }
-function isValidEmailAddress(emailAddress) {
-    var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
-    return pattern.test(emailAddress);
-};
-function ValidateModel() {
-   
-    var PatientName = $("#PatientName").val();
-    var MRN = $("#MRN").val();
-    var dobdate = $("#dob-date").val();
-    var ddlGenders = $("#ddlGenders").val();
-    var editappdate = $("#edit-app-date").val();
-    var ddlappttimes = $("#ddlappttimes").val();
-    var Survey = $("#Survey").val();
-    var ddlclinics = $("#ddlclinics").val();
-    var email = $("#EmailAddress").val();
 
+function ValidateModel() {
+    var email, PatientName, MRN, dobdate, ddlGenders, editappdate, ddlappttimes, Survey, ddlclinics;
+    PatientName = $("#PatientName").val();
+    MRN = $("#MRN").val();
+    dobdate = $("#dob-date").val();
+    ddlGenders = $("#ddlGenders").val();
+    editappdate = $("#edit-app-date").val();
+    ddlappttimes = $("#ddlappttimes").val();
+    Survey = $("#Survey").val();
+    ddlclinics = $("#ddlclinics").val();
+    email = $("#EmailAddress").val();
+   
     if(PatientName==''||MRN==''||dobdate==''||editappdate==''||Survey=='')
     {
-        ShowNotification('Please fill Mandatory fields!');
+        ShowErrorNotification('Please fill Mandatory fields!');
         return false;
     }
-    if (!isValidEmailAddress(email)) {
-        ShowNotification('Invalid Email Address!');
-        return false;
+     var patt = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    
+    if (email != '')
+    {         
+        if (!patt.test(email)) {
+            ShowErrorNotification('Invalid Email Address!');
+            return false;
+        }
     }
+   
     //var result1=validateDate(dobdate);
     //var result2=validateDate(editappdate);
     //if (result1==false ||result2==false)
@@ -68,7 +112,9 @@ function ValidateModel() {
     //}
     
     ShowNotification('Appointment Saved Successfully!');
+
     $("#add-edit-MRN").modal('hide');
+    $("#Copy-Appt").modal('hide');
     return true;
 }
 
@@ -78,6 +124,24 @@ function moredetails() {
     $("i", this).toggleClass("fa-plus-circle fa-minus-circle");
 }
 function ShowEdit(obj, mrn, apptid, path) {
+
+    $("#loading").fadeIn();
+    var opts = {
+        lines: 12, // The number of lines to draw
+        length: 7, // The length of each line
+        width: 4, // The line thickness
+        radius: 10, // The radius of the inner circle
+        color: '#000', // #rgb or #rrggbb
+        speed: 1, // Rounds per second
+        trail: 60, // Afterglow percentage
+        shadow: false, // Whether to render a shadow
+        hwaccel: false // Whether to use hardware acceleration
+    };
+    var target = document.getElementById('loading');
+    // alert(target);
+    var spinner = new Spinner(opts).spin(target);
+    $(target).data('spinner', spinner);
+
     $(".editmenu").slideUp(0);
     var trid = "#" + obj.id + "-b";
     $(trid).slideDown(100);
@@ -94,6 +158,8 @@ function ShowEdit(obj, mrn, apptid, path) {
         dataType: "json",
         async: true,
         success: function (Data) {
+            $('#loading').data('spinner').stop();
+            $('#loading').hide();
             $('.InstitutionPartialdiv').html('');
             $('.InstitutionPartialdiv').html(Data.view);
             Applytablesorter();
@@ -104,7 +170,7 @@ function ShowEdit(obj, mrn, apptid, path) {
 
 }
 
-function cancel(obj,status,path,apptid,IsGoldenAppointment) {
+function cancel(obj,status,path,apptid,IsGoldenAppointment,IsCopy) {
     if (status != "Yes")
     {
         if (IsGoldenAppointment == "No") {
@@ -119,15 +185,22 @@ function cancel(obj,status,path,apptid,IsGoldenAppointment) {
                 async: true,
                 success: function (Data) {
                                      
-
+                    Applytablesorter();
                 }
             })
         }
-        $("#MRNBody").show();
-        $("#ApptFooter").show();
-        $("#ApptBody").html('');
-        $("#EnteredMRN").val('');
-        $("#add-edit-MRN").modal('hide');
+        if (IsCopy == "Yes")
+        {
+            $("#CopyApptBody").html('');
+            $("#Copy-Appt").modal('hide');
+
+        } else {
+            $("#MRNBody").show();
+            $("#ApptFooter").show();
+            $("#ApptBody").html('');
+            $("#EnteredMRN").val('');
+            $("#add-edit-MRN").modal('hide');
+        }
     }
     else {
         var chkid = "#" + obj.id + "chk";

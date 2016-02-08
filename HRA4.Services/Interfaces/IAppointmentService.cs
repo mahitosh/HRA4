@@ -33,5 +33,6 @@ namespace HRA4.Services.Interfaces
         void DeleteTestPatientsByapptids(int[] apptids);
         void ExcludeTestPatientsByapptids(int[] apptids);
         VM.Appointment GetAppointmentForAdd(string MRN, int clinicId);
+        VM.Appointment GetAppointmentForCopy(string ApptId, int InstitutionId, NameValueCollection searchfilter);
     }
 }
