@@ -67,8 +67,8 @@ opacity: 1;-webkit-transition: all 2s ease;-moz-transition: all 2s ease;-ms-tran
 #loginform .btn-success{background: #80c31f;}
 #loginform .btn-danger{background: #bc1212;margin-right: 10px;}
 .login-right-corner-div{width: 0px;background-color: #e0ecc7;height:96px;opacity: 0.5;filter: alpha(opacity=50); /* For IE8 and earlier */}
-.login-right-corner:before, .login-left-corner:before{background: transparent ;border-color: transparent #72b116;border-style: solid;border-width: 120px 105px 0 0;content: "";display: block;right: 0px;position: absolute; top: 0; width: 0;z-index: 100;}
-.login-right-corner-div:after, .login-left-corner-div:after{background: transparent ;border-color: transparent #e0ecc7;border-style: solid;border-width: 120px 185px 0 0;content: "";display: block;right: 7px;position: absolute; top: 0; width: 0;z-index:-1;opacity: 0.8;filter: alpha(opacity=80); /* For IE8 and earlier */}
+.login-right-corner:before{background: transparent ;border-color: transparent #72b116;border-style: solid;border-width: 120px 105px 0 0;content: "";display: block;right: 0px;position: absolute; top: 0; width: 0;z-index: 100;}
+.login-right-corner-div:after{background: transparent ;border-color: transparent #e0ecc7;border-style: solid;border-width: 120px 185px 0 0;content: "";display: block;right: 7px;position: absolute; top: 0; width: 0;z-index:-1;opacity: 0.8;filter: alpha(opacity=80); /* For IE8 and earlier */}
 .right-corner-wrapper{position:fixed;right:0;bottom:10px;}
 .login-left-corner:before{border-width: 0 0 120px 105px;left: 0px;}
 .login-left-corner-div:after{border-width: 0 0 120px 185px;left: 2px;}
@@ -236,6 +236,7 @@ img.add-istitution-list{margin:-3px 4px 0 30px;}
 .modal-header{padding: 10px 15px; background-color: #53afee;color: #fff;border-radius:5px 5px 0 0;}
 .modal-title{font-weight:bold;}
 #add-edit-MRN .modal-dialog{width:830px;height:630px;}
+#Copy-Appt .modal-dialog{width:830px;height:630px;}
 .modal-dialog{margin-top:100px;}
 #schedule-new-doc-modal .modal-dialog, #pedigree-diagram-modal .modal-dialog, #risk-calc-display-modal .modal-dialog, #about-us-moadal .modal-dialog, #BRCA-pedigree-diagram-modal .modal-dialog, #LifetimeCancer-pedigree-diagram-modal .modal-dialog, #edit-provider .modal-dialog{width:700px;margin-top:30px;}
 #pedigree-diagram-modal .view-doc-content, #BRCA-pedigree-diagram-modal .view-doc-cont, #LifetimeCancer-pedigree-diagram-modal .view-doc-cont{height:630px;}

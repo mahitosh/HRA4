@@ -88,8 +88,8 @@
 
     }, new { id = "frmSaveInst" }))
     {
-        @Html.HiddenFor(item => item.Id)
         
+        @Html.HiddenFor(item => item.Id)
         <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
         if (flag == "Yes")
         {
@@ -127,7 +127,7 @@
                     <label>DOB *</label>
                     <div id="DOB" class="inner-addon right-addon form-group">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" name="dob-date" id="dob-date" value="@Model.DateOfBirth" />
+                        <input type="text" class="datepicker form-control" name="dob-date" id="dob-date" value="@Model.DateOfBirth.ToString("MM/dd/yyyy")" />
                         @*@Html.EditorFor(item => item.DateOfBirth, new { @class = "datepicker form-control", @id = "dob-date" })*@
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                     <label>Appointment Date *</label>
                     <div id="edit-app-date-container" class="inner-addon right-addon form-group">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" name="edit-app-date" id="edit-app-date" value="@Model.AppointmentDate" />
+                        <input  type="text" class="datepicker form-control" name="edit-app-date" id="edit-app-date" value="@Model.AppointmentDate.ToString("MM/dd/yyyy")" />
                     </div>
                 </div>
             </div>
@@ -212,6 +212,7 @@
                             <div class="form-group">
                                 <label>Language</label>
                                 @Html.DropDownList("ddlLanguages", new SelectList(@Model.Languages, @Model.Language), new { @class = "form-control" })
+                                
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -360,7 +361,7 @@
             <div class="col-sm-12 align-right">
                 <div class="form-group">
                     <button id="btnSaveQuick" type="submit" class="pull-right btn btn-success btn-sm  Margin-L-10" onclick="return ValidateModel();">Save</button>
-                    <button id="@Model.Id" type="button" class="pull-right btn btn-cancel btn-sm btnClear" onclick="cancel(this,'@Model.DisplayHeaderMenus','@Url.Action("DeleteAppointment", "Institution")','@Model.Id.ToString()','@Model.IsGoldenAppointment'); return false;">Cancel</button>
+                    <button id="@Model.Id" type="button" class="pull-right btn btn-cancel btn-sm btnClear" onclick="cancel(this,'@Model.DisplayHeaderMenus','@Url.Action("DeleteAppointment", "Institution")','@Model.Id.ToString()','@Model.IsGoldenAppointment','@Model.IsCopyAppointment'); return false;">Cancel</button>
                 </div>
             </div><!--schedule-more-detail-content end-->
         </div>

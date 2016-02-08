@@ -69,6 +69,7 @@ namespace RiskApps3.Model.PatientRecord
             this.apptID = CreateAppointment();
 
             this.unitnum = appointment.unitnum;
+            
             this.patientname = appointment.patientname;
             this.diseases = appointment.diseases;
             this.dob = appointment.dob;
@@ -88,6 +89,7 @@ namespace RiskApps3.Model.PatientRecord
             this.accession = appointment.accession;
 
             UpdateMrn(this.unitnum);
+           
             this.PersistFullObject(new HraModelChangedEventArgs(null));
         }
 
@@ -322,7 +324,7 @@ namespace RiskApps3.Model.PatientRecord
         /// Used to save a new Appointment to the DB.
         /// </summary>
         /// <returns>new appt ID</returns>
-        private int CreateAppointment()
+        public int CreateAppointment() //Silicus: Changed private to public
         {
             int newApptId = -1; 
             try
