@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Web", "01.Web", "{5B7F2E98-E5A5-4BB2-8534-BBF36B6FB3E7}"
 EndProject
@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRA4.Repositories", "HRA4.R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRA4.Utilities", "HRA4.Utilities\HRA4.Utilities.csproj", "{5F48E47F-CFF1-4DF5-8306-7BA2FE526386}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiskApps3Old", "RiskApps3\RiskApps3Old.csproj", "{16B371C4-551B-43C6-93DB-5ECF4C70BC66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiskApps3", "RiskApps3\RiskApps3.csproj", "{16B371C4-551B-43C6-93DB-5ECF4C70BC66}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRA4.Web", "HRA4.Web\HRA4.Web.csproj", "{AEBE6E16-91A1-4A1B-AFDF-00AC7476ED59}"
 EndProject
@@ -46,7 +46,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceAssemblies", "Refe
 		ReferenceAssemblies\WeifenLuo.WinFormsUI.Docking.dll = ReferenceAssemblies\WeifenLuo.WinFormsUI.Docking.dll
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiskApps3", "RASourcesV3\RiskApps3.csproj", "{B6074344-DCF2-4316-8363-7C9E01AB26E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiskApps3New", "RASourcesV3\RiskApps3New.csproj", "{B6074344-DCF2-4316-8363-7C9E01AB26E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

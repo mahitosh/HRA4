@@ -41,72 +41,72 @@ namespace TestApp
 
         private static void CreateMenu()
         {
-            string conn1 = "Server=.\\SQLEXPRESS;Database=RiskappCommon;User Id=sa;Password=mk#12345;";
-            //We cannot run/use Simple.Data when support for legacy framework is allowed.
-            dynamic commonDbContext = Simple.Data.Database.OpenConnection(conn1);
-            HRA4.ViewModels.Menu menu = new HRA4.ViewModels.Menu()
-            {
-                MenuName = "Manage Users",
-                Roles = "SuperAdmin|Administrator",
-                Controller = "User",
-                Action = "Index"
-            };
-            commonDbContext.Menu.Insert(menu);
+            //string conn1 = "Server=.\\SQLEXPRESS;Database=RiskappCommon;User Id=sa;Password=mk#12345;";
+            ////We cannot run/use Simple.Data when support for legacy framework is allowed.
+            //dynamic commonDbContext = Simple.Data.Database.OpenConnection(conn1);
+            //HRA4.ViewModels.Menu menu = new HRA4.ViewModels.Menu()
+            //{
+            //    MenuName = "Manage Users",
+            //    Roles = "SuperAdmin|Administrator",
+            //    Controller = "User",
+            //    Action = "Index"
+            //};
+            //commonDbContext.Menu.Insert(menu);
 
-            menu = new HRA4.ViewModels.Menu()
-            {
-                MenuName = "Manage Institution",
-                Roles = "SuperAdmin",
-                Controller = "Admin",
-                Action = "Index"
-            };
-            commonDbContext.Menu.Insert(menu);
+            //menu = new HRA4.ViewModels.Menu()
+            //{
+            //    MenuName = "Manage Institution",
+            //    Roles = "SuperAdmin",
+            //    Controller = "Admin",
+            //    Action = "Index"
+            //};
+            //commonDbContext.Menu.Insert(menu);
 
-            menu = new HRA4.ViewModels.Menu()
-            {
-                MenuName = "Manage Providers",
-                Roles = "SuperAdmin|Administrator",
-                Controller = "Providers",
-                Action = "Index"
-            };
-            commonDbContext.Menu.Insert(menu);
+            //menu = new HRA4.ViewModels.Menu()
+            //{
+            //    MenuName = "Manage Providers",
+            //    Roles = "SuperAdmin|Administrator",
+            //    Controller = "Providers",
+            //    Action = "Index"
+            //};
+            //commonDbContext.Menu.Insert(menu);
 
-            menu = new HRA4.ViewModels.Menu()
-            {
-                MenuName = "Manage Documents",
-                Roles = "SuperAdmin|Administrator",
-                Controller = "DocumentEditor",
-                Action = "Index"
-            };
-            commonDbContext.Menu.Insert(menu);
+            //menu = new HRA4.ViewModels.Menu()
+            //{
+            //    MenuName = "Manage Documents",
+            //    Roles = "SuperAdmin|Administrator",
+            //    Controller = "DocumentEditor",
+            //    Action = "Index"
+            //};
+            //commonDbContext.Menu.Insert(menu);
 
-            menu = new HRA4.ViewModels.Menu()
-            {
-                MenuName = "Audit Reports",
-                Roles = "SuperAdmin|Administrator",
-                Controller = "Reports",
-                Action = "AuditReports"
-            };
-            commonDbContext.Menu.Insert(menu);
+            //menu = new HRA4.ViewModels.Menu()
+            //{
+            //    MenuName = "Audit Reports",
+            //    Roles = "SuperAdmin|Administrator",
+            //    Controller = "Reports",
+            //    Action = "AuditReports"
+            //};
+            //commonDbContext.Menu.Insert(menu);
 
          
-            menu = new HRA4.ViewModels.Menu()
-            {
-                MenuName = "TestPatient",
-                Roles = "SuperAdmin|Administrator",
-                Controller = "TestPatient",
-                Action = "TestPatients"
-            };
-            commonDbContext.Menu.Insert(menu);
+            //menu = new HRA4.ViewModels.Menu()
+            //{
+            //    MenuName = "TestPatient",
+            //    Roles = "SuperAdmin|Administrator",
+            //    Controller = "TestPatient",
+            //    Action = "TestPatients"
+            //};
+            //commonDbContext.Menu.Insert(menu);
 
-            menu = new HRA4.ViewModels.Menu()
-            {
-                MenuName = "Manage Clinics",
-                Roles = "SuperAdmin|Administrator",
-                Controller = "Clinics",
-                Action = "Index"
-            };
-            commonDbContext.Menu.Insert(menu);
+            //menu = new HRA4.ViewModels.Menu()
+            //{
+            //    MenuName = "Manage Clinics",
+            //    Roles = "SuperAdmin|Administrator",
+            //    Controller = "Clinics",
+            //    Action = "Index"
+            //};
+            //commonDbContext.Menu.Insert(menu);
 
 
         }

@@ -36,6 +36,8 @@ namespace HRA4.Services
 {
     public class AppointmentService : IAppointmentService
     {
+        private Person relative = null;
+
         string _username;
         RAM.User _user;
         int _institutionId;
@@ -56,6 +58,11 @@ namespace HRA4.Services
             //SetUserSession();
         }
 
+        public AppointmentService(Person person)
+        {
+
+            relative = person;
+        }
 
         public List<VM.Tasks> GetTasks(int InstitutionId, string unitnum)
         {
@@ -262,7 +269,7 @@ namespace HRA4.Services
         /// <param name="apptid">Appointment Id</param>
         /// <param name="MRN">MRN Number</param>
         /// <returns>Patient Model</returns>
-        private Patient CalculateRiskAndRunAutomation(int apptid, string MRN)
+        public Patient CalculateRiskAndRunAutomation(int apptid, string MRN)
         {
            // Appointment.MarkComplete(apptid);// Commented this code as the new library is giving error.
             SessionManager.Instance.SetActivePatient(MRN, apptid);
@@ -328,13 +335,13 @@ namespace HRA4.Services
                 //Commented below line as the new library is giving error.
                 if (Appt.SetMarkAsComplete)
                 {
-                    appt.MarkComplete();
-                    //Appointment.MarkComplete(appt.apptID);
+                   // appt.MarkComplete();
+                    Appointment.MarkComplete(appt.apptID);
                 }
                 else
                 {
-                    appt.MarkIncomplete();
-                    //Appointment.MarkIncomplete(appt.apptID);
+                    //appt.MarkIncomplete();
+                    Appointment.MarkIncomplete(appt.apptID);
                 }
             }
         }
@@ -534,6 +541,567 @@ namespace HRA4.Services
 
 
         }
+
+        public bool SetDeleteButtonFlag(Person relative)
+        {
+
+
+            bool retval = true;
+
+            if (relative == null)
+                return false ;
+
+            if (relative.relativeID < 8)
+            {
+                retval = false;
+            }
+            else
+            {
+                foreach (Person p in relative.owningFHx)
+                {
+                    if (p.motherID == relative.relativeID || p.fatherID == relative.relativeID)
+                    {
+                        retval = false;
+                        break;
+                    }
+                }
+            }
+
+            return retval;
+        
+        }
+
+        public void AddRelative(RiskApps3.Model.PatientRecord.Patient proband, ViewModels.FamilyHistoryRelative obj)
+        {
+            /*==============================*/
+
+            RiskApps3.Model.PatientRecord.FHx.FamilyHistory FHX = new RiskApps3.Model.PatientRecord.FHx.FamilyHistory(proband);
+
+            proband.FHx.BackgroundListLoad();
+
+            string relationship = "";
+            string bloodline = "";
+
+            int count = 1;
+
+            switch (obj.Relationship)
+            {
+                case "Son":
+                case "Daughter":
+                case "Brother":
+                case "Sister":
+                case "Cousin":
+                case "Cousin (Male)":
+                case "Cousin (Female)":
+                case "Niece":
+                case "Nephew":
+                case "Other":
+                case "Other (Male)":
+                case "Other (Female)":
+                    relationship = obj.Relationship;
+                    break;
+                case "Aunt - Maternal":
+                    relationship = "Aunt";
+                    bloodline = "Maternal";
+                    break;
+                case "Aunt - Paternal":
+                    relationship = "Aunt";
+                    bloodline = "Paternal";
+                    break;
+                case "Uncle - Maternal":
+                    relationship = "Uncle";
+                    bloodline = "Maternal";
+                    break;
+                case "Uncle - Paternal":
+                    relationship = "Uncle";
+                    bloodline = "Paternal";
+                    break;
+
+            }
+
+            if (relationship.Length > 0)
+            {
+                string new_rel_type;
+
+                List<Person> retval = new List<Person>();
+
+                RelationshipEnum re = Relationship.Parse(relationship);
+                GenderEnum ge = Relationship.getGenderFromRelationshipType(re);
+                if (Relationship.isOffspring(re))
+                {
+                    Person newSpouse = null;
+                    foreach (Person q in proband.FHx)
+                    {
+                        if (q.relationshipOther == "Spouse of Self")
+                        {
+                            newSpouse = q;
+                            break;
+                        }
+                    }
+                    if (newSpouse == null)
+                    {
+                        newSpouse = proband.FHx.CreateSpouse(proband);
+                      
+                        
+                        HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
+                        args.updatedMembers.Add(newSpouse.GetMemberByName("relativeID")); // Edit And save
+                        args.updatedMembers.Add(newSpouse.GetMemberByName("relationship"));
+                        args.updatedMembers.Add(newSpouse.GetMemberByName("relationshipOther"));
+                        //args.updatedMembers.Add(newSpouse.GetMemberByName("bloodline"));
+                        args.updatedMembers.Add(newSpouse.GetMemberByName("motherID"));
+                        args.updatedMembers.Add(newSpouse.GetMemberByName("fatherID"));
+                        args.updatedMembers.Add(newSpouse.GetMemberByName("gender"));
+                        //args.updatedMembers.Add(newSpouse.GetMemberByName("vitalStatus"));
+                        args.updatedMembers.Add(newSpouse.GetMemberByName("twinID"));
+                        args.updatedMembers.Add(newSpouse.GetMemberByName("x_position"));
+                        args.updatedMembers.Add(newSpouse.GetMemberByName("y_position"));
+                        args.updatedMembers.Add(newSpouse.GetMemberByName("x_norm"));
+                        args.updatedMembers.Add(newSpouse.GetMemberByName("y_norm"));
+                        args.updatedMembers.Add(newSpouse.GetMemberByName("pedigreeGroup"));
+                        args.updatedMembers.Add(newSpouse.GetMemberByName("consanguineousSpouseID"));
+                        newSpouse.BackgroundPersistWork(args);
+
+                       // newSpouse.BackgroundPersistWork(); 
+                        //this.AddToList(newSpouse, new HraModelChangedEventArgs(null));
+                    }
+
+                    for (int i = 0; i < count; i++)
+                    {
+                        proband.FHx.BackgroundListLoad();
+
+                        int nextID = proband.FHx.GetNewRelativeID();
+                        Person newRel = new Person(proband.FHx);
+                        newRel.HraState = RiskApps3.Model.HraObject.States.Ready;
+                        newRel.relativeID = nextID;
+                        newRel.motherID = 0;
+                        newRel.fatherID = 0;
+
+                        newRel.owningFHx = proband.FHx;
+                        newRel.vitalStatus = "Alive";
+                        newRel.gender = Gender.toString(ge);
+                        newRel.relationship = relationship;
+                        newRel.bloodline = bloodline;
+
+                        if (proband.gender == "Female")
+                        {
+                            newRel.motherID = proband.relativeID;
+                            newRel.fatherID = newSpouse.relativeID;
+                        }
+                        else
+                        {
+                            newRel.motherID = newSpouse.relativeID;
+                            newRel.fatherID = proband.relativeID;
+                        }
+
+
+                        HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
+                        args.updatedMembers.Add(newRel.GetMemberByName("relativeID")); // Edit And save
+                        args.updatedMembers.Add(newRel.GetMemberByName("relationship"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("bloodline"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("motherID"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("fatherID"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("gender"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("vitalStatus"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("twinID"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("x_position"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("y_position"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("x_norm"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("y_norm"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("pedigreeGroup"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("consanguineousSpouseID"));
+                        newRel.BackgroundPersistWork(args);
+                        //this.AddToList(newRel, new HraModelChangedEventArgs(null)); 
+                        retval.Add(newRel);
+                    }
+                    //AddChild(proband, false, count, ge);
+                    //List<Person> newFolks = AddChild(proband, false, count, ge);
+                    //foreach (Person np in newFolks)
+                    //{
+                    //    retval.Add(np);
+                    //    //np.SignalModelChanged(new HraModelChangedEventArgs(null));
+                    //}
+                }
+                else
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        int nextID = proband.FHx.GetNewRelativeID();
+                        Person newRel = new Person(proband.FHx);
+                        newRel.HraState = RiskApps3.Model.HraObject.States.Ready;
+                        newRel.relativeID = nextID;
+                        newRel.motherID = 0;
+                        newRel.fatherID = 0;
+
+                        newRel.owningFHx = proband.FHx;
+                        newRel.vitalStatus = "Alive";
+                        newRel.gender = Gender.toString(ge);
+                        newRel.relationship = relationship;
+                        newRel.bloodline = bloodline;
+                        proband.FHx.SetIDsFromRelationship(ref newRel);
+
+                       
+                        
+                        HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
+                        args.updatedMembers.Add(newRel.GetMemberByName("relativeID")); // Edit And save
+                        args.updatedMembers.Add(newRel.GetMemberByName("relationship"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("bloodline"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("motherID"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("fatherID"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("gender"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("vitalStatus"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("twinID"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("x_position"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("y_position"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("x_norm"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("y_norm"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("pedigreeGroup"));
+                        args.updatedMembers.Add(newRel.GetMemberByName("consanguineousSpouseID"));
+                        newRel.BackgroundPersistWork(args);
+                        
+                        /*
+                        proband.FHx.AddToList(newRel, new HraModelChangedEventArgs(null));
+                         */ 
+                        retval.Add(newRel);
+                    }
+                }
+               
+
+
+            }
+
+
+        
+        }
+
+        public void DeleteSurvey(RiskApps3.Model.PatientRecord.Patient proband, ViewModels.FamilyHistoryRelative obj)
+        {
+
+            RiskApps3.Model.PatientRecord.PastMedicalHistory pmh = new RiskApps3.Model.PatientRecord.PastMedicalHistory(proband);
+            Person per = proband.FHx.Relatives.Where(p => p.relativeID == obj.RelativeId).FirstOrDefault();
+
+            HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
+            args.Delete = true;
+            args.updatedMembers.Add(per.GetMemberByName("relativeID")); // Edit And save
+            args.updatedMembers.Add(per.GetMemberByName("relationship"));
+            args.updatedMembers.Add(per.GetMemberByName("bloodline"));
+            args.updatedMembers.Add(per.GetMemberByName("motherID"));
+            args.updatedMembers.Add(per.GetMemberByName("fatherID"));
+            args.updatedMembers.Add(per.GetMemberByName("gender"));
+            args.updatedMembers.Add(per.GetMemberByName("vitalStatus"));
+            args.updatedMembers.Add(per.GetMemberByName("twinID"));
+            args.updatedMembers.Add(per.GetMemberByName("x_position"));
+            args.updatedMembers.Add(per.GetMemberByName("y_position"));
+            args.updatedMembers.Add(per.GetMemberByName("x_norm"));
+            args.updatedMembers.Add(per.GetMemberByName("y_norm"));
+            args.updatedMembers.Add(per.GetMemberByName("pedigreeGroup"));
+            args.updatedMembers.Add(per.GetMemberByName("consanguineousSpouseID"));
+            per.BackgroundPersistWork(args);
+        
+        }
+
+        public void EditSurvey(RiskApps3.Model.PatientRecord.Patient proband, ViewModels.FamilyHistoryRelative obj)
+        {
+            RiskApps3.Model.PatientRecord.PastMedicalHistory pmh = new RiskApps3.Model.PatientRecord.PastMedicalHistory(proband);
+            Person per = proband.FHx.Relatives.Where(p => p.relativeID == obj.RelativeId).FirstOrDefault();
+            per.vitalStatus = obj.VitalStatus;
+            per.relationship = obj.Relationship;
+            per.age = obj.RelativeAge;
+            HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
+            args.updatedMembers.Add(per.GetMemberByName("vitalStatus"));
+            //args.updatedMembers.Add(per.GetMemberByName("relationship"));
+            args.updatedMembers.Add(per.GetMemberByName("age"));
+            per.BackgroundPersistWork(args);
+
+
+            relative = per;
+
+
+            relative.PMH.BackgroundLoadWork();
+            pmh = relative.PMH;
+
+
+
+            SessionManager.Instance.MetaData.Diseases.BackgroundListLoad();
+
+
+            relative.PMH.BackgroundLoadWork();
+
+            for (int i = 0; i < 3; i++)
+            {
+
+                ClincalObservation co = new ClincalObservation();
+
+                if (i < pmh.Observations.Count)
+                {
+
+                    co = (ClincalObservation)pmh.Observations[i];
+
+
+                }
+
+                switch (i)
+                {
+                    case 0:
+                        if (co.instanceID != 0)
+                        {
+                            co.disease = obj.FirstDx;
+                            co.ageDiagnosis = obj.FirstAgeOnset;
+                            co.SetDiseaseDetails();
+                            HraModelChangedEventArgs args1 = new HraModelChangedEventArgs(null);
+                            args1.updatedMembers.Add(co.GetMemberByName("disease"));
+                            args1.updatedMembers.Add(co.GetMemberByName("ageDiagnosis"));
+                            co.BackgroundPersistWork(args1);
+                        }
+                        else
+                        {
+
+
+                            ClincalObservation co1 = new ClincalObservation(pmh);
+                            co1.disease = obj.FirstDx;
+                            co1.ageDiagnosis = obj.FirstAgeOnset;
+                            co1.SetDiseaseDetails();
+                            HraModelChangedEventArgs args1 = new HraModelChangedEventArgs(null);
+                            args1.updatedMembers.Add(co1.GetMemberByName("disease"));
+
+                            args1.updatedMembers.Add(co1.GetMemberByName("ageDiagnosis"));
+
+                            co1.BackgroundPersistWork(args1);
+
+                            pmh.Observations.AddToList(co1, args1);
+
+
+                        }
+
+                        break;
+                    case 1:
+                        if (co.instanceID != 0)
+                        {
+                            co.disease = obj.SecondDx;
+                            co.ageDiagnosis = obj.SecondAgeOnset;
+                            co.SetDiseaseDetails();
+                            HraModelChangedEventArgs args1 = new HraModelChangedEventArgs(null);
+                            args1.updatedMembers.Add(co.GetMemberByName("disease"));
+                            args1.updatedMembers.Add(co.GetMemberByName("ageDiagnosis"));
+                            co.BackgroundPersistWork(args1);
+                        }
+                        else
+                        {
+
+
+                            ClincalObservation co1 = new ClincalObservation(pmh);
+                            co1.disease = obj.SecondDx;
+                            co1.ageDiagnosis = obj.SecondAgeOnset;
+                            co1.SetDiseaseDetails();
+                            HraModelChangedEventArgs args1 = new HraModelChangedEventArgs(null);
+                            args1.updatedMembers.Add(co1.GetMemberByName("disease"));
+
+                            args1.updatedMembers.Add(co1.GetMemberByName("ageDiagnosis"));
+
+                            co1.BackgroundPersistWork(args1);
+
+                            pmh.Observations.AddToList(co1, args1);
+
+
+                        }
+                        break;
+                    case 2:
+                        if (co.instanceID != 0)
+                        {
+                            co.disease = obj.ThirdDx;
+                            co.ageDiagnosis = obj.ThirdAgeOnset;
+                            co.SetDiseaseDetails();
+                            HraModelChangedEventArgs args1 = new HraModelChangedEventArgs(null);
+                            args1.updatedMembers.Add(co.GetMemberByName("disease"));
+                            args1.updatedMembers.Add(co.GetMemberByName("ageDiagnosis"));
+                            co.BackgroundPersistWork(args1);
+                        }
+                        else
+                        {
+
+
+                            ClincalObservation co1 = new ClincalObservation(pmh);
+                            co1.disease = obj.ThirdDx;
+                            co1.ageDiagnosis = obj.ThirdAgeOnset;
+                            co1.SetDiseaseDetails();
+                            HraModelChangedEventArgs args1 = new HraModelChangedEventArgs(null);
+                            args1.updatedMembers.Add(co1.GetMemberByName("disease"));
+
+                            args1.updatedMembers.Add(co1.GetMemberByName("ageDiagnosis"));
+
+                            co1.BackgroundPersistWork(args1);
+
+                            pmh.Observations.AddToList(co1, args1);
+
+
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+
+        
+        
+        }
+
+        public void SaveSurvey(string unitnum, int apptid, ViewModels.FamilyHistoryRelative obj , int type )
+        {
+
+       
+            SessionManager.Instance.SetActivePatient(unitnum, apptid);
+            SessionManager.Instance.GetActivePatient().BackgroundLoadWork();
+            RiskApps3.Model.PatientRecord.Patient proband = SessionManager.Instance.GetActivePatient();
+            proband.FHx.BackgroundListLoad();
+
+            
+
+            if (type == 0)
+            {
+
+                AddRelative(proband, obj);
+            }
+            else if (type == 1)
+            {
+                EditSurvey(proband, obj);
+
+            }
+            else
+            {
+                DeleteSurvey(proband, obj);
+            }
+
+            
+         
+        
+        }
+
+       
+
+               
+
+        public List<ViewModels.FamilyHistoryRelative> GetFamilyHistoryRelative(string unitnum, int apptid)
+        {
+            string assignedBy = "";
+
+            
+            if (SessionManager.Instance.ActiveUser != null)
+            {
+                if (string.IsNullOrEmpty(SessionManager.Instance.ActiveUser.ToString()) == false)
+                {
+                    assignedBy = SessionManager.Instance.ActiveUser.ToString();
+
+                }
+            }
+            string _userlogin = SessionManager.Instance.ActiveUser.userLogin;
+            SessionManager.Instance.SetActivePatient(unitnum, apptid);
+            SessionManager.Instance.GetActivePatient().BackgroundLoadWork();
+            RiskApps3.Model.PatientRecord.Patient proband = SessionManager.Instance.GetActivePatient();
+
+            RiskApps3.Model.PatientRecord.PastMedicalHistory pmh = new RiskApps3.Model.PatientRecord.PastMedicalHistory(proband);
+            RiskApps3.Model.PatientRecord.FHx.FamilyHistory FHX = new RiskApps3.Model.PatientRecord.FHx.FamilyHistory(proband)  ;
+            
+            proband.FHx.BackgroundListLoad();
+           
+            /*
+            RiskApps3.Model.PatientRecord.Person relative1 = new RiskApps3.Model.PatientRecord.Person(proband.FHx);
+            relative1.BackgroundLoadWork();
+             */
+ 
+            //RiskApps3.Model.PatientRecord.FHx.FamilyHistory proband = SessionManager.Instance.GetActivePatient().FHx;
+
+
+            List<ViewModels.FamilyHistoryRelative> lst = new List<VM.FamilyHistoryRelative>();
+
+            
+            //foreach (Person p in proband.FHx.Relatives)
+            //foreach (Person p in FHX.Relatives)
+            foreach (Person p in proband.FHx.Relatives)
+            {
+              
+
+                ViewModels.FamilyHistoryRelative obj = new ViewModels.FamilyHistoryRelative();
+                
+
+                //Person relative = p;
+                relative = p;
+
+                obj.Relationship = "";
+
+               // pmh = relative.PMH;
+
+                if (string.IsNullOrEmpty(relative.bloodline) || relative.relationship.ToLower() == "mother" || relative.relationship.ToLower() == "father")
+                {
+                    if (relative.relationship.ToLower() != "other")
+                        obj.Relationship = relative.relationship;
+                }
+                else
+                {
+                    if (relative.bloodline.ToLower() != "unknown" && relative.bloodline.ToLower() != "both")
+                        obj.Relationship = relative.bloodline + " " + relative.relationship;
+                    else
+                        obj.Relationship = relative.relationship;
+                }
+
+                if (obj.Relationship.Length == 0)
+                {
+                    if (!string.IsNullOrEmpty(relative.relationshipOther))
+                    {
+                        obj.Relationship = relative.relationshipOther;
+                    }
+                }
+
+                obj.RelativeAge = relative.age;
+
+                obj.VitalStatus = relative.vitalStatus;
+
+                obj.RelativeId = relative.relativeID;
+                relative.PMH.BackgroundLoadWork();
+                pmh = relative.PMH;
+
+
+
+                obj.DeleteFlag = SetDeleteButtonFlag(relative);
+
+
+                for (int i = 0; i < pmh.Observations.Count; i++)
+                {
+                    ClincalObservation co = (ClincalObservation)pmh.Observations[i];
+                    switch (i)
+                    {
+                        case 0:
+
+                            obj.FirstDx = co.disease;
+                            obj.FirstAgeOnset= co.ageDiagnosis;
+                            
+                            break;
+                        case 1:
+                           obj.SecondDx = co.disease;
+                            obj.SecondAgeOnset= co.ageDiagnosis;
+                            break;
+                        case 2:
+                           obj.ThirdDx = co.disease;
+                            obj.ThirdAgeOnset= co.ageDiagnosis;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                /**/
+                lst.Add(obj);
+
+
+            }
+
+
+
+            return lst;
+        
+        }
+
+
+
 
 
         #region TestPatients

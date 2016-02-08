@@ -1,0 +1,41 @@
+﻿@model IEnumerable<HRA4.ViewModels.FamilyHistoryRelative>
+@{
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+  <tr>
+    <td>@item.Relationship</td>
+    <td>@item.RelativeAge</td>
+    <td>@item.VitalStatus</td>
+    <td>@item.FirstDx</td>
+    <td>@item.FirstAgeOnset</td>
+    <td>@item.SecondDx</td>
+    <td>@item.SecondAgeOnset</td>
+    <td>@item.ThirdDx</td>
+    <td align="center">@item.ThirdAgeOnset</td>
+    <td align="center">
+        @*data-target="#edit-family-history"*@   
+    @{
+    var display = "";
+    if (item.DeleteFlag)
+    {
+        display = "block";
+        <a id="link" href="#" onclick="ShowModel(1,'@item.Relationship','@item.RelativeAge','@item.VitalStatus','@item.FirstDx','@item.FirstAgeOnset','@item.SecondDx','@item.SecondAgeOnset','@item.ThirdDx','@item.ThirdAgeOnset','@item.RelativeId');" data-toggle="modal"><img src="images/edit-grid-ico.svg" alt="Edit" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Edit" /></a><a href="#" data-toggle="modal" onclick="ShowDeleteModel('@item.RelativeId.ToString()');"><img src="images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
+    }
+    else
+    {
+        display = "none";
+        <a id="link" href="#" onclick="ShowModel(1,'@item.Relationship','@item.RelativeAge','@item.VitalStatus','@item.FirstDx','@item.FirstAgeOnset','@item.SecondDx','@item.SecondAgeOnset','@item.ThirdDx','@item.ThirdAgeOnset','@item.RelativeId');" data-toggle="modal"><img src="images/edit-grid-ico.svg" alt="Edit" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Edit" /></a> <img src="images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" style="visibility:hidden" />
+
+    }
+
+
+
+    }
+    @*onclick="testDelete();"*@
+
+</td>
+   
+</tr>
+}

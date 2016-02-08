@@ -31,5 +31,8 @@ namespace HRA4.Services.Interfaces
         VM.TestPatient LoadCreateTestPatients();
         void DeleteTestPatientsByapptids(int[] apptids);
         void ExcludeTestPatientsByapptids(int[] apptids);
+        List<ViewModels.FamilyHistoryRelative> GetFamilyHistoryRelative(string unitnum, int apptid);
+        void SaveSurvey(string unitnum, int apptid, ViewModels.FamilyHistoryRelative obj,  int type);
+        Patient CalculateRiskAndRunAutomation(int apptid, string MRN);
     }
 }

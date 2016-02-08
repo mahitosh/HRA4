@@ -763,13 +763,13 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DocumentEditorController.cs" />
+    <Compile Include="Controllers\EditSurveyController.cs" />
     <Compile Include="Controllers\HighRiskFollowupController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InstitutionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\TestPatientController.cs" />
-
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -822,6 +822,8 @@
     <Content Include="Views\Shared\_ErrorLayout.cshtml" />
     <Content Include="Views\HighRiskFollowup\_HighRiskBrcaGrid.cshtml" />
     <Content Include="Views\Shared\_menuLayout.cshtml" />
+    <Content Include="Views\EditSurvey\Index.cshtml" />
+    <Content Include="Views\EditSurvey\_FamilyHistoryRelativeRow.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -872,8 +874,8 @@
       <Project>{7fca466d-dff4-44c2-9aea-aedf89a9a03a}</Project>
       <Name>HRA4.ViewModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RASourcesV3\RiskApps3.csproj">
-      <Project>{b6074344-dcf2-4316-8363-7c9e01ab26e1}</Project>
+    <ProjectReference Include="..\RiskApps3\RiskApps3.csproj">
+      <Project>{16b371c4-551b-43c6-93db-5ecf4c70bc66}</Project>
       <Name>RiskApps3</Name>
     </ProjectReference>
   </ItemGroup>
