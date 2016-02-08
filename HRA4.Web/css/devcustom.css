@@ -34,7 +34,8 @@
     .editmenu {
 }
 .btnClear{}
-
+.trEditProfile{}
+.trEditPassword{}
 .newdoc{
     width:950px!important;
 }
@@ -45,5 +46,6 @@
 
 .checkbox, .radio {display: inline-block;}
 .bg-success {padding: 10px;color: #3f6405;font-weight: bold;}
+.redfields{color:red}
 
  /*#pedigree-diagram-modal .modal-dialog{width:630px;margin-top:30px;height:630px;}*/

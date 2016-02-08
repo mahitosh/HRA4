@@ -31,7 +31,7 @@ using System.Runtime.Serialization;
 using System.Xml.Linq;
 using System.Drawing;
 using System.Data.SqlClient;
- 
+using RiskApps3.Model.MetaData;
 namespace HRA4.Services
 {
     public class AppointmentService : IAppointmentService
@@ -105,7 +105,7 @@ namespace HRA4.Services
             if (InstitutionId > 0)
             {
                 //SetUserSession();
-                
+
                 _institutionId = InstitutionId;
 
                 clinics = GetClinicList();
@@ -136,6 +136,8 @@ namespace HRA4.Services
             if (InstitutionId != null)
             {
 
+
+
                 _institutionId = InstitutionId;
                 // SetUserSession();
                 //appointments = HRACACHE.GetCache<List<VM.Appointment>>(InstitutionId);
@@ -160,6 +162,7 @@ namespace HRA4.Services
         /// <returns>List of Appointments based on Search criteria</returns>
         public List<VM.Appointment> GetAppointments(int InstitutionId, NameValueCollection searchfilter)
         {
+
             Logger.DebugFormat("Institution Id: {0}", InstitutionId);
             List<VM.Appointment> appointments = new List<VM.Appointment>();
 
@@ -177,21 +180,127 @@ namespace HRA4.Services
                 list.BackgroundListLoad();
                 foreach (RA.Appointment app in list)
                 {
-
+                    
                     bool _DNCStatus = GetDNCStatus(InstitutionId, app.unitnum);
                     appointments.Add(app.FromRAppointment(_DNCStatus));
 
                 }
 
+
                 return appointments;
+
 
                 //return list.FromRAppointmentList();
             }
             return new List<VM.Appointment>();
         }
 
+        
+
+        public VM.Appointment GetAppointment(int InstitutionId, NameValueCollection searchfilter, string apptid)
+        {
+            // I want a appointment using AppointmentID
 
 
+            List<VM.Appointment> ap = GetAppointments(InstitutionId, searchfilter);
+            VM.Appointment Filteredlist = SearchOnAppointment(ap, Constants.Id, apptid).FirstOrDefault();
+            if (Filteredlist == null)
+                return new VM.Appointment();
+
+            SessionManager.Instance.SetActivePatient(Filteredlist.MRN, Filteredlist.Id);
+            SessionManager.Instance.GetActivePatient().BackgroundLoadWork();
+            //SessionManager.Instance.MetaData.AllProviders.BackgroundListLoad();
+
+            Patient p = SessionManager.Instance.GetActivePatient();
+            p.Providers.BackgroundListLoad();
+
+            Filteredlist.clinics = GetClinicList();
+            Filteredlist.FromRAppointment(p);
+            Filteredlist.IsCopyAppointment = "No";
+            
+           // Filteredlist.Providers = SessionManager.Instance.MetaData.AllProviders.ToProviderList();
+            return Filteredlist;
+        }
+
+        public VM.Appointment GetAppointmentForAdd(string MRN, int clinicId)
+        {
+            GoldenAppointment _appointment = new GoldenAppointment();
+            _appointment.MRN = MRN;
+            _appointment.Load();
+            Patient _patient;
+            VM.Appointment app = new VM.Appointment();
+            if (_appointment.apptid.HasValue)
+            {
+                AppointmentList appts = new AppointmentList();
+                appts.BackgroundListLoad();
+
+             
+
+              ////Appointment goldenAppointment = appts.First(appt => appt.id == _appointment.apptid);
+                
+              // // SessionManager.Instance.SetActivePatient(goldenAppointment.unitnum, goldenAppointment.apptID);
+              //  SessionManager.Instance.GetActivePatient().BackgroundLoadWork();
+              ////  SessionManager.Instance.MetaData.AllProviders.BackgroundListLoad();
+              //  _patient = SessionManager.Instance.GetActivePatient();
+              //  _patient.Providers.BackgroundListLoad();
+              // // VM.Appointment app = goldenAppointment.FromRAppointment();
+              //  app.clinics= GetClinicList();
+              ////  app.Providers = SessionManager.Instance.MetaData.AllProviders.ToProviderList();
+              //  app.FromRAppointment(_patient);
+              //  app.IsGoldenAppointment = "Yes";
+              //  app.IsCopyAppointment = "No";
+                return app;
+
+            }
+            else
+            {
+                _patient = new Patient(MRN);
+                _patient.Providers.LoadFullList();
+
+                SessionManager.Instance.SetActivePatient(_patient.unitnum, _patient.apptid);
+                Appointment appointment = new Appointment();
+              //  appointment = new Appointment(clinicId, MRN) { };
+              //  VM.Appointment app = appointment.FromRAppointment();
+              //  app.clinics=GetClinicList();
+              // // SessionManager.Instance.MetaData.AllProviders.BackgroundListLoad();
+              ////  app.Providers = SessionManager.Instance.MetaData.AllProviders.ToProviderList();
+              //  app.FromRAppointment(_patient);
+              //  app.IsGoldenAppointment = "No";
+              //  app.IsCopyAppointment = "No";
+                return app;
+
+            }
+
+        }
+
+        public VM.Appointment GetAppointmentForCopy(string ApptId, int InstitutionId, NameValueCollection searchfilter)
+        {
+            Patient _patient;
+            List<VM.Appointment> ap = GetAppointments(InstitutionId, searchfilter);
+            VM.Appointment copyAppt = SearchOnAppointment(ap, Constants.Id, ApptId).FirstOrDefault();
+            if (copyAppt == null)
+                return new VM.Appointment();
+            Appointment toCopy = copyAppt.ToRAppointment();
+            VM.Appointment app = new VM.Appointment();
+            //Appointment copiedFromExisting = new Appointment(toCopy, copyAppt.clinicID);
+            //copiedFromExisting.BackgroundPersistWork(new HraModelChangedEventArgs(null));
+
+            //SessionManager.Instance.SetActivePatient(copiedFromExisting.unitnum, copiedFromExisting.apptID);
+            //SessionManager.Instance.GetActivePatient().BackgroundLoadWork();
+            //SessionManager.Instance.MetaData.AllProviders.BackgroundListLoad();
+            //_patient = SessionManager.Instance.GetActivePatient();
+            //_patient.Providers.BackgroundListLoad();
+            //VM.Appointment app = copiedFromExisting.FromRAppointment();
+            //app.clinics = GetClinicList();
+            //app.Providers = SessionManager.Instance.MetaData.AllProviders.ToProviderList();
+            //app.FromRAppointment(_patient);
+            //app.AppointmentDate = DateTime.Now;
+            //app.appttime = null;
+            //app.IsGoldenAppointment = "No";
+            //app.IsCopyAppointment = "Yes";
+           // SavePatient(app);
+            return app;
+        }
         /// <summary>
         /// It will do searching on passed Appointment list based on below parameters
         /// </summary>
@@ -245,8 +354,49 @@ namespace HRA4.Services
         /// <param name="InstitutionId">Institution Id</param>
         public void SaveAppointments(VM.Appointment Appt, int InstitutionId)
         {
-
+            SaveAppointments(Appt);
             UpdateMarkAsComplete(Appt, InstitutionId);
+            
+        }
+       
+        
+        private void SaveAppointments(VM.Appointment Appt)
+        {
+            var raAppt = Appt.ToRAppointment();
+           // raAppt.CreateAppointmentRecordsIfNeeded();
+            raAppt.BackgroundPersistWork(new HraModelChangedEventArgs(null));
+
+
+            SavePatient(Appt);
+        }
+
+        private void SavePatient(VM.Appointment Appt)
+        {
+            var raPatient = Appt.ToRAPatient();
+           // raPatient.AddStockRelatives();
+            raPatient.Providers.AddRange(SaveProvider(Appt));
+            raPatient.BackgroundPersistWork(new HraModelChangedEventArgs(null));
+            raPatient.Providers.PersistFullList(new HraModelChangedEventArgs(null));
+        }
+
+        private ProviderList SaveProvider(VM.Appointment Appt)
+        {
+            ProviderList pl = new ProviderList();
+            //SessionManager.Instance.MetaData.AllProviders.BackgroundListLoad();
+            //AllProviders allproviders= SessionManager.Instance.MetaData.AllProviders;
+            //Provider providerRef = allproviders.Where(p => p.providerID == Appt.RefPhysician).FirstOrDefault();
+            //providerRef.refPhys = true;
+            //providerRef.PCP = false;
+            //providerRef.apptid = Appt.Id;
+            //Provider providerPCP = allproviders.Where(p => p.providerID == Appt.PCP).FirstOrDefault();
+            //providerPCP.refPhys = false;
+            //providerPCP.PCP = true;
+            //providerPCP.apptid = Appt.Id;
+            //ProviderList pl = new ProviderList();
+            //pl.Add(providerPCP);
+            //pl.Add(providerRef);
+            
+            return pl;
 
 
         }
@@ -271,7 +421,7 @@ namespace HRA4.Services
         /// <returns>Patient Model</returns>
         public Patient CalculateRiskAndRunAutomation(int apptid, string MRN)
         {
-           // Appointment.MarkComplete(apptid);// Commented this code as the new library is giving error.
+            // Appointment.MarkComplete(apptid);// Commented this code as the new library is giving error.
             SessionManager.Instance.SetActivePatient(MRN, apptid);
             Patient proband = SessionManager.Instance.GetActivePatient();
             string toolsPath = HttpContext.Current.Server.MapPath(Constants.RAFilePath);
@@ -391,10 +541,10 @@ namespace HRA4.Services
 
 
 
-        public void DeleteAppointment(int InstitutionId, int apptid)
+        public void DeleteAppointment(int InstitutionId, int apptid,bool flag)
         {
 
-            Appointment.DeleteApptData(apptid, false);
+            Appointment.DeleteApptData(apptid,flag);
         }
 
         public string ShowPedigreeImage(int _institutionId, string unitnum, int apptid, string PedigreeImageSavePath)
@@ -503,11 +653,11 @@ namespace HRA4.Services
 
             //For getting list of AuditMrnAccessV2
             AuditMrnAccessV2 auditMrnAccessV2 = new AuditMrnAccessV2();
-            auditMrnAccessV2.StartTime =Convert.ToDateTime(startdate);
-            auditMrnAccessV2.EndTime =Convert.ToDateTime(enddate);
+            auditMrnAccessV2.StartTime = Convert.ToDateTime(startdate);
+            auditMrnAccessV2.EndTime = Convert.ToDateTime(enddate);
             auditMrnAccessV2.unitnum = MRN;
             auditMrnAccessV2.BackgroundListLoad();
-          
+
             List<VM.AuditMrnAccessV2Entry> auditMrnAccessV2Entry = new List<VM.AuditMrnAccessV2Entry>();
             foreach (AuditMrnAccessV2Entry item in auditMrnAccessV2)
             {
@@ -1113,13 +1263,13 @@ namespace HRA4.Services
         public VM.TestPatient LoadCreateTestPatients()
         {
             VM.TestPatient tp = new VM.TestPatient();
-            TestPatientManager Tpm=new TestPatientManager();
+            TestPatientManager Tpm = new TestPatientManager();
             tp.Surveys = Tpm.GetSurveys();
             tp.Clinics = GetClinicList();
             tp.InitateTestPatients = Tpm.InitiateTestPatients();
 
             return tp;
-                         
+
         }
 
         /// <summary>
@@ -1130,7 +1280,7 @@ namespace HRA4.Services
         /// <param name="surveyID"></param>
         /// <param name="SurveyName"></param>
         /// <param name="clinicID"></param>
-        public void CreateTestPatients(int NoOfPatients, string dtAppointmentDate, int surveyID,string SurveyName,int clinicID)
+        public void CreateTestPatients(int NoOfPatients, string dtAppointmentDate, int surveyID, string SurveyName, int clinicID)
         {
             TestPatientManager Pm = new TestPatientManager();
             Pm.CreateTestPatients(NoOfPatients, dtAppointmentDate, surveyID, SurveyName, clinicID);
@@ -1157,5 +1307,7 @@ namespace HRA4.Services
 
         }
         #endregion
+
+
     }
 }

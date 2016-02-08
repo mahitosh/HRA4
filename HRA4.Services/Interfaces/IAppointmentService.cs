@@ -15,8 +15,9 @@ namespace HRA4.Services.Interfaces
     {
         List<VM.Appointment> GetAppointments(int InstitutionId);
         List<VM.Appointment> GetAppointments(int InstitutionId,NameValueCollection Collection);
+        VM.Appointment GetAppointment(int InstitutionId, NameValueCollection searchfilter, string apptid);
         void SaveAppointments(VM.Appointment Appt, int InstitutionId);
-        void DeleteAppointment(int InstitutionId,int apptid);
+        void DeleteAppointment(int InstitutionId, int apptid, bool flag);
         FileInfo RunAutomationDocuments(int InstitutionId, int apptid, string MRN);
 
         void AddTasks(int _institutionId, string unitnum, int apptid);
@@ -31,6 +32,8 @@ namespace HRA4.Services.Interfaces
         VM.TestPatient LoadCreateTestPatients();
         void DeleteTestPatientsByapptids(int[] apptids);
         void ExcludeTestPatientsByapptids(int[] apptids);
+        VM.Appointment GetAppointmentForAdd(string MRN, int clinicId);
+        VM.Appointment GetAppointmentForCopy(string ApptId, int InstitutionId, NameValueCollection searchfilter);
         List<ViewModels.FamilyHistoryRelative> GetFamilyHistoryRelative(string unitnum, int apptid);
         void SaveSurvey(string unitnum, int apptid, ViewModels.FamilyHistoryRelative obj,  int type);
         Patient CalculateRiskAndRunAutomation(int apptid, string MRN);

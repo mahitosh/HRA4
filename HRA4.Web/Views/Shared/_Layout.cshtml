@@ -11,7 +11,9 @@
     <title>HRA - Dashboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+     
     <script src="~/Scripts/dev-custom.js"></script>
+  
     <!-- Bootstrap core CSS -->
     <link href="~/css/bootstrap/v3.3.6/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/font-awesome-4.5.0/css/font-awesome.min.css">
@@ -56,8 +58,8 @@
                 <div id="navbar" class="navbar pull-right">
                     <ul class="nav navbar-nav navbar-right" style="background:#80c31f;color:#fff;">
                         <li class="nav-admintool">
-                            @*@Html.Partial("_menuLayout")*@
-                            <div class="dropdown">
+                            @Html.Partial("_menuLayout")
+                           @*<div class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="left" title="Admin Tool" id="admin-dropdown" aria-haspopup="true" aria-expanded="true"></a>
                                 <ul class="dropdown-menu admin-tool-menu" aria-labelledby="admin-dropdown">
                                     <li><a href="#"><i class="fa fa-user"></i> Manage Users</a></li>
@@ -68,15 +70,31 @@
                                     <li><a href="@Url.Action("AuditReports", "Reports")"><i class="fa fa-file-text-o"></i> Audit Reports</a></li>
                                     <li><a href="@Url.Action("TestPatients", "TestPatient")"><i class="fa fa-file-text-o"></i>Test Patients</a></li>
                                 </ul>
-                            </div>
+                            </div>*@
                         </li>
                         <li class="nav-profile">
-                            <div class="pull-left Padding-T-15 user-name"><small>Welcome</small><br />@Session["Username"].ToString()</div>
+                            @{
+                                string username = string.Empty;
+                                string tenantName = string.Empty;
+                                
+                                if (Session != null && Session["Username"] != null)
+                                {
+                                    username =  Session["Username"].ToString();
+                                }
+                                if (Session != null && Session["InstitutionName"] != null)
+                                {
+                                    tenantName = Session["InstitutionName"].ToString();
+                                }
+                            }
+                            <div class="pull-left Padding-T-5 user-name"><small>Welcome</small><br />@username </div>
                         </li>
-                        <li class="nav-logout"><a href="@Url.Action("LogOut", "Admin")">Logout <img src="~/images/logout-ico.svg" width="25" height="25" alt="logout" /></a></li>
+                        <li class="nav-logout">
+                        <a href="@Url.Action("LogOut", "Institution")">Logout <img src="~/images/logout-ico.svg" width="25" height="25" alt="logout" /></a></li>
                         <li class="nav-logout Margin-L-0 nav-help">
                             <div class="dropdown">
-                                <a href="#" class="dropdown-toggle Padding-LR-10 help-dropdown" data-toggle="dropdown" data-placement="left" title="Help" id="admin-dropdown" aria-haspopup="true" aria-expanded="true"><img src="~/images/help-ico.svg" width="23" height="23" alt="logout" /></a>
+                                <a href="#" class="dropdown-toggle Padding-LR-10 help-dropdown" data-toggle="dropdown" 
+                                   data-placement="left" title="Help" id="admin-dropdown" aria-haspopup="true" aria-expanded="true">
+                                <img src="~/images/help-ico.svg" width="23" height="22" alt="logout" /></a>
                                 <ul class="dropdown-menu help-menu col-md-2 pull-right" aria-labelledby="help-dropdown">
                                     <li><a href="#"><i class="fa fa-building"></i> About Us</a></li>
                                     <li><a href="http://www.hughesriskapps.net/contactus.php" target="_blank"><i class="fa fa-map-marker"></i> Contact Us</a></li>
@@ -84,6 +102,7 @@
                             </div>
 
                         </li>
+                        <li class="tenant-name">@tenantName</li>
                     </ul>
                 </div><!--/nav-collapse -->
             </div> <!--/top navbar end -->
@@ -120,9 +139,12 @@
     @*<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>*@
     <script src="~/Scripts/bootstrap/v3.3.6/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="~/Scripts/custom-script.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-timepicker.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/custom-script.js"></script>*@
+    <!--Commented the above script file as it is behaving improperly-->
     <script src="~/Scripts/sidebar_menu.js"></script>
-   
+    <script src="~/Scripts/dev-custom.js"></script>
     @*<script src="~/Scripts/__jquery.tablesorter/jquery-latest.js"></script>*@
     
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

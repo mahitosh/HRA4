@@ -108,6 +108,37 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\config.xml" />
+    <Content Include="App_Data\DbUpdates\version363\2015-12-17\00 lkpGlobals.sql" />
+    <Content Include="App_Data\DbUpdates\version363\2015-12-17\01 sp_deleteWebAppointment.sql" />
+    <Content Include="App_Data\DbUpdates\version363\2015-12-17\02 sp_formatDemographics1.sql" />
+    <Content Include="App_Data\DbUpdates\version363\2015-12-17\03 lkpFamilyDegrees.sql" />
+    <Content Include="App_Data\DbUpdates\version363\2015-12-17\07 fn_getRelativeDiseasesMammo.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2015-12-18\01 lkpGlobals.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2015-12-18\01 sp_formatProviderAddress.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2015-12-18\02 sp_formatGreetingPCPLetter.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-04\01 sp_3_LoadAppointments.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-04\02 sp_3_LoadUserClinicList.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-04\03 sp_3_LoadAllProviders.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-04\04 sp_3_Save_Appointment.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-04\05 sp_3_Save_Person.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-05\01 sp_3_Save_Person.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-08\01 sp_3_CreateAppointmentRecordsIfNeeded.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-09\01 fn_getRelativeDiseasesForRiskModels.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-09\02 v_RelativeDetails.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-11\01 sp_formatDemographics1.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-13\01 sp_3_SavePerson.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-14\01 sp_3_LoadProvidersList.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-14\02 sp_3_LoadAllProviders.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-15\01 lkpFamilyDegrees.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-19\01 sp_getInterfaceDefinitionForApptMWL.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-19\02 alter lkpInterfaceDefinitions.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-19\03 sp_getInterfaceDefinitionFromTemplateID.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-19\04 sp_createApptFromSchedService.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-22\01 sp_3_Save_Provider.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-22\02 sp_3_LoadProviderList.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-28\01 fn_getRelativeDiseasesForRiskModels.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-28\01 hrt not birth contol tweak.sql" />
+    <Content Include="App_Data\DbUpdates\version370\2016-01-28\03 v_ApptListToday.sql" />
     <Content Include="App_Data\HRATenantDBCreation.sql" />
     <Content Include="App_Data\RAFiles\AggregatorReply.xml" />
     <Content Include="App_Data\RAFiles\AggregatorRequest.xml" />
@@ -120,6 +151,7 @@
     <Content Include="App_Data\RAFiles\hraGetGail.xsl" />
     <Content Include="App_Data\RAFiles\hraMap.xsl" />
     <Content Include="App_Data\RAFiles\hra_serialized_to_hl7.xsl" />
+    <Content Include="App_Data\RAFiles\hra_serialized_to_RISK.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd2.xsl" />
     <Content Include="App_Data\RAFiles\hra_to_ccd_remove_namespaces.xsl" />
@@ -322,7 +354,9 @@
     <Content Include="Scripts\custom-script.js" />
     <Content Include="Scripts\customJquery\HighRiskFollowup.js" />
     <Content Include="Scripts\customJquery\Institution.js" />
+    <Content Include="Scripts\customJquery\User.js" />
     <Content Include="Scripts\dev-custom.js" />
+    <Content Include="Scripts\fixed-table-header.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -770,6 +804,8 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\TestPatientController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\CustomAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -789,7 +825,7 @@
     <Content Include="Views\Login\_Login.cshtml" />
     <Content Include="Views\Institution\InstitutionDashboard.cshtml" />
     <Content Include="Views\Institution\_InstitutionGrid.cshtml" />
-    <Content Include="Views\Shared\_InstitutionRow.cshtml" />
+    <Content Include="Views\Institution\_InstitutionRow.cshtml" />
     <Content Include="Views\Institution\_RiskScore.cshtml" />
     <Content Include="Views\Shared\_leftMenuLayout.cshtml" />
     <Content Include="Views\DocumentEditor\Index.cshtml" />
@@ -824,6 +860,13 @@
     <Content Include="Views\Shared\_menuLayout.cshtml" />
     <Content Include="Views\EditSurvey\Index.cshtml" />
     <Content Include="Views\EditSurvey\_FamilyHistoryRelativeRow.cshtml" />
+    <Content Include="Views\Institution\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\_ChangePassword.cshtml" />
+    <Content Include="Views\User\_UserProfile.cshtml" />
+    <Content Include="Views\User\_UserProfileList.cshtml" />
+    <Content Include="Views\User\_AddNewUser.cshtml" />
+    <Content Include="Views\Institution\_InstitutionProviders.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -832,6 +875,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\DbUpdates\version370\2016-01-07\" />
+    <Folder Include="App_Data\DbUpdates\version370\2016-01-12\" />
+    <Folder Include="App_Data\DbUpdates\version370\2016-01-20\" />
     <Folder Include="App_Data\RAFiles\Download\" />
     <Folder Include="App_Data\RAFiles\Temp\" />
     <Folder Include="App_Data\RAFiles\Upload\" />

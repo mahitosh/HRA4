@@ -1,0 +1,19 @@
+﻿@model HRA4.ViewModels.UserProfile
+ 
+<tr>
+    <td>@Model.User.Username</td>
+    <td>
+        @Html.DropDownListFor(M => Model.Clinics, new SelectList(Model.Clinics, "clinicID", "clinicName", Model.SelectedClinicId))
+    </td>
+    <td>
+        @Html.DropDownListFor(M => Model.Roles, new SelectList(Model.Roles, Model.SelectedRoleId))
+    </td>
+    <td>
+        @Html.DropDownListFor(M => Model.Modules, new SelectList(Model.Modules, Model.SelectedModule))
+    </td>
+    <td class="quick-add-institution" align="center">
+        <a href="#">
+            <img src="images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" />
+        </a>
+    </td>
+</tr>

@@ -6,8 +6,10 @@ using System.Web.Mvc;
 using HRA4.Context;
 using HRA4.Entities;
 using VM = HRA4.ViewModels;
+using HRA4.Web.Filters;
 namespace HRA4.Web.Controllers
 {
+    [CustomAuthorize(Roles = "SuperAdmin,Administrator")] 
     public class ReportsController : BaseController
     {
         // GET: Reports

@@ -59,7 +59,17 @@ namespace RiskApps3.Controllers
 
         public static SessionManager Instance
         {
-            get { return _instance; }
+            get
+            {
+                if (HttpContext.Current != null) // Silicus
+                {
+                    if (HttpContext.Current.Session["SessionManager"] == null)
+                        HttpContext.Current.Session["SessionManager"] = new SessionManager();
+
+                    return (SessionManager)HttpContext.Current.Session["SessionManager"];
+                }
+                return _instance;
+            }
         }
 
         /**************************************************************************************************/

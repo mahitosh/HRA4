@@ -8,8 +8,11 @@
     @{
         string strMrn = Model.MRN;
         int apptId = Model.Id;
+        string flag = Model.DisplayHeaderMenus;
     }
 
+    @if (flag == "Yes")
+    {
     <div class="col-sm-12 quick-add-links">
 
         <span onclick="NewDocument('@Url.Action("NewDocument", "Institution")','@Model.MRN.ToString()', '@Model.Id.ToString()');">
@@ -49,7 +52,8 @@
                     <a href="#">Save as HL7</a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a  href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)">De-Identified</a></li>
+                                <a href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = true }, null)">De-Identified</a>
+                            </li>
                         <li><a href="@Url.Action("ExportAsHL7","Institution", new { mrn = strMrn, apptId = apptId, identified = false }, null)">Identified</a></li>
                     </ul>
                 </li>
@@ -75,19 +79,20 @@
         </span>
 
     </div>
-
-    @using (Ajax.BeginForm("InstitutionSave", "Institution", new AjaxOptions
+    }
+    @using (Ajax.BeginForm("InstitutionSave", "Institution", new { MarkAsComplete = false, Hfddlclinic="" }, new AjaxOptions
     {
         HttpMethod = "POST",
-        InsertionMode = InsertionMode.InsertBefore,
         OnSuccess = "TestOnSuccess",
-        OnBegin = "saveClinic"
+        OnBegin = "saveClinic",
+
     }, new { id = "frmSaveInst" }))
     {
-        @Html.HiddenFor(item => item.Id)
-        @Html.HiddenFor(item => item.MRN)
 
+        @Html.HiddenFor(item => item.Id)
         <div class="clear-float header-bdr Padding-TB-10"><hr /></div>
+        if (flag == "Yes")
+        {
         <div class="row">
 
 
@@ -95,82 +100,77 @@
                 <div class="form-group">
                     <div class="checkbox">
                         @Html.CheckBoxFor(item => item.MarkAsComplete, new { @id = @Model.Id + "chk" })Mark As Complete
-                        @Html.Hidden("Hfddlclinic")
                         @Html.HiddenFor(item => item.MarkAsComplete, new { @id = @Model.Id + "hf" })
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+        }
+        <div class="row redfields">
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label>User Name</label>
-                    @*@Html.TextBoxFor(item => item.PatientName)*@
-                    <input class="form-control" />
+                    <label>Name *</label>
+                    @Html.TextBoxFor(item => item.PatientName, new { @class = "form-control",@maxlength="100" })
+                    @Html.Hidden("Hfddlclinic")
                 </div>
 
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label>MRN</label>
-                    @*@Html.TextBoxFor(item => item.MRN, new { @id = "MRN" })*@
-                    <input class="form-control" />
+                    <label>MRN *</label>
+                    @Html.TextBoxFor(item => item.MRN, new { @id = "MRN", @class = "form-control", @maxlength = "50" })
+
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label>DOB</label>
+                    <label>DOB *</label>
                     <div id="DOB" class="inner-addon right-addon form-group">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="dob-date" />
+                        <input type="text" class="datepicker form-control" name="dob-date" id="dob-date" value="@Model.DateOfBirth.ToString("MM/dd/yyyy")" />
+                        @*@Html.EditorFor(item => item.DateOfBirth, new { @class = "datepicker form-control", @id = "dob-date" })*@
                     </div>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label>Gender</label>
-                    <select class="form-control">
-                        <option>Male</option>
-                        <option>Female</option>
-                    </select>
+                    <label>Gender *</label>
+                    @Html.DropDownList("ddlGenders", new SelectList(@Model.Genders, "--select--"), new { @class = "form-control" })
                 </div>
             </div>
 
         </div><!--row end-->
-        <div class="row">
+        <div class="row redfields">
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label>Appointment Date</label>
+                    <label>Appointment Date *</label>
                     <div id="edit-app-date-container" class="inner-addon right-addon form-group">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="edit-app-date" />
+                        <input  type="text" class="datepicker form-control" name="edit-app-date" id="edit-app-date" value="@Model.AppointmentDate.ToString("MM/dd/yyyy")" />
                     </div>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label>Time</label>
+                    <label>Time *</label>
                     <div class="input-group bootstrap-timepicker timepicker">
-                        <input id="timepicker1" type="text" class="form-control input-small">
+                        @*<input id="timepicker1" type="text" class="form-control input-small">*@
+                        @Html.DropDownList("ddlappttimes", new SelectList(@Model.appttimes, "--select--"), new { @class = "form-control" })
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                     </div>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label>Survey</label>
-                    @*@Html.TextBoxFor(item => item.Survey)*@
-                    <input class="form-control" />
+                    <label>Survey *</label>
+                    @Html.TextBoxFor(item => item.Survey, new { @class = "form-control",@maxlength = "50" })
+
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label>Clinic</label>
-                    <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
+                    <label>Clinic *</label>
+                    @Html.DropDownList("ddlclinics", new SelectList(@Model.clinics,"clinicID","clinicName",@Model.clinicID ,"--select--"), new { @class = "form-control" })
                 </div>
             </div>
 
@@ -179,11 +179,14 @@
         <br />
         <div class="row">
             <div class="col-sm-12">
-                <a href="javascript:void(0)" class="schedule-more-detail pull-right">More Details <i class="fa fa-plus-circle"></i></a>
-                <div class="schedule-more-detail-content clear-float">
+            @if (flag == "Yes")
+            {
+                <a href="javascript:void(0)" onclick="moredetails();" class="schedule-more-detail pull-right">More Details <i class="fa fa-plus-circle"></i></a>
+            }
+                <div id="" class="schedule-more-detail-content clear-float addAppointmemntDiv">
                     <div class="row  header-bdr Padding-TB-10"><hr /></div>
                     <div class="row">
-                        <div class="col-sm-3">
+                        @*<div class="col-sm-3">
                             <div class="form-group">
                                 <label>Area</label>
                                 <select class="form-control">
@@ -192,34 +195,30 @@
                                     <option>3</option>
                                 </select>
                             </div>
-                        </div>
+                            </div>*@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Assessment</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                <select id="Assessment" name="Assessment" class="form-control">
+                                    <option>Cancer Screening</option>
+                                    <option>Cancer Genetics-Breast</option>
+                                    <option>Cancer Genetics-Colon</option>
+                                    <option>Cancer Genetics</option>
+                                    <option>Other</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Language</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
+                                @Html.DropDownList("ddlLanguages", new SelectList(@Model.Languages, @Model.Language), new { @class = "form-control" })
+                                
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Race</label>
-                                <select class="form-control">
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                </select>
+                                @Html.DropDownList("ddlRaces", new SelectList(@Model.Races, "--select--"), new { @class = "form-control" })
                             </div>
                         </div>
                     </div><!--row end-->
@@ -227,29 +226,25 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Nationality</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
+                                @Html.DropDownList("ddlNationalities", new SelectList(@Model.Nationalities, "--select--"), new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Occupation</label>
-                                <input class="form-control" />
+                                @Html.TextBoxFor(item => item.Occupation, new { @class = "form-control", @maxlength = "50" })
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Education</label>
-                                <input class="form-control" />
+                                @Html.TextBoxFor(item => item.Education, new { @class = "form-control", @maxlength = "100" })
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Marital Status</label>
-                                <input class="form-control" />
+                                @Html.TextBoxFor(item => item.Maritalstatus, new { @class = "form-control", @maxlength = "100" })
                             </div>
                         </div>
                     </div><!--row end-->
@@ -257,17 +252,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Address 1</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
+                                @Html.TextBoxFor(item => item.Address1, new { @class = "form-control", @maxlength = "100" })
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Address 2</label>
-                                <input class="form-control" />
+                                @Html.TextBoxFor(item => item.Address2, new { @class = "form-control", @maxlength = "100" })
                             </div>
                         </div>
                     </div><!--row end-->
@@ -275,33 +266,25 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>City</label>
-                                <input class="form-control" />
+                                @Html.TextBoxFor(item => item.City, new { @class = "form-control", @maxlength = "50" })
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>State</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
+                                @Html.DropDownList("ddlStates", new SelectList(@Model.States, "--select--"), new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Zip</label>
-                                <input class="form-control" />
+                                @Html.TextBoxFor(item => item.Zip, new { @class = "form-control",@type="number"})
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Country</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
+                                @Html.DropDownList("ddlCountries", new SelectList(@Model.Countries, "--select--"), new { @class = "form-control" })
                             </div>
                         </div>
                     </div><!--row end-->
@@ -309,31 +292,25 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Home Phone</label>
-                                <div class="row phone-no-input">
+                                @Html.TextBoxFor(item => item.Homephone, new { @class = "form-control", @type = "number", @maxlength = "50" })
+                                @*<div class="row phone-no-input">
+
                                     <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
                                     <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
                                     <div class="col-sm-4"><input class="form-control" maxlength="4" /> </div>
-                                </div>
+                                    </div>*@
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Work Phone</label>
-                                <div class="row phone-no-input">
-                                    <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
-                                    <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
-                                    <div class="col-sm-4"><input class="form-control" maxlength="4" /> </div>
-                                </div>
+                                @Html.TextBoxFor(item => item.Workphone, new { @class = "form-control", @type = "number", @maxlength = "50" })
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Mobile Phone</label>
-                                <div class="row phone-no-input">
-                                    <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
-                                    <div class="col-sm-4"><input class="form-control" maxlength="3" /> </div>
-                                    <div class="col-sm-4"><input class="form-control" maxlength="4" /> </div>
-                                </div>
+                                @Html.TextBoxFor(item => item.Cellphone, new { @class = "form-control", @type = "number", @maxlength = "50" })
                             </div>
                         </div>
                     </div><!--row end-->
@@ -341,54 +318,39 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Email Address</label>
-                                <input class="form-control" />
+                                @Html.TextBoxFor(item => item.EmailAddress, new { @class = "form-control", @maxlength = "50" })
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Appointment Physician</label>
-                                <input class="form-control" />
+                                @Html.DropDownList("ddlAppointmentPhysicians", new SelectList(@Model.AppointmentPhysicians, "--select--"), new { @class = "form-control" })
                             </div>
                         </div>
                     </div><!--row end-->
+
+                    <div id="AddProvidersDiv">
+
                     <div class="row">
-                        <div class="col-sm-2">
-                            <div class="form-group">
+                            <div class="col-sm-3">
                                 <label>Ref Phys</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
-                            </div>
                         </div>
                         <div class="col-sm-3">
-                            <div class="form-group">
                                 <label>PCP</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
-                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Physician Name</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
+
+                        </div><!--row end---->
+                        <div class="row">
+                            <div class="col-sm-3">
+                                @Html.DropDownList("ddlRefPhysician", new SelectList(@Model.Providers, "Id", "ProviderName", @Model.RefPhysician, "--select--"), new { @class = "form-control" })
                             </div>
+                            <div class="col-sm-3">
+                                @Html.DropDownList("ddlPCP", new SelectList(@Model.Providers, "Id", "ProviderName", @Model.PCP, "--select--"), new { @class = "form-control" })
                         </div>
-                        <div class="col-sm-1">
-                            <div class="form-group" style="margin-top:27px;">
-                                <a href="#" class="add-row"><i class="fa fa-plus-circle fa-2x"></i></a>
+                        </div><!--row end---->
+                        <br />
                             </div>
 
-                        </div>
-                    </div><!--row end-->
 
                 </div><!--col-sm-12 end-->
             </div><!--row end-->
@@ -398,10 +360,11 @@
         <div class="row">
             <div class="col-sm-12 align-right">
                 <div class="form-group">
-                    <button id="btnSaveQuick" class="pull-right btn btn-success btn-sm  Margin-L-10">Save</button>
-                    <button id="@Model.Id" type="button" class="pull-right btn btn-cancel btn-sm btnClear" onclick="cancel(this); return false;">Cancel</button>
+                    <button id="btnSaveQuick" type="submit" class="pull-right btn btn-success btn-sm  Margin-L-10" onclick="return ValidateModel();">Save</button>
+                    <button id="@Model.Id" type="button" class="pull-right btn btn-cancel btn-sm btnClear" onclick="cancel(this,'@Model.DisplayHeaderMenus','@Url.Action("DeleteAppointment", "Institution")','@Model.Id.ToString()','@Model.IsGoldenAppointment','@Model.IsCopyAppointment'); return false;">Cancel</button>
                 </div>
             </div><!--schedule-more-detail-content end-->
         </div>
     }
 </div>
+<script src="~/Scripts/dev-custom.js"></script>

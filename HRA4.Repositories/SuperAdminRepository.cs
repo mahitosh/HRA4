@@ -25,7 +25,8 @@ namespace HRA4.Repositories
 
         public Entities.SuperAdmin GetAdminUser()
         {
-            return dbContext.SuperAdmin.FindById(1);
+            List<Entities.SuperAdmin> SAdmins = dbContext.SuperAdmin.All();
+            return SAdmins.Where(s=> s.Id == 1).FirstOrDefault();
         }
 
         public void UpdateAdminUser(Entities.SuperAdmin superAdmin)

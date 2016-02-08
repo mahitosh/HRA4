@@ -135,7 +135,7 @@ namespace RiskApps3
         private void loginButton_Click(object sender, EventArgs e)
         {
             string lockoutMsg = "";
-            User u = null;
+            User u = null;  
             bool validUser = users.Any(x => ((User)x).userLogin.ToLower() == usernameTextBox.Text.ToLower());
             if (validUser) u = (User)(users.First(x => ((User)x).userLogin.ToLower() == usernameTextBox.Text.ToLower()));
 

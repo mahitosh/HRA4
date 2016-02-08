@@ -46,6 +46,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SuperAdmin.cs" />
     <Compile Include="Institution.cs" />
+    <Compile Include="UserManagement\Features.cs" />
+    <Compile Include="UserManagement\Menu.cs" />
+    <Compile Include="UserManagement\MenuRights.cs" />
+    <Compile Include="UserManagement\Role.cs" />
+    <Compile Include="UserManagement\RoleMatrix.cs" />
+    <Compile Include="UserManagement\RoleMenus.cs" />
+    <Compile Include="UserManagement\SampleData.cs" />
+    <Compile Include="UserManagement\User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

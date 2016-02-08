@@ -3,9 +3,8 @@ $(function() {
 
 $(document).ready(function() {
     $(".add-MRI").hide();
+	$("ul#menu").off("click");
 });
-
-
 
     //hide datepicker calendar
 $('#dob-date, #edit-app-date').datepicker()//  id with "dob-date" will pop up a datepicker
@@ -66,18 +65,7 @@ $("#btnSaveQuick").click(function () {
 
     $(".editmenu").slideUp(100);
 });
-$("#lnkapptment").click(function(){
-	$('#add-edit-MRN').modal('show');	
 
-
-
-
-
-
-
-
-
-	});
 
 
 
@@ -91,11 +79,14 @@ $("#lnkapptment").click(function(){
 		$("#quick_add_MRNdiv").hide(300);
 	});
 	
+//timepicker
+	$('#timepicker1').timepicker();
 	
 	//multiselect dropdown
 	$('#race-multiselect').multiselect();
 	$("#colo-race-multiselect").multiselect();
     
+	$('.modal').modal({backdrop: 'static', keyboard: false})
    
 
 
@@ -166,4 +157,14 @@ function hideMRI(){
 function showMRI(){	
 	$(".add-MRI").show();
 }
+	
+//add tooltip on ellipse
+$('td, th').bind('mouseenter', function () {
+		  var $this = $(this);
+		  
+		  if (this.offsetWidth < this.scrollWidth && !$this.attr('title')) {
+			  $this.attr('title', $this.text());
+			
+		  }
+	  });
 	

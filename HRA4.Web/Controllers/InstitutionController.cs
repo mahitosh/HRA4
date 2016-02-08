@@ -14,8 +14,12 @@ using HRA4.ViewModels;
 using System.Configuration;
 
 using VM = HRA4.ViewModels;
+using HRA4.Entities.UserManagement;
+using System.Web.Security;
+using HRA4.Web.Filters;
 namespace HRA4.Web.Controllers
 {
+    [CustomAuthorize(Roles = "SuperAdmin,Administrator,Clinician")] 
     public class InstitutionController : BaseController
     {
 
@@ -34,6 +38,14 @@ namespace HRA4.Web.Controllers
 
             if (InstitutionId != null && InstitutionId > 0)
             {
+                //Added to avoid direct injection of Istitution ID.
+                if(HttpContext.User.Identity.Name != "sadmin")
+                if (Session["InstitutionId"] != null && Session["InstitutionId"].ToString() != InstitutionId.ToString())
+                {
+                    FormsAuthentication.SignOut();
+                    Session.Abandon();                     
+                    return RedirectToAction("Index", "Admin", new { Error = "Sorry you are not Authorized to Perform this Action" });
+                }
                 if (Session["InstitutionId"] == null || Session["InstitutionId"].ToString() != InstitutionId.ToString())
                 {
                     Session.Add("InstitutionId", InstitutionId);
@@ -44,6 +56,8 @@ namespace HRA4.Web.Controllers
                 }
 
                 int v2 = InstitutionId ?? default(int);
+                string InstName = _applicationContext.ServiceContext.AdminService.GetInstitutionName(v2);
+                Session["InstitutionName"] = InstName;
                 NameValueCollection searchfilter = new NameValueCollection();
                 searchfilter.Add("name", null);
                 searchfilter.Add("appdt", DateTime.Now.ToString("MM/dd/yyyy"));
@@ -72,12 +86,8 @@ namespace HRA4.Web.Controllers
             }
             else if (Session["InstitutionId"] != null)
             {
-
                    InstitutionId = Convert.ToInt32(Session["InstitutionId"]);
                    return RedirectToAction("InstitutionDashboard", new { InstitutionId = InstitutionId });
-              
-
-
             }
 
             return RedirectToAction("ManageInstitution", "Admin");    
@@ -86,7 +96,12 @@ namespace HRA4.Web.Controllers
 
         }
 
-    
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index", "Admin");
+        }
 
         [HttpPost]
         public JsonResult ImportAsXml(HttpPostedFileBase file, string mrn, int apptId)
@@ -170,40 +185,52 @@ namespace HRA4.Web.Controllers
             return File(fileBytes, "text/xml, application/xml", fileName);
         }
 
-        //[HttpPost]
+        [HttpPost]
         public JsonResult InstitutionSave(FormCollection frm, bool MarkAsComplete, string Hfddlclinic)
         {
             HRA4.ViewModels.Appointment app = new ViewModels.Appointment();
             app.Id = Convert.ToInt32(frm["Id"]);
             app.MRN = Convert.ToString(frm["MRN"]);
-            //app.DateOfBirth = Convert.ToDateTime(frm["dob-date"]);
-            //app.PatientName = Convert.ToString(frm["PatientName"]);
-            //app.Survey = Convert.ToString(frm["Survey"]);
-            //app.appttime = Convert.ToString(frm["TimeDropdown"]);
-            if (Hfddlclinic != null && Hfddlclinic != "")
-                app.clinicID = Convert.ToInt32(Hfddlclinic);
-            else app.clinicID = -1;
+            app.DateOfBirth = Convert.ToDateTime(frm["dob-date"]);
+            app.PatientName = Convert.ToString(frm["PatientName"]);
+            app.Survey = Convert.ToString(frm["Survey"]);
+            app.appttime = Convert.ToString(frm["ddlappttimes"]);
+            app.Address1 = Convert.ToString(frm["Address1"]);
+            app.Address2 = Convert.ToString(frm["Address2"]);
+            app.AppointmentDate = Convert.ToDateTime(frm["edit-app-date"]);
+            app.AppointmentPhysician = Convert.ToString(frm["ddlAppointmentPhysicians"]);
+            app.AssessmentName = Convert.ToString(frm["Assessment"]);
+            app.Cellphone = Convert.ToString(frm["Cellphone"]);
+            app.City = Convert.ToString(frm["City"]);
+            app.Country = Convert.ToString(frm["ddlCountries"]);
+            //app.DateCompleted = Convert.ToDateTime(frm["dob-date"]);
+            app.DiseaseHx = Convert.ToString(frm["DiseaseHx"]);
+            app.Education = Convert.ToString(frm["Education"]);
+            app.EmailAddress = Convert.ToString(frm["EmailAddress"]);
+            app.Gender = Convert.ToString(frm["ddlGenders"]);
+            app.Homephone = Convert.ToString(frm["Homephone"]);
+            app.Language = Convert.ToString(frm["ddlLanguages"]);
+            app.Maritalstatus = Convert.ToString(frm["Maritalstatus"]);
+            app.Nationality = Convert.ToString(frm["ddlNationalities"]);
+            app.Occupation = Convert.ToString(frm["Occupation"]);
+            app.PCP = Convert.ToInt32(frm["ddlPCP"]);
+            app.RefPhysician = Convert.ToInt32(frm["ddlRefPhysician"]);
+            app.clinicID = Convert.ToInt32(frm["ddlclinics"]);
+            app.Race = Convert.ToString(frm["ddlRaces"]);
+            app.State = Convert.ToString(frm["ddlStates"]);
+            app.Workphone = Convert.ToString(frm["Workphone"]);
+            app.Zip = Convert.ToString(frm["Zip"]);
+
+            //if (Hfddlclinic != null && Hfddlclinic != "")
+            //    app.clinicID = Convert.ToInt32(Hfddlclinic);// verfiy 
+            //else app.clinicID = -1;
             app.SetMarkAsComplete = MarkAsComplete;
             _applicationContext.ServiceContext.AppointmentService.SaveAppointments(app, Convert.ToInt32(Session["InstitutionId"]));
             // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
 
             string view = string.Empty;
-            NameValueCollection searchfilter;
-            if (Session["SearchFilter"] != null)
-            {
-                searchfilter = (NameValueCollection)Session[Constants.SearchFilter];
-            }
-            else
-            {
-                searchfilter = new NameValueCollection();
-                searchfilter.Add("name", null);
-                searchfilter.Add("appdt", DateTime.Now.ToString("MM/dd/yyyy"));
-                if (Hfddlclinic != null && Hfddlclinic != "")
-                    searchfilter.Add("clinicId", Hfddlclinic);
-                else
-                    searchfilter.Add("clinicId", "-1");
-
-            }
+            NameValueCollection searchfilter = new NameValueCollection();
+            searchfilter = GetSearchFilter(null, null, app.clinicID.ToString());
             int instId = 0;
             if (Session != null && Session["InstitutionId"] != null)
             {
@@ -259,18 +286,8 @@ namespace HRA4.Web.Controllers
                     }
 
                 }
-                NameValueCollection searchfilter;
-                if (Session["SearchFilter"] != null)
-                {
-                    searchfilter = (NameValueCollection)Session[Constants.SearchFilter];
-                }
-                else
-                {
-                    searchfilter = new NameValueCollection();
-                    searchfilter.Add("name", name);
-                    searchfilter.Add("appdt", appdt);
-                    searchfilter.Add("clinicId", clinicId);
-                }
+                NameValueCollection searchfilter = new NameValueCollection();
+                searchfilter = GetSearchFilter(name, appdt, clinicId);
 
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
                 apps_count = apps.Count();
@@ -294,11 +311,9 @@ namespace HRA4.Web.Controllers
             if (Session != null && Session["InstitutionId"] != null)
             {
                 int instId = (int)Session["InstitutionId"];
-
+                Session[Constants.SearchFilter] = null;
                 NameValueCollection searchfilter = new NameValueCollection();
-                searchfilter.Add("name", name);
-                searchfilter.Add("appdt", appdt);
-                searchfilter.Add("clinicId", clinicId);
+                searchfilter = GetSearchFilter(name, appdt, clinicId);
                 Session[Constants.SearchFilter] = searchfilter;
                 var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
                 apps_count = apps.Count();
@@ -368,12 +383,12 @@ namespace HRA4.Web.Controllers
            
         }
 
-        public JsonResult RiskCalculation(string MRN, int apptid,string status)
+        public JsonResult RiskCalculation(string MRN, int apptid, string status)
         {
             string view = string.Empty;
-            var apps=(RiskScore)null;
-            if(status=="Show")
-            apps = _applicationContext.ServiceContext.AppointmentService.RiskScore(apptid,MRN);
+            var apps = (RiskScore)null;
+            if (status == "Show")
+                apps = _applicationContext.ServiceContext.AppointmentService.RiskScore(apptid, MRN);
             else
                 apps = _applicationContext.ServiceContext.AppointmentService.RiskCalculateAndRunAutomation(apptid, MRN);
             view = RenderPartialView("_RiskScore", apps);
@@ -381,16 +396,50 @@ namespace HRA4.Web.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
-        //public JsonResult RunRiskModel(string MRN, int apptid)
-        //{
-        //    string view = string.Empty;
-        //    var apps = _applicationContext.ServiceContext.AppointmentService.RiskCalculateAndRunAutomation(apptid, MRN);
-        //    view = RenderPartialView("_RiskScore", apps);
-        //    var result = new { view = view };
-        //    return Json(result, JsonRequestBehavior.AllowGet);
+        public JsonResult GetAppoitmentForEdit(string apptid, string name, string appdt, string clinicId)
+        {
+            string view = string.Empty;
+            if (Session != null && Session["InstitutionId"] != null)
+            {
+                int instId = (int)Session["InstitutionId"];
+                NameValueCollection searchfilter = new NameValueCollection();
+                searchfilter = GetSearchFilter(name, appdt, clinicId);
+                var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointment(instId, searchfilter, apptid);
+                apps.DisplayHeaderMenus = "Yes";
+                view = RenderPartialView("_InstitutionRow", apps);
 
-        //}
+            }
+           
+            var result = new { view = view };
+            return Json(result, JsonRequestBehavior.AllowGet);
 
+        }
+        public JsonResult GetAppoitmentForAdd(string MRN, string clinicId)
+        {
+            string view = string.Empty;
+            var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointmentForAdd(MRN,Convert.ToInt32(clinicId));
+            apps.DisplayHeaderMenus = "No";
+            view = RenderPartialView("_InstitutionRow", apps);
+            var result = new { view = view};
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
+        public JsonResult GetAppoitmentForCopy(string ApptId, string appdt, string name, string clinicId)
+        {
+            string view = string.Empty;
+            if (Session != null && Session["InstitutionId"] != null)
+            {
+                int instId = (int)Session["InstitutionId"];
+                NameValueCollection searchfilter = new NameValueCollection();
+                searchfilter = GetSearchFilter(name, appdt, clinicId);
+                var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointmentForCopy(ApptId, instId, searchfilter);
+                apps.DisplayHeaderMenus = "No";
+                view = RenderPartialView("_InstitutionRow", apps);
+            }
+            var result = new { view = view };
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
         protected virtual string RenderPartialView(string partialViewName, object model)
         {
             if (ControllerContext == null)
@@ -415,12 +464,52 @@ namespace HRA4.Web.Controllers
             }
         }
 
-        public ActionResult DeleteAppointment(int apptid)
+        public JsonResult DeleteAppointment(int apptid,bool flag)
         {
-            _applicationContext.ServiceContext.AppointmentService.DeleteAppointment(Convert.ToInt32(Session["InstitutionId"]), apptid);
-            return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
+            _applicationContext.ServiceContext.AppointmentService.DeleteAppointment(Convert.ToInt32(Session["InstitutionId"]), apptid,Convert.ToBoolean(flag));
+            string view = string.Empty;
+            int apps_count = 0;
+
+            if (Session != null && Session["InstitutionId"] != null)
+            {
+                int instId = (int)Session["InstitutionId"];
+
+                NameValueCollection searchfilter = new NameValueCollection();
+                searchfilter = GetSearchFilter("", "", "");
+                var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
+                apps_count = apps.Count();
+                //ViewBag.AppointmentCount = apps.Count();
+                view = RenderPartialView("_InstitutionGrid", apps);
+
+
+
+            }
+            var result = new { view = view, apps_count = apps_count, todaysDate = DateTime.Now.ToString("MM/dd/yyyy") };
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        private NameValueCollection GetSearchFilter(string name, string appdt, string clinicId)
+        {
+            NameValueCollection searchfilter;
+            if (Session[Constants.SearchFilter] != null)
+            {
+                searchfilter = (NameValueCollection)Session[Constants.SearchFilter];
+            }
+            else
+            {
+                searchfilter = new NameValueCollection();
+                searchfilter.Add("name", name);
+                searchfilter.Add("appdt", appdt);
+                if (!string.IsNullOrWhiteSpace(clinicId))
+                    searchfilter.Add("clinicId", clinicId);
+                else
+                    searchfilter.Add("clinicId", "-1");
+                Session[Constants.SearchFilter] = searchfilter;
+            }
+            return searchfilter;
+        }
+
+       
         public JsonResult RunAutomationDocuments(string apptid, string MRN)
         {
 
@@ -436,8 +525,8 @@ namespace HRA4.Web.Controllers
         public FileContentResult DownloadFile()
         {
 
-            byte[] fileBytes=null;
-            string fileName=string.Empty;
+            byte[] fileBytes = null;
+            string fileName = string.Empty;
             if (Session["FileInfo"] != null)
             {
                 FileInfo fileinfo = (FileInfo)Session["FileInfo"];

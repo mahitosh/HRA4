@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 /* CSS Document */
  /* Toggle Styles */
  
@@ -113,12 +113,12 @@
 .sidebar-nav li:nth-child(2) {border-top:solid 1px #ddd;}
 #sidebar-wrapper .nav-stacked > li + li{margin-top:0;}
 li.active a.schedule-icon, a.schedule-icon:hover{background: #53afee url("../images/schedule-ico-hover.png") no-repeat 5px 7px!important;background-size: 28px 28px!important;}
-a.schedule-icon{background: #f7f7f7 url("../images/schedule-ico.png") no-repeat 5px 7px;background-size: 28px 28px;display: block;}
+a.schedule-icon{background: #f7f7f7 url("../images/schedule-ico.png") no-repeat 5px 7px;background-size: 28px 28px;}
 
-.breast-cancer-icon{background: #f7f7f7 url("../images/breast-ico.png") no-repeat 5px 7px;background-size: 28px 28px; background-attachment:scroll;}
+.breast-cancer-icon{background: #f7f7f7 url("../images/breast-ico.png") no-repeat 5px 7px;background-size: 28px 28px;}
 a.breast-cancer-icon:hover{background: #53afee url("../images/breast-ico-hover.png") no-repeat 5px 7px!important;background-size: 28px 28px!important;}
 
-.lifetime-cancer-icon{background: #f7f7f7 url("../images/lifetime-cancer-ico.png") no-repeat 5px 7px;background-size: 28px 28px;}
+.lifetime-cancer-icon{background: #f7f7f7 url("../images/lifetime-cancer-ico.svg") no-repeat 5px 7px;background-size: 28px 28px;}
 li.active a.lifetime-cancer-icon, a.lifetime-cancer-icon:hover{background: #53afee url("../images/lifetime-cancer-ico-hover.png") no-repeat 5px 7px!important;background-size: 28px 28px!important;}
 
 .BRCA-icon{background: #f7f7f7 url("../images/BRCAmutation-ico.png") no-repeat 5px 7px;background-size: 28px 28px;}
@@ -129,9 +129,12 @@ li.active .BRCA-icon:hover, .BRCA-icon:hover{background: #53afee url("../images/
 #sidebar-wrapper label{line-height:20px;font-size:1.1em;}
 #appt-date{padding-right: 65px!important;}
 
-#bs-example-navbar-collapse-1 .navbar-toggle{position: absolute;margin:0; margin-top: 12px; padding: 0;position: absolute;width:20px;height:20px; z-index: 1000;left: 262px; -webkit-transition: left 0.5s; /* Safari */ transition: left 0.5s;}
+#bs-example-navbar-collapse-1 .navbar-toggle{position: absolute;top:480px;margin:0; margin-top: 12px; padding: 0;position: absolute;width:20px;height:20px; z-index: 1000;left: 262px; -webkit-transition: left 0.5s; /* Safari */ transition: left 0.5s;}
 
-
+/*for mozila*/
+@-moz-document url-prefix() { 
+  #bs-example-navbar-collapse-1 .navbar-toggle{top:470px;}
+}
 @media(min-width:768px) {
     #wrapper {
         padding-left: 270px;
@@ -152,10 +155,10 @@ li.active .BRCA-icon:hover, .BRCA-icon:hover{background: #53afee url("../images/
         width: 270px;
     }
     #wrapper.toggled-2 #sidebar-wrapper {
-        width: 39px;
+        width: 38px;
     }
     #wrapper.toggled-2 #sidebar-wrapper:hover {
-        width: 39px;
+        width: 38px;
     }
  
  

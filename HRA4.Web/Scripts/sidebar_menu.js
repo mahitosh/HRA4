@@ -1,7 +1,9 @@
 // Create sidebar
+
 $(document).ready(function(e) {
-    $('#menu ul').hide();
 	$("ul#menu").off("click");
+    $('#menu ul').hide();
+	
 });
 
 $("#menu-toggle").click(function(e) {
@@ -19,7 +21,7 @@ $("#menu-toggle").click(function(e) {
 			{
 				//$(".schedule-icon").attr("disabled","disabled");
 				$("ul#menu").off("click");
-				$("#menu-toggle-2").css("left","32px");				
+				$("#menu-toggle-2").css("left","26px");				
 			}
 			else
 			{
@@ -29,7 +31,7 @@ $("#menu-toggle").click(function(e) {
     $(".sidebar-nav-child", this).slideDown();
 });
 				
-				$("#menu-toggle-2").css("left","261px");
+				$("#menu-toggle-2").css("left","258px");
 			}	
 		
     });

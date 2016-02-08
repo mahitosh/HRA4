@@ -29,12 +29,17 @@ else
                         <div id="wrapper" class="toggled-2">
                             <!-- Sidebar -->
                             <div id="sidebar-wrapper">
-
+                                
                                 <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+
                                     <li class="active">
                                         <a href="#" class="schedule-icon"> Schedule <span id="ScheduleCount" class="dashboard-count">@ViewBag.AppointmentCount</span></a>
                                         <ul class="nav-pills nav-stacked sidebar-nav-child" style="list-style-type:none;">
-                                            <li class="add-appointment"><a href="#"><img src="~/images/add-appointment-ico.svg" alt="Refresh" width="25" height="25" /> Add Appointment</a></li>
+                                            <li class="add-appointment">
+                                                <a href="#" id="lnkapptment" data-toggle="modal" data-target="#add-edit-MRN" data-backdrop="static" data-keyboard="false">
+                                                    <img src="~/images/add-appointment-ico.svg" alt="Refresh" width="25" height="25" /> Add Appointment
+                                                </a>
+                                                </li>
                                             <li>
                                                 <div class="form-group">
                                                     <label class="control-label " for="custom-clinic"> Choose Clinic</label>
@@ -57,7 +62,7 @@ else
                                             </li>
                                             <li class="pull-right">
                                                 <div class="btn-group search-group Margin-B-10" id="divSearch">
-                                                    <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
+                                                      <button class="btn btn-default search-btn" id="btnsearch" type="button">Search</button>
                                                     <span class="glyphicon glyphicon-search search-btn-ico" aria-hidden="true"></span>
                                                 </div> <br />
                                             </li>
@@ -82,17 +87,35 @@ else
                                 <div class="container-fluid xyz clear-float">
                                     <div class="row">
                                         <h3 class="pull-left page-title">Schedule</h3>
-                                       
+                                     
                                         <a class="pull-right left-title" onclick="SearchAppointment('@Url.Action("FilteredInstitution", "Institution")');"><img src="~/images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh Appointment List</a>
                                          
                                         <div class="clear-float">                                              
                                         </div>
                                          
-                                        <div class="table-responsive" id="divInstitutionGrid">
-
-                                            @Html.Partial("_InstitutionGrid", Model)
-
-                                        </div><!--schedule list div end here-->
+                                        <div class="table-responsive fixed-table-header">
+                                            <div class="panel panel-default">
+                                                <table class="table table-condensed apppointment-table Margin-T-10">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>App Date/T</th>
+                                                            <th>Name</th>
+                                                            <th>MRN</th>
+                                                            <th>DOB</th>
+                                                            <th>Provider</th>
+                                                            <th>Mark Survey Complete</th>
+                                                            <th>Disease Hx</th>
+                                                            <th>Survey </th>
+                                                            <th>Do Not Call</th>
+                                                            <th>Quick&nbsp;Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div><!--table header end here-->
+                                            <div class="div-table-content" id="divInstitutionGrid">
+                                                @Html.Partial("_InstitutionGrid", Model)
+                                            </div>
+                                            </div><!--schedule list div end here-->
                                         <div id="divRecordStatus" style="color:red;text-align:center">@ViewBag.RecordStatus</div>
                                     </div><!--row end-->
                                 </div><!--container end-->
@@ -216,15 +239,57 @@ else
 
     </div><!--New Document modal end-->
 
+    <!-- New MRN popup -->
+    <div id="add-edit-MRN" class="modal fade" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                    <h4 class="modal-title">Add&frasl;Edit Appointment</h4>
+                </div>
+                <div id="ApptBody"></div>
+                <div id="MRNBody" class="modal-body">
+                    <div class="form-group">
+                        <label>Enter an MRN Number</label>
+                        <input style="width:200px" id="EnteredMRN" maxlength="50" class="form-control" /><br />
+                        <label>Note : An MRN starting with '999' denotes a test patient.</label>
+                    </div>                    
+                </div>
+                <div id="ApptFooter" class="modal-footer">
+                    <button type="button" class="btn btn-cancel" onclick="HideAddAppt();">Cancel</button>
+                    <button type="button" class="btn btn-success" onclick="ShowAddAppointment('@Url.Action("GetAppoitmentForAdd", "Institution")');">OK</button>
+                </div>
+            </div>
+        </div>
+    </div><!--New MRN modal end-->
+
+    <!-- Copy Appt popup -->
+    <div id="Copy-Appt" class="modal fade" role="dialog" aria-hidden="true">
+        <div  class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                    <h4 class="modal-title">Copy Appointment</h4>
+                </div>
+                <div id="CopyApptBody"></div>
+            </div>
+
+            </div>
+    </div><!--Copy Appt modal end-->
 }
+
 <script type="text/javascript" src="~/Scripts/customJquery/Institution.js"></script>
 <script type="text/javascript">
-   // $('#risk-calc-display-modal').modal({ backdrop: 'static', keyboard: false })
-    function TestOnSuccess(data) {
-        //$('#loading').data('spinner').stop();
+
+   
+   function TestOnSuccess(data) {
+     
         $('#loading').hide();
         $('#divInstitutionGrid').html(data.view);
+        $(".editmenu").slideUp(0);
         Applytablesorter();
+
     }
 
     //};
@@ -261,8 +326,6 @@ else
                 $('#Downloadbtn').prop('disabled', true);
                 $('#CloseBtn').prop('disabled', true);
                 $("#progressdiv").show();
-
-
 
             },
             type: "POST",
@@ -301,7 +364,7 @@ else
     }
 
     function saveClinic() {
-
+     
         var id = $("#ddClinic").val();
         $("#Hfddlclinic").val(id);
         Searchloading();

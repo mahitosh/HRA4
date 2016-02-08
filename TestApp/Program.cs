@@ -10,14 +10,19 @@ using HRA4.Entities;
 using RiskApps3.Controllers;
 using RiskApps3.Model.PatientRecord;
 using RiskApps3.Model.MetaData;
-
+using HRA4.Entities.UserManagement;
+using RiskApps3.Model;
+using HRA4.ViewModels;
 namespace TestApp
 {
     class Program
     {
         static void Main(string[] args)
         {
-            CreateMenu();
+            SaveCancerRiskFactors();
+           // SaveAppointment();
+            //RunScript();
+          //  CreateMenu();
           //  CreateDefaultTemplates();
 
             //IApplicationContext app = new ApplicationContext();
@@ -29,84 +34,177 @@ namespace TestApp
             //string tmp1 = Guid.NewGuid().ToString();
 
             //AddSuperAdmin();
-            User user = new User()
-            {
-                userLogin = "admin"
-            };
+            
             string assignedBy = "admin";
             Patient p = SessionManager.Instance.GetActivePatient();    // TODO:  Check this!!
             var t = new RiskApps3.Model.PatientRecord.Communication.Task(p, "Task", null, assignedBy, DateTime.Now);
 
         }
 
+        private static void SaveCancerRiskFactors()
+        {
+            Breast bcancer = new Breast();
+
+            CancerRiskFactors breast = new Breast()
+            {
+                MensturationHistory = new MensturationHistory()
+                {
+                    AgeOfFirstPeriod="",
+                    AgePeriodStopped="",
+                    Confident="",
+                    LMP="",
+                    StillHavingPeriods=""
+                },
+                PhysicalData = new PhysicalData()
+                {
+                    Weight="",
+                    Feet= "",
+                    Inches=""
+                },
+            };
+
+
+            CancerRiskFactors colorectal = new Colorectal()
+            {
+                MensturationHistory = new MensturationFactors()
+                {                   
+                    AgePeriodStopped = "",      
+                    StillHavingPeriods = ""
+                },
+                PhysicalData = new PhysicalData()
+                {
+                    Weight = "",
+                    Feet = "",
+                    Inches = ""
+                },
+            };
+
+            SessionManager.Instance.SetActivePatient("99911041507",7);
+            PhysicalExamination physical = new PhysicalExamination(SessionManager.Instance.GetActivePatient());
+           // physical.weightPounds = "75";
+            //HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
+            //args.updatedMembers.Add(physical.GetMemberByName("weightPounds")); // Edit And save
+            
+            //physical.BackgroundPersistWork(args);
+             
+          
+            physical.weightPounds = "80";
+            physical.BackgroundPersistWork(new HraModelChangedEventArgs(null));
+            
+        }
+
+        private static void SaveAppointment()
+        {
+           /// RiskApps3.View.Appointments.AddAppointmentView appview = new RiskApps3.View.Appointments.AddAppointmentView("9995623145", 1);
+           
+            RiskApps3.Model.PatientRecord.Appointment appointment = new RiskApps3.Model.PatientRecord.Appointment(1, "999111111")
+            {
+                apptdate="02/01/2016",
+                appttime="8:00 PM",
+                dob = "10/25/1985",
+                gender= "FeMale",
+                language="EN",
+                nationality="Indian",
+                patientname="mk Test",
+                
+
+            };
+
+            HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
+            args.updatedMembers.Add(appointment.GetMemberByName("appttime")); // Edit And save
+            appointment.BackgroundPersistWork(args);
+
+            appointment.BackgroundPersistWork(new HraModelChangedEventArgs(null));// New Appointment
+
+        }
+
+        private static void RunScript()
+        {
+            //Server=.\SQLEXPRESS;Database=HRA_T1_941d0d25;User Id=sa;Password = mk#12345;
+            string conString = @"Server=.\SQLEXPRESS;Database=HRA_DOCTEMPLATE_60528aa4;User Id=sa;Password = mk#12345;";
+            string[] files = Directory.GetFiles(@"D:\Shared\Aditya\version370", "*.sql", SearchOption.AllDirectories);
+            foreach(string filePath in files)
+            {
+                string tmp = File.ReadAllText(filePath);
+                HRA4.Utilities.Helpers.CreateInstitutionDb(conString, tmp);
+        }
+
+        }
+
         private static void CreateMenu()
         {
-            //string conn1 = "Server=.\\SQLEXPRESS;Database=RiskappCommon;User Id=sa;Password=mk#12345;";
-            ////We cannot run/use Simple.Data when support for legacy framework is allowed.
-            //dynamic commonDbContext = Simple.Data.Database.OpenConnection(conn1);
-            //HRA4.ViewModels.Menu menu = new HRA4.ViewModels.Menu()
-            //{
-            //    MenuName = "Manage Users",
-            //    Roles = "SuperAdmin|Administrator",
-            //    Controller = "User",
-            //    Action = "Index"
-            //};
-            //commonDbContext.Menu.Insert(menu);
+            string conn1 = "Server=.\\SQLEXPRESS;Database=RiskappCommon;User Id=sa;Password=mk#12345;";
+            //We cannot run/use Simple.Data when support for legacy framework is allowed.
+            dynamic commonDbContext = Simple.Data.Database.OpenConnection(conn1);
 
-            //menu = new HRA4.ViewModels.Menu()
-            //{
-            //    MenuName = "Manage Institution",
-            //    Roles = "SuperAdmin",
-            //    Controller = "Admin",
-            //    Action = "Index"
-            //};
-            //commonDbContext.Menu.Insert(menu);
+            List<MenuRights> menuRights = commonDbContext.MenuRights.All();
 
-            //menu = new HRA4.ViewModels.Menu()
-            //{
-            //    MenuName = "Manage Providers",
-            //    Roles = "SuperAdmin|Administrator",
-            //    Controller = "Providers",
-            //    Action = "Index"
-            //};
-            //commonDbContext.Menu.Insert(menu);
+            string menuIds = menuRights.FirstOrDefault(m=>m.RoleId == 1).MenuIds;
 
-            //menu = new HRA4.ViewModels.Menu()
-            //{
-            //    MenuName = "Manage Documents",
-            //    Roles = "SuperAdmin|Administrator",
-            //    Controller = "DocumentEditor",
-            //    Action = "Index"
-            //};
-            //commonDbContext.Menu.Insert(menu);
+            Console.WriteLine(menuIds);
+            HRA4.Entities.Menu menu = new HRA4.Entities.Menu()
+            {
+                MenuName = "Manage Users",
+                Roles = "SuperAdmin|Administrator",
+                Controller = "User",
+                Action = "Index"
+            };
+            commonDbContext.Menu.Insert(menu);
 
-            //menu = new HRA4.ViewModels.Menu()
-            //{
-            //    MenuName = "Audit Reports",
-            //    Roles = "SuperAdmin|Administrator",
-            //    Controller = "Reports",
-            //    Action = "AuditReports"
-            //};
-            //commonDbContext.Menu.Insert(menu);
+            menu = new HRA4.Entities.Menu()
+            {
+                MenuName = "Manage Institution",
+                Roles = "SuperAdmin",
+                Controller = "Admin",
+                Action = "Index"
+            };
+            commonDbContext.Menu.Insert(menu);
+
+            menu = new HRA4.Entities.Menu()
+            {
+                MenuName = "Manage Providers",
+                Roles = "SuperAdmin|Administrator",
+                Controller = "Providers",
+                Action = "Index"
+            };
+            commonDbContext.Menu.Insert(menu);
+
+            menu = new HRA4.Entities.Menu()
+            {
+                MenuName = "Manage Documents",
+                Roles = "SuperAdmin|Administrator",
+                Controller = "DocumentEditor",
+                Action = "Index"
+            };
+            commonDbContext.Menu.Insert(menu);
+
+            menu = new HRA4.Entities.Menu()
+            {
+                MenuName = "Audit Reports",
+                Roles = "SuperAdmin|Administrator",
+                Controller = "Reports",
+                Action = "AuditReports"
+            };
+            commonDbContext.Menu.Insert(menu);
 
          
-            //menu = new HRA4.ViewModels.Menu()
-            //{
-            //    MenuName = "TestPatient",
-            //    Roles = "SuperAdmin|Administrator",
-            //    Controller = "TestPatient",
-            //    Action = "TestPatients"
-            //};
-            //commonDbContext.Menu.Insert(menu);
+            menu = new HRA4.Entities.Menu()
+            {
+                MenuName = "TestPatient",
+                Roles = "SuperAdmin|Administrator",
+                Controller = "TestPatient",
+                Action = "TestPatients"
+            };
+            commonDbContext.Menu.Insert(menu);
 
-            //menu = new HRA4.ViewModels.Menu()
-            //{
-            //    MenuName = "Manage Clinics",
-            //    Roles = "SuperAdmin|Administrator",
-            //    Controller = "Clinics",
-            //    Action = "Index"
-            //};
-            //commonDbContext.Menu.Insert(menu);
+            menu = new HRA4.Entities.Menu()
+            {
+                MenuName = "Manage Clinics",
+                Roles = "SuperAdmin|Administrator",
+                Controller = "Clinics",
+                Action = "Index"
+            };
+            commonDbContext.Menu.Insert(menu);
 
 
         }
