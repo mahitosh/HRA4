@@ -30,7 +30,7 @@ namespace RiskApps3.Model.PatientRecord
         private string heightInches;
         [DataMember]
         [HraAttribute]
-        private string weightPounds;
+        public string weightPounds;
         [DataMember]
         [HraAttribute]
         private string weightChangeLastMammo;

@@ -12,15 +12,16 @@ using RiskApps3.Model.PatientRecord;
 using RiskApps3.Model.MetaData;
 using HRA4.Entities.UserManagement;
 using RiskApps3.Model;
-
+using HRA4.ViewModels;
 namespace TestApp
 {
     class Program
     {
         static void Main(string[] args)
         {
+            SaveCancerRiskFactors();
            // SaveAppointment();
-            RunScript();
+            //RunScript();
           //  CreateMenu();
           //  CreateDefaultTemplates();
 
@@ -33,21 +34,70 @@ namespace TestApp
             //string tmp1 = Guid.NewGuid().ToString();
 
             //AddSuperAdmin();
-            User user = new User()
-            {
-                userLogin = "admin"
-            };
+            
             string assignedBy = "admin";
             Patient p = SessionManager.Instance.GetActivePatient();    // TODO:  Check this!!
             var t = new RiskApps3.Model.PatientRecord.Communication.Task(p, "Task", null, assignedBy, DateTime.Now);
 
         }
 
+        private static void SaveCancerRiskFactors()
+        {
+            Breast bcancer = new Breast();
+
+            CancerRiskFactors breast = new Breast()
+            {
+                MensturationHistory = new MensturationHistory()
+                {
+                    AgeOfFirstPeriod="",
+                    AgePeriodStopped="",
+                    Confident="",
+                    LMP="",
+                    StillHavingPeriods=""
+                },
+                PhysicalData = new PhysicalData()
+                {
+                    Weight="",
+                    Feet= "",
+                    Inches=""
+                },
+            };
+
+
+            CancerRiskFactors colorectal = new Colorectal()
+            {
+                MensturationHistory = new MensturationFactors()
+                {                   
+                    AgePeriodStopped = "",      
+                    StillHavingPeriods = ""
+                },
+                PhysicalData = new PhysicalData()
+                {
+                    Weight = "",
+                    Feet = "",
+                    Inches = ""
+                },
+            };
+
+            SessionManager.Instance.SetActivePatient("99911041507",7);
+            PhysicalExamination physical = new PhysicalExamination(SessionManager.Instance.GetActivePatient());
+           // physical.weightPounds = "75";
+            //HraModelChangedEventArgs args = new HraModelChangedEventArgs(null);
+            //args.updatedMembers.Add(physical.GetMemberByName("weightPounds")); // Edit And save
+            
+            //physical.BackgroundPersistWork(args);
+             
+          
+            physical.weightPounds = "80";
+            physical.BackgroundPersistWork(new HraModelChangedEventArgs(null));
+            
+        }
+
         private static void SaveAppointment()
         {
            /// RiskApps3.View.Appointments.AddAppointmentView appview = new RiskApps3.View.Appointments.AddAppointmentView("9995623145", 1);
            
-            RiskApps3.Model.PatientRecord.Appointment appointment = new Appointment(1, "999111111")
+            RiskApps3.Model.PatientRecord.Appointment appointment = new RiskApps3.Model.PatientRecord.Appointment(1, "999111111")
             {
                 apptdate="02/01/2016",
                 appttime="8:00 PM",

@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="Appointment.cs" />
     <Compile Include="AuditReports.cs" />
-    <Compile Include="BCRF\BreastCancerRiskFactor.cs" />
+    <Compile Include="BreastCancerRiskFactor.cs" />
+    <Compile Include="CancerRiskFactors.cs" />
+    <Compile Include="ColorectalCancerRiskFactor.cs" />
     <Compile Include="HighRisk.cs" />
     <Compile Include="HraXmlFile.cs" />
     <Compile Include="Clinic.cs" />
