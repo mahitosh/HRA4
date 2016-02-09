@@ -6,21 +6,32 @@ Don't forget to reference the JQuery Library here, inside your view or layout.
 
 <script type="text/javascript">
 
-    (function(){ 
+    (function(){
 
-      $(function() { 
-      
-          $('#@ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)').tinymce({
+        $(function() {
+            var Id = parseInt(@ViewBag.Id);
+            
+            var read = 1;
+            if (Id > 0)
+            {
+                read = 0;
+            }
 
-            // Location of TinyMCE script
+
+            $('#@ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)').tinymce({
+
+              
+                // Location of TinyMCE script
+                
+            readonly : read,
             script_url: '@Url.Content("~/Scripts/tinymce/tiny_mce.js")',
             theme: "advanced",
-            readonly : 0,
+            
             height: "500",
             width: "790",
             verify_html : false,
             plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave",
-            
+
             // Theme options
             theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
             theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
@@ -30,11 +41,11 @@ Don't forget to reference the JQuery Library here, inside your view or layout.
             theme_advanced_toolbar_align : "left",
             theme_advanced_statusbar_location : "bottom",
             theme_advanced_resizing : false,
-            
+
             // Example content CSS (should be your site CSS)
             //content_css : "@Url.Content("~/Scripts/tinymce/css/content.css")",
             convert_urls : false,
-            
+
             // Drop lists for link/image/media/template dialogs
             template_external_list_url : "lists/template_list.js",
             external_link_list_url : "lists/link_list.js",
@@ -43,10 +54,10 @@ Don't forget to reference the JQuery Library here, inside your view or layout.
 
         });
 
-      });
+    });
 
     })();
-   
+
     $(".dropdown").on("show.bs.dropdown", function (event) {
         $('ul.admin-tool-menu').css("display", "block");
     });
