@@ -112,11 +112,14 @@ else
                                                     </thead>
                                                 </table>
                                             </div><!--table header end here-->
-                                            <div class="div-table-content" id="divInstitutionGrid">
-                                                @Html.Partial("_InstitutionGrid", Model)
+                                            <div class="div-table-content">
+                                                <div id="divInstitutionGrid">
+                                                    @Html.Partial("_InstitutionGrid", Model)
+                                                </div>
+                                                <div id="divRecordStatus" style="color:red;text-align:center">@ViewBag.RecordStatus</div>
                                             </div>
                                             </div><!--schedule list div end here-->
-                                        <div id="divRecordStatus" style="color:red;text-align:center">@ViewBag.RecordStatus</div>
+                                     
                                     </div><!--row end-->
                                 </div><!--container end-->
 
