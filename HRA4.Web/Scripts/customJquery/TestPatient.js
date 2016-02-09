@@ -1,4 +1,7 @@
-﻿
+﻿//$("#dob-date").datepicker({ minDate: 0 });
+
+
+
 
 $('#menu ul').hide();
 $("ul#menu").off("click");

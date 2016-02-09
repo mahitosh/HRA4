@@ -1,8 +1,4 @@
 ﻿
-
-//$("#dob-date,#edit-app-date").datepicker();
-
-
 $(document).ready(function () {
     
     $("#dob-date,#edit-app-date,#appt-date").datepicker();
@@ -54,10 +50,10 @@ $(document).ready(function () {
 });
 
 function ShowErrorNotification(msg) {
-    var sudoNotify = $('.notification-container').sudoNotify({
+        var sudoNotify = $('.notification-container').sudoNotify({
 
         // auto hide after x seconds set in duration opiton
-        autoHide: true,
+        autoHide: false,
 
         // displat a close button
         showCloseButton: true,
@@ -78,12 +74,14 @@ function ShowErrorNotification(msg) {
         defaultStyle: {
             maxWidth: '1000px',
             fontSize: '16px'
+           // height: '60px'
         },
 
         // custom styles for error notification bar
         errorStyle: {
             color: '#000000',
             backgroundColor: '#FF9494'
+            //height: '60px'
         },
 
         // custom styles for warning notification bar

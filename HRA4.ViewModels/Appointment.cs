@@ -51,7 +51,7 @@ namespace HRA4.ViewModels
 
         }
         public bool SetMarkAsComplete { get; set; }
-        public List<string> appttimes { get { return new List<string>() { "7:00 AM", "7:15 AM" }; } set { } }
+        public List<string> appttimes { get { return new List<string>() {" ","7:00 AM", "7:15 AM" }; } set { } }
         public string appttime { get; set; }
         public List<Clinic> clinics { get; set; }
         public int clinicID { get; set; }
@@ -79,7 +79,7 @@ namespace HRA4.ViewModels
         public string Workphone { get; set; }
         public string Cellphone { get; set; }
         public string EmailAddress { get; set; }
-        public List<string> Genders { get { return new List<string>() { "M", "F", "U" }; } set { } }
+        public List<string> Genders { get { return new List<string>() { "F", "M", "U" }; } set { } }
         public string Gender { get; set; }
         public List<string> AppointmentPhysicians { get { return new List<string>() { "A", "B", "U" }; } set { } }
         public string AppointmentPhysician { get; set; }

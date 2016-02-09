@@ -49,7 +49,23 @@ function HideAddAppt() {
     $("#add-edit-MRN").modal('hide');
 }
 function ShowAddAppointment(path) {
-    
+    $("#loading").fadeIn();
+    $("#loading").css('z-index', 3000);
+    var opts = {
+        lines: 12, // The number of lines to draw
+        length: 7, // The length of each line
+        width: 4, // The line thickness
+        radius: 10, // The radius of the inner circle
+        color: '#000', // #rgb or #rrggbb
+        speed: 1, // Rounds per second
+        trail: 60, // Afterglow percentage
+        shadow: false, // Whether to render a shadow
+        hwaccel: false // Whether to use hardware acceleration
+    };
+    var target = document.getElementById('loading');
+    // alert(target);
+    var spinner = new Spinner(opts).spin(target);
+    $(target).data('spinner', spinner);
     var MRN = $("#EnteredMRN").val();
     var clinicId = $("#ddClinic").val();
     if (clinicId == '')
@@ -63,6 +79,8 @@ function ShowAddAppointment(path) {
         success: function (Data) {
             $("#MRNBody").hide();
             $("#ApptFooter").hide();
+            $('#loading').data('spinner').stop();
+            $('#loading').hide();
             $('#ApptBody').html(Data.view);
 
         }
@@ -77,7 +95,15 @@ function validateDate(testdate) {
 }
 
 function ValidateModel() {
-    var email, PatientName, MRN, dobdate, ddlGenders, editappdate, ddlappttimes, Survey, ddlclinics;
+    var email='';
+    var PatientName='';
+    var MRN='';
+    var dobdate='';
+    var ddlGenders='';
+    var editappdate='';
+    var ddlappttimes='';
+    var ddlclinics='';
+    var Survey='';
     PatientName = $("#PatientName").val();
     MRN = $("#MRN").val();
     dobdate = $("#dob-date").val();
@@ -87,12 +113,12 @@ function ValidateModel() {
     Survey = $("#Survey").val();
     ddlclinics = $("#ddlclinics").val();
     email = $("#EmailAddress").val();
-   
-    if(PatientName==''||MRN==''||dobdate==''||editappdate==''||Survey=='')
-    {
-        ShowErrorNotification('Please fill Mandatory fields!');
-        return false;
-    }
+    
+    //if(PatientName==''||MRN==''||dobdate==''||editappdate==''||Survey=='')
+    //{
+    //    ShowErrorNotification('Please fill Mandatory fields!');
+    //    return false;
+    //}
      var patt = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
     
     if (email != '')
@@ -111,10 +137,9 @@ function ValidateModel() {
     //    return false;
     //}
     
-    ShowNotification('Appointment Saved Successfully!');
-
-    $("#add-edit-MRN").modal('hide');
-    $("#Copy-Appt").modal('hide');
+    //$("#add-edit-MRN").modal('hide');
+    //$("#Copy-Appt").modal('hide');
+  
     return true;
 }
 
@@ -160,7 +185,7 @@ function ShowEdit(obj, mrn, apptid, path) {
         success: function (Data) {
             $('#loading').data('spinner').stop();
             $('#loading').hide();
-            $('.InstitutionPartialdiv').html('');
+            $('.InstitutionPartialdiv').html("");
             $('.InstitutionPartialdiv').html(Data.view);
             Applytablesorter();
             $(".schedule-more-detail-content").hide();
@@ -418,8 +443,8 @@ function DeleteAppointment() {
             $('#divRecordStatus').html('');
             $('#ScheduleCount').html(Data.apps_count);
             $('#divInstitutionGrid').html(Data.view);
-            Applytablesorter();
             $(".editmenu").slideUp(0);
+            Applytablesorter();
             if (parseInt(Data.apps_count, 0) == 0) {
                 $('#divRecordStatus').html("No records found.");
             }

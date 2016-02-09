@@ -246,7 +246,7 @@ else
             <div class="modal-content">
                 <div class="modal-header">
                     @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                    <h4 class="modal-title">Add&frasl;Edit Appointment</h4>
+                    <h4 class="modal-title">New Appointment</h4>
                 </div>
                 <div id="ApptBody"></div>
                 <div id="MRNBody" class="modal-body">
@@ -284,12 +284,20 @@ else
 
    
    function TestOnSuccess(data) {
-     
-        $('#loading').hide();
-        $('#divInstitutionGrid').html(data.view);
-        $(".editmenu").slideUp(0);
-        Applytablesorter();
-
+              
+       if (data.error != '') {
+           $('#loading').hide();
+           ShowErrorNotification(data.error);
+       }
+       else {
+           $('#loading').hide();
+           $('#divInstitutionGrid').html(data.view);
+           ShowNotification('Appointment Saved Successfully!');
+           $(".editmenu").slideUp(0);
+           Applytablesorter();
+            $("#add-edit-MRN").modal('hide');
+    $("#Copy-Appt").modal('hide');
+       }
     }
 
     //};
