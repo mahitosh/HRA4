@@ -81,6 +81,7 @@
                         @*<input id="login-password" type="password" class="form-control" name="password" placeholder="Enter password">*@
                         @Html.PasswordFor(m => m.Password, new { @id = "login-password", @class = "form-control", @placeholder = "Enter password" })
                         @Html.ValidationMessageFor(m => m.Password)
+                        <span class="input-group-addon visible-password"><a href="#"><i class="glyphicon glyphicon glyphicon-eye-open"></i></a></span>
                     </div>
 
                     <div style="margin-top:10px" class="form-group">
@@ -195,12 +196,26 @@
     <script src="~/assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
+        $(document).ready(function () {
+            $("i").mousedown(function () {
+                
+                $("#login-password").attr("type", "text");
+            });
+            $("i").mouseup(function () {
+                 
+                $("#login-password").attr("type", "password");
+            });
+        });
+
+      
             $("#btn_cancel").click(function () {
             $("#usernm").val('');
             $("#password").val('');
             $("#login-alert").css("display", "block");
            
-        });
+            });
+
+           
     </script>
 </body>
 </html>
