@@ -523,6 +523,7 @@ function ShowDocument(globalGetJSONPath, templateid) {
     };
     var target = document.getElementById('divShowHtml');
     // alert(target);
+     
     var spinner = new Spinner(opts).spin(target);
     $(target).data('spinner', spinner);
 

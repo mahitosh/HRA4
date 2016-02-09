@@ -10,39 +10,42 @@
        @foreach (var item in Model)
        {
         <tr>
-            <td>
-                @{
+            @{
            string appdate = (item.AppointmentDate == DateTime.MinValue ? "" : item.AppointmentDate.ToString("MM/dd/yyyy hh:mm:ss tt"));
-                }
-                @Html.DisplayFor(modelItem => appdate)
+            }
+            <td title="@appdate">
+               
+                @Html.DisplayFor(modelItem => appdate, new { title=appdate})
             </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.PatientName)
+            <td title="@item.PatientName">
+                @Html.DisplayFor(modelItem => item.PatientName, new { title = item.PatientName })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MRN)
             </td>
-            <td>
-                @{
+            @{
            string dob = (item.DateOfBirth == DateTime.MinValue ? "" : item.DateOfBirth.ToString("MM/dd/yyyy"));
-                }
+            }
+            <td title="@dob">
+               
                 @Html.DisplayFor(modelItem => dob)
             </td>
 
-            <td>
+            <td title="@item.Provider">
                 @Html.DisplayFor(modelItem => item.Provider)
             </td>
-            <td>
-                @{
+            @{
            string dateCompleted = (item.DateCompleted == DateTime.MinValue ? "" : item.DateCompleted.ToString("MM/dd/yyyy hh:mm:ss tt"));
-                }
+            }
+            <td title="@dateCompleted">
+               
                 @Html.DisplayFor(modelItem => dateCompleted)
             </td>
-            <td>
+            <td title="@item.DiseaseHx">
                 @Html.DisplayFor(modelItem => item.DiseaseHx)
             </td>
-            <td>
+            <td title="@item.Survey">
                 @Html.DisplayFor(modelItem => item.Survey)
             </td>
             <td>
