@@ -9,7 +9,7 @@
                 <th width="15%">Gens</th>
                 <th width="15%">Diseases</th>
                 <th width="15%">DOB</th>
-                <th width="15%">Actions</th>
+                <th width="15%" title="Quick Actions">Quick Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -17,11 +17,11 @@
             {
 
                 <tr>
-                    <td>@item.patientName</td>
-                    <td>@item.unitnum</td>
+                    <td title="@item.patientName">@item.patientName</td>
+                    <td title="@item.unitnum">@item.unitnum</td>
                     <td>@item.MaxBRCAScore</td>
                     <td>@item.geneNames</td>
-                    <td>@item.Diseases</td>
+                    <td title="@item.Diseases">@item.Diseases</td>
                     <td>@item.dob</td>
                     <td align="center"><a href="#" data-toggle="modal" onclick="GetPatientDetails('@item.unitnum.ToString()','@Url.Action("GetPatientDetails", "HighRiskFollowup")');"><img src="images/pedigree-ico.svg" alt="Refresh" width="25" height="25" data-toggle="tooltip" data-placement="top" title="Pedigree" /></a></td>
                 </tr>

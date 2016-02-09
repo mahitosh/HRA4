@@ -9,7 +9,7 @@
                 <th width="15%">Last MRI</th>
                 <th width="15%">Diseases</th>
                 <th width="15%">DOB</th>
-                <th width="5%">Action</th>
+                <th width="5%" title="Quick Actions">Quick Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -17,12 +17,12 @@
             {
 
                 <tr>
-                    <td>@item.patientName</td>
-                    <td>@item.unitnum</td>
+                    <td title="@item.patientName">@item.patientName</td>
+                    <td title="@item.unitnum">@item.unitnum</td>
                     <td>@item.MaxLifetimeScore.ToString("00.0")</td>
                     <td>@item.LastCompApptDate</td>
                     <td>@item.LastMRI</td>
-                    <td>@item.Diseases</td>
+                    <td title="@item.Diseases">@item.Diseases</td>
                     <td>@item.dob</td>
                     <td align="center"><a href="#" data-toggle="modal" onclick="GetPatientDetails('@item.unitnum.ToString()','@Url.Action("GetPatientDetails", "HighRiskFollowup")');"><img src="images/pedigree-ico.svg" alt="Refresh" width="25" height="25" data-toggle="tooltip" data-placement="top" title="Pedigree" /></a></td>
                 </tr>

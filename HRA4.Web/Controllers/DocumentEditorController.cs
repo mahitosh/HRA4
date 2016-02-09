@@ -19,6 +19,7 @@ namespace HRA4.Web.Controllers
         {
             var templates = _applicationContext.ServiceContext.TemplateService.GetTemplates();
             ViewBag.Message = "";
+            ViewBag.Id = 0;
             return View(templates);
         }
 
@@ -28,6 +29,7 @@ namespace HRA4.Web.Controllers
             templates.Content = _applicationContext.ServiceContext.TemplateService.GetTemplate(Id).TemplateString;
             templates.TemplateName = TemplateName;
             templates.Id = Id;
+            ViewBag.Id = Id;
             ViewBag.Message = "";
             return View("Index", templates);
         
@@ -47,12 +49,14 @@ namespace HRA4.Web.Controllers
             
             new_model.TemplateName = model.TemplateName;
             new_model.Id = model.Id;
+            ViewBag.Id = model.Id;
             ViewBag.Message = "Template edited sucessfully.";
             return View("Index", new_model);
         }
         public ActionResult Cancel()
         {
             ViewBag.Message = "";
+            ViewBag.Id = 0;
             ViewModels.TemplateList template = new ViewModels.TemplateList();
             template = _applicationContext.ServiceContext.TemplateService.GetTemplates();
             return View("Index", template);
