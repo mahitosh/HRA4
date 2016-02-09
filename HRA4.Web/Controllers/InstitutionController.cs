@@ -239,7 +239,7 @@ namespace HRA4.Web.Controllers
             app.MRN = Convert.ToString(frm["MRN"]);
             app.DateOfBirth = Convert.ToDateTime(frm["dob-date"]);
             app.PatientName = Convert.ToString(frm["PatientName"]);
-            app.Survey = Convert.ToString(frm["Survey"]);
+            app.Survey = Convert.ToString(frm["ddlSurvey"]);
             app.appttime = Convert.ToString(frm["ddlappttimes"]);
             app.Address1 = Convert.ToString(frm["Address1"]);
             app.Address2 = Convert.ToString(frm["Address2"]);

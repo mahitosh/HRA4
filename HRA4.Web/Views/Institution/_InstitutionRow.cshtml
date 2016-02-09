@@ -163,8 +163,8 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>Survey *</label>
-                    @Html.TextBoxFor(item => item.Survey, new { @class = "form-control",@maxlength = "50" })
-
+                    @*@Html.TextBoxFor(item => item.Survey, new { @class = "form-control",@maxlength = "50" })*@
+                    @Html.DropDownList("ddlSurvey", new SelectList(@Model.SurveyList, "--select--"), new { @class = "form-control" })
                 </div>
             </div>
             <div class="col-sm-3">
@@ -367,4 +367,6 @@
         </div>
     }
 </div>
+<script src="~/Scripts/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="~/Scripts/bootstrap-timepicker.js"></script>
 <script src="~/Scripts/dev-custom.js"></script>

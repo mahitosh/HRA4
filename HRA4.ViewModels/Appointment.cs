@@ -35,6 +35,7 @@ namespace HRA4.ViewModels
 
         public string DiseaseHx { get; set; }
         public string Survey { get; set; }
+        public List<string> SurveyList { get { return new List<string>() { "Breast Colon Risk", "Breast risk", "NSMC","Pediatric","PenRad","Prenatal","Risk Clinic","Short Breast","Short Breast Colon","Short Colon","Super Short Breast" }; } set { } }
         public bool DoNotCall { get; set; }
         public bool MarkAsComplete
         {

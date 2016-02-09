@@ -1,6 +1,6 @@
 ﻿
 $(document).ready(function () {
-    
+    $('#dob-date').datepicker();
     $("#dob-date,#edit-app-date,#appt-date").datepicker();
     var txt = $('#ddlsurveys option:selected').text();
     $("#ddlsurveystext").val(txt);
@@ -54,7 +54,7 @@ function ShowErrorNotification(msg) {
         var sudoNotify = $('.notification-container').sudoNotify({
 
         // auto hide after x seconds set in duration opiton
-        autoHide: false,
+        autoHide: true,
 
         // displat a close button
         showCloseButton: true,
