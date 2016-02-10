@@ -11,5 +11,7 @@ namespace HRA4.Services.Interfaces
         void SaveBreastRiskFactors(BreastCancer breastCancer);
         void SaveColorectalRiskFactors(ColorectalCancer colorectal);
         MRI GetMRIDetails();
+        BreastCancer LoadBreastCancerRiskFactors(string mrn, int apptId);
+        ColorectalCancer LoadColorectalRiskFactors(string mrn,int apptId);
     }
 }

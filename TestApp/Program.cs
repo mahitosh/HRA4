@@ -89,6 +89,7 @@ namespace TestApp
              
           
             physical.weightPounds = "90";
+           
             physical.BackgroundPersistWork(new HraModelChangedEventArgs(null));
             
         }

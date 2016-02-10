@@ -352,6 +352,7 @@
     <Content Include="Scripts\bootstrap\v3.3.6\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\v3.3.6\npm.js" />
     <Content Include="Scripts\custom-script.js" />
+    <Content Include="Scripts\customJquery\CancerRiskFactors.js" />
     <Content Include="Scripts\customJquery\HighRiskFollowup.js" />
     <Content Include="Scripts\customJquery\Institution.js" />
     <Content Include="Scripts\customJquery\User.js" />
