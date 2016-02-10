@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
  /* Toggle Styles */
  
@@ -55,7 +55,6 @@
  
 .sidebar-nav {
     position: absolute;
-    top: 0;
     width: 270px;
     margin: 0;
     padding: 0;
@@ -129,7 +128,7 @@ li.active .BRCA-icon:hover, .BRCA-icon:hover{background: #53afee url("../images/
 #sidebar-wrapper label{line-height:20px;font-size:1.1em;}
 #appt-date{padding-right: 65px!important;}
 
-#bs-example-navbar-collapse-1 .navbar-toggle{position: absolute;top:480px;margin:0; margin-top: 12px; padding: 0;position: absolute;width:20px;height:20px; z-index: 1000;left: 262px; -webkit-transition: left 0.5s; /* Safari */ transition: left 0.5s;}
+#bs-example-navbar-collapse-1 .navbar-toggle{position: absolute;margin:0; margin-top: 12px; padding: 0;position: absolute;width:20px;height:20px; z-index: 1000;left: 262px; -webkit-transition: left 0.5s; /* Safari */ transition: left 0.5s;}
 
 /*for mozila*/
 @-moz-document url-prefix() { 

@@ -188,12 +188,58 @@ namespace HRA4.Web.Controllers
         [HttpPost]
         public JsonResult InstitutionSave(FormCollection frm, bool MarkAsComplete, string Hfddlclinic)
         {
+            string error = string.Empty;
+            string errorlist = string.Empty;
+            string DateError = string.Empty;
+            if (string.IsNullOrWhiteSpace(Convert.ToString(frm["MRN"])))
+                errorlist = "MRN,";
+            if (string.IsNullOrWhiteSpace(Convert.ToString(frm["PatientName"])))
+                errorlist = errorlist + " PatientName,";
+            if (string.IsNullOrWhiteSpace(Convert.ToString(frm["ddlappttimes"])))
+                errorlist = errorlist + " AppTime,";
+            DateTime temp;
+            if (!DateTime.TryParse(Convert.ToString(frm["dob-date"]), out temp))
+            {
+                DateError = "DateOfBirth,";
+            }
+            if (!DateTime.TryParse(Convert.ToString(frm["edit-app-date"]), out temp))
+            {
+                DateError = DateError + " AppointmentDate,";
+            }
+            if (!string.IsNullOrWhiteSpace(errorlist))
+            {
+                error = "Please Fill Mandatory Fields : " + errorlist.TrimEnd(',');
+            }
+            if (!string.IsNullOrWhiteSpace(DateError))
+            {
+                if (!string.IsNullOrWhiteSpace(error))
+                    error = error + Environment.NewLine + "Invalid Date : " + DateError.TrimEnd(',');
+                else
+                error = "Invalid Date : " + DateError.TrimEnd(',');
+            }
+            if (!string.IsNullOrWhiteSpace(frm["EmailAddress"]))
+            {
+                string email =Convert.ToString(frm["EmailAddress"]);
+                if (!Helpers.IsValidEmail(email))
+                {
+                    if (!string.IsNullOrWhiteSpace(error))
+                        error = error + Environment.NewLine + "Invalid Email Address";
+                    else
+                        error = "Invalid Email Address";
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(error))
+            {
+                var errorresult = new { error = error };
+                return Json(errorresult, JsonRequestBehavior.AllowGet);
+            }        
+            
             HRA4.ViewModels.Appointment app = new ViewModels.Appointment();
             app.Id = Convert.ToInt32(frm["Id"]);
             app.MRN = Convert.ToString(frm["MRN"]);
             app.DateOfBirth = Convert.ToDateTime(frm["dob-date"]);
             app.PatientName = Convert.ToString(frm["PatientName"]);
-            app.Survey = Convert.ToString(frm["Survey"]);
+            app.Survey = Convert.ToString(frm["ddlSurvey"]);
             app.appttime = Convert.ToString(frm["ddlappttimes"]);
             app.Address1 = Convert.ToString(frm["Address1"]);
             app.Address2 = Convert.ToString(frm["Address2"]);
@@ -220,14 +266,10 @@ namespace HRA4.Web.Controllers
             app.State = Convert.ToString(frm["ddlStates"]);
             app.Workphone = Convert.ToString(frm["Workphone"]);
             app.Zip = Convert.ToString(frm["Zip"]);
-
-            //if (Hfddlclinic != null && Hfddlclinic != "")
-            //    app.clinicID = Convert.ToInt32(Hfddlclinic);// verfiy 
-            //else app.clinicID = -1;
+            
             app.SetMarkAsComplete = MarkAsComplete;
             _applicationContext.ServiceContext.AppointmentService.SaveAppointments(app, Convert.ToInt32(Session["InstitutionId"]));
-            // return RedirectToAction("InstitutionDashboard", new { InstitutionId = Session["InstitutionId"] });
-
+           
             string view = string.Empty;
             NameValueCollection searchfilter = new NameValueCollection();
             searchfilter = GetSearchFilter(null, null, app.clinicID.ToString());
@@ -238,7 +280,7 @@ namespace HRA4.Web.Controllers
             }
             var apps = _applicationContext.ServiceContext.AppointmentService.GetAppointments(instId, searchfilter).ToList();
             view = RenderPartialView("_InstitutionGrid", apps);
-            var result = new { view = view };
+            var result = new { view = view, error = error };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 

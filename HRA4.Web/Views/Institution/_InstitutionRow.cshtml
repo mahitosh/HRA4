@@ -16,7 +16,7 @@
         <div class="col-sm-12 quick-add-links">
 
             <span onclick="NewDocument('@Url.Action("NewDocument", "Institution")','@Model.MRN.ToString()', '@Model.Id.ToString()');">
-                <a href="#" data-toggle="modal" data-target="#schedule-new-doc-modal">
+                <a href="#" data-toggle="modal" data-target="#schedule-new-doc-modal" data-backdrop="static" data-keyboard="false">
                     <img src="~/images/new-doc-ico.svg" alt="New Document" width="30" height="30" title="New Document" /> New Document
                 </a>
             </span>
@@ -66,7 +66,7 @@
             </div><!--Import/export dropdown end-->
 
 
-            <span onclick="RunDocs('@Model.MRN.ToString()','@Model.Id.ToString()');">
+            <span onclick="RunDocs('@Model.MRN.ToString()','@Model.Id.ToString()');" style="margin-right:6px;">
                 <a data-toggle="modal" data-target="#browse-xml-modal" data-backdrop="static" data-keyboard="false">
                     <img src="~/images/run-auto-doc-ico.svg" alt="Run automation documents" width="30" height="30" title="Run automation documents" />
                     Run Automation Documents
@@ -153,18 +153,19 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>Time *</label>
-                    <div class="input-group bootstrap-timepicker timepicker">
-                        @*<input id="timepicker1" type="text" class="form-control input-small">*@
-                        @Html.DropDownList("ddlappttimes", new SelectList(@Model.appttimes, "--select--"), new { @class = "form-control" })
+                    @Html.DropDownList("ddlappttimes", new SelectList(@Model.appttimes, "--select--"), new { @class = "form-control" })
+                    @*<div class="input-group bootstrap-timepicker timepicker">
+                        <input id="timepicker1" type="text" class="form-control input-small">
+                        
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>Survey *</label>
-                    @Html.TextBoxFor(item => item.Survey, new { @class = "form-control",@maxlength = "50" })
-
+                    @*@Html.TextBoxFor(item => item.Survey, new { @class = "form-control",@maxlength = "50" })*@
+                    @Html.DropDownList("ddlSurvey", new SelectList(@Model.SurveyList, "--select--"), new { @class = "form-control" })
                 </div>
             </div>
             <div class="col-sm-3">
@@ -360,11 +361,17 @@
         <div class="row">
             <div class="col-sm-12 align-right">
                 <div class="form-group">
-                    <button id="btnSaveQuick" type="submit" class="pull-right btn btn-success btn-sm  Margin-L-10" onclick="return ValidateModel();">Save</button>
+                    <button id="btnSaveQuick" type="submit" class="pull-right btn btn-success btn-sm  Margin-L-10">Save</button>
                     <button id="@Model.Id" type="button" class="pull-right btn btn-cancel btn-sm btnClear" onclick="cancel(this,'@Model.DisplayHeaderMenus','@Url.Action("DeleteAppointment", "Institution")','@Model.Id.ToString()','@Model.IsGoldenAppointment','@Model.IsCopyAppointment'); return false;">Cancel</button>
                 </div>
             </div><!--schedule-more-detail-content end-->
         </div>
     }
 </div>
-<script src="~/Scripts/dev-custom.js"></script>
+<script type="text/javascript">
+    $('#dob-date, #edit-app-date').datepicker()//  id with "dob-date" will pop up a datepicker
+	.on('changeDate', function () { // when the datechanges
+	    $('#dob-date').datepicker('hide');
+	    $('#edit-app-date').datepicker('hide');   // hide the datepicker
+	});
+</script>

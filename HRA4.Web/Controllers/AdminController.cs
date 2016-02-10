@@ -103,7 +103,10 @@ namespace HRA4.Web.Controllers
                         ModelState.AddModelError("", msg);
                         ViewBag.msg = "Error";
                         string tmp = System.Web.HttpContext.Current.Request.RawUrl;
-                       // RedirectToAction("Index", "Admin", new { ReturnUrl = ReturnUrl });
+                        if (Url.IsLocalUrl(ReturnUrl) && ReturnUrl.Length > 1 && ReturnUrl.StartsWith("/")
+                        && !ReturnUrl.StartsWith("//") && !ReturnUrl.StartsWith("/\\"))
+                        return  RedirectToAction("Index", "Admin", new { ReturnUrl = ReturnUrl,Error=msg });
+
                         return View();
                     }
                 }

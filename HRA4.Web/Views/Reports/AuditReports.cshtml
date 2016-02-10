@@ -64,14 +64,14 @@
                                                     @foreach (var item in @Model.RSAuditMrnAccessV3Entry)
                                                     {
                                                         <tr>
-                                                            <td>@Html.DisplayFor(modelItem => item.timestamp)</td>
-                                                            <td>@Html.DisplayFor(modelItem => item.userName)</td>
-                                                            <td>@Html.DisplayFor(modelItem => item.MRN)</td>
+                                                            <td title="@item.timestamp">@Html.DisplayFor(modelItem => item.timestamp)</td>
+                                                            <td title="@item.userName">@Html.DisplayFor(modelItem => item.userName)</td>
+                                                            <td title="@item.MRN">@Html.DisplayFor(modelItem => item.MRN)</td>
                                                             <td>@Html.DisplayFor(modelItem => item.apptID)</td>
-                                                            <td>@Html.DisplayFor(modelItem => item.storedProcedure)</td>
-                                                            <td>@Html.DisplayFor(modelItem => item.hraAttributeValueList)</td>
+                                                            <td title="@item.storedProcedure">@Html.DisplayFor(modelItem => item.storedProcedure)</td>
+                                                            <td title="@item.hraAttributeValueList">@Html.DisplayFor(modelItem => item.hraAttributeValueList)</td>
                                                             <td>@Html.DisplayFor(modelItem => item.relativeID)</td>
-                                                            <td>@Html.DisplayFor(modelItem => item.hraObject)</td>
+                                                            <td title="@item.hraObject">@Html.DisplayFor(modelItem => item.hraObject)</td>
                                                         </tr>
 
                                                     }
