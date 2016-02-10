@@ -10,14 +10,20 @@ namespace HRA4.ViewModels
     {
         public PhysicalDataFactors PhysicalData { get; set; }
         public MensturationFactors MensturationHistory { get; set; }
+        public Origin OriginData { get; set; }
 
     }
 
     public class Origin
     {
+        
         public string AshkenaziJewish { get; set; }
+        public List<string> lstAshkenaziJewish { get { return new List<string>() { "Don't Know", "Prefer Not to Answer", "No", "Yes" }; } set { } }
         public string Hispanic { get; set; }
+        public List<string> lstHispanic { get { return new List<string>() { "Don't Know", "Prefer Not to Answer", "No", "Yes" }; } set { } }
         public string Race { get; set; }
+        public List<string> lstRace { get { return new List<string>() { "African American or Black", "American Indian/Aleutian/Eskimo", "Asian or Pacific Islander", "Caribbean/West Indian", "Caucasian or White", "Other", "Unknown" }; } set { } }
+
     }
 
 
