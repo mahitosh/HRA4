@@ -165,7 +165,7 @@
                 <div class="form-group">
                     <label>Survey *</label>
                     @*@Html.TextBoxFor(item => item.Survey, new { @class = "form-control",@maxlength = "50" })*@
-                    @Html.DropDownList("ddlSurvey", new SelectList(@Model.SurveyList, "--select--"), new { @class = "form-control" })
+                    @Html.DropDownList("ddlSurvey", new SelectList(@Model.SurveyList, @Model.Survey), new { @class = "form-control" })
                 </div>
             </div>
             <div class="col-sm-3">
