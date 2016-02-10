@@ -153,11 +153,12 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>Time *</label>
-                    <div class="input-group bootstrap-timepicker timepicker">
-                        @*<input id="timepicker1" type="text" class="form-control input-small">*@
-                        @Html.DropDownList("ddlappttimes", new SelectList(@Model.appttimes, "--select--"), new { @class = "form-control" })
+                    @Html.DropDownList("ddlappttimes", new SelectList(@Model.appttimes, "--select--"), new { @class = "form-control" })
+                    @*<div class="input-group bootstrap-timepicker timepicker">
+                        <input id="timepicker1" type="text" class="form-control input-small">
+                        
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="col-sm-3">
@@ -367,6 +368,10 @@
         </div>
     }
 </div>
-<script src="~/Scripts/bootstrap-datepicker.js"></script> 
-<script type="text/javascript" src="~/Scripts/bootstrap-timepicker.js"></script>
-<script src="~/Scripts/dev-custom.js"></script>
+<script type="text/javascript">
+    $('#dob-date, #edit-app-date').datepicker()//  id with "dob-date" will pop up a datepicker
+	.on('changeDate', function () { // when the datechanges
+	    $('#dob-date').datepicker('hide');
+	    $('#edit-app-date').datepicker('hide');   // hide the datepicker
+	});
+</script>
