@@ -1,0 +1,119 @@
+﻿<div class="tab-pane" id="MRITest">
+    <div class="table-responsive">
+        <table class="table table-striped apppointment-table">
+            <thead>
+                <tr>
+                    <th width="15%">Type </th>
+                    <th width="15%">Date</th>
+                    <th width="20%">Value</th>
+                    <th width="35%">Result</th>
+                    <th width="15%" class="align-center">Quick&nbsp;Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="highlight-row">
+                    <td>MRI</td>
+                    <td>05-01-2015</td>
+                    <td>4 BIRADS Open biopsy</td>
+                    <td>Abnormal</td>
+                    <td class="align-center">
+                        <a href="javascript:void(0)" id="edit-MRN"><img src="images/edit-grid-ico.svg" alt="Refresh" width="29" height="29" data-toggle="tooltip" data-placement="top" title="Edit" /></a><a href="#"><img src="images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
+                    </td>
+                </tr>
+                <!--edit div start here-->
+                <tr id="quick_add_MRNdiv">
+                    <td colspan="10">
+                        <div class="quick-add-inner-div">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <div id="MRIDate" class="inner-addon right-addon form-group">
+                                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                            <input data-format="MM-dd-yyyy" type="text" class="datepicker form-control" id="MRI_date" /></input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Result</label>
+                                        <select class="form-control">
+                                            <option>Result1</option>
+                                            <option>Result2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <select class="form-control">
+                                            <option>Status1</option>
+                                            <option>Status2</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Side</label>
+                                        <select class="form-control">
+                                            <option>Side1</option>
+                                            <option>Side2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div><!--row end-->
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Left BIRADS</label>
+                                        <select class="form-control">
+                                            <option>Left BIRADS1</option>
+                                            <option>Left BIRADS2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Right BIRADS</label>
+                                        <select class="form-control">
+                                            <option>Right BIRADS1</option>
+                                            <option>Right BIRADS2</option>
+                                            <option>Right BIRADS3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Report Text</label>
+                                        <textarea class="form-control" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 pull-right">
+                                    <button class="pull-right btn btn-success btn-sm Margin-L-10 close_toggleDiv">Save</button>
+                                    <button class="pull-right btn btn-cancel btn-sm close_toggleDiv">Cancel</button>
+                                </div>
+                            </div><!--row end-->
+                        </div><!--end quick-add-MRNinner-div-->
+                    </td>
+                </tr><!--quick_add_MRNdiv col end-->
+                <tr>
+                    <td>MRI</td>
+                    <td>09-09-2015</td>
+                    <td>4 BIRADS Open biopsy</td>
+                    <td>Normal</td>
+                    <td class="align-center">
+                        <a href="#"><img src="images/edit-grid-ico.svg" alt="Refresh" width="29" height="29" data-toggle="tooltip" data-placement="top" title="Edit" /></a><a href="#"><img src="images/delete-ico.svg" alt="Delete" width="28" height="28" data-toggle="tooltip" data-placement="top" title="Delete" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </tbody>
+        </table><!--MRI test table end here-->
+    </div><!--MRI test div end here-->
+</div><!--MRI Test tab content end here-->
