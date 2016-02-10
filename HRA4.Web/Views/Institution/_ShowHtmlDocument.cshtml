@@ -9,8 +9,8 @@
     <div class="form-group">
         <br>
         <input type="button" id="btnPrint" class="pull-right btn btn-success btn-sm Margin-L-10" value="Print" onclick="return pop_print();">
-        <a id="btnDocDownload" href="@Url.Action("DownloadDocument", "Institution", new { filePath = Model.PdfFilePath, templateName = Model.TemplateName, id_mrn = Model.DownloadFileName, templateId = Model.Id }, null)" class="pull-right btn btn-success btn-sm Margin-L-10">Download</a>
-        <button id="btnDocCancel" type="button" class="pull-right btn btn-cancel btn-sm Margin-L-10" data-dismiss="modal">Cancel</button>
+        <a id="btnDocDownload"   href="@Url.Action("DownloadDocument", "Institution", new { filePath = Model.PdfFilePath, templateName = Model.TemplateName, id_mrn = Model.DownloadFileName, templateId = Model.Id }, null)" class="pull-right btn btn-success btn-sm Margin-L-10">Download</a>
+        <button id="btnDocCancel" type="button" class="pull-right btn btn-cancel btn-sm Margin-L-10" onclick="HideProgress();" data-dismiss="modal">Cancel</button>
 
     </div>
 

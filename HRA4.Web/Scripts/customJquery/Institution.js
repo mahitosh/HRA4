@@ -505,6 +505,10 @@ function NewDocument(globalGetJSONPath, MRN, apptid) {
     })
 }
 
+function HideProgress()
+{
+    $("#loading").css('display','none');    
+}
 
 
 function ShowDocument(globalGetJSONPath, templateid) {
@@ -554,6 +558,7 @@ function ShowDocument(globalGetJSONPath, templateid) {
             $("#btnDocDownload").on('click');
             $("#btnDocCancel").attr('disabled', false);
             $('#divShowHtml').html(Data.view);
+          
 
         },
         error:function(error)
