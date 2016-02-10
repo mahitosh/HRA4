@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HRA4.ViewModels;
+using RiskApps3.Model.PatientRecord;
+using RiskApps3.Model;
 
 namespace HRA4.Services
 {
@@ -26,6 +29,11 @@ namespace HRA4.Services
         public void SaveColorectalRiskFactors(ViewModels.ColorectalCancer colorectal)
         {
             throw new NotImplementedException();
+        }
+
+        public MRI GetMRIDetails()
+        {
+           
         }
     }
 }

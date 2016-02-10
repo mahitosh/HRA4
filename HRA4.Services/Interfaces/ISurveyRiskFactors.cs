@@ -10,5 +10,6 @@ namespace HRA4.Services.Interfaces
     {
         void SaveBreastRiskFactors(BreastCancer breastCancer);
         void SaveColorectalRiskFactors(ColorectalCancer colorectal);
+        MRI GetMRIDetails();
     }
 }
