@@ -69,7 +69,7 @@ namespace HRA4.Services
         {
             SessionManager.Instance.SetActivePatient(mrn, apptId);
             //Since the default LoadPatient has been by passed in RiskApp3 library we have to 
-            SessionManager.Instance.GetActivePatient().LoadObject();
+            SessionManager.Instance.GetActivePatient().BackgroundLoadWork();
         }
         public Patient GetActivePatient()
         {

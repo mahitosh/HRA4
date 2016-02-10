@@ -6,12 +6,13 @@ function LoadBreastCancerRiskFactors(url)
 {
     //$("#hidSelectedMrn").val(mrn);
     //$("#hidSelectedAppId").val(apptid);
-
-    alert($("#hidMrn").val());
+    var mrn = $("#hidMrn").val();
+    var apptId = $("#hidApptId").val();
+    alert(url);
 
     $.ajax({
         url: url,
-        data: { mrn: mrn , apptId:apptId},
+        data: { mrn: mrn , apptId: apptId },
         dataType: 'html',
         success: function (data) {
             $('#BreastCancerRisk').html('');

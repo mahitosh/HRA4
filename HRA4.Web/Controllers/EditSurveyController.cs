@@ -26,7 +26,7 @@ namespace HRA4.Web.Controllers
         public ActionResult LoadBreastCancerFactors(string mrn,int apptId)
        {
            var breastCancer = _applicationContext.ServiceContext.SurveyRiskFactors.LoadBreastCancerRiskFactors(mrn, apptId);
-           return View(breastCancer);
+           return PartialView("_CancerRiskFactorBreast", breastCancer);
        }
         /*
         public Action FamilyHistory()

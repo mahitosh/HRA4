@@ -34,7 +34,7 @@
                 <a data-target="#family-history" data-toggle="tab" onclick="showAppt();hideMRI();">Family History</a>
             </li>
             <li>
-                <a data-target="#cancer-risk-factor" data-toggle="tab" onclick="hideAppt(); hideMRI(); LoadBreastCancerRiskFactors();">Cancer Risk Factors</a>
+                <a data-target="#cancer-risk-factor" data-toggle="tab" onclick="hideAppt(); hideMRI(); LoadBreastCancerRiskFactors('@Url.Action("LoadBreastCancerFactors", "EditSurvey")');">Cancer Risk Factors</a>
             </li>
             <li>
                 <a data-target="#MRITest" data-toggle="tab" onclick="hideAppt();showMRI();">MRI Test Details</a>
