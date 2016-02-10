@@ -62,10 +62,11 @@ namespace HRA4.Services
             _hraSessionManager.SetActivePatient(mrn, apptId);
             var patient = _hraSessionManager.GetActivePatient();
 
+            patient.PhysicalExam.BackgroundLoadWork();
             BreastCancer breastCancer = new BreastCancer();
            
-            PhysicalExamination pe = patient.PhysicalExam;
-            breastCancer.PhysicalData = pe.FromRAPhysicalExamination();
+            
+            breastCancer.PhysicalData = patient.PhysicalExam.FromRAPhysicalExamination();
             return breastCancer;
         }
 
