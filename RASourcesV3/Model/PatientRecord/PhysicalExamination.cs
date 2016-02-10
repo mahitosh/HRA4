@@ -24,13 +24,13 @@ namespace RiskApps3.Model.PatientRecord
         private string patientUnitnum;
         [DataMember]
         [HraAttribute]
-        private string heightFeetInches;
+        public string heightFeetInches;//Silicus: Made public
         [DataMember]
         [HraAttribute]
-        private string heightInches;
+        public string heightInches;//Silicus: Made public
         [DataMember]
         [HraAttribute]
-        public string weightPounds;
+        public string weightPounds;//Silicus: Made public
         [DataMember]
         [HraAttribute]
         private string weightChangeLastMammo;

@@ -1,4 +1,5 @@
-﻿<div class="tab-pane active" id="BreastCancerRisk">
+﻿@model HRA4.ViewModels.BreastCancer
+
     <!--accordion start-->
     <div class="panel-group BreastCancerAccordion" id="accordion">
         <div class="panel panel-default">
@@ -15,16 +16,16 @@
                     <div class="col-lg-2 col-sm-3">
                         <div class="form-group">
                             <label>Weight</label>
-                            <input class="form-control input-small" />
+                           @*@Html.TextBoxFor(item => item.PhysicalData.Weight);*@
                             <label>lbs</label>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-5">
                         <div class="form-group">
                             <label>Height</label>
-                            <input class="form-control input-small" />
+                            @*@Html.TextBoxFor(item => item.PhysicalData.Feet);*@
                             <label>'</label>
-                            <input class="form-control input-small" />
+                            @*@Html.TextBoxFor(item => item.PhysicalData.Inches);*@
                             <label>"</label>
                         </div>
                     </div>
@@ -429,9 +430,10 @@
                 </div><!--panel body end-->
             </div>
         </div><!--panel end-->
-    </div><!--accordion end-->
+    </div>
+<!--accordion end-->
     <div class="col-sm-12 pull-right">
         <button class="pull-right btn btn-success btn-sm  Margin-L-10">Save Risk Factors</button>
         <button class="pull-right btn btn-cancel btn-sm">Reset </button>
     </div> <!--buttons div end-->
-</div><!--Breast Cancer Risk tab end here-->
+    <!--Breast Cancer Risk tab end here-->

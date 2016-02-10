@@ -4,7 +4,8 @@
     Layout = "~/Views/Shared/_leftMenuLayout.cshtml";
 }
 
-  
+  <input type="hidden" id="hidMrn" value="@ViewBag.unitnum" />
+<input type="hidden" id="hidApptId" value="@ViewBag.apptid" />
     <div class="row">
         <h3 class="page-title Margin-B-10 pull-left">Edit Survey - Family History</h3>
         <a class="pull-right left-title"><img src="images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh list</a>
@@ -33,7 +34,7 @@
                 <a data-target="#family-history" data-toggle="tab" onclick="showAppt();hideMRI();">Family History</a>
             </li>
             <li>
-                <a data-target="#cancer-risk-factor" data-toggle="tab" onclick="hideAppt();hideMRI();">Cancer Risk Factors</a>
+                <a data-target="#cancer-risk-factor" data-toggle="tab" onclick="hideAppt(); hideMRI(); LoadBreastCancerRiskFactors();">Cancer Risk Factors</a>
             </li>
             <li>
                 <a data-target="#MRITest" data-toggle="tab" onclick="hideAppt();showMRI();">MRI Test Details</a>
@@ -80,7 +81,7 @@
 
         <!-- Start Cancer risk Fcator tab -->
        
-         @Html.Partial("_CancerRiskFactor")
+         @Html.Partial("_CancerRiskFactor",Model)
         
         <!-- End Cancer risk Fcator tab -->
         
