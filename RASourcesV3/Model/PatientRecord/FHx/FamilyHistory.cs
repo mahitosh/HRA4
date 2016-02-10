@@ -180,7 +180,7 @@ namespace RiskApps3.Model.PatientRecord.FHx
         }
 
         /**************************************************************************************************/
-        private int GetNewRelativeID()
+        public int GetNewRelativeID() // Changed by Silicus 
         {
             int retval = 8;
 

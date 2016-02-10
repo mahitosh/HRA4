@@ -1,0 +1,344 @@
+﻿@model IEnumerable<HRA4.ViewModels.FamilyHistoryRelative>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_leftMenuLayout.cshtml";
+}
+
+  
+    <div class="row">
+        <h3 class="page-title Margin-B-10 pull-left">Edit Survey - Family History</h3>
+        <a class="pull-right left-title"><img src="images/refresh-grid-ico.svg" class="refresh-istitution-list" alt="Refresh" width="22" height="22" />Refresh list</a>
+    </div><!--row end-->
+    <div class="clear-float row"><hr class="hr-style Margin-0" /></div>
+    <div class="row">
+        <div class="col-sm-6 Padding-L-0">
+            <h4 class="bold-txt"><span id="spanPatientName"></span></h4>
+            <span class="bold-txt">Age: <span id="spanAge"></span></span> | <span><b>MRN:</b> <span id="spanMRN"></span></span> | <span><b>DOB:</b><span id="spanDOB"></span> </span>
+
+        </div>
+        <div class="col-sm-6 align-right" style="margin-top:19px;">
+            <br />
+            <span class="Margin-R-10"><b>H:</b> <span id="spanH"></span> </span>
+            <span class="Margin-R-10"><b>C:</b> <span id="spanC"></span></span>
+            <span class="Margin-R-10"><b>W:</b> <span id="spanW"></span></span>
+            <span><b>PCP:</b> <span id="spanPCP"></span></span>
+        </div>
+    </div><!--row end-->
+
+    <div class="clear-float row"><hr class="hr-style Margin-TB-10" /></div>
+
+    <div class="row Margin-T-10">
+        <ul class="nav nav-tabs col-sm-12" id="myTab">
+            <li class="active" id="Schedule-Tab">
+                <a data-target="#family-history" data-toggle="tab" onclick="showAppt();hideMRI();">Family History</a>
+            </li>
+            <li>
+                <a data-target="#cancer-risk-factor" data-toggle="tab" onclick="hideAppt();hideMRI();">Cancer Risk Factors</a>
+            </li>
+            <li>
+                <a data-target="#MRITest" data-toggle="tab" onclick="hideAppt();showMRI();">MRI Test Details</a>
+            </li>
+            <div class="clear-float visible-sm"><br /></div>
+            <li class="pull-right add-appointment col-md-4 col-sm-9 Padding-LR-0 Margin-T-5">
+                <a onclick="AddRelative('@Url.Action("AddRelative", "EditSurvey")');" href="#" class="col-lg-5 col-md-6 col-sm-4 align-right pull-right"><img src="images/add-relative-ico.svg" alt="Add Relative" width="35" height="30" /> Add Relative</a>
+                
+                @{
+
+                    List<SelectListItem> liRelation = new List<SelectListItem>();
+                    liRelation.Add(new SelectListItem { Text = "Daughter", Value = "Daughter" });
+                    liRelation.Add(new SelectListItem { Text = "Son", Value = "Son" });
+                    liRelation.Add(new SelectListItem { Text = "Brother", Value = "Brother" });
+                    liRelation.Add(new SelectListItem { Text = "Sister", Value = "Sister" });
+                    liRelation.Add(new SelectListItem { Text = "Aunt - Maternal", Value = "Aunt - Maternal" });
+                    liRelation.Add(new SelectListItem { Text = "Aunt - Paternal", Value = "Aunt - Paternal" });
+                    liRelation.Add(new SelectListItem { Text = "Uncle - Maternal", Value = "Uncle - Maternal" });
+                    liRelation.Add(new SelectListItem { Text = "Uncle - Paternal", Value = "Uncle - Paternal" });
+                    liRelation.Add(new SelectListItem { Text = "Cousin", Value = "Cousin" });
+                    liRelation.Add(new SelectListItem { Text = "Cousin (Male)", Value = "Cousin (Male)" });
+                    liRelation.Add(new SelectListItem { Text = "Cousin (Female)", Value = "Cousin (Female)" });
+                    liRelation.Add(new SelectListItem { Text = "Niece", Value = "Niece" });
+                    liRelation.Add(new SelectListItem { Text = "Nephew", Value = "Nephew" });
+                    liRelation.Add(new SelectListItem { Text = "Other", Value = "Other" });
+
+                }
+                @Html.DropDownList("ddlRelation", new SelectList(liRelation, "Value", "Text"),"", new { @class = "form-control col-lg-5 col-md-6 col-sm-6 pull-right", @style="width: auto"  })
+                <label class="pull-right col-sm-3 align-right" style="padding-top:3px;">Relation</label>
+            </li>
+            <li class="pull-right add-MRI Margin-T-5 Padding-R-15">
+                <a href="#" class=""><img src="images/add-MRI-ico.svg" alt="Add New MRI" width="35" height="25" /> New MRI</a>
+            </li>
+        </ul>
+    </div><!--tab row end-->
+
+    <div class="tab-content row">
+        
+        <!-- Start Family History tab -->
+
+         @Html.Partial("_FamilyHistory")
+
+        <!-- End Family History  tab -->
+
+        <!-- Start Cancer risk Fcator tab -->
+       
+         @Html.Partial("_CancerRiskFactor")
+        
+        <!-- End Cancer risk Fcator tab -->
+        
+        <!-- Start  MRITest tab -->
+        @Html.Partial("_MRITest")
+        <!-- End MRITest tab -->
+
+        
+    </div><!--row end-->
+
+
+<!-- confirmation run risk -->
+<div id="confirm-runrisk" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"> Run Risk and Generate Documents</h4>
+            </div>
+            <div class="modal-body">
+                <div class="editor-field">
+                    <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Do you want to calculate risk and generate doucments?</strong><br /><br />
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-success confirmyes pull-right" type="button" onclick="location.href='@Url.Action("RunRiskModule", "EditSurvey", new { type = 1, unitnum = @ViewBag.unitnum, apptid = @ViewBag.apptid })',closePopup();"  value="Yes" />
+                    <input class="btn btn-cancel pull-right Margin-R-10" type="button" onclick="location.href='@Url.Action("RunRiskModule", "EditSurvey", new { type = 0, unitnum = @ViewBag.unitnum, apptid = @ViewBag.apptid })',closePopup();" value="Cancel" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Confirmation-->
+
+
+
+
+
+<script type="text/javascript" >
+    $(document).ready(function () {
+
+        var unitnum =  $('#hdunitnum').val()
+        var apptid = $('#hdapptid').val()
+        GetPatientDetails('@Url.Action("GetPatientDetails", "EditSurvey")',unitnum,apptid)
+        /*
+        alert($('#hdunitnum').val());
+        alert($('#hdapptid').val());
+        */
+    }
+   );
+
+    //hide add appointment link
+    function hideAppt() {
+        $(".add-appointment").hide();
+    }
+
+    //show add appointment link
+    function showAppt() {
+        $(".add-appointment").show();
+    }
+
+    //hide add MRI link
+    function hideMRI() {
+        $(".add-MRI").hide();
+    }
+
+    //show add MRI link
+    function showMRI() {
+        $(".add-MRI").show();
+    }
+
+
+    function GetPatientDetails(url, unitnum, apptid)
+    {
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {
+                unitnum: unitnum,
+                apptid: apptid
+            },
+            dataType: 'json',
+            success: function (Data) {
+               
+                $("#spanPatientName").html(Data.obj.name);
+                $("#spanMRN").html(Data.obj.unitnum);
+                $("#spanAge").html(Data.obj.age);
+                $("#spanH").html(Data.obj.homephone);
+                $("#spanC").html(Data.obj.cellphone);
+                $("#spanW").html(Data.obj.workphone);
+                $("#spanDOB").html(Data.obj.dob);
+                $("#spanPCP").html('');
+               
+
+            }
+        });
+
+
+    }
+
+
+    $("#liInstitution").click(function () {
+      
+        $('#confirm-runrisk').modal('show');
+        return false;
+
+
+    });
+
+
+    function ShowDeleteModel(RelativeId)
+    {
+        $("#hdRelativeId").val(RelativeId);
+        $('#confirm-delete').modal('show');
+
+
+    }
+
+
+
+    function DeleteRelative(url) {
+
+        $('#confirm-delete').modal('hide');
+        var RelativeId = $("#hdRelativeId").val();
+        var unitnum = $('#hdunitnum').val()
+        var apptid = $('#hdapptid').val()
+
+        
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {
+                unitnum: unitnum,
+                apptid: apptid,
+                RelativeId: RelativeId
+            },
+            dataType: 'json',
+            success: function (Data) {
+
+                
+                $("#tbodyTest").html(Data.view);
+                ShowNotification('Relative details deleted successfully');
+
+            }
+        });
+
+
+    } 
+
+    function AddRelative(url) {
+
+        var unitnum = $('#hdunitnum').val()
+        var apptid = $('#hdapptid').val()
+        var Relationship = $("#ddlRelation").val();
+
+        if (Relationship.length > 0) {
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    unitnum: unitnum,
+                    apptid: apptid,
+                    Relationship: Relationship
+
+                },
+                dataType: 'json',
+                success: function (Data) {
+
+
+                    $("#tbodyTest").html(Data.view);
+                    ShowNotification('Relative details added successfully');
+
+                }
+            });
+
+        }
+    }
+
+    function closePopup()
+    {
+        $('#confirm-runrisk').modal('hide');
+        
+
+    }
+
+
+    function AppendRow(Data) {
+
+        $("#tbodyTest").html(Data.view);
+        $('#edit-family-history').modal('hide');
+        ShowNotification('Relative details updated successfully');
+        
+    }
+
+    function AppendRow1( url )
+    {
+        debugger;
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            dataType: 'html',
+            success: function (Data) {
+                
+                $('#tbodyTest').append(Data);
+
+
+            }
+        });
+        alert("AppendRow");
+    }
+    function ShowModel(type, Relationship, RelativeAge, VitalStatus, FirstDx, FirstAgeOnset, SecondDx, SecondAgeOnset, ThirdDx, ThirdAgeOnset, RelativeId)
+    {
+        $("#hdType").val(type);
+
+        if (type == 1) {
+            $("#txtRelativeAge").val(RelativeAge);
+            $("#txtFirstAgeOnset").val(FirstAgeOnset);
+            $("#txtSecondAgeOnset").val(SecondAgeOnset);
+            $("#txtThirdAgeOnset").val(ThirdAgeOnset);
+            $("#hdRelativeId").val(RelativeId);
+
+
+            // $("#ddlRelation option:contains(" + Relationship + ")").attr('selected', 'selected');
+            if (VitalStatus.length > 0)
+            {
+                $("#ddlVital option:contains(" + VitalStatus + ")").attr('selected', 'selected');
+            }
+            if (FirstDx.length > 0)
+            {
+                $("#ddlFirstDx option:contains(" + FirstDx + ")").attr('selected', 'selected');
+            }
+            if(SecondDx.length > 0)
+            {
+                $("#ddlSecondDx option:contains(" + SecondDx + ")").attr('selected', 'selected');
+            }
+            if (ThirdDx.length > 0) {
+                $("#ddlThirdDx option:contains(" + ThirdDx + ")").attr('selected', 'selected');
+            }
+
+
+
+          
+
+        }
+        else
+        {
+            $("#hdRelativeId").val(0);
+
+        }
+
+        
+        
+        $('#edit-family-history').modal('show');
+    }
+
+</script>
+  

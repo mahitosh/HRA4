@@ -1,6 +1,6 @@
 ﻿
 $(document).ready(function () {
-    $('#dob-date').datepicker();
+    
     $("#dob-date,#edit-app-date,#appt-date").datepicker();
     var txt = $('#ddlsurveys option:selected').text();
     $("#ddlsurveystext").val(txt);

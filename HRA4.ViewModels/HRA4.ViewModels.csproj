@@ -48,6 +48,7 @@
     <Compile Include="BreastCancerRiskFactor.cs" />
     <Compile Include="CancerRiskFactors.cs" />
     <Compile Include="ColorectalCancerRiskFactor.cs" />
+    <Compile Include="FamilyHistoryRelative.cs" />
     <Compile Include="HighRisk.cs" />
     <Compile Include="HraXmlFile.cs" />
     <Compile Include="Clinic.cs" />

@@ -100,8 +100,20 @@ function RefreshTestPatients(url) {
 }
 function showNotification() {
     var date = $("#dob-date").val();
+    
     var result = validateDate(date);
     if (result) {
+        //var now = new Date();
+        //var yr = now.getFullYear();
+        //var mon = now.getMonth();
+        //var MMplusOne = mon + 1;// javascript month starts from 0. so plus 1.
+        //var MM = MMplusOne < 10 ? '0' + MMplusOne : MMplusOne;
+        //var DD = now.getDate() < 10 ? '0' + now.getDate() : now.getDate();
+        //var todaysdate = MM + '/' + DD + '/' + yr;
+        //if (date < todaysdate) {
+        //    ShowErrorNotification('Please select date which is not Past Date!');
+        //    return false;
+        //}
         ShowNotification('Test Patients Created Successfully');
     }else
     {

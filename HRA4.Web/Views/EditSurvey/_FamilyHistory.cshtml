@@ -1,0 +1,185 @@
+﻿@model IEnumerable<HRA4.ViewModels.FamilyHistoryRelative>
+    @{
+        
+        Layout = null;
+    }
+<div class="tab-pane active" id="family-history">
+    <div class="table-responsive">
+        <table class="table table-striped apppointment-table">
+            <thead>
+                <tr>
+                    <th>Family Member</th>
+                    <th>Relative Age</th>
+                    <th>Vital Status</th>
+                    <th>First Dx</th>
+                    <th>Age Onset</th>
+                    <th>Second Dx</th>
+                    <th>Age Onset</th>
+                    <th>Third Dx</th>
+                    <th>Age Onset</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyTest">
+                @Html.Partial("_FamilyHistoryRelativeRow", Model)
+            </tbody>
+        </table><!--family history end here-->
+    </div>
+</div><!--Family History tab content end here-->
+     <!-- edit family-history Models popup -->
+<div id="edit-family-history" role="dialog" aria-hidden="true" class="modal fade" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" style="margin-top:100px;width:700px;">
+        @using (Ajax.BeginForm("SaveSurvey", "Institution", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnBegin = "AssignValues",
+        OnSuccess = "AppendRow",
+    }, new { id = "frmSaveSurvey" }))
+        {
+            //InsertionMode = InsertionMode.InsertBefore,
+
+            @*<input type="hidden" id="hdddlRelation" name="hdddlRelation" value="aaaa" />
+                <input type="hidden" id="hdddlVital"  name="hdddlVital" />
+                <input type="hidden" id="hdddlFirstDx"  name="hdddlFirstDx" />
+                <input type="hidden" id="hdddlSecondDx"  name="hdddlSecondDx" />
+                <input type="hidden" id="hdddlThirdDx"  name="hdddlThirdDx" />*@
+
+            <input type="hidden" value="@ViewBag.unitnum" id="hdunitnum" name="hdunitnum" />
+            <input type="hidden" value="@ViewBag.apptid" id="hdapptid" name="hdapptid" />
+            <input type="hidden" id="hdRelativeId" name="hdRelativeId" />
+            <input type="hidden" id="hdType" name="hdType" />
+
+
+        <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Family History</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5">Vital Status</label>
+                                <div class="col-xs-7">
+                                    @{
+
+            List<SelectListItem> liVital = new List<SelectListItem>();
+            liVital.Add(new SelectListItem { Text = "Alive", Value = "Alive" });
+            liVital.Add(new SelectListItem { Text = "Dead", Value = "Dead" });
+
+                                    }
+                                    @Html.DropDownList("ddlVital", new SelectList(liVital, "Value", "Text"), "", new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5">Relative Age</label>
+                                <div class="col-xs-7"><input type="number" class="form-control" id="txtRelativeAge" name="txtRelativeAge" /></div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5">First Dx</label>
+                                <div class="col-xs-7">
+                                    @{
+
+            List<SelectListItem> liFirstDx = new List<SelectListItem>();
+            liFirstDx.Add(new SelectListItem { Text = "Brain Cancer", Value = "Brain Cancer" });
+            liFirstDx.Add(new SelectListItem { Text = "Breast Cancer", Value = "Breast Cancer" });
+            liFirstDx.Add(new SelectListItem { Text = "Cervical Cancer", Value = "Cervical Cancer" });
+            liFirstDx.Add(new SelectListItem { Text = "Colon or Rectal Cancer", Value = "Colon or Rectal Cancer" });
+            liFirstDx.Add(new SelectListItem { Text = "Hodgkins Lymphoma", Value = "Hodgkins Lymphoma" });
+            liFirstDx.Add(new SelectListItem { Text = "Kidney or Bladder Cancer", Value = "Kidney or Bladder Cancer" });
+            liFirstDx.Add(new SelectListItem { Text = "Leukemia", Value = "Leukemia" });
+            liFirstDx.Add(new SelectListItem { Text = "Liver Cancer", Value = "Liver Cancer" });
+            liFirstDx.Add(new SelectListItem { Text = "Lung Cancer", Value = "Lung Cancer" });
+            liFirstDx.Add(new SelectListItem { Text = "Lymphoma (Non-Hodgkins)", Value = "Lymphoma (Non-Hodgkins)" });
+            liFirstDx.Add(new SelectListItem { Text = "Melanoma", Value = "Melanoma" });
+            liFirstDx.Add(new SelectListItem { Text = "Other", Value = "Other" });
+            liFirstDx.Add(new SelectListItem { Text = "Ovarian Cancer", Value = "Ovarian Cancer" });
+            liFirstDx.Add(new SelectListItem { Text = "Pancreatic Cancer", Value = "Pancreatic Cancer" });
+            liFirstDx.Add(new SelectListItem { Text = "Prostate Cancer", Value = "Prostate Cancer" });
+            liFirstDx.Add(new SelectListItem { Text = "Sarcoma", Value = "Sarcoma" });
+            liFirstDx.Add(new SelectListItem { Text = "Stomach Cancer", Value = "Stomach Cancer" });
+            liFirstDx.Add(new SelectListItem { Text = "Thyroid Cancer", Value = "Thyroid Cancer" });
+            liFirstDx.Add(new SelectListItem { Text = "Uterine Cancer", Value = "Uterine Cancer" });
+
+                                    }
+                                    @Html.DropDownList("ddlFirstDx", new SelectList(liFirstDx, "Value", "Text"), "", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5">Age Onset</label>
+                                <div class="col-xs-7"><input type="number" class="form-control" id="txtFirstAgeOnset" name="txtFirstAgeOnset" /></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5">Second Dx</label>
+                                <div class="col-xs-7">
+                                    @Html.DropDownList("ddlSecondDx", new SelectList(liFirstDx, "Value", "Text"), "", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5">Age Onset</label>
+                                <div class="col-xs-7"><input type="number" class="form-control" id="txtSecondAgeOnset" name="txtSecondAgeOnset" /></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5">Third Dx</label>
+                                <div class="col-xs-7">
+                                    @Html.DropDownList("ddlThirdDx", new SelectList(liFirstDx, "Value", "Text"), "", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-xs-5">Age Onset</label>
+                                <div class="col-xs-7"><input type="number" class="form-control" name="txtThirdAgeOnset" id="txtThirdAgeOnset" /> </div>
+                            </div>
+                        </div>
+
+                    </div><!--row end-->
+
+                </div> <!--modal body end-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save</button> @*onclick="AppendRow('@Url.Action("SaveSurvey", "EditSurvey")');"*@
+                </div>
+            </div>
+        }
+    </div>
+</div><!--edit family-history end-->
+
+<!-- confirmation Delete -->
+<div id="confirm-delete" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="CloseBtn" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Confirmation </h4>
+            </div>
+            <div class="modal-body">
+                <div class="editor-field">
+                    <b style="color:red; font-size:16px;"><i class="fa fa-exclamation-circle fa-lg"></i></b> <strong>Are you sure you want to delete?</strong><br /><br />
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-success confirmyes pull-right" type="button" onclick="DeleteRelative('@Url.Action("DeleteRelative", "EditSurvey")')" value="Yes" />
+                    <input class="btn btn-cancel pull-right Margin-R-10" type="button" data-dismiss="modal" onclick="" value="Cancel" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Confirmation-->

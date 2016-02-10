@@ -42,15 +42,6 @@ $('#dob-date, #edit-app-date').datepicker()//  id with "dob-date" will pop up a 
 
 
 
-//hide add appointment link
-function hideAppt(){
-    $(".add-appointment").hide();
-}
-
-//show add appointment link
-function showAppt(){
-    $(".add-appointment").show();
-}
 
 
 //for quick edit		
@@ -148,15 +139,7 @@ $('.BreastCancerAccordion .panel-heading').on('click', function () {
     $(this).addClass('activeAccordion');
  });
 
-//hide add MRI link
-function hideMRI(){	
-	$(".add-MRI").hide();
-}
 
-//show add MRI link
-function showMRI(){	
-	$(".add-MRI").show();
-}
 	
 //add tooltip on ellipse
 $('td, th').bind('mouseenter', function () {

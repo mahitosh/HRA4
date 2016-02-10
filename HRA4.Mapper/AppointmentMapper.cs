@@ -90,7 +90,8 @@ namespace HRA4.Mapper
                 Survey = app.surveyType,
                 DoNotCall = dnc,
                 appttime = app.appttime,
-                clinicID = app.clinicID
+                clinicID = app.clinicID,
+               
             };
         }
 
