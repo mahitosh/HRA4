@@ -16,6 +16,8 @@ namespace HRA4.Services
 
         Repositories.Interfaces.IRepositoryFactory _repositoryFactory;
         Interfaces.IHraSessionManager _hraSessionManager;
+        string _mrn;
+        int _apptID;
         public ServiceContext(IRepositoryFactory repositoryFactory)
         {
             this._repositoryFactory = repositoryFactory;
@@ -32,6 +34,8 @@ namespace HRA4.Services
         {
             this._username = user;
         }
+
+       
 
         public IAppointmentService AppointmentService
         {
@@ -65,6 +69,10 @@ namespace HRA4.Services
             get { return new RiskClinicServices(_repositoryFactory, _hraSessionManager); }
         }
 
+        public ISurveyRiskFactors SurveyRiskFactors
+        {
+            get { return new SurveyRiskFactor(_hraSessionManager); }
+        }
 
 
     }

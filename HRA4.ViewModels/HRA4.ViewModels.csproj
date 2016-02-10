@@ -52,6 +52,7 @@
     <Compile Include="HighRisk.cs" />
     <Compile Include="HraXmlFile.cs" />
     <Compile Include="Clinic.cs" />
+    <Compile Include="MRI.cs" />
     <Compile Include="RiskScore.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="Tasks.cs" />

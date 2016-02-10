@@ -43,9 +43,9 @@ namespace TestApp
 
         private static void SaveCancerRiskFactors()
         {
-            Breast bcancer = new Breast();
+            BreastCancer bcancer = new BreastCancer();
 
-            CancerRiskFactors breast = new Breast()
+            CancerRiskFactors breast = new BreastCancer()
             {
                 MensturationHistory = new MensturationHistory()
                 {
@@ -64,7 +64,7 @@ namespace TestApp
             };
 
 
-            CancerRiskFactors colorectal = new Colorectal()
+            CancerRiskFactors colorectal = new ColorectalCancer()
             {
                 MensturationHistory = new MensturationFactors()
                 {                   
@@ -88,7 +88,8 @@ namespace TestApp
             //physical.BackgroundPersistWork(args);
              
           
-            physical.weightPounds = "80";
+            physical.weightPounds = "90";
+           
             physical.BackgroundPersistWork(new HraModelChangedEventArgs(null));
             
         }

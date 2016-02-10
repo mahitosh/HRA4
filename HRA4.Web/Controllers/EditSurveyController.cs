@@ -15,12 +15,19 @@ namespace HRA4.Web.Controllers
        {
            ViewBag.unitnum = unitnum;
            ViewBag.apptid = apptid;
-            
+          
+
            List<ViewModels.FamilyHistoryRelative> obj = new List<ViewModels.FamilyHistoryRelative>();
          //  obj = _applicationContext.ServiceContext.AppointmentService.GetFamilyHistoryRelative(unitnum,apptid); //commented by Nilesh 
             
            return View("Index", obj);
         }
+
+        public ActionResult LoadBreastCancerFactors(string mrn,int apptId)
+       {
+           var breastCancer = _applicationContext.ServiceContext.SurveyRiskFactors.LoadBreastCancerRiskFactors(mrn, apptId);
+           return PartialView("_CancerRiskFactorBreast", breastCancer);
+       }
         /*
         public Action FamilyHistory()
         { 
@@ -29,7 +36,7 @@ namespace HRA4.Web.Controllers
          */
        public JsonResult GetPatientDetails(string unitnum, int apptid)
        {
-
+          
             var obj = _applicationContext.ServiceContext.RiskClinicServices.GetPatientDetails(unitnum,apptid);
             var obj1 = new { obj};
             return Json(obj1);
@@ -58,6 +65,7 @@ namespace HRA4.Web.Controllers
        
        }
 
+        
 
        public JsonResult AddRelative(string unitnum, int apptid , string Relationship)
        {

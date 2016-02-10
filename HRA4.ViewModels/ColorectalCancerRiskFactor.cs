@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HRA4.ViewModels
 {
-    public class Colorectal: CancerRiskFactors
+    public class ColorectalCancer: CancerRiskFactors
     {
 
         public LifeStyle LifeStyleData { get; set; }

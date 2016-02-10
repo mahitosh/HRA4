@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HRA4.ViewModels
 {
-    public class Breast: CancerRiskFactors
+    public class BreastCancer: CancerRiskFactors
     {
        
 
