@@ -1,0 +1,26 @@
+﻿
+<div class="tab-pane" id="cancer-risk-factor">
+    <div class="col-sm-12 Padding-TB-10">
+        <!-- Repo Tabs --->
+        <ul class="nav nav-tabs" id="CancerRiskChild">
+            <li class="active"><a href="#BreastCancerRisk" data-toggle="tab">Cancer Risk Factors - Breast</a></li>
+            <li><a href="#ColorectalCancerRisk" data-toggle="tab">Cancer Risk Factors - Colorectal</a></li>
+        </ul>
+
+        <!-- Repo Tabs -->
+
+        <div class="tab-content">
+            <!--Start Tab BreastCancerRisk-->
+              @Html.Partial("_CancerRiskFactorBreast")
+            <!--End Tab BreastCancerRisk-->
+
+            <!--Start Tab ColorectalCancerRisk-->
+            @Html.Partial("_CancerRiskFactorsColorectal")
+            <!--End Tab ColorectalCancerRisk-->
+
+
+           
+        </div><!--Cancer risk tab child panel end here-->
+    </div> <!--col sm 12 end-->
+    <div class="clear-float"></div>
+</div><!--Cancer risk factor tab content end-->
