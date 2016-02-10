@@ -429,7 +429,7 @@ function DeleteAppointment() {
     var globalGetJSONPath = $("#hidUploadUrl").val();
     var deleteUrl = $("#hidType").val();
     
-    alert(globalGetJSONPath);
+    
 
     $.ajax({
         type: "Get",
@@ -505,6 +505,8 @@ function NewDocument(globalGetJSONPath, MRN, apptid) {
     })
 }
 
+
+
 function ShowDocument(globalGetJSONPath, templateid) {
     var mrn = $("#hidSelectedMrn").val();
     var apptId = $("#hidSelectedAppId").val();
@@ -528,7 +530,14 @@ function ShowDocument(globalGetJSONPath, templateid) {
     $(target).data('spinner', spinner);
 
     $("#btnDocDownload").attr('disabled', true);
+    $("#btnPrint").attr('disabled', true);
     $("#btnDocCancel").attr('disabled', true);
+    $("#btnPrint").click(function (e) {
+        e.preventDefault();
+    });
+    $("#btnDocDownload").click(function (e) {
+        e.preventDefault();
+    });
     // alert(mrn); btnDocCancel
     //alert(apptId);
     $.ajax({
@@ -541,10 +550,17 @@ function ShowDocument(globalGetJSONPath, templateid) {
             $('#divShowHtml').data('spinner').stop();
             //$('#divShowHtml').hide();
             $("#btnDocDownload").attr('disabled', false);
+            $("#btnPrint").attr('disabled', false);
+            $("#btnDocDownload").on('click');
             $("#btnDocCancel").attr('disabled', false);
             $('#divShowHtml').html(Data.view);
 
+        },
+        error:function(error)
+        {
+            alert(error);
         }
+        
     })
 }
 function pop_print() {
