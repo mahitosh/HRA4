@@ -56,10 +56,12 @@
   <ItemGroup>
     <Compile Include="AdminService.cs" />
     <Compile Include="AppointmentService.cs" />
+    <Compile Include="SurveyRiskFactor.cs" />
     <Compile Include="ExportImportService.cs" />
     <Compile Include="HraSessionManager.cs" />
     <Compile Include="Interfaces\IAdminService.cs" />
     <Compile Include="Interfaces\IAppointmentService.cs" />
+    <Compile Include="Interfaces\ISurveyRiskFactors.cs" />
     <Compile Include="Interfaces\IExportImportService.cs" />
     <Compile Include="Interfaces\IHraSessionManager.cs" />
     <Compile Include="Interfaces\IRiskAppServices.cs" />

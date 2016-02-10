@@ -65,6 +65,10 @@ namespace HRA4.Services
             get { return new RiskClinicServices(_repositoryFactory, _hraSessionManager); }
         }
 
+        public ISurveyRiskFactors SurveyRiskFactors
+        {
+            get { return new SurveyRiskFactor(_hraSessionManager); }
+        }
 
 
     }

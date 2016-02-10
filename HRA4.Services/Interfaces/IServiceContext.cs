@@ -14,6 +14,6 @@ namespace HRA4.Services.Interfaces
         IExportImportService ExportImportService { get; }
         ITemplateService TemplateService { get; }
         IRiskClinicServices RiskClinicServices { get; }
-
+        ISurveyRiskFactors SurveyRiskFactors { get; }
     }
 }

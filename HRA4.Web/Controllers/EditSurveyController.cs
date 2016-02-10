@@ -29,7 +29,7 @@ namespace HRA4.Web.Controllers
          */
        public JsonResult GetPatientDetails(string unitnum, int apptid)
        {
-
+          
             var obj = _applicationContext.ServiceContext.RiskClinicServices.GetPatientDetails(unitnum,apptid);
             var obj1 = new { obj};
             return Json(obj1);
