@@ -34,5 +34,8 @@ namespace HRA4.Services.Interfaces
         void ExcludeTestPatientsByapptids(int[] apptids);
         VM.Appointment GetAppointmentForAdd(string MRN, int clinicId);
         VM.Appointment GetAppointmentForCopy(string ApptId, int InstitutionId, NameValueCollection searchfilter);
+        List<ViewModels.FamilyHistoryRelative> GetFamilyHistoryRelative(string unitnum, int apptid);
+        void SaveSurvey(string unitnum, int apptid, ViewModels.FamilyHistoryRelative obj, int type);
+        Patient CalculateRiskAndRunAutomation(int apptid, string MRN);
     }
 }

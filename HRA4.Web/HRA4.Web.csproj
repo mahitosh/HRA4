@@ -797,6 +797,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DocumentEditorController.cs" />
+    <Compile Include="Controllers\EditSurveyController.cs" />
     <Compile Include="Controllers\HighRiskFollowupController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InstitutionController.cs" />
@@ -864,6 +865,13 @@
     <Content Include="Views\User\_UserProfileList.cshtml" />
     <Content Include="Views\User\_AddNewUser.cshtml" />
     <Content Include="Views\Institution\_InstitutionProviders.cshtml" />
+    <Content Include="Views\EditSurvey\Index.cshtml" />
+    <Content Include="Views\EditSurvey\_FamilyHistoryRelativeRow.cshtml" />
+    <Content Include="Views\EditSurvey\_CancerRiskFactor.cshtml" />
+    <Content Include="Views\EditSurvey\_CancerRiskFactorBreast.cshtml" />
+    <Content Include="Views\EditSurvey\_CancerRiskFactorsColorectal.cshtml" />
+    <Content Include="Views\EditSurvey\_MRITest.cshtml" />
+    <Content Include="Views\EditSurvey\_FamilyHistory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -21,7 +21,7 @@
                 </a>
             </span>
             @*<a href="#"><img src="~/images/new-doc-ico.svg" alt="New Document" width="30" height="30" title="New Document" /> New Document</a>*@
-            <a href="#"><img src="~/images/edit-survey-ico.svg" alt="Edit Survey" width="30" height="30" title="Edit Survey" /> Edit Survey</a>
+            <a href="@Url.Action("Index", "EditSurvey", new { unitnum = @Model.MRN, apptid =@Model.Id})"><img src="~/images/edit-survey-ico.svg" alt="Edit Survey" width="30" height="30" title="Edit Survey" /> Edit Survey</a>
             <span onclick="RiskCalculation('@Url.Action("RiskCalculation", "Institution")','@Model.MRN.ToString()','@Model.Id.ToString()','Show');">
                 <a href="#" data-toggle="modal" data-target="#risk-calc-display-modal" data-backdrop="static" data-keyboard="false"><img src="~/images/risk-calc-ico.svg" alt="Risk Calculation" width="30" height="30" title="Risk Calculation" /> Risk Calculation</a>
             </span>
