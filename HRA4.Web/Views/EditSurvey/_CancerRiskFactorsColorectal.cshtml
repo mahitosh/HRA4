@@ -1,4 +1,6 @@
-﻿<div class="tab-pane" id="ColorectalCancerRisk">
+﻿@model HRA4.ViewModels.Colorectal
+
+<div class="tab-pane" id="ColorectalCancerRisk">
     <!--Colorecta accordion start here-->
     <div class="panel-group ColorectalCancerRiskAccordion" id="accordion1">
         <div class="panel panel-default">
@@ -15,16 +17,19 @@
                     <div class="col-lg-2 col-sm-3">
                         <div class="form-group">
                             <label>Weight</label>
-                            <input class="form-control input-small" id="txtweightPounds" name="txtweightPounds" />
+                            @Html.TextBoxFor(item => item.PhysicalData.Weight, new { @class = "form-control" })
+                            @*<input class="form-control input-small" id="txtweightPounds" name="txtweightPounds" />*@
                             <label>lbs</label>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-5">
                         <div class="form-group">
                             <label>Height</label>
-                            <input class="form-control input-small" id="txtfeet" name="txtfeet" />
+                            @*<input class="form-control input-small" id="txtfeet" name="txtfeet" />*@
+                            @Html.TextBoxFor(item => item.PhysicalData.Feet, new { @class = "form-control" })
                             <label>'</label>
-                            <input class="form-control input-small" name="txtinches" id="txtinches" />
+                            @*<input class="form-control input-small" name="txtinches" id="txtinches" />*@
+                            @Html.TextBoxFor(item => item.PhysicalData.Inches, new { @class = "form-control" })
                             <label>"</label>
                         </div>
                     </div>
@@ -45,29 +50,18 @@
                 <div class="panel-body form-inline">
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <label>Ashkenazi Jewish</label>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        @Html.DropDownList("ddlisAshkenazi", new SelectList(@Model.OriginData.lstAshkenaziJewish, @Model.OriginData.AshkenaziJewish), "", new { @class = "form-control" })
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-4">
+                        
                         <label>Hispanic </label>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
-
+                        @Html.DropDownList("ddlisHispanic",new SelectList(@Model.OriginData.lstHispanic,@Model.OriginData.Hispanic) ,"", new { @class = "form-control" })
                     </div>
                     <div class="clear-float visible-sm"><br /></div>
                     <div class="col-lg-4 col-md-5 col-sm-9">
-                        <label>Race  </label>
-                        <select multiple="multiple" class="form-control" id="colo-race-multiselect">
-                            <option>Asian</option>
-                            <option>African American/Black</option>
-                            <option>List Item3</option>
-                        </select>
+                        
+                        <label>Race  </label>@*<select multiple="multiple" class="form-control" id="colo-race-multiselect">*@
+                        @Html.DropDownList("ddlRace",new SelectList(@Model.OriginData.lstRace,@Model.OriginData.Race) ,"", new { @class = "form-control" })
                     </div>
                 </div><!--panel body end-->
             </div>
@@ -86,30 +80,26 @@
                 <div class="panel-body form-inline">
                     <div class="col-lg-4 col-md-5 col-sm-6">
                         <label>Num years smoked cigarettes?</label>
-                        <input type="text" class="form-control input-small" />
+                        @Html.TextBoxFor(item => item.LifeStyleData.RiskDataCustom_numYearsSmokedCigarettes, new { @class = "form-control" })
+                        @*<input type="text" class="form-control input-small" id="txtRiskDataCustom_numYearsSmokedCigarettes" />*@
                     </div>
                     <div class="col-lg-4 col-md-5 col-sm-6">
                         <label>Num cigarettes smoked per day? </label>
-                        <input type="text" class="form-control input-small" />
+                        @*<input type="text" class="form-control input-small" id="txtRiskDataCustom_numCigarettesPerDay" name="txtRiskDataCustom_numCigarettesPerDay" />*@
+                        @Html.TextBoxFor(item => item.LifeStyleData.RiskDataCustom_numCigarettesPerDay, new { @class = "form-control" })
                     </div>
                     <div class="clear-float visible-md"><br /></div>
                     <div class="clear-float visible-sm"><br /></div>
                     <div class="col-lg-4 col-md-5 col-sm-4">
                         <label>Vegetables </label>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                      
+                        @Html.DropDownList("ddlVegetables", new SelectList(@Model.LifeStyleData.lstddlVegetables,@Model.LifeStyleData.Vegetables),"", new { @class = "form-control" })
                     </div>
                     <div class="clear-float visible-lg"><br /></div>
                     <div class="col-md-6 col-sm-8">
                         <label>Hours of vigorous exercise per week </label>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                       
+                        @Html.DropDownList("ddlvigorous_exercise", new SelectList(@Model.LifeStyleData.lstddlvigorous,@Model.LifeStyleData.vigorous), "", new { @class = "form-control" })
                     </div>
                 </div><!--panel body end-->
             </div>
@@ -128,15 +118,14 @@
                 <div class="panel-body form-inline">
                     <div class="col-lg-3 col-md-4 col-sm-4">
                         <label>Still Having  Periods</label>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        @{
+                            List<SelectList> lstddlcurrentlyMenstruating = new List<SelectList>();     
+                        }
+                       @Html.DropDownList("ddlcurrentlyMenstruating", new SelectList(lstddlcurrentlyMenstruating, "Value", "Text"), "", new { @class = "form-control" })
                     </div>
                     <div class="col-md-3 col-sm-5">
                         <label>Age Periods Stopped</label>
-                        <input type="text" class="form-control input-small" />
+                        <input type="text" class="form-control input-small" id="txtstoppedMenstruating" name="txtstoppedMenstruating" />
                     </div>
 
                 </div><!--panel body end-->
@@ -156,15 +145,16 @@
                 <div class="panel-body form-inline">
                     <div class="col-lg-3 col-sm-4">
                         <label>Used Hormones</label>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        @{
+
+                            List<SelectList> lstddlhormoneUse = new List<SelectList>();
+
+                        }
+                        @Html.DropDownList("ddlhormoneUse", new SelectList(lstddlhormoneUse, "Value", "Text"), "", new { @class = "form-control" })
                     </div>
                     <div class="col-md-3 col-sm-4">
                         <label>Years since Taken</label>
-                        <input type="text" class="form-control input-small" />
+                        <input type="text" class="form-control input-small" id="txthormoneYearsSinceLastUse" name="txthormoneYearsSinceLastUse" />
                     </div>
                 </div><!--panel body end-->
             </div>
@@ -182,25 +172,67 @@
             <div id="ColorectCollapseSix" class="panel-collapse collapse">
                 <div class="panel-body form-inline">
                     <div class="col-lg-3 col-md-4 col-sm-6">
-                        <label>Regular Aspirins User</label>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        <label>Regular Aspirins User</label> 
+                        @{
+
+                            List<SelectList> lstddlaspirinRegularUse = new List<SelectList>();
+
+
+                        }
+                        @Html.DropDownList("ddlaspirinRegularUse", new SelectList(lstddlaspirinRegularUse, "Value", "Text"), "", new { @class = "form-control" })
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <label>Regular Ibuprofen User</label>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        @{
+
+                            List<SelectList> lstddlibuprofenRegularUse = new List<SelectList>();
+
+
+                        }
+                      @Html.DropDownList("ddlibuprofenRegularUse", new SelectList(lstddlibuprofenRegularUse, "Value", "Text"), "", new { @class = "form-control" })
                     </div>
                 </div><!--panel body end-->
             </div>
         </div><!--panel end-->
         <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#ColorectCollapseSeven">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                        Procedures
+                    </a>
+                </h4>
+            </div>
+            <div id="ColorectCollapseSeven" class="panel-collapse collapse">
+                <div class="panel-body form-inline">
+                    <div class="col-lg-4 col-md-5 col-sm-6">
+                        <label>Colonoscopy or Sigmoidoscopy</label> 
+                        <br />
+                        <label>during the past 10 years</label> 
+                        @{
+
+                            List<SelectList> lstddlcolonoscopyLast10Years = new List<SelectList>();
+
+
+                        }
+                       @Html.DropDownList("ddlcolonoscopyLast10Years", new SelectList(lstddlcolonoscopyLast10Years, "Value", "Text"), "", new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-5 col-sm-6">
+                        <label>Colon or Rectal Polyp </label> 
+                        <br />
+                        <label>in the past 10 years </label> 
+                        @{
+
+                            List<SelectList> lstddlcolonPolypLast10Years = new List<SelectList>();
+
+
+                        }
+                     @Html.DropDownList("ddlcolonPolypLast10Years", new SelectList(lstddlcolonPolypLast10Years, "Value", "Text"), "", new { @class = "form-control" })
+                    </div>
+                </div><!--panel body end-->
+            </div>
+        </div><!--panel end-->
+        @*<div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#ColorectCollapseSeven">
@@ -229,7 +261,7 @@
                     </div>
                 </div><!--panel body end-->
             </div>
-        </div><!--panel end-->
+        </div><!--panel end-->*@
     </div><!--accordion end-->
     <div class="col-sm-12 pull-right">
         <button class="pull-right btn btn-success btn-sm  Margin-L-10">Save Risk Factors</button>
