@@ -8,7 +8,7 @@ function LoadBreastCancerRiskFactors(url)
     //$("#hidSelectedAppId").val(apptid);
     var mrn = $("#hidMrn").val();
     var apptId = $("#hidApptId").val();
-    alert(url);
+    
 
     $.ajax({
         url: url,

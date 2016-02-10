@@ -89,7 +89,7 @@ namespace HRA4.Services
 
         public MRI GetMRIDetails()
         {
-           
+            throw new NotImplementedException();
         }
     }
 }

@@ -24,10 +24,24 @@ namespace HRA4.Mapper
             return new VM.PhysicalData()
             {
                 Weight = physical.weightPounds,
-                Inches = physical.heightInches,
-                Feet = physical.heightFeetInches
+                Inches = GetInches(physical.heightInches),
+                Feet = GetFeet(physical.heightInches)
             };
         }
-        
+
+        private static string GetFeet(string heightInches)
+        {
+            int totalInches = Int32.Parse(heightInches);
+
+            return "" + (totalInches / 12);
+             
+        }
+
+        private static string GetInches(string heightInches)
+        {
+            int totalInches = Int32.Parse(heightInches);
+
+            return "" + (totalInches % 12);            
+        }
     }
 }
