@@ -15,7 +15,7 @@ namespace HRA4.Services
     {
         IHraSessionManager _hraSessionManager;
         private static readonly ILog Logger = LogManager.GetLogger(typeof(SurveyRiskFactor));
-        
+
         public SurveyRiskFactor(IHraSessionManager hraSessionManager)
         {
             this._hraSessionManager = hraSessionManager;
@@ -85,6 +85,11 @@ namespace HRA4.Services
         public ColorectalCancer LoadColorectalRiskFactors(string mrn, int apptId)
         {
             throw new NotImplementedException();
+        }
+
+        public MRI GetMRIDetails()
+        {
+           
         }
     }
 }
