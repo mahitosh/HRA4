@@ -8,7 +8,7 @@ function LoadBreastCancerRiskFactors(url)
     //$("#hidSelectedAppId").val(apptid);
     var mrn = $("#hidMrn").val();
     var apptId = $("#hidApptId").val();
-    
+
 
     $.ajax({
         url: url,
@@ -17,6 +17,24 @@ function LoadBreastCancerRiskFactors(url)
         success: function (data) {
             $('#BreastCancerRisk').html('');
             $('#BreastCancerRisk').html(data);             
+        }
+    });
+
+}
+
+function LoadColorectalCancerRiskFactors(url) {
+ 
+    var mrn = $("#hidMrn").val();
+    var apptId = $("#hidApptId").val();
+    
+
+    $.ajax({
+        url: url,
+        data: { mrn: mrn, apptId: apptId },
+        dataType: 'html',
+        success: function (data) {
+            $('#ColorectalCancerRisk').html('');
+            $('#ColorectalCancerRisk').html(data);
         }
     });
 

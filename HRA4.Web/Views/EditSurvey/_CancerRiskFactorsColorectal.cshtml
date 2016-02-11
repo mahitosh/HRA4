@@ -1,6 +1,6 @@
 ﻿@model HRA4.ViewModels.ColorectalCancer
 
-<div class="tab-pane" id="ColorectalCancerRisk">
+
     <!--Colorecta accordion start here-->
     <div class="panel-group ColorectalCancerRiskAccordion" id="accordion1">
         <div class="panel panel-default">
@@ -17,8 +17,9 @@
                     <div class="col-lg-2 col-sm-3">
                         <div class="form-group">
                             <label>Weight</label>
-                            @Html.TextBoxFor(item => item.PhysicalData.Weight, new { @class = "form-control" })
+                            
                             @*<input class="form-control input-small" id="txtweightPounds" name="txtweightPounds" />*@
+                            @Html.TextBoxFor(item => item.PhysicalData.Weight, new { @class = "form-control input-small" })
                             <label>lbs</label>
                         </div>
                     </div>
@@ -26,10 +27,10 @@
                         <div class="form-group">
                             <label>Height</label>
                             @*<input class="form-control input-small" id="txtfeet" name="txtfeet" />*@
-                            @Html.TextBoxFor(item => item.PhysicalData.Feet, new { @class = "form-control" })
+                            @Html.TextBoxFor(item => item.PhysicalData.Feet, new { @class = "form-control input-small" })
                             <label>'</label>
                             @*<input class="form-control input-small" name="txtinches" id="txtinches" />*@
-                            @Html.TextBoxFor(item => item.PhysicalData.Inches, new { @class = "form-control" })
+                            @Html.TextBoxFor(item => item.PhysicalData.Inches, new { @class = "form-control input-small" })
                             <label>"</label>
                         </div>
                     </div>
@@ -80,13 +81,13 @@
                 <div class="panel-body form-inline">
                     <div class="col-lg-4 col-md-5 col-sm-6">
                         <label>Num years smoked cigarettes?</label>
-                        @Html.TextBoxFor(item => item.LifeStyleData.RiskDataCustom_numYearsSmokedCigarettes, new { @class = "form-control" })
+                        @Html.TextBoxFor(item => item.LifeStyleData.RiskDataCustom_numYearsSmokedCigarettes, new { @class = "form-control input-small" })
                         @*<input type="text" class="form-control input-small" id="txtRiskDataCustom_numYearsSmokedCigarettes" />*@
                     </div>
                     <div class="col-lg-4 col-md-5 col-sm-6">
                         <label>Num cigarettes smoked per day? </label>
                         @*<input type="text" class="form-control input-small" id="txtRiskDataCustom_numCigarettesPerDay" name="txtRiskDataCustom_numCigarettesPerDay" />*@
-                        @Html.TextBoxFor(item => item.LifeStyleData.RiskDataCustom_numCigarettesPerDay, new { @class = "form-control" })
+                        @Html.TextBoxFor(item => item.LifeStyleData.RiskDataCustom_numCigarettesPerDay, new { @class = "form-control input-small" })
                     </div>
                     <div class="clear-float visible-md"><br /></div>
                     <div class="clear-float visible-sm"><br /></div>
@@ -267,4 +268,4 @@
         <button class="pull-right btn btn-success btn-sm  Margin-L-10">Save Risk Factors</button>
         <button class="pull-right btn btn-cancel btn-sm">Reset </button>
     </div> <!--buttons div end-->
-</div>
+

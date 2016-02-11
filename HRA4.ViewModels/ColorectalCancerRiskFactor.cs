@@ -9,6 +9,14 @@ namespace HRA4.ViewModels
     public class ColorectalCancer: CancerRiskFactors
     {
 
+
+        public ColorectalCancer()
+        {
+
+            LifeStyleData = new LifeStyle();
+        
+        }
+
         public LifeStyle LifeStyleData { get; set; }
 
          

@@ -8,6 +8,12 @@ namespace HRA4.ViewModels
 {
     public class CancerRiskFactors
     {
+        public CancerRiskFactors()
+        {
+            PhysicalData = new PhysicalDataFactors();
+            MensturationHistory = new MensturationFactors();
+            OriginData = new Origin();
+        }
         public PhysicalDataFactors PhysicalData { get; set; }
         public MensturationFactors MensturationHistory { get; set; }
         public Origin OriginData { get; set; }
