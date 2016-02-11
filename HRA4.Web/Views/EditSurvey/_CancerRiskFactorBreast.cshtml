@@ -1,5 +1,15 @@
 ﻿@model HRA4.ViewModels.BreastCancer
 
+@using (Ajax.BeginForm("SaveBreastCancerRiskFactor", "EditSurvey", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "BreastRiskSuccess",
+        OnBegin = "BreastRiskBegin",
+
+    }, new { id = "frmBreastCancer" }))
+{
+    <input type="hidden" id="hidMrn" value="@ViewBag.unitnum" />
+    <input type="hidden" id="hidApptId" value="@ViewBag.apptid" />
     <!--accordion start-->
     <div class="panel-group BreastCancerAccordion" id="accordion">
         <div class="panel panel-default">
@@ -16,16 +26,16 @@
                     <div class="col-lg-4 col-sm-3">
                         <div class="form-group">
                             <label>Weight</label>
-                           @Html.TextBoxFor(item => item.PhysicalData.Weight)
+                            @Html.TextBoxFor(item => item.PhysicalData.Weight, new { @class = "form-control" })
                             <label>lbs</label>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-5">
                         <div class="form-group">
                             <label>Height</label>
-                            @Html.TextBoxFor(item => item.PhysicalData.Feet)
+                            @Html.TextBoxFor(item => item.PhysicalData.Feet, new { @class = "form-control" })
                             <label>'</label>
-                            @Html.TextBoxFor(item => item.PhysicalData.Inches)
+                            @Html.TextBoxFor(item => item.PhysicalData.Inches, new { @class = "form-control" })
                             <label>"</label>
                         </div>
                     </div>
@@ -431,9 +441,11 @@
             </div>
         </div><!--panel end-->
     </div>
-<!--accordion end-->
+    <!--accordion end-->
     <div class="col-sm-12 pull-right">
-        <button class="pull-right btn btn-success btn-sm  Margin-L-10">Save Risk Factors</button>
+        <button type="submit" class="pull-right btn btn-success btn-sm  Margin-L-10">Save Risk Factors</button>
         <button class="pull-right btn btn-cancel btn-sm">Reset </button>
     </div> <!--buttons div end-->
-    <!--Breast Cancer Risk tab end here-->
+
+}
+<!--Breast Cancer Risk tab end here-->
