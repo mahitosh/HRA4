@@ -84,12 +84,20 @@ namespace HRA4.Services
 
         public ColorectalCancer LoadColorectalRiskFactors(string mrn, int apptId)
         {
-            throw new NotImplementedException();
+            _hraSessionManager.SetActivePatient(mrn, apptId);
+            var patient = _hraSessionManager.GetActivePatient();
+
+            patient.PhysicalExam.BackgroundLoadWork();
+            ColorectalCancer ColorectalCancer = new ColorectalCancer();
+
+
+            ColorectalCancer.PhysicalData = patient.PhysicalExam.FromRAPhysicalExamination();
+            return ColorectalCancer;
         }
 
         public MRI GetMRIDetails()
         {
-           
+            throw new NotImplementedException();
         }
     }
 }

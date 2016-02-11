@@ -23,11 +23,20 @@ namespace HRA4.Web.Controllers
            return View("Index", obj);
         }
 
-        public ActionResult LoadBreastCancerFactors(string mrn,int apptId)
+       public ActionResult LoadBreastCancerFactors(string mrn,int apptId)
        {
            var breastCancer = _applicationContext.ServiceContext.SurveyRiskFactors.LoadBreastCancerRiskFactors(mrn, apptId);
            return PartialView("_CancerRiskFactorBreast", breastCancer);
        }
+
+       public ActionResult LoadColorectalCancerRiskFactors(string mrn, int apptId)
+        {
+            
+
+            var ColorectalCancer = _applicationContext.ServiceContext.SurveyRiskFactors.LoadColorectalRiskFactors(mrn, apptId);
+            return PartialView("_CancerRiskFactorsColorectal", ColorectalCancer);
+        }
+
         /*
         public Action FamilyHistory()
         { 

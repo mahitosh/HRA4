@@ -4,7 +4,7 @@
         <!-- Repo Tabs --->
         <ul class="nav nav-tabs" id="CancerRiskChild">
             <li class="active"><a href="#BreastCancerRisk" onclick="LoadBreastCancerRiskFactors('@Url.Action("LoadBreastCancerFactors", "EditSurvey")');" data-toggle="tab">Cancer Risk Factors - Breast</a></li>
-            <li><a href="#ColorectalCancerRisk" data-toggle="tab">Cancer Risk Factors - Colorectal</a></li>
+            <li><a href="#ColorectalCancerRisk" data-toggle="tab" onclick="LoadColorectalCancerRiskFactors('@Url.Action("LoadColorectalCancerRiskFactors", "EditSurvey")')"  >Cancer Risk Factors - Colorectal</a></li>
         </ul>
 
         <!-- Repo Tabs -->
@@ -16,7 +16,9 @@
             </div>
                 <!--End Tab BreastCancerRisk-->
                 <!--Start Tab ColorectalCancerRisk-->
-                @Html.Partial("_CancerRiskFactorsColorectal")
+            <div class="tab-pane" id="ColorectalCancerRisk">
+               @*@Html.Partial("_CancerRiskFactorsColorectal", new HRA4.ViewModels.ColorectalCancer())*@
+            </div>
                 <!--End Tab ColorectalCancerRisk-->
 
 
